@@ -1,4 +1,6 @@
 DruggableGene::Application.routes.draw do
+  match 'drugs/:name' => 'drugs#show'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
