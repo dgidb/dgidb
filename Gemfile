@@ -8,6 +8,7 @@ gem 'rails', '3.2.3'
 gem 'sqlite3'
 gem 'pg'
 gem 'haml'
+gem 'less-rails-bootstrap'
 
 
 # Gems used only for assets and not required
