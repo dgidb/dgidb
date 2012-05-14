@@ -10,8 +10,8 @@ class Gene < ActiveRecord::Base
 
     def source_id
       source_id = self.name
-      source_id.sub(/^ENTREZ_G/, "")
-      source_id.sub(/^DGBNK_G/, "")
+      source_id.sub!(/^ENTREZ_G/, "")
+      source_id.sub!(/^DGBNK_G/, "")
     end
 
     def original_data_source_url
@@ -24,8 +24,8 @@ class Gene < ActiveRecord::Base
         base_url + 'Detail.asp?ID=' + name
       when 'GO'
         short_name_and_id = self.gene_categories.select {|category| "go_short_name_and_id" == category.category_name}.first.category_value
-	    short_name_and_id.sub(/^.*_go/, "")
-	    base_url + short_name_and_id
+	short_name_and_id.sub!(/^.*_go/, "")
+	base_url + short_name_and_id
       else
         base_url + name
       end
