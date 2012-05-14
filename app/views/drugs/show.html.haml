@@ -1,5 +1,5 @@
 #notice= notice
-%title
+=content_for :title, @title
 
 .container-fluid
   .row-fluid
@@ -12,7 +12,8 @@
               =drug.name
           %p
             %b Source Database Name:
-            =drug.citation.source_db_name
+            %a{href: drug.citation.site_url}
+              =drug.citation.source_db_name
           %p
             %b Source Database Version:
             =drug.citation.source_db_version
