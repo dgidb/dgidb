@@ -4,9 +4,10 @@ class GeneGroupsController < ApplicationController
     @gene_groups = GeneGroup.where(name: params[:name])
   end
 
-  respond_to :json
   def names
     @names = GeneGroup.pluck(:name)
-    respond_with(@names)
+    respond_to do |format|
+      format.json {render json:  @names.to_json}
+    end
   end
 end
