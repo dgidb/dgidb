@@ -1,0 +1,19 @@
+%p
+  %b Gene Name: 
+  =link_to gene.name, gene.original_data_source_url
+%p
+  %b Source Database Name:
+  =link_to gene.citation.source_db_name, gene.citation.site_url
+%p
+  %b Source Database Version:
+  =gene.citation.source_db_version
+%p
+  %b Alternate Names:
+  %table.table.table-striped
+    -gene.gene_alternate_names.each do |alt_name|
+      %tr
+        %td=alt_name.alternate_name
+        %td=alt_name.nomenclature
+%p
+  %b Citation:
+  %p=gene.citation.citation
