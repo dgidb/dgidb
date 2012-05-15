@@ -5,20 +5,15 @@
     =javascript_include_tag "application"
     =csrf_meta_tags
   %body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container-fluid
-          %a.btn.btn-navbar(data-toggle="collapse" data-target=".nav-collapse")
-            .icon-bar
-            .icon-bar
-            .icon-bar
-          %a.brand(href="/") The Drug-Gene Interactions Database
-          .nav-collapse
-            %ul.nav
-              %li
-                %a(href="/") Home
-              %li
-                %a(href="/about") About
-              %li
-                %a(href="/contact") Contact
+    .navbar.navbar-inner.container-fluid
+      %a.brand(href="/") The Drug-Gene Interactions Database
+      %ul.nav
+        %li
+          %a(href="/") Home
+        %li
+          %a(href="/about") About
+        %li
+          %a(href="/contact") Contact
+        %li
+          %a(href="/search_interactions") Search Interactions
     =yield

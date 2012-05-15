@@ -3,4 +3,13 @@ class Interaction < ActiveRecord::Base
     belongs_to :gene, foreign_key: :gene_name_report_id
     belongs_to :drug, foreign_key: :drug_name_report_id
     has_many :interaction_attributes
+    belongs_to :citation
+
+    def types
+      self.interaction_attributes.find_all{|attribute| attribute.name == 'interaction_type'}
+    end
+
+    def attributes
+      self.interaction_attributes.find_all{|attribute| attribute.name != 'interaction_type'}
+    end
 end

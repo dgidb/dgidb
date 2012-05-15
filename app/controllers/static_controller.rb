@@ -3,5 +3,7 @@ class StaticController < ApplicationController
   end
   def contact
   end
+  def search_interactions
+  end
 end
 

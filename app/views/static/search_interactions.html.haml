@@ -1,0 +1,59 @@
+#notice= notice
+=content_for :title, 'Search Interactions'
+
+.container-fluid
+  %form.form-horizontal
+    %fieldset
+      .control-group
+        %label.control-label(for="input01") Text input
+        .controls
+          %input.input-xlarge#input-01(type="text")
+          %p.help-block In addition to freeform text, any HTML5 text-based input appears like so.
+      .control-group
+        %label.control-label(for="optionsCheckbox") Checkbox
+        .controls
+          %label.checkbox
+            %input#optionsCheckbox(type="checkbox" value="option1")
+            Option one is this and that&mdash;be sure to include why it's great
+      .control-group
+        %label.control-label(for="select01")Select list
+        .controls
+          %select#select01
+            %option something
+            %option 1
+            %option 2
+            %option 3
+            %option 4
+            %option 5
+      .control-group
+        %label.control-label(for="multiSelect")Multicon-select
+        .controls
+          %select#multiSelect(multiple="multiple")
+            %option 1
+            %option 2
+            %option 3
+            %option 4
+            %option 5
+      .control-group
+        %label.tip.control-label(for="fileInput" title="Place one gene name per line in the file. These will be added to whatever is pasted below.") Genes File
+        .controls
+          %input.input-file#fileInput(type="file")
+      .control-group
+        %label.control-label(for="geneInput") Add genes
+        .controls
+          %input.typeahead#geneInput(type="text" data-provide='typeahead')
+      .control-group
+        %label.tip.control-label(for="textarea" title="Place one gene name per line in the text area. These will be added to names from the file if used above.") Paste Genes
+        .controls
+          %textarea.input-xlarge#textarea(rows="3")
+      .control-group
+        %label.control-label(for="checkbox") Select Interactions Source Database
+        .controls
+          .btn-group(data-toggle="buttons-checkbox")
+            %button.btn.btn-primary.database(type='button') TTD
+            %button.btn.btn-primary.database(type='button') DrugBank
+      .form-actions
+        %button.btn.btn-primary(type="submit")Save changes
+        %button.btn Cancel
+
+=javascript_include_tag 'search_interactions'

@@ -2,6 +2,8 @@ DruggableGene::Application.routes.draw do
   match 'drugs/:name' => 'drugs#show'
   match 'genes/:name' => 'genes#show'
   match 'gene_groups/:name' => 'gene_groups#show'
+  match 'gene_groups/names' => 'gene_groups#names'
+  match 'interactions/:id' => 'interactions#show'
   match ':action' => 'static#:action'
 
   # The priority is based upon order of creation:
