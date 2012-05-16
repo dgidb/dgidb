@@ -1,57 +1,66 @@
-#notice= notice
 =content_for :title, 'Search Interactions'
 
 .container-fluid
   %form.form-horizontal{ :action => "interaction_search_results", :method => "post" }
     %fieldset
+      /
+        .control-group
+          %label.control-label Text input
+          .controls
+            %input.input-xlarge(type="text")
+            %p.help-block In addition to freeform text, any HTML5 text-based input appears like so.
+        .control-group
+          %label.control-labelSelect list
+          .controls
+            %select
+              %option something
+              %option 1
+              %option 2
+              %option 3
+              %option 4
+              %option 5
+        .control-group
+          %label.control-label Multicon-select
+          .controls
+            %select(multiple="multiple")
+              %option 1
+              %option 2
+              %option 3
+              %option 4
+              %option 5
       .control-group
-        %label.control-label(for="input01") Text input
+        %label.tip.control-label(title="Place one gene name per line in the file. These will be added to whatever is pasted below.") Genes File
         .controls
-          %input.input-xlarge#input-01(type="text")
-          %p.help-block In addition to freeform text, any HTML5 text-based input appears like so.
+          %input.input-file(type="file")
       .control-group
-        %label.control-label(for="optionsCheckbox") Checkbox
-        .controls
-          %label.checkbox
-            %input#optionsCheckbox(type="checkbox" value="option1")
-            Option one is this and that&mdash;be sure to include why it's great
-      .control-group
-        %label.control-label(for="select01")Select list
-        .controls
-          %select#select01
-            %option something
-            %option 1
-            %option 2
-            %option 3
-            %option 4
-            %option 5
-      .control-group
-        %label.control-label(for="multiSelect")Multicon-select
-        .controls
-          %select#multiSelect(multiple="multiple")
-            %option 1
-            %option 2
-            %option 3
-            %option 4
-            %option 5
-      .control-group
-        %label.tip.control-label(for="fileInput" title="Place one gene name per line in the file. These will be added to whatever is pasted below.") Genes File
-        .controls
-          %input.input-file#fileInput(type="file")
-      .control-group
-        %label.control-label(for="geneInput") Add genes
+        %label.control-label Add genes
         .controls
           %input.typeahead#geneInput(type="text" data-provide='typeahead')
       .control-group
-        %label.tip.control-label(for="textarea" title="Place one gene name per line in the text area. These will be added to names from the file if used above.") Paste Genes
+        %label.tip.control-label(title="Place one gene name per line in the text area. These will be added to names from the file if used above.") Paste Genes
         .controls
-          %textarea.input-xlarge#textarea(rows="3")
+          %textarea.input-xlarge(rows="3")
       .control-group
-        %label.control-label(for="checkbox") Select Interactions Source Database
+        %label.control-label Select Interactions Source Database
         .controls
           .btn-group(data-toggle="buttons-checkbox")
             %button.btn.btn-primary.database(type='button') TTD
             %button.btn.btn-primary.database(type='button') DrugBank
+        .control-group
+          %label.control-label Filter
+          .controls
+            .btn-group-vertical(data-toggle="buttons-radio")
+              %button.btn.btn-primary(type="button" active='true') Basic
+              %button.btn.btn-primary(type="button") Inhibitors only
+              %button.btn.btn-primary(type="button") Kinase associated drugs only
+              %button.btn.btn-primary(type="button") Antineoplastic drugs only
+              %button.btn.btn-primary(type="button") None
+      .control-group
+        %label.control-label Select Output Format
+        .controls
+          .btn-group(data-toggle="buttons-radio")
+            %button.btn.btn-primary.database(type='button') HTML
+            %button.btn.btn-primary.database(type='button') TSV
       .form-actions
         %button.btn.btn-primary(type="submit")Find Drug Interactions
         %button.btn Cancel

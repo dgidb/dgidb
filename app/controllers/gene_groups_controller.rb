@@ -1,7 +1,7 @@
 class GeneGroupsController < ApplicationController
   def show
     @title = params[:name]
-    @gene_groups = GeneGroup.where(name: params[:name])
+    @gene_group = GeneGroup.where(name: params[:name]).first
   end
 
   def names

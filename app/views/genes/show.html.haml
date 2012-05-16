@@ -6,29 +6,4 @@
     .span12
       .hero-unit
         -@genes.each do |gene|
-          %p
-            %b Name:
-            %a{href: gene.original_data_source_url}=gene.name
-          %p
-            %b Source Database Name:
-            %a{href: gene.citation.site_url}=gene.citation.source_db_name
-          %p
-            %b Source Database Version:
-            =gene.citation.source_db_version
-          %p
-            %b Alternate Names:
-            %table.table.table-striped
-              -gene.gene_alternate_names.each do |alt_name|
-                %tr
-                  %td=alt_name.alternate_name
-                  %td=alt_name.nomenclature
-          %p
-            %b Categories:
-            %table.table.table-striped
-              -gene.gene_categories.each do |category|
-                %tr
-                  %td=category.category_name
-                  %td=category.category_value
-          %p
-            %b Citation:
-            %p=gene.citation.citation
+          =render gene
