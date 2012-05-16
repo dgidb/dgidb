@@ -10,11 +10,16 @@
       .control-group
         %label.control-label Add genes
         .controls
-          %input.typeahead#geneInput(type="text" data-provide='typeahead')
+          %input.input-medium.typeahead#geneInput(type="text" data-provide='typeahead' autocomplete='off')
+          %button.btn.btn-success#addGene(type='button') Add Gene
+        .row#loadingBar
+          .span2.offset2
+            .progress.progress-striped.active
+              .bar(style='width: 100%') Loading Autocomplete
       .control-group
         %label.tip.control-label(title="Place one gene name per line in the text area. These will be added to names from the file if used above.") Paste Genes
         .controls
-          %textarea.input-xlarge(rows="3")
+          %textarea#genes(rows="3")
       .control-group
         %label.control-label Select Interactions Source Database
         .controls
