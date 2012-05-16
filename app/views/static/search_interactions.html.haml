@@ -3,31 +3,6 @@
 .container-fluid
   %form.form-horizontal{ :action => "interaction_search_results", :method => "post" }
     %fieldset
-      /
-        .control-group
-          %label.control-label Text input
-          .controls
-            %input.input-xlarge(type="text")
-            %p.help-block In addition to freeform text, any HTML5 text-based input appears like so.
-        .control-group
-          %label.control-labelSelect list
-          .controls
-            %select
-              %option something
-              %option 1
-              %option 2
-              %option 3
-              %option 4
-              %option 5
-        .control-group
-          %label.control-label Multicon-select
-          .controls
-            %select(multiple="multiple")
-              %option 1
-              %option 2
-              %option 3
-              %option 4
-              %option 5
       .control-group
         %label.tip.control-label(title="Place one gene name per line in the file. These will be added to whatever is pasted below.") Genes File
         .controls
