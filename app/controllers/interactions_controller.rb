@@ -4,4 +4,7 @@ class InteractionsController < ApplicationController
     @drug = @interaction.drug
     @gene = @interaction.gene
   end
+  def test
+  #TODO: write something here
+  end
 end

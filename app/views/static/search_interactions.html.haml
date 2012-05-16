@@ -2,7 +2,7 @@
 =content_for :title, 'Search Interactions'
 
 .container-fluid
-  %form.form-horizontal
+  %form.form-horizontal{ :action => "interaction_search_results", :method => "post" }
     %fieldset
       .control-group
         %label.control-label(for="input01") Text input
@@ -53,7 +53,7 @@
             %button.btn.btn-primary.database(type='button') TTD
             %button.btn.btn-primary.database(type='button') DrugBank
       .form-actions
-        %button.btn.btn-primary(type="submit")Save changes
+        %button.btn.btn-primary(type="submit")Find Drug Interactions
         %button.btn Cancel
 
 =javascript_include_tag 'search_interactions'
