@@ -19,22 +19,22 @@
       .control-group
         %label.tip.control-label(title="Place one gene name per line in the text area. These will be added to names from the file if used above.") Paste Genes
         .controls
-          %textarea#genes(rows="3")
+          %textarea#genes(rows="13")
       .control-group
-        %label.control-label Select Interactions Source Database
+        %label.control-label Source Database
         .controls
           .btn-group(data-toggle="buttons-checkbox")
             %button.btn.btn-primary.database(type='button') TTD
             %button.btn.btn-primary.database(type='button') DrugBank
-        .control-group
-          %label.control-label Filter
-          .controls
-            .btn-group-vertical(data-toggle="buttons-radio")
-              %button.btn.btn-primary(type="button" active='true') Basic
-              %button.btn.btn-primary(type="button") Inhibitors only
-              %button.btn.btn-primary(type="button") Kinase associated drugs only
-              %button.btn.btn-primary(type="button") Antineoplastic drugs only
-              %button.btn.btn-primary(type="button") None
+      .control-group
+        %label.control-label Filter
+        .controls
+          .btn-group-vertical(data-toggle="buttons-radio")
+            %button.btn.btn-primary(type="button" active='true') Basic
+            %button.btn.btn-primary(type="button") Inhibitors only
+            %button.btn.btn-primary(type="button") Kinase associated drugs only
+            %button.btn.btn-primary(type="button") Antineoplastic drugs only
+            %button.btn.btn-primary(type="button") None
       .control-group
         %label.control-label Select Output Format
         .controls
