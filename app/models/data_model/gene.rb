@@ -1,4 +1,4 @@
-class Gene < ActiveRecord::Base
+class DataModel::Gene < ActiveRecord::Base
     self.table_name = 'gene_name_report'
     has_many :gene_group_bridges, foreign_key: :gene_name_report_id
     has_many :gene_groups, through: :gene_group_bridges
@@ -22,8 +22,8 @@ class Gene < ActiveRecord::Base
         base_url + 'Detail.asp?ID=' + name
       when 'GO'
         short_name_and_id = self.gene_categories.select {|category| "go_short_name_and_id" == category.category_name}.first.category_value
-    	short_name_and_id.sub!(/^.*_go/, "")
-    	base_url + short_name_and_id
+        short_name_and_id.sub!(/^.*_go/, "")
+        base_url + short_name_and_id
       else
         base_url + name
       end

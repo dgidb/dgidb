@@ -6,4 +6,8 @@
     .span12
       .hero-unit
         %p
-          %b Your Test was successful
+          %b Definite Results
+          %table
+            -@search_results.definite_results.each do |result|
+              =render partial: 'interactions/interaction_table_row', collection: result.interactions, locals: {search_term: result.search_term} 
+

@@ -1,0 +1,9 @@
+%tr
+  %td
+    =interaction_table_row.citation.source_db_name
+  %td
+    =interaction_table_row.drug.name
+  %td
+    =interaction_table_row.types.map{|x| x.value}.join('/')
+  %td
+    =search_term
