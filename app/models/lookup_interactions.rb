@@ -3,7 +3,7 @@ class LookupInteractions
   class << self
     def find_groups_and_interactions(gene_names)
       gene_names = Array(gene_names)
-      results_to_gene_groups = gene_names.inject({}) do |hash, search_term| 
+      results_to_gene_groups = gene_names.inject({}) do |hash, search_term|
         hash[search_term] = []
         hash
       end
@@ -17,7 +17,7 @@ class LookupInteractions
             results_to_gene_groups[result.alternate_name] += result.gene.gene_groups
         end
       end
-      search_results = results_to_gene_groups.map{|key, value| SearchResult.new(key, value)}
+      results_to_gene_groups.map{|key, value| SearchResult.new(key, value)}
     end
   end
 

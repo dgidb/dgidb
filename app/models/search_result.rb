@@ -1,5 +1,5 @@
 class SearchResult
-  
+
   attr_accessor :search_term, :groups, :interactions
 
   def initialize(search_term, groups)
