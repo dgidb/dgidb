@@ -18,11 +18,20 @@ class SearchResultsPresenter
   end
 
   def definite_interactions
-    @definite_interactions || = interaction_map(definite_results)
+    @definite_interactions ||= interaction_map(definite_results)
   end
 
   def ambiguous_interactions
-    @definite_interactions || = interaction_map(ambiguous_results)
+    @definite_interactions ||= interaction_map(ambiguous_results)
+  end
+
+  def show_definite?
+    !grouped_results[:definite].nil?
+  end
+
+  def show_ambiguous?
+    binding.pry
+    !grouped_results[:ambiguous].nil?
   end
 
   private

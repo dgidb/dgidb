@@ -4,14 +4,10 @@
 .container-fluid
   .row-fluid
     .span12
-      .well
-          %b Definite Results
-          %table.table.table-striped.table-bordered
-            =render partial: 'interactions/interaction_table_row', @search_results.definite_interactions
-      .well
-          %b Ambiguous Results
-          %table.table.table-striped.table-bordered
-            =render partial: 'interactions/interaction_table_row', collection: @search_results.ambiguous_interactions
+      -if @search_results.show_definite?
+        =render partial: 'interactions/interaction_results_table', locals: {title: 'Definite Results', interactions: @search_results.definite_interactions}
+      -if @search_results.show_ambiguous?
+        =render partial: 'interactions/interaction_results_table', locals: {title: 'Ambiguous Results', interactions: @search_results.ambiguous_interactions}
   .row-fluid
     .span12
       .well

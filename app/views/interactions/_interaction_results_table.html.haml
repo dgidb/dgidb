@@ -1,0 +1,13 @@
+.well
+  %h3= title
+  %table.table.table-striped.table-condensed
+    %tr
+      %th
+        Source
+      %th
+        Something
+      %th
+        Something Else
+      %th
+        Search Term
+    =render partial: 'interactions/interaction_table_row', collection: interactions
