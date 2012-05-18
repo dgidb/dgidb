@@ -8,7 +8,7 @@ class LookupInteractions
         hash
       end
       results = DataModel::GeneGroup.where(name: gene_names).with_genes
-      results += DataModel::GeneAlternateName.where(alternate_name: gene_names).with_genes_and_groups
+      results ||= DataModel::GeneAlternateName.where(alternate_name: gene_names).with_genes_and_groups
       results.each do |result|
         case result
           when DataModel::GeneGroup
