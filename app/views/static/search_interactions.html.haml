@@ -12,10 +12,8 @@
         .controls
           %input.input-medium.typeahead#geneInput(type="text" data-provide='typeahead' autocomplete='off')
           %button.btn.btn-success#addGene(type='button') Add Gene
-      .control-group#loadingBar
-        %label(style='display: none')
-        .controls
-          .progress.progress-striped.active.span2
+        %label#loadingBar(style='display: none')
+          .span2.offset1.progress.progress-striped.active
             .bar(style='width: 100%') Loading Autocomplete
       .control-group
         %label.tip.control-label(title="Place one gene name per line in the text area. These will be added to names from the file if used above.") Paste Genes

@@ -4,7 +4,23 @@
 .container-fluid
   .row-fluid
     .span12
-      -if @search_results.show_definite?
-        =render partial: 'interactions/interaction_results_table', locals: {title: 'Definite Results', interactions: @search_results.definite_interactions}
-      -if @search_results.show_ambiguous?
-        =render partial: 'interactions/interaction_results_table', locals: {title: 'Ambiguous Results', interactions: @search_results.ambiguous_interactions}
+      .well
+        %p
+          %b Definite Results
+          %table.table.table-striped.table-bordered
+            -@search_results.definite_results.each do |result|
+              =render partial: 'interactions/interaction_table_row', collection: result.interactions, locals: {search_term: result.search_term}
+
+          %b Ambiguous Results
+          %table.table.table-striped.table-bordered
+            -@search_results.ambiguous_results.each do |result|
+              =render partial: 'interactions/interaction_table_row', collection: result.interactions, locals: {search_term: result.search_term}
+  .row-fluid
+    .span12
+      .well
+        %table.table.table-striped
+          -@params.each_pair do |k,v|
+            %tr
+              %td=k
+              %td=v
+  =render @geneGroups
