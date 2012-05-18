@@ -16,11 +16,13 @@ class SearchResultsPresenter
     end
 
     def definite_interactions
-        definite_results.inject([]){|list, result| list += result.interactions}
+        @d ||= definite_results.inject([]){|list, result| list += result.interactions}
+        @d ||= []
     end
 
     def ambiguous_interactions
-        ambiguous_results.inject([]){|list, result| list += result.interactions}
+        @a ||= ambiguous_results.inject([]){|list, result| list += result.interactions}
+        @a ||= []
     end
 
     private 

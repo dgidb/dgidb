@@ -5,15 +5,15 @@ class InteractionsController < ApplicationController
     @gene = @interaction.gene
   end
   def interaction_search_results
-    search_results = LookupInteractions.find_groups_and_interactions(["FLT3", "SKIPPYPEANUTBUTTER", "STK1"]) #TODO: pass in gene_names from the form params hash wheeee
-    @search_results = SearchResultsPresenter.new(search_results)
-
     @params = params
     @geneNames = params[:genes].split("\n").collect(&:strip)
     unless params[:geneFile].nil?
       @geneNames.concat(params[:geneFile].read.split("\n")).collect(&:strip)
     end
     @geneNames.delete_if(&:empty?)
-    @geneGroups = GeneGroup.where(name: @geneNames)
+    @geneGroups = DataModel::GeneGroup.where(name: @geneNames)
+
+    search_results = LookupInteractions.find_groups_and_interactions(@geneNames) #TODO: pass in gene_names from the form params hash wheeee
+    @search_results = SearchResultsPresenter.new(search_results)
   end
 end
