@@ -8,11 +8,3 @@
         =render partial: 'interactions/interaction_results_table', locals: {title: 'Definite Results', interactions: @search_results.definite_interactions}
       -if @search_results.show_ambiguous?
         =render partial: 'interactions/interaction_results_table', locals: {title: 'Ambiguous Results', interactions: @search_results.ambiguous_interactions}
-  .row-fluid
-    .span12
-      .well
-        %table.table.table-striped
-          -@params.each_pair do |k,v|
-            %tr
-              %td=k
-              %td=v
