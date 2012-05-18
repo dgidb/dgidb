@@ -1,48 +1,50 @@
 =content_for :title, 'Search Interactions'
 
 .container-fluid
-  %form.form-horizontal{ :action => "interaction_search_results", :method => "post" }
+  %form.form-horizontal(action="interaction_search_results" method="post" enctype="multipart/form-data")
     %fieldset
       .control-group
         %label.tip.control-label(title="Place one gene name per line in the file. These will be added to whatever is pasted below.") Genes File
         .controls
-          %input.input-file(type="file")
+          %input.input-file(type="file" name='geneFile')
       .control-group
         %label.control-label Add genes
         .controls
           %input.input-medium.typeahead#geneInput(type="text" data-provide='typeahead' autocomplete='off')
           %button.btn.btn-success#addGene(type='button') Add Gene
-        .row#loadingBar
-          .span2.offset2
-            .progress.progress-striped.active
-              .bar(style='width: 100%') Loading Autocomplete
+      .control-group#loadingBar
+        %label(style='display: none')
+        .controls
+          .progress.progress-striped.active.span2
+            .bar(style='width: 100%') Loading Autocomplete
       .control-group
         %label.tip.control-label(title="Place one gene name per line in the text area. These will be added to names from the file if used above.") Paste Genes
         .controls
-          %textarea#genes(rows="13")
+          %textarea#genes(name='genes' rows="13")
       .control-group
         %label.control-label Source Database
         .controls
-          .btn-group(data-toggle="buttons-checkbox")
-            %button.btn.btn-primary.database(type='button') TTD
-            %button.btn.btn-primary.database(type='button') DrugBank
+          %label.checkbox
+            %input(type='checkbox' checked='true' value=1 name='ttd') TTD
+          %label.checkbox
+            %input(type='checkbox' checked='true' value=1 name='drugbank') DrugBank
       .control-group
         %label.control-label Filter
         .controls
-          .btn-group-vertical(data-toggle="buttons-radio")
-            %button.btn.btn-primary(type="button" active='true') Basic
-            %button.btn.btn-primary(type="button") Inhibitors only
-            %button.btn.btn-primary(type="button") Kinase associated drugs only
-            %button.btn.btn-primary(type="button") Antineoplastic drugs only
-            %button.btn.btn-primary(type="button") None
+          %select(name='filter')
+            %option Basic
+            %option Inhibitors only
+            %option Kinase associated drugs only
+            %option Antineoplastic drugs only
+            %option None
       .control-group
         %label.control-label Select Output Format
         .controls
-          .btn-group(data-toggle="buttons-radio")
-            %button.btn.btn-primary.database(type='button') HTML
-            %button.btn.btn-primary.database(type='button') TSV
+          %label.radio
+            %input(type='radio' name='outputFormat' value='html' checked='true') HTML
+          %label.radio
+            %input(type='radio' name='outputFormat' value='tsv') TSV
       .form-actions
         %button.btn.btn-primary(type="submit")Find Drug Interactions
-        %button.btn Cancel
 
 =javascript_include_tag 'search_interactions'

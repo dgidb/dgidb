@@ -12,3 +12,11 @@
           %b Ambiguous Results
           %table.table.table-striped.table-bordered
             =render partial: 'interactions/interaction_table_row', collection: @search_results.ambiguous_interactions
+  .row-fluid
+    .span12
+      .well
+        %table.table.table-striped
+          -@params.each_pair do |k,v|
+            %tr
+              %td=k
+              %td=v
