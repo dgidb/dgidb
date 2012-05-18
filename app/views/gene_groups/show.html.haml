@@ -1,8 +1,4 @@
 =content_for :title, @title
 
 .container-fluid
-  -@gene_group.genes.each do |gene|
-    .row-fluid
-      .span12
-        .hero-unit
-          =render gene
+  =render @gene_group
