@@ -5,7 +5,13 @@ class GeneGroupsController < ApplicationController
   end
 
   def names
-    @names = DataModel::GeneGroup.pluck(:name)
+    cache_key = "gene_group_names"
+    if Rails.cache.exist?(cache_key)
+      @names = Rails.cache.fetch(cache_key)
+    else
+      @names = DataModel::GeneGroup.pluck(:name)
+      Rails.cache.write(cache_key, @names, expires_in: 30.minutes)
+    end
     respond_to do |format|
       format.json {render json:  @names.to_json}
     end
