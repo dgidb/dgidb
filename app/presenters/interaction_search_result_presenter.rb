@@ -11,8 +11,12 @@ class InteractionSearchResultPresenter
     Maybe(@interaction.citation).source_db_name
   end
 
+  def source_db_url
+    Maybe(@interaction.citation).site_url
+  end
+
   def drug_name
-    Maybe(@interaction.drug).name
+    Maybe(@interaction.drug).drug_alternate_names.select{|d| d.nomenclature.downcase['primary'] }.first.alternate_name
   end
 
   def types_string

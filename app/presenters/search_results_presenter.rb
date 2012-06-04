@@ -1,8 +1,9 @@
 include Genome::Extensions
 
 class SearchResultsPresenter
-  def initialize(search_results)
+  def initialize(search_results, filter_scope)
     @search_results = search_results
+    @filter_scope = DataModel::Interaction.send(filter_scope)
   end
 
   def ambiguous_results
@@ -17,12 +18,14 @@ class SearchResultsPresenter
     Maybe(grouped_results[:no_results])
   end
 
-  def definite_interactions
+  def definite_interactions(filter_type)
     @definite_interactions ||= interaction_map(definite_results)
+    @definite_interactions[filter_type]
   end
 
-  def ambiguous_interactions
-    @definite_interactions ||= interaction_map(ambiguous_results)
+  def ambiguous_interactions(filter_type)
+    @ambiguous_interactions ||= interaction_map(ambiguous_results)
+    @ambiguous_interactions[filter_type]
   end
 
   def show_definite?
@@ -30,7 +33,6 @@ class SearchResultsPresenter
   end
 
   def show_ambiguous?
-    binding.pry
     !grouped_results[:ambiguous].nil?
   end
 
@@ -50,10 +52,14 @@ class SearchResultsPresenter
   end
 
   def interaction_map(result_list)
-    result_list.inject([]) do |list, result|
-      list += result.interactions.map do |interaction|
+    result_list.inject({:filtered => [], :unfiltered => []}) do |hash, result|
+      hash[:filtered] += result.interactions.uniq.select{ |i| @filter_scope[i.id] }.map do |interaction|
         InteractionSearchResultPresenter.new(interaction, result.search_term)
       end
+      hash[:unfiltered] += result.interactions.uniq.reject{ |i| @filter_scope[i.id] }.map do |interaction|
+        InteractionSearchResultPresenter.new(interaction, result.search_term)
+      end
+      hash
     end
   end
 end

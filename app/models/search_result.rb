@@ -4,14 +4,14 @@ class SearchResult
 
   def initialize(search_term, groups)
     @search_term = search_term
-    @groups = groups
+    @groups = groups.uniq
     @interactions = groups.map{|group| group.genes}.flatten.inject([]) do |list, gene|
       list += gene.interactions
     end
   end
 
   def is_ambiguous?
-    groups.uniq.length > 1
+    groups.length > 1
   end
 
   def has_results?

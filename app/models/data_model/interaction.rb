@@ -21,7 +21,7 @@ class DataModel::Interaction < ActiveRecord::Base
 
     def self.drug_category(*val)
       DataModel::Drug.joins{drug_categories}.where{
-        drug_categories.category_value.eq_any(val)
+        drug_categories.category_value.like_any(val)
       }.select{id}
     end
 
@@ -33,40 +33,58 @@ class DataModel::Interaction < ActiveRecord::Base
 
     def self.basic
     #'drug.is_withdrawn=0,drug.is_nutraceutical=0,is_potentiator=0,(is_untyped=0 or is_known_action=1)' if /default/;
-      DataModel::Interaction.joins{drug}.where{
-        id.not_in(my{attribute("interaction_type", "potentiator")}) &
-        ( id.not_in(my{attribute("interaction_type", "untyped")}) | id.in( my{attribute("is_known_action", "yes" )}) ) &
-        drug.id.not_in(my{drug_category("withdrawn","nutraceutical")})
-      }
+      memoize_query(DataModel::Interaction.joins{drug}.where{
+          id.not_in(my{attribute("interaction_type", "potentiator")}) &
+          ( id.not_in(my{attribute("interaction_type", "na")}) | id.in( my{attribute("is_known_action", "yes" )}) ) &
+          drug.id.not_in(my{drug_category("withdrawn","nutraceutical")})
+        }.select{id}, "interaction_filter_basic")
     end
 
     def self.inhibitors_only
     #'drug.is_withdrawn=0,drug.is_nutraceutical=0,is_potentiator=0,is_inhibitor=1,(is_untyped=0 or is_known_action=1)';
-      DataModel::Interaction.joins{drug}.where{
+      memoize_query(DataModel::Interaction.joins{drug}.where{
         id.not_in(my{attribute("interaction_type", "potentiator")}) &
         id.in(my{attribute("interaction_type", "inhibitor")}) &
-        ( id.not_in(my{attribute("interaction_type", "untyped")}) | id.in( my{attribute("is_known_action", "yes" )}) ) &
+        ( id.not_in(my{attribute("interaction_type", "na")}) | id.in( my{attribute("is_known_action", "yes" )}) ) &
         drug.id.not_in(my{drug_category("withdrawn","nutraceutical")})
-      }
+      }.select{id}, "interaction_filter_inhibitors")
     end
 
     def self.kinase_only
     #'drug.is_withdrawn=0,drug.is_nutraceutical=0,is_potentiator=0,gene.is_kinase=1,(is_untyped=0 or is_known_action=1)'
-      DataModel::Interaction.joins{drug}.joins{gene}.where{
+      memoize_query(DataModel::Interaction.joins{drug}.joins{gene}.where{
         id.not_in(my{attribute("interaction_type", "potentiator")}) &
-        ( id.not_in(my{attribute("interaction_type", "untyped")}) | id.in( my{attribute("is_known_action", "yes" )}) ) &
+        ( id.not_in(my{attribute("interaction_type", "na")}) | id.in( my{attribute("is_known_action", "yes" )}) ) &
         drug.id.not_in(my{drug_category("withdrawn","nutraceutical")}) &
         gene.id.in(my{gene_name_alternate("%kinase%")})
-      }
+      }.select{id}, "interaction_filter_kinase")
     end
 
-    def self.anti_neoplastic_only
+    def self.anti_neoplastic
     #'drug.is_withdrawn=0,drug.is_nutraceutical=0,is_potentiator=0,drug.is_antineoplastic=1,(is_untyped=0 or is_known_action=1)'
-      DataModel::Interaction.joins{drug}.joins{gene}.where{
+      memoize_query(DataModel::Interaction.joins{drug}.joins{gene}.where{
         id.not_in(my{attribute("interaction_type", "potentiator")}) &
-        id.in(my{attribute("interaction_type", "antineoplastic")}) &
-        ( id.not_in(my{attribute("interaction_type", "untyped")}) | id.in( my{attribute("is_known_action", "yes" )}) ) &
+        drug.id.in(my{drug_category("%antineoplastic%")}) &
+        ( id.not_in(my{attribute("interaction_type", "na")}) | id.in( my{attribute("is_known_action", "yes" )}) ) &
         drug.id.not_in(my{drug_category("withdrawn","nutraceutical")})
-      }
+      }.select{id}, "interaction_filter_anti_neoplastic")
+    end
+
+    def self.none
+      memoize_query(DataModel::Interaction.where{true}, "interaction_filter_none")
+    end
+
+    private
+    def self.memoize_query(query,cache_key)
+      if Rails.cache.exist?(cache_key)
+        Rails.cache.fetch(cache_key)
+      else
+        filter = query.inject({}) do |hash,val|
+          hash[val.id] = true
+          hash
+        end
+        Rails.cache.write(cache_key, filter, expires_in: 6.hours)
+        filter
+      end
     end
 end

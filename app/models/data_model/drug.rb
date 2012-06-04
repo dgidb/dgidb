@@ -6,7 +6,6 @@ class DataModel::Drug < ActiveRecord::Base
     belongs_to :citation
     has_many :drug_categories, foreign_key: :drug_name_report_id
 
-
     def original_data_source_url
       base_url = self.citation.base_url
       name = self.name

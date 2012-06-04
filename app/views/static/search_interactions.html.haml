@@ -32,11 +32,11 @@
         %label.control-label Filter
         .controls
           %select(name='filter')
-            %option Basic
-            %option Inhibitors only
-            %option Kinase associated drugs only
-            %option Antineoplastic drugs only
-            %option None
+            %option(value='basic') Basic
+            %option(value='inhibitors_only') Inhibitors only
+            %option(value='kinase_only') Kinase associated drugs only
+            %option(value='anti_neoplastic') Antineoplastic drugs only
+            %option(value='none') None
       .control-group
         %label.control-label Select Output Format
         .controls
