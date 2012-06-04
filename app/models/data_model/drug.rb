@@ -5,7 +5,6 @@ class DataModel::Drug < ActiveRecord::Base
     has_many :genes, through: :interactions
     belongs_to :citation
     has_many :drug_categories, foreign_key: :drug_name_report_id
-    with_hangoff_table :drug_categories, name_column: :category_name, value_column: :category_value
 
 
     def original_data_source_url
