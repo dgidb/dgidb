@@ -1,7 +1,7 @@
-=content_for :title, 'Search Interactions'
+=content_for :title, 'Search Gene Families'
 
 .container-fluid
-  %form.form-horizontal(action="interaction_search_results" method="post" enctype="multipart/form-data")
+  %form.form-horizontal(action="gene_family_search_results" method="post" enctype="multipart/form-data")
     %fieldset
       .control-group
         %label.control-label
@@ -30,22 +30,6 @@
         .controls
           %textarea#genes(name='genes' rows="13")
       .control-group
-        %label.control-label Source Database
-        .controls
-          %label.checkbox
-            %input(type='checkbox' checked='true' value=1 name='ttd') TTD
-          %label.checkbox
-            %input(type='checkbox' checked='true' value=1 name='drugbank') DrugBank
-      .control-group
-        %label.control-label Filter
-        .controls
-          %select(name='filter')
-            %option(value='basic') Basic
-            %option(value='inhibitors_only') Inhibitors only
-            %option(value='kinase_only') Kinase associated drugs only
-            %option(value='anti_neoplastic') Antineoplastic drugs only
-            %option(value='none') None
-      .control-group
         %label.control-label Select Output Format
         .controls
           %label.radio
@@ -53,6 +37,6 @@
           %label.radio
             %input(type='radio' name='outputFormat' value='tsv') TSV
       .form-actions
-        %button.btn.btn-primary(type="submit")Find Drug Interactions
+        %button.btn.btn-primary(type="submit")Find Gene Families
 
 =javascript_include_tag 'search_interactions'
