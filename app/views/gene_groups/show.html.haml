@@ -1,4 +1,4 @@
 =content_for :title, @title
 
 .container-fluid
-  =render @gene_group
+  =render partial: 'gene_groups/gene_group', locals:{gene_group: @gene_group}
