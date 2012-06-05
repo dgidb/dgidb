@@ -22,5 +22,9 @@ class InteractionSearchResultPresenter
   def types_string
     @types_string ||= @interaction.types.map{|x| x.value }.join('/')
   end
+
+  def gene_group_name
+    Maybe(@interaction.gene).gene_groups.first.name
+  end
 end
 
