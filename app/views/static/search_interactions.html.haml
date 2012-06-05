@@ -55,4 +55,6 @@
       .form-actions
         %button.btn.btn-primary(type="submit")Find Drug Interactions
 
+=render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
+
 =javascript_include_tag 'search_interactions'
