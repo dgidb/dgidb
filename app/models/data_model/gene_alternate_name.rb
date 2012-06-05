@@ -6,5 +6,9 @@ class DataModel::GeneAlternateName < ActiveRecord::Base
     def for_search
       includes(gene: {gene_groups: [], interactions: {interaction_attributes: [], drug: [:drug_alternate_names], citation: []}})
     end
+
+    def for_gene_families
+      includes(gene: [:gene_groups])
+    end
   end
 end
