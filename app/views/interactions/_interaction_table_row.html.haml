@@ -2,10 +2,10 @@
   %td
     =link_to interaction_table_row.source_db_name, interaction_table_row.source_db_url
   %td
-    =interaction_table_row.drug_name
+    =link_to interaction_table_row.drug_name, drug_path(interaction_table_row.interaction.drug.name)
   %td
-    =interaction_table_row.types_string
+    =link_to interaction_table_row.types_string, interaction_path(interaction_table_row.interaction)
   %td
-    =interaction_table_row.gene_group_name
+    =link_to interaction_table_row.gene_group_name,  gene_group_path(interaction_table_row.gene_group_name)
   %td
     =interaction_table_row.search_term

@@ -10,3 +10,16 @@
       -if @search_results.show_ambiguous?
         =render partial: 'interactions/interaction_results_table', locals: {title: 'Ambiguous Results (Passed Filter)', interactions: @search_results.ambiguous_interactions(:filtered)}
         =render partial: 'interactions/interaction_results_table', locals: {title: 'Ambiguous Results (Failed Filter)', interactions: @search_results.ambiguous_interactions(:unfiltered)}
+  .row-fluid
+    -if @search_results.show_ambiguous_no_interactions?
+      =render partial: 'interactions/no_interaction_result', locals: {title: 'Ambiguously Matched Genes With No Interactions', results: @search_results.ambiguous_no_interactions}
+
+    -if @search_results.show_definite_no_interactions?
+      =render partial: 'interactions/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions}
+    -if @search_results.show_no_results_results?
+      .span6
+        .well
+          %h3 Search Terms With No Matches
+          %ul
+            -@search_results.no_results_results.each do |result|
+              %li=result.search_term

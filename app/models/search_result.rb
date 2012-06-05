@@ -22,4 +22,20 @@ class SearchResult
     interactions.length > 0
   end
 
+  def partition
+    if has_results?
+      if is_ambiguous? && has_interactions?
+          :ambiguous
+      elsif is_ambiguous? && !has_interactions?
+          :ambiguous_no_interactions
+      elsif has_interactions? && !is_ambiguous?
+          :definite
+      else
+          :definite_no_interactions
+      end
+    else
+      :no_results
+    end
+  end
+
 end

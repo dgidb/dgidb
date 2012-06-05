@@ -1,7 +1,7 @@
 include Genome::Extensions
 
 class InteractionSearchResultPresenter
-  attr_accessor :search_term
+  attr_accessor :search_term, :interaction
   def initialize(interaction, search_term)
     @interaction = interaction
     @search_term = search_term
@@ -20,7 +20,7 @@ class InteractionSearchResultPresenter
   end
 
   def types_string
-    @types_string ||= @interaction.types.map{|x| x.value }.join('/')
+    @types_string ||= @interaction.types.map{|x| x.value.sub(/^na$/,'n/a') }.join('/')
   end
 
   def gene_group_name

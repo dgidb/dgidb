@@ -31,6 +31,13 @@ class DataModel::Interaction < ActiveRecord::Base
       }
     end
 
+    def self.source_scope(opts)
+      filters = opts.select{|key, val| val == '1'}.keys
+      memoize_query(DataModel::Interaction.joins{citation}.where{
+        citation.source_db_name.like_any(filters)
+      }.select{id}, "source_filter_#{filters.join("_")}")
+    end
+
     def self.basic
     #'drug.is_withdrawn=0,drug.is_nutraceutical=0,is_potentiator=0,(is_untyped=0 or is_known_action=1)' if /default/;
       memoize_query(DataModel::Interaction.joins{drug}.where{
