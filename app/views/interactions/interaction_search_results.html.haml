@@ -23,3 +23,7 @@
           %ul
             -@search_results.no_results_results.each do |result|
               %li=result.search_term
+
+=javascript_include_tag "jquery.dataTables.min"
+=javascript_include_tag "pagination_bootstrap"
+=javascript_include_tag "interaction_search_results"

@@ -1,15 +1,17 @@
 .well
   %h3= title
-  %table.table.table-striped.table-condensed
-    %tr
-      %th
-        Source
-      %th
-        Drug
-      %th
-        Interaction Type
-      %th
-        Gene
-      %th
-        Search Term
-    =render partial: 'interactions/interaction_table_row', collection: interactions
+  %table.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
+    %thead
+      %tr
+        %th
+          Source
+        %th
+          Drug
+        %th
+          Interaction Type
+        %th
+          Gene
+        %th
+          Search Term
+    %tbody
+      =render partial: 'interactions/interaction_table_row', collection: interactions
