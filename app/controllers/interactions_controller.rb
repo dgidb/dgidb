@@ -14,7 +14,7 @@ class InteractionsController < ApplicationController
 
     params[:gene_names] = gene_names
 
-    search_results = LookupInteractions.find(params)
-    @search_results = SearchResultsPresenter.new(search_results, params)
+    search_results = LookupGenes.find(params)
+    @search_results = InteractionSearchResultsPresenter.new(search_results, params)
   end
 end

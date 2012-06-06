@@ -1,4 +1,4 @@
-class LookupInteractions
+class LookupGenes
 
   class << self
     def find(params, scope = :for_search)

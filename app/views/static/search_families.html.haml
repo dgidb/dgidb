@@ -30,6 +30,10 @@
         .controls
           %textarea#genes(name='genes' rows="13")
       .control-group
+        %label.control-label Families
+        .controls
+          =select_tag "families", options_from_collection_for_select(@family_names, "to_s", "to_s"), multiple: true, class: :multiselect
+      .control-group
         %label.control-label Select Output Format
         .controls
           %label.radio
@@ -41,4 +45,8 @@
 
 =render partial: 'shared/loading_modal', locals: {title: "Searching Gene Families..."}
 
-=javascript_include_tag 'search_interactions'
+=stylesheet_link_tag 'jquery.multiselect'
+=stylesheet_link_tag 'jquery.multiselect.filter.css'
+=javascript_include_tag 'jquery-ui-1.8.21.custom.min.js'
+=javascript_include_tag 'jquery.multiselect.min'
+=javascript_include_tag 'search_families'

@@ -1,6 +1,6 @@
 include Genome::Extensions
 
-class SearchResultsPresenter
+class InteractionSearchResultsPresenter
   def initialize(search_results, params)
     @search_results = search_results
     @filter_scope = DataModel::Interaction.send(params[:filter])

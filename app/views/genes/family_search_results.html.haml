@@ -1,0 +1,14 @@
+#notice= notice
+=content_for :title, "Test Page"
+
+.container-fluid
+  .row-fluid
+    .span12
+      =render partial: 'genes/family_results_table', locals: {title: "GO Results Matching Filter", families: @search_results.pass_filtered_families }
+  .row-fluid
+    .span12
+      =render partial: 'genes/family_results_table', locals: {title: "GO Results Failing Filter", families: @search_results.fail_filtered_families }
+
+=javascript_include_tag "jquery.dataTables.min"
+=javascript_include_tag "pagination_bootstrap"
+=javascript_include_tag "interaction_search_results"

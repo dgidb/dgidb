@@ -12,7 +12,7 @@ class GenesController < ApplicationController
     gene_names.delete_if(&:empty?)
     params[:gene_names] = gene_names
 
-    search_results = LookupInteractions.find(params, :for_gene_families)
-    binding.pry
+    search_results = LookupGenes.find(params, :for_gene_families)
+    @search_results = GeneFamilySearchResultsPresenter.new(search_results, params)
   end
 end

@@ -15,6 +15,10 @@ class GeneFamilySearchResult
     groups.length > 0
   end
 
+  def gene_group_name
+    Maybe(groups.first).name
+  end
+
   def gene_families
     Maybe(groups.first).genes
       .map {|x| x.gene_alternate_names }
