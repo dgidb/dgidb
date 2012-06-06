@@ -13,6 +13,12 @@
  *= require twitter/bootstrap
 */
 
+.item {
+  width: 30%;
+  margin: 10px;
+  float: left;
+}
+
 .dataTables_length {
   margin-left: 20px;
 }

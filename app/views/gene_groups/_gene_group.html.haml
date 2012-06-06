@@ -1,5 +1,4 @@
 -gene_group.genes.each do |gene|
-  .row-fluid
-    .span12
-      .hero-unit
-        =render partial: 'genes/gene', locals: {gene: gene}
+  .item
+    .hero-unit
+      =render partial: 'genes/gene', locals: {gene: gene}

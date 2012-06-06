@@ -1,4 +1,7 @@
 =content_for :title, @title
 
-.container-fluid
+.container-fluid#container
   =render partial: 'gene_groups/gene_group', locals:{gene_group: @gene_group}
+
+=javascript_include_tag "jquery.masonry.min"
+=javascript_include_tag "mason_items"
