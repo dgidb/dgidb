@@ -1,7 +1,8 @@
 $(".multiselect").multiselect
   noneSelectedText: 'Select gene families'
   selectedText: '# of #'
-.multiselectfilter
+  minWidth: 400
+.multiselectfilter()
 
 $('.tip').tooltip placement: 'right'
 
