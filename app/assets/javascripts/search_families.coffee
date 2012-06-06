@@ -11,7 +11,8 @@ $.get '/gene_group_names.json', (data)->
   $('#loadingBar').hide()
 
 $('#addGene').click ->
-    $('#genes')[0].value += $('#geneInput')[0].value + "\n"
+    geneInput = $('#geneInput')[0].value
+    $('#genes')[0].value += geneInput + "\n" unless geneInput is ''
     $('#geneInput')[0].value = ''
 
 $('#defaultGenes').click ->
