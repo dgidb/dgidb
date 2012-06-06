@@ -14,9 +14,8 @@
 */
 
 .item {
-  width: 30%;
-  margin: 10px;
-  float: left;
+  width: 600px;
+  margin: 5px;
 }
 
 .dataTables_length {

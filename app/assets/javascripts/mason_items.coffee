@@ -1,4 +1,5 @@
 $ ->
   $('#container').masonry
     itemSelector: '.item',
-    columnWidth: (containerWidth)-> containerWidth/3
+    isFitWidth: true,
+    isAnimated: true,
