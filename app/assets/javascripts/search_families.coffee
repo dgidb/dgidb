@@ -4,6 +4,8 @@ $(".multiselect").multiselect
   minWidth: 400
 .multiselectfilter()
 
+$(".multiselect").multiselect("checkAll")
+
 $('.tip').tooltip placement: 'right'
 
 $('#loadingBar').show()
