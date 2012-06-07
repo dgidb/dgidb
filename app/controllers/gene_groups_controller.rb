@@ -16,4 +16,15 @@ class GeneGroupsController < ApplicationController
       format.json {render json:  @names.to_json}
     end
   end
+
+  def family
+    @gene_groups = LookupFamilies.find_gene_groups_for_families(params[:name])
+    @title = "Gene Groups in the #{params[:name]} family"
+  end
+
+  def families
+    @family_names = LookupFamilies.get_uniq_family_names
+    @title = "Gene Group Families"
+  end
+
 end

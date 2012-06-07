@@ -1,0 +1,19 @@
+=content_for :title, @title
+
+.container-fluid
+  .row-fluid
+    .span12
+      .well
+        %table.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
+          %thead
+            %tr
+              %th
+                Gene Group Name
+              %th
+                Family Name
+          %tbody
+            =render partial: 'gene_groups/family_table_row', collection: @gene_groups
+
+=javascript_include_tag "jquery.dataTables.min"
+=javascript_include_tag "pagination_bootstrap"
+=javascript_include_tag "family_page"
