@@ -7,3 +7,6 @@ $ ->
       sSearch: 'Filter results:'
       sLengthMenu: "_MENU_ records per page"
 
+  $("#toggle_summary").click ()->
+    $("#summary").slideToggle()
+

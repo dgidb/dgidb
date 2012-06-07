@@ -6,6 +6,10 @@ module Genome
         self
       end
 
+      def to_str
+        0
+      end
+
       def nil?
         true
       end

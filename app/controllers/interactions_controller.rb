@@ -6,6 +6,7 @@ class InteractionsController < ApplicationController
   end
 
   def interaction_search_results
+    start_time = Time.now
     gene_names = params[:genes].split("\n").collect(&:strip)
     unless params[:geneFile].nil?
       gene_names.concat(params[:geneFile].read.split("\n")).collect(&:strip)
@@ -15,6 +16,6 @@ class InteractionsController < ApplicationController
     params[:gene_names] = gene_names
 
     search_results = LookupGenes.find(params)
-    @search_results = InteractionSearchResultsPresenter.new(search_results, params)
+    @search_results = InteractionSearchResultsPresenter.new(search_results, params, start_time)
   end
 end

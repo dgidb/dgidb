@@ -9,7 +9,7 @@ class LookupGenes
         hash
       end
 
-      results = DataModel::GeneGroup.send(scope).joins{genes.interactions}.where{name.eq_any(gene_names)}
+      results = DataModel::GeneGroup.send(scope).where{name.eq_any(gene_names)}
       result_names = results.map{|r| r.name}
       gene_names = gene_names.reject{|name| result_names.include?(name)}
       results += DataModel::GeneAlternateName.send(scope).where{alternate_name.eq_any(gene_names)}

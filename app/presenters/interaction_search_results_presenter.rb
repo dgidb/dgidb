@@ -1,10 +1,39 @@
 include Genome::Extensions
 
 class InteractionSearchResultsPresenter
-  def initialize(search_results, params)
+  def initialize(search_results, params, start_time)
+    @start_time = start_time
     @search_results = search_results
     @filter_scope = DataModel::Interaction.send(params[:filter])
     @source_scope = DataModel::Interaction.source_scope(params)
+  end
+
+  def number_of_search_terms
+    @search_results.count
+  end
+
+  def number_of_definite_matches
+    @search_results.select{|r| r.groups.count == 1}.count
+  end
+
+  def number_of_ambiguous_matches
+    @search_results.select{|r| r.groups.count > 1}.count
+  end
+
+  def number_of_no_matches
+    @search_results.select{|r| r.groups.count == 0}.count
+  end
+
+  def number_of_definite_interactions
+   definite_interactions(:filtered).count + definite_interactions(:unfiltered).count
+  end
+
+  def number_of_ambiguous_interactions
+   ambiguous_interactions(:filtered).count + ambiguous_interactions(:unfiltered).count
+  end
+
+  def number_of_search_terms_with_at_least_one_interaction
+    @search_results.select{|x| x.interactions.count > 0}.count
   end
 
   def ambiguous_results
@@ -25,6 +54,10 @@ class InteractionSearchResultsPresenter
 
   def definite_no_interactions
     Maybe(grouped_results[:definite_no_interactions])
+  end
+
+  def time_elapsed(context)
+   context.instance_exec(@start_time){|start_time| distance_of_time_in_words(start_time, Time.now, true)}
   end
 
   def definite_interactions(filter_type)
