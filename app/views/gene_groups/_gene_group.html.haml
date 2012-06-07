@@ -1,4 +1,4 @@
--gene_group.genes.each do |gene|
+-gene_group.genes.sort_by{|g| g.sort_value}.each do |gene|
   .item
     .hero-unit
       =render partial: 'genes/gene', locals: {gene: gene}

@@ -12,6 +12,17 @@ class DataModel::Gene < ActiveRecord::Base
       self.name.sub(/^ENTREZ_G/, "").sub(/^DGBNK_G/, "")
     end
 
+    def sort_value
+      case self.nomenclature
+      when 'ensembl_id'
+        return -1
+      when 'entrez_id'
+        return -2
+      else
+        return 0
+      end
+    end
+
     def original_data_source_url
       base_url = self.citation.base_url
       name = self.source_id
