@@ -7,7 +7,7 @@ DruggableGene::Application.routes.draw do
   match 'gene_families/:name' => 'gene_groups#family', as: 'gene_group_by_family'
   match 'families' => 'gene_groups#families'
   post 'interaction_search_results' => 'interactions#interaction_search_results'
-  post 'family_search_results' => 'genes#family_search_results'
+  post 'family_search_results' => 'gene_groups#family_search_results'
   match ':action' => 'static#:action'
   root :to => 'static#search_interactions'
   root :to => 'static#search_families'
