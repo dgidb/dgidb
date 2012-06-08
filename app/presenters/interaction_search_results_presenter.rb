@@ -1,12 +1,13 @@
 include Genome::Extensions
 
 class InteractionSearchResultsPresenter
-  attr_reader :results
+  attr_reader :results, :filter
 
   def initialize(search_results, params, start_time)
     @start_time = start_time
     @search_results = search_results
-    @filter_scope = DataModel::Interaction.send(params[:filter])
+    @filter = params[:filter]
+    @filter_scope = DataModel::Interaction.send(@filter)
     @source_scope = DataModel::Interaction.source_scope(params)
   end
 
