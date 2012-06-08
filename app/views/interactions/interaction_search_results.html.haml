@@ -2,30 +2,42 @@
 =content_for :title, "Interaction Search Results"
 
 .container-fluid
-  .row-fluid
-    %button.btn-mini#toggle_summary Show/Hide Summary
-    =render partial: 'interactions/results_summary', locals: {results: @search_results}
-  .row-fluid
-    .span12
-      -if @search_results.show_definite?
-        =render partial: 'interactions/interaction_results_table', locals: {title: 'Definite Results (Passed Filter)', interactions: @search_results.definite_interactions(:filtered)}
-        =render partial: 'interactions/interaction_results_table', locals: {title: 'Definite Results (Failed Filter)', interactions: @search_results.definite_interactions(:unfiltered)}
-      -if @search_results.show_ambiguous?
-        =render partial: 'interactions/interaction_results_table', locals: {title: 'Ambiguous Results (Passed Filter)', interactions: @search_results.ambiguous_interactions(:filtered)}
-        =render partial: 'interactions/interaction_results_table', locals: {title: 'Ambiguous Results (Failed Filter)', interactions: @search_results.ambiguous_interactions(:unfiltered)}
-  .row-fluid
-    -if @search_results.show_ambiguous_no_interactions?
-      =render partial: 'interactions/no_interaction_result', locals: {title: 'Ambiguously Matched Genes With No Interactions', results: @search_results.ambiguous_no_interactions}
+  .tabbable.tabs-left
+    %ul.nav.nav-tabs
+      %li.active
+        %a(href="#interaction_tab" data-toggle="tab") Interaction Results
+      %li
+        %a(href="#search_summary_tab" data-toggle="tab") Search Results Summary
+      %li
+        %a(href="#term_summary_tab" data-toggle="tab") Search Term Summary
 
-    -if @search_results.show_definite_no_interactions?
-      =render partial: 'interactions/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions}
-    -if @search_results.show_no_results_results?
-      .span6
-        .well
-          %h3 Search Terms With No Matches
-          %ul
-            -@search_results.no_results_results.each do |result|
-              %li=result.search_term
+    .tab-content
+      .tab-pane.fade#search_summary_tab
+        =render partial: 'interactions/results_summary', locals: {results: @search_results}
+      .tab-pane.fade#term_summary_tab
+        =render partial: 'shared/search_term_summary_table', locals: {results: @search_results}
+      .tab-pane.active#interaction_tab
+        .row-fluid
+          .span12
+            -if @search_results.show_definite?
+              =render partial: 'interactions/interaction_results_table', locals: {title: 'Definite Results (Passed Filter)', interactions: @search_results.definite_interactions(:filtered)}
+              =render partial: 'interactions/interaction_results_table', locals: {title: 'Definite Results (Failed Filter)', interactions: @search_results.definite_interactions(:unfiltered)}
+            -if @search_results.show_ambiguous?
+              =render partial: 'interactions/interaction_results_table', locals: {title: 'Ambiguous Results (Passed Filter)', interactions: @search_results.ambiguous_interactions(:filtered)}
+              =render partial: 'interactions/interaction_results_table', locals: {title: 'Ambiguous Results (Failed Filter)', interactions: @search_results.ambiguous_interactions(:unfiltered)}
+        .row-fluid
+          -if @search_results.show_ambiguous_no_interactions?
+            =render partial: 'interactions/no_interaction_result', locals: {title: 'Ambiguously Matched Genes With No Interactions', results: @search_results.ambiguous_no_interactions}
+
+          -if @search_results.show_definite_no_interactions?
+            =render partial: 'interactions/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions}
+          -if @search_results.show_no_results_results?
+            .span6
+              .well
+                %h3 Search Terms With No Matches
+                %ul
+                  -@search_results.no_results_results.each do |result|
+                    %li=result.search_term
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"

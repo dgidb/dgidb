@@ -1,6 +1,8 @@
 include Genome::Extensions
 
 class InteractionSearchResultsPresenter
+  attr_reader :results
+
   def initialize(search_results, params, start_time)
     @start_time = start_time
     @search_results = search_results
@@ -90,7 +92,25 @@ class InteractionSearchResultsPresenter
     !grouped_results[:definite_no_interactions].nil?
   end
 
+  def each_result
+    @search_results.each do |result|
+      yield OpenStruct.new(search_term: result.search_term, match_type: match_type(result), matches: result.groups.map{|g| g.name}.join(", ")  )
+    end
+  end
+
   private
+
+  def match_type(result)
+    if result.groups.count == 0
+      "None"
+    elsif result.groups.count == 1
+      "Definite"
+    else
+      "Ambiguous"
+
+    end
+  end
+
   def grouped_results
     @grouped_results ||= @search_results.group_by { |result| result.partition }
   end
