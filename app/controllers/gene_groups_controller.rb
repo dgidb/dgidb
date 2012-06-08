@@ -38,6 +38,10 @@ class GeneGroupsController < ApplicationController
 
     search_results = LookupGenes.find(params, :for_gene_families)
     @search_results = GeneFamilySearchResultsPresenter.new(search_results, params)
+    if params[:outputFormat] == 'tsv'
+      generate_tsv_headers('gene_families_export.tsv')
+      render('gene_families_export.tsv', :content_type => 'text/tsv', :layout => false)
+    end
   end
 
 end
