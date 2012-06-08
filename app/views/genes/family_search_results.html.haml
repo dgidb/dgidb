@@ -1,13 +1,33 @@
 #notice= notice
-=content_for :title, "Test Page"
+=content_for :title, "Family Search Results"
 
 .container-fluid
-  .row-fluid
-    .span12
-      =render partial: 'genes/family_results_table', locals: {title: "GO Results Matching Filter", families: @search_results.pass_filtered_families }
-  .row-fluid
-    .span12
-      =render partial: 'genes/family_results_table', locals: {title: "GO Results Failing Filter", families: @search_results.fail_filtered_families }
+  .tabbable.tabs-left
+    %ul.nav.nav-tabs
+      %li.active
+        %a(href="#by_genes" data-toggle="tab") By Gene Group
+      %li
+        %a(href="#by_families" data-toggle="tab") By Gene Family
+    .tab-content
+      .tab-pane.active#by_genes
+        -if @search_results.show_pass_families?
+          .row-fluid
+            .span12
+              =render partial: 'genes/family_results_table', locals: {title: "Gene Category Results Matching Filter", families: @search_results.pass_filtered_families }
+        -if @search_results.show_fail_families?
+          .row-fluid
+            .span12
+              =render partial: 'genes/family_results_table', locals: {title: "Gene Category Results Failing Filter", families: @search_results.fail_filtered_families }
+      .tab-pane.fade#by_families
+        -if @search_results.show_passed_groups_by_family?
+          .row-fluid
+            .span12
+              =render partial: 'genes/results_by_family_table', locals: {title: "Family Results Matching Filter", families: @search_results.passed_groups_by_family }
+        -if @search_results.show_failed_groups_by_family?
+          .row-fluid
+            .span12
+              =render partial: 'genes/results_by_family_table', locals: {title: "Family Results Failing Filter", families: @search_results.failed_groups_by_family }
+
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"

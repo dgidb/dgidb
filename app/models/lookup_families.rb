@@ -22,7 +22,7 @@ class LookupFamilies
       if Rails.cache.exist?("unique_family_names")
         Rails.cache.fetch("unique_family_names")
       else
-        family_names = DataModel::GeneAlternateName.where(nomenclature: "human_readable_name").uniq.pluck(:alternate_name)
+        family_names = DataModel::GeneAlternateName.where(nomenclature: "human_readable_name").uniq.pluck(:alternate_name).sort
         Rails.cache.write("unique_family_names", family_names, expires_in: 3.hours)
         family_names
       end

@@ -14,6 +14,49 @@ class GeneFamilySearchResultsPresenter
     grouped_results[:fail]
   end
 
+  def show_pass_families?
+    grouped_results[:pass].count > 0
+  end
+
+  def show_fail_families?
+    grouped_results[:fail].count > 0
+  end
+
+  def failed_groups_by_family
+    unless @failed_groups_by_family
+      @failed_groups_by_family = []
+      fail_filtered_families.group_by do |family|
+        family.gene_family
+      end.each_pair do |family, results|
+        groups = results.map{|x| x.group_name}
+        @failed_groups_by_family << OpenStruct.new(family_name: family, groups: groups.join(", "), group_count: groups.count)
+      end
+    end
+    @failed_groups_by_family
+  end
+
+  def passed_groups_by_family
+    unless @passed_groups_by_family
+      @passed_groups_by_family = []
+      pass_filtered_families.group_by do |family|
+        family.gene_family
+      end.each_pair do |family, results|
+        groups = results.map{|x| x.group_name}
+        @passed_groups_by_family << OpenStruct.new(family_name: family, groups: groups.join(", "), group_count: groups.count)
+      end
+    end
+    @passed_groups_by_family
+  end
+
+
+  def show_passed_groups_by_family?
+    passed_groups_by_family.count > 0
+  end
+
+  def show_failed_groups_by_family?
+    failed_groups_by_family.count > 0
+  end
+
   private
   def grouped_results
     @grouped_results ||= family_map(@search_results.group_by { |result| result.partition }[:definite])

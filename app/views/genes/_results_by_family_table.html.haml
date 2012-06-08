@@ -4,10 +4,10 @@
     %thead
       %tr
         %th
+          Category Name
+        %th
+          Matching Gene Count
+        %th
           Group Name
-        %th
-          Gene Category
-        %th
-          Search Term
     %tbody
-      =render partial: 'genes/family_results_table_row', collection: families
+      =render partial: 'genes/results_by_family_table_row', collection: families
