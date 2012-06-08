@@ -17,5 +17,9 @@ class InteractionsController < ApplicationController
 
     search_results = LookupGenes.find(params)
     @search_results = InteractionSearchResultsPresenter.new(search_results, params, start_time)
+    if params[:outputFormat] == 'tsv'
+      generate_tsv_headers('interactions_export.tsv')
+      render('interactions_export.tsv', :content_type => 'text/tsv', :layout => false)
+    end
   end
 end

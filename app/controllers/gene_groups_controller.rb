@@ -20,6 +20,7 @@ class GeneGroupsController < ApplicationController
   def family
     @gene_groups = LookupFamilies.find_gene_groups_for_families(params[:name])
     @title = "Gene Groups in the #{params[:name]} family"
+    @family_name = params[:name]
   end
 
   def families
