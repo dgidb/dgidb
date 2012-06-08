@@ -13,20 +13,20 @@
         -if @search_results.show_pass_families?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/family_results_table', locals: {title: "Gene Category Results Matching Filter", families: @search_results.pass_filtered_families }
+              =render partial: 'gene_groups/family_results_table', locals: {title: "Gene Category Results in Selected Families", families: @search_results.pass_filtered_families }
         -if @search_results.show_fail_families?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/family_results_table', locals: {title: "Gene Category Results Failing Filter", families: @search_results.fail_filtered_families }
+              =render partial: 'gene_groups/family_results_table', locals: {title: "Gene Category Results Not in Selected Families", families: @search_results.fail_filtered_families }
       .tab-pane.fade#by_families
         -if @search_results.show_passed_groups_by_family?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/results_by_family_table', locals: {title: "Family Results Matching Filter", families: @search_results.passed_groups_by_family }
+              =render partial: 'gene_groups/results_by_family_table', locals: {title: "Family Results in Selected Families", families: @search_results.passed_groups_by_family }
         -if @search_results.show_failed_groups_by_family?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/results_by_family_table', locals: {title: "Family Results Failing Filter", families: @search_results.failed_groups_by_family }
+              =render partial: 'gene_groups/results_by_family_table', locals: {title: "Family Results Not in Selected Families", families: @search_results.failed_groups_by_family }
 
 
 =javascript_include_tag "jquery.dataTables.min"
