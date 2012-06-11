@@ -10,6 +10,10 @@ module Genome
         0
       end
 
+      def to_s
+        0
+      end
+
       def nil?
         true
       end

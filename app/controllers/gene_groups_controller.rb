@@ -29,19 +29,27 @@ class GeneGroupsController < ApplicationController
   end
 
   def family_search_results
-    gene_names = params[:genes].split("\n").collect(&:strip)
+    gene_names = params[:genes].split("\n")
     unless params[:geneFile].nil?
-      gene_names.concat(params[:geneFile].read.split("\n")).collect(&:strip)
+      gene_names.concat(params[:geneFile].read.split("\n"))
     end
     gene_names.delete_if(&:empty?)
-    params[:gene_names] = gene_names
+    params[:gene_names] = gene_names.map{|name| name.strip.upcase }
+
+    validate_search_request(params)
 
     search_results = LookupGenes.find(params, :for_gene_families)
     @search_results = GeneFamilySearchResultsPresenter.new(search_results, params)
     if params[:outputFormat] == 'tsv'
       generate_tsv_headers('gene_families_export.tsv')
-      render('gene_families_export.tsv', :content_type => 'text/tsv', :layout => false)
+      render 'gene_families_export.tsv', content_type: 'text/tsv', layout: false
     end
+  end
+
+  private
+  def validate_search_request(params)
+    bad_request("Please enter at least one gene family to search!") unless params[:gene_names].size > 0
+    bad_request("You must upload a plain text formated file") if params[:geneFile] && !validate_file_format('text/plain;', params[:geneFile].tempfile.path)
   end
 
 end

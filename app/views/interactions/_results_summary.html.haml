@@ -1,12 +1,12 @@
 #summary.well
   %h3 Search Results Summary
   %ul.unstyled
-    %li="Search Terms: #{results.number_of_search_terms}"
+    %li="Search Terms: #{results.number_of_search_terms.to_s}"
     %li="Selected Filter: #{results.filter.capitalize}"
-    %li="Search Terms Matched Definitely: #{results.number_of_definite_matches}"
-    %li="Search Terms Matched Ambiguously: #{results.number_of_ambiguous_matches}"
-    %li="Search Terms With No Matches: #{results.number_of_no_matches}"
-    %li="Number Of Interactions For Definite Matches: #{results.number_of_definite_interactions}"
-    %li="Number Of Interactions For Ambiguous Matches: #{results.number_of_ambiguous_interactions}"
-    %li="Number Of Search Terms With At Least One Interaction: #{results.number_of_search_terms_with_at_least_one_interaction}"
+    %li="Search Terms Matched Definitely: #{results.number_of_definite_matches.to_s}"
+    %li="Search Terms Matched Ambiguously: #{results.number_of_ambiguous_matches.to_s}"
+    %li="Search Terms With No Matches: #{results.number_of_no_matches.to_s}"
+    %li="Number Of Interactions For Definite Matches: #{results.number_of_definite_interactions.to_s}"
+    %li="Number Of Interactions For Ambiguous Matches: #{results.number_of_ambiguous_interactions.to_s}"
+    %li="Number Of Search Terms With At Least One Interaction: #{results.number_of_search_terms_with_at_least_one_interaction.to_s}"
     %li="Time Spent In Database: #{results.time_elapsed(self)}"

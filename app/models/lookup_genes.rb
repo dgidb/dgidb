@@ -2,7 +2,8 @@ class LookupGenes
 
   class << self
     def find(params, scope = :for_search)
-      raise "Sorry - please enter at least one gene name to search!" unless gene_names = params[:gene_names]
+      gene_names = params[:gene_names]
+      raise "Sorry - please enter at least one gene name to search!" unless gene_names.count > 0
 
       results_to_gene_groups = gene_names.inject({}) do |hash, search_term|
         hash[search_term] = []
