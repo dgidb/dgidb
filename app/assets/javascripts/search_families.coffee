@@ -10,7 +10,12 @@ $('.tip').tooltip placement: 'right'
 
 $('#loadingBar').show()
 $.get '/gene_group_names.json', (data)->
-  $('#geneInput').typeahead source: data, items: 20
+  $('#genes').typeahead
+    source: data
+    items: 20
+    updater: (item)->
+      oldval = this.$element[0]?.value?.split("\n")[0..-2].join("\n")
+      (if oldval then oldval + "\n" else ""  ) + item + "\n"
   $('#loadingBar').hide()
 
 $('#addGene').click ->
@@ -27,3 +32,7 @@ $(".btn-primary").click ->
 
 $(window).unload ->
   $("#loading").modal("hide")
+
+$.valHooks.textarea =
+    get: (elem) -> elem.value.replace(/(\n|\r)+$/,"").split("\n").splice(-1,1)[0];
+

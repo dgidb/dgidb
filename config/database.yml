@@ -3,6 +3,7 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
+#test credentials only - adjust to match your own dev environment
 development:
   adapter: postgresql
   encoding: unicode
