@@ -1,6 +1,10 @@
 =content_for :title, 'Search Gene Families'
 
 .container-fluid
+  .page-header
+    %h2
+      Search Families
+      %small search for gene families by gene name
   %form.form-horizontal(action="family_search_results" method="post" enctype="multipart/form-data")
     %fieldset
       .control-group
@@ -37,9 +41,9 @@
         %label.control-label Select Output Format
         .controls
           %label.radio
-            %input(type='radio' name='outputFormat' value='html' checked='true') HTML
+            %input(id='html_output' type='radio' name='outputFormat' value='html' checked='true') HTML
           %label.radio
-            %input(type='radio' name='outputFormat' value='tsv') TSV
+            %input(id='tsv_output' type='radio' name='outputFormat' value='tsv') TSV
       .form-actions
         %button.btn.btn-primary(type="submit")Find Gene Families
 

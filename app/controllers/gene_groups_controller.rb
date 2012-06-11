@@ -26,6 +26,7 @@ class GeneGroupsController < ApplicationController
   def families
     @family_names = LookupFamilies.get_uniq_family_names
     @title = "Gene Group Families"
+    @families_active = "active"
   end
 
   def family_search_results

@@ -1,4 +1,9 @@
 =content_for :title, @title
+.container-fluid
+  .page-header
+    %h2
+      Gene Families
+      %small select gene families
 #container.container-fluid
   -@family_names.each do |family_name|
     .item(style="width:400")

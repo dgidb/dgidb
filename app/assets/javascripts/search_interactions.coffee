@@ -15,4 +15,7 @@ $('#defaultGenes').click ->
     $('#genes')[0].value += "\n"
 
 $(".btn-primary").click ->
-  $("#loading").modal("show")
+  $("#loading").modal("show") if $("#html_output").attr("checked")
+
+$(window).unload ->
+  $("#loading").modal("hide")
