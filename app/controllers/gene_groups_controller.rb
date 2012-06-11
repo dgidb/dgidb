@@ -30,13 +30,7 @@ class GeneGroupsController < ApplicationController
   end
 
   def family_search_results
-    gene_names = params[:genes].split("\n")
-    unless params[:geneFile].nil?
-      gene_names.concat(params[:geneFile].read.split("\n"))
-    end
-    gene_names.delete_if(&:empty?)
-    params[:gene_names] = gene_names.map{|name| name.strip.upcase }
-
+    combine_input_genes(params)
     validate_search_request(params)
 
     search_results = LookupGenes.find(params, :for_gene_families)
