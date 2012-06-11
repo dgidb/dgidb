@@ -23,4 +23,5 @@ $(window).unload ->
 $.valHooks.textarea =
     get: (elem) -> elem.value.replace(/(\n|\r)+$/,"").split("\n").splice(-1,1)[0];
 
+$("#genes").focus()
 
