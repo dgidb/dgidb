@@ -9,7 +9,7 @@ development:
   database: genome
   pool: 5
   username: genome
-  password: TGIlab
+  password: TGI_pg_1
   host: postgres
 
 # Warning: The database defined as "test" will be erased and
