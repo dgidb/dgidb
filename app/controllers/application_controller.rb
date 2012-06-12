@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
     unless params[:geneFile].nil?
       gene_names.concat(params[:geneFile].read.split("\n"))
     end
-    gene_names.delete_if(&:empty?)
+    gene_names.delete_if{|gene| gene.strip.empty? }
     params[:gene_names] = gene_names.map{ |name| name.strip.upcase }.uniq
   end
 
