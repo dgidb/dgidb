@@ -1,7 +1,23 @@
 =content_for :title, @title
 
-.container-fluid#container
-  =render partial: 'gene_groups/gene_group', locals:{gene_group: @gene_group}
+.container-fluid
+  .tabbable.tabs-left
+    %ul.nav.nav-tabs
+      %li.active
+        %a(href="#detailed_view" data-toggle="tab") Detailed View
+      %li
+        %a(href="#by_source" data-toggle="tab") By Source
+    .tab-content
+      .tab-pane.active#detailed_view
+        .row-fluid#container
+          =render partial: 'gene_groups/gene_group', locals:{gene_group: @gene_group}
+      .tab-pane.fade#by_source
+        .row-fluid
+          .span12
+            =render partial: 'gene_groups/by_source_table', locals:{gene_group_presenter: @gene_group_presenter}
 
 =javascript_include_tag "jquery.masonry.min"
 =javascript_include_tag "mason_items"
+=javascript_include_tag "jquery.dataTables.min"
+=javascript_include_tag "pagination_bootstrap"
+=javascript_include_tag "gene_groups"

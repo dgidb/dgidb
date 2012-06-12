@@ -2,6 +2,7 @@ class GeneGroupsController < ApplicationController
   def show
     @title = params[:name]
     @gene_group = DataModel::GeneGroup.where(name: params[:name]).first
+    @gene_group_presenter = GeneGroupPresenter.new(@gene_group)
   end
 
   def names
