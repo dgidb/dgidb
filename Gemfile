@@ -5,11 +5,14 @@ gem 'rails', '3.2.4'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'pg'
 gem 'less-rails-bootstrap'
 gem 'haml'
 gem 'squeel'
+
+group :production do
+  gem 'dalli'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -28,6 +31,7 @@ gem 'jquery-rails'
 gem 'therubyracer'
 
 group :development do
+    gem 'sqlite3'
     gem 'pry'
     gem 'pry-remote'
     gem 'pry-nav'
