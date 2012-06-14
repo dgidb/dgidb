@@ -30,8 +30,17 @@ gem 'jquery-rails'
 
 gem 'therubyracer'
 
+group :test do
+  gem 'rspec-rails'
+  gem 'sqlite3'
+  gem 'uuidtools'
+end
+
+group :test, :development do
+  gem 'rspec-rails'
+end
+
 group :development do
-    gem 'sqlite3'
     gem 'pry'
     gem 'pry-remote'
     gem 'pry-nav'
