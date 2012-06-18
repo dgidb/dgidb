@@ -4,7 +4,7 @@ class LookupFamilies
       families = Array(family_names)
       raise "Please specify at least one family name" unless families.size > 0
 
-      results =families.inject({}) do |hash, family|
+      results = families.inject({}) do |hash, family|
         hash[family] = DataModel::GeneAlternateName.includes(gene: [:gene_groups]).where{
           nomenclature.eq("human_readable_name") & alternate_name.eq(family)
         }.map{|gan| gan.gene.gene_groups }.flatten.uniq
@@ -18,15 +18,22 @@ class LookupFamilies
       structs
     end
 
-    def get_uniq_family_names
-      if Rails.cache.exist?("unique_family_names")
-        Rails.cache.fetch("unique_family_names")
+    def get_uniq_category_names_with_counts
+      if Rails.cache.exist?("unique_category_names_with_counts")
+        Rails.cache.fetch("unique_category_names_with_counts")
       else
-        family_names = DataModel::GeneAlternateName.where(nomenclature: "human_readable_name").uniq.pluck(:alternate_name).sort
-        Rails.cache.write("unique_family_names", family_names, expires_in: 3.hours)
-        family_names
+        #map to structs is a hack to allow these objects to be cached.
+        #you can't marshal a singleton instance of a model class which
+        #is what this select creates
+        category_names  = DataModel::GeneAlternateName.where{ nomenclature.eq("human_readable_name") }
+          .joins{ gene.gene_groups }.group{ alternate_name }
+          .select{ count(gene.gene_groups.id) }.select{ alternate_name }
+          .map{|x| OpenStruct.new(alternate_name: x.alternate_name,count: x.count )}
+        Rails.cache.write("unique_category_names_with_counts", category_names, expires_in: 3.hours)
+        category_names
       end
     end
-
   end
 end
+
+

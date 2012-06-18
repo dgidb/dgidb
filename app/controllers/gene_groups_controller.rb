@@ -26,7 +26,7 @@ class GeneGroupsController < ApplicationController
   end
 
   def druggable_gene_categories
-    @category_names = LookupFamilies.get_uniq_family_names
+    @categories = LookupFamilies.get_uniq_category_names_with_counts
     @title = "Druggable Gene Categories"
     @druggable_gene_categories_active = "active"
   end
