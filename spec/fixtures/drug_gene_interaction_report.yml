@@ -1,0 +1,14 @@
+drugbank_a:
+  id: b76229b8291f44ea89489ba53425d254
+  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  gene_name_report_id: c4250e4c186a4ffa9121ec52da207b0c
+  interaction_type: 
+  description: 
+  citation_id: ba9095c1b56044f08c76c466a92a3c09
+drugbank_b:
+  id: 4377a3d23c16401d965eb0c932bddf57
+  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  gene_name_report_id: c4250e4c186a4ffa9121ec52da207b0c
+  interaction_type: 
+  description: 
+  citation_id: ba9095c1b56044f08c76c466a92a3c09

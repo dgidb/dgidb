@@ -1,0 +1,42 @@
+Entrez:
+  source_db_name: Entrez
+  source_db_version: 21-Sep-2011
+  id: 720032620A3911E18ACBA7833E444A24
+  citation: Entrez citation
+  site_url: http://www.ncbi.nlm.nih.gov/gene
+  base_url: http://www.ncbi.nlm.nih.gov/gene?term=
+TTD:
+  source_db_name: TTD
+  source_db_version: 4.3.02 (2011.08.25)
+  id: 2950E2C027F611E1A7E238FB99417D44
+  citation: TTD citation
+  site_url: http://bidd.nus.edu.sg/group/ttd/ttd.asp
+  base_url: http://bidd.nus.edu.sg/group/cjttd/ZFTTD
+Ensembl:
+  source_db_name: Ensembl
+  source_db_version: 63
+  id: 720047A20A3911E18ACBA7833E444A24
+  citation: Ensembl citation
+  site_url: http://ensembl.org/index.html
+  base_url: http://useast.ensembl.org/Homo_sapiens/Gene/Summary?g=
+PubChem:
+  source_db_name: PubChem
+  source_db_version: 11-May-2012
+  id: 84a33bf7a7d24d27b8ff35ab14b83647
+  citation: PubChem citation
+  site_url: http://pubchem.ncbi.nlm.nih.gov/
+  base_url: 
+GO:
+  source_db_name: GO
+  source_db_version: 3-May-2012
+  id: 51057d858c7348e9913ec86b0e217e70
+  citation: GO citation
+  site_url: http://www.geneontology.org/
+  base_url: http://amigo.geneontology.org/cgi-bin/amigo/term_details?term=GO
+DrugBank:
+  source_db_name: DrugBank
+  source_db_version: 3
+  id: ba9095c1b56044f08c76c466a92a3c09
+  citation: DrugBank citation
+  site_url: http://www.drugbank.ca/
+  base_url: http://drugbank.ca
