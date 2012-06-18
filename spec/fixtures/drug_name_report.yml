@@ -1,0 +1,12 @@
+drug_a:
+  id: 3d67164f57b64462a38fde9ed28e162d
+  name: DB01268
+  description: 
+  nomenclature: DrugBank drug identifier 
+  citation_id: ba9095c1b56044f08c76c466a92a3c09
+drug_b:
+  id: 4ff9bd67338549e3b3edaa085aadfe75
+  name: DB00398
+  description: 
+  nomenclature: DrugBank drug identifier
+  citation_id: ba9095c1b56044f08c76c466a92a3c09

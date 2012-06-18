@@ -1,8 +1,7 @@
 class DataModel::Gene < ActiveRecord::Base
   include UUIDPrimaryKey
   self.table_name = 'gene_name_report'
-  has_many :gene_group_bridges, foreign_key: :gene_name_report_id
-  has_many :gene_groups, through: :gene_group_bridges
+  has_and_belongs_to_many :gene_groups, join_table: :gene_name_group_bridge, foreign_key: :gene_name_report_id, association_foreign_key: :gene_name_group_id
   has_many :gene_alternate_names, foreign_key: :gene_name_report_id
   has_many :gene_categories, foreign_key: :gene_name_report_id
   belongs_to :citation

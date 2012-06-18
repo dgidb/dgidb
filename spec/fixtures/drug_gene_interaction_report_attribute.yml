@@ -1,0 +1,20 @@
+attribute_a:
+  id: b625e060c4254d0fb294ef23042a7746
+  interaction_id: b76229b8291f44ea89489ba53425d254
+  name: is_known_action
+  value: yes
+attribute_b:
+  id: d4c4a150750449078a0f9b57c890191c
+  interaction_id: 4377a3d23c16401d965eb0c932bddf57
+  name: is_known_action
+  value: unknown
+attribute_c:
+  id: b45cac0e75754a1ea14c82474f24b568
+  interaction_id: b76229b8291f44ea89489ba53425d254
+  name: interaction_type
+  value: antagonist
+attribute_d:
+  id: a52e366e7a0e48dbab242223679c87b1
+  interaction_id: 4377a3d23c16401d965eb0c932bddf57
+  name: interaction_type
+  value: multitarget

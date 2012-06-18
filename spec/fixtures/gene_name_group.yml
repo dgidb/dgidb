@@ -1,0 +1,3 @@
+group_flt3:
+  name: FLT3
+  genes: drugbank_flt3, entrez_flt3, ensembl_flt3
