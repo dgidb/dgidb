@@ -2,6 +2,10 @@
 =content_for :title, "Interaction Search Results"
 
 .container-fluid
+  .page-header
+    %h2
+      Interaction Search Results
+      %small interaction results for your entered gene names
   .tabbable.tabs-left
     %ul.nav.nav-tabs
       %li.active
@@ -20,21 +24,23 @@
         .row-fluid
           .span12
             -if @search_results.show_definite?
-              =render partial: 'interactions/interaction_results_table', locals: {title: "Definite Results (Passed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.definite_interactions(:filtered)}
-              =render partial: 'interactions/interaction_results_table', locals: {title: "Definite Results (Failed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.definite_interactions(:unfiltered)}
+              =render partial: 'interactions/interaction_results_table', locals: {title: "Definite Results (Passed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.definite_interactions(:filtered), tooltip_text: "Definite results that passed the filter are those where the provided search term unambiguously matched a single gene record with known interactions meeting the specified filter criteria"}
+              =render partial: 'interactions/interaction_results_table', locals: {title: "Definite Results (Failed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.definite_interactions(:unfiltered), tooltip_text:  "Definite results that passed the filter are those where the provided search term unambiguously matched a single gene record with known interactions that did not meet the specified filter criteria"}
             -if @search_results.show_ambiguous?
-              =render partial: 'interactions/interaction_results_table', locals: {title: "Ambiguous Results (Passed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.ambiguous_interactions(:filtered)}
-              =render partial: 'interactions/interaction_results_table', locals: {title: "Ambiguous Results (Failed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.ambiguous_interactions(:unfiltered)}
+              =render partial: 'interactions/interaction_results_table', locals: {title: "Ambiguous Results (Passed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.ambiguous_interactions(:filtered), tooltip_text: "Ambiguous results are those where the provided search term matched more than one gene record of which at least one had known drug interactions meeting the specifed filter criteria. In other words - we are not able to positively identify which gene you meant. To avoid this issue please use the official gene names provided by Entrez Gene."}
+              =render partial: 'interactions/interaction_results_table', locals: {title: "Ambiguous Results (Failed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.ambiguous_interactions(:unfiltered), tooltip_text: "" "Ambiguous results are those where the provided search term matched more than one gene record of which at least one had known drug interactions that did not meet the specifed filter criteria. In other words - we are not able to positively identify which gene you meant. To avoid this issue please use the official gene names provided by Entrez Gene."}
         .row-fluid
           -if @search_results.show_ambiguous_no_interactions?
-            =render partial: 'interactions/no_interaction_result', locals: {title: 'Ambiguously Matched Genes With No Interactions', results: @search_results.ambiguous_no_interactions}
+            =render partial: 'interactions/no_interaction_result', locals: {title: 'Ambiguously Matched Genes With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: "Your search term matched more than one gene record - none of which had any interactions in any source regardless of any filtering criteria you selected"}
 
           -if @search_results.show_definite_no_interactions?
-            =render partial: 'interactions/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions}
+            =render partial: 'interactions/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions, tooltip_text: "Search term was matched definitely but had no interactions in any data source regardless of any filtering criteria"}
           -if @search_results.show_no_results_results?
             .span6
               .well
-                %h3 Search Terms With No Matches
+                %h3
+                  Search Terms With No Matches
+                  %i.icon-flag.tip(title="Search terms for which we could find no matches")
                 %ul
                   -@search_results.no_results_results.each do |result|
                     %li=result.search_term

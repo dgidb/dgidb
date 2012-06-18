@@ -1,0 +1,2 @@
+$ ->
+  $('.tip').tooltip placement: 'right'

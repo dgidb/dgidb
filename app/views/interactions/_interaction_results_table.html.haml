@@ -1,17 +1,21 @@
 .well
-  %h3= title
+  %h3
+    =title
+    %i.icon-flag.tip{title: tooltip_text}
   %table.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
     %thead
       %tr
         %th
-          Source
+          Search Term
+        %th
+          Gene
+          %i.icon-flag.tip(title="Gene Name within DGIDB which matched your search term (either directory or through a synonym)")
         %th
           Drug
         %th
           Interaction Type
+          %i.icon-flag.tip(title="Interaction Types are used to categorize the nature of drug-gene interactions (e.g. mechanism) and vary by source.")
         %th
-          Gene
-        %th
-          Search Term
+          Source
     %tbody
       =render partial: 'interactions/interaction_table_row', collection: interactions

@@ -1,4 +1,3 @@
-$('.tip').tooltip placement: 'right'
 
 $('#loadingBar').show()
 $.get '/gene_group_names.json', (data)->

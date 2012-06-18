@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
-  def search_families
-    @family_names = LookupFamilies.get_uniq_family_names
-    @search_families_active = "active"
+  def search_categories
+    @category_names = LookupFamilies.get_uniq_family_names
+    @search_categories_active = "active"
   end
 
   def search_interactions

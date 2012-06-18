@@ -1,6 +1,8 @@
 .span6
   .well
-    %h3=title
+    %h3
+      =title
+      %i.icon-flag.tip{title: tooltip_text}
     %dl
       -results.each do |result|
         -result.groups.each do |group|

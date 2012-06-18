@@ -1,7 +1,10 @@
 =content_for :title, @title
 
 .container-fluid
-  %h3=@family_name+" Family"
+  .page-header
+    %h3
+      =@family_name + " Category"
+      %small listing of genes in the selected druggable gene category
   .row-fluid
     .span12
       .well
@@ -9,7 +12,7 @@
           %thead
             %tr
               %th
-                Gene Group Name
+                Gene Name
               %th
                 Family Name
           %tbody

@@ -1,13 +1,13 @@
 #notice= notice
-=content_for :title, "Family Search Results"
+=content_for :title, "Category Search Results"
 
 .container-fluid
   .tabbable.tabs-left
     %ul.nav.nav-tabs
       %li.active
-        %a(href="#by_genes" data-toggle="tab") By Gene Group
+        %a(href="#by_genes" data-toggle="tab") By Gene Name
       %li
-        %a(href="#by_families" data-toggle="tab") By Gene Family
+        %a(href="#by_families" data-toggle="tab") By Gene Category
     .tab-content
       .tab-pane.active#by_genes
         -if @search_results.show_pass_families?
@@ -22,11 +22,11 @@
         -if @search_results.show_passed_groups_by_family?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/results_by_family_table', locals: {title: "Family Results in Selected Families", families: @search_results.passed_groups_by_family }
+              =render partial: 'gene_groups/results_by_family_table', locals: {title: "Gene Category Results in Selected Families", families: @search_results.passed_groups_by_family }
         -if @search_results.show_failed_groups_by_family?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/results_by_family_table', locals: {title: "Family Results Not in Selected Families", families: @search_results.failed_groups_by_family }
+              =render partial: 'gene_groups/results_by_family_table', locals: {title: "Gene Category Results Not in Selected Families", families: @search_results.failed_groups_by_family }
 
 
 =javascript_include_tag "jquery.dataTables.min"

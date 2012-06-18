@@ -18,19 +18,21 @@ class GeneGroupsController < ApplicationController
     end
   end
 
-  def family
+  def druggable_gene_category
     @gene_groups = LookupFamilies.find_gene_groups_for_families(params[:name])
-    @title = "Gene Groups in the #{params[:name]} family"
+    @title = "Genes in the #{params[:name]} family"
+    @druggable_gene_categories_active = "active"
     @family_name = params[:name]
   end
 
-  def families
-    @family_names = LookupFamilies.get_uniq_family_names
-    @title = "Gene Group Families"
-    @families_active = "active"
+  def druggable_gene_categories
+    @category_names = LookupFamilies.get_uniq_family_names
+    @title = "Druggable Gene Categories"
+    @druggable_gene_categories_active = "active"
   end
 
-  def family_search_results
+  def categories_search_results
+    @search_categories_active = "active"
     combine_input_genes(params)
     validate_search_request(params)
 

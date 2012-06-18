@@ -95,7 +95,7 @@ class InteractionSearchResultsPresenter
 
   def each_result
     @search_results.each do |result|
-      yield OpenStruct.new(search_term: result.search_term, match_type: match_type(result), matches: result.groups.map{|g| g.name}.join(", ")  )
+      yield OpenStruct.new(search_term: result.search_term, match_type: match_type(result), matches: result.groups.map{|g| g.name}.join(", ") + " "  )
     end
   end
 

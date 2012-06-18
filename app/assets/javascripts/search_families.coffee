@@ -6,8 +6,6 @@ $(".multiselect").multiselect
 
 $(".multiselect").multiselect("checkAll")
 
-$('.tip').tooltip placement: 'right'
-
 $('#loadingBar').show()
 $.get '/gene_group_names.json', (data)->
   $('#genes').typeahead

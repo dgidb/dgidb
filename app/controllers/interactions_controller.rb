@@ -6,6 +6,7 @@ class InteractionsController < ApplicationController
   end
 
   def interaction_search_results
+    @search_interactions_active = "active"
     start_time = Time.now
     combine_input_genes(params)
     validate_search_request(params)

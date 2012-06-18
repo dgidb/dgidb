@@ -1,11 +1,11 @@
-=content_for :title, 'Search Gene Families'
+=content_for :title, 'Search Druggable Gene Categories'
 
 .container-fluid
   .page-header
     %h2
-      Search Families
-      %small search for gene families by gene name
-  %form.form-horizontal(action="family_search_results" method="post" enctype="multipart/form-data")
+      Search Druggable Gene Categories
+      %small search for drug-gene interactions while filtering by druggable gene categories
+  %form.form-horizontal(action="categories_search_results" method="post" enctype="multipart/form-data")
     %fieldset
       .control-group
         %label.control-label
@@ -31,7 +31,7 @@
       .control-group
         %label.control-label Families
         .controls
-          =select_tag "families", options_from_collection_for_select(@family_names, "to_s", "to_s"), multiple: true, class: :multiselect
+          =select_tag "families", options_from_collection_for_select(@category_names, "to_s", "to_s"), multiple: true, class: :multiselect
       .control-group
         %label.control-label Select Output Format
         .controls
@@ -42,7 +42,7 @@
       .form-actions
         %button.btn.btn-primary(type="submit")Find Gene Families
 
-=render partial: 'shared/loading_modal', locals: {title: "Searching Gene Families..."}
+=render partial: 'shared/loading_modal', locals: {title: "Searching Druggable Gene Categories..."}
 
 =stylesheet_link_tag 'jquery-ui-1.8.16.custom'
 =stylesheet_link_tag 'jquery.multiselect'
