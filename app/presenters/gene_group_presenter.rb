@@ -11,7 +11,16 @@ class GeneGroupPresenter
   end
 
   def source_db_names
-    @uniq_db_names ||= DataModel::Citation.uniq.pluck(:source_db_name).sort
+    @uniq_db_names ||= DataModel::Gene.joins(:citation).pluck(:source_db_name).uniq.sort_by do |source_db_name|
+      case source_db_name
+      when 'Entrez'
+        -2
+      when 'Ensembl'
+        -1
+      else
+        0
+      end
+    end
   end
 
   def grouped_names
@@ -30,13 +39,12 @@ class GeneGroupPresenter
       end
       hash
     end
-    
-    results = [] 
+
+    results = []
     hash.each_pair do |key, value|
       results << GeneGroupNamePresenter.new(key, value, source_db_names)
     end
-
-    results 
+    results
   end
 
 end
