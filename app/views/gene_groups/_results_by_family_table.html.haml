@@ -4,10 +4,11 @@
     %thead
       %tr
         %th
-          Category Name
+          Category
+          %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
         %th
           Matching Gene Count
         %th
-          Gene Name
+          Matching Gene(s)
     %tbody
       =render partial: 'gene_groups/results_by_family_table_row', collection: families

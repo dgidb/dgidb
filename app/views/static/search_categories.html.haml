@@ -14,7 +14,9 @@
         .controls
           %input.input-file(type="file" name='geneFile')
       .control-group
-        %label.control-label Use Default Genes
+        %label.control-label
+          Use Default Genes
+          %i.icon-flag.tip(title="Inserts a list of genes selected for illustrative and test purposes")
         .controls
           %button.btn.btn-small.btn-danger#defaultGenes(type='button') Replace Genes with Defaults
       .control-group
@@ -29,7 +31,9 @@
           .progress.progress-striped.active.span2
             .bar(style='width: 100%') Loading Autocomplete
       .control-group
-        %label.control-label Families
+        %label.control-label
+          Categories
+          %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
         .controls
           =select_tag "families", options_from_collection_for_select(@category_names, "to_s", "to_s"), multiple: true, class: :multiselect
       .control-group
