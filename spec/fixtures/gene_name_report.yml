@@ -1,23 +1,22 @@
 drugbank_flt3:
-  id: c4250e4c186a4ffa9121ec52da207b0c
   name: DGBNK_G165
   description: 
   nomenclature: drugbank_partner_id
   citation_id: ba9095c1b56044f08c76c466a92a3c09
+  gene_groups: group_flt3
 entrez_flt3:
-  id: FDD8617AFF2511E0A0CA3E983E444A24
   name: ENTRZ_G2322
   description: 
   nomenclature: entrez_id
   citation_id: 720032620A3911E18ACBA7833E444A24
+  gene_groups: group_flt3
 ensembl_flt3:
-  id: AA3B32D8016711E1879ED2CC3E444A24
   name: ENSG00000122025
   description: 
   nomenclature: ensembl_id
   citation_id: 720047A20A3911E18ACBA7833E444A24
+  gene_groups: group_flt3
 has_categories:
-  id: a603d6131bd247d38bfb093f8f4612db
   name: NR1I2
   description: 
   nomenclature: go_gene_name

@@ -1,4 +1,3 @@
 group_flt3:
-  id: DB7CB82C83FC11E19689FF67853FA18B
   name: FLT3
-#  genes: drugbank_flt3, entrez_flt3, ensembl_flt3
+  genes: drugbank_flt3, entrez_flt3, ensembl_flt3

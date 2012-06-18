@@ -1,18 +1,18 @@
 a:
   id: 9b40ff9a5bf14bd28d6528818cbedd22
-  gene_name_report_id: a603d6131bd247d38bfb093f8f4612db
+  gene: has_categories
   category_name: secondary_go_id
   category_value: 0004887
   description: 
 b:
   id: c8696414c9bb4156983c591c43937529
-  gene_name_report_id: a603d6131bd247d38bfb093f8f4612db
+  gene: has_categories
   category_name: secondary_go_id
   category_value: 0042738
   description: 
 c:
   id: f3c827461bc24175a962b8c3ef299127
-  gene_name_report_id: a603d6131bd247d38bfb093f8f4612db
+  gene: has_categories
   category_name: go_short_name_and_id
   category_value: drugmetabolism_go0017144
   description: The chemical reactions and pathways resulting in the breakdown of a drug that has originated externally to the cell or organism.
