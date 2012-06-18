@@ -9,6 +9,7 @@ gem 'pg'
 gem 'less-rails-bootstrap'
 gem 'haml'
 gem 'squeel'
+gem 'uuidtools'
 
 group :production do
   gem 'dalli'
@@ -30,14 +31,11 @@ gem 'jquery-rails'
 
 gem 'therubyracer'
 
-group :test do
-  gem 'rspec-rails'
-  gem 'sqlite3'
-  gem 'uuidtools'
-end
-
 group :test, :development do
   gem 'rspec-rails'
+  gem 'sqlite3'
+  gem "capybara"
+  gem "launchy"
 end
 
 group :development do

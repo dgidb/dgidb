@@ -1,0 +1,22 @@
+#notice= notice
+=content_for :title, 'DGIDB Home'
+.container-fluid
+  .page-header
+    %h2
+      DGIDB
+      %small drug gene interaction database
+  .row-fluid
+    .span12
+      .well
+        DGIDB (drug gene interaction database) aggregates known interactions between drugs and genes
+      .hero-unit
+        %ul{:class => 'unstyled'}
+          %li
+            %a(href="search_interactions" data-toggle="tab")Search Interactions
+            %small Find drug gene interactions for genes
+          %li
+            %a(href="search_families" data-toggle="tab")Search Families
+            %small Find gene families for genes
+          %li
+            %a(href="families" data-toggle="tab")Gene Families
+            %small Examine particular gene families
