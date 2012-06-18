@@ -14,7 +14,6 @@ RSpec.configure do |config|
       set_fixture_class :gene_name_report => DataModel::Gene
       set_fixture_class :gene_name_report_association => DataModel::GeneAlternateName
       set_fixture_class :gene_name_report_category_association => DataModel::GeneCategory
-      set_fixture_class :gene_name_group_bridge => DataModel::GeneGroupBridge
       set_fixture_class :gene_name_group => DataModel::GeneGroup
       set_fixture_class :drug_name_report => DataModel::Drug
       set_fixture_class :drug_name_report_association => DataModel::DrugAlternateName
