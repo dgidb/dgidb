@@ -3,6 +3,7 @@ class InteractionsController < ApplicationController
     @interaction = DataModel::Interaction.find(params[:id])
     @drug = @interaction.drug
     @gene = @interaction.gene
+    @title = "#{@drug.name} acting on #{@gene.name}"
   end
 
   def interaction_search_results
