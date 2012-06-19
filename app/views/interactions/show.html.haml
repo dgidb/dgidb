@@ -13,7 +13,7 @@
           =link_to @drug.name, "/drugs/#{@drug.name}"
         %p
           %b Gene:
-          =link_to @gene.name, "/genes/#{@gene.name}"
+          =link_to @gene.name, "/genes/#{@gene.source_db_name}/#{@gene.name}"
         %p
           %b Source Database Name:
           =@interaction.citation.source_db_name

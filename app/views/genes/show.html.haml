@@ -5,5 +5,4 @@
   .row-fluid
     .span12
       .hero-unit
-        -@genes.each do |gene|
-          =render gene
+        =render partial: 'genes/gene', collection: @genes

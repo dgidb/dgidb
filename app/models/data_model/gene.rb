@@ -8,8 +8,8 @@ class DataModel::Gene < ActiveRecord::Base
   has_many :interactions, foreign_key: :gene_name_report_id
   has_many :drugs, through: :interactions
 
-  def source_id
-    self.name.sub(/^ENTREZ_G/, "").sub(/^DGBNK_G/, "")
+  def source_db_name
+    self.citation.source_db_name
   end
 
   def sort_value
@@ -25,7 +25,7 @@ class DataModel::Gene < ActiveRecord::Base
 
   def original_data_source_url
     base_url = self.citation.base_url
-    name = self.source_id
+    name = self.name
     case self.citation.source_db_name
     when 'DrugBank'
       [base_url, 'molecules', name, '?as=target'].join('/')

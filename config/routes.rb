@@ -1,6 +1,6 @@
 DruggableGene::Application.routes.draw do
   match 'drugs/:name' => 'drugs#show', as: 'drug'
-  match 'genes/:name' => 'genes#show'
+  match 'genes/:source_db_name/:name' => 'genes#show'
   match 'gene_group_names' => 'gene_groups#names'
   match 'gene_groups/:name' => 'gene_groups#show', as: 'gene_group'
   match 'interactions/:id' => 'interactions#show', as: 'interaction'
