@@ -1,14 +1,9 @@
 require 'spec_helper'
-##
-require 'pry'
-require 'pry-nav'
-##
 
 describe DataModel::Gene do
   fixtures :all
 
   it "should have many groups" do
-    #binding.pry ###
     gene_name_report("drugbank_flt3").gene_groups.should be_an_instance_of(Array)
     gene_name_report("drugbank_flt3").gene_groups.first.should be_an_instance_of(DataModel::GeneGroup)
   end
