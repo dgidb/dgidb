@@ -8,6 +8,16 @@ class DataModel::Gene < ActiveRecord::Base
   has_many :interactions, foreign_key: :gene_name_report_id
   has_many :drugs, through: :interactions
 
+  class << self
+    def for_search
+      includes(gene_groups: [], interactions: {interaction_attributes: [], drug: [:drug_alternate_names], citation: []})
+    end
+
+    def for_gene_families
+      includes(gene_groups: [])
+    end
+  end
+
   def source_db_name
     self.citation.source_db_name
   end
