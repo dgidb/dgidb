@@ -13,7 +13,7 @@ class DataModel::Gene < ActiveRecord::Base
       includes(gene_groups: [], interactions: {interaction_attributes: [], drug: [:drug_alternate_names], citation: []})
     end
 
-    def for_gene_families
+    def for_gene_categories
       includes(gene_groups: [])
     end
   end

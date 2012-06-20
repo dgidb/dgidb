@@ -1,5 +1,5 @@
 $(".multiselect").multiselect
-  noneSelectedText: 'Select gene families'
+  noneSelectedText: 'Select gene categories'
   selectedText: '# of #'
   minWidth: 400
 .multiselectfilter()

@@ -35,7 +35,7 @@
           Categories
           %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
         .controls
-          =select_tag "families", options_from_collection_for_select(@category_names, "to_s", "to_s"), multiple: true, class: :multiselect
+          =select_tag "categories", options_from_collection_for_select(@category_names, "to_s", "to_s"), multiple: true, class: :multiselect
       .control-group
         %label.control-label Select Output Format
         .controls
@@ -44,7 +44,7 @@
           %label.radio
             %input(id='tsv_output' type='radio' name='outputFormat' value='tsv') TSV
       .form-actions
-        %button.btn.btn-primary(type="submit")Find Gene Families
+        %button.btn.btn-primary(type="submit")Find Gene Categories
 
 =render partial: 'shared/loading_modal', locals: {title: "Searching Druggable Gene Categories..."}
 
@@ -54,4 +54,4 @@
 =javascript_include_tag 'jquery-ui-1.8.21.custom.min.js'
 =javascript_include_tag 'jquery.multiselect.min'
 =javascript_include_tag 'jquery.multiselect.filter.min'
-=javascript_include_tag 'search_families'
+=javascript_include_tag 'search_categories'

@@ -11,26 +11,26 @@
       %li.active
         %a(href="#by_genes" data-toggle="tab") By Gene Name
       %li
-        %a(href="#by_families" data-toggle="tab") By Gene Category
+        %a(href="#by_categories" data-toggle="tab") By Gene Category
     .tab-content
       .tab-pane.active#by_genes
-        -if @search_results.show_pass_families?
+        -if @search_results.show_pass_categories?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/family_results_table', locals: {title: "Results in Selected Categories", families: @search_results.pass_filtered_families }
-        -if @search_results.show_fail_families?
+              =render partial: 'gene_groups/category_results_table', locals: {title: "Results in Selected Categories", categories: @search_results.pass_filtered_categories }
+        -if @search_results.show_fail_categories?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/family_results_table', locals: {title: "Results Not in Selected Categories", families: @search_results.fail_filtered_families }
-      .tab-pane.fade#by_families
-        -if @search_results.show_passed_groups_by_family?
+              =render partial: 'gene_groups/category_results_table', locals: {title: "Results Not in Selected Categories", categories: @search_results.fail_filtered_categories }
+      .tab-pane.fade#by_categories
+        -if @search_results.show_passed_groups_by_category?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/results_by_family_table', locals: {title: "Results in Selected Categories", families: @search_results.passed_groups_by_family }
-        -if @search_results.show_failed_groups_by_family?
+              =render partial: 'gene_groups/results_by_category_table', locals: {title: "Results in Selected Categories", categories: @search_results.passed_groups_by_category }
+        -if @search_results.show_failed_groups_by_category?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/results_by_family_table', locals: {title: "Results Not in Selected Categories", families: @search_results.failed_groups_by_family }
+              =render partial: 'gene_groups/results_by_category_table', locals: {title: "Results Not in Selected Categories", categories: @search_results.failed_groups_by_category }
 
 
 =javascript_include_tag "jquery.dataTables.min"

@@ -30,7 +30,7 @@ class LookupGenes
       if scope == :for_search
         results_to_gene_groups.map{ |key, value| InteractionSearchResult.new(key, value) }
       else
-        results_to_gene_groups.map{ |key, value| GeneFamilySearchResult.new(key, value) }
+        results_to_gene_groups.map{ |key, value| GeneCategorySearchResult.new(key, value) }
       end
     end
   end

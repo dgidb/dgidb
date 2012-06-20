@@ -1,19 +1,19 @@
-class LookupFamilies
+class LookupCategories
   class << self
-    def find_gene_groups_for_families(family_names)
-      families = Array(family_names)
-      raise "Please specify at least one family name" unless families.size > 0
+    def find_gene_groups_for_categories(category_names)
+      categories = Array(category_names)
+      raise "Please specify at least one category name" unless categories.size > 0
 
-      results = families.inject({}) do |hash, family|
-        hash[family] = DataModel::GeneAlternateName.includes(gene: [:gene_groups]).where{
-          nomenclature.eq("human_readable_name") & alternate_name.eq(family)
+      results = categories.inject({}) do |hash, category|
+        hash[category] = DataModel::GeneAlternateName.includes(gene: [:gene_groups]).where{
+          nomenclature.eq("human_readable_name") & alternate_name.eq(category)
         }.map{|gan| gan.gene.gene_groups }.flatten.uniq
         hash
       end
 
       structs = []
-      results.flatten.each_slice(2) do |family|
-        structs += family[-1].map{|x| OpenStruct.new(family: family[0], gene_group: x)}
+      results.flatten.each_slice(2) do |category|
+        structs += category[-1].map{|x| OpenStruct.new(category: category[0], gene_group: x)}
       end
       structs
     end

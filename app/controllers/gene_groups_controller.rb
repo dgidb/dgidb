@@ -19,14 +19,14 @@ class GeneGroupsController < ApplicationController
   end
 
   def druggable_gene_category
-    @gene_groups = LookupFamilies.find_gene_groups_for_families(params[:name])
-    @title = "Genes in the #{params[:name]} family"
+    @gene_groups = LookupCategories.find_gene_groups_for_categories(params[:name])
+    @title = "Genes in the #{params[:name]} category"
     @druggable_gene_categories_active = "active"
-    @family_name = params[:name]
+    @category_name = params[:name]
   end
 
   def druggable_gene_categories
-    @categories = LookupFamilies.get_uniq_category_names_with_counts
+    @categories = LookupCategories.get_uniq_category_names_with_counts
     @title = "Druggable Gene Categories"
     @druggable_gene_categories_active = "active"
   end
@@ -36,17 +36,17 @@ class GeneGroupsController < ApplicationController
     combine_input_genes(params)
     validate_search_request(params)
 
-    search_results = LookupGenes.find(params, :for_gene_families)
-    @search_results = GeneFamilySearchResultsPresenter.new(search_results, params)
+    search_results = LookupGenes.find(params, :for_gene_categories)
+    @search_results = GeneCategorySearchResultsPresenter.new(search_results, params)
     if params[:outputFormat] == 'tsv'
-      generate_tsv_headers('gene_families_export.tsv')
-      render 'gene_families_export.tsv', content_type: 'text/tsv', layout: false
+      generate_tsv_headers('gene_categories_export.tsv')
+      render 'gene_categories_export.tsv', content_type: 'text/tsv', layout: false
     end
   end
 
   private
   def validate_search_request(params)
-    bad_request("Please enter at least one gene family to search!") unless params[:gene_names].size > 0
+    bad_request("Please enter at least one gene category to search!") unless params[:gene_names].size > 0
     bad_request("You must upload a plain text formated file") if params[:geneFile] && !validate_file_format('text/plain;', params[:geneFile].tempfile.path)
   end
 

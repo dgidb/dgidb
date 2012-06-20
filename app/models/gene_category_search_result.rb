@@ -1,4 +1,4 @@
-class GeneFamilySearchResult
+class GeneCategorySearchResult
 
   attr_accessor :search_term, :groups
 
@@ -19,7 +19,7 @@ class GeneFamilySearchResult
     Maybe(groups.first).name
   end
 
-  def gene_families
+  def gene_categories
     Maybe(groups.first).genes
       .map {|x| x.gene_alternate_names }
       .flatten.select{|x| x.nomenclature == "human_readable_name"}

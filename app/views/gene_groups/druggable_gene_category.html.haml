@@ -3,7 +3,7 @@
 .container-fluid
   .page-header
     %h2
-      =@family_name + " Category"
+      =@category_name + " Category"
       %small listing of genes in the selected druggable gene category
   .row-fluid
     .span12
@@ -14,10 +14,10 @@
               %th
                 Gene Name
               %th
-                Family Name
+                Category Name
           %tbody
-            =render partial: 'gene_groups/family_table_row', collection: @gene_groups
+            =render partial: 'gene_groups/category_table_row', collection: @gene_groups
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"
-=javascript_include_tag "family_page"
+=javascript_include_tag "category_page"
