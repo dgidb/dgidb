@@ -30,12 +30,9 @@ group :test, :development  do
   gem 'sqlite3'
   gem "capybara"
   gem "launchy"
-end
-
-group :development do
-    gem 'pry'
-    gem 'pry-remote'
-    gem 'pry-nav'
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-nav'
 end
 
 # To use ActiveModel has_secure_password
