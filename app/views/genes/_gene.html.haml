@@ -9,14 +9,14 @@
   =gene.citation.source_db_version
 %p
   %b Alternate Names:
-  %table.table.table-striped
+  %table.table
     -gene.gene_alternate_names.each do |alt_name|
       %tr
         %td=alt_name.alternate_name
         %td=alt_name.nomenclature
 %p
   %b Categories:
-  %table.table.table-striped
+  %table.table
     -gene.gene_categories.each do |category|
       %tr
         %td=category.category_name

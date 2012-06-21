@@ -1,0 +1,19 @@
+@import "twitter/bootstrap";
+.color_source_db (@color: @red) {
+  #gradient > .vertical(@color,@white);
+}
+.gene {
+  .color_source_db;
+}
+.gene.Entrez {
+  .color_source_db(@green);
+}
+.gene.GO {
+  .color_source_db(@orange);
+}
+.gene.Ensembl {
+  .color_source_db(@blue);
+}
+.gene.DrugBank {
+  .color_source_db(@purple);
+}
