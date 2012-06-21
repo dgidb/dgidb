@@ -36,3 +36,8 @@ entrez_flt2:
   description: 
   nomenclature: entrez_id 
   citation_id: 720032620A3911E18ACBA7833E444A24
+go_flt3:
+  name: FLT3
+  description: 
+  nomenclature: go_gene_name 
+  citation_id: 51057d858c7348e9913ec86b0e217e70
