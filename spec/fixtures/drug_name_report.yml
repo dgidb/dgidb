@@ -10,3 +10,21 @@ drug_b:
   description: 
   nomenclature: DrugBank drug identifier
   citation_id: ba9095c1b56044f08c76c466a92a3c09
+drug_c:
+  id: 6e500fe208b44878924e4e33ccec088d
+  name: DAP000006
+  description: 
+  nomenclature: TTD_drug_id
+  citation_id: 2950E2C027F611E1A7E238FB99417D44
+drug_d:
+  id: fe1572c1252b4a29b6c79918f38ff559
+  name: DAP001260
+  description: 
+  nomenclature: TTD_drug_id
+  citation_id: 2950E2C027F611E1A7E238FB99417D44
+drug_e:
+  id: 6ebdd971850d439e83165b9d1954f981
+  name: DB00039
+  description: 
+  nomenclature: DrugBank drug identifier 
+  citation_id: ba9095c1b56044f08c76c466a92a3c09

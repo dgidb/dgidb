@@ -52,3 +52,21 @@ category_i:
   category_name: drug_category
   category_value: protein kinase inhibitors
   description: 
+category_j: 
+  id: ae797303947f42fa80397efbe409ef4b
+  drug_name_report_id: 6ebdd971850d439e83165b9d1954f981
+  category_name: drug_group
+  category_value: approved
+  description: 
+category_k: 
+  id: d36010f031b54296929483ce8344195d
+  drug_name_report_id: 6ebdd971850d439e83165b9d1954f981
+  category_name: drug_type
+  category_value: biotech
+  description: 
+category_l: 
+  id: fe7af3cdbcc34c2eb9bddd4f9c05baa6
+  drug_name_report_id: 6ebdd971850d439e83165b9d1954f981
+  category_name: drug_category
+  category_value: antimucositis agents
+  description: 

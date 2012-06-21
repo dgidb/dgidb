@@ -76,3 +76,21 @@ m:
   alternate_name: NEXAVAR
   description: 
   nomenclature: drug_brand
+n:
+  id: dec8d81deaaf495b84c6e5fa6f7ad919
+  drug_name_report_id: 6e500fe208b44878924e4e33ccec088d
+  alternate_name: SORAFENIB
+  description: 
+  nomenclature: TTD_primary_drug_name
+o:
+  id: 7851a56a6cb74235817cb5939dce9de2
+  drug_name_report_id: fe1572c1252b4a29b6c79918f38ff559
+  alternate_name: RANIBIZUMAB
+  description: 
+  nomenclature: TTD_primary_drug_name
+p: 
+  id: 8dba282407da4079a8b9e7ad9849cf18
+  drug_name_report_id: 6ebdd971850d439e83165b9d1954f981
+  alternate_name: PALIFERMIN
+  description: 
+  nomenclature: Primary DrugBank drug name
