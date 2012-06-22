@@ -9,7 +9,7 @@ describe 'druggable_gene_categories' do
     page.status_code.should eq(200)
   end
 
-  it 'Cell Surface looks reasonable' do
+  it 'Content looks reasonable' do
     page.should have_content('CELL SURFACE (1)')
     page.should have_content('KINASE (1)')
     page.should have_content('TYROSINE KINASE (1)')
