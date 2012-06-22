@@ -13,6 +13,19 @@
  *= require twitter/bootstrap
 */
 
+.bubble-links a {
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #999999;
+  padding: 1px 9px 2px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  background-color: #444;
+  opacity:0.6;
+}
+
 .item {
   width: 550px;
   margin: 5px;
