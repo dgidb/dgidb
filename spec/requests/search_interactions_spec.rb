@@ -71,6 +71,7 @@ describe 'search_interactions' do
     end
   end
 
+  #TODO: test file upload
   #TODO: write a .tsv test
 
 end

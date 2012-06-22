@@ -42,4 +42,7 @@ describe 'search_druggable_gene_categories' do
     end
   end
 
+  #TODO: test file upload
+  #TODO: write a .tsv test
+
 end

@@ -34,4 +34,7 @@ DruggableGene::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Use a different cache store in dev
+  config.cache_store = :file_store, 'tmp/cache/test'
 end

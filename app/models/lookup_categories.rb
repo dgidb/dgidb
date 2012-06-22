@@ -27,7 +27,7 @@ class LookupCategories
         #is what this select creates
         category_names  = DataModel::GeneAlternateName.where{ nomenclature.eq("human_readable_name") }
           .joins{ gene.gene_groups }.group{ alternate_name }
-          .select{ count(gene.gene_groups.id) }.select{ alternate_name }
+          .select{ count(gene.gene_groups.id).as(count) }.select{ alternate_name }
           .map{|x| OpenStruct.new(alternate_name: x.alternate_name,count: x.count )}
         Rails.cache.write("unique_category_names_with_counts", category_names, expires_in: 3.hours)
         category_names
