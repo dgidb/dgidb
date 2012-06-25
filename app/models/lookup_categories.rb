@@ -5,8 +5,8 @@ class LookupCategories
       raise "Please specify at least one category name" unless categories.size > 0
 
       results = categories.inject({}) do |hash, category|
-        hash[category] = DataModel::GeneAlternateName.includes(gene: [:gene_groups]).where{
-          nomenclature.eq("human_readable_name") & alternate_name.eq(category)
+        hash[category] = DataModel::GeneCategory.includes(gene: [:gene_groups]).where{
+          category_name.eq("human_readable_name") & category_value.eq(category)
         }.map{|gan| gan.gene.gene_groups }.flatten.uniq
         hash
       end
@@ -25,10 +25,10 @@ class LookupCategories
         #map to structs is a hack to allow these objects to be cached.
         #you can't marshal a singleton instance of a model class which
         #is what this select creates
-        category_names  = DataModel::GeneAlternateName.where{ nomenclature.eq("human_readable_name") }
-          .joins{ gene.gene_groups }.group{ alternate_name }
-          .select{ count(gene.gene_groups.id).as(count) }.select{ alternate_name }
-          .map{|x| OpenStruct.new(alternate_name: x.alternate_name,count: x.count )}
+        category_names = DataModel::GeneCategory.where{ category_name.eq("human_readable_name") }
+          .joins{ gene.gene_groups }.group{ category_value }
+          .select{ count(gene.gene_groups.id).as(count) }.select{ category_value }
+          .map{|x| OpenStruct.new(category_value: x.category_value,count: x.count )}
         Rails.cache.write("unique_category_names_with_counts", category_names, expires_in: 3.hours)
         category_names
       end

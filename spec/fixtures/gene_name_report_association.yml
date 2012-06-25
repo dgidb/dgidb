@@ -90,18 +90,3 @@ entrez_flt2:
   alternate_name: FLT2
   description: 
   nomenclature: entrez_gene_synonym
-go_flt3_a:
-  gene: go_flt3
-  alternate_name: CELL SURFACE
-  description: 
-  nomenclature: human_readable_name 
-go_flt3_b:
-  gene: go_flt3
-  alternate_name: TYROSINE KINASE
-  description: 
-  nomenclature: human_readable_name 
-go_flt3_c:
-  gene: go_flt3
-  alternate_name: KINASE
-  description: 
-  nomenclature: human_readable_name 

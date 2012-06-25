@@ -35,7 +35,7 @@
           Categories
           %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
         .controls
-          =select_tag "categories", options_from_collection_for_select(@category_names, "to_s", "to_s"), multiple: true, class: :multiselect
+          =select_tag "categories", options_from_collection_for_select(@category_names, "category_value", "category_value"), multiple: true, class: :multiselect
       .control-group
         %label.control-label Select Output Format
         .controls

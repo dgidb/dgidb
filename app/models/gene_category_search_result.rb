@@ -21,9 +21,9 @@ class GeneCategorySearchResult
 
   def gene_categories
     Maybe(groups.first).genes
-      .map {|x| x.gene_alternate_names }
-      .flatten.select{|x| x.nomenclature == "human_readable_name"}
-      .map{|x| x.alternate_name} || []
+      .map {|x| x.gene_categories }
+      .flatten.select{|x| x.category_name == "human_readable_name"}
+      .map{|x| x.category_value} || []
   end
 
   def partition

@@ -1,6 +1,6 @@
 class StaticController < ApplicationController
   def search_categories
-    @category_names = LookupCategories.get_uniq_category_names_with_counts.map{|x| x.alternate_name }
+    @category_names = LookupCategories.get_uniq_category_names_with_counts
     @search_categories_active = "active"
   end
 

@@ -10,7 +10,7 @@
   -@categories.each do |category|
     .item(style="width:400")
       .well
-        %h4=link_to "#{category.alternate_name} (#{category.count})", gene_group_by_category_path(category.alternate_name)
+        %h4=link_to "#{category.category_value} (#{category.count})", gene_group_by_category_path(category.category_value)
 
 =javascript_include_tag "jquery.masonry.min"
 =javascript_include_tag "mason_items"
