@@ -1,11 +1,11 @@
 drugbank_flt3:
-  name: DGBNK_G165
+  name: 165
   description: 
   nomenclature: drugbank_partner_id
   citation_id: ba9095c1b56044f08c76c466a92a3c09
   gene_groups: group_flt3
 entrez_flt3:
-  name: ENTRZ_G2322
+  name: 2322
   description: 
   nomenclature: entrez_id
   citation_id: 720032620A3911E18ACBA7833E444A24
