@@ -8,4 +8,4 @@
   %td
     =link_to interaction_table_row.types_string, interaction_path(interaction_table_row.interaction)
   %td
-    =link_to interaction_table_row.source_db_name, interaction_table_row.source_db_url
+    =link_to interaction_table_row.source_db_name, interaction_table_row.interaction.drug.original_data_source_url
