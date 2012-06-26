@@ -29,7 +29,11 @@ class GeneCategorySearchResultsPresenter
         category.gene_category
       end.each_pair do |category, results|
         groups = results.map{|x| x.group_name}
-        @failed_groups_by_category << OpenStruct.new(category_name: category, groups: groups.join(", "), group_count: groups.count)
+        @failed_groups_by_category << OpenStruct.new(
+          category_name: category,
+          groups: groups,
+          group_count: groups.count
+        )
       end
     end
     @failed_groups_by_category
@@ -42,7 +46,11 @@ class GeneCategorySearchResultsPresenter
         category.gene_category
       end.each_pair do |category, results|
         groups = results.map{|x| x.group_name}
-        @passed_groups_by_category << OpenStruct.new(category_name: category, groups: groups.join(", "), group_count: groups.count)
+        @passed_groups_by_category << OpenStruct.new(
+          category_name: category,
+          groups: groups,
+          group_count: groups.count,
+        )
       end
     end
     @passed_groups_by_category
