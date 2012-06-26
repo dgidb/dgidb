@@ -9,8 +9,8 @@
             %th Match Type
             %th Matches
         %tbody
-          -results.each_result do |result|
+          -results.each_result(self) do |result|
             %tr
               %td=result.search_term
               %td=result.match_type
-              %td=result.matches
+              %td=result.matches_with_links

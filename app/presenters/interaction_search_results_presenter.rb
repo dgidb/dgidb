@@ -93,9 +93,14 @@ class InteractionSearchResultsPresenter
     !grouped_results[:definite_no_interactions].nil?
   end
 
-  def each_result
+  def each_result(context)
     @search_results.each do |result|
-      yield OpenStruct.new(search_term: result.search_term, match_type: match_type(result), matches: result.groups.map{|g| g.name}.join(", ") + " "  )
+      yield OpenStruct.new(
+        search_term: result.search_term,
+        match_type: match_type(result),
+        matches_with_links: (result.groups.map do |g|
+          context.instance_exec{link_to g.name, gene_group_path(g.name)}
+        end.join(", ") + " ").html_safe)
     end
   end
 
