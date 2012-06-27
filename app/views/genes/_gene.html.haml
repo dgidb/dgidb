@@ -12,7 +12,11 @@
   %table.table
     -gene.gene_alternate_names.each do |alt_name|
       %tr
-        %td=alt_name.alternate_name
+        %td
+          -if(gene.citation.source_db_name == 'GO')
+            =link_to alt_name.alternate_name, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alternate_name
+          -else
+            =alt_name.alternate_name
         %td=alt_name.nomenclature
 %p
   %b Categories:
