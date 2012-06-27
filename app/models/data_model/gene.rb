@@ -42,9 +42,7 @@ class DataModel::Gene < ActiveRecord::Base
     when 'TTD'
       base_url + 'Detail.asp?ID=' + name
     when 'GO'
-      short_name_and_id = self.gene_categories.select {|category| "go_short_name_and_id" == category.category_name}.first.category_value
-      short_name_and_id.sub!(/^.*_go/, "")
-      base_url + short_name_and_id
+      base_url.gsub(/XXXXXXXX/, name)
     else
       base_url + name
     end
