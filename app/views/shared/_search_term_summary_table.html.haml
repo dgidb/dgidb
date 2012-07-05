@@ -13,4 +13,4 @@
             %tr
               %td=result.search_term
               %td=result.match_type
-              %td=result.matches_with_links
+              %td=(result.match_type != 'None' ? result.matches_with_links : 'None')
