@@ -13,7 +13,7 @@ class LookupCategories
 
       structs = []
       results.flatten.each_slice(2) do |category|
-        structs += category[-1].map{|x| OpenStruct.new(category: category[0], gene_group: x)}
+        structs += category[-1].map{|x| OpenStruct.new(category: category[0], gene_group: x, source_db_name: 'GO')} #TODO: remove hardcoded source_db_name and fill it efficiently.  This should also account for the possibility that a gene group has multiple genes that include it in a particular family.
       end
       structs
     end
