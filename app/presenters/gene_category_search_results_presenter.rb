@@ -18,6 +18,14 @@ class GeneCategorySearchResultsPresenter
     @no_results_results ||= @search_results.select{|i| i.groups.count == 0 }
   end
 
+  def ambiguous_results
+    @ambiguous_results ||= @search_results.select{|i| i.partition == :ambiguous}
+  end
+
+  def definite_results_with_no_categories
+    @definite_results_with_no_categories ||= @search_results.select{|i| i.partition == :definite && i.gene_categories.count == 0 }
+  end
+
   def show_pass_categories?
     grouped_results[:pass].count > 0
   end
@@ -28,6 +36,14 @@ class GeneCategorySearchResultsPresenter
 
   def show_no_results_results?
     !no_results_results.nil?
+  end
+
+  def show_ambiguous_results?
+    !ambiguous_results.nil?
+  end
+
+  def show_definite_results_with_no_categories?
+    !definite_results_with_no_categories.nil?
   end
 
   def failed_groups_by_category
