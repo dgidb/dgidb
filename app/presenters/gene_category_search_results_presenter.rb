@@ -14,12 +14,20 @@ class GeneCategorySearchResultsPresenter
     grouped_results[:fail]
   end
 
+  def no_results_results
+    @no_results_results ||= @search_results.select{|i| i.groups.count == 0 }
+  end
+
   def show_pass_categories?
     grouped_results[:pass].count > 0
   end
 
   def show_fail_categories?
     grouped_results[:fail].count > 0
+  end
+
+  def show_no_results_results?
+    !no_results_results.nil?
   end
 
   def failed_groups_by_category

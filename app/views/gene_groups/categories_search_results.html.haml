@@ -22,6 +22,15 @@
           .row-fluid
             .span12
               =render partial: 'gene_groups/category_results_table', locals: {title: "Results Not in Selected Categories", categories: @search_results.fail_filtered_categories }
+        -if @search_results.show_no_results_results?
+          .span6
+            .well
+              %h3
+                Search Terms With No Matches
+                %i.icon-flag.tip(title="Search terms for which we could find no matches")
+              %ul
+                -@search_results.no_results_results.each do |result|
+                  %li=result.search_term
       .tab-pane.fade#by_categories
         -if @search_results.show_passed_groups_by_category?
           .row-fluid
@@ -31,7 +40,6 @@
           .row-fluid
             .span12
               =render partial: 'gene_groups/results_by_category_table', locals: {title: "Results Not in Selected Categories", categories: @search_results.failed_groups_by_category }
-
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"
