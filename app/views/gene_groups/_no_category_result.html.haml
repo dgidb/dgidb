@@ -1,0 +1,10 @@
+.span6
+  .well
+    %h3
+      =title
+      %i.icon-flag.tip{title: tooltip_text}
+    %dl
+      -results.each do |result|
+        -result.groups.each do |group|
+          %dt=link_to group.name, gene_group_path(group.name)
+          %dd="For search term: #{result.search_term}"

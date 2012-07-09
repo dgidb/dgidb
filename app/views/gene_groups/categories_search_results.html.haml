@@ -32,14 +32,7 @@
                 -@search_results.definite_results_with_no_categories.each do |result|
                   %li=result.search_term
         -if @search_results.show_ambiguous_results?
-          .span6
-            .well
-              %h3
-                Ambiguous Terms
-                %i.icon-flag.tip(title="Your search term matched more than one gene record")
-              %ul
-                -@search_results.ambiguous_results.each do |result|
-                  %li=result.search_term
+          =render partial: 'gene_groups/no_category_result', locals: {title: 'Ambiguous Terms', results: @search_results.ambiguous_results, tooltip_text: 'Your search term matched more than one gene record'}
         -if @search_results.show_no_results_results?
           .span6
             .well
