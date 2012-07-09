@@ -22,26 +22,20 @@
           .row-fluid
             .span12
               =render partial: 'gene_groups/category_results_table', locals: {title: "Results Not in Selected Categories", categories: @search_results.fail_filtered_categories }
-        -if @search_results.show_definite_results_with_no_categories?
-          .span6
-            .well
-              %h3
-                Definite Results With No Categories
-                %i.icon-flag.tip(title="Search term was matched definitely but had no categories in any data source regardless of any filtering criteria")
-              %ul
-                -@search_results.definite_results_with_no_categories.each do |result|
-                  %li=result.search_term
-        -if @search_results.show_ambiguous_results?
-          =render partial: 'gene_groups/no_category_result', locals: {title: 'Ambiguous Terms', results: @search_results.ambiguous_results, tooltip_text: 'Your search term matched more than one gene record'}
-        -if @search_results.show_no_results_results?
-          .span6
-            .well
-              %h3
-                Search Terms With No Matches
-                %i.icon-flag.tip(title="Search terms for which we could find no matches")
-              %ul
-                -@search_results.no_results_results.each do |result|
-                  %li=result.search_term
+        .row-fluid
+          -if @search_results.show_ambiguous_results?
+            =render partial: 'gene_groups/no_category_result', locals: {title: 'Ambiguous Terms', results: @search_results.ambiguous_results, tooltip_text: 'Your search term matched more than one gene record'}
+          -if @search_results.show_definite_results_with_no_categories?
+            =render partial: 'gene_groups/no_category_result', locals: {title: 'Matched Genes With No Categories', results: @search_results.definite_results_with_no_categories, tooltip_text: 'Search term was matched definitely but had no categories in any data source regardless of any filtering criteria'}
+          -if @search_results.show_no_results_results?
+            .span6
+              .well
+                %h3
+                  Search Terms With No Matches
+                  %i.icon-flag.tip(title="Search terms for which we could find no matches")
+                %ul
+                  -@search_results.no_results_results.each do |result|
+                    %li=result.search_term
       .tab-pane.fade#by_categories
         -if @search_results.show_passed_groups_by_category?
           .row-fluid
