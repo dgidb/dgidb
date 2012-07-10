@@ -9,7 +9,6 @@ gem 'pg'
 gem 'less-rails-bootstrap'
 gem 'haml'
 gem 'squeel'
-gem 'uuidtools'
 gem 'jquery-rails'
 gem 'therubyracer'
 
