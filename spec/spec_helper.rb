@@ -15,6 +15,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 RSpec.configure do |config|
   config.before(:all) do
     self.class.class_eval do
+      set_fixture_class :citation => DataModel::Citation
       set_fixture_class :gene_name_report => DataModel::Gene
       set_fixture_class :gene_name_report_association => DataModel::GeneAlternateName
       set_fixture_class :gene_name_report_category_association => DataModel::GeneCategory

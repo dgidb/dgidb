@@ -1,35 +1,30 @@
 drugbank_a:
-  id: b76229b8291f44ea89489ba53425d254
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   gene: drugbank_flt3
   interaction_type: 
   description: 
-  citation_id: ba9095c1b56044f08c76c466a92a3c09
+  citation: DrugBank
 drugbank_b:
-  id: 4377a3d23c16401d965eb0c932bddf57
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   gene: drugbank_flt3
   interaction_type: 
   description: 
-  citation_id: ba9095c1b56044f08c76c466a92a3c09
+  citation: DrugBank
 flt1_a: 
-  id: a7000888c23341448c7e17ee13bf1d65
-  drug_name_report_id: 6e500fe208b44878924e4e33ccec088d
+  drug: drug_c
   gene: ttd_flt1
   interaction_type:
   description: 
-  citation_id: 2950E2C027F611E1A7E238FB99417D44
+  citation: TTD
 flt1_b: 
-  id: 20d0634045834a1796617b18a5c5eb14
-  drug_name_report_id: fe1572c1252b4a29b6c79918f38ff559
+  drug: drug_d
   gene: ttd_flt1
   interaction_type:
   description: 
-  citation_id: 2950E2C027F611E1A7E238FB99417D44
+  citation: TTD
 flt2:
-  id: fd6d76945daf497dba87cc87703cd9d8
-  drug_name_report_id: 6ebdd971850d439e83165b9d1954f981
+  drug: drug_e
   gene: drugbank_flt2
   interaction_type: 
   description: 
-  citation_id: ba9095c1b56044f08c76c466a92a3c09
+  citation: DrugBank

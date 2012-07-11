@@ -1,11 +1,9 @@
 drugbank_flt3:
-  id: ae7eadf57f8d4f5ba244cc66f81b9967 
   gene: drugbank_flt3
   alternate_name: FLT3
   description: 
   nomenclature: drugbank_gene_symbol
 drugbank_p36888:
-  id: bfa705e80dad4245b2cdc40622e3fa1d
   gene: drugbank_flt3
   alternate_name: P36888
   description:

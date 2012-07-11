@@ -1,96 +1,80 @@
 a:
-  id: ef29621d12e04331805bef0516e6b574
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   alternate_name: 284461-73-0
   description: 
   nomenclature: cas_number
 b:
-  id: 6a174de0e43842ff974345e668602e4e
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   alternate_name: SUNITINIB MALATE
   description: 
   nomenclature: drug_synonym
 c:
-  id: 5d9e2e08c97745c995f88ae42ca9a5a6
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   alternate_name: SU11248
   description: 
   nomenclature: drug_synonym
 d:
-  id: d2f3cc06145c440ebe332171c98fc5ae
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   alternate_name: SUNITINIB
   description: 
   nomenclature: drug_brand
 e:
-  id: 9bed2c4909f340ee8c4af5c1263bdb58
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   alternate_name: SORAFENIB
   description: 
   nomenclature: drug_synonym
 f:
-  id: 14b5aa958816473eaed88566b009f14a
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   alternate_name: SORAFENIB
   description: 
   nomenclature: Primary DrugBank drug name
 g:
-  id: dceb2d2d67934f09a4a5ee2c59a4a412
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   alternate_name: SORAFENIB TOSYLATE
   description: 
   nomenclature: drug_synonym
 h:
-  id: b2f5179d37574225a0828c1db96dbdf8
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   alternate_name: 557795-19-4
   description: 
   nomenclature: cas_number
 i:
-  id: db4b8430107c4a7993e2d466edbf01f6
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   alternate_name: SUNITINIB
   description: 
   nomenclature: Primary DrugBank drug name
 j:
-  id: ad6679483cbc4121b279ac3d8f001ffb
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   alternate_name: SU-11248
   description: 
   nomenclature: drug_brand
 k:
-  id: e751c0ed2d36489db798758c32f39e8d
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   alternate_name: SUTENT
   description: 
   nomenclature: drug_synonym
 l:
-  id: 74194fd99c1b4627902bc772126ce6f7
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   alternate_name: SUTENT
   description: 
   nomenclature: drug_brand
 m:
-  id: 4aac37b16c364acc81068a1f3a7d5d51
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   alternate_name: NEXAVAR
   description: 
   nomenclature: drug_brand
 n:
-  id: dec8d81deaaf495b84c6e5fa6f7ad919
-  drug_name_report_id: 6e500fe208b44878924e4e33ccec088d
+  drug: drug_c
   alternate_name: SORAFENIB
   description: 
   nomenclature: TTD_primary_drug_name
 o:
-  id: 7851a56a6cb74235817cb5939dce9de2
-  drug_name_report_id: fe1572c1252b4a29b6c79918f38ff559
+  drug: drug_d
   alternate_name: RANIBIZUMAB
   description: 
   nomenclature: TTD_primary_drug_name
 p: 
-  id: 8dba282407da4079a8b9e7ad9849cf18
-  drug_name_report_id: 6ebdd971850d439e83165b9d1954f981
+  drug: drug_e
   alternate_name: PALIFERMIN
   description: 
   nomenclature: Primary DrugBank drug name

@@ -2,42 +2,42 @@ drugbank_flt3:
   name: 165
   description: 
   nomenclature: drugbank_partner_id
-  citation_id: ba9095c1b56044f08c76c466a92a3c09
+  citation: DrugBank
   gene_groups: group_flt3
 entrez_flt3:
   name: 2322
   description: 
   nomenclature: entrez_id
-  citation_id: 720032620A3911E18ACBA7833E444A24
+  citation: Entrez
   gene_groups: group_flt3
 ensembl_flt3:
   name: ENSG00000122025
   description: 
   nomenclature: ensembl_id
-  citation_id: 720047A20A3911E18ACBA7833E444A24
+  citation: Ensembl
   gene_groups: group_flt3
 has_categories:
   name: NR1I2
   description: 
   nomenclature: go_gene_name
-  citation_id: 51057d858c7348e9913ec86b0e217e70
+  citation: GO
 ttd_flt1:
   name: TTDS00007
   description: 
   nomenclature: TTD_partner_id
-  citation_id: 2950E2C027F611E1A7E238FB99417D44
+  citation: TTD
 drugbank_flt2: 
   name: 3854
   description: 
   nomenclature: drugbank_partner_id
-  citation_id: ba9095c1b56044f08c76c466a92a3c09
+  citation: DrugBank
 entrez_flt2:
   name: 2260
   description: 
   nomenclature: entrez_id 
-  citation_id: 720032620A3911E18ACBA7833E444A24
+  citation: Entrez
 go_flt3:
   name: FLT3
   description: 
   nomenclature: go_gene_name 
-  citation_id: 51057d858c7348e9913ec86b0e217e70
+  citation: GO

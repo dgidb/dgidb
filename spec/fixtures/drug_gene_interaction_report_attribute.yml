@@ -1,40 +1,32 @@
 attribute_a:
-  id: b625e060c4254d0fb294ef23042a7746
-  interaction_id: b76229b8291f44ea89489ba53425d254
+  interaction: drugbank_a
   name: is_known_action
   value: yes
 attribute_b:
-  id: d4c4a150750449078a0f9b57c890191c
-  interaction_id: 4377a3d23c16401d965eb0c932bddf57
+  interaction: drugbank_b
   name: is_known_action
   value: unknown
 attribute_c:
-  id: b45cac0e75754a1ea14c82474f24b568
-  interaction_id: b76229b8291f44ea89489ba53425d254
+  interaction: drugbank_a
   name: interaction_type
   value: antagonist
 attribute_d:
-  id: a52e366e7a0e48dbab242223679c87b1
-  interaction_id: 4377a3d23c16401d965eb0c932bddf57
+  interaction: drugbank_b
   name: interaction_type
   value: multitarget
 attribute_e:
-  id: a4c144545b644adb8cc4e6b511fe42a2
-  interaction_id: a7000888c23341448c7e17ee13bf1d65
+  interaction: flt1_a
   name: interaction_type
   value: inhibitor
 attribute_f:
-  id: b912748c210448da82cadf8c222185e1
-  interaction_id: 20d0634045834a1796617b18a5c5eb14
+  interaction: flt1_b
   name: interaction_type
   value: inhibitor
 attribute_g:
-  id: 13ce44378dc642f6991791e37a8e6ca7
-  interaction_id: fd6d76945daf497dba87cc87703cd9d8
+  interaction: flt2
   name: interaction_type
   value: na
 attribute_h:
-  id: 09f058dd529a4eb3bb7a225189a3f758
-  interaction_id: fd6d76945daf497dba87cc87703cd9d8
+  interaction: flt2
   name: is_known_action
   value: unknown

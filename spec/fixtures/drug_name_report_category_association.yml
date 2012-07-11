@@ -1,72 +1,60 @@
 category_a:
-  id: 474c85f8c37244f08020b6d0b66d52e5
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   category_name: drug_group
   category_value: approved
   description: 
 category_b:
-  id: a260a87fd4684f8d8086248e1a022e9d
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   category_name: drug_category
   category_value: angiogenesis inhibitors
   description: 
 category_c:
-  id: bbd2c28a328f4b50a6da85858d44fdd2
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   category_name: drug_type
   category_value: small molecule
   description: 
 category_d:
-  id: a9afed5a6f344cb3aba17566dbe68846
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   category_name: drug_category
   category_value: antineoplastic agents
   description: 
 category_e:
-  id: 19e94fd15986450bad5920dd68285e9c
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   category_name: drug_group
   category_value: approved
   description: 
 category_f:
-  id: aa3c5366ffa1435da34817e619733a02
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   category_name: drug_type
   category_value: small molecule
   description: 
 category_g:
-  id: 0e8779d7c8e7441d86e452c5bf011706
-  drug_name_report_id: 3d67164f57b64462a38fde9ed28e162d
+  drug: drug_a
   category_name: drug_category
   category_value: antineoplastic agents
   description: 
 category_h:
-  id: d349e97208af4f22943997d540f5fd78
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   category_name: drug_category
   category_value: anticancer agents
   description: 
 category_i:
-  id: 7b72f04fe98d476f9d4b04e71e5dc6ab
-  drug_name_report_id: 4ff9bd67338549e3b3edaa085aadfe75
+  drug: drug_b
   category_name: drug_category
   category_value: protein kinase inhibitors
   description: 
 category_j: 
-  id: ae797303947f42fa80397efbe409ef4b
-  drug_name_report_id: 6ebdd971850d439e83165b9d1954f981
+  drug: drug_e
   category_name: drug_group
   category_value: approved
   description: 
 category_k: 
-  id: d36010f031b54296929483ce8344195d
-  drug_name_report_id: 6ebdd971850d439e83165b9d1954f981
+  drug: drug_e
   category_name: drug_type
   category_value: biotech
   description: 
 category_l: 
-  id: fe7af3cdbcc34c2eb9bddd4f9c05baa6
-  drug_name_report_id: 6ebdd971850d439e83165b9d1954f981
+  drug: drug_e
   category_name: drug_category
   category_value: antimucositis agents
   description: 
