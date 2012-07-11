@@ -130,15 +130,4 @@ class InteractionSearchResultsPresenter
     end
   end
 
-  #def interaction_map(result_list)
-    #result_list.inject({:filtered => [], :unfiltered => []}) do |hash, result|
-      #hash[:filtered] += result.interactions.uniq.select{ |i| @filter_scope[i.id] && @source_scope[i.id] }.map do |interaction|
-        #InteractionSearchResultPresenter.new(interaction, result.search_term)
-      #end
-      #hash[:unfiltered] += result.interactions.uniq.reject{ |i| @filter_scope[i.id] && @source_scope[i.id] }.map do |interaction|
-        #InteractionSearchResultPresenter.new(interaction, result.search_term)
-      #end
-      #hash
-    #end
-  #end
 end
