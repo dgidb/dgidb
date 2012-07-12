@@ -23,6 +23,11 @@ describe 'search_druggable_gene_categories' do
     within('#by_genes') do
       page.should have_table('', rows: [['FLT3', 'CELL SURFACE', 'FLT3'], ['FLT3', 'TYROSINE KINASE', 'FLT3'], ['FLT3', 'KINASE', 'FLT3']])
     end
+
+    within('#search_summary_tab') do
+        page.should have_content("Search Terms: 1")
+        page.should have_content("Search Terms Matched Definitely: 1")
+    end
   end
 
   it 'filters work' do
