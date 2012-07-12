@@ -1,9 +1,26 @@
 include Genome::Extensions
 
 class GeneCategorySearchResultsPresenter
-  def initialize(search_results, params)
+  def initialize(search_results, params, start_time)
+    @start_time = start_time
     @search_results = search_results
     @category_scope = params["categories"].inject({}){|hash, category| hash[category] = true; hash}
+  end
+
+  def number_of_search_terms
+    @search_results.count
+  end
+
+  def number_of_definite_matches
+    @search_results.select{|r| r.groups.count == 1}.count
+  end
+
+  def number_of_ambiguous_matches
+    ambiguous_results.count
+  end
+
+  def number_of_no_matches
+    no_results_results.count
   end
 
   def pass_filtered_categories
@@ -24,6 +41,10 @@ class GeneCategorySearchResultsPresenter
 
   def definite_results_with_no_categories
     @definite_results_with_no_categories ||= @search_results.select{|i| i.partition == :definite && i.gene_categories.count == 0 }
+  end
+
+  def time_elapsed(context)
+    context.instance_exec(@start_time){|start_time| distance_of_time_in_words(start_time, Time.now, true)}
   end
 
   def show_pass_categories?

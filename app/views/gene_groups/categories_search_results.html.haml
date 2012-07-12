@@ -11,6 +11,8 @@
       %li.active
         %a(href="#by_genes" data-toggle="tab") By Gene Name
       %li
+        %a(href="#search_summary_tab" data-toggle="tab") Search Results Summary
+      %li
         %a(href="#by_categories" data-toggle="tab") By Gene Category
     .tab-content
       .tab-pane.active#by_genes
@@ -45,6 +47,8 @@
           .row-fluid
             .span12
               =render partial: 'gene_groups/results_by_category_table', locals: {title: "Results Not in Selected Categories", categories: @search_results.failed_groups_by_category }
+      .tab-pane.fade#search_summary_tab
+        =render partial: 'gene_groups/results_summary', locals: {results: @search_results}
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"

@@ -1,0 +1,8 @@
+#summary.well
+  %h3 Search Results Summary
+  %ul.unstyled
+    %li="Search Terms: #{results.number_of_search_terms.to_s}"
+    %li="Search Terms Matched Definitely: #{results.number_of_definite_matches.to_s}"
+    %li="Search Terms Matched Ambiguously: #{results.number_of_ambiguous_matches.to_s}"
+    %li="Search Terms With No Matches: #{results.number_of_no_matches.to_s}"
+    %li="Time Spent In Database: #{results.time_elapsed(self)}"
