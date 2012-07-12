@@ -48,24 +48,25 @@ class GeneCategorySearchResultsPresenter
   end
 
   def show_pass_categories?
-    grouped_results[:pass].count > 0
+    !grouped_results[:pass].nil? && grouped_results[:pass].count > 0
   end
 
   def show_fail_categories?
-    grouped_results[:fail].count > 0
-  end
-
-  def show_no_results_results?
-    !no_results_results.nil?
-  end
-
-  def show_ambiguous_results?
-    !ambiguous_results.nil?
+    !grouped_results[:fail].nil? && grouped_results[:fail].count > 0
   end
 
   def show_definite_results_with_no_categories?
-    !definite_results_with_no_categories.nil?
+    !definite_results_with_no_categories.nil? && definite_results_with_no_categories.count > 0
   end
+
+  def show_no_results_results?
+    !no_results_results.nil? && no_results_results.count > 0
+  end
+
+  def show_ambiguous_results?
+    !ambiguous_results.nil? && ambiguous_results.count > 0
+  end
+
 
   def failed_groups_by_category
     unless @failed_groups_by_category
@@ -116,7 +117,7 @@ class GeneCategorySearchResultsPresenter
   end
 
   def category_map(result_list)
-   results = result_list.inject({:pass => [], :fail => []}) do |hash, result|
+   results = Maybe(result_list).inject({:pass => [], :fail => []}) do |hash, result|
       hash[:pass] += result.gene_categories.uniq.select{ |i| @category_scope[i]  }.map do |category|
         GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_group_name)
       end
