@@ -47,6 +47,24 @@ describe 'search_druggable_gene_categories' do
     end
   end
 
+  it 'non-existant search terms do not break' do
+    fill_in('genes', :with => 'FAKE1')
+    select('KINASE', :from => 'categories')
+    select('TYROSINE KINASE', :from => 'categories')
+    select('CELL SURFACE', :from => 'categories')
+    click_button('Find Gene Categories')
+
+    within('#by_genes') do
+      page.should have_content("Search Terms With No Matches") 
+      page.should have_content("FAKE1")
+    end
+
+    within('#search_summary_tab') do
+        page.should have_content("Search Terms: 1")
+        page.should have_content("Search Terms With No Matches: 1")
+    end
+  end
+
   #TODO: test file upload
   #TODO: write a .tsv test
 
