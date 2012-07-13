@@ -63,6 +63,12 @@ describe 'search_druggable_gene_categories' do
         page.should have_content("Search Terms: 1")
         page.should have_content("Search Terms With No Matches: 1")
     end
+
+    within('#by_categories') do
+      page.should_not have_content('TYROSINE KINASE')
+      page.should_not have_content('KINASE')
+      page.should_not have_content('CELL SURFACE')
+    end
   end
 
   #TODO: test file upload
