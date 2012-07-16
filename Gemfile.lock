@@ -1,5 +1,6 @@
-PATH
-  remote: ~/git/genome_models
+GIT
+  remote: git://github.com/genome/genome_models.git
+  revision: bb8ebf0359907a9ff2c0b488c84ea6236146f4af
   specs:
     genome_models (0.0.1)
 
