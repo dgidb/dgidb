@@ -12,6 +12,7 @@ gem 'squeel'
 gem 'uuidtools'
 gem 'jquery-rails'
 gem 'therubyracer'
+gem 'genome_models', path: '~/git/genome_models'
 
 group :production do
   gem 'dalli'
