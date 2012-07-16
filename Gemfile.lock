@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/genome/genome_models.git
-  revision: bb8ebf0359907a9ff2c0b488c84ea6236146f4af
+  revision: 7ac0c881850a58844336cf77ff2631b142ce3bfa
   specs:
     genome_models (0.0.1)
 
