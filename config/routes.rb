@@ -4,7 +4,7 @@ DruggableGene::Application.routes.draw do
   match 'gene_group_names' => 'gene_groups#names'
   match 'gene_groups/:name' => 'gene_groups#show', as: 'gene_group'
   match 'interactions/:id' => 'interactions#show', as: 'interaction'
-  match 'druggaable_gene_categories/:name' => 'gene_groups#druggable_gene_category', as: 'gene_group_by_category'
+  match 'druggable_gene_categories/:name' => 'gene_groups#druggable_gene_category', as: 'gene_group_by_category'
   match 'druggable_gene_categories' => 'gene_groups#druggable_gene_categories'
   post 'interaction_search_results' => 'interactions#interaction_search_results'
   post 'categories_search_results' => 'gene_groups#categories_search_results'
