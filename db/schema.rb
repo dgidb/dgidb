@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string "value",          :limit => nil, :null => false
   end
 
+  create_table "drug_name_group", :id => false, :force => true do |t|
+    t.string "id",   :limit => nil, :null => false
+    t.text   "name"
+  end
+
+  create_table "drug_name_group_bridge", :id => false, :force => true do |t|
+    t.string "drug_name_group_id",  :limit => nil, :null => false
+    t.string "drug_name_report_id", :limit => nil, :null => false
+  end
+
   create_table "drug_name_report", :id => false, :force => true do |t|
     t.string "id",           :limit => nil, :null => false
     t.string "name",         :limit => nil, :null => false

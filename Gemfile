@@ -13,6 +13,8 @@ gem 'uuidtools'
 gem 'jquery-rails'
 gem 'therubyracer'
 gem 'genome_models', git: 'git://github.com/genome/genome_models.git'
+#commented out for the sake of testing and debugging
+#gem 'genome_models', path: '/path/to/my/repo'
 
 group :production do
   gem 'dalli'

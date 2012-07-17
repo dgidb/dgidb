@@ -23,6 +23,7 @@ RSpec.configure do |config|
       set_fixture_class :drug_name_report => DataModel::Drug
       set_fixture_class :drug_name_report_association => DataModel::DrugAlternateName
       set_fixture_class :drug_name_report_category_association => DataModel::DrugCategory
+      set_fixture_class :drug_name_group => DataModel::DrugGroup
       set_fixture_class :drug_gene_interaction_report => DataModel::Interaction
       set_fixture_class :drug_gene_interaction_report_attribute => DataModel::InteractionAttribute
     end

@@ -78,3 +78,18 @@ p:
   alternate_name: PALIFERMIN
   description: 
   nomenclature: Primary DrugBank drug name
+q:
+  drug: drug_group_drug_a
+  alternate_name: SUNITINIB
+  description: 
+  nomenclature: pubchem_primary_name
+r: 
+  drug: drug_group_drug_b
+  alternate_name: SUTENT
+  description: 
+  nomenclature: TTD_drug_synonym
+s:
+  drug: drug_group_drug_c
+  alternate_name: N-[2-(DIETHYLAMINO)ETHYL]-5-[(Z)-(5-FLUORO-2-OXO-1,2-DIHYDRO-3H-INDOL-3-YLIDENE)METHYL]-2,4-DIMETHYL-1H-PYRROLE-3-CARBOXAMIDE
+  description: 
+  nomenclature: Primary DrugBank drug name

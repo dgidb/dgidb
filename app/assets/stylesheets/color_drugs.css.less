@@ -1,0 +1,16 @@
+@import "twitter/bootstrap";
+.color_source_db (@color: @red) {
+  #gradient > .vertical(@color,@white);
+}
+.drug {
+  .color_source_db;
+}
+.drug.PubChem {
+  .color_source_db(@green);
+}
+.drug.DrugBank {
+  .color_source_db(@blue);
+}
+.drug.TTD {
+  .color_source_db(@blue);
+}
