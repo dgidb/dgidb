@@ -1,8 +1,12 @@
 GIT
-  remote: git://github.com/genome/genome_models.git
-  revision: 7ac0c881850a58844336cf77ff2631b142ce3bfa
+  remote: git@github.com:genome/genome_models.git
+  revision: 4888813ccd20ec0335589e107ad5221717402d0f
   specs:
     genome_models (0.0.1)
+      activerecord
+      pg
+      squeel
+      uuidtools
 
 GEM
   remote: https://rubygems.org/
@@ -172,7 +176,7 @@ GEM
     uglifier (1.2.6)
       execjs (>= 0.3.0)
       multi_json (~> 1.3)
-    uuidtools (2.1.2)
+    uuidtools (2.1.3)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 

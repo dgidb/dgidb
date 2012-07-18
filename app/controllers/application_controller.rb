@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include GenomeModels
   protect_from_forgery
   rescue_from HTTPStatus::NotFound, with: :render_404
   rescue_from HTTPStatus::BadRequest, with: :render_400
