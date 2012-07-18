@@ -1,0 +1,16 @@
+=content_for :title, @title
+
+.container-fluid
+  .page-header
+    %h2
+      =@title
+      %small drug summary page
+    .row-fluid#container
+      =render partial: 'drug_groups/drug_group', locals:{drug_group: @drug_group}
+
+=javascript_include_tag "jquery.masonry.min"
+=javascript_include_tag "mason_items"
+=javascript_include_tag "jquery.dataTables.min"
+=javascript_include_tag "pagination_bootstrap"
+=javascript_include_tag "gene_groups"
+=stylesheet_link_tag "color_drugs"

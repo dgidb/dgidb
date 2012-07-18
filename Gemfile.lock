@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:genome/genome_models.git
+  remote: git://github.com/genome/genome_models.git
   revision: 4888813ccd20ec0335589e107ad5221717402d0f
   specs:
     genome_models (0.0.1)

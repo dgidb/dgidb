@@ -21,7 +21,7 @@ PubChem:
   source_db_version: 11-May-2012
   citation: PubChem citation
   site_url: http://pubchem.ncbi.nlm.nih.gov/
-  base_url: 
+  base_url: 'http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid='
 GO:
   source_db_name: GO
   source_db_version: 3-May-2012

@@ -1,0 +1,3 @@
+group_sunitinib:
+  name: SUNITINIB
+  drugs: drug_group_drug_a, drug_group_drug_b, drug_group_drug_c

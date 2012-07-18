@@ -23,3 +23,21 @@ drug_e:
   description: 
   nomenclature: DrugBank drug identifier 
   citation: DrugBank
+drug_group_drug_a:
+  name: 5329102
+  description: 
+  nomenclature: PubChem
+  citation: PubChem
+  drug_groups: group_sunitinib
+drug_group_drug_b:
+  name: DAP000005 
+  description: 
+  nomenclature: TTD_drug_id
+  citation: TTD
+  drug_groups: group_sunitinib
+drug_group_drug_c:
+  name: DB07417
+  description: 
+  nomenclature: DrugBank drug identifier 
+  citation: DrugBank
+  drug_groups: group_sunitinib
