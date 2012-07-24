@@ -6,6 +6,7 @@ class StaticController < ApplicationController
 
   def search_interactions
     @search_interactions_active = "active"
+    @sources = DataSources.uniq_source_names_with_interactions
   end
 
   def about

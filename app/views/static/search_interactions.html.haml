@@ -34,10 +34,7 @@
           Source Database
           %i.icon-flag.tip(title="Specify which source(s) of drug-gene interactions to search against")
         .controls
-          %label.checkbox
-            %input(type='checkbox' checked='true' value=1 name='ttd') TTD
-          %label.checkbox
-            %input(type='checkbox' checked='true' value=1 name='drugbank') DrugBank
+          =select_tag "sources", options_from_collection_for_select(@sources, "to_s", "to_s"), multiple: true, class: :multiselect
       .control-group
         %label.control-label
           Filter
@@ -61,4 +58,10 @@
 
 =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
 
+=stylesheet_link_tag 'jquery-ui-1.8.16.custom'
+=stylesheet_link_tag 'jquery.multiselect'
+=stylesheet_link_tag 'jquery.multiselect.filter.css'
+=javascript_include_tag 'jquery-ui-1.8.21.custom.min.js'
+=javascript_include_tag 'jquery.multiselect.min'
+=javascript_include_tag 'jquery.multiselect.filter.min'
 =javascript_include_tag 'search_interactions'

@@ -1,3 +1,9 @@
+$(".multiselect").multiselect
+  noneSelectedText: 'Select source databases'
+  selectedText: '# of #'
+  minWidth: 400
+.multiselectfilter()
+$(".multiselect").multiselect("checkAll")
 
 $('#loadingBar').show()
 $.get '/gene_group_names.json', (data)->
