@@ -1,10 +1,9 @@
 GIT
   remote: git://github.com/genome/genome_models.git
-  revision: 4888813ccd20ec0335589e107ad5221717402d0f
+  revision: 54bd377bc79e754caead81fe2d76843e95b179a9
   specs:
     genome_models (0.0.1)
       activerecord
-      pg
       squeel
       uuidtools
 
@@ -48,8 +47,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    childprocess (0.3.3)
-      ffi (~> 1.0.6)
+    childprocess (0.3.4)
+      ffi (~> 1.0, >= 1.0.6)
     coderay (1.0.7)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -64,7 +63,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    ffi (1.0.11)
+    ffi (1.1.0)
     haml (3.1.6)
     hike (1.2.1)
     i18n (0.6.0)
@@ -135,7 +134,7 @@ GEM
       rspec-core (~> 2.11.0)
       rspec-expectations (~> 2.11.0)
       rspec-mocks (~> 2.11.0)
-    rspec-core (2.11.0)
+    rspec-core (2.11.1)
     rspec-expectations (2.11.1)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.11.1)
@@ -150,7 +149,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.24.0)
+    selenium-webdriver (2.25.0)
       childprocess (>= 0.2.5)
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)

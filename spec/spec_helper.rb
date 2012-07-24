@@ -8,24 +8,26 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 require 'capybara/rails'
 
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+
 RSpec.configure do |config|
   config.before(:all) do
     self.class.class_eval do
-      set_fixture_class :citation => DataModel::Citation
-      set_fixture_class :gene_name_report => DataModel::Gene
-      set_fixture_class :gene_name_report_association => DataModel::GeneAlternateName
-      set_fixture_class :gene_name_report_category_association => DataModel::GeneCategory
-      set_fixture_class :gene_name_group => DataModel::GeneGroup
-      set_fixture_class :drug_name_report => DataModel::Drug
-      set_fixture_class :drug_name_report_association => DataModel::DrugAlternateName
-      set_fixture_class :drug_name_report_category_association => DataModel::DrugCategory
-      set_fixture_class :drug_name_group => DataModel::DrugGroup
-      set_fixture_class :drug_gene_interaction_report => DataModel::Interaction
-      set_fixture_class :drug_gene_interaction_report_attribute => DataModel::InteractionAttribute
+      set_fixture_class :citation => GenomeModels::DataModel::Citation
+      set_fixture_class :gene_name_report => GenomeModels::DataModel::Gene
+      set_fixture_class :gene_name_report_association => GenomeModels::DataModel::GeneAlternateName
+      set_fixture_class :gene_name_report_category_association => GenomeModels::DataModel::GeneCategory
+      set_fixture_class :gene_name_group => GenomeModels::DataModel::GeneGroup
+      set_fixture_class :drug_name_report => GenomeModels::DataModel::Drug
+      set_fixture_class :drug_name_report_association => GenomeModels::DataModel::DrugAlternateName
+      set_fixture_class :drug_name_report_category_association => GenomeModels::DataModel::DrugCategory
+      set_fixture_class :drug_name_group => GenomeModels::DataModel::DrugGroup
+      set_fixture_class :drug_gene_interaction_report => GenomeModels::DataModel::Interaction
+      set_fixture_class :drug_gene_interaction_report_attribute => GenomeModels::DataModel::InteractionAttribute
     end
   end
 
