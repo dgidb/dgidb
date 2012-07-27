@@ -35,6 +35,7 @@ group :test, :development  do
   gem 'pry'
   gem 'pry-remote'
   gem 'pry-nav'
+  gem 'rack-mini-profiler'
 end
 
 # To use ActiveModel has_secure_password
