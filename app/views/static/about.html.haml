@@ -8,4 +8,8 @@
   .row-fluid
     .span12
       .hero-unit
-        %p DGIDB was created by Malachi, Jim, and James
+        %p DGIDB aggregates drug, gene, and interaction information from a variety of sources. The are listed below.
+        %ul
+          -@sources.each do |source|
+            %li=link_to source, source_summary_path(source)
+

@@ -11,6 +11,7 @@ class StaticController < ApplicationController
 
   def about
     @about_active = "active"
+    @sources = DataSources.uniq_source_names
   end
 
   def contact
