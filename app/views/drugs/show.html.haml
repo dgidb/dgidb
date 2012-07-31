@@ -4,7 +4,8 @@
 .container-fluid
   .page-header
     %h2
-      =@title
+      %span{id: "drug_name"}
+        =@title
       %small drug summary page
   .row-fluid
     .span12
@@ -36,3 +37,8 @@
           %p
             %b Citation:
             %p=drug.citation.citation
+      .hero-unit
+        %h3 Possibly Related Drugs
+        %span{id: "related_drugs"}
+
+=javascript_include_tag "related_drugs"
