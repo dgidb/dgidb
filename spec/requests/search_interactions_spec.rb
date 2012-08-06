@@ -12,6 +12,12 @@ describe 'search_interactions' do
 
   it 'searching FLT3 looks reasonable' do
     fill_in('genes', :with => 'FLT3')
+    select('Ensembl', :from => 'sources')
+    select('DrugBank', :from => 'sources')
+    select('Entrez', :from => 'sources')
+    select('GO', :from => 'sources')
+    select('PubChem', :from => 'sources')
+    select('TTD', :from => 'sources')
     click_button('Find Drug Interactions')
     
     within("#summary") do
@@ -31,6 +37,12 @@ describe 'search_interactions' do
 
   it 'searching with "inhibitors only" filter looks reasonable' do
     fill_in('genes', :with => "FLT1\nFLT2")
+    select('Ensembl', :from => 'sources')
+    select('DrugBank', :from => 'sources')
+    select('Entrez', :from => 'sources')
+    select('GO', :from => 'sources')
+    select('PubChem', :from => 'sources')
+    select('TTD', :from => 'sources')
     select('Inhibitors only', :from => 'filter')
     click_button('Find Drug Interactions')
 
@@ -52,22 +64,22 @@ describe 'search_interactions' do
 
   it 'searching with TTD only looks reasonable' do
     fill_in('genes', :with => "FLT3\nFLT2\nFLT1")
-    uncheck('drugbank')
+    #uncheck('drugbank')
+    select('TTD', :from => 'sources')
     click_button('Find Drug Interactions')
 
     within("#summary") do
       page.should have_content("Search Terms: 3")
       page.should have_content("Search Terms Matched Definitely: 3")
-      page.should have_content("Number Of Interactions For Definite Matches: 5")
+      page.should have_content("Number Of Interactions For Definite Matches: 2")
     end
 
     within("#term_summary_tab") do
-      page.should have_table('', rows: [['FLT3', 'Definite', 'FLT3'], ['FLT2', 'Definite', 'FGFR1'], ['FLT1', 'Definite', 'FLT1']]) 
+      page.should have_table('', rows: [['FLT3', 'Definite', 'FLT3'], ['FLT1', 'Definite', 'FLT1'], ['FLT2', 'Definite', 'FGFR1']]) 
     end
 
     within("#interaction_tab") do
       page.should have_table('', rows: [["FLT1","FLT1","SORAFENIB","inhibitor","TTD"], ["FLT1","FLT1","RANIBIZUMAB","inhibitor","TTD"]])
-      page.should have_table('', rows: [['FLT3', 'FLT3', 'SORAFENIB', 'antagonist', 'DrugBank'], ['FLT3', 'FLT3', 'SUNITINIB', 'multitarget', 'DrugBank'], ["FLT2","FGFR1","PALIFERMIN","n/a","DrugBank"]])
     end
   end
 
