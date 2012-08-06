@@ -93,3 +93,13 @@ s:
   alternate_name: N-[2-(DIETHYLAMINO)ETHYL]-5-[(Z)-(5-FLUORO-2-OXO-1,2-DIHYDRO-3H-INDOL-3-YLIDENE)METHYL]-2,4-DIMETHYL-1H-PYRROLE-3-CARBOXAMIDE
   description: 
   nomenclature: Primary DrugBank drug name
+t:
+  drug: drug_f
+  alternate_name: SNS-032
+  description:
+  nomenclature: TTD_primary_drug_name
+u:
+  drug: drug_f
+  alternate_name: SNS-032
+  description:
+  nomenclature: TTD_drug_synonym

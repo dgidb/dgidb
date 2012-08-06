@@ -88,3 +88,18 @@ entrez_flt2:
   alternate_name: FLT2
   description: 
   nomenclature: entrez_gene_synonym
+ttd_cdk7_1:
+  gene: ttd_cdk7
+  alternate_name: STK1
+  description:
+  nomenclature: TTD_alternate_gene_name
+entrez_cdk7_1:
+  gene: ttd_cdk7
+  alternate_name: CDK7
+  description: 
+  nomenclature: entrez_gene_symbol
+entrez_cdk7_2:
+  gene: ttd_cdk7
+  alternate_name: STK1
+  description: 
+  nomenclature: entrez_gene_synonym

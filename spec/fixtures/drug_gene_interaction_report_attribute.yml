@@ -30,3 +30,7 @@ attribute_h:
   interaction: flt2
   name: is_known_action
   value: unknown
+attribute_i:
+  interaction: cdk7
+  name: interation_type
+  value: inhibitor

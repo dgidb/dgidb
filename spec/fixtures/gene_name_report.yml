@@ -41,3 +41,13 @@ go_flt3:
   description: 
   nomenclature: go_gene_name 
   citation: GO
+ttd_cdk7:
+  name: TTDC00094
+  description: 
+  nomenclature: TTD_partner_id 
+  citation: TTD
+entrez_cdk7:
+  name: 1022
+  description: 
+  nomenclature: entrez_id
+  citation: Entrez

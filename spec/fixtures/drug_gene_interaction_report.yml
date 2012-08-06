@@ -28,3 +28,9 @@ flt2:
   interaction_type: 
   description: 
   citation: DrugBank
+cdk7:
+  drug: drug_f
+  gene: ttd_cdk7
+  interaction_type: 
+  description: 
+  citation: TTD

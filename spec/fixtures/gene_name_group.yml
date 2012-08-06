@@ -7,3 +7,6 @@ group_flt1:
 group_fgfr1:
   name: FGFR1
   genes: drugbank_flt2, entrez_flt2
+group_cdk7:
+  name: CDK7
+  genes: entrez_cdk7, ttd_cdk7

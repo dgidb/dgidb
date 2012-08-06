@@ -41,3 +41,8 @@ drug_group_drug_c:
   nomenclature: DrugBank drug identifier 
   citation: DrugBank
   drug_groups: group_sunitinib
+drug_f: 
+  name: DCL000007
+  description: 
+  nomenclature: TTD_drug_id
+  citation: TTD
