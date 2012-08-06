@@ -36,7 +36,7 @@ describe 'gene_groups' do
     end
 
     within('#by_source') do
-      page.should have_table('', rows: [ ['FLT3', 'a', 'a', 'a', 'a', 'z'], ['P36888', 'z', 'z', 'a', 'z', 'z'], ['165', 'z', 'z', 'a', 'z', 'z'], ['CD135', 'a', 'z', 'z', 'z', 'z'], ['STK1', 'a', 'z', 'z', 'z', 'z'], ['FLK2', 'a', 'z', 'z', 'z', 'z'], ['2322', 'a', 'z', 'z', 'z', 'z'], ['ENSG00000122025', 'z', 'a', 'z', 'z', 'z'], ])
+      page.should have_table('', rows: [ ['FLT3', 'a', 'a', 'a', 'a', 'z', 'z'], ['P36888', 'z', 'z', 'z', 'a', 'z', 'z'], ['165', 'z', 'z', 'z', 'a', 'z', 'z'], ['CD135', 'a', 'z', 'z', 'z', 'z', 'z'], ['STK1', 'a', 'z', 'z', 'z', 'z', 'z'], ['FLK2', 'a', 'z', 'z', 'z', 'z', 'z'], ['2322', 'a', 'z', 'z', 'z', 'z', 'z'], ['ENSG00000122025', 'z', 'a', 'z', 'z', 'z', 'z'], ])
     end
   end
 
