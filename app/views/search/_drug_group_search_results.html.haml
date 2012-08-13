@@ -1,0 +1,6 @@
+%h3
+  Drug Group
+%dl
+  -results.each do |r|
+    %dt=r.result.name
+    %dd="Drugs:  #{r.result.drugs.count}"

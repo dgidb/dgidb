@@ -8,6 +8,8 @@
     .navbar.navbar-inner.container-fluid
       %a.brand(href="/") The Drug-Gene Interactions Database
       %ul.nav
+        %li{class: @search_active}
+          %a(href="/search") Search
         %li{class: @search_interactions_active}
           %a(href="/search_interactions") Search Interactions
         %li{class: @search_categories_active}

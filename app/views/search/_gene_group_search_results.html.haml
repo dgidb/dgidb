@@ -1,0 +1,6 @@
+%h3
+  Gene Group
+%dl
+  -results.each do |r|
+    %dt=r.result.name
+    %dd="Genes:  #{r.result.genes.count}"

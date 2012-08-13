@@ -9,6 +9,10 @@ class StaticController < ApplicationController
     @sources = DataSources.uniq_source_names_with_interactions
   end
 
+  def search
+    @search_active = "active"
+  end
+
   def about
     @about_active = "active"
     @sources = DataSources.uniq_source_names

@@ -1,0 +1,6 @@
+%h3
+  Gene Alternate Name
+%dl
+  -results.each do |r|
+    %dt=r.result.alternate_name
+    %dd="Gene:  #{r.result.gene.name} from #{r.result.gene.citation.source_db_name} version #{r.result.gene.citation.source_db_version}"

@@ -1,0 +1,22 @@
+=content_for :title, 'Search'
+.container-fluid
+  .page-header
+    %h2
+      Search
+      %small search for drugs, genes, and drug-gene interactions by name
+  %form.form-horizontal(action="search_results" method="post")
+    .control-group
+      %label.control-label
+        Input
+        %i.icon-flag.tip(title="Type the name of your drug, gene, or interaction here")
+      .controls
+        %input(id='search_term' type='text' name='search_term')
+      .form-actions
+        %button.btn.btn-primary(type="submit")Search
+
+=stylesheet_link_tag 'jquery-ui-1.8.16.custom'
+=stylesheet_link_tag 'jquery.multiselect'
+=stylesheet_link_tag 'jquery.multiselect.filter.css'
+=javascript_include_tag 'jquery-ui-1.8.21.custom.min.js'
+=javascript_include_tag 'jquery.multiselect.min'
+=javascript_include_tag 'jquery.multiselect.filter.min'

@@ -1,0 +1,6 @@
+%h3
+  Drug
+%dl
+  -results.each do |r|
+    %dt=r.result.name
+    %dd="Source:  #{r.result.citation.source_db_name} version #{r.result.citation.source_db_version}"
