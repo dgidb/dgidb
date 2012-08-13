@@ -2,5 +2,5 @@
   Gene Alternate Name
 %dl
   -results.each do |r|
-    %dt=r.result.alternate_name
+    %dt=link_to r.result.alternate_name, "/genes/#{r.result.gene.citation.source_db_name}/#{r.result.gene.name}"
     %dd="Gene:  #{r.result.gene.name} from #{r.result.gene.citation.source_db_name} version #{r.result.gene.citation.source_db_version}"

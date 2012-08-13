@@ -2,5 +2,5 @@
   Gene Group
 %dl
   -results.each do |r|
-    %dt=r.result.name
+    %dt=link_to r.result.name, gene_group_path(r.result.name)
     %dd="Genes:  #{r.result.genes.count}"
