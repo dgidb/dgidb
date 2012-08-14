@@ -15,7 +15,7 @@
     .tab-pane.active#results
       .row-fluid#container
         .span12
-          =render partial: 'search/search_results_list', locals: {grouped_results: @search_results.grouped_results}
+          =render partial: 'search/search_results_list', locals: {search_results: @search_results}
 
 =javascript_include_tag "jquery.masonry.min"
 =javascript_include_tag "mason_items"
