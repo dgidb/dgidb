@@ -1,16 +1,17 @@
--grouped_results.each_pair do |class_name, items|
+-search_results.search_results.each_pair do |class_name, results|
+  -next if results.empty?
   .item
     %div(class="hero-unit bubble-links")
       -case class_name
         -when 'GenomeModels::DataModel::GeneAlternateName'
-          =render partial: 'search/gene_alternate_name_search_results', locals: {results: items}
+          =render partial: 'search/gene_alternate_name_search_results', locals: {results: results}
         -when 'GenomeModels::DataModel::DrugAlternateName'
-          =render partial: 'search/drug_alternate_name_search_results', locals: {results: items}
+          =render partial: 'search/drug_alternate_name_search_results', locals: {results: results}
         -when 'GenomeModels::DataModel::GeneGroup'
-          =render partial: 'search/gene_group_search_results', locals: {results: items}
+          =render partial: 'search/gene_group_search_results', locals: {results: results}
         -when 'GenomeModels::DataModel::DrugGroup'
-          =render partial: 'search/drug_group_search_results', locals: {results: items}
+          =render partial: 'search/drug_group_search_results', locals: {results: results}
         -when 'GenomeModels::DataModel::Gene'
-          =render partial: 'search/gene_search_results', locals: {results: items}
+          =render partial: 'search/gene_search_results', locals: {results: results}
         -when 'GenomeModels::DataModel::Drug'
-          =render partial: 'search/drug_search_results', locals: {results: items}
+          =render partial: 'search/drug_search_results', locals: {results: results}
