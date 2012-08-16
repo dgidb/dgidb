@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.7'
+gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -29,13 +29,13 @@ end
 
 group :test, :development  do
   gem 'rspec-rails'
-  gem 'sqlite3'
-  gem "capybara"
-  gem "launchy"
   gem 'pry'
   gem 'pry-remote'
   gem 'pry-nav'
   gem 'rack-mini-profiler'
+  gem 'sqlite3'
+  gem "capybara"
+  gem "launchy"
 end
 
 # To use ActiveModel has_secure_password
