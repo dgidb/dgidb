@@ -1,9 +1,10 @@
 =content_for :title, 'Search'
+=content_for :header do
+  %h2
+    Search
+    %small search for drugs, genes, and drug-gene interactions by name
+
 .container-fluid
-  .page-header
-    %h2
-      Search
-      %small search for drugs, genes, and drug-gene interactions by name
   %form.form-horizontal(action="search_results" method="post")
     .control-group
       %label.control-label

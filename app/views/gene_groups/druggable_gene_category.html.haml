@@ -1,10 +1,10 @@
 =content_for :title, @title
+=content_for :header do
+  %h2
+    =@category_name + " Category"
+    %small listing of genes in the selected druggable gene category
 
 .container-fluid
-  .page-header
-    %h2
-      =@category_name + " Category"
-      %small listing of genes in the selected druggable gene category
   .row-fluid
     .span12
       .well

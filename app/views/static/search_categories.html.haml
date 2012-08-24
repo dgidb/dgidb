@@ -1,10 +1,10 @@
 =content_for :title, 'Search Druggable Gene Categories'
+=content_for :header do
+  %h2
+    Search Druggable Gene Categories
+    %small search for drug-gene interactions while filtering by druggable gene categories
 
 .container-fluid
-  .page-header
-    %h2
-      Search Druggable Gene Categories
-      %small search for drug-gene interactions while filtering by druggable gene categories
   %form.form-horizontal(action="categories_search_results" method="post" enctype="multipart/form-data")
     %fieldset
       .control-group

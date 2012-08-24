@@ -1,17 +1,17 @@
 =content_for :title, @title
+=content_for :header do
+  %h2
+    %span{id: "drug_name"}
+      =@title
+    %small drug summary page
 
 .container-fluid
-  .page-header
-    %h2
-      %span{id: "drug_name"}
-        =@title
-      %small drug summary page
-    .row-fluid#container
-      =render partial: 'drug_groups/drug_group', locals:{drug_group: @drug_group}
-    .row-fluid
-      .hero-unit
-        %h3 Similarly Named Drugs
-        %span{id: "related_drugs"}
+  .row-fluid#container
+    =render partial: 'drug_groups/drug_group', locals:{drug_group: @drug_group}
+  .row-fluid
+    .hero-unit
+      %h3 Similarly Named Drugs
+      %span{id: "related_drugs"}
 
 =javascript_include_tag "jquery.masonry.min"
 =javascript_include_tag "mason_items"

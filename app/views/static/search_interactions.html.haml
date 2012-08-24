@@ -1,9 +1,10 @@
 =content_for :title, 'Search Interactions'
+=content_for :header do
+  %h2
+    Search Interactions
+    %small search for drug-gene interactions by gene name
+
 .container-fluid
-  .page-header
-    %h2
-      Search Interactions
-      %small search for drug-gene interactions by gene name
   %form.form-horizontal(action="interaction_search_results" method="post" enctype="multipart/form-data")
     %fieldset
       .control-group

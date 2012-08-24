@@ -1,10 +1,10 @@
 =content_for :title, @title
+=content_for :header do
+  %h2
+    =@title
+    %small gene summary page
 
 .container-fluid
-  .page-header
-    %h2
-      =@title
-      %small gene summary page
   .tabbable.tabs-left
     %ul.nav.nav-tabs
       %li.active

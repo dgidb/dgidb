@@ -1,44 +1,41 @@
 #notice= notice
 =content_for :title, @title
+=content_for :header do
+  %h2
+    %span{id: "drug_name"}
+      =@title
+    %small drug summary page
 
-.container-fluid
-  .page-header
-    %h2
-      %span{id: "drug_name"}
-        =@title
-      %small drug summary page
-  .row-fluid
-    .span12
-      .hero-unit
-        -@drugs.each do |drug|
-          %p
-            %b Source Name and Link:
-            %a{href: drug.original_data_source_url}=drug.name
-          %p
-            %b Source Database Name:
-            =link_to drug.citation.source_db_name, source_summary_path(drug.citation.source_db_name)
-          %p
-            %b Source Database Version:
-            =drug.citation.source_db_version
-          %p
-            %b Alternate Names:
-            %table.table.table-striped
-              -drug.drug_alternate_names.each do |alt_name|
-                %tr
-                  %td=alt_name.alternate_name
-                  %td=alt_name.nomenclature
-          %p
-            %b Categories:
-            %table.table.table-striped
-              -drug.drug_categories.each do |category|
-                %tr
-                  %td=category.category_name
-                  %td=category.category_value
-          %p
-            %b Citation:
-            %p=drug.citation.citation
-      .hero-unit
-        %h3 Similarly Named Drugs
-        %span{id: "related_drugs"}
+.row-fluid.span12.well
+  -@drugs.each do |drug|
+    %p
+      %b Source Name and Link:
+      %a{href: drug.original_data_source_url}=drug.name
+    %p
+      %b Source Database Name:
+      =link_to drug.citation.source_db_name, source_summary_path(drug.citation.source_db_name)
+    %p
+      %b Source Database Version:
+      =drug.citation.source_db_version
+    %p
+      %b Alternate Names:
+      %table.table.table-striped
+        -drug.drug_alternate_names.each do |alt_name|
+          %tr
+            %td=alt_name.alternate_name
+            %td=alt_name.nomenclature
+    %p
+      %b Categories:
+      %table.table.table-striped
+        -drug.drug_categories.each do |category|
+          %tr
+            %td=category.category_name
+            %td=category.category_value
+    %p
+      %b Citation:
+      =drug.citation.citation
+.row-fluid.span12.well
+  %h3 Similarly Named Drugs
+  %span{id: "related_drugs"}
 
 =javascript_include_tag "related_drugs"
