@@ -1,10 +1,10 @@
 =content_for :title, @title
 =content_for :header do
   %h2
-    Druggable Gene Categories
+    =tx "title_main"
     %small
-      select gene categories
-      %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
+      =tx "title_small"
+      %i.icon-flag.tip{title: tx("title_flag")}
 
 #container.container-fluid
   -@categories.each do |category|

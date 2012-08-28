@@ -1,0 +1,7 @@
+search_categories:
+  title_main: Search Druggable Gene Categories
+  title_small: search for drug-gene interactions while filtering by druggable gene categories
+  genes_file_flag: Place one gene name per line in the file. These will be added to whatever is pasted below
+  default_genes_flag: Inserts a list of genes selected for testing and illustrative purposes
+  genes_flag: Place one gene name per line in the text area. These will be added to names from the file if used above. You may also type gene names in the box and they will be autocompleted (by pressing tab or enter)
+  categories_flag: Categories are groups of genes considered by some to be potentially druggable targets

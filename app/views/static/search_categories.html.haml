@@ -1,8 +1,8 @@
 =content_for :title, 'Search Druggable Gene Categories'
 =content_for :header do
   %h2
-    Search Druggable Gene Categories
-    %small search for drug-gene interactions while filtering by druggable gene categories
+    =tx "title_main"
+    %small= tx "title_small"
 
 .container-fluid
   %form.form-horizontal(action="categories_search_results" method="post" enctype="multipart/form-data")
@@ -10,19 +10,19 @@
       .control-group
         %label.control-label
           Genes File
-          %i.icon-flag.tip(title="Place one gene name per line in the file. These will be added to whatever is pasted below.")
+          %i.icon-flag.tip{title: tx("genes_file_flag")}
         .controls
           %input.input-file(type="file" name='geneFile')
       .control-group
         %label.control-label
           Use Default Genes
-          %i.icon-flag.tip(title="Inserts a list of genes selected for illustrative and test purposes")
+          %i.icon-flag.tip{title: tx("default_genes_flag")}
         .controls
           %button.btn.btn-small.btn-danger#defaultGenes(type='button') Replace Genes with Defaults
       .control-group
         %label.control-label
           Genes
-          %i.icon-flag.tip(title="Place one gene name per line in the text area. These will be added to names from the file if used above. You can also type gene names and they will be autocompleted (by pressing tab or enter)")
+          %i.icon-flag.tip{title: tx("genes_flag")}
         .controls
           %textarea#genes(name='genes' rows="13")
       .control-group#loadingBar
@@ -33,7 +33,7 @@
       .control-group
         %label.control-label
           Categories
-          %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
+          %i.icon-flag.tip{title: tx("categories_flag")}
         .controls
           =select_tag "categories", options_from_collection_for_select(@category_names, "category_value", "category_value"), multiple: true, class: :multiselect
       .control-group

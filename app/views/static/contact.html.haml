@@ -2,11 +2,11 @@
 =content_for :title, 'Contact'
 =content_for :header do
   %h2
-    Contact Us
-    %small get in touch
+    =tx "title_main"
+    %small=tx "title_small"
 
 .container-fluid
   .row-fluid
     .span12
       .hero-unit
-        %p mgriffit@genome.wustl.edu
+        %p=tx "description"

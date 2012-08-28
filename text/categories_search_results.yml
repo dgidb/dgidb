@@ -1,0 +1,6 @@
+categories_search_results:
+  title_main: Category Search Results
+  title_small: interaction results for your entered gene names and selected categories
+  category_table_header: Categories are groups of genes considered by some to be potentially druggable targets.
+  ambiguous_terms_flag: Your search term matched more than one gene record.
+  no_matches_flag: Search terms for which we could find no matches

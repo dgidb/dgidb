@@ -1,0 +1,4 @@
+search:
+  title_main: Search
+  title_small: search for drugs, genes, and drug-gene interactions by name
+  input_flag: Type the name of your drug, gene, or interaction here.

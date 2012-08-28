@@ -1,15 +1,15 @@
 =content_for :title, 'Search'
 =content_for :header do
   %h2
-    Search
-    %small search for drugs, genes, and drug-gene interactions by name
+    =tx "title_main"
+    %small=tx "title_small"
 
 .container-fluid
   %form.form-horizontal(action="search_results" method="post")
     .control-group
       %label.control-label
         Input
-        %i.icon-flag.tip(title="Type the name of your drug, gene, or interaction here")
+        %i.icon-flag.tip{title: tx("input_flag")}
       .controls
         %input(id='search_term' type='text' name='search_term')
       .form-actions

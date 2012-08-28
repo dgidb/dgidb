@@ -1,0 +1,32 @@
+interaction_search_results:
+  title_main: Interaction Search Results
+  title_small: interaction results for your entered gene names
+  definite_results_passed_filter_flag: >
+    Definite results that passed the filter are those where the provided
+    search term unambiguously matched a single gene record with known
+    interactions meeting the specified filter criteria
+  definite_results_failed_filter_flag: >
+    Definite results that passed the filter are those where the provided
+    search term unambiguously matched a single gene record with known interactions
+    that did not meet the specified filter criteria
+  ambiguous_results_passed_filter_flag: >
+    Ambiguous results are those where the provided search term matched
+    more than one gene record of which at least one had known drug interactions
+    meeting the specifed filter criteria. In other words - we are not able to positively
+    identify which gene you meant. To avoid this issue please use the
+    official gene names provided by Entrez Gene.
+  ambiguous_results_failed_filter_flag: >
+    Ambiguous results are those where the provided search term matched more
+    than one gene record of which at least one had known drug interactions that
+    did not meet the specifed filter criteria. In other words - we are not able
+    to positively identify which gene you meant. To avoid this issue please use
+    the official gene names provided by Entrez Gene.
+  ambiguous_results_no_interactions_flag: >
+    Your search term matched more than one gene record - none of which had any
+    interactions in any source regardless of any filtering criteria you selected
+  definite_results_no_interactions_flag: >
+    Search term was matched definitely but had no interactions in any data source regardless of any filtering criteria
+  terms_with_no_matches_flag: Search terms for which we could find no matches
+  gene_table_header: Gene Name within DGIDB which matched your search term (either directory or through a synonym)
+  interaction_table_header: Interaction Types are used to categorize the nature of drug-gene interactions (e.g. mechanism) and vary by source.
+

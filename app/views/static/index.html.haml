@@ -2,14 +2,13 @@
 =content_for :title, 'DGIDB Home'
 =content_for :header do
   %h2
-    DGIDB
-    %small drug gene interaction database
+    =tx "title_main"
+    %small=tx "title_small"
 
 .container-fluid
   .row-fluid
     .span12
-      .well
-        DGIDB (drug gene interaction database) aggregates known interactions between drugs and genes
+      .well=tx "description"
       .hero-unit
         %ul{:class => 'unstyled'}
           %li

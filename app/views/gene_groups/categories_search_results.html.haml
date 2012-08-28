@@ -2,8 +2,8 @@
 =content_for :title, "Category Search Results"
 =content_for :header do
   %h2
-    Category Search Results
-    %small interaction results for your entered gene names and selected categories
+    =tx "title_main"
+    %small=tx "title_small"
 
 .container-fluid
   .tabbable.tabs-left
@@ -28,9 +28,9 @@
               =render partial: 'gene_groups/category_results_table', locals: {title: "Results Not in Selected Categories", categories: @search_results.fail_filtered_categories }
         .row-fluid
           -if @search_results.show_ambiguous_results?
-            =render partial: 'gene_groups/no_category_result', locals: {title: 'Ambiguous Terms', results: @search_results.ambiguous_results, tooltip_text: 'Your search term matched more than one gene record'}
+            =render partial: 'gene_groups/no_category_result', locals: {title: 'Ambiguous Terms', results: @search_results.ambiguous_results, tooltip_text: tx('ambiguous_terms_flag')}
           -if @search_results.show_definite_results_with_no_categories?
-            =render partial: 'gene_groups/no_category_result', locals: {title: 'Matched Genes With No Categories', results: @search_results.definite_results_with_no_categories, tooltip_text: 'Search term was matched definitely but had no categories in any data source regardless of any filtering criteria'}
+            =render partial: 'gene_groups/no_category_result', locals: {title: 'Matched Genes With No Categories', results: @search_results.definite_results_with_no_categories, tooltip_text: tx('no_matches_flag')}
           -if @search_results.show_no_results_results?
             .span6
               .well

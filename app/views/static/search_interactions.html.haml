@@ -1,8 +1,8 @@
 =content_for :title, 'Search Interactions'
 =content_for :header do
   %h2
-    Search Interactions
-    %small search for drug-gene interactions by gene name
+    =tx "title_main"
+    %small=tx "title_small"
 
 .container-fluid
   %form.form-horizontal(action="interaction_search_results" method="post" enctype="multipart/form-data")
@@ -10,19 +10,19 @@
       .control-group
         %label.control-label
           Genes File
-          %i.icon-flag.tip(title="Place one gene name per line in the file. These will be added to whatever is pasted below.")
+          %i.icon-flag.tip{title: tx("genes_file_flag")}
         .controls
           %input.input-file(type="file" name='geneFile')
       .control-group
         %label.control-label
           Use Default Genes
-          %i.icon-flag.tip(title="Inserts a list of genes selected for testing and illustrative purposes.")
+          %i.icon-flag.tip{title: tx("default_genes_flag")}
         .controls
           %button.btn.btn-small.btn-danger#defaultGenes(type='button') Replace Genes with Defaults
       .control-group
         %label.control-label
           Genes
-          %i.icon-flag.tip(title="Place one gene name per line in the text area. These will be added to names from the file if used above. You may also type gene names in the box and they will be autocompleted (by pressing tab or enter)")
+          %i.icon-flag.tip{title: tx("genes_flag")}
         .controls
           %textarea#genes(name='genes' rows="13")
       .control-group#loadingBar
@@ -33,13 +33,13 @@
       .control-group
         %label.control-label
           Source Database
-          %i.icon-flag.tip(title="Specify which source(s) of drug-gene interactions to search against")
+          %i.icon-flag.tip{title: tx("source_database_flag")}
         .controls
           =select_tag "sources", options_from_collection_for_select(@sources, "to_s", "to_s"), multiple: true, class: :multiselect
       .control-group
         %label.control-label
           Filter
-          %i.icon-flag.tip(title="Reduce search results to only interactions of a specific type")
+          %i.icon-flag.tip{title: tx("filter_flag")}
         .controls
           %select(name='filter')
             %option(value='basic') Basic

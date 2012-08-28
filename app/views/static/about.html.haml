@@ -2,14 +2,14 @@
 =content_for :title, 'About'
 =content_for :header do
   %h2
-    About DGIDB
-    %small drug gene interaction database
+    =tx "title_main"
+    %small=tx "title_small"
 
 .container-fluid
   .row-fluid
     .span12
       .hero-unit
-        %p DGIDB aggregates drug, gene, and interaction information from a variety of sources. The are listed below.
+        %p=tx "description"
         %ul
           -@sources.each do |source|
             %li=link_to source, source_summary_path(source)
