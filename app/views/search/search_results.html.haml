@@ -5,17 +5,5 @@
     Search Results
     %small results for your search term
 
-.container-fluid
-  .tabbable.tabs-left
-    %ul.nav.nav-tabs
-      %li.active
-        %a(href="#results" data-toggle="tab") Results
-
-  .tab-content
-    .tab-pane.active#results
-      .row-fluid#container
-        .span12
-          =render partial: 'search/search_results_list', locals: {search_results: @search_results}
-
-=javascript_include_tag "jquery.masonry.min"
-=javascript_include_tag "mason_items"
+.row-fluid.span12
+  =render partial: 'search/search_results_list', locals: {search_results: @search_results}

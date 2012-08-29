@@ -5,4 +5,4 @@ search_categories:
   default_genes_flag: Inserts a list of genes selected for testing and illustrative purposes
   genes_flag: Place one gene name per line in the text area. These will be added to names from the file if used above. You may also type gene names in the box and they will be autocompleted (by pressing tab or enter)
   categories_flag: Categories are groups of genes considered by some to be potentially druggable targets
-  output_format_flag: HTML selection will keep all results in your browser. TSV will dump a simplified version of the results to a text file of the form: Gene Group Name, Category Name, Search Term
+  output_format_flag: "HTML selection will keep all results in your browser. TSV will dump a simplified version of the results to a text file of the form: Gene Group Name, Category Name, Search Term"
