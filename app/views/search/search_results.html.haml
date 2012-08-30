@@ -6,4 +6,6 @@
     %small results for your search term
 
 .row-fluid.span12
-  =render partial: 'search/search_results_list', locals: {search_results: @search_results}
+  .span6
+    -@search_results.each do |result|
+      =result.render_result(self)

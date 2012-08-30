@@ -1,0 +1,5 @@
+.well
+  %em Gene
+  %p
+    %strong=link_to r.name, "/genes/#{r.citation.source_db_name}/#{r.name}"
+    %p="Source:  #{r.citation.source_db_name} version #{r.citation.source_db_version}"

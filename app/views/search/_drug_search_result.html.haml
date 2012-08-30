@@ -1,0 +1,5 @@
+.well
+  %em Drug
+  %p
+    %strong=link_to r.name, drug_path(r.name)
+    %p="Source:  #{r.citation.source_db_name} version #{r.citation.source_db_version}"

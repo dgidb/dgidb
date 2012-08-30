@@ -1,6 +1,0 @@
-%h3
-  Gene
-%dl
-  -results.each do |r|
-    %dt=link_to r.name, "/genes/#{r.citation.source_db_name}/#{r.name}"
-    %dd="Source:  #{r.citation.source_db_name} version #{r.citation.source_db_version}"

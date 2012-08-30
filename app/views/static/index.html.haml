@@ -9,14 +9,9 @@
   .row-fluid
     .span12
       .well=tx "description"
-      .hero-unit
-        %ul{:class => 'unstyled'}
-          %li
-            %a(href="/search_interactions")Search Interactions
-            %small Find drug gene interactions for genes
-          %li
-            %a(href="/search_categories")Search Druggable Gene Categories
-            %small Find drug-gene interactions for selected gene categories
-          %li
-            %a(href="/druggable_gene_categories")Druggable Gene Categories
-            %small Examine particular druggable gene categories
+      .well
+        %ul(class="unstyled")
+          -to("links").each do |l|
+            %li
+              %a{href: l["url"]}=l["title"]
+              %small=l["description"]

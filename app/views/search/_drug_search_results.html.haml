@@ -1,6 +1,0 @@
-%h3
-  Drug
-%dl
-  -results.each do |r|
-    %dt=link_to r.name, drug_path(r.name)
-    %dd="Source:  #{r.citation.source_db_name} version #{r.citation.source_db_version}"

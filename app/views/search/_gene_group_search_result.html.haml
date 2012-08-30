@@ -1,0 +1,5 @@
+.well
+  %em Gene Group
+  %p
+    %strong=link_to r.name, gene_group_path(r.name)
+    %p="Genes:  #{r.genes.count}"
