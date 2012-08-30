@@ -17,7 +17,7 @@ $.get '/gene_group_names.json', (data)->
   $('#loadingBar').hide()
 
 $('#defaultGenes').click ->
-    $('#genes')[0].value = ['STK1','FLT','FLT3','ASDF','QWER','HER2','ERBB2','LOC100508755'].join "\n"
+    $('#genes')[0].value = ['HER2', 'ERBB2', 'PTGDR', 'EGFR', 'RECK', 'KCNMA1', 'MM1', 'LOC100508755', 'FAKE1'].join "\n"
     $('#genes')[0].value += "\n"
 
 $(".btn-primary").click ->
