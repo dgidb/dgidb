@@ -19,6 +19,9 @@ $('#defaultGenes').click ->
     $('#genes')[0].value = ['FLT1','FLT2','FLT3','STK1','MM1','LOC100508755','FAKE1'].join "\n"
     $('#genes')[0].value += "\n"
 
+$('#clear').click ->
+    $('#genes')[0].value = []
+
 $(".btn-primary").click ->
   $("#loading").modal("show") if $("#html_output").attr("checked")
 
