@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/genome/genome_models.git
-  revision: 6ad024590520d3ffee604af07b8494c029ea0db7
+  revision: c0fefab461c883d6a67dfc6f5f09d0a0c6f7c361
   specs:
     genome_models (0.0.1)
       activerecord
@@ -157,7 +157,7 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
-    slop (3.3.2)
+    slop (3.3.3)
     sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
