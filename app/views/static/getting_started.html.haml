@@ -1,0 +1,11 @@
+#notice= notice
+=content_for :title, 'Getting Started'
+=content_for :header do
+  %h2
+    =tx "title_main"
+    %small=tx "title_small"
+
+.container-fluid
+  .row-fluid
+    .span12
+      .well=tx "description"

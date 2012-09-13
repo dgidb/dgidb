@@ -1,0 +1,16 @@
+#notice= notice
+=content_for :title, 'Downloads'
+=content_for :header do
+  %h2
+    =tx "title_main"
+    %small=tx "title_small"
+
+.container-fluid
+  .row-fluid
+    .span12
+      .well=tx "description"
+      .well
+        %dl
+          -to("downloads").each do |d|
+            %dt=link_to(d["title"], d["link"])
+            %dd=d["description"]

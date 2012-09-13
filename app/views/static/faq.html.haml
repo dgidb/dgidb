@@ -1,0 +1,17 @@
+#notice= notice
+=content_for :title, 'FAQ'
+=content_for :header do
+  %h2
+    =tx "title_main"
+    %small=tx "title_small"
+
+.container-fluid
+  .row-fluid
+    .span12
+      .well=tx "description"
+      .well
+        %dl
+          -to("questions").each do |q|
+            %dt=q["question"]
+            %dd=q["answer"].html_safe
+

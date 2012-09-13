@@ -1,0 +1,12 @@
+faq:
+  title_main: FAQ
+  title_small: frequently asked questions
+  description: description here
+  questions:
+    - question: How do I do this thing?
+      answer: >
+        Some long answer could go here where you explain everything
+    - question: How do I do this thing?
+      answer: >
+        Some long answer could go here where you explain everything.
+        it could span multiple lines and even <em>contain markup</em>.

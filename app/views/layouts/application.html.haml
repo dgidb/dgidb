@@ -18,10 +18,19 @@
               %a(href="/search_categories") Search Druggable Gene Categories
             %li{class: @druggable_gene_categories_active}
               %a(href="/druggable_gene_categories") Druggable Gene Categories
-            %li{class: @about_active}
-              %a(href="/about") About
-            %li{class: @contact_active}
-              %a(href="/contact") Contact
+          %ul.nav.pull-right
+            %li.divider-vertical
+            %li.dropdown{class: @help_active}
+              %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
+                Help 
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a(href="/getting_started") Getting Started
+                  %a(href="/faq") FAQ
+                  %a(href="/sources") Sources
+                  %a(href="/downloads") Downloads
+                  %a(href="/contact") Contact
     .container-fluid
       .page-header
         =h yield(:header)

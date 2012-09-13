@@ -1,25 +1,22 @@
 class StaticController < ApplicationController
+  before_filter :set_active
+
   def search_categories
     @category_names = LookupCategories.get_uniq_category_names_with_counts.sort_by{|c| c.name}
-    @search_categories_active = "active"
   end
 
   def search_interactions
-    @search_interactions_active = "active"
     @sources = DataSources.uniq_source_names_with_interactions.sort
   end
 
-  def search
-    @search_active = "active"
-  end
-
-  def about
-    @about_active = "active"
+  def sources
     @sources = DataSources.uniq_source_names.sort
   end
 
-  def contact
-    @contact_active = "active"
+  private
+  @@help_pages = ["getting_started", "faq", "sources", "downloads", "contact"]
+  def set_active
+    @@help_pages.include?(params[:action]) ? instance_variable_set("@help_active", "active") : instance_variable_set("@#{params[:action]}_active", "active")
   end
 
 end

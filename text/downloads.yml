@@ -1,0 +1,14 @@
+downloads:
+  title_main: Downloads
+  title_small: download dumps of commonly requested data
+  description: Downloads are great so here are some for you...
+  downloads:
+    - title: Source code of DGIDB
+      link: "http://www.github.com/genome/dgi-db"
+      description: >
+        This is the full source code of the dgi db web application. It runs rails
+        etc etc...
+    - title: Some TSV file
+      link: "http://www.google.com"
+      description: >
+        This is some other link. Right now it just points to Google
