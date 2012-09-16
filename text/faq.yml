@@ -1,12 +1,13 @@
 faq:
   title_main: FAQ
   title_small: frequently asked questions
-  description: description here
+  description: This page provides answers to a wide array of general questions. For detailed tutorials on how to use DGIDB, see the tutorials under the "Getting started" section of the help menu.
   questions:
-    - question: How do I do this thing?
+    - question: How do I cite DGIDB?
       answer: >
-        Some long answer could go here where you explain everything
-    - question: How do I do this thing?
+        A manuscript describing DGIDB is currently under preparation.
+        Once accepted for publication, citation details will appear here.
+        Until then, please simply cite the URL for dgidb.org.
+    - question: Where can I find the code base for DGIDB?
       answer: >
-        Some long answer could go here where you explain everything.
-        it could span multiple lines and even <em>contain markup</em>.
+        The code for dgidb is available at <a href="https://github.com/genome/dgi-db">github</a>.
