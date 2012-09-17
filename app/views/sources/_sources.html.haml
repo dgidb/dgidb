@@ -1,0 +1,4 @@
+-sources.each do |source|
+  .item(style="width:400")
+    %div(class="hero-unit source bubble-links #{source.name}")
+      =render partial: 'sources/source', locals:{source: source}

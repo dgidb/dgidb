@@ -1,0 +1,13 @@
+#notice= notice
+=content_for :title, 'Sources'
+=content_for :header do
+  %h2
+    =tx "title_main"
+    %small=tx "title_small"
+
+#container.container-fluid
+  =render partial: 'sources/sources', locals:{sources: @sources}
+
+=javascript_include_tag "jquery.masonry.min"
+=javascript_include_tag "mason_items"
+=stylesheet_link_tag "color_sources"

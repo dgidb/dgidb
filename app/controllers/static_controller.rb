@@ -9,10 +9,6 @@ class StaticController < ApplicationController
     @sources = DataSources.uniq_source_names_with_interactions.sort
   end
 
-  def sources
-    @sources = DataSources.uniq_source_names.sort
-  end
-
   private
   @@help_pages = ["getting_started", "faq", "sources", "downloads", "contact"]
   def set_active

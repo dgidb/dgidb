@@ -1,0 +1,40 @@
+@import "twitter/bootstrap";
+.color_source_db (@color: @red) {
+  #gradient > .vertical(@color,@white);
+}
+.source {
+  .color_source_db;
+}
+.source.PubChem {
+  .color_source_db(@green);
+}
+.source.Entrez {
+  .color_source_db(@green);
+}
+.source.Ensembl {
+  .color_source_db(@green);
+}
+.source.DrugBank {
+  .color_source_db(@blue);
+}
+.source.TTD {
+  .color_source_db(@blue);
+}
+.source.GO {
+  .color_source_db(@orange);
+}
+.source.dGene {
+  .color_source_db(@orange);
+}
+.source.RussLampel {
+  .color_source_db(@orange);
+}
+.source.TALC {
+  .color_source_db(@blue);
+}
+.source.HopkinsGroom {
+  .color_source_db(@orange);
+}
+.source.PharmGKB {
+  .color_source_db(@blue);
+}
