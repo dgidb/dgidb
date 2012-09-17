@@ -6,7 +6,9 @@
         %thead
           %tr
             %th Search Term
-            %th Match Type
+            %th
+              Match Type
+              %i.icon-flag.tip{title: tx("search_term_summary_table_header_match_flag")}
             %th Matches
         %tbody
           -results.each_result(self) do |result|

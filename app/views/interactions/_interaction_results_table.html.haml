@@ -7,15 +7,18 @@
       %tr
         %th
           Search Term
+          %i.icon-flag.tip{title: tx("search_term_table_header_flag")}
         %th
           Gene
           %i.icon-flag.tip{title: tx("gene_table_header_flag")}
         %th
           Drug
+          %i.icon-flag.tip{title: tx("drug_table_header_flag")}
         %th
           Interaction Type
           %i.icon-flag.tip{title: tx("interaction_table_header_flag")}
         %th
           Source
+          %i.icon-flag.tip{title: tx("source_table_header_flag")}
     %tbody
       =render partial: 'interactions/interaction_table_row', collection: interactions

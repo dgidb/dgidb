@@ -42,7 +42,9 @@
         .controls
           =select_tag "categories", options_from_collection_for_select(@category_names, "category_value", "category_value"), multiple: true, class: :multiselect
       .control-group
-        %label.control-label Select Output Format
+        %label.control-label
+          Select Output Format
+          %i.icon-flag.tip{title: tx("output_format_flag")}
         .controls
           %label.radio
             %input(id='html_output' type='radio' name='outputFormat' value='html' checked='true') HTML

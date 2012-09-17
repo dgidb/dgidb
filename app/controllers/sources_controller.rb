@@ -6,6 +6,7 @@ class SourcesController < ApplicationController
   end
 
   def sources
+    @help_active = 'active'
     @sources = DataSources.all_source_summaries
   end
 

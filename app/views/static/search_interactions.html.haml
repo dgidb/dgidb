@@ -53,7 +53,9 @@
             %option(value='anti_neoplastic') Antineoplastic drugs only
             %option(value='none') None
       .control-group
-        %label.control-label Select Output Format
+        %label.control-label
+          Select Output Format
+          %i.icon-flag.tip{title: tx("output_format_flag")}
         .controls
           %label.radio
             %input(id='html_output' type='radio' name='outputFormat' value='html' checked='true') HTML
