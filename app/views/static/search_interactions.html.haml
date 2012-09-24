@@ -18,7 +18,12 @@
           Use Default Genes
           %i.icon-flag.tip{title: tx("default_genes_flag")}
         .controls
-          %button.btn.btn-small.btn-danger#defaultGenes(type='button') Replace Genes with Defaults
+          %button.btn.btn-small.btn-success#defaultGenes(type='button') Replace Genes with Defaults
+      .control-group
+        %label.control-label
+          Clear Genes
+        .controls
+          %button.btn.btn-small.btn-danger#clear(type='button') Clear All Genes
       .control-group
         %label.control-label
           Genes
@@ -30,11 +35,6 @@
         .controls
           .progress.progress-striped.active.span2
             .bar(style='width: 100%') Loading Autocomplete
-      .control-group
-        %label.control-label
-          Clear Genes
-        .controls
-          %button.btn.btn-small.btn-danger#clear(type='button') Clear All Genes
       .control-group
         %label.control-label
           Source Database
