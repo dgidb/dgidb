@@ -1,12 +1,12 @@
 @import "twitter/bootstrap";
-.color_source_db (@color: @red) {
+.color_source_db (@color: @yellow) {
   #gradient > .vertical(@color,@white);
 }
 .source {
   .color_source_db;
 }
 .source.PubChem {
-  .color_source_db(@green);
+  .color_source_db(@red);
 }
 .source.Entrez {
   .color_source_db(@green);
