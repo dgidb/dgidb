@@ -32,14 +32,14 @@ go_flt3_a:
   gene: go_flt3
   category_value: CELL SURFACE
   description: 
-  category_name: human_readable_name 
+  category_name: Human Readable Name 
 go_flt3_b:
   gene: go_flt3
   category_value: TYROSINE KINASE
   description: 
-  category_name: human_readable_name 
+  category_name: Human Readable Name 
 go_flt3_c:
   gene: go_flt3
   category_value: KINASE
   description: 
-  category_name: human_readable_name 
+  category_name: Human Readable Name 
