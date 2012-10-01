@@ -8,23 +8,23 @@ attribute_b:
   value: unknown
 attribute_c:
   interaction: drugbank_a
-  name: interaction_type
+  name: Interaction Type
   value: antagonist
 attribute_d:
   interaction: drugbank_b
-  name: interaction_type
+  name: Interaction Type
   value: multitarget
 attribute_e:
   interaction: flt1_a
-  name: interaction_type
+  name: Interaction Type
   value: inhibitor
 attribute_f:
   interaction: flt1_b
-  name: interaction_type
+  name: Interaction Type
   value: inhibitor
 attribute_g:
   interaction: flt2
-  name: interaction_type
+  name: Interaction Type
   value: na
 attribute_h:
   interaction: flt2
@@ -32,5 +32,5 @@ attribute_h:
   value: unknown
 attribute_i:
   interaction: cdk7
-  name: interation_type
+  name: Interaction Type
   value: inhibitor
