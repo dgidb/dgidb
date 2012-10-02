@@ -15,3 +15,6 @@ index:
     - url: /druggable_gene_categories
       title: Druggable Gene Categories
       description: Examine particular druggable gene categories
+    - url: https://github.com/downloads/genome/dgi-db/walkthrough.pdf
+      title: Walkthrough (pdf)
+      description: Illustrated user guide in .pdf format

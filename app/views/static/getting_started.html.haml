@@ -9,3 +9,9 @@
   .row-fluid
     .span12
       .well=tx "description"
+      .well
+        %ul(class="unstyled")
+          -to("links").each do |l|
+            %li
+              %a{href: l["url"]}=l["title"]
+              %small=l["description"]
