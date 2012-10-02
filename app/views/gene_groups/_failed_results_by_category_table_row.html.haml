@@ -1,0 +1,4 @@
+%tr
+  %td=link_to failed_results_by_category_table_row.category_name, gene_group_by_category_path(failed_results_by_category_table_row.category_name)
+  %td=failed_results_by_category_table_row.group_count
+  %td=(failed_results_by_category_table_row.groups.map{ |g| link_to g, gene_group_path(g) }.join(", ")).html_safe
