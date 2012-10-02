@@ -9,6 +9,6 @@ downloads:
         This is the full source code of the dgi db web application. It runs rails
         etc etc...
     - title: Druggable gene TSV archive 
-      link: "https://github.com/downloads/genome/dgi-db/druggable_gene_tsvs.tar.gz"
+      link: "https://github.com/downloads/genome/dgi-db/druggable_gene_tsv.tar.gz"
       description: >
         This is an archive containing the tsv files used to populate the DGIDB database
