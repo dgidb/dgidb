@@ -27,7 +27,7 @@ f:
   drug: drug_b
   alternate_name: SORAFENIB
   description: 
-  nomenclature: Primary DrugBank drug name
+  nomenclature: Primary Drug Name
 g:
   drug: drug_b
   alternate_name: SORAFENIB TOSYLATE
@@ -42,7 +42,7 @@ i:
   drug: drug_a
   alternate_name: SUNITINIB
   description: 
-  nomenclature: Primary DrugBank drug name
+  nomenclature: Primary Drug Name
 j:
   drug: drug_a
   alternate_name: SU-11248
@@ -67,22 +67,22 @@ n:
   drug: drug_c
   alternate_name: SORAFENIB
   description: 
-  nomenclature: TTD_primary_drug_name
+  nomenclature: Primary Drug Name
 o:
   drug: drug_d
   alternate_name: RANIBIZUMAB
   description: 
-  nomenclature: TTD_primary_drug_name
+  nomenclature: Primary Drug Name
 p: 
   drug: drug_e
   alternate_name: PALIFERMIN
   description: 
-  nomenclature: Primary DrugBank drug name
+  nomenclature: Primary Drug Name
 q:
   drug: drug_group_drug_a
   alternate_name: SUNITINIB
   description: 
-  nomenclature: pubchem_primary_name
+  nomenclature: Primary Drug Name
 r: 
   drug: drug_group_drug_b
   alternate_name: SUTENT
@@ -92,12 +92,12 @@ s:
   drug: drug_group_drug_c
   alternate_name: N-[2-(DIETHYLAMINO)ETHYL]-5-[(Z)-(5-FLUORO-2-OXO-1,2-DIHYDRO-3H-INDOL-3-YLIDENE)METHYL]-2,4-DIMETHYL-1H-PYRROLE-3-CARBOXAMIDE
   description: 
-  nomenclature: Primary DrugBank drug name
+  nomenclature: Primary Drug Name
 t:
   drug: drug_f
   alternate_name: SNS-032
   description:
-  nomenclature: TTD_primary_drug_name
+  nomenclature: Primary Drug Name
 u:
   drug: drug_f
   alternate_name: SNS-032

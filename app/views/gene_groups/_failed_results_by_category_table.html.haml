@@ -10,7 +10,5 @@
           Matching Gene Count
         %th
           Matching Gene(s)
-        %th
-          Non-Matching Gene(s)
     %tbody
-      =render partial: 'gene_groups/results_by_category_table_row', collection: categories
+      =render partial: 'gene_groups/failed_results_by_category_table_row', collection: categories

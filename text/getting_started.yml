@@ -2,3 +2,10 @@ getting_started:
   title_main: Getting Started
   title_small: familiarize yourself with DGIDB
   description: here are some cool things you can do
+  links:
+    - url: https://github.com/downloads/genome/dgi-db/walkthrough.pdf
+      title: Walkthrough (pdf)
+      description: Illustrated user guide in .pdf format
+    - url: https://github.com/downloads/genome/dgi-db/walkthrough.pptx
+      title: Walkthrough (Powerpoint)
+      description: Illustrated user guide in .pptx format

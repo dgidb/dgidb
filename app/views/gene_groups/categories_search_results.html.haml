@@ -48,7 +48,7 @@
         -if @search_results.show_failed_groups_by_category?
           .row-fluid
             .span12
-              =render partial: 'gene_groups/results_by_category_table', locals: {title: "Results Not in Selected Categories", categories: @search_results.failed_groups_by_category }
+              =render partial: 'gene_groups/failed_results_by_category_table', locals: {title: "Results Not in Selected Categories", categories: @search_results.failed_groups_by_category }
       .tab-pane.fade#search_summary_tab
         =render partial: 'gene_groups/results_summary', locals: {results: @search_results}
       .tab-pane.fade#by_source
