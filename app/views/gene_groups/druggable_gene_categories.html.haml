@@ -11,7 +11,6 @@
     .item(style="width:400")
       .well
         =link_to content_tag(:h4, category.category_value), gene_group_by_category_path(category.category_value)
-        -binding.pry
         %dl
           %dt Genes In Category:
           %dd= category.gene_count
