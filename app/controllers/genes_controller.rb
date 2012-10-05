@@ -1,4 +1,5 @@
 class GenesController < ApplicationController
+  caches_page :show
   def show
     @title = params[:name]
     name_param = params[:name]

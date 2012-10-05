@@ -15,6 +15,8 @@
       %li
         %a(href="#term_summary_tab" data-toggle="tab") Search Term Summary
       %li
+        %a(href="#by_gene" data-toggle="tab") By Gene
+      %li
         %a(href="#by_source" data-toggle="tab") By Source
 
     .tab-content
@@ -24,6 +26,8 @@
         =render partial: 'shared/search_term_summary_table', locals: {results: @search_results}
       .tab-pane.fade#by_source
         =render partial: 'interactions/results_by_source_table', locals: {results: @search_results}
+      .tab-pane.fade#by_gene
+        =render partial: 'interactions/results_by_gene_table', locals: {results: @search_results}
       .tab-pane.active#interaction_tab
         .row-fluid
           .span12

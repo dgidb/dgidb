@@ -1,4 +1,5 @@
 class InteractionsController < ApplicationController
+  caches_page :show
   def show
     @interaction = DataModel::Interaction.find(params[:id])
     @drug = @interaction.drug

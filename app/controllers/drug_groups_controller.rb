@@ -1,4 +1,6 @@
 class DrugGroupsController < ApplicationController
+  caches_page :show
+
   def show
     @title = params[:name]
     @drug_group = DataModel::DrugGroup.where(name: params[:name]).first

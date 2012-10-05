@@ -1,6 +1,8 @@
 class StaticController < ApplicationController
   before_filter :set_active
 
+  caches_page :index, :getting_started, :faq, :downloads, :contact, :search_categories, :search_interactions, :search
+
   def search_categories
     @category_names = LookupCategories.get_uniq_category_names_with_counts.sort_by{|c| c.category_value}
   end
