@@ -1,5 +1,6 @@
-PATH
-  remote: ~/git/genome_models
+GIT
+  remote: git://github.com/genome/genome_models.git
+  revision: c36670aea8dcb06beb051ff43a1624ffe83c438b
   specs:
     genome_models (0.0.1)
       activerecord
@@ -49,7 +50,7 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
-    coderay (1.0.7)
+    coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -164,7 +165,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.6)
-    squeel (1.0.11)
+    squeel (1.0.12)
       activerecord (~> 3.0)
       activesupport (~> 3.0)
       polyamorous (~> 0.5.0)
