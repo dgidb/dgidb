@@ -211,4 +211,3 @@ DEPENDENCIES
   squeel
   therubyracer
   uglifier (>= 1.0.3)
-  uuidtools
