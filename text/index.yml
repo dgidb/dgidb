@@ -1,7 +1,7 @@
 index:
-  title_main: DGIDB
+  title_main: DGIdb
   title_small: drug gene interaction database
-  description: DGIDB (drug gene interaction database) aggregates known and predicted interactions between drugs and genes
+  description: DGIdb (drug gene interaction database) aggregates known and predicted interactions between drugs and genes
   links:
     - url: /search
       title: Search
