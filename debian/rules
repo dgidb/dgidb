@@ -1,0 +1,9 @@
+#! /usr/bin/make -f
+
+build:
+	bundle install --deployment
+	dh $@
+	dh_install
+
+%:
+	dh $@

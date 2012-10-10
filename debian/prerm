@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+
+rm /etc/apache2/sites-enabled/dgi-db
+rm /etc/apache2/sites-available/dgi-db
+/etc/init.d/apache2 restart
+

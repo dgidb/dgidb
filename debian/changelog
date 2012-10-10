@@ -1,0 +1,5 @@
+dgi-db (0.1) lucid; urgency=low
+
+  * Initial packaging by debianize_rails
+
+ -- Adam Coffman <acoffman@genome.wustl.edu>  Wed, 10 Oct 2012 09:29:00 -0500
