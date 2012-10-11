@@ -3,7 +3,7 @@ set -e
 
 chown -R www-data /var/www/dgi-db/
 sudo gem install rake
-pushd /var/www/dgi-db/ && sudo -u www-data RAILS_ENV=production rake db:schema:load && popd
+sudo -u www-data RAILS_ENV=production rake -f /var/www/dgi-db/Rakefile db:schema:load
 sudo -u postgres psql -d dgidb -f /var/www/dgi-db/db/data.sql
 ln -s /etc/apache2/sites-available/dgi-db /etc/apache2/sites-enabled/dgi-db
 /etc/init.d/apache2 restart
