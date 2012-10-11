@@ -14,7 +14,6 @@ gem 'therubyracer'
 gem 'genome_models', git: 'git://github.com/genome/genome_models.git'
 #gem 'genome_models', path: '~/git/genome_models'
 gem 'exception_notification'
-gem 'yaml_db'
 
 group :production do
   gem 'dalli'
