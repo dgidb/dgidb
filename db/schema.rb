@@ -126,4 +126,13 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "gene_name_report_category_association", ["category_name"], :name => "category_name"
   add_index "gene_name_report_category_association", ["category_value"], :name => "category_value_idx"
 
+  execute <<-eos
+        create index on gene_name_group using gin(to_tsvector('english', name));
+        create index on drug_name_group using gin(to_tsvector('english', name));
+        create index on gene_name_report_association using gin(to_tsvector('english', alternate_name));
+        create index on drug_name_report_association using gin(to_tsvector('english', alternate_name));
+        create index on gene_name_report using gin(to_tsvector('english', name));
+        create index on drug_name_report using gin(to_tsvector('english', name));
+  eos
+
 end
