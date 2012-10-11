@@ -25,7 +25,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: genome
+  database: dgidb
   pool: 5
   username: dgidb
   password: tgi_dgidb_app
