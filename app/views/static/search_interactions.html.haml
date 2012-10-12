@@ -15,10 +15,10 @@
           %input.input-file(type="file" name='geneFile')
       .control-group
         %label.control-label
-          Use Default Genes
+          Use Demo Genes
           %i.icon-flag.tip{title: tx("default_genes_flag")}
         .controls
-          %button.btn.btn-small.btn-success#defaultGenes(type='button') Replace Genes with Defaults
+          %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace Genes with Demo List
       .control-group
         %label.control-label
           Clear Genes
@@ -62,7 +62,7 @@
           %label.radio
             %input(id='tsv_output' type='radio' name='outputFormat' value='tsv') TSV
       .form-actions
-        %button.btn.btn-primary(type="submit")Find Drug Interactions
+        %button.btn.btn-success(type="submit")Find Drug Interactions
 
 =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
 

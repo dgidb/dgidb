@@ -22,7 +22,7 @@ $('#defaultGenes').click ->
 $('#clear').click ->
     $('#genes')[0].value = []
 
-$(".btn-primary").click ->
+$(".btn-success").click ->
   $("#loading").modal("show") if $("#html_output").attr("checked")
 
 $(window).unload ->
