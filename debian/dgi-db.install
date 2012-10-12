@@ -16,4 +16,3 @@ text /var/www/dgi-db
 tmp /var/www/dgi-db
 vendor /var/www/dgi-db
 .bundle /var/www/dgi-db
-dgi-db /etc/apache2/sites-available/

@@ -1,9 +1,19 @@
 #!/bin/sh
 set -e
 
-chown -R www-data /var/www/dgi-db/
-sudo gem install rake
-sudo -u www-data RAILS_ENV=production rake -f /var/www/dgi-db/Rakefile db:schema:load
-sudo -u postgres psql -d dgidb -f /var/www/dgi-db/db/data.sql
-ln -s /etc/apache2/sites-available/dgi-db /etc/apache2/sites-enabled/dgi-db
-/etc/init.d/apache2 restart
+case "$1" in
+    configure)
+      chown -R www-data /var/www/dgi-db/
+      sudo gem install bundler
+      cd /var/www/dgi-db && sudo -u www-data RAILS_ENV=production bundle exec rake -f /var/www/dgi-db/Rakefile db:schema:load && cd -
+      sudo -u postgres psql -d dgidb -f /var/www/dgi-db/db/data.sql
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
