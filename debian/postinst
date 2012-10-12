@@ -1,18 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 case "$1" in
     configure)
       chown -R www-data /var/www/dgi-db/
-      sudo update-alternatives --install /usr/bin/ruby ruby /usr/bin/ruby1.9.1 400 \
-         --slave   /usr/share/man/man1/ruby.1.gz ruby.1.gz \
-                        /usr/share/man/man1/ruby1.9.1.1.gz \
-        --slave   /usr/bin/ri ri /usr/bin/ri1.9.1 \
-        --slave   /usr/bin/irb irb /usr/bin/irb1.9.1 \
-        --slave   /usr/bin/rdoc rdoc /usr/bin/rdoc1.9.1       
-      sudo update-alternatives --install /usr/bin/gem gem /usr/bin/gem1.9.1 400 
-      sudo gem install bundler
-      cd /var/www/dgi-db && sudo -u www-data RAILS_ENV=production bundle exec rake -f /var/www/dgi-db/Rakefile db:schema:load && cd -
+      sudo /usr/bin/gem1.9.1 install bundler
+      cd /var/www/dgi-db && sudo -u www-data RAILS_ENV=production /usr/bin/ruby1.9.1 /usr/local/bin/bundle exec rake -f /var/www/dgi-db/Rakefile db:schema:load && cd -
       sudo -u postgres psql -d dgidb -f /var/www/dgi-db/db/data.sql
     ;;
 
@@ -20,7 +13,7 @@ case "$1" in
     ;;
 
     *)
-        echo "postinst called with unknown argument \`$1'" >&2
+        echo "postinst called with unknown argument $1'" >&2
         exit 1
     ;;
 esac
