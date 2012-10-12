@@ -9,3 +9,5 @@
       -else
         %i
           %p(style="display:none")z
+  %td
+    =results_by_source_table_row.sources.count {|in_source| in_source}
