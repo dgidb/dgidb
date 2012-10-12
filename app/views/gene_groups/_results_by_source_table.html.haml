@@ -5,5 +5,6 @@
         %th Name
         -results.source_db_names_for_table.each do |name|
           %th=name
+        %th Count
     %tbody
       =render partial: 'gene_groups/results_by_source_table_row', collection: results.categories_map_by_source_db_names
