@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 case "$1" in
@@ -10,7 +10,7 @@ case "$1" in
     ;;
 
     *)
-        echo "prerm called with unknown argument \`$1'" >&2
+        echo "prerm called with unknown argument $1'" >&2
         exit 1
     ;;
 esac
