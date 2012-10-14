@@ -1,7 +1,7 @@
 downloads:
   title_main: Downloads
   title_small: download dumps of commonly requested data
-  description: Downloads are great so here are some for you...
+  description: This page provides access to raw data and source code for DGIdb
   downloads:
     - title: Source code of DGIDB
       link: "http://www.github.com/genome/dgi-db"
@@ -11,4 +11,4 @@ downloads:
     - title: Druggable gene TSV archive 
       link: "https://github.com/downloads/genome/dgi-db/druggable_gene_tsv.tar.gz"
       description: >
-        This is an archive containing the tsv files used to populate the DGIDB database
+        This is an archive containing the tsv files used to populate the DGIDB database. Note that PharmGKB is not included. This data must be <a href="http://www.pharmgkb.org/downloads.jsp">requested directly from PharmGKB</a>.
