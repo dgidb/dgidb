@@ -11,4 +11,8 @@ downloads:
     - title: Druggable gene TSV archive 
       link: "https://github.com/downloads/genome/dgi-db/druggable_gene_tsv.tar.gz"
       description: >
-        This is an archive containing the tsv files used to populate the DGIDB database. Note that PharmGKB is not included. This data must be <a href="http://www.pharmgkb.org/downloads.jsp">requested directly from PharmGKB</a>.
+        This is an archive containing the tsv files used to populate the DGIDB database. 
+    - title: PharmGKB data 
+      link: "http://www.pharmgkb.org/downloads.jsp"
+      description: >
+      Note that PharmGKB is not included in the TSV archive above. This data must be requested directly from PharmGKB.
