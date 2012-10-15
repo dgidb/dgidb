@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   rescue_from HTTPStatus::BadRequest, with: :render_400
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
+  before_filter :authenticate
+
   def generate_tsv_headers(filename)
     headers.merge!({
       'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
@@ -43,6 +45,14 @@ class ApplicationController < ActionController::Base
     end
     gene_names.delete_if{|gene| gene.strip.empty? }
     params[:gene_names] = gene_names.map{ |name| name.strip.upcase }.uniq
+  end
+
+  private
+
+  def authenticate
+    authenticate_or_request_with_http_digest do |username|
+      USERS[username]
+    end
   end
 
 end
