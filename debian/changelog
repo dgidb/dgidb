@@ -1,3 +1,10 @@
+dgi-db (0.3) lucid; urgency=low
+
+  * Activate robots.txt
+  * Alter Google Analytics ID to a TGI ID.
+
+ -- Matthew Callaway <mcallaway@genome.wustl.edu>  Mon, 15 Oct 2012 09:32:30 -0500
+
 dgi-db (0.2) lucid; urgency=low
 
   * Updated packaging
