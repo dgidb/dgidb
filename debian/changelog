@@ -1,4 +1,10 @@
-dgi-db (0.3) lucid; urgency=low
+dgi-db (0.5) lucid; urgency=low
+
+  * Update data
+
+ -- Adam Coffman <acoffman@genome.wuslt.edu>  Mon, 15 Oct 2012 14:23:30 -0500
+
+dgi-db (0.4) lucid; urgency=low
 
   * Activate robots.txt
   * Alter Google Analytics ID to a TGI ID.
