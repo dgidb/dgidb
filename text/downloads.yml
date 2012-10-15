@@ -15,4 +15,4 @@ downloads:
     - title: PharmGKB data 
       link: "http://www.pharmgkb.org/downloads.jsp"
       description: >
-      Note that PharmGKB is not included in the TSV archive above. This data must be requested directly from PharmGKB.
+        Note that PharmGKB is not included in the TSV archive above. This data must be requested directly from PharmGKB.
