@@ -16,7 +16,7 @@
               %th
                 Source Database Name(s)
           %tbody
-            =render partial: 'gene_groups/category_table_row', collection: @gene_groups
+            =render partial: 'gene_groups/category_table_row', collection: @gene_groups.results
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"

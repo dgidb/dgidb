@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/genome/genome_models.git
-  revision: 56637dbbb415b9c913b20c45c8d5f26a42e2084d
+  revision: b47dfabe0fec703c1f0cf9c0ee3a2cea309ebcaa
   specs:
     genome_models (0.0.1)
       activerecord

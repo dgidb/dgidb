@@ -22,7 +22,8 @@ class GeneGroupsController < ApplicationController
   end
 
   def druggable_gene_category
-    @gene_groups = LookupCategories.find_gene_groups_for_categories(params[:name])
+    gene_groups = LookupCategories.find_gene_groups_for_categories(params[:name])
+    @gene_groups = DruggableGeneCategoryPresenter.new(gene_groups)
     @title = "Genes in the #{params[:name]} category"
     @druggable_gene_categories_active = "active"
     @category_name = params[:name]
