@@ -1,20 +1,19 @@
 contact:
   title_main: Contact Us
   title_small: get in touch
-  description: > This tool was developed at The Genome Institute, Washington University School of Medicine.
-                 If you have a source of information related to the druggable genome you would like us to incorporate, please contact us.  
+  description: This tool was developed at The Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us.
 
   people:
     - title: Malachi Griffith
       link: "www.malachigriffith.org"
-      description: > 314-286-1274
+      description: 314-286-1274
 
     - title: Obi Griffith
       link: "www.obigriffith.org"
-      description: > 314-286-1274
+      description: 314-286-1274
 
     - title: Developers
       description: Jim Weible, Adam Coffman, James Koval, Jim Eldred, Scott Smith
 
     - title: Mentors
-      description: > Elaine Mardis and Rick Wilson
+      description: Elaine Mardis and Rick Wilson
