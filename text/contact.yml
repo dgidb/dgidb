@@ -1,5 +1,20 @@
 contact:
   title_main: Contact Us
   title_small: get in touch
-  description: <a href="www.malachigriffith.org">Malachi Griffith</a> (mgriffit@genome.wustl.edu) or 
-  <a href="www.obigriffith.org">Obi Griffith</a> (ogriffit@genome.wustl.edu)
+  description: > This tool was developed at The Genome Institute, Washington University School of Medicine.
+                 If you have a source of information related to the druggable genome you would like us to incorporate, please contact us.  
+
+  people:
+    - title: Malachi Griffith
+      link: "www.malachigriffith.org"
+      description: > 314-286-1274
+
+    - title: Obi Griffith
+      link: "www.obigriffith.org"
+      description: > 314-286-1274
+
+    - title: Developers
+      description: Jim Weible, Adam Coffman, James Koval, Jim Eldred, Scott Smith
+
+    - title: Mentors
+      description: > Elaine Mardis and Rick Wilson
