@@ -1,13 +1,10 @@
 %tr
   %td
     =link_to results_by_source_table_row.name, gene_group_by_category_path(results_by_source_table_row.name)
-  -results_by_source_table_row.sources.each do |in_source|
+  -results_by_source_table_row.sources.each do |source_count|
     %td
-      -if in_source
-        %i.icon-ok
-          %p(style="display:none")a
-      -else
-        %i
-          %p(style="display:none")z
+      =source_count
   %td
-    =results_by_source_table_row.sources.count {|in_source| in_source}
+    -sum=0
+    -results_by_source_table_row.sources.each{|source_count| sum += source_count}
+    =sum
