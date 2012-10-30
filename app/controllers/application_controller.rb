@@ -24,10 +24,6 @@ class ApplicationController < ActionController::Base
     raise HTTPStatus::BadRequest.new(msg)
   end
 
-  def validate_file_format(desired_format, file_path)
-    `file -ib #{file_path}`.gsub("\n", "") =~ /#{desired_format}/
-  end
-
   [404,400].each do |status|
     define_method("render_#{status}") do |exception|
       flash.now[:error] = exception.message
@@ -40,9 +36,6 @@ class ApplicationController < ActionController::Base
 
   def combine_input_genes(params)
     gene_names = params[:genes].split("\n")
-    unless params[:geneFile].nil?
-      gene_names.concat(params[:geneFile].read.split("\n"))
-    end
     gene_names.delete_if{|gene| gene.strip.empty? }
     params[:gene_names] = gene_names.map{ |name| name.strip.upcase }.uniq
   end

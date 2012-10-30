@@ -52,7 +52,6 @@ class GeneGroupsController < ApplicationController
   private
   def validate_search_request(params)
     bad_request("Please enter at least one gene category to search!") unless params[:gene_names].size > 0
-    bad_request("You must upload a plain text formated file") if params[:geneFile] && !validate_file_format('text/plain;', params[:geneFile].tempfile.path)
   end
 
 end

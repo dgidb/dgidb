@@ -24,7 +24,6 @@ class InteractionsController < ApplicationController
   private
   def validate_search_request(params)
     bad_request("You must enter at least one gene name to search!") if params[:gene_names].size == 0
-    bad_request("You must upload a plain text formated file") if params[:geneFile] && !validate_file_format('text/plain;', params[:geneFile].tempfile.path)
     bad_request("You must select at least one source to search!") unless params[:sources]
   end
 
