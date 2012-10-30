@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   rescue_from HTTPStatus::BadRequest, with: :render_400
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
-  before_filter :authenticate
+  #before_filter :authenticate
 
   def generate_tsv_headers(filename)
     headers.merge!({
@@ -48,7 +48,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
   def authenticate
     authenticate_or_request_with_http_digest do |username|
       USERS[username]

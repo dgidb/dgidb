@@ -15,7 +15,7 @@ DruggableGene::Application.routes.draw do
   post 'interaction_search_results' => 'interactions#interaction_search_results'
   post 'categories_search_results' => 'gene_groups#categories_search_results'
   match ':action' => 'static#:action'
-  root :to => 'static#index'
+  root :to => 'static#search_interactions'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
