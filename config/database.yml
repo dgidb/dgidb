@@ -7,11 +7,11 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: genome
+  database: dgidb 
   pool: 5
-  username: genome
-  password: TGI_pg_1
-  host: postgres
+  username: dgidb
+  password: changeme
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
