@@ -22,11 +22,11 @@
     sudo -u postgres /usr/bin/psql postgres -tAc "ALTER USER \"dgidb\" WITH PASSWORD 'changeme'"
     sudo -u postgres /usr/bin/createdb -T template0 -O dgidb dgidb 
     sudo -u postgres /usr/bin/psql -c "GRANT ALL PRIVILEGES ON database dgidb TO \"dgidb\";"
-    /usr/bin/ruby1.9.1 /usr/local/bin/bundle exec rake -f Rakefile db:schema:load && cd - 
+    /usr/bin/ruby1.9.1 /usr/local/bin/bundle exec rake -f Rakefile db:schema:load 
     sudo -u postgres psql -d dgidb -f db/data.sql 
 
 # Start the server for testing:
-    /usr/bin/ruby1.9.1 /usr/loca/bin/rails s
+    /usr/bin/ruby1.9.1 /usr/local/bin/rails s
 
 # To run in production: 
     cd ..
