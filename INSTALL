@@ -32,7 +32,7 @@
     cd ..
     sudo mv dgi-db /var/www/
     sudo chown -R www-data /var/www/dgi-db/
-    cd /var/www/dgi-db; sudo -u www-data RAILS_ENV=production /usr/bin/ruby1.9.1 /usr/local/bin/bundle exec rake -f Rakefile db:schema:load && cd -
+    cd /var/www/dgi-db; sudo -u www-data RAILS_ENV=production /usr/bin/ruby1.9.1 /usr/local/bin/bundle exec rake -f Rakefile db:schema:load 
     sudo -u www-data touch /var/www/dgi-db/tmp/restart.txt
 
 
