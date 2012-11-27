@@ -7,10 +7,8 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: dgidb 
+  database: dgidb
   pool: 5
-  username: dgidb
-  password: changeme
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
