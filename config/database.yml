@@ -20,11 +20,11 @@ test:
   pool: 5
   timeout: 5000
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: dgidb
-  pool: 5
-  username: dgidb
-  password: tgi_dgidb_app
-  host: localhost
+#production:
+  #adapter: postgresql
+  #encoding: unicode
+  #database: dgidb
+  #pool: 5
+  #username: dgidb
+  #password: tgi_dgidb_app
+  #host: localhost

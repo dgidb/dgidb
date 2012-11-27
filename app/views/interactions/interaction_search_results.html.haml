@@ -6,10 +6,12 @@
     %small=tx "title_small"
 
 .container-fluid
-  .tabbable.tabs-left
+  .tabbable
     %ul.nav.nav-tabs
       %li.active
         %a(href="#interaction_tab" data-toggle="tab") Interaction Results
+      %li
+        %a(href="#refine_search" data-toggle="tab") Refine Search
       %li
         %a(href="#search_summary_tab" data-toggle="tab") Search Results Summary
       %li
@@ -28,12 +30,14 @@
         =render partial: 'interactions/results_by_source_table', locals: {results: @search_results}
       .tab-pane.fade#by_gene
         =render partial: 'interactions/results_by_gene_table', locals: {results: @search_results}
+      .tab-pane.fade#refine_search
+        =render partial: 'interactions/refine_search_form', locals: {results: @search_results}
+
       .tab-pane.active#interaction_tab
         .row-fluid
           .span12
             -if @search_results.show_definite?
-              =render partial: 'interactions/interaction_results_table', locals: {title: "Definite Results (Passed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.definite_interactions(:filtered), tooltip_text: tx("definite_results_passed_filter_flag")}
-              =render partial: 'interactions/interaction_results_table', locals: {title: "Definite Results (Failed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.definite_interactions(:unfiltered), tooltip_text:  tx("definite_results_failed_filter_flag")}
+              =render partial: 'interactions/interaction_results_table', locals: {title: @search_results.filter.capitalize + ' Filter Enabled', interactions: @search_results.definite_interactions(:filtered), tooltip_text: tx("definite_results_passed_filter_flag")}
             -if @search_results.show_ambiguous?
               =render partial: 'interactions/interaction_results_table', locals: {title: "Ambiguous Results (Passed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.ambiguous_interactions(:filtered), tooltip_text: tx("ambiguous_results_passed_filter_flag")}
               =render partial: 'interactions/interaction_results_table', locals: {title: "Ambiguous Results (Failed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.ambiguous_interactions(:unfiltered), tooltip_text: tx("ambiguous_results_failed_filter_flag")}
@@ -43,16 +47,10 @@
 
           -if @search_results.show_definite_no_interactions?
             =render partial: 'interactions/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions, tooltip_text: tx("definite_results_no_interactions_flag")}
-          -if @search_results.show_no_results_results?
-            .span6
-              .well
-                %h3
-                  Search Terms With No Matches
-                  %i.icon-flag.tip{title: tx("terms_with_no_matches_flag")}
-                %ul
-                  -@search_results.no_results_results.each do |result|
-                    %li=result.search_term
 
+.row-fluid.muted
+  ="Query time: #{@search_results.time_elapsed( self )}"
+  .pull-right="Search terms: #{@search_results.number_of_search_terms}"
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"
 =javascript_include_tag "interaction_search_results"
