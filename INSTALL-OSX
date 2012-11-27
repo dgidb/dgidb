@@ -1,0 +1,12 @@
+
+Install RVM with Ruby and Rails: https://rvm.io/rvm/install
+    \curl -L https://get.rvm.io | bash -s stable --rails
+
+Install git if it is not installed already.
+    # if you do not have homebrew here is a fast way to get it: (http://mxcl.github.com/homebrew/)
+    ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+    brew install git
+
+Install PostgreSQL from: http://postgressapp.com
+
+
