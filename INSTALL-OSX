@@ -7,6 +7,27 @@ Install git if it is not installed already.
     ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
     brew install git
 
-Install PostgreSQL from: http://postgressapp.com
+Install and launch PostgreSQL from: http://postgresapp.com
 
+# connect to your postgres sever
+psql -h localhost
+  create database dgidb;
+# quit your psql session
+  \q
+
+# check out the code
+git clone git://github.com/genome/dgi-db.git
+cd dgi-db
+
+#install gem dependencies
+bundle install
+
+#load the database with the dgi schema
+rake db:schema:load
+
+#load the data into your database
+psql -h localhost -d dgidb -f db/data.sql
+
+#launch your development server
+rails s
 
