@@ -29,10 +29,26 @@
     /usr/bin/ruby1.9.1 /usr/local/bin/rails s
 
 # To run in production: 
+    # put the code in place
     cd ..
     sudo mv dgi-db /var/www/
     sudo chown -R www-data /var/www/dgi-db/
+    
+    # skip this if you set up the database above and want to use it as production
     cd /var/www/dgi-db; sudo -u www-data RAILS_ENV=production /usr/bin/ruby1.9.1 /usr/local/bin/bundle exec rake -f Rakefile db:schema:load 
-    sudo -u www-data touch /var/www/dgi-db/tmp/restart.txt
+    
+    # install passenger and related apache modules
+    sudo /usr/bin/gem1.9.1 install passenger
+    sudo passenger-install-apache2-module --auto
+    sudo cp passenger-config /etc/apache2/conf.d/passenger
+    sudo cp apache.config /etc/apache2/sites-available/dgidb
+    ## edit /etc/apache2/sites-available/dgidb to use your server name
+    sudo ln -s /etc/apache2/sites-{available,enabled}/dgidb-apache.conf
+
+    # restart apache2 to get the changes
+    sudo /etc/init.d/apache2 restart
+
+    # do this if you make changes to the installation
+    # sudo -u www-data touch /var/www/dgi-db/tmp/restart.txt
 
 
