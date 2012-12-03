@@ -1,30 +1,30 @@
 require 'spec_helper'
 
-describe GenomeModels::DataModel::Drug do
-  set_fixture_class :drug_name_report => GenomeModels::DataModel::Drug
+describe DataModel::Drug do
+  set_fixture_class :drug_name_report => DataModel::Drug
   fixtures :all
   it "should have many alternate names" do
     drug_name_report("drug_b").drug_alternate_names.should be_an_instance_of(Array)
-    drug_name_report("drug_b").drug_alternate_names.first.should be_an_instance_of(GenomeModels::DataModel::DrugAlternateName)
+    drug_name_report("drug_b").drug_alternate_names.first.should be_an_instance_of(DataModel::DrugAlternateName)
   end
 
   it "should have many categories" do
     drug_name_report("drug_a").drug_categories.should be_an_instance_of(Array)
-    drug_name_report("drug_a").drug_categories.first.should be_an_instance_of(GenomeModels::DataModel::DrugCategory)
+    drug_name_report("drug_a").drug_categories.first.should be_an_instance_of(DataModel::DrugCategory)
   end
 
   it "should have many interactions" do
     drug_name_report("drug_a").interactions.should be_an_instance_of(Array)
-    drug_name_report("drug_a").interactions.first.should be_an_instance_of(GenomeModels::DataModel::Interaction)
+    drug_name_report("drug_a").interactions.first.should be_an_instance_of(DataModel::Interaction)
   end
 
   it "should have many genes" do
     drug_name_report("drug_a").genes.should be_an_instance_of(Array)
-    drug_name_report("drug_a").genes.first.should be_an_instance_of(GenomeModels::DataModel::Gene)
+    drug_name_report("drug_a").genes.first.should be_an_instance_of(DataModel::Gene)
   end
 
   it 'should have a citation' do
-    drug_name_report("drug_a").citation.should be_an_instance_of(GenomeModels::DataModel::Citation)
+    drug_name_report("drug_a").citation.should be_an_instance_of(DataModel::Citation)
   end
 
 end
