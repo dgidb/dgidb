@@ -15,6 +15,8 @@ gem 'therubyracer'
 gem 'less-rails'
 gem 'exception_notification'
 gem 'rake'
+gem 'nokogiri'
+gem 'xpath'
 
 group :production do
   gem 'dalli'
