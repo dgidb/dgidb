@@ -7,6 +7,7 @@ gem 'rails', '3.2.8'
 
 gem 'pg'
 gem 'less-rails-bootstrap'
+gem 'nokogiri'
 gem 'haml'
 gem 'squeel'
 gem 'texticle'
