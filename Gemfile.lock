@@ -1,13 +1,3 @@
-GIT
-  remote: git://github.com/genome/genome_models.git
-  revision: 9873c227edd4759c2c8fdf5938b8a99d76191c97
-  specs:
-    genome_models (0.0.1)
-      activerecord
-      rails
-      squeel
-      texticle
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -195,7 +185,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   dalli
   exception_notification
-  genome_models!
   haml
   jquery-rails
   launchy
@@ -212,5 +201,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sqlite3
   squeel
+  texticle
   therubyracer
   uglifier (>= 1.0.3)
