@@ -10,7 +10,7 @@
       .control-group
         %label.control-label
           Genes
-          %i.icon-flag.tip{title: tx("genes_flag")}
+          =icon(:flag, title: tx("genes_flag"), class: 'tip')
         .controls
           %textarea#genes(name='genes' rows="13")
       .control-group#loadingBar
