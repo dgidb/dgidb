@@ -20,10 +20,10 @@ $ ->
 
   $("#interaction_tab").tab("show")
 
-  $("#search-again").on 'click', ->
-    gene_symbols = []
-    $("button.active").each -> gene_symbols.push $(this).val()
-    gene_symbols = [gene_symbols.join("\n"), $("#definite_results").val(), $("#no_results").val()].join("\n")
-    $.post(
+  #$("#search-again").on 'click', ->
+    #gene_symbols = []
+    #$("button.active").each -> gene_symbols.push $(this).val()
+    #gene_symbols = [gene_symbols.join("\n"), $("#definite_results").val(), $("#no_results").val()].join("\n")
+    #$.post(
 
 

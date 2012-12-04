@@ -6,7 +6,7 @@
     %small=tx "title_small"
 
 .container-fluid
-  .tabbable
+  .tabbable.tabs-left
     %ul.nav.nav-tabs
       %li.active
         %a(href="#interaction_tab" data-toggle="tab") Interaction Results
@@ -30,8 +30,6 @@
         =render partial: 'interactions/results_by_source_table', locals: {results: @search_results}
       .tab-pane.fade#by_gene
         =render partial: 'interactions/results_by_gene_table', locals: {results: @search_results}
-      .tab-pane.fade#refine_search
-        =render partial: 'interactions/refine_search_form', locals: {results: @search_results}
 
       .tab-pane.active#interaction_tab
         .row-fluid
