@@ -1,7 +1,6 @@
 module DataModel
   class Interaction < ::ActiveRecord::Base
     include Genome::Extensions::UUIDPrimaryKey
-    extend Genome::Extensions::CurrentCache
 
     self.table_name = 'drug_gene_interaction_report'
     belongs_to :gene, foreign_key: :gene_name_report_id, inverse_of: :interactions
@@ -86,14 +85,14 @@ module DataModel
 
     private
     def self.memoize_query(query,cache_key)
-      if current_cache.exist?(cache_key)
-        current_cache.fetch(cache_key)
+      if Rails.cache.exist?(cache_key)
+        Rails.cache.fetch(cache_key)
       else
         filter = query.inject({}) do |hash,val|
           hash[val.id] = true
           hash
         end
-        current_cache.write(cache_key, filter, expires_in: 6.hours)
+        Rails.cache.write(cache_key, filter, expires_in: 6.hours)
         filter
       end
     end

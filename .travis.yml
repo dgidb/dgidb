@@ -8,3 +8,7 @@ rvm:
   - "1.9.3"
 env:
   - RAILS_ENV=test TRAVIS_BUILD=true
+notifications:
+  email:
+    - acoffman@genome.wustl.edu
+    - jweible@genome.wustl.edu

@@ -1,5 +1,4 @@
 class LookupFamilies
-  extend Genome::Extensions::CurrentCache
   class << self
     def find_gene_groups_for_families(family_names)
       families = Array(family_names)
@@ -20,8 +19,8 @@ class LookupFamilies
     end
 
     def get_uniq_category_names_with_counts
-      if current_cache.exist?("unique_category_names_with_counts")
-        current_cache.fetch("unique_category_names_with_counts")
+      if Rails.cache.exist?("unique_category_names_with_counts")
+        Rails.cache.fetch("unique_category_names_with_counts")
       else
         #map to structs is a hack to allow these objects to be cached.
         #you can't marshal a singleton instance of a model class which
@@ -30,7 +29,7 @@ class LookupFamilies
           .joins{ gene.gene_groups }.joins{ gene.interactions }.group{ alternate_name }
           .select{ count(distinct(gene.gene_groups.id)).as(gene_count) }.select{ alternate_name }.select{ count(gene.interactions.id).as(interaction_count) }
           .map{|x| OpenStruct.new(alternate_name: x.alternate_name, gene_count: x.gene_count, interaction_count: x.interaction_count )}
-        current_cache.write("unique_category_names_with_counts", category_names, expires_in: 3.hours)
+        Rails.cache.write("unique_category_names_with_counts", category_names, expires_in: 3.hours)
         category_names
       end
     end
