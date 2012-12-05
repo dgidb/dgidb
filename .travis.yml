@@ -5,5 +5,4 @@ before_script:
 rvm:
   - "1.9.3"
 env:
-  - RAILS_ENV=test
-  - TRAVIS_BUILD=true
+  - RAILS_ENV=test TRAVIS_BUILD=true
