@@ -14,9 +14,9 @@ namespace :dgidb do
 
     # MacPorts Handling
     macports_postgres = Dir.glob( '/opt/local/lib/postgresql*/bin')
-    macports_postgres_path = macports_postgres.last
-    macports_postgres_version = File.basename(File.dirname(macports_postgres_path))
     if RbConfig::CONFIG['host_os'] =~ /darwin/ && macports_postgres.any?
+      macports_postgres_path = macports_postgres.last
+      macports_postgres_version = File.basename(File.dirname(macports_postgres_path))
       puts "Found MacPorts #{macports_postgres_version}"
       ENV['PATH'] = "#{macports_postgres_path}:#{ENV['PATH']}"
     end
