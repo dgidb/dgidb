@@ -31,13 +31,16 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :test, :development  do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
+group :development do
   gem 'pry'
   gem 'pry-remote'
   gem 'pry-nav'
   gem 'rack-mini-profiler'
+end
+
+group :test, :development  do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'sqlite3'
   gem "capybara"
   gem "launchy"
