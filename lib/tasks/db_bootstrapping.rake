@@ -18,7 +18,7 @@ namespace :dgidb do
   end
 
   desc 'load the source controlled db dump and schema into the local db, blowing away what is currently there'
-  task load_local: ['setup_path', 'db:drop', 'db:create', 'db:schema:load'] do
+  task load_local: ['setup_path', 'db:drop', 'db:create', 'db:structure:load'] do
     system "psql -h localhost -d dgidb -f #{data_file}"
   end
 
