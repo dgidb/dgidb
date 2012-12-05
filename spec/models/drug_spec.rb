@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe DataModel::Drug do
-  set_fixture_class :drug_name_report => DataModel::Drug
   fixtures :all
   it "should have many alternate names" do
     drug_name_report("drug_b").drug_alternate_names.should be_an_instance_of(Array)

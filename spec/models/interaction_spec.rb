@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe DataModel::Interaction do
-  set_fixture_class :drug_gene_interaction_report => DataModel::Interaction
   fixtures :all
 
   it "should have many attributes" do
