@@ -1,5 +1,8 @@
 language: ruby
+script: rake spec
+before_script:
+  - psql -c 'create database dgidb-test;' -U postgres
 rvm:
   - "1.9.3"
 env:
-  - RAILS_ENV=test
+  - RAILS_ENV=travis

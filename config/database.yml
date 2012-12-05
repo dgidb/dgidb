@@ -21,6 +21,14 @@ test:
   pool: 5
   host: localhost
 
+travis:
+  adapter: postgresql
+  username: postgres
+  encoding: unicode
+  database: dgidb-test
+  pool: 5
+  host: localhost
+
 #production:
   #adapter: postgresql
   #encoding: unicode
