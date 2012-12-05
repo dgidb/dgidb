@@ -17,7 +17,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: dgidb-test
+  database: dgidb_test
   pool: 5
   host: localhost
 
@@ -25,7 +25,7 @@ travis:
   adapter: postgresql
   username: postgres
   encoding: unicode
-  database: dgidb-test
+  database: dgidb_test
   pool: 5
   host: localhost
 
