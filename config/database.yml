@@ -26,10 +26,10 @@ test:
 
 
 #production:
-  #adapter: postgresql
-  #encoding: unicode
-  #database: dgidb
-  #pool: 5
-  #username: dgidb
-  #password: tgi_dgidb_app
-  #host: localhost
+#  adapter: postgresql
+#  encoding: unicode
+#  database: dgidb
+#  pool: 5
+#  username: dgidb
+#  password: changeme 
+#  host: localhost
