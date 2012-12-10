@@ -1,6 +1,6 @@
 %p
   %b Gene Name:
-  =link_to gene.name, gene.original_data_source_url
+  =ext_link_to gene.name, gene.original_data_source_url
 %p
   %b Source Database Name:
   =link_to gene.citation.source_db_name, source_summary_path(gene.citation.source_db_name)
@@ -14,7 +14,7 @@
       %tr
         %td
           -if(gene.citation.source_db_name == 'GO')
-            =link_to alt_name.alternate_name, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alternate_name
+            =ext_link_to alt_name.alternate_name, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alternate_name
           -else
             =alt_name.alternate_name
         %td=alt_name.nomenclature
