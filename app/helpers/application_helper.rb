@@ -16,4 +16,17 @@ module ApplicationHelper
     opts[:class] = Array( opts[:class] ).push "icon-#{icon_name}"
     content_tag( :i, content, opts )
   end
+
+  def ext_link_to(*args)
+    link_to(*args) + icon('share')
+  end
+
+  def dynamic_link_to(title, link)
+    if /^(http|https):\/\// =~ link then
+      ext_link_to(title, link)
+    else
+      link_to(title, link)
+    end
+  end
+
 end
