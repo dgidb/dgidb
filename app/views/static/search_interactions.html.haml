@@ -28,12 +28,13 @@
           %i.icon-flag.tip{title: tx("source_database_flag")}
         .controls
           =select_tag "sources", options_from_collection_for_select(@sources, "to_s", "to_s"), multiple: true, class: :multiselect
+          #sources-tour(style='width:60px;')
       .control-group
         %label.control-label
           Filter
           %i.icon-flag.tip{title: tx("filter_flag")}
-        .controls
-          %select(name='filter')
+        #filter-control.controls
+          %select(name='filter'id='filters')
             %option(value='basic') Basic
             %option(value='inhibitors_only') Inhibitors only
             %option(value='kinase_only') Kinase associated drugs only
@@ -49,7 +50,7 @@
           %label.radio
             %input(id='tsv_output' type='radio' name='outputFormat' value='tsv') TSV
       .form-actions
-        %button.btn.btn-success(type="submit")Find Drug Interactions
+        %button.btn.btn-success(type="submit" id='search-btn')Find Drug Interactions
 
 =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
 
