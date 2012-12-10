@@ -13,5 +13,5 @@
         %ul(class="unstyled")
           -to("links").each do |l|
             %li
-              %a{href: l["url"]}=l["title"]
+              =dynamic_link_to(l["title"], l["url"])
               %small=l["description"]
