@@ -1,0 +1,11 @@
+search_interactions:
+  genes: >
+    Start by entering a newline delimited list of gene names that you would like to search.
+  defaultGenes: >
+    A sample list of genes is available as an example.
+  sources-tour: >
+    You can limit which sources of drug-gene interactions you would like to search.
+  filters: >
+    You can also limit which types of interactions you would like to see in the result set.
+  search-btn: >
+    When you are satisfied with your settings, click 'Find Drug Interactions' to search.

@@ -10,4 +10,4 @@ faq:
         Until then, please simply cite the URL for dgidb.org.
     - question: Where can I find the code base for DGIDB?
       answer: >
-        The code for dgidb is available at <a href="https://github.com/genome/dgi-db">github</a>.
+        The code for dgidb is available at <a href="https://github.com/genome/dgi-db">github</a><i class="icon-share"></i>.

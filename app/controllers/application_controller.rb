@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
   #before_filter :authenticate
+  before_filter :fetch_tour
 
   def generate_tsv_headers(filename)
     headers.merge!({
@@ -44,6 +45,11 @@ class ApplicationController < ActionController::Base
     authenticate_or_request_with_http_digest do |username|
       USERS[username]
     end
+  end
+
+  def fetch_tour
+   tour_data = TOURS[params[:action]]
+   @tour = Tour.new( tour_data ) if tour_data
   end
 
 end

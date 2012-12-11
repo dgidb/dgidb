@@ -1,5 +1,28 @@
 require 'spec_helper'
 
+describe ApplicationHelper, '#dynamic_link_to' do
+
+  it "appends an image icon to an external link" do
+    url = 'http://www.google.com'
+    title = 'outside'
+    helper.dynamic_link_to(title, url).should eq ext_link_to(title, url)
+  end
+
+  it "does not append an image icon to an internal link" do
+    url = '/internal/path.html'
+    title = 'inside'
+    helper.dynamic_link_to(title, url).should eq link_to(title, url)
+  end
+end
+
+describe ApplicationHelper, '#ext_link_to' do
+  it "appends an image icon to the link" do
+    url = 'http://www.google.com'
+    title = 'google'
+    helper.ext_link_to(title, url).should eq link_to(title, url) + icon('share')
+  end
+end
+
 describe ApplicationHelper, '#icon' do
 
   before :each do

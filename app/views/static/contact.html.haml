@@ -15,5 +15,5 @@
           -to("people").each do |p|
             %dt=p["title"]
             -if p["link"]
-              %dd=link_to(p["link"], p["link"])
+              %dd=dynamic_link_to(p["link"], p["link"])
             %dd=p["description"]

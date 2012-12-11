@@ -1,0 +1,21 @@
+-if tour
+  %ol#tour(style='display:none;')
+    -tour.each_step do |step|
+      %li{ data: { target: step.id } }
+        =step.content
+  =javascript_include_tag 'bootstrap-tour.coffee'
+  :javascript
+    $(document).ready(function() {
+      var startTour = function(cookies){
+        $(this).featureTour({
+          'tipContent': '#tour',
+          'cookieMonster': cookies,
+          'cookieName': "dgidb.#{params['action']}",
+          })
+      };
+      startTour(true);
+      var link="<a href='#' id='show-tour'>Show Tour</a>"
+      $('.page-header').append(link);
+      $('#show-tour').click( function(){startTour(false)});
+    });
+

@@ -12,5 +12,5 @@
       .well
         %dl
           -to("downloads").each do |d|
-            %dt=link_to(d["title"], d["link"])
+            %dt=dynamic_link_to(d["title"], d["link"])
             %dd=d["description"]
