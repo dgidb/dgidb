@@ -98,7 +98,7 @@ class InteractionSearchResultsPresenter
         search_term: result.search_term,
         match_type: match_type(result),
         matches_with_links: (result.groups.map do |g|
-          context.instance_exec{link_to g.name, gene_group_path(g.name)}
+          context.instance_exec{link_to g.display_name, gene_group_path(g.name)}
         end.join(", ") + " ").html_safe)
     end
   end
@@ -110,7 +110,7 @@ class InteractionSearchResultsPresenter
   def interactions_map_by_source_db_names
     unless @interactions_map_by_source_db_names
       interaction_groups = definite_interactions(:filtered).inject(Hash.new() {|hash, key| hash[key] = []}) do |hash, presenter|
-        name = [presenter.drug_name, presenter.gene_group_name].join(" and ")
+        name = [presenter.drug_name, presenter.gene_group_display_name].join(" and ")
         hash[name] << presenter
         hash
       end
@@ -142,6 +142,7 @@ class InteractionSearchResultsPresenter
         array << OpenStruct.new(
           search_term: presenters.first.search_term,
           gene_name: gene_name,
+          gene_display_name: presenters.first.gene_group_display_name,
           passed_drug_count: passed_interactions_by_gene[gene_name].map{|i| i.drug_name}.uniq.count,
           failed_drug_count: failed_interactions_by_gene[gene_name].map{|i| i.drug_name}.uniq.count,
           category_list: presenters.first.potentially_druggable_categories

@@ -19,6 +19,10 @@ class GeneCategorySearchResult
     Maybe(groups.first).name
   end
 
+  def gene_group_display_name
+    Maybe(@groups.first).display_name
+  end
+
   def gene_categories
     Maybe(groups.first).genes
       .map {|x| x.gene_categories }

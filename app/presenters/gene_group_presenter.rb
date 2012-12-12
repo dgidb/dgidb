@@ -4,6 +4,10 @@ class GeneGroupPresenter
     @gene_group = gene_group
   end
 
+  def display_name
+    @gene_group.display_name
+  end
+
   def gene_names
     @uniq_names ||= grouped_names.keys
   end

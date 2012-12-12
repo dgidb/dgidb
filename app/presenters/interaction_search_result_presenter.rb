@@ -27,6 +27,10 @@ class InteractionSearchResultPresenter
     Maybe(@interaction.gene).gene_groups.first.name
   end
 
+  def gene_group_display_name
+    Maybe(@interaction.gene).gene_groups.first.display_name
+  end
+
   def potentially_druggable_categories
     Maybe(@interaction.gene).gene_groups.first.potentially_druggable_genes.map{|g| g.gene_categories}.flatten.select{|c| c.category_name == 'Human Readable Name'}.map{|c| c.category_value}.uniq
   end

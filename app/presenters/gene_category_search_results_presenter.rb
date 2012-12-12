@@ -73,9 +73,11 @@ class GeneCategorySearchResultsPresenter
         category.gene_category
       end.each_pair do |category, results|
         groups = results.map{|x| x.group_name}
+        group_display_names = results.inject({}) {| map, result | map.tap {|h| h[result.group_display_name] = result.group_name } }
         @failed_groups_by_category << OpenStruct.new(
           category_name: category,
           groups: groups,
+          group_display_names: group_display_names,
           group_count: groups.count
         )
       end
@@ -91,10 +93,12 @@ class GeneCategorySearchResultsPresenter
         category.gene_category
       end.each_pair do |category, results|
         groups = results.map{|x| x.group_name}
+        group_display_names = results.inject({}) {| map, result | map.tap {|h| h[result.group_display_name] = result.group_name } }
         sources = groups.map{|x| DataModel::GeneGroup.where(name: x).first.potentially_druggable_genes.select{|g| g.gene_categories.map{|c| c.category_value}.include?(category)}.map{|g| g.citation.source_db_name}}.flatten
         @passed_groups_by_category << OpenStruct.new(
           category_name: category,
           groups: groups,
+          group_display_names: group_display_names,
           non_matched_groups: all_passed_groups - groups,
           group_count: groups.count,
           sources: sources,
@@ -137,10 +141,10 @@ class GeneCategorySearchResultsPresenter
   def category_map(result_list)
    results = Maybe(result_list).inject({:pass => [], :fail => []}) do |hash, result|
       hash[:pass] += result.gene_categories.uniq.select{ |i| @category_scope[i]  }.map do |category|
-        GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_group_name)
+        GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_group_name, result.gene_group_display_name)
       end
       hash[:fail] += result.gene_categories.uniq.reject{ |i| @category_scope[i]  }.map do |category|
-        GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_group_name)
+        GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_group_name, result.gene_group_display_name)
       end
       hash
     end
