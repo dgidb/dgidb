@@ -159,6 +159,26 @@ CREATE TABLE interaction_claim_attributes (
 
 
 --
+-- Name: interaction_claim_types; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE interaction_claim_types (
+    id character varying(255) NOT NULL,
+    type character varying(255)
+);
+
+
+--
+-- Name: interaction_claim_types_interaction_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE interaction_claim_types_interaction_claims (
+    interaction_claim_type_id character varying(255) NOT NULL,
+    interaction_claim_id character varying(255) NOT NULL
+);
+
+
+--
 -- Name: interaction_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -168,7 +188,8 @@ CREATE TABLE interaction_claims (
     gene_claim_id text NOT NULL,
     interaction_type text,
     description text,
-    source_id text
+    source_id text,
+    known_action_type character varying(255)
 );
 
 
@@ -285,6 +306,22 @@ ALTER TABLE ONLY interaction_claim_attributes
 
 
 --
+-- Name: interaction_claim_types_interaction_claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY interaction_claim_types_interaction_claims
+    ADD CONSTRAINT interaction_claim_types_interaction_claims_pkey PRIMARY KEY (interaction_claim_type_id, interaction_claim_id);
+
+
+--
+-- Name: interaction_claim_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY interaction_claim_types
+    ADD CONSTRAINT interaction_claim_types_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: interaction_claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -340,6 +377,13 @@ CREATE INDEX gene_claim_attributes_gene_claim_id_idx ON gene_claim_attributes US
 --
 
 CREATE INDEX gene_claims_source_id_idx ON gene_claims USING btree (source_id);
+
+
+--
+-- Name: index_interaction_claims_on_known_action_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_interaction_claims_on_known_action_type ON interaction_claims USING btree (known_action_type);
 
 
 --
@@ -426,11 +470,27 @@ ALTER TABLE ONLY interaction_claims
 
 
 --
+-- Name: fk_interaction_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_claim_types_interaction_claims
+    ADD CONSTRAINT fk_interaction_claim FOREIGN KEY (interaction_claim_id) REFERENCES interaction_claims(id) MATCH FULL;
+
+
+--
 -- Name: fk_interaction_claim_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interaction_claim_attributes
     ADD CONSTRAINT fk_interaction_claim_id FOREIGN KEY (interaction_claim_id) REFERENCES interaction_claims(id) MATCH FULL;
+
+
+--
+-- Name: fk_interaction_claim_type; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_claim_types_interaction_claims
+    ADD CONSTRAINT fk_interaction_claim_type FOREIGN KEY (interaction_claim_type_id) REFERENCES interaction_claim_types(id) MATCH FULL;
 
 
 --
@@ -462,3 +522,5 @@ ALTER TABLE ONLY interaction_claims
 --
 
 INSERT INTO schema_migrations (version) VALUES ('0');
+
+INSERT INTO schema_migrations (version) VALUES ('20121212223401');
