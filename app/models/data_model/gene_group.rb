@@ -20,5 +20,14 @@ module DataModel
       genes.select{|g| citation_ids.include?(g.citation.id)}
     end
 
+    def display_name
+      alternate_names = Maybe(genes).map{|g| g.gene_alternate_names}.flatten.select{|a| a.nomenclature == 'Gene Description'}
+      if alternate_names.empty?
+          name
+      else
+          [name, ' (', alternate_names[0].alternate_name, ')'].join("")
+      end
+    end
+
   end
 end
