@@ -1,0 +1,39 @@
+module DataModel
+  class DrugClaim < ::ActiveRecord::Base
+    include Genome::Extensions::UUIDPrimaryKey
+
+    has_and_belongs_to_many :drugs
+    has_many :drug_claim_aliases, inverse_of: :drug_claim
+    has_many :interaction_claims, inverse_of: :drug_claim
+    has_many :gene_claims, through: :interaction_claims
+    belongs_to :source, inverse_of: :drug_claim
+    has_many :drug_claim_attributes, inverse_of: :drug_claim
+
+    def sort_value
+      case self.nomenclature
+      when 'pubchem'
+        return -1
+      else
+        return 0
+      end
+    end
+
+    def original_data_source_url
+      base_url = self.source.base_url
+      name = self.name
+      case self.source.source_db_name
+      when 'DrugBank'
+        [base_url, 'drugs', name].join('/')
+      when 'PharmGKB'
+        [base_url, 'drug', name].join('/')
+      when 'TTD'
+        base_url + 'DRUG.asp?ID=' + name
+      when 'TALC'
+        'http://www.ncbi.nlm.nih.gov/pubmed/22005529/' #TODO: This is a hack.  Fix it with another db column
+      else
+        base_url + name
+      end
+    end
+
+  end
+end
