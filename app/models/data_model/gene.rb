@@ -1,8 +1,7 @@
 module DataModel
-  class GeneGroup < ::ActiveRecord::Base
+  class Gene < ::ActiveRecord::Base
     include Genome::Extensions::UUIDPrimaryKey
-    self.table_name = 'gene_name_group'
-    has_and_belongs_to_many :genes, join_table: :gene_name_group_bridge, foreign_key: :gene_name_group_id, association_foreign_key: :gene_name_report_id
+    has_and_belongs_to_many :gene_claims
 
     class << self
       def for_search

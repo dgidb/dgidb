@@ -1,8 +1,7 @@
 module DataModel
-  class GeneAlternateName < ::ActiveRecord::Base
+  class GeneClaimAlias < ::ActiveRecord::Base
     include Genome::Extensions::UUIDPrimaryKey
-    self.table_name = 'gene_name_report_association'
-    belongs_to :gene, foreign_key: :gene_name_report_id, inverse_of: :gene_alternate_names
+    belongs_to :gene_claim
 
     class << self
       def for_search
