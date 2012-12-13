@@ -5,7 +5,7 @@ class LookupCategories
       raise "Please specify at least one category name" unless categories.size > 0
 
       results = categories.inject({}) do |hash, category|
-        hash[category] = DataModel::GeneCategory.includes(gene: [:gene_groups, :citation]).where{
+        hash[category] = DataModel::GeneClaimAttribute.includes(gene: [:gene_groups, :citation]).where{
           category_name.eq("Human Readable Name") & category_value.eq(category)
         }
         hash
@@ -19,7 +19,7 @@ class LookupCategories
         #map to structs is a hack to allow these objects to be cached.
         #you can't marshal a singleton instance of a model class which
         #is what this select creates
-        category_names = DataModel::GeneCategory.where{ category_name.eq("Human Readable Name") }
+        category_names = DataModel::GeneClaimAttribute.where{ category_name.eq("Human Readable Name") }
           .joins{ gene.gene_groups }.group{ category_value }
           .select{ count(distinct(gene.gene_groups.id)).as(count) }.select{ category_value }.order("category_value")
           .map{|x| OpenStruct.new(category_value: x.category_value,count: x.count )}

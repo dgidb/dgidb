@@ -9,21 +9,21 @@ class LookupGenes
         hash
       end
 
-      results = DataModel::GeneGroup.send(scope).where{name.eq_any(gene_names)}
+      results = DataModel::Gene.send(scope).where{name.eq_any(gene_names)}
       result_names = results.map(&:name)
       gene_names = gene_names.reject{|name| result_names.include?(name)}
-      results += DataModel::GeneAlternateName.send(scope).where{alternate_name.eq_any(gene_names)}
+      results += DataModel::GeneClaimAlias.send(scope).where{alternate_name.eq_any(gene_names)}
       result_names = results.map{|r| r.respond_to?(:name) ? r.name : r.alternate_name }
       gene_names = gene_names.reject{|name| result_names.include?(name)}
-      results += DataModel::Gene.send(scope).where{name.eq_any(gene_names)}
+      results += DataModel::GeneClaim.send(scope).where{name.eq_any(gene_names)}
 
       results.each do |result|
         case result
-        when DataModel::GeneGroup
-          results_to_gene_groups[result.name] << result
-        when DataModel::GeneAlternateName
-          results_to_gene_groups[result.alternate_name] += result.gene.gene_groups
         when DataModel::Gene
+          results_to_gene_groups[result.name] << result
+        when DataModel::GeneClaimAlias
+          results_to_gene_groups[result.alternate_name] += result.gene.gene_groups
+        when DataModel::GeneClaim
           results_to_gene_groups[result.name] += result.gene_groups
         end
       end

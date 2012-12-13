@@ -2,11 +2,11 @@ class LookupRelatedDrugs
 
   class << self
     def find(drug_name)
-      similar_groups = DataModel::DrugGroup.search_by_name(drug_name)
+      similar_groups = DataModel::Drug.search_by_name(drug_name)
       similar_drugs = []
       drugs = []
-      drugs = DataModel::Drug.preload(:drug_groups).search_by_name(drug_name)
-      drug_alt_names = DataModel::DrugAlternateName.preload(drug: [:drug_groups]).search_by_alternate_name(drug_name)
+      drugs = DataModel::DrugClaim.preload(:drug_groups).search_by_name(drug_name)
+      drug_alt_names = DataModel::DrugClaimAlias.preload(drug: [:drug_groups]).search_by_alternate_name(drug_name)
       drugs += drug_alt_names.map{|alt| alt.drug}
       drugs.each do |drug|
         if drug.drug_groups
