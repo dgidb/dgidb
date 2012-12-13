@@ -20,7 +20,9 @@ module DataModel
     end
 
     def display_name
-      alternate_names = Maybe(genes).map{|g| g.gene_claim_aliases}.flatten.select{|a| a.nomenclature == 'Gene Description'}
+      alternate_names = Maybe(gene_claims)
+        .flat_map{|g| g.gene_claim_aliases}
+        .select{|a| a.nomenclature == 'Gene Description'}
       if alternate_names.empty?
           name
       else

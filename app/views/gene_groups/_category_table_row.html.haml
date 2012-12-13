@@ -1,5 +1,5 @@
 %tr
   %td
-    =link_to category_table_row.gene_group.display_name, gene_group_path(category_table_row.gene_group.name)
+    =link_to gene.gene_name, gene_group_path(gene.gene_name)
   %td
-    =category_table_row.source_db_names.map{|name| link_to name, "/sources/#{name}"}.join(", ").html_safe
+    =gene.source_links(self)
