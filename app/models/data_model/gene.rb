@@ -16,16 +16,16 @@ module DataModel
 
     def potentially_druggable_genes
       #return Go or other potentially druggable categories
-      citation_ids = DataModel::Source.potentially_druggable_sources.map{|c| c.id}
-      genes.select{|g| citation_ids.include?(g.citation.id)}
+      source_ids = DataModel::Source.potentially_druggable_sources.map{|s| s.id}
+      genes.select{|g| source_ids.include?(g.citation.id)}
     end
 
     def display_name
-      alternate_names = Maybe(genes).map{|g| g.gene_alternate_names}.flatten.select{|a| a.nomenclature == 'Gene Description'}
+      alternate_names = Maybe(genes).map{|g| g.gene_claim_aliases}.flatten.select{|a| a.nomenclature == 'Gene Description'}
       if alternate_names.empty?
           name
       else
-          [name, ' (', alternate_names[0].alternate_name, ')'].join("")
+          [name, ' (', alternate_names[0].alias, ')'].join("")
       end
     end
 
