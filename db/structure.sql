@@ -114,6 +114,26 @@ CREATE TABLE gene_claim_attributes (
 
 
 --
+-- Name: gene_claim_categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE gene_claim_categories (
+    id character varying(255) NOT NULL,
+    name character varying(255) NOT NULL
+);
+
+
+--
+-- Name: gene_claim_categories_gene_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE gene_claim_categories_gene_claims (
+    gene_claim_id character varying(255) NOT NULL,
+    gene_claim_category_id character varying(255) NOT NULL
+);
+
+
+--
 -- Name: gene_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -271,6 +291,22 @@ ALTER TABLE ONLY gene_claim_aliases
 
 ALTER TABLE ONLY gene_claim_attributes
     ADD CONSTRAINT gene_claim_attributes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: gene_claim_categories_gene_claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY gene_claim_categories_gene_claims
+    ADD CONSTRAINT gene_claim_categories_gene_claims_pkey PRIMARY KEY (gene_claim_id, gene_claim_category_id);
+
+
+--
+-- Name: gene_claim_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY gene_claim_categories
+    ADD CONSTRAINT gene_claim_categories_pkey PRIMARY KEY (id);
 
 
 --
@@ -446,6 +482,22 @@ ALTER TABLE ONLY interaction_claims
 
 
 --
+-- Name: fk_gene_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_claim_categories_gene_claims
+    ADD CONSTRAINT fk_gene_claim FOREIGN KEY (gene_claim_id) REFERENCES gene_claims(id) MATCH FULL;
+
+
+--
+-- Name: fk_gene_claim_category; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_claim_categories_gene_claims
+    ADD CONSTRAINT fk_gene_claim_category FOREIGN KEY (gene_claim_category_id) REFERENCES gene_claim_categories(id) MATCH FULL;
+
+
+--
 -- Name: fk_gene_claim_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -524,3 +576,5 @@ ALTER TABLE ONLY interaction_claims
 INSERT INTO schema_migrations (version) VALUES ('0');
 
 INSERT INTO schema_migrations (version) VALUES ('20121212223401');
+
+INSERT INTO schema_migrations (version) VALUES ('20121213151709');
