@@ -163,7 +163,7 @@ CREATE TABLE gene_claims_genes (
 CREATE TABLE genes (
     id text NOT NULL,
     name text,
-    display_name character varying(255)
+    long_name character varying(255)
 );
 
 
@@ -659,3 +659,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121213151709');
 INSERT INTO schema_migrations (version) VALUES ('20121214160809');
 
 INSERT INTO schema_migrations (version) VALUES ('20121214161439');
+
+INSERT INTO schema_migrations (version) VALUES ('20121214191000');

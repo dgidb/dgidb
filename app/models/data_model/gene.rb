@@ -26,7 +26,7 @@ module DataModel
       if alternate_names.empty?
           name
       else
-          [name, ' (', alternate_names[0].alias, ')'].join("")
+          alternate_names[0].alias
       end
     end
 
