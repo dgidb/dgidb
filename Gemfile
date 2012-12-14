@@ -43,6 +43,8 @@ group :test, :development  do
   gem 'factory_girl_rails'
   gem "capybara"
   gem "launchy"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # To use ActiveModel has_secure_password
