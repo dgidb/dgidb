@@ -24,7 +24,7 @@ class FilterChain
         @computed = evaluate_axis(value)
       end
     end
-    @computed
+    store(@computed, composite_key(@all_inclusions))
   end
 
   def composite_key(inclusions)
