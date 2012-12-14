@@ -5,11 +5,11 @@ module DataModel
 
     class << self
       def for_search
-        includes(gene: {gene_groups: [], interactions: {interaction_attributes: [], drug: [:drug_alternate_names, :drug_categories], citation: []}})
+        includes(gene_claim: {genes: [], interaction_claims: {interaction_claim_attributes: [], drug_claim: [:drug_claim_aliases, :drug_claim_attributes], source: []}})
       end
 
       def for_gene_categories
-        includes(gene: [:gene_groups])
+        includes(gene_claim: [:genes])
       end
     end
   end
