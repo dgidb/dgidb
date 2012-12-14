@@ -162,7 +162,8 @@ CREATE TABLE gene_claims_genes (
 
 CREATE TABLE genes (
     id text NOT NULL,
-    name text
+    name text,
+    display_name character varying(255)
 );
 
 
@@ -223,6 +224,16 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: source_types; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE source_types (
+    id character varying(255) NOT NULL,
+    type character varying(255) NOT NULL
+);
+
+
+--
 -- Name: sources; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -233,7 +244,8 @@ CREATE TABLE sources (
     citation text,
     base_url text,
     site_url text,
-    full_name text
+    full_name text,
+    source_type_id character varying(255)
 );
 
 
@@ -366,6 +378,14 @@ ALTER TABLE ONLY interaction_claims
 
 
 --
+-- Name: source_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY source_types
+    ADD CONSTRAINT source_types_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -381,6 +401,13 @@ CREATE INDEX drug_claim_aliases_drug_claim_id_idx ON drug_claim_aliases USING bt
 
 
 --
+-- Name: drug_claim_aliases_full_text; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX drug_claim_aliases_full_text ON drug_claim_aliases USING gin (to_tsvector('english'::regconfig, alias));
+
+
+--
 -- Name: drug_claim_attributes_drug_claim_id_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -388,10 +415,31 @@ CREATE INDEX drug_claim_attributes_drug_claim_id_idx ON drug_claim_attributes US
 
 
 --
+-- Name: drug_claims_full_text; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX drug_claims_full_text ON drug_claims USING gin (to_tsvector('english'::regconfig, name));
+
+
+--
 -- Name: drug_claims_source_id_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX drug_claims_source_id_idx ON drug_claims USING btree (source_id);
+
+
+--
+-- Name: drugs_full_text; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX drugs_full_text ON drugs USING gin (to_tsvector('english'::regconfig, name));
+
+
+--
+-- Name: gene_claim_aliases_full_text; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX gene_claim_aliases_full_text ON gene_claim_aliases USING gin (to_tsvector('english'::regconfig, alias));
 
 
 --
@@ -409,10 +457,24 @@ CREATE INDEX gene_claim_attributes_gene_claim_id_idx ON gene_claim_attributes US
 
 
 --
+-- Name: gene_claims_full_text; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX gene_claims_full_text ON gene_claims USING gin (to_tsvector('english'::regconfig, name));
+
+
+--
 -- Name: gene_claims_source_id_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX gene_claims_source_id_idx ON gene_claims USING btree (source_id);
+
+
+--
+-- Name: genes_full_text; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX genes_full_text ON genes USING gin (to_tsvector('english'::regconfig, name));
 
 
 --
@@ -448,6 +510,13 @@ CREATE INDEX interaction_claims_gene_claim_id_idx ON interaction_claims USING bt
 --
 
 CREATE INDEX interaction_claims_source_id_idx ON interaction_claims USING btree (source_id);
+
+
+--
+-- Name: sources_source_type_id_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX sources_source_type_id_idx ON sources USING btree (source_type_id);
 
 
 --
@@ -570,6 +639,14 @@ ALTER TABLE ONLY interaction_claims
 
 
 --
+-- Name: fk_source_type; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sources
+    ADD CONSTRAINT fk_source_type FOREIGN KEY (source_type_id) REFERENCES source_types(id) MATCH FULL;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -578,3 +655,7 @@ INSERT INTO schema_migrations (version) VALUES ('0');
 INSERT INTO schema_migrations (version) VALUES ('20121212223401');
 
 INSERT INTO schema_migrations (version) VALUES ('20121213151709');
+
+INSERT INTO schema_migrations (version) VALUES ('20121214160809');
+
+INSERT INTO schema_migrations (version) VALUES ('20121214161439');
