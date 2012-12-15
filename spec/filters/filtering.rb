@@ -91,4 +91,11 @@ describe FilterChain do
     @filter_chain.include?(3).should be_true
   end
 
+  it 'should define include and exclude methods for registered filters' do
+    Filter.all_filters.each do |filter|
+      @filter_chain.respond_to?("include_#{filter}").should be_true
+      @filter_chain.respond_to?("exclude_#{filter}").should be_true
+    end
+  end
+
 end
