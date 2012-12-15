@@ -81,6 +81,20 @@ describe FilterChain do
   end
 
   it 'should order cache keys consistently regardless of filter order' do
+    @filter_chain.include_identity('axis1', 3, 4)
+    @filter_chain.include_identity('axis1', 1, 3)
+
+    @filter_chain.include?(1)
+    Rails.cache.exist?('identity.1-3.identity.3-4').should be_true
+    Rails.cache.exist?('identity.3-4.identity.1-3').should be_false
+
+    @filter_chain = FilterChain.new
+    @filter_chain.include_identity('axis1', 1, 3)
+    @filter_chain.include_identity('axis1', 3, 4)
+
+    @filter_chain.include?(1)
+    Rails.cache.exist?('identity.1-3.identity.3-4').should be_true
+    Rails.cache.exist?('identity.3-4.identity.1-3').should be_false
   end
 
   it 'should recompute as needed when new filters are added' do
