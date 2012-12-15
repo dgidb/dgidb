@@ -57,11 +57,12 @@ class FilterChain
       Rails.cache.fetch(key)
     else
       current_filter = filters.pop
+      current_resolved = store(current_filter.resolve, current_filter.cache_key)
       if filters.empty?
-        store(current_filter.resolve, key)
+        current_resolved
       else
         results = evaluate_axis(filters)
-        store(results + current_filter.resolve, key)
+        store(results + current_resolved, key)
       end
     end
   end
