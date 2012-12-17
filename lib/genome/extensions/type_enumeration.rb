@@ -15,7 +15,12 @@ module Genome
             Rails.cache.fetch(cache_key)
           else
             id_map = self.all.inject({}) do |hash, val|
-              hash.tap { |h| h[val.type] = val.id }
+              hash.tap do |h|
+                key = transforms.inject(val.send(type_column)) do |curr, transform|
+                  curr.send(*transform)
+                end
+                h[key] = val.id
+              end
             end
             Rails.cache.write(cache_key, id_map)
             id_map
@@ -24,6 +29,14 @@ module Genome
 
         def self.cache_key
           raise "You must implement cache key!"
+        end
+
+        def self.type_column
+          :type
+        end
+
+        def self.transforms
+          [:downcase]
         end
       end
     end
