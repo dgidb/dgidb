@@ -11,7 +11,7 @@ module DataModel
 
     class << self
       def for_search
-        eager_load{[genes, genes.gene_claims.interaction_claims, interaction_claims, interaction_claims.drug_claim, interaction_claims.drug_claim.drug_claim_aliases, interaction_claims.drug_claim.drug_claim_attributes, interaction_claims.source, drug_claims, drug_claims.drug_claim_aliases, drugs.drug_claim_attributes, genes.gene_claims.interaction_claims.drug_claim, genes.gene_claims.interaction_claims.drug_claim.drug_claim_aliases, genes.gene_claims.interaction_claims.drug_claim.drug_claim_attributes, genes.gene_claims.interaction_claims.source, source ]}
+        eager_load{[genes, genes.gene_claims.interaction_claims, interaction_claims, interaction_claims.drug_claim, interaction_claims.drug_claim.drug_claim_aliases, interaction_claims.drug_claim.drug_claim_attributes, interaction_claims.source, drug_claims, drug_claims.drug_claim_aliases, genes.gene_claims.interaction_claims.drug_claim, genes.gene_claims.interaction_claims.drug_claim.drug_claim_aliases, genes.gene_claims.interaction_claims.drug_claim.drug_claim_attributes, genes.gene_claims.interaction_claims.source, source ]}
       end
 
       def for_gene_categories

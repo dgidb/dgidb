@@ -94,7 +94,7 @@ class GeneCategorySearchResultsPresenter
       end.each_pair do |category, results|
         groups = results.map{|x| x.group_name}
         group_display_names = results.inject({}) {| map, result | map.tap {|h| h[result.group_display_name] = result.group_name } }
-        sources = groups.map{|x| DataModel::GeneGroup.where(name: x).first.potentially_druggable_genes.select{|g| g.gene_categories.map{|c| c.category_value}.include?(category)}.map{|g| g.citation.source_db_name}}.flatten
+        sources = groups.map{|x| DataModel::Gene.where(name: x).first.potentially_druggable_genes.select{|g| g.gene_categories.map{|c| c.category_value}.include?(category)}.map{|g| g.citation.source_db_name}}.flatten
         @passed_groups_by_category << OpenStruct.new(
           category_name: category,
           groups: groups,

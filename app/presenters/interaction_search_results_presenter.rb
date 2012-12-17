@@ -6,8 +6,8 @@ class InteractionSearchResultsPresenter
     @start_time = start_time
     @search_results = search_results
     @filter = params[:filter]
-    @filter_scope = DataModel::Interaction.send(@filter)
-    @source_scope = DataModel::Interaction.source_scope(params[:sources])
+    @filter_scope = {}
+    @source_scope = {}
   end
 
   def number_of_search_terms
@@ -98,7 +98,7 @@ class InteractionSearchResultsPresenter
         search_term: result.search_term,
         match_type: match_type(result),
         matches_with_links: (result.groups.map do |g|
-          context.instance_exec{link_to g.display_name, gene_group_path(g.name)}
+          context.instance_exec{link_to g.name, gene_path(g.name)}
         end.join(", ") + " ").html_safe)
     end
   end

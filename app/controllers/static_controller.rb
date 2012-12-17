@@ -8,7 +8,7 @@ class StaticController < ApplicationController
   end
 
   def search_interactions
-    @sources = DataSources.uniq_source_names_with_interactions.sort
+    @sources = DataSources.uniq_source_names_with_interaction_claims.sort
   end
 
   private

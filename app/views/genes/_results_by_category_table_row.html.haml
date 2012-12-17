@@ -1,0 +1,5 @@
+%tr
+  %td=link_to results_by_category_table_row.category_name, gene_by_category_path(results_by_category_table_row.category_name)
+  %td=results_by_category_table_row.group_count
+  %td=(results_by_category_table_row.groups.map{ |g| link_to g, gene_path(g) }.join(", ")).html_safe
+  %td=(results_by_category_table_row.non_matched_groups.map{ |g| link_to g, gene_path(g) }.join(", ")).html_safe

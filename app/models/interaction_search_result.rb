@@ -5,8 +5,8 @@ class InteractionSearchResult
   def initialize(search_term, groups)
     @search_term = search_term
     @groups = groups.uniq
-    @interactions = groups.map{|group| group.genes}.flatten.inject([]) do |list, gene|
-      list += gene.interactions
+    @interactions = groups.map{|group| group.gene_claims}.flatten.inject([]) do |list, gene_claim|
+      list += gene_claim.interaction_claims
     end
   end
 

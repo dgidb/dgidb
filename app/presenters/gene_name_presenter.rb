@@ -1,4 +1,4 @@
-class GeneGroupNamePresenter
+class GeneNamePresenter
   include Genome::Extensions
   attr_accessor :name, :source_db_names
   def initialize(name, source_db_names, all_source_db_names)

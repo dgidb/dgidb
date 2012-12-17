@@ -6,10 +6,10 @@ class RelatedDrugPresenter
 
   def name_link(context)
     case @drug
-    when DataModel::DrugGroup
-      context.link_to @drug.name, context.drug_group_path(@drug.name)
     when DataModel::Drug
       context.link_to @drug.name, context.drug_path(@drug.name)
+    when DataModel::DrugClaim
+      context.link_to @drug.name, context.drug_claim_path(@drug.name)
     end
   end
 end
