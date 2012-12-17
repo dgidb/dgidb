@@ -24,14 +24,15 @@ class LookupCategories
     else
       categories_with_counts = DataModel::GeneClaimCategory
         .connection
-        .select_all <<-EOS
-          SELECT gcc.name, COUNT(gene_claim_id) FROM gene_claim_categories_gene_claims gccgc
+        .select_all(<<-EOS
+          SELECT gcc.name, COUNT(DISTINCT(gcg.gene_id)) FROM gene_claim_categories_gene_claims gccgc
           INNER JOIN gene_claim_categories gcc ON gcc.id = gccgc.gene_claim_category_id
-          GROUP BY gcc.name ORDER BY COUNT(gene_claim_id) DESC;
+          INNER JOIN gene_claims_genes gcg ON gcg.gene_claim_id = gccgc.gene_claim_id
+          GROUP BY gcc.name ORDER BY COUNT(DISTINCT(gcg.gene_id)) DESC;
         EOS
-        .map{|x| OpenStruct.new(alternate_name: x.alternate_name, gene_count: x.gene_count, interaction_count: x.interaction_count )}
-      Rails.cache.write("unique_category_names_with_counts", category_names, expires_in: 3.hours)
-      category_names
+        ).map{|x| OpenStruct.new(name: x['name'], gene_count: x['count'])}
+      Rails.cache.write("unique_category_names_with_counts", categories_with_counts, expires_in: 3.hours)
+      categories_with_counts
     end
   end
 end
