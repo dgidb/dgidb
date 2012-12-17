@@ -8,7 +8,7 @@ class DataSourceSummary
   end
 
   def full_name
-    @source.full_name    
+    @source.full_name
   end
 
   def homepage

@@ -30,7 +30,7 @@ class LookupCategories
           INNER JOIN gene_claims_genes gcg ON gcg.gene_claim_id = gccgc.gene_claim_id
           GROUP BY gcc.name ORDER BY COUNT(DISTINCT(gcg.gene_id)) DESC;
         EOS
-        ).map{|x| OpenStruct.new(name: x['name'], gene_count: x['count'])}
+        ).map { |x| OpenStruct.new(name: x['name'], gene_count: x['count']) }
       Rails.cache.write("unique_category_names_with_counts", categories_with_counts, expires_in: 3.hours)
       categories_with_counts
     end
