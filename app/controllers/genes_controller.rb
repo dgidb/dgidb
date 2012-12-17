@@ -25,18 +25,18 @@ class GenesController < ApplicationController
     genes = LookupCategories.find_genes_for_categories(params[:name])
     @genes = DruggableGeneCategoryPresenter.new(genes[params[:name]])
     @title = "Genes in the #{params[:name]} category"
-    @druggable_gene_categories_active = "active"
+    @druggable_gene_categories_active = 'active'
     @category_name = params[:name]
   end
 
   def druggable_gene_categories
     @categories = LookupCategories.get_uniq_category_names_with_counts
-    @title = "Druggable Gene Categories"
-    @druggable_gene_categories_active = "active"
+    @title = 'Druggable Gene Categories'
+    @druggable_gene_categories_active = 'active'
   end
 
   def categories_search_results
-    @search_categories_active = "active"
+    @search_categories_active = 'active'
     start_time = Time.now
     combine_input_genes(params)
     validate_search_request(params)

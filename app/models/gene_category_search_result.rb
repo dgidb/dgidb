@@ -1,33 +1,32 @@
 class GeneCategorySearchResult
 
-  attr_accessor :search_term, :groups
+  attr_accessor :search_term, :genes
 
-  def initialize(search_term, groups)
+  def initialize(search_term, genes)
     @search_term = search_term
-    @groups = groups.uniq
+    @genes = genes.uniq
   end
 
   def is_ambiguous?
-    groups.length > 1
+    genes.length > 1
   end
 
   def has_results?
-    groups.length > 0
+    genes.length > 0
   end
 
   def gene_group_name
-    Maybe(groups.first).name
+    genes.first.name
   end
 
   def gene_group_display_name
-    Maybe(@groups.first).display_name
+    genes.first.long_name
   end
 
   def gene_categories
-    Maybe(groups.first).genes
-      .map {|x| x.gene_categories }
-      .flatten.select{|x| x.category_name == "Human Readable Name"}
-      .map{|x| x.category_value} || []
+    genes.first.gene_claims
+      .flat_map { |gc| gc.gene_claim_categories }
+      .map { |gcc| gcc.name } || []
   end
 
   def partition

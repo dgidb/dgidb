@@ -6,7 +6,7 @@ module DataModel
     has_many :drug_claim_aliases, inverse_of: :drug_claim
     has_many :interaction_claims, inverse_of: :drug_claim
     has_many :gene_claims, through: :interaction_claims
-    belongs_to :source, inverse_of: :drug_claim
+    belongs_to :source, inverse_of: :drug_claims
     has_many :drug_claim_attributes, inverse_of: :drug_claim
 
     def sort_value

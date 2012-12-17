@@ -4,7 +4,7 @@
   %td
     =link_to interaction_table_row.gene_long_name,  gene_path(interaction_table_row.gene_name)
   %td
-    =link_to interaction_table_row.drug_claim_name, drug_path(interaction_table_row.interaction_claim.drug_claim.name)
+    =link_to interaction_table_row.drug_claim_name, drug_claim_path(interaction_table_row.interaction_claim.drug_claim.name)
   %td
     =link_to interaction_table_row.types_string, interaction_claim_path(interaction_table_row.interaction_claim)
   %td

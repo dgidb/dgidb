@@ -1,0 +1,4 @@
+-drug.drug_claims.sort_by{|d| d.sort_value}.each do |drug_claim|
+  .item
+    %div(class="hero-unit drug bubble-links #{drug_claim.source.source_db_name}")
+      =render partial: 'drug_claims/drug_claim', locals: {drug_claim: drug_claim}

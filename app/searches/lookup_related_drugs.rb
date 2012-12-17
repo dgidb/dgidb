@@ -1,22 +1,16 @@
 class LookupRelatedDrugs
 
-  class << self
-    def find(drug_name)
-      similar_groups = DataModel::Drug.search_by_name(drug_name)
-      similar_drugs = []
-      drugs = []
-      drugs = DataModel::DrugClaim.preload(:drug_groups).search_by_name(drug_name)
-      drug_alt_names = DataModel::DrugClaimAlias.preload(drug: [:drug_groups]).search_by_alternate_name(drug_name)
-      drugs += drug_alt_names.map{|alt| alt.drug}
-      drugs.each do |drug|
-        if drug.drug_groups
-          similar_groups += drug.drug_groups
-        else
-          similar_drugs << drug
-        end
-      end
-      (similar_groups.uniq_by {|group| group.id } + similar_drugs.uniq_by { |drug| drug.id }).map{|d| RelatedDrugPresenter.new(d)}
-    end
-  end
+  def self.find(drug_name)
+    drugs = DataModel::Drug.search_by_name(drug_name)
+    drugs += DataModel::DrugClaim.preload(:drugs)
+      .search_by_name(drug_name).flat_map { |dc| dc.drugs }
+    drugs += DataModel::DrugClaimAlias.preload(drug_claim: [:drugs])
+      .search_by_alias(drug_name)
+      .map { |dca| dca.drug_claim }
+      .flat_map { |dc| dc.drugs }
 
+    drugs.uniq_by { |d| d.id }
+      .reject { |d| d.name == drug_name }
+      .map { |d| RelatedDrugPresenter.new(d) }
+  end
 end

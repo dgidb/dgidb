@@ -9,7 +9,7 @@ DruggableGene::Application.routes.draw do
   match 'drugs/:name' => 'drugs#show', as: 'drug'
   match 'sources/:source_db_name' => 'sources#show', as: 'source'
   match 'sources' => 'sources#sources'
-  match 'drugs/:name/related' => 'drugs#related_drug_groups', as: 'related_drug'
+  match 'drugs/:name/related' => 'drugs#related_drugs', as: 'related_drug'
   match 'search_results' => 'search#search_results'
   match 'cache/invalidate' => 'utilities#invalidate_cache'
   post 'interaction_search_results' => 'interactions#interaction_search_results'

@@ -3,10 +3,10 @@ class DrugsController < ApplicationController
 
   def show
     @title = params[:name]
-    @drug_group = DataModel::Drug.where(name: params[:name]).first
+    @drug = DataModel::Drug.where(name: params[:name]).first
   end
 
-  def related_drug_groups
+  def related_drugs
     @drugs = LookupRelatedDrugs.find(params[:name])
   end
 end

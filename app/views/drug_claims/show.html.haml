@@ -4,7 +4,7 @@
   %h2
     %span{id: "drug_name"}
       =@title
-    %small drug instance page
+    %small drug claim page
 
 .row-fluid.span12.well
   -@drugs.each do |drug|
@@ -13,27 +13,27 @@
       %a{href: drug.original_data_source_url}=drug.name
     %p
       %b Source Database Name:
-      =link_to drug.citation.source_db_name, source_path(drug.citation.source_db_name)
+      =link_to drug.source.source_db_name, source_path(drug.source.source_db_name)
     %p
       %b Source Database Version:
-      =drug.citation.source_db_version
+      =drug.source.source_db_version
     %p
       %b Alternate Names:
       %table.table.table-striped
-        -drug.drug_alternate_names.each do |alt_name|
+        -drug.drug_claim_aliases.each do |alt_name|
           %tr
-            %td=alt_name.alternate_name
+            %td=alt_name.alias
             %td=alt_name.nomenclature
     %p
       %b Meta-data:
       %table.table.table-striped
-        -drug.drug_categories.each do |category|
+        -drug.drug_claim_attributes.each do |attr|
           %tr
-            %td=category.category_name
-            %td=category.category_value
+            %td=attr.name
+            %td=attr.value
     %p
       %b Citation:
-      =drug.citation.citation
+      =drug.source.citation
 .row-fluid.span12.well
   %h3 Similarly Named Drugs
   %span{id: "related_drugs"}

@@ -1,5 +1,15 @@
 class LookupCategories
 
+  def self.find(params)
+    gene_results = LookupGenes.find(
+      params[:gene_names],
+      :for_gene_categories,
+      GeneCategorySearchResult
+    )
+
+    filter_scope = 
+  end
+
   #given a list of (or single) category name(s) this method will return a hash
   #containing category names as keys, and the Genes in each category as values
   def self.find_genes_for_categories(category_names)
