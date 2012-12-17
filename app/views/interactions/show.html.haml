@@ -17,7 +17,7 @@
           =link_to @gene.name, "/genes/#{@gene.source_db_name}/#{@gene.name}"
         %p
           %b Source Database Name:
-          =link_to @interaction.citation.source_db_name, source_summary_path(@interaction.citation.source_db_name)
+          =link_to @interaction.citation.source_db_name, source_path(@interaction.citation.source_db_name)
         %p
           %b Source Database Version:
           =@interaction.citation.source_db_version

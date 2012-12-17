@@ -1,11 +1,11 @@
 class GenePresenter
-  attr_accessor :gene_group
+  attr_accessor :gene
   def initialize(gene_group)
-    @gene_group = gene_group
+    @gene = gene_group
   end
 
   def display_name
-    @gene.display_name
+    @gene.name
   end
 
   def gene_claim_names
@@ -44,7 +44,7 @@ class GenePresenter
 
     results = []
     hash.each_pair do |key, value|
-      results << GenePresenter.new(key, value, source_db_names)
+      results << GeneNamePresenter.new(key, value, source_db_names)
     end
     results
   end

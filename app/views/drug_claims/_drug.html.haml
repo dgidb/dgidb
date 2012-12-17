@@ -3,7 +3,7 @@
   =link_to drug.name, drug.original_data_source_url
 %p
   %b Source Database Name:
-  =link_to drug.citation.source_db_name, source_summary_path(drug.citation.source_db_name)
+  =link_to drug.citation.source_db_name, source_path(drug.citation.source_db_name)
 %p
   %b Source Database Version:
   =drug.citation.source_db_version
