@@ -1,30 +1,30 @@
 %p
   %b Gene Name:
-  =ext_link_to gene.name, gene.original_data_source_url
+  =ext_link_to gene_claim.name, gene_claim.original_data_source_url
 %p
   %b Source Database Name:
-  =link_to gene.citation.source_db_name, source_summary_path(gene.citation.source_db_name)
+  =link_to gene_claim.source.source_db_name, source_summary_path(gene_claim.source.source_db_name)
 %p
   %b Source Database Version:
-  =gene.citation.source_db_version
+  =gene_claim.source.source_db_version
 %p
   %b Alternate Names:
   %table.table
-    -gene.gene_alternate_names.each do |alt_name|
+    -gene_claim.gene_claim_aliases.each do |alt_name|
       %tr
         %td
-          -if(gene.citation.source_db_name == 'GO')
-            =ext_link_to alt_name.alternate_name, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alternate_name
+          -if(gene_claim.source.source_db_name == 'GO')
+            =ext_link_to alt_name.alias, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alias
           -else
-            =alt_name.alternate_name
+            =alt_name.alias
         %td=alt_name.nomenclature
 %p
   %b Meta-data:
   %table.table
-    -gene.gene_categories.each do |category|
+    -gene_claim.gene_claim_attributes.each do |category|
       %tr
-        %td=category.category_name
-        %td=category.category_value
+        %td=category.name
+        %td=category.value
 %p
   %b Citation:
-  %p=gene.citation.citation
+  %p=gene_claim.source.citation
