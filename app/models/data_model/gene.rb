@@ -19,16 +19,5 @@ module DataModel
       gene_claims.select{|g| source_ids.include?(g.citation.id)}
     end
 
-    def display_name
-      alternate_names = Maybe(gene_claims)
-        .flat_map{|g| g.gene_claim_aliases}
-        .select{|a| a.nomenclature == 'Gene Description'}
-      if alternate_names.empty?
-          name
-      else
-          alternate_names[0].alias
-      end
-    end
-
   end
 end

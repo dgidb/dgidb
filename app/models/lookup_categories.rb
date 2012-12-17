@@ -7,7 +7,7 @@ class LookupCategories
     raise "Please specify at least one category name" unless categories.size > 0
 
     categories_with_genes = DataModel::GeneClaimCategory.where(name: categories)
-      .eager_load(gene_claims: [:genes, :source])
+      .eager_load(gene_claims: [genes: [gene_claims: [:source]]])
 
     categories_with_genes.inject({}) do |hash, category|
       hash.tap do |h|

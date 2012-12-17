@@ -9,7 +9,7 @@ class DruggableGeneCategoryPresenter
     @display_genes ||= @search_results.map do |result|
       sources = result.gene_claims
                   .map { |claim| claim.source.source_db_name }
-      DisplayGene.new(result.display_name, sources)
+      DisplayGene.new(result.long_name, sources)
     end
   end
 
