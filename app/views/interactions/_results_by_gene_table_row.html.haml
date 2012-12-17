@@ -8,4 +8,4 @@
   %td
     =results_by_gene_table_row.failed_drug_count
   %td
-    =(results_by_gene_table_row.category_list.map{|g| link_to g, gene_group_by_category_path(g)}).join(', ').html_safe
+    =(results_by_gene_table_row.category_list.map{|g| link_to g, gene_by_category_path(g)}).join(', ').html_safe

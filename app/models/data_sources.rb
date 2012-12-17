@@ -25,7 +25,7 @@ class DataSources
     end
 
     def all_source_summaries
-      DataModel::Source.all.map{|s| DataSourceSummary.new(s)}
+      DataModel::Source.all.map{ |s| DataSourceSummary.new(s) }
     end
 
     private

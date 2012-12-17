@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class FilterChain
   def initialize
     @all_include = []
@@ -46,9 +48,10 @@ class FilterChain
   end
 
   def composite_key(filters)
-    filters.sort_by { |filter| filter.cache_key }
-      .map { |filter| filter.cache_key }
-      .join('.')
+    Digest::MD5.hexdigest(
+      filters.sort_by { |filter| filter.cache_key }
+        .map { |filter| filter.cache_key }
+        .join('.'))
   end
 
   def evaluate_axis(filters)
@@ -57,7 +60,10 @@ class FilterChain
       Rails.cache.fetch(key)
     else
       current_filter = filters.pop
-      current_resolved = store(current_filter.resolve, current_filter.cache_key)
+      current_resolved = store(
+                               current_filter.resolve,
+                               Digest::MD5.hexdigest(current_filter.cache_key)
+                              )
       if filters.empty?
         current_resolved
       else

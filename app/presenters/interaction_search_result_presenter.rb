@@ -1,38 +1,50 @@
 class InteractionSearchResultPresenter
   include Genome::Extensions
 
-  attr_accessor :search_term, :interaction
-  def initialize(interaction, search_term)
-    @interaction = interaction
+  attr_accessor :search_term, :interaction_claim
+  def initialize(interaction_claim, search_term)
+    @interaction_claim = interaction_claim
     @search_term = search_term
   end
 
   def source_db_name
-    Maybe(@interaction.citation).source_db_name
+    @interaction_claim.source.source_db_name
   end
 
   def source_db_url
-    Maybe(@interaction.citation).site_url
+    @interaction_claim.source.site_url
   end
 
-  def drug_name
-    Maybe(@interaction.drug).drug_alternate_names.select{|d| d.nomenclature.downcase['primary drug name'] }.first.alternate_name
+  #TODO pull this up into a normalized column....
+  def drug_claim_name
+    @interaction_claim.drug_claim.drug_claim_aliases
+      .select{ |d| d.nomenclature.downcase['primary drug name'] }
+      .first
+      .alias
   end
 
   def types_string
-    @types_string ||= @interaction.types.map{|x| x.value.sub(/^na$/,'n/a') }.join('/')
+    @types_string ||= @interaction_claim
+      .interaction_claim_types
+      .map{ |x| x.type.sub(/^na$/,'n/a') }
+      .join('/')
   end
 
-  def gene_group_name
-    Maybe(@interaction.gene).gene_groups.first.name
+  def gene_name
+    @interaction_claim.gene_claim.genes.first.name
   end
 
-  def gene_group_display_name
-    Maybe(@interaction.gene).gene_groups.first.display_name
+  def gene_long_name
+    @interaction_claim.gene_claim.genes.first.long_name
   end
 
   def potentially_druggable_categories
-    Maybe(@interaction.gene).gene_groups.first.potentially_druggable_genes.map{|g| g.gene_categories}.flatten.select{|c| c.category_name == 'Human Readable Name'}.map{|c| c.category_value}.uniq
+    @interaction_claim.gene_claim
+      .genes.first
+      .gene_claims
+      .flat_map { |gc| gc.gene_claim_categories }
+      .map { |c| c.name }
+      .uniq
   end
 end
 

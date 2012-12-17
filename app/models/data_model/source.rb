@@ -12,5 +12,9 @@ module DataModel
       where(source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE).all
     end
 
+    def self.sources_with_interactions
+      where(source_type_id: DataModel::SourceType.INTERACTION).all
+    end
+
   end
 end

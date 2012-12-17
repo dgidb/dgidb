@@ -3,7 +3,7 @@ DruggableGene::Application.routes.draw do
   match 'gene_claims/:source_db_name/:name' => 'gene_claims#show'
   match 'gene_names' => 'genes#names'
   match 'genes/:name' => 'genes#show', as: 'gene'
-  match 'interaction_claims/:id' => 'interactions#show', as: 'interaction'
+  match 'interaction_claims/:id' => 'interactions#show', as: 'interaction_claim'
   match 'druggable_gene_categories/:name' => 'genes#druggable_gene_category', as: 'gene_by_category'
   match 'druggable_gene_categories' => 'genes#druggable_gene_categories'
   match 'drugs/:name' => 'drugs#show', as: 'drug'

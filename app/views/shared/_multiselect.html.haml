@@ -1,0 +1,7 @@
+.control-group
+  %label.control-label
+    =control_group_name
+    %i.icon-flag.tip{title: tx(flag_text_key)}
+  .controls
+    =select_tag select_tag_name, options_from_collection_for_select(collection, name_meth, value_meth), multiple: true, class: :multiselect
+    %div{style:'width:60px;', id: tour_id}

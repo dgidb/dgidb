@@ -1,5 +1,5 @@
 $(".multiselect").multiselect
-  noneSelectedText: 'Select source databases'
+  noneSelectedText: 'Select included items'
   selectedText: '# of #'
   minWidth: 400
 .multiselectfilter()

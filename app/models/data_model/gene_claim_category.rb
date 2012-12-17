@@ -4,6 +4,10 @@ module DataModel
     include Genome::Extensions::TypeEnumeration
     has_and_belongs_to_many :gene_claims
 
+    def self.all_category_names
+      pluck(:name).sort
+    end
+
     private
     def self.cache_key
       'all_gene_claim_categories'

@@ -8,13 +8,19 @@ class StaticController < ApplicationController
   end
 
   def search_interactions
-    @sources = DataSources.uniq_source_names_with_interaction_claims.sort
+    prepare_available_filter_actions
   end
 
   private
   @@help_pages = ["getting_started", "faq", "downloads", "contact"]
   def set_active
     @@help_pages.include?(params[:action]) ? instance_variable_set("@help_active", "active") : instance_variable_set("@#{params[:action]}_active", "active")
+  end
+
+  def prepare_available_filter_actions
+    @sources           = DataModel::Source.sources_with_interactions.map { |s| s.source_db_name }
+    @gene_categories   = DataModel::GeneClaimCategory.all_category_names
+    @interaction_types = DataModel::InteractionClaimType.all_type_names
   end
 
 end

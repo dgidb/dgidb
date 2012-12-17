@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'digest/md5'
 
 describe Filter do
   it 'should auto register available filters' do
@@ -67,7 +68,8 @@ describe FilterChain do
     @filter_chain.include_identity('axis1', 3, 4)
 
     @filter_chain.include?(1)
-    Rails.cache.exist?('identity.1-3.identity.3-4').should be_true
+    cache_key = Digest::MD5.hexdigest('identity.1-3.identity.3-4')
+    Rails.cache.exist?(cache_key).should be_true
   end
 
   it 'should cache the intermediate results' do
@@ -76,8 +78,10 @@ describe FilterChain do
 
     @filter_chain.include?(1)
 
-    Rails.cache.exist?('identity.1-3').should be_true
-    Rails.cache.exist?('identity.3-4').should be_true
+    cache_key = Digest::MD5.hexdigest('identity.1-3')
+    Rails.cache.exist?(cache_key).should be_true
+    cache_key = Digest::MD5.hexdigest('identity.3-4')
+    Rails.cache.exist?(cache_key).should be_true
   end
 
   it 'should order cache keys consistently regardless of filter order' do
@@ -85,16 +89,20 @@ describe FilterChain do
     @filter_chain.include_identity('axis1', 1, 3)
 
     @filter_chain.include?(1)
-    Rails.cache.exist?('identity.1-3.identity.3-4').should be_true
-    Rails.cache.exist?('identity.3-4.identity.1-3').should be_false
+    cache_key = Digest::MD5.hexdigest('identity.1-3.identity.3-4')
+    Rails.cache.exist?(cache_key).should be_true
+    cache_key = Digest::MD5.hexdigest('identity.3-4.identity.1-3')
+    Rails.cache.exist?(cache_key).should be_false
 
     @filter_chain = FilterChain.new
     @filter_chain.include_identity('axis1', 1, 3)
     @filter_chain.include_identity('axis1', 3, 4)
 
     @filter_chain.include?(1)
-    Rails.cache.exist?('identity.1-3.identity.3-4').should be_true
-    Rails.cache.exist?('identity.3-4.identity.1-3').should be_false
+    cache_key = Digest::MD5.hexdigest('identity.1-3.identity.3-4')
+    Rails.cache.exist?(cache_key).should be_true
+    cache_key = Digest::MD5.hexdigest('identity.3-4.identity.1-3')
+    Rails.cache.exist?(cache_key).should be_false
   end
 
   it 'should recompute as needed when new filters are added' do

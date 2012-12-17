@@ -32,11 +32,9 @@
         .row-fluid
           .span12
             -if @search_results.show_definite?
-              =render partial: 'interactions/interaction_results_table', locals: {title: "Definite Results (Passed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.definite_interactions(:filtered), tooltip_text: tx("definite_results_passed_filter_flag")}
-              =render partial: 'interactions/interaction_results_table', locals: {title: "Definite Results (Failed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.definite_interactions(:unfiltered), tooltip_text:  tx("definite_results_failed_filter_flag")}
+              =render partial: 'interactions/interaction_results_table', locals: {title: "Definite Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_filter_flag")}
             -if @search_results.show_ambiguous?
-              =render partial: 'interactions/interaction_results_table', locals: {title: "Ambiguous Results (Passed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.ambiguous_interactions(:filtered), tooltip_text: tx("ambiguous_results_passed_filter_flag")}
-              =render partial: 'interactions/interaction_results_table', locals: {title: "Ambiguous Results (Failed #{@search_results.filter.capitalize} Filter)", interactions: @search_results.ambiguous_interactions(:unfiltered), tooltip_text: tx("ambiguous_results_failed_filter_flag")}
+              =render partial: 'interactions/interaction_results_table', locals: {title: "Ambiguous Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_filter_flag")}
         .row-fluid
           -if @search_results.show_ambiguous_no_interactions?
             =render partial: 'interactions/no_interaction_result', locals: {title: 'Ambiguously Matched Genes With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: tx("ambiguous_results_no_interactions_flag")}
