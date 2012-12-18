@@ -63,7 +63,8 @@ CREATE TABLE drug_claims (
     name text NOT NULL,
     description text,
     nomenclature text NOT NULL,
-    source_id text
+    source_id text,
+    primary_name character varying(255)
 );
 
 
@@ -712,3 +713,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121214161439');
 INSERT INTO schema_migrations (version) VALUES ('20121214191000');
 
 INSERT INTO schema_migrations (version) VALUES ('20121218184952');
+
+INSERT INTO schema_migrations (version) VALUES ('20121218224238');

@@ -15,12 +15,8 @@ class InteractionSearchResultPresenter
     @interaction_claim.source.site_url
   end
 
-  #TODO pull this up into a normalized column....
   def drug_claim_name
-    @interaction_claim.drug_claim.drug_claim_aliases
-      .select{ |d| d.nomenclature.downcase['primary drug name'] }
-      .first
-      .alias
+    @interaction_claim.drug_claim.primary_name || @interaction_claim.drug_claim.name
   end
 
   def types_string
