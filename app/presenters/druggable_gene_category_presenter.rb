@@ -8,7 +8,9 @@ class DruggableGeneCategoryPresenter
   def display_genes
     @display_genes ||= @search_results.map do |result|
       sources = result.gene_claims
-                  .map { |claim| claim.source.source_db_name }
+                  .map { |claim| claim.source }
+                  .select { |source| source.source_type_id == DataModel::SourceType.POTENTIALLY_DRUGGABLE }
+                  .map { |source| source.source_db_name }
       DisplayGene.new(result.long_name, sources, result.name)
     end
   end
