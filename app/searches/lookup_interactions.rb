@@ -39,7 +39,7 @@ class LookupInteractions
   end
 
   def self.create_gene_category_filter(params, chain)
-    construct_filter(chain, params[:gene_categories], :include_gene_claim_category_interactions)
+    construct_filter(chain, params[:gene_categories], :include_gene_claim_category_interaction)
   end
 
   def self.create_interaction_type_filter(params, chain)
