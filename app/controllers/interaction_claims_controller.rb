@@ -1,9 +1,9 @@
-class InteractionsController < ApplicationController
+class InteractionClaimsController < ApplicationController
   caches_page :show
   def show
-    @interaction = DataModel::Interaction.find(params[:id])
-    @drug = @interaction.drug
-    @gene = @interaction.gene
+    @interaction = DataModel::InteractionClaim.find(params[:id])
+    @drug = @interaction.drug_claim
+    @gene = @interaction.gene_claim
     @title = "#{@drug.name} acting on #{@gene.name}"
   end
 

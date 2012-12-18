@@ -17,23 +17,23 @@
           =link_to @gene.name, "/genes/#{@gene.source_db_name}/#{@gene.name}"
         %p
           %b Source Database Name:
-          =link_to @interaction.citation.source_db_name, source_path(@interaction.citation.source_db_name)
+          =link_to @interaction.source.source_db_name, source_path(@interaction.source.source_db_name)
         %p
           %b Source Database Version:
-          =@interaction.citation.source_db_version
+          =@interaction.source.source_db_version
         %p
           %b Types:
           %table.table.table-striped
-            -@interaction.types.each do |attribute|
+            -@interaction.interaction_claim_types.each do |type|
               %tr
-                %td=attribute.value
+                %td=type.type
         %p
           %b Attributes:
           %table.table.table-striped
-            -@interaction.attributes.each do |attribute|
+            -@interaction.interaction_claim_attributes.each do |attribute|
               %tr
                 %td=attribute.name
                 %td=attribute.value
         %p
           %b Citation:
-          %p=@interaction.citation.citation
+          %p=@interaction.source.citation

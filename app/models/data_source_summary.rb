@@ -22,7 +22,7 @@ class DataSourceSummary
   [:gene_claims, :drug_claims].each do |relation|
     define_method "#{relation}_in_groups" do
       count ||= @source.send(relation)
-        .joins("#{relation.to_s.split('_').first.pluaralize}".to_sym).size
+        .joins("#{relation.to_s.split('_').first.pluralize}".to_sym).size
     end
   end
 
