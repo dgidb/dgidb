@@ -1,0 +1,23 @@
+=content_for :title, @title
+=content_for :header do
+  %h2
+    =@category_name + " Category"
+    %small listing of genes in the selected druggable gene category
+
+.container-fluid
+  .row-fluid
+    .span12
+      .well
+        %table.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
+          %thead
+            %tr
+              %th
+                Gene Name
+              %th
+                Source Database Name(s)
+          %tbody
+            =render partial: 'genes/category_table_row', collection: @genes.display_genes, as: :gene
+
+=javascript_include_tag "jquery.dataTables.min"
+=javascript_include_tag "pagination_bootstrap"
+=javascript_include_tag "category_page"

@@ -4,11 +4,11 @@ class StaticController < ApplicationController
   caches_page :index, :getting_started, :faq, :downloads, :contact, :search_categories, :search_interactions, :search
 
   def search_categories
-    @category_names = LookupCategories.get_uniq_category_names_with_counts.sort_by{|c| c.category_value}
+    @gene_categories   = DataModel::GeneClaimCategory.all_category_names
   end
 
   def search_interactions
-    @sources = DataSources.uniq_source_names_with_interactions.sort
+    prepare_available_filter_actions
   end
 
   private
@@ -17,4 +17,9 @@ class StaticController < ApplicationController
     @@help_pages.include?(params[:action]) ? instance_variable_set("@help_active", "active") : instance_variable_set("@#{params[:action]}_active", "active")
   end
 
+  def prepare_available_filter_actions
+    @sources           = DataModel::Source.sources_with_interactions.map { |s| s.source_db_name }
+    @gene_categories   = DataModel::GeneClaimCategory.all_category_names
+    @interaction_types = DataModel::InteractionClaimType.all_type_names
+  end
 end

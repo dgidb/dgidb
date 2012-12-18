@@ -9,8 +9,7 @@ gem 'pg'
 gem 'less-rails-bootstrap'
 gem 'nokogiri'
 gem 'haml'
-gem 'squeel'
-gem 'texticle'
+gem 'texticle', require: 'texticle/rails'
 gem 'jquery-rails'
 gem 'therubyracer'
 gem 'less-rails'
@@ -43,6 +42,8 @@ group :test, :development  do
   gem 'factory_girl_rails'
   gem "capybara"
   gem "launchy"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # To use ActiveModel has_secure_password

@@ -8,7 +8,7 @@ class DataSourceSummary
   end
 
   def full_name
-    @source.full_name    
+    @source.full_name
   end
 
   def homepage
@@ -19,13 +19,14 @@ class DataSourceSummary
     @source.citation
   end
 
-  [:genes, :drugs].each do |relation|
+  [:gene_claims, :drug_claims].each do |relation|
     define_method "#{relation}_in_groups" do
-      count ||= @source.send(relation).joins("#{relation.to_s.singularize}_groups".to_sym).size
+      count ||= @source.send(relation)
+        .joins("#{relation.to_s.split('_').first.pluralize}".to_sym).size
     end
   end
 
-  [:genes, :drugs, :interactions].each do |relation|
+  [:gene_claims, :drug_claims, :interaction_claims].each do |relation|
     define_method "#{relation}_in_source" do
       count ||= @source.send(relation).size
     end

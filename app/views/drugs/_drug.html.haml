@@ -1,26 +1,4 @@
-%p
-  %b Drug Name:
-  =link_to drug.name, drug.original_data_source_url
-%p
-  %b Source Database Name:
-  =link_to drug.citation.source_db_name, source_summary_path(drug.citation.source_db_name)
-%p
-  %b Source Database Version:
-  =drug.citation.source_db_version
-%p
-  %b Alternate Names:
-  %table.table
-    -drug.drug_alternate_names.each do |alt_name|
-      %tr
-        %td=alt_name.alternate_name
-        %td=alt_name.nomenclature
-%p
-  %b Meta-data:
-  %table.table
-    -drug.drug_categories.each do |category|
-      %tr
-        %td=category.category_name
-        %td=category.category_value
-%p
-  %b Citation:
-  %p=drug.citation.citation
+-drug.drug_claims.sort_by{|d| d.sort_value}.each do |drug_claim|
+  .item
+    %div(class="hero-unit drug bubble-links #{drug_claim.source.source_db_name}")
+      =render partial: 'drug_claims/drug_claim', locals: {drug_claim: drug_claim}

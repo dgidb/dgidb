@@ -1,3 +1,4 @@
+#require 'uuidtools'
 module Genome
   module Extensions
     module UUIDPrimaryKey
@@ -7,7 +8,7 @@ module Genome
         before_create :generate_uuid
 
         def generate_uuid
-          #self.id = UUIDTools::UUID.random_create.to_s.gsub("-","")
+          #self.id = UUIDTools::UUID.random_create.to_s
         end
       end
     end

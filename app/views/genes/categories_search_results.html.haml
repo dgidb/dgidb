@@ -1,0 +1,51 @@
+#notice= notice
+=content_for :title, "Category Search Results"
+=content_for :header do
+  %h2
+    =tx "title_main"
+    %small=tx "title_small"
+
+.container-fluid
+  .tabbable.tabs-left
+    %ul.nav.nav-tabs
+      %li.active
+        %a(href="#by_genes" data-toggle="tab") By Gene Name
+      %li
+        %a(href="#search_summary_tab" data-toggle="tab") Search Results Summary
+      %li
+        %a(href="#by_categories" data-toggle="tab") By Gene Category
+      %li
+        %a(href="#by_source" data-toggle="tab") By Source
+    .tab-content
+      .tab-pane.active#by_genes
+        -if @search_results.show_result_categories?
+          .row-fluid
+            .span12
+              =render partial: 'genes/category_results_table', locals: {title: "Results in Selected Categories", categories: @search_results.result_presenters }
+        .row-fluid
+          -if @search_results.show_ambiguous_results?
+            =render partial: 'genes/no_category_result', locals: {title: 'Ambiguous Terms', results: @search_results.ambiguous_results, tooltip_text: tx('ambiguous_terms_flag')}
+          -if @search_results.show_definite_results_with_no_categories?
+            =render partial: 'genes/no_category_result', locals: {title: 'Matched Genes With No Categories', results: @search_results.definite_results_with_no_categories, tooltip_text: tx('no_matches_flag')}
+          -if @search_results.show_no_results_results?
+            .span6
+              .well
+                %h3
+                  Search Terms With No Matches
+                  %i.icon-flag.tip(title="Search terms for which we could find no matches")
+                %ul
+                  -@search_results.no_results_results.each do |result|
+                    %li=result.search_term
+      .tab-pane.fade#by_categories
+        -if @search_results.show_genes_by_category?
+          .row-fluid
+            .span12
+              =render partial: 'genes/results_by_category_table', locals: {title: "Results in Selected Categories", categories: @search_results.genes_by_category }
+      .tab-pane.fade#search_summary_tab
+        =render partial: 'genes/results_summary', locals: {results: @search_results}
+      .tab-pane.fade#by_source
+        =render partial: 'genes/results_by_source_table', locals: {results: @search_results}
+
+=javascript_include_tag "jquery.dataTables.min"
+=javascript_include_tag "pagination_bootstrap"
+=javascript_include_tag "interaction_search_results"

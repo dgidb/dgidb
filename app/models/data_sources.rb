@@ -21,21 +21,21 @@ class DataSources
     end
 
     def uniq_source_names
-      DataModel::Citation.uniq.pluck(:source_db_name)
+      DataModel::Source.uniq.pluck(:source_db_name)
     end
 
     def all_source_summaries
-      DataModel::Citation.all.map{|s| DataSourceSummary.new(s)}
+      DataModel::Source.all.map{ |s| DataSourceSummary.new(s) }
     end
 
     private
     def uniq_source_names_with_table(relation_name)
-      DataModel::Citation.joins(relation_name.to_sym).uniq.pluck(:source_db_name)
+      DataModel::Source.joins(relation_name.to_sym).uniq.pluck(:source_db_name)
     end
 
     #injection opportunity, make sure this method never takes user input
     def data_source_summary_by(col,val)
-      source = DataModel::Citation.where("#{col} ILIKE ?", val).first
+      source = DataModel::Source.where("#{col} ILIKE ?", val).first
       DataSourceSummary.new(source)
     end
 

@@ -1,0 +1,26 @@
+%p
+  %b Drug Name:
+  =link_to drug_claim.name, drug_claim.original_data_source_url
+%p
+  %b Source Database Name:
+  =link_to drug_claim.source.source_db_name, source_path(drug_claim.source.source_db_name)
+%p
+  %b Source Database Version:
+  =drug_claim.source.source_db_version
+%p
+  %b Alternate Names:
+  %table.table
+    -drug_claim.drug_claim_aliases.each do |alt_name|
+      %tr
+        %td=alt_name.alias
+        %td=alt_name.nomenclature
+%p
+  %b Meta-data:
+  %table.table
+    -drug_claim.drug_claim_attributes.each do |attr|
+      %tr
+        %td=attr.name
+        %td=attr.value
+%p
+  %b Citation:
+  %p=drug_claim.source.citation

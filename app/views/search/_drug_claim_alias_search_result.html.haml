@@ -1,0 +1,5 @@
+.well
+  %em Drug Claim Alias
+  %p
+    %strong=link_to r.alias, drug_claim_path(r.drug_claim.name)
+    %p="Drug Claim:  #{r.drug_claim.name} from #{r.drug_claim.source.source_db_name} version #{r.drug_claim.source.source_db_version}"

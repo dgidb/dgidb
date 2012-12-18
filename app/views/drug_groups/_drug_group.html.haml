@@ -1,4 +1,0 @@
--Maybe(drug_group).drugs.sort_by{|d| d.sort_value}.each do |drug|
-  .item
-    %div(class="hero-unit drug bubble-links #{drug.citation.source_db_name}")
-      =render partial: 'drugs/drug', locals: {drug: drug}

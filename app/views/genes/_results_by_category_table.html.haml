@@ -1,0 +1,16 @@
+.well
+  %h3= title
+  %table.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
+    %thead
+      %tr
+        %th
+          Category
+          %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
+        %th
+          Matching Gene Count
+        %th
+          Matching Gene(s)
+        %th
+          Non-Matching Gene(s)
+    %tbody
+      =render partial: 'genes/results_by_category_table_row', collection: categories

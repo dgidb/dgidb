@@ -1,0 +1,8 @@
+#notice= notice
+=content_for :title, @title
+
+.container-fluid
+  .row-fluid
+    .span12
+      .hero-unit
+        =render partial: 'gene_claims/gene_claim', collection: @genes

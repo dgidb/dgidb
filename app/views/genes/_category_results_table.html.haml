@@ -1,0 +1,14 @@
+.well
+  %h3= title
+  %table.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
+    %thead
+      %tr
+        %th
+          Gene Name
+        %th
+          Gene Category
+          %i.icon-flag.tip{title: tx("category_table_header")}
+        %th
+          Search Term
+    %tbody
+      =render partial: 'genes/category_results_table_row', collection: categories

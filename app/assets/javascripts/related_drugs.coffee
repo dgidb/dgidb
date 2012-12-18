@@ -1,3 +1,3 @@
 $ ->
-  $("#related_drugs").load("/drug_groups/" + $("#drug_name").text().trim() + "/related")
+  $("#related_drugs").load("/drugs/" + $("#drug_name").text().trim() + "/related")
 

@@ -1,5 +1,5 @@
 .well
-  %em Gene Instance
+  %em Gene
   %p
-    %strong=link_to r.name, "/genes/#{r.citation.source_db_name}/#{r.name}"
-    %p="Source:  #{r.citation.source_db_name} version #{r.citation.source_db_version}"
+    %strong=link_to r.name, gene_path(r.name)
+    %p="Gene Claims:  #{r.gene_claims.count}"

@@ -19,21 +19,21 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
-  config.before(:all) do
-    self.class.class_eval do
-      set_fixture_class :citation => DataModel::Citation
-      set_fixture_class :gene_name_report => DataModel::Gene
-      set_fixture_class :gene_name_report_association => DataModel::GeneAlternateName
-      set_fixture_class :gene_name_report_category_association => DataModel::GeneCategory
-      set_fixture_class :gene_name_group => DataModel::GeneGroup
-      set_fixture_class :drug_name_report => DataModel::Drug
-      set_fixture_class :drug_name_report_association => DataModel::DrugAlternateName
-      set_fixture_class :drug_name_report_category_association => DataModel::DrugCategory
-      set_fixture_class :drug_name_group => DataModel::DrugGroup
-      set_fixture_class :drug_gene_interaction_report => DataModel::Interaction
-      set_fixture_class :drug_gene_interaction_report_attribute => DataModel::InteractionAttribute
-    end
-  end
+  #config.before(:all) do
+    #self.class.class_eval do
+      #set_fixture_class :citation => DataModel::Citation
+      #set_fixture_class :gene_name_report => DataModel::Gene
+      #set_fixture_class :gene_name_report_association => DataModel::GeneAlternateName
+      #set_fixture_class :gene_name_report_category_association => DataModel::GeneCategory
+      #set_fixture_class :gene_name_group => DataModel::GeneGroup
+      #set_fixture_class :drug_name_report => DataModel::Drug
+      #set_fixture_class :drug_name_report_association => DataModel::DrugAlternateName
+      #set_fixture_class :drug_name_report_category_association => DataModel::DrugCategory
+      #set_fixture_class :drug_name_group => DataModel::DrugGroup
+      #set_fixture_class :drug_gene_interaction_report => DataModel::Interaction
+      #set_fixture_class :drug_gene_interaction_report_attribute => DataModel::InteractionAttribute
+    #end
+  #end
 
   # ## Mock Framework
   #

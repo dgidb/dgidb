@@ -46,7 +46,7 @@
         -to( 'links', 'index' ).each do |l|
           %p
             %li.span2
-              %a{href: l["url"]}=l["title"]
+              =dynamic_link_to(l["title"], l["url"])
               %small=l["description"]
   -if(Rails.env.production?)
     :javascript

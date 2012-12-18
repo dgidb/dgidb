@@ -1,25 +1,37 @@
 class InteractionSearchResult
 
-  attr_accessor :search_term, :groups, :interactions
+  attr_accessor :search_term, :genes, :interaction_claims
 
-  def initialize(search_term, groups)
+  def initialize(search_term, genes)
     @search_term = search_term
-    @groups = groups.uniq
-    @interactions = groups.map{|group| group.genes}.flatten.inject([]) do |list, gene|
-      list += gene.interactions
-    end
+    @genes = genes.uniq
+    @interaction_claims = genes.flat_map { |g| g.gene_claims }.flat_map{ |gc| gc.interaction_claims }.uniq
   end
 
   def is_ambiguous?
-    groups.length > 1
+    genes.length > 1
   end
 
   def has_results?
-    groups.length > 0
+    genes.length > 0
   end
 
   def has_interactions?
-    interactions.length > 0
+    interaction_claims.length > 0
+  end
+
+  def filter_interactions
+    @interaction_claims = @interaction_claims.select{ |interaction| yield interaction }
+  end
+
+  def match_type_label
+    if is_ambiguous?
+      "Ambiguous"
+    elsif !has_results?
+      "None"
+    else
+      "Definite"
+    end
   end
 
   def partition
