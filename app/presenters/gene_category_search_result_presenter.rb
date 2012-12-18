@@ -1,11 +1,12 @@
 class GeneCategorySearchResultPresenter
   include Genome::Extensions
-  attr_accessor :search_term, :gene_category, :group_name, :group_display_name
-  def initialize(gene_category, search_term, group_name, group_display_name)
+  attr_accessor :search_term, :gene_category, :gene_name, :gene_display_name, :gene
+  def initialize(gene_category, search_term, gene_name, gene_display_name, gene)
     @gene_category = gene_category
     @search_term = search_term
-    @group_name = group_name
-    @group_display_name = group_display_name
+    @gene_name = gene_name
+    @gene_display_name = gene_display_name
+    @gene = gene
   end
 end
 

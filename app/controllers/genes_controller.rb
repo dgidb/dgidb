@@ -41,7 +41,7 @@ class GenesController < ApplicationController
     combine_input_genes(params)
     validate_search_request(params)
 
-    search_results = LookupGenes.find(params, :for_gene_categories)
+    search_results = LookupCategories.find(params)
     @search_results = GeneCategorySearchResultsPresenter.new(search_results, params, start_time)
     if params[:outputFormat] == 'tsv'
       generate_tsv_headers('gene_categories_export.tsv')

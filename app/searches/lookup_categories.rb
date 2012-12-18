@@ -7,7 +7,19 @@ class LookupCategories
       GeneCategorySearchResult
     )
 
-    filter_scope = 
+    filter_scope = FilterChain.new
+
+    params[:gene_categories].each do |category|
+      filter_scope.include_gene_claim_category(category)
+    end
+
+    gene_results.each do |result|
+      result.filter_genes do |gene|
+        filter_scope.include?(gene.id)
+      end
+    end
+
+    gene_results
   end
 
   #given a list of (or single) category name(s) this method will return a hash

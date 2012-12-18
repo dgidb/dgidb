@@ -16,7 +16,7 @@
               %th
                 Source Database Name(s)
           %tbody
-            =render partial: 'gene_groups/category_table_row', collection: @genes.display_genes, as: :gene
+            =render partial: 'genes/category_table_row', collection: @genes.display_genes, as: :gene
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"

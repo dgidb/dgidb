@@ -5,6 +5,4 @@
     %td
       =source_count
   %td
-    -sum=0
-    -results_by_source_table_row.sources.each{|source_count| sum += source_count}
-    =sum
+    =results_by_source_table_row.sources.inject(0){ |sum, source_count| sum + source_count }

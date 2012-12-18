@@ -22,12 +22,9 @@
         .controls
           %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace Genes with Demo List
           %button.btn.btn-small.btn-danger#clear(type='button') Clear All Genes
-      .control-group
-        %label.control-label
-          Categories
-          %i.icon-flag.tip{title: tx("categories_flag")}
-        .controls
-          =select_tag "categories", options_from_collection_for_select(@category_names, "category_value", "category_value"), multiple: true, class: :multiselect
+      =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
+        flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories,
+        name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_cateogories_tour' }
       .control-group
         %label.control-label
           Select Output Format

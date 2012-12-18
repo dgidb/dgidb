@@ -5,6 +5,6 @@
       %i.icon-flag.tip{title: tooltip_text}
     %dl
       -results.each do |result|
-        -result.groups.each do |group|
-          %dt=link_to group.name, gene_path(group.name)
+        -result.unfiltered_genes.each do |gene|
+          %dt=link_to gene.name, gene_path(gene.name)
           %dd="For search term: #{result.search_term}"

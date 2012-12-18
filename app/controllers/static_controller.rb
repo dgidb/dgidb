@@ -4,7 +4,7 @@ class StaticController < ApplicationController
   caches_page :index, :getting_started, :faq, :downloads, :contact, :search_categories, :search_interactions, :search
 
   def search_categories
-    @category_names = LookupCategories.get_uniq_category_names_with_counts.sort_by{|c| c.category_value}
+    @gene_categories   = DataModel::GeneClaimCategory.all_category_names
   end
 
   def search_interactions
@@ -22,5 +22,4 @@ class StaticController < ApplicationController
     @gene_categories   = DataModel::GeneClaimCategory.all_category_names
     @interaction_types = DataModel::InteractionClaimType.all_type_names
   end
-
 end
