@@ -15,8 +15,9 @@ class GeneClaimCategory
 
   def resolve
     Set.new DataModel::GeneClaimCategory.where(name: @category)
-      .joins(gene_claims: [genes: [gene_claims: [:interaction_claims]]])
-      .select("interaction_claims.id")
-      .pluck('interaction_claims.id')
+      .joins(gene_claims: [:genes])
+      .select('genes.id')
+      .pluck('genes.id')
+      .uniq
   end
 end

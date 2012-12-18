@@ -4,7 +4,11 @@ class LookupInteractions
     #find gene results for given search terms. end up with
     #an object of type "InteractionSearchResult" for each
     #search result
-    gene_results = LookupGenes.find(params[:gene_names], :for_search, InteractionSearchResult)
+    gene_results = LookupGenes.find(
+      params[:gene_names],
+      :for_search,
+      InteractionSearchResult
+    )
     #get a filter chain encompassing all the given filters from the search form
     filter = create_filter_from_params(params)
     filter_results(gene_results, filter)
@@ -35,7 +39,7 @@ class LookupInteractions
   end
 
   def self.create_gene_category_filter(params, chain)
-    construct_filter(chain, params[:gene_categories], :include_gene_claim_category)
+    construct_filter(chain, params[:gene_categories], :include_gene_claim_category_interactions)
   end
 
   def self.create_interaction_type_filter(params, chain)
