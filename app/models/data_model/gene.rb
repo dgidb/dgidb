@@ -13,10 +13,10 @@ module DataModel
       end
     end
 
-    def potentially_druggable_genes
+    def potentially_druggable_gene_claims
       #return Go or other potentially druggable categories
       source_ids = DataModel::Source.potentially_druggable_sources.map{|s| s.id}
-      gene_claims.select{|g| source_ids.include?(g.citation.id)}
+      gene_claims.select{|g| source_ids.include?(g.source.id)}
     end
 
   end
