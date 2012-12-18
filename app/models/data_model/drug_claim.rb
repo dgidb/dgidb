@@ -30,6 +30,8 @@ module DataModel
         base_url + 'DRUG.asp?ID=' + name
       when 'TALC'
         'http://www.ncbi.nlm.nih.gov/pubmed/22005529/' #TODO: This is a hack.  Fix it with another db column
+      when 'TEND'
+        'http://www.ncbi.nlm.nih.gov/pubmed/21804595/' #TODO: as above
       else
         base_url + name
       end
