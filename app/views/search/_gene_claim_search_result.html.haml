@@ -1,0 +1,5 @@
+.well
+  %em Gene Claim
+  %p
+    %strong=link_to r.name, "/gene_claims/#{r.source.source_db_name}/#{r.name}"
+    %p="Source:  #{r.source.source_db_name} version #{r.source.source_db_version}"
