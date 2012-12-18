@@ -478,6 +478,55 @@ CREATE INDEX genes_full_text ON genes USING gin (to_tsvector('english'::regconfi
 
 
 --
+-- Name: index_drug_claim_attributes_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_drug_claim_attributes_on_name ON drug_claim_attributes USING btree (name);
+
+
+--
+-- Name: index_drug_claim_attributes_on_value; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_drug_claim_attributes_on_value ON drug_claim_attributes USING btree (value);
+
+
+--
+-- Name: index_gene_claim_aliases_on_alias; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_gene_claim_aliases_on_alias ON gene_claim_aliases USING btree (alias);
+
+
+--
+-- Name: index_gene_claim_attributes_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_gene_claim_attributes_on_name ON gene_claim_attributes USING btree (name);
+
+
+--
+-- Name: index_gene_claim_attributes_on_value; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_gene_claim_attributes_on_value ON gene_claim_attributes USING btree (value);
+
+
+--
+-- Name: index_gene_claims_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_gene_claims_on_name ON gene_claims USING btree (name);
+
+
+--
+-- Name: index_genes_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_genes_on_name ON genes USING btree (name);
+
+
+--
 -- Name: index_interaction_claims_on_known_action_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -661,3 +710,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121214160809');
 INSERT INTO schema_migrations (version) VALUES ('20121214161439');
 
 INSERT INTO schema_migrations (version) VALUES ('20121214191000');
+
+INSERT INTO schema_migrations (version) VALUES ('20121218184952');
