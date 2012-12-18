@@ -9,12 +9,12 @@ class DruggableGeneCategoryPresenter
     @display_genes ||= @search_results.map do |result|
       sources = result.gene_claims
                   .map { |claim| claim.source.source_db_name }
-      DisplayGene.new(result.long_name, sources)
+      DisplayGene.new(result.long_name, sources, result.name)
     end
   end
 
   private
-  class DisplayGene < Struct.new(:gene_name, :sources)
+  class DisplayGene < Struct.new(:gene_name, :sources, :link_name)
     def source_links(context)
       my_sources = sources
       context.instance_exec do

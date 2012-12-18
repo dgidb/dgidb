@@ -1,7 +1,7 @@
 class GenePresenter
   attr_accessor :gene
-  def initialize(gene_group)
-    @gene = gene_group
+  def initialize(gene)
+    @gene = gene
   end
 
   def display_name
