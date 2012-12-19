@@ -26,7 +26,7 @@ namespace :dgidb do
 
   desc 'create a dump of the current local database'
   task dump_local: [:setup_path] do
-    system "pg_dump --inserts -a -f #{data_file} -h localhost dgidb"
+    system "pg_dump -T schema_migrations -E UTF8 -a -f #{data_file} -h localhost dgidb"
   end
 
   desc 'load the source controlled db dump and schema into the local db, blowing away what is currently there'
