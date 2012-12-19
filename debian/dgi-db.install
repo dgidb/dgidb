@@ -13,6 +13,7 @@ README.md /var/www/dgi-db
 script /var/www/dgi-db
 spec /var/www/dgi-db
 text /var/www/dgi-db
+tours /var/www/dgi-db
 tmp /var/www/dgi-db
 vendor /var/www/dgi-db
 .bundle /var/www/dgi-db
