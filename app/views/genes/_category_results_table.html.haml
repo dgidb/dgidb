@@ -4,11 +4,11 @@
     %thead
       %tr
         %th
+          Search Term
+        %th
           Gene Name
         %th
           Gene Category
           %i.icon-flag.tip{title: tx("category_table_header")}
-        %th
-          Search Term
     %tbody
       =render partial: 'genes/category_results_table_row', collection: categories
