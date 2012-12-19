@@ -18,7 +18,7 @@ class StaticController < ApplicationController
   end
 
   def prepare_available_filter_actions
-    @sources           = DataModel::Source.sources_with_interactions.map { |s| s.source_db_name }
+    @sources           = DataModel::Source.source_names_with_interactions
     @gene_categories   = DataModel::GeneClaimCategory.all_category_names
     @interaction_types = DataModel::InteractionClaimType.all_type_names
   end

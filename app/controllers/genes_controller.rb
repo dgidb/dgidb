@@ -9,13 +9,7 @@ class GenesController < ApplicationController
   end
 
   def names
-    cache_key = "gene_group_names"
-    if Rails.cache.exist?(cache_key)
-      @names = Rails.cache.fetch(cache_key)
-    else
-      @names = DataModel::Gene.pluck(:name)
-      Rails.cache.write(cache_key, @names, expires_in: 30.minutes)
-    end
+    @names = DataModel::Gene.all_gene_names
     respond_to do |format|
       format.json {render json:  @names.to_json}
     end

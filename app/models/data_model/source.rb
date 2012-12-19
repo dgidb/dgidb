@@ -12,8 +12,12 @@ module DataModel
       where(source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE).all
     end
 
-    def self.sources_with_interactions
-      where(source_type_id: DataModel::SourceType.INTERACTION).all
+    def self.source_names_with_interactions
+      key = 'all_source_names_with_interactions'
+      unless Rails.cache.exist?(key)
+        Rails.cache.write(key, where(source_type_id: DataModel::SourceType.INTERACTION).pluck(:source_db_name).sort)
+      end
+      Rails.cache.fetch(key)
     end
 
   end

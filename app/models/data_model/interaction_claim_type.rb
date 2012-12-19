@@ -5,7 +5,11 @@ module DataModel
     has_and_belongs_to_many :interaction_claims
 
     def self.all_type_names
-      pluck(:type).sort
+      key = 'all_type_names'
+      unless Rails.cache.exist?(key)
+        Rails.cache.write(key, self.pluck(:type).sort)
+      end
+      Rails.cache.fetch(key)
     end
 
     private
