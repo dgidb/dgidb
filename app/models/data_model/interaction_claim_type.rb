@@ -1,19 +1,19 @@
 module DataModel
   class InteractionClaimType < ::ActiveRecord::Base
     include Genome::Extensions::UUIDPrimaryKey
-    include Genome::Extensions::TypeEnumeration
+    include Genome::Extensions::EnumerableType
+    include Genome::Extensions::HasCacheableQuery
+
     has_and_belongs_to_many :interaction_claims
 
+    cache_query :all_type_names, :all_interaction_type_names
+
     def self.all_type_names
-      key = 'all_type_names'
-      unless Rails.cache.exist?(key)
-        Rails.cache.write(key, self.pluck(:type).sort)
-      end
-      Rails.cache.fetch(key)
+      pluck(:type).sort
     end
 
     private
-    def self.cache_key
+    def self.enumerable_cache_key
       'all_interaction_claim_types'
     end
   end

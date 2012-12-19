@@ -1,19 +1,18 @@
 module DataModel
   class GeneClaimCategory < ::ActiveRecord::Base
     include Genome::Extensions::UUIDPrimaryKey
-    include Genome::Extensions::TypeEnumeration
+    include Genome::Extensions::EnumerableType
+    include Genome::Extensions::HasCacheableQuery
     has_and_belongs_to_many :gene_claims
 
+    cache_query :all_category_names, :all_gene_claim_category_names
+
     def self.all_category_names
-      key = 'all_gene_claim_category_names'
-      unless Rails.cache.exist?(key)
-        Rails.cache.write(key, self.pluck(:name).sort)
-      end
-      Rails.cache.fetch(key)
+      pluck(:name).sort
     end
 
     private
-    def self.cache_key
+    def self.enumerable_cache_key
       'all_gene_claim_categories'
     end
 

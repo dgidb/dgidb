@@ -1,6 +1,6 @@
 module Genome
   module Extensions
-    module TypeEnumeration
+    module EnumerableType
       extend ActiveSupport::Concern
       included do
         self.inheritance_column = nil
@@ -11,8 +11,8 @@ module Genome
 
         private
         def self.all_types
-          if Rails.cache.exist?(cache_key)
-            Rails.cache.fetch(cache_key)
+          if Rails.cache.exist?(enumerable_cache_key)
+            Rails.cache.fetch(enumerable_cache_key)
           else
             id_map = self.all.inject({}) do |hash, val|
               hash.tap do |h|
@@ -22,13 +22,13 @@ module Genome
                 h[key] = val.id
               end
             end
-            Rails.cache.write(cache_key, id_map)
+            Rails.cache.write(enumerable_cache_key, id_map)
             id_map
           end
         end
 
-        def self.cache_key
-          raise "You must implement cache key!"
+        def self.enumerable_cache_key
+          raise "You must implement  enumerable_cache_key!"
         end
 
         def self.type_column
