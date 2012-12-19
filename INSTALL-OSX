@@ -1,15 +1,17 @@
-Install RVM with Ruby and Rails: https://rvm.io/rvm/install
+#These instructions are for OSX 10.7 (Lion) and above
+
+#Install RVM with Ruby and Rails: https://rvm.io/rvm/install
     \curl -L https://get.rvm.io | bash -s stable --rails
 
-Resource your bash profile
+#Resource your bash profile
 source ~/.bash_profile
 
-Install git if it is not installed already.
+#Install git if it is not installed already.
     # if you do not have homebrew here is a fast way to get it: (http://mxcl.github.com/homebrew/)
     ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
     brew install git
 
-Install and launch PostgreSQL from: http://postgresapp.com
+#Install and launch PostgreSQL from: http://postgresapp.com
 
 # check out the code
 git clone git://github.com/genome/dgi-db.git
@@ -17,6 +19,8 @@ cd dgi-db
 
 #install gem dependencies
 bundle install
+
+#If you get an error related to 'time zone utc' try rebooting...
 
 #bootstrap the local database
 rake dgidb:load_local
