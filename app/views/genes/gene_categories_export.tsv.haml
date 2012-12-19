@@ -1,2 +1,2 @@
-=['Group Name','Gene Category','Search Term'].join("\t")+"\n"
-=@search_results.pass_filtered_categories.map { |result| [result.group_name, result.gene_category, result.search_term].join("\t") }.join("\n")
+=['Gene Name','Gene Category','Search Term'].join("\t")+"\n"
+=@search_results.result_presenters.map { |result| [result.gene_name, result.gene_category, result.search_term].join("\t") }.join("\n")
