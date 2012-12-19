@@ -1,6 +1,8 @@
-
 Install RVM with Ruby and Rails: https://rvm.io/rvm/install
     \curl -L https://get.rvm.io | bash -s stable --rails
+
+Resource your bash profile
+source ~/.bash_profile
 
 Install git if it is not installed already.
     # if you do not have homebrew here is a fast way to get it: (http://mxcl.github.com/homebrew/)
