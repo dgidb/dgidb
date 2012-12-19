@@ -28,3 +28,5 @@ rake dgidb:load_local
 #launch your development server
 rails s
 
+#View the app in your browser by going to the following url
+http://localhost:3000/
