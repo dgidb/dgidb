@@ -1,11 +1,15 @@
 search_interactions:
   genes: >
-    Start by entering a newline delimited list of gene names that you would like to search.
+    Start by entering a list of gene names (one per line) that you would like to search.
   defaultGenes: >
-    A sample list of genes is available as an example.
-  sources-tour: >
-    You can limit which sources of drug-gene interactions you would like to search.
-  filters: >
-    You can also limit which types of interactions you would like to see in the result set.
+    Press this button to use a sample list of genes.
+  gene_cateogories_tour: >
+    Filter drug-gene interaction results by selecting particular gene categories (e.g. limit to kinases).
+  interaction_types_tour: >
+    Filter drug-gene interaction results by selecting particular drug interaction types (e.g. limit to inhibitors).
+  sources_tour: >
+    Filter drug-gene interaction results by selecting particular sources (e.g. limit to DrugBank data).
+  html_output: >
+    You may view results in your web browser or dump simplified output to a .tsv file.
   search-btn: >
     When you are satisfied with your settings, click 'Find Drug Interactions' to search.
