@@ -8,7 +8,7 @@
   %form.form-horizontal(action="interaction_search_results" method="post" enctype="multipart/form-data")
     %fieldset
       .control-group
-        %label.control-label
+        %label.control-label(id='genes_flag')
           Genes
           =icon(:flag, title: tx("genes_flag"), class: 'tip')
         .controls

@@ -1,4 +1,8 @@
 search_interactions:
+  show-tour: >
+    Welcome to the DGIdb search interactions tour. This application identifies drugs that interact with your genes of interest.
+  genes_flag: >
+    Hover your mouse over these flags for detailed explanations of this application.
   genes: >
     Start by entering a list of gene names (one per line) that you would like to search.
   defaultGenes: >
