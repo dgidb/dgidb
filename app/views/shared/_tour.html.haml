@@ -1,7 +1,7 @@
 -if tour
   %ol#tour(style='display:none;')
     -tour.each_step do |step|
-      %li{ data: { target: step.id } }
+      %li{ data: { target: step.id, title: tx('title_main') + ' Tour' } }
         =step.content
   =javascript_include_tag 'bootstrap-tour.coffee'
   :javascript
