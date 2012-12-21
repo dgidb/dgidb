@@ -21,7 +21,7 @@ module Genome
         attribute :ensembl_id
 
         def valid?(opts = {})
-          return false if unitprot_id == 'N/A' && gene_symbol == 'N/A'
+          return false if uniprot_id == 'N/A' && gene_symbol == 'N/A'
           return false unless opts[:uniprot_mapping][uniprot_id]
           true
         end

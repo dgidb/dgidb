@@ -26,7 +26,7 @@ module Genome
         end
 
         def process_file
-          rows.each do |row|
+          rows do |row|
             gene_claim = create_gene_claim_from_row(row)
             drug_claim = create_drug_claim_from_row(row)
             create_interaction_claim_from_row(row, gene_claim, drug_claim)
@@ -49,7 +49,7 @@ module Genome
                                                        known_action_type: row.known_action)
           @interaction_claims << interaction_claim
 
-          create_interaction_claim_attribtes(interaction_claim, row)
+          create_interaction_claim_attributes(interaction_claim, row)
         end
 
         def create_interaction_claim_attributes(interaction_claim, row)
@@ -130,7 +130,7 @@ module Genome
           gene_claim
         end
 
-        def create_gene_aliases(gene_claim, row)
+        def create_gene_claim_aliases(gene_claim, row)
           unless row.gene_symbol == 'N/A'
             @gene_claim_aliases << create_gene_claim_alias(gene_claim_id: gene_claim.id,
                                                            alias: row.gene_symbol,

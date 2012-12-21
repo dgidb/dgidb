@@ -32,7 +32,7 @@ module Genome
           ic.known_action_type = opts[:known_action_type] || 'unknown'
           ic.source_id         = @source.id
           ic.description       = opts[:description] || ''
-          ic.interaction_type  = opts[:interaction_type]
+          ic.interaction_type  = opts[:interaction_type] || ''
         end
       end
 
