@@ -1,17 +1,26 @@
 downloads:
   title_main: Downloads
-  title_small: download dumps of commonly requested data
-  description: This page provides access to raw data and source code for DGIdb
+  title_small: dumps of commonly requested data
+  description: > 
+    This page provides access to raw data and source code for DGIdb. While the application is open source, some of 
+    the sources we import may have restrictions that prevent us from redistributing them. Please refer to the contact
+    section under the help menu if you would like to ask us detailed questions about the implementation, data sources, etc.
+
   downloads:
-    - title: Source code of DGIDB
+    - title: Source code of DGIdb application
       link: "http://www.github.com/genome/dgi-db"
       description: >
         This is the full source code of the dgi db web application. It runs Ruby on Rails
         and Postgres.
+    - title: Source code of DGIdb source importers, gene/drug grouping, etc.
+      link: "https://github.com/genome/gms-core/tree/master/lib/perl/Genome/DruggableGene"
+      description: >
+        The source code for parsing primary data sources and building the DGIdb database.
+        This component is written in object oriented Perl.
     - title: Druggable gene TSV archive 
       link: "https://github.com/downloads/genome/dgi-db/druggable_gene_tsv.tar.gz"
       description: >
-        This is an archive containing the tsv files used to populate the DGIDB database. 
+        This is an archive containing the tsv files used to populate the DGIdb database. 
     - title: PharmGKB data 
       link: "http://www.pharmgkb.org/downloads.jsp"
       description: >

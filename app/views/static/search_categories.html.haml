@@ -8,7 +8,7 @@
   %form.form-horizontal(action="categories_search_results" method="post" enctype="multipart/form-data")
     %fieldset
       .control-group
-        %label.control-label
+        %label.control-label(id='genes_flag')
           Genes
           %i.icon-flag.tip{title: tx("genes_flag")}
         .controls
@@ -35,7 +35,7 @@
           %label.radio
             %input(id='tsv_output' type='radio' name='outputFormat' value='tsv') TSV
       .form-actions
-        %button.btn.btn-success(type="submit")Find Gene Categories
+        %button.btn.btn-success(type="submit" id='search-btn')Find Gene Categories
 
 =render partial: 'shared/loading_modal', locals: {title: "Searching Druggable Gene Categories..."}
 

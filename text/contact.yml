@@ -1,19 +1,29 @@
 contact:
   title_main: Contact Us
   title_small: get in touch
-  description: This tool was developed at The Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us.
+  description: DGIdb was developed at The Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us.
 
   people:
     - title: Malachi Griffith
       link: "http://www.malachigriffith.org"
-      description: 314-286-1274
+      description: mgriffit[at]genome.wustl.edu
 
     - title: Obi Griffith
       link: "http://www.obigriffith.org"
-      description: 314-286-1274
+      description: ogriffit[at]genome.wustl.edu
+
+    - title: Scott Smith
+      link: "http://genome.wustl.edu/people/individual/scott-smith/"
+      description: ssmith[at]genome.wustl.edu
 
     - title: Developers
-      description: Jim Weible, Adam Coffman, James Koval, Jim Eldred, Scott Smith
+      description: Jim Weible, Adam Coffman, Indraniel Das, James Koval, Josh McMichael, Jim Eldred
 
-    - title: Mentors
+    - title: Beta testers
+      description: David Larson, Ron Bose
+
+    - title: PIs/Mentors
       description: Elaine Mardis and Rick Wilson
+
+    - title: The Genome Institute
+      link: "http://genome.wustl.edu/"

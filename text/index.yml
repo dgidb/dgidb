@@ -8,10 +8,10 @@ index:
       description: Find drug gene-interactions for genes
     - url: /search_categories
       title: Search Categories
-      description: Find drug gene-interactions for selected gene categories
+      description: Find genes in druggable gene categories
     - url: /druggable_gene_categories
       title: Druggable Gene Categories
-      description: Browse druggable categories
+      description: Browse druggable gene categories
     - url: https://github.com/downloads/genome/dgi-db/walkthrough.pdf
       title: Walkthrough (pdf)
       description: Illustrated user guide
