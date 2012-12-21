@@ -1,6 +1,15 @@
 module Genome
   module Importers
     class Importer
+      def initialize
+        @gene_claims                  = []
+        @gene_claim_aliases           = []
+        @drug_claims                  = []
+        @drug_claim_aliases           = []
+        @drug_claim_attributes        = []
+        @interaction_claims           = []
+        @interaction_claim_attributes = []
+      end
       def import!
         process_file
         store
@@ -11,7 +20,13 @@ module Genome
       end
 
       def store
-        raise 'must implement store!'
+        DataModel::GeneClaim.import @gene_claims if @gene_claims.any?
+        DataModel::GeneClaimAlias.import @gene_claim_aliases if @gene_claim_aliases.any?
+        DataModel::DrugClaim.import @drug_claims if @drug_claims.any?
+        DataModel::DrugClaimAlias.import @drug_claim_aliases if @drug_claim_aliases.any?
+        DataModel::DrugClaimAttribute.import @drug_claim_attributes if @drug_claim_attributes.any?
+        DataModel::InteractionClaim.import @interaction_claims if @interaction_claims.any?
+        DataModel::InteractionClaimAttribute.import @interaction_claim_attributes if @interaction_claim_attributes.any?
       end
 
       def create_gene_claim_alias(opts = {})
@@ -21,6 +36,7 @@ module Genome
           gca.alias         = opts[:alias]
           gca.nomenclature  = opts[:nomenclature]
           gca.description   = ''
+          @gene_claim_aliases << gca
         end
       end
 
@@ -33,6 +49,7 @@ module Genome
           ic.source_id         = @source.id
           ic.description       = opts[:description] || ''
           ic.interaction_type  = opts[:interaction_type] || ''
+          @interaction_claims << ic
         end
       end
 
@@ -42,6 +59,7 @@ module Genome
           ica.interaction_claim_id = opts[:interaction_claim_id]
           ica.name          = opts[:name]
           ica.value         = opts[:value]
+          @interaction_claim_attributes << ica
         end
       end
 
@@ -52,6 +70,7 @@ module Genome
           gc.nomenclature = opts[:nomenclature]
           gc.source_id    = @source.id
           gc.description  = opts[:description] || ''
+          @gene_claims << gc
         end
       end
 
@@ -63,6 +82,7 @@ module Genome
           dc.source_id    = @source.id
           dc.description  = opts[:description] || ''
           dc.primary_name = opts[:primary_name] || ''
+          @drug_claims << dc
         end
       end
 
@@ -73,6 +93,7 @@ module Genome
           dca.alias         = opts[:alias]
           dca.nomenclature  = opts[:nomenclature]
           dca.description   = ''
+          @drug_claim_aliases << dca
         end
       end
 
@@ -83,6 +104,7 @@ module Genome
           dca.name          = opts[:name]
           dca.value         = opts[:value]
           dca.description   = opts[:description] || ''
+          @drug_claim_attributes << dca
         end
       end
     end

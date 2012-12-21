@@ -8,13 +8,7 @@ module Genome
           @source_db_version            = source_db_version
           @source                       = create_source!
           @uniprot_mapping_file         = uniprot_mapping_file
-          @gene_claims                  = []
-          @gene_claim_aliases           = []
-          @drug_claims                  = []
-          @drug_claim_aliases           = []
-          @drug_claim_attributes        = []
-          @interaction_claims           = []
-          @interaction_claim_attributes = []
+          super()
         end
 
         private
@@ -33,30 +27,18 @@ module Genome
           end
         end
 
-        def store
-          DataModel::GeneClaim.import @gene_claims
-          DataModel::GeneClaimAlias.import @gene_claim_aliases
-          DataModel::DrugClaim.import @drug_claims
-          DataModel::DrugClaimAlias.import @drug_claim_aliases
-          DataModel::DrugClaimAttribute.import @drug_claim_attributes
-          DataModel::InteractionClaim.import @interaction_claims
-          DataModel::InteractionClaimAttribute.import @interaction_claim_attributes
-        end
-
         def create_interaction_claim_from_row(row, gene_claim, drug_claim)
           interaction_claim = create_interaction_claim(drug_claim_id: drug_claim.id,
                                                        gene_claim_id: gene_claim.id,
                                                        known_action_type: row.known_action)
-          @interaction_claims << interaction_claim
-
           create_interaction_claim_attributes(interaction_claim, row)
         end
 
         def create_interaction_claim_attributes(interaction_claim, row)
           row.target_actions.each do |ta|
-            @interaction_claim_attributes << create_interaction_claim_attribute(name: 'Interaction Type',
-                                                                                value: ta,
-                                                                                interaction_claim_id: interaction_claim.id)
+            create_interaction_claim_attribute(name: 'Interaction Type',
+                                               value: ta,
+                                               interaction_claim_id: interaction_claim.id)
           end
         end
 
@@ -64,92 +46,88 @@ module Genome
           drug_claim = create_drug_claim(name: row.drug_id,
                                          nomenclature: 'DrugBank Drug Identifier',
                                          primary_name: row.drug_name)
-          @drug_claims << drug_claim
-
           create_drug_claim_aliases(drug_claim, row)
           create_drug_claim_attributes(drug_claim, row)
           drug_claim
         end
 
         def create_drug_claim_aliases(drug_claim, row)
-          @drug_claim_aliases << create_drug_claim_alias(alias: row.drug_id,
-                                                         nomenclature: 'DrugBank Drug Id',
-                                                         drug_claim_id: drug_claim.id)
+          create_drug_claim_alias(alias: row.drug_id,
+                                  nomenclature: 'DrugBank Drug Id',
+                                  drug_claim_id: drug_claim.id)
 
-          @drug_claim_aliases << create_drug_claim_alias(alias: row.drug_name,
-                                                         nomenclature: 'Primary Drug Name',
-                                                         drug_claim_id: drug_claim.id)
+          create_drug_claim_alias(alias: row.drug_name,
+                                  nomenclature: 'Primary Drug Name',
+                                  drug_claim_id: drug_claim.id)
 
           row.drug_synonyms.reject { |ds| ds == 'N/A' }.each do |synonym|
-          @drug_claim_aliases << create_drug_claim_alias(alias: synonym,
-                                                         nomenclature: 'Drug Synonym',
-                                                         drug_claim_id: drug_claim.id)
+            create_drug_claim_alias(alias: synonym,
+                                    nomenclature: 'Drug Synonym',
+                                    drug_claim_id: drug_claim.id)
           end
 
           row.drug_brands.reject { |db| db == 'N/A' }.each do |brand|
             matches = (/(?<brand>.+) \((?<manufacturer>.+)\)$/.match(brand)) || {}
-            @drug_claim_aliases << create_drug_claim_alias(alias: matches[:brand] || brand,
-                                                           nomenclature: matches[:manufacturer] || 'Drug Brand',
-                                                           drug_claim_id: drug_claim.id)
+            create_drug_claim_alias(alias: matches[:brand] || brand,
+                                    nomenclature: matches[:manufacturer] || 'Drug Brand',
+                                    drug_claim_id: drug_claim.id)
 
           end
 
           unless row.drug_cas_number == 'N/A'
-            @drug_claim_aliases << create_drug_claim_alias(alias: row.drug_cas_number,
-                                                           nomenclature: 'CAS Number',
-                                                           drug_claim_id: drug_claim.id)
+            create_drug_claim_alias(alias: row.drug_cas_number,
+                                    nomenclature: 'CAS Number',
+                                    drug_claim_id: drug_claim.id)
           end
-
         end
 
         def create_drug_claim_attributes(drug_claim, row)
           unless row.drug_type == 'N/A'
-            @drug_claim_attributes << create_drug_claim_attribute(value: row.drug_type,
-                                                           name: 'Drug Type',
-                                                           drug_claim_id: drug_claim.id)
+            create_drug_claim_attribute(value: row.drug_type,
+                                        name: 'Drug Type',
+                                        drug_claim_id: drug_claim.id)
           end
 
           row.drug_categories.reject { |dc| dc == 'N/A' }.each do |dc|
-            @drug_claim_attributes << create_drug_claim_attribute(value: dc,
-                                                                  name: 'Drug Category',
-                                                                  drug_claim_id: drug_claim.id)
+            create_drug_claim_attribute(value: dc,
+                                        name: 'Drug Category',
+                                        drug_claim_id: drug_claim.id)
           end
 
           row.drug_groups.reject { |dc| dc == 'N/A' }.each do |dg|
-            @drug_claim_attributes << create_drug_claim_attribute(value: dg,
-                                                                  name: 'Drug Group',
-                                                                  drug_claim_id: drug_claim.id)
+            create_drug_claim_attribute(value: dg,
+                                        name: 'Drug Group',
+                                        drug_claim_id: drug_claim.id)
           end
         end
 
         def create_gene_claim_from_row(row)
           gene_claim = create_gene_claim(name: row.gene_id,
                                          nomenclature: 'Drugbank Partner Id')
-          @gene_claims << gene_claim
           create_gene_claim_aliases(gene_claim, row)
           gene_claim
         end
 
         def create_gene_claim_aliases(gene_claim, row)
           unless row.gene_symbol == 'N/A'
-            @gene_claim_aliases << create_gene_claim_alias(gene_claim_id: gene_claim.id,
-                                                           alias: row.gene_symbol,
-                                                           nomenclature: 'Drugbank Gene Name')
+            create_gene_claim_alias(gene_claim_id: gene_claim.id,
+                                    alias: row.gene_symbol,
+                                    nomenclature: 'Drugbank Gene Name')
           end
           unless row.uniprot_id == 'N/A'
-            @gene_claim_aliases << create_gene_claim_alias(gene_claim_id: gene_claim.id,
-                                                           alias: row.uniprot_id,
-                                                           nomenclature: 'Uniprot Accession')
+            create_gene_claim_alias(gene_claim_id: gene_claim.id,
+                                    alias: row.uniprot_id,
+                                    nomenclature: 'Uniprot Accession')
           end
           unless row.entrez_id == 'N/A'
-            @gene_claim_aliases << create_gene_claim_alias(gene_claim_id: gene_claim.id,
-                                                           alias: row.entrez_id,
-                                                           nomenclature: 'Entrez Gene Id')
+            create_gene_claim_alias(gene_claim_id: gene_claim.id,
+                                    alias: row.entrez_id,
+                                    nomenclature: 'Entrez Gene Id')
           end
           unless row.ensembl_id == 'N/A'
-            @gene_claim_aliases << create_gene_claim_alias(gene_claim_id: gene_claim.id,
-                                                           alias: row.ensembl_id,
-                                                           nomenclature: 'Ensembl Gene Id')
+            create_gene_claim_alias(gene_claim_id: gene_claim.id,
+                                    alias: row.ensembl_id,
+                                    nomenclature: 'Ensembl Gene Id')
           end
         end
 
