@@ -9,6 +9,7 @@ module Genome
         @drug_claim_attributes        = []
         @interaction_claims           = []
         @interaction_claim_attributes = []
+        @source                       = create_source!
       end
       def import!
         process_file
@@ -16,6 +17,9 @@ module Genome
       end
 
       private
+      def create_source!
+        raise 'You must implement create_source, which must create and return a source object'
+      end
       def process_file
       end
 

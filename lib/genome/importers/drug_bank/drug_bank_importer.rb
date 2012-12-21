@@ -6,7 +6,6 @@ module Genome
         def initialize(drug_bank_tsv_path, source_db_version, uniprot_mapping_file)
           @tsv_path                     = drug_bank_tsv_path
           @source_db_version            = source_db_version
-          @source                       = create_source!
           @uniprot_mapping_file         = uniprot_mapping_file
           super()
         end
