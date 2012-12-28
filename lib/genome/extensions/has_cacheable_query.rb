@@ -30,10 +30,11 @@ module Genome
           old_method = method(method_name)
 
           define_singleton_method(method_name) do |*args|
-            unless Rails.cache.exist?(cache_key)
-              Rails.cache.write(cache_key, old_method.call(*args))
+            cache_key_with_args = "#{cache_key}.#{args.to_s}"
+            unless Rails.cache.exist?(cache_key_with_args)
+              Rails.cache.write(cache_key_with_args, old_method.call(*args))
             end
-            Rails.cache.fetch(cache_key)
+            Rails.cache.fetch(cache_key_with_args)
           end
         end
       end

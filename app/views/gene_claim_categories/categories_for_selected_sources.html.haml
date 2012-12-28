@@ -1,0 +1,7 @@
+.control-group
+  %label.control-label
+    Gene Categories
+    %i.icon-flag.tip{title: tx('categories_flag', 'search_categories')}
+  .controls
+    =select_tag 'gene_categories', options_from_collection_for_select(@category_names, 'to_s', 'to_s'), multiple: true, class: :multiselect
+    %div{style:'width:60px;', id: 'gene_categories_tour'}

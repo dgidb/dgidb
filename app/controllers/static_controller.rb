@@ -4,7 +4,8 @@ class StaticController < ApplicationController
   caches_page :index, :getting_started, :faq, :downloads, :contact, :search_categories, :search_interactions, :search
 
   def search_categories
-    @gene_categories   = DataModel::GeneClaimCategory.all_category_names
+    @sources         = DataModel::Source.potentially_druggable_sources.map(&:source_db_name)
+    @gene_categories = DataModel::GeneClaimCategory.all_category_names
   end
 
   def search_interactions
@@ -22,4 +23,5 @@ class StaticController < ApplicationController
     @gene_categories   = DataModel::GeneClaimCategory.all_category_names
     @interaction_types = DataModel::InteractionClaimType.all_type_names
   end
+
 end
