@@ -1,8 +1,8 @@
 module Genome
   module Importers
-    class DelimetedRow
-      def initialize(row, row_delimeter = "\t")
-        @row = row.split(row_delimeter)
+    class DelimitedRow
+      def initialize(row, row_delimiter = "\t")
+        @row = row.split(row_delimiter)
         if @row.size != self.class.attributes.keys.size
           raise 'Given row does not match specified attributes'
         end
@@ -25,12 +25,13 @@ module Genome
         end
       end
 
-      def self.attribute(name, type = String, opts = {delimeter: ','})
+      def self.attribute(name, type = String, opts = {})
         unless type == String || type == Array
           raise 'Sorry, only string and array types are supported'
         end
 
-        (@attributes ||=  {})[name] = self.send("#{type.to_s.downcase}_parser")
+        opts = {delimiter: ','}.merge(opts)
+        (@attributes ||=  {})[name] = self.send("#{type.to_s.downcase}_parser", opts)
         attr_accessor name
       end
 
@@ -39,7 +40,7 @@ module Genome
       end
 
       def self.array_parser(opts = {})
-        ->(item) { item.split(opts[:delimeter]).map {|item| item.strip } }
+        ->(item) { item.split(opts[:delimiter]).map(&:strip) }
       end
     end
   end

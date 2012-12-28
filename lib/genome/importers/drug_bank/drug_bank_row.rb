@@ -1,8 +1,8 @@
-require 'genome/importers/delimeted_row'
+require 'genome/importers/delimited_row'
 module Genome
   module Importers
     module DrugBank
-      class DrugBankRow < Genome::Importers::DelimetedRow
+      class DrugBankRow < Genome::Importers::DelimitedRow
         attribute :count
         attribute :drug_id
         attribute :drug_name
