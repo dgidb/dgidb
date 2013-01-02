@@ -11,10 +11,12 @@ faq:
         A manuscript describing DGIdb is currently under preparation.
         Once accepted for publication, citation details will appear here.
         Until then, please simply cite the URL for dgidb.org.
-    - question: I'm confused, how can I learn more about how to use DGIdb?
+    - question: How can I learn more about how to use DGIdb?
       answer: > 
-        You can try reading: the 'Getting Started' section under the help menu, the manuscript, the tutorial, and this FAQ. If all else fails
-        please email us with your questions. Refer to the 'Contact' section under the help menu for details on how to get in touch with us.
+        You can try reading: the 'Getting Started' section under the help menu, the manuscript, the tutorial, and this FAQ. 
+        Some sections also cotain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
+        If all else fails please email us with your questions.  
+        Refer to the 'Contact' section under the help menu for details on how to get in touch with us.
     - question: What types of gene names/symbols should I use as input?
       answer: >
         The short answer is that you should ideally use official HUGO gene symbols as reported by Entrez Gene. We have developed a gene name grouping
@@ -58,6 +60,10 @@ faq:
         feel free to report it to us. The quality of our data is only as good as the sources of raw data. Throughout the results you will
         be able to see if multiple independant sources report the same findings. Using this as a filter may help you disqualify some spurious 
         entries and have increased confidence in others.
-
+    - question: Some druggable gene categories seem very inclusive ... for example are there really >800 human kinases?
+      answer: >
+        This is by design. Druggable gene categories are aggregated from multiple sources, some of which are predictive in nature. Predictions based on
+        sequence similarity etc. may result in some false positives. More stringent lists can be obtained by limiting to a particular source(s) (e.g. dGene only)
+        or by requiring that multiple sources agree.
 
 
