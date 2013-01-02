@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -12,6 +12,7 @@ gem 'haml'
 gem 'texticle', require: 'texticle/rails'
 gem 'jquery-rails'
 gem 'therubyracer'
+gem 'libv8'
 gem 'less-rails'
 gem 'exception_notification'
 gem 'rake'
