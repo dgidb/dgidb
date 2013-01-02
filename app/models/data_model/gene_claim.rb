@@ -9,14 +9,12 @@ module DataModel
     has_many :interaction_claims, inverse_of: :gene_claim
     has_many :drug_claims, through: :interaction_claims
 
-    class << self
-      def for_search
-        eager_load{[genes, genes.gene_claims.interaction_claims, interaction_claims, interaction_claims.drug_claim, interaction_claims.drug_claim.drug_claim_aliases, interaction_claims.drug_claim.drug_claim_attributes, interaction_claims.source, drug_claims, drug_claims.drug_claim_aliases, genes.gene_claims.interaction_claims.drug_claim, genes.gene_claims.interaction_claims.drug_claim.drug_claim_aliases, genes.gene_claims.interaction_claims.drug_claim.drug_claim_attributes, genes.gene_claims.interaction_claims.source, source ]}
-      end
+    def self.for_search
+      eager_load(genes: [gene_claims: [interaction_claims: [:source, :drug_claim, :interaction_claim_types, gene_claim: [genes: [gene_claims: [:gene_claim_categories]]]]]])
+    end
 
-      def for_gene_categories
-        eager_load{[genes]}
-      end
+    def self.for_gene_categories
+      eager_load{[genes]}
     end
 
     def source_db_name

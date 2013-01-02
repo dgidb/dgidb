@@ -7,7 +7,7 @@ module DataModel
     cache_query :all_gene_names, :all_gene_names
 
     def self.for_search
-      eager_load{[gene_claims, gene_claims.interaction_claims, gene_claims.interaction_claims.drug_claim, gene_claims.interaction_claims.drug_claim.drug_claim_aliases, gene_claims.interaction_claims.drug_claim.drug_claim_attributes, gene_claims.interaction_claims.source, gene_claims.interaction_claims.interaction_claim_attributes ]}
+      eager_load(gene_claims: [interaction_claims: [:source, :drug_claim, :interaction_claim_types, gene_claim: [genes: [gene_claims: [:gene_claim_categories]]]]])
     end
 
     def self.for_gene_categories
