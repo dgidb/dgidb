@@ -6,14 +6,17 @@ contact:
   people:
     - title: Malachi Griffith
       link: "http://www.malachigriffith.org"
+      link_title: Faculty page
       description: mgriffit[at]genome.wustl.edu
 
     - title: Obi Griffith
       link: "http://www.obigriffith.org"
+      link_title: Faculty page
       description: ogriffit[at]genome.wustl.edu
 
     - title: Scott Smith
       link: "http://genome.wustl.edu/people/individual/scott-smith/"
+      link_title: Genome Institute page
       description: ssmith[at]genome.wustl.edu
 
     - title: Developers
