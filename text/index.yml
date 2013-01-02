@@ -10,7 +10,7 @@ index:
       title: Search Categories
       description: Find genes in druggable gene categories
     - url: /druggable_gene_categories
-      title: Druggable Gene Categories
+      title: Druggable Genes
       description: Browse druggable gene categories
     - url: https://github.com/downloads/genome/dgi-db/walkthrough.pdf
       title: Walkthrough (pdf)
