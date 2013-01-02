@@ -3,12 +3,26 @@ faq:
   title_small: frequently asked questions
   description: This page provides answers to a wide array of general questions. For detailed tutorials on how to use DGIdb, see the tutorials under the "Getting started" section of the help menu.
   questions:
+    - question: What is the goal of DGIdb?
+      answer: >
+        To help you annotate your genes of interest with respect to known drug-gene interactions and potential druggability.
     - question: How do I cite DGIdb?
       answer: >
         A manuscript describing DGIdb is currently under preparation.
         Once accepted for publication, citation details will appear here.
         Until then, please simply cite the URL for dgidb.org.
-    - question: Where can I find the code base for DGIdb?
+    - question: I'm confused, how can I learn more about how to use DGIdb?
+      answer: > 
+        You can try reading: the 'Getting Started' section under the help menu, the manuscript, the tutorial, and this FAQ. If all else fails
+        please email us with your questions. Refer to the 'Contact' section under the help menu for details on how to get in touch with us.
+    - question: What types of gene names/symbols should I use as input?
+      answer: >
+        The short answer is that you should ideally use official HUGO gene symbols as reported by Entrez Gene. We have developed a gene name grouping
+        strategy that attempts to aggregate synonyms for each gene. We start with the official name and alternate names of each Entrez Gene and update
+        with additional names from each data source. You should get reasonable results with known synonyms, Ensembl Ids, Uniprot Ids, etc. If you enter a 
+        gene name that is ambiguous or unmatched this will be noted in the results. You should attempt to find a more official name for such genes and update
+        your gene list.
+    - question: Where can I find the source code for DGIdb?
       answer: >
         The code for DGIdb is available at <a href="https://github.com/genome/dgi-db">github</a><i class="icon-share"></i>.
         Refer to the Downloads section for more details.
@@ -16,9 +30,6 @@ faq:
       answer: >
         This is an open source project and you could therefore create your own instance with your own data ... but if you want that source
         we probably do also. Contact us and we will be happy to consider adding your source for you.
-    - question: What is the goal of DGIdb?
-      answer: >
-        To help you annotate your genes of interest with respect to known drug-gene interactions and potential druggability.
     - question: What is the difference between a drug-gene interaction and druggable gene category?
       answer: >
         A drug-gene interaction is a known interaction (e.g. inhibition) between a known drug compound (e.g. lapatinib) and a target gene
@@ -32,7 +43,7 @@ faq:
         There are many differences. DGIdb is limited to human genes only. DrugBank and TTD are databases that catalogue drugs and store
         detailed information about those drugs and the genes they target. DGIdb aggregates many such databases into a common framework.
         DGIdb adds considerable functionality for efficiently searching a list of input genes against these sources. DGIdb integrates both
-        known drug-gene interactions and potentially druggable gene data. DGIdb allows the user refine their query to certain gene families,
+        known drug-gene interactions and potentially druggable gene data. DGIdb allows the user to refine their query to certain gene families,
         types of interactions, classes of drugs, etc.  DGIdb is open source and available in a format that would allow you to create your own
         instance. DGIdb incorporates sources of drug-gene interaction data that were previously only available in inaccessible formats (e.g.
         tables in a PDF document). DGIdb is meant to be used in combination with the original sources of raw data. Wherever possible we link
@@ -41,11 +52,11 @@ faq:
       answer: >
         The web interface uses Ruby on Rails and Twitter bootstrap. The backend is a Postgres database. The importers that process data
         from each source and populate this database are written in object oriented Perl.
-    - question: I found a gene in a category does not really belong there or a drug-gene interaction that appears false.  Should I report it?
+    - question: I found a gene in a category that does not really belong there or a drug-gene interaction that appears false.  Should I report it?
       answer: >  
-        We are working on udpates to the interface that would allows us to readily capture this kind of information. In the meantime please
-        feel free to report it to us but the quality of our data is only as good as the sources of raw data. Throughout the results you will
-        be able to see if multiple independant sources report the same findings using this as a filter may help you disqualify some spurious 
+        We are working on updates to the interface that would allows us to readily capture this kind of information. In the meantime please
+        feel free to report it to us. The quality of our data is only as good as the sources of raw data. Throughout the results you will
+        be able to see if multiple independant sources report the same findings. Using this as a filter may help you disqualify some spurious 
         entries and have increased confidence in others.
 
 
