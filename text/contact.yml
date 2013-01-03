@@ -5,28 +5,64 @@ contact:
 
   people:
     - title: Malachi Griffith
+      description: Creator, developer
       link: "http://www.malachigriffith.org"
-      link_title: Faculty page
-      description: mgriffit[at]genome.wustl.edu
+      link_title: Faculty profile
+      email: "mailto:mgriffit@genome.wustl.edu"
+      email_title: Email
 
     - title: Obi Griffith
+      description: Creator, developer
       link: "http://www.obigriffith.org"
-      link_title: Faculty page
-      description: ogriffit[at]genome.wustl.edu
+      link_title: Faculty profile
+      email: "mailto:ogriffit@genome.wustl.edu"
+      email_title: Email
+
+    - title: Adam Coffman
+      description: Lead developer
+      link: "https://github.com/thecoffman"
+      link_title: Github profile
+      email: "mailto:acoffman@genome.wustl.edu"
+      email_title: Email
+
+    - title: Jim Weible
+      description: Lead developer
+      email: "mailto:jweible@genome.wustl.edu"
+      email_title: Email
 
     - title: Scott Smith
+      description: Supervising developer
       link: "http://genome.wustl.edu/people/individual/scott-smith/"
-      link_title: Genome Institute page
-      description: ssmith[at]genome.wustl.edu
+      link_title: Genome Institute profile
+      email: "mailto:ssmith@genome.wustl.edu"
+      email_title: Email
 
-    - title: Developers
-      description: Jim Weible, Adam Coffman, Indraniel Das, James Koval, Josh McMichael, Jim Eldred
+    - title: Jim Eldred
+      description: Supervising developer
+      link: "http://genome.wustl.edu/people/individual/jim-eldred/"
+      link_title: Genome Institute profile
+      email: "mailto:jeldred@genome.wustl.edu"
+      email_title: Email
+
+    - title: Elaine Mardis
+      description: PI/Mentor
+      link: "http://genome.wustl.edu/people/individual/elaine-mardis/"
+      link_title: Genome Institute profile
+      email: "mailto:emardis@genome.wustl.edu"
+      email_title: Email
+
+    - title: Rick Wilson
+      description: PI/Mentor
+      link: "http://genome.wustl.edu/people/individual/richard-wilson/"
+      link_title: Genome Institute profile
+      email: "mailto:rwilson@genome.wustl.edu"
+      email_title: Email
+
+    - title: Additional developers
+      description: Indraniel Das, James Koval, Josh McMichael
 
     - title: Beta testers
       description: David Larson, Ron Bose
-
-    - title: PIs/Mentors
-      description: Elaine Mardis and Rick Wilson
 
     - title: The Genome Institute
       link: "http://genome.wustl.edu/"
