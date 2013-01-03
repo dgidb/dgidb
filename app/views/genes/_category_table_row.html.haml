@@ -1,5 +1,7 @@
 %tr
   %td
-    =link_to gene.gene_name, gene_path(gene.link_name)
+    =link_to gene.gene_name, gene_path(gene.short_name)
+  %td
+    =link_to gene.short_name, gene_path(gene.short_name)
   %td
     =gene.source_links(self)

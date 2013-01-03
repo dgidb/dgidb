@@ -16,7 +16,7 @@ class DruggableGeneCategoryPresenter
   end
 
   private
-  class DisplayGene < Struct.new(:gene_name, :sources, :link_name)
+  class DisplayGene < Struct.new(:gene_name, :sources, :short_name)
     def source_links(context)
       my_sources = sources
       context.instance_exec do
