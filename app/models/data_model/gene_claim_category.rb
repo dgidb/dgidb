@@ -17,7 +17,8 @@ module DataModel
     def self.categories_in_sources(sources)
       joins(gene_claims: [:source])
       .where('sources.source_db_name' => sources)
-      .uniq.pluck('gene_claim_categories.name')
+      .pluck('gene_claim_categories.name')
+      .uniq
     end
 
     private

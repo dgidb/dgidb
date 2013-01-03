@@ -1,19 +1,21 @@
 class GeneCategorySearchResult
 
-  attr_accessor :search_term, :genes, :unfiltered_genes
+  attr_accessor :search_term, :genes
 
   def initialize(search_term, genes)
     @search_term = search_term
     @genes = genes.uniq
-    @started_with_results = !!@genes.count
+    @categories = genes.flat_map { |g| g.gene_claims }
+                    .flat_map { |gc| gc.gene_claim_categories }
+                    .uniq
   end
 
   def is_ambiguous?
-    @unfiltered_genes.count > 1
+    @genes.count > 1
   end
 
   def has_results?
-    @unfiltered_genes.count > 0
+    @genes.count > 0
   end
 
   def gene_name
@@ -28,16 +30,12 @@ class GeneCategorySearchResult
     genes.first
   end
 
-  def filter_genes
-    @unfiltered_genes = @genes
-    @genes = @genes.select{ |gene| yield gene }
+  def filter_categories
+    @filtered_categories = @categories.select { |c| yield c }
   end
 
   def gene_categories
-    return [] unless genes.count > 0
-    genes.first.gene_claims
-      .flat_map { |gc| gc.gene_claim_categories }
-      .map { |gcc| gcc.name } || []
+    (@filtered_categories || @categories).map { |c| c.name }
   end
 
   def partition

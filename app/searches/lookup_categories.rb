@@ -14,8 +14,8 @@ class LookupCategories
     end
 
     gene_results.each do |result|
-      result.filter_genes do |gene|
-        filter_scope.include?(gene.id)
+      result.filter_categories do |gene_claim|
+        filter_scope.include?(gene_claim.id)
       end
     end
 

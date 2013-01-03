@@ -6,18 +6,16 @@ class GeneClaimCategory
   end
 
   def cache_key
-    "gene.category.#{@category}"
+    "gene_claim_category.#{@category}"
   end
 
   def axis
-    :genes
+    :gene_categories
   end
 
   def resolve
     Set.new DataModel::GeneClaimCategory.where(name: @category)
-      .joins(gene_claims: [:genes])
-      .select('genes.id')
-      .pluck('genes.id')
+      .pluck(:id)
       .uniq
   end
 end
