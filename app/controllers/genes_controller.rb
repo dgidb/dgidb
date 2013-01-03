@@ -16,8 +16,8 @@ class GenesController < ApplicationController
   end
 
   def druggable_gene_category
-    genes = LookupCategories.find_genes_for_categories(params[:name])
-    @genes = DruggableGeneCategoryPresenter.new(genes[params[:name]])
+    genes = LookupCategories.find_genes_for_category(params[:name])
+    @genes = DruggableGeneCategoryPresenter.new(genes)
     @title = "Genes in the #{params[:name]} category"
     @druggable_gene_categories_active = 'active'
     @category_name = params[:name]

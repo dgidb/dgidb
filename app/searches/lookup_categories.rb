@@ -22,22 +22,12 @@ class LookupCategories
     gene_results
   end
 
-  #given a list of (or single) category name(s) this method will return a hash
-  #containing category names as keys, and the Genes in each category as values
-  def self.find_genes_for_categories(category_names)
-    categories = Array(category_names)
-    raise "Please specify at least one category name" unless categories.size > 0
-
-    categories_with_genes = DataModel::GeneClaimCategory.where(name: categories)
-      .eager_load(gene_claims: [genes: [gene_claims: [:source]]])
-
-    categories_with_genes.inject({}) do |hash, category|
-      hash.tap do |h|
-        hash[category.name] = category.gene_claims
-          .flat_map { |claim| claim.genes }
-          .uniq
-      end
-    end
+  #given a category name this method will return a list of genes
+  def self.find_genes_for_category(category_name)
+    DataModel::Gene.joins(gene_claims: [:gene_claim_categories, :source])
+       .eager_load(gene_claims: [:source])
+       .where('gene_claim_categories.name' => category_name)
+       .uniq
   end
 
   def self.get_uniq_category_names_with_counts
