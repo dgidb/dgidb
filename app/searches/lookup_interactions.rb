@@ -32,6 +32,8 @@ class LookupInteractions
     create_sources_filter(params, filter)
     create_gene_category_filter(params, filter)
     create_interaction_type_filter(params, filter)
+    #TODO: Normalize out drug types, then enable the filter
+    #create_drug_type_filter(params, filter)
   end
 
   def self.create_sources_filter(params, chain)
@@ -44,6 +46,10 @@ class LookupInteractions
 
   def self.create_interaction_type_filter(params, chain)
     construct_filter(chain, params[:interaction_types], :include_interaction_claim_type)
+  end
+
+  def self.create_drug_type_filter(params, chain)
+    construct_filter(chain, params[:drug_types], :include_drug_claim_type)
   end
 
   def self.construct_filter(filter, items, filter_name)

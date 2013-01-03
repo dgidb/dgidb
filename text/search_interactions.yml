@@ -4,6 +4,7 @@ search_interactions:
   genes_flag: Place one gene name per line in the text area. These will be added to names from the file if used above. You may also type gene names in the box and they will be auto-completed (by pressing tab or enter)
   source_database_flag: Specify which source(s) of drug-gene interactions to search against
   gene_category_flag: Specify which categories of genes you would like included in your search results
+  drug_type_flag: Specify which types of drugs you would like included in your search results
   interaction_type_flag: Specify which types of interactions that you would like included in your search results
   filter_flag: Reduce search results to only interactions of a certain type
   output_format_flag: "HTML selection will keep all results in your browser. TSV will dump a simplified version of the results to a text file of the form: Source, Drug, Interaction Type, Gene"
