@@ -55,6 +55,26 @@ CREATE TABLE drug_claim_attributes (
 
 
 --
+-- Name: drug_claim_types; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE drug_claim_types (
+    id character varying(255) NOT NULL,
+    type character varying(255) NOT NULL
+);
+
+
+--
+-- Name: drug_claim_types_drug_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE drug_claim_types_drug_claims (
+    drug_claim_id character varying(255) NOT NULL,
+    drug_claim_type_id character varying(255) NOT NULL
+);
+
+
+--
 -- Name: drug_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -264,6 +284,22 @@ ALTER TABLE ONLY drug_claim_aliases
 
 ALTER TABLE ONLY drug_claim_attributes
     ADD CONSTRAINT drug_claim_attributes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: drug_claim_types_drug_claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY drug_claim_types_drug_claims
+    ADD CONSTRAINT drug_claim_types_drug_claims_pkey PRIMARY KEY (drug_claim_id, drug_claim_type_id);
+
+
+--
+-- Name: drug_claim_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY drug_claim_types
+    ADD CONSTRAINT drug_claim_types_pkey PRIMARY KEY (id);
 
 
 --
@@ -577,6 +613,14 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
+-- Name: fk_drug_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_claim_types_drug_claims
+    ADD CONSTRAINT fk_drug_claim FOREIGN KEY (drug_claim_id) REFERENCES drug_claims(id) MATCH FULL;
+
+
+--
 -- Name: fk_drug_claim_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -598,6 +642,14 @@ ALTER TABLE ONLY drug_claim_attributes
 
 ALTER TABLE ONLY interaction_claims
     ADD CONSTRAINT fk_drug_claim_id FOREIGN KEY (drug_claim_id) REFERENCES drug_claims(id) MATCH FULL;
+
+
+--
+-- Name: fk_drug_claim_type; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_claim_types_drug_claims
+    ADD CONSTRAINT fk_drug_claim_type FOREIGN KEY (drug_claim_type_id) REFERENCES drug_claim_types(id) MATCH FULL;
 
 
 --
@@ -715,3 +767,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121214191000');
 INSERT INTO schema_migrations (version) VALUES ('20121218184952');
 
 INSERT INTO schema_migrations (version) VALUES ('20121218224238');
+
+INSERT INTO schema_migrations (version) VALUES ('20130103214307');
