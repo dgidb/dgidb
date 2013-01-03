@@ -112,7 +112,7 @@ class InteractionSearchResultsPresenter
       interaction_groups =
         definite_interactions.inject(Hash.new() {|hash, key| hash[key] = []}) do |hash, presenter|
           hash.tap do |h|
-            name = [presenter.drug_claim_name, presenter.gene_long_name].join(" and ")
+            name = [presenter.drug_claim_name, presenter.gene_name].join(" and ")
             h[name] << presenter
           end
         end
