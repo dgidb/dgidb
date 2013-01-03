@@ -8,7 +8,7 @@ module DataModel
     end
 
     def self.for_gene_categories
-      eager_load{[gene_claim, gene_claim.genes]}
+      eager_load(gene_claim: [genes: [gene_claims: [:source, :gene_claim_categories]]])
     end
   end
 end

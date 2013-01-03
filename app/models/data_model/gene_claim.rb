@@ -14,7 +14,7 @@ module DataModel
     end
 
     def self.for_gene_categories
-      eager_load{[genes]}
+      eager_load(genes: [gene_claims: [:source, :gene_claim_categories]])
     end
 
     def source_db_name

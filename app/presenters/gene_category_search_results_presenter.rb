@@ -57,24 +57,21 @@ class GeneCategorySearchResultsPresenter
     unless @genes_by_category
       @genes_by_category = []
       all_gene_names = result_presenters.map{ |r| r.gene_name }.uniq
-      result_presenters.group_by do |category|
-        category.gene_category
-      end.each_pair do |category, results|
-        sources = results.flat_map do |r|
-            r.gene
-            .potentially_druggable_gene_claims
-            .select { |gc| gc.gene_claim_categories.where(name: category).count > 0 }
-            .map { |gc| gc.source.source_db_name }
+      result_presenters.group_by { |presenter|  presenter.gene_category }
+        .each do |category, results|
+          sources = results.flat_map { |r| r.gene.gene_claims }
+            .select { |gc| gc.gene_claim_categories
+                .select { |gcc| gcc.name == category }.any?
+            }.map { |gc| gc.source.source_db_name }
+          gene_names_in_category = results.map(&:gene_name)
+          @genes_by_category << OpenStruct.new(
+            category_name: category,
+            genes: gene_names_in_category,
+            non_matched_genes: all_gene_names - gene_names_in_category,
+            gene_count: gene_names_in_category.count,
+            sources: sources
+          )
         end
-        gene_names_in_category = results.map(&:gene_name)
-        @genes_by_category << OpenStruct.new(
-          category_name: category,
-          genes: gene_names_in_category,
-          non_matched_genes: all_gene_names - gene_names_in_category,
-          gene_count: gene_names_in_category.count,
-          sources: sources,
-        )
-      end
     end
     @genes_by_category
   end

@@ -11,19 +11,12 @@ module DataModel
     end
 
     def self.for_gene_categories
-      eager_load{[gene_claims, gene_claims.gene_claim_aliases]}
+      eager_load(gene_claims: [:source, :gene_claim_categories])
     end
 
     def self.all_gene_names
       pluck(:name).sort
     end
-
-    def potentially_druggable_gene_claims
-      #return Go or other potentially druggable categories
-      source_ids = DataModel::Source.potentially_druggable_sources.map{|s| s.id}
-      gene_claims.select{|g| source_ids.include?(g.source.id)}
-    end
-
 
   end
 end
