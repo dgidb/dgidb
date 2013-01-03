@@ -31,9 +31,7 @@ class LookupCategories
   end
 
   def self.get_uniq_category_names_with_counts
-    if Rails.cache.exist?("unique_category_names_with_counts")
-      Rails.cache.fetch("unique_category_names_with_counts")
-    else
+    Rails.cache.fetch('unique_category_names_with_counts') do
       categories_with_counts = DataModel::GeneClaimCategory
         .connection
         .select_all(<<-EOS
@@ -43,7 +41,6 @@ class LookupCategories
           GROUP BY gcc.name ORDER BY COUNT(DISTINCT(gcg.gene_id)) DESC;
         EOS
         ).map { |x| OpenStruct.new(name: x['name'], gene_count: x['count']) }
-      Rails.cache.write("unique_category_names_with_counts", categories_with_counts, expires_in: 3.hours)
       categories_with_counts
     end
   end
