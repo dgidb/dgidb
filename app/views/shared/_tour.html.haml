@@ -10,12 +10,12 @@
         $(this).featureTour({
           'tipContent': '#tour',
           'cookieMonster': cookies,
-          'cookieName': "dgidb.#{params['action']}",
+          'cookieName': "dgidb.dev.#{params['action']}",
           })
       };
-      startTour(true);
       var link="<a href='#' id='show-tour'>Show Tour</a>"
       $('.page-header').append(link);
       $('#show-tour').click( function(){startTour(false)});
+      startTour(true);
     });
 
