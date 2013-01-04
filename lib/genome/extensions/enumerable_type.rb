@@ -11,10 +11,8 @@ module Genome
 
         private
         def self.all_types
-          if Rails.cache.exist?(enumerable_cache_key)
-            Rails.cache.fetch(enumerable_cache_key)
-          else
-            id_map = self.all.inject({}) do |hash, val|
+          Rails.cache.fetch(enumerable_cache_key) do
+            self.all.inject({}) do |hash, val|
               hash.tap do |h|
                 key = transforms.inject(val.send(type_column)) do |curr, transform|
                   curr.send(*transform)
@@ -22,8 +20,6 @@ module Genome
                 h[key] = val.id
               end
             end
-            Rails.cache.write(enumerable_cache_key, id_map)
-            id_map
           end
         end
 
