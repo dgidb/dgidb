@@ -109,14 +109,13 @@ class GeneCategorySearchResultsPresenter
       end
     end
 
-    results.inject({}) do |hash, result|
+    results.each_with_object({}) do |result, hash|
       key = result.gene_category + '-' + result.gene_name
       if hash.has_key?(key)
         hash[key].search_term += ", #{result.search_term}"
       else
         hash[key] = result
       end
-      hash
     end.values
   end
 end

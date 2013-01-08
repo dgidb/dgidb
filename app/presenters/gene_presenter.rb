@@ -32,21 +32,20 @@ class GenePresenter
   private
   def group_map(gene)
     #make a hash (key=name, value=source_db_names)
-    hash = gene.gene_claims.inject({}) do |hash, gene_claim|
+    hash = gene.gene_claims.each_with_object({}) do |gene_claim, hash|
       source_db_name = gene_claim.source.source_db_name
       names = gene_claim.gene_claim_aliases.map{|a| a.alias} << gene_claim.name
       names.each do |name|
         hash[name] ||= Hash.new {|key, val| false}
         hash[name][source_db_name] = true
       end
-      hash
     end
 
-    results = []
-    hash.each_pair do |key, value|
-      results << GeneNamePresenter.new(key, value, source_db_names)
+    [].tap do |results|
+      hash.each_pair do |key, value|
+        results << GeneNamePresenter.new(key, value, source_db_names)
+      end
     end
-    results
   end
 
 end

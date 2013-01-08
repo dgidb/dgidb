@@ -1,8 +1,8 @@
 class LookupGenes
 
   def self.find(search_terms, scope, wrapper_class)
-    results_to_gene_groups = search_terms.inject({}) do |hash, search_term|
-      hash.tap { |h| h[search_term] = [] }
+    results_to_gene_groups = search_terms.each_with_object({}) do |term, hash|
+      hash[search_term] = []
     end
 
     gene_names = search_terms
