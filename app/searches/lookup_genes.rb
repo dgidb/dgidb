@@ -2,7 +2,7 @@ class LookupGenes
 
   def self.find(search_terms, scope, wrapper_class)
     results_to_gene_groups = search_terms.each_with_object({}) do |term, hash|
-      hash[search_term] = []
+      hash[term] = []
     end
 
     gene_names = search_terms
