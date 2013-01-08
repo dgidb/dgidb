@@ -15,7 +15,7 @@ class DrugClaimType
 
   def resolve
     Set.new DataModel::DrugClaimType.where(type: @type)
-      .includes(drug_claims: [:interaction_claims])
+      .joins(drug_claims: [:interaction_claims])
       .select('interaction_claims.id')
       .pluck('interaction_claims.id')
       .uniq

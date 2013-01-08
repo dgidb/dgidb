@@ -29,11 +29,14 @@ class LookupInteractions
 
   def self.create_filter_from_params(params)
     filter = FilterChain.new
+    #TODO this is currently a hack since we're only supporting one drug type on our form
+    if params[:limit_drugs] == 'true'
+      params[:drug_types] = ['antineoplastic']
+      create_drug_type_filter(params, filter)
+    end
     create_sources_filter(params, filter)
     create_gene_category_filter(params, filter)
     create_interaction_type_filter(params, filter)
-    #TODO: Normalize out drug types, then enable the filter
-    #create_drug_type_filter(params, filter)
   end
 
   def self.create_sources_filter(params, chain)

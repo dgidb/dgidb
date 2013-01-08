@@ -25,9 +25,6 @@
       =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Category',
         flag_text_key: 'gene_category_flag', select_tag_name: 'gene_categories', collection: @gene_categories,
         name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_cateogories_tour' }
-      =render partial: 'shared/multiselect', locals: { control_group_name: 'Drug Type',
-        flag_text_key: 'drug_type_flag', select_tag_name: 'drug_types', collection: @drug_types,
-        name_meth: 'to_s', value_meth: 'to_s', tour_id: 'drug_types_tour' }
       =render partial: 'shared/multiselect', locals: { control_group_name: 'Interaction Type',
         flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types,
         name_meth: 'to_s', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
@@ -43,6 +40,11 @@
             %input(id='html_output' type='radio' name='outputFormat' value='html' checked='true') HTML
           %label.radio
             %input(id='tsv_output' type='radio' name='outputFormat' value='tsv') TSV
+      .control-group
+        %label.checkobox
+          Limit Drugs to Only Antineoplastics
+          %i.icon-flag.tip{title: tx("drug_type_flag")}
+          %input(id='drug_type_checkbox' type='checkbox' name='limit_drugs' value='true' checked='true')
       .form-actions
         %button.btn.btn-success(type="submit" id='search-btn')Find Drug Interactions
 
