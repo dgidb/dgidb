@@ -56,14 +56,11 @@ class FilterChain
 
   def evaluate_axis(filters)
     key = composite_key(filters)
-    if Rails.cache.exist?(key)
-      Rails.cache.fetch(key)
-    else
+    Rails.cache.fetch(key) do
       current_filter = filters.pop
-      current_resolved = store(
-                               current_filter.resolve,
-                               Digest::MD5.hexdigest(current_filter.cache_key)
-                              )
+      current_resolved = Rails.cache.fetch(Digest::MD5.hexdigest(current_filter.cache_key)) do
+        current_filter.resolve
+      end
       if filters.empty?
         current_resolved
       else
