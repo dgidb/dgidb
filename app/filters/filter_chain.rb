@@ -65,7 +65,7 @@ class FilterChain
         current_resolved
       else
         results = evaluate_axis(filters)
-        store(results + current_resolved, key)
+        results + current_resolved
       end
     end
   end
