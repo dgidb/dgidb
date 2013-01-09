@@ -1,8 +1,16 @@
 %tr
   %td
     =interaction_table_row.search_term
-  %td
-    =link_to interaction_table_row.gene_long_name,  gene_path(interaction_table_row.gene_name)
+  -#%td
+  -#   =link_to interaction_table_row.gene_long_name,  gene_path(interaction_table_row.gene_name)
+  %td{title: interaction_table_row.gene_name + ' : ' + interaction_table_row.gene_long_name.downcase() }
+    = link_to gene_path(interaction_table_row.gene_name) do
+      %strong
+        = interaction_table_row.gene_name
+      %br
+      %em
+        %small 
+          = interaction_table_row.gene_long_name.downcase[0..100]
   %td
     =link_to interaction_table_row.drug_claim_name, drug_claim_path(interaction_table_row.interaction_claim.drug_claim.name)
   %td
