@@ -7,9 +7,11 @@ search_categories:
     Start by entering a list of gene names (one per line) that you would like to search.
   defaultGenes: >
     Press this button to use a sample list of genes.
+  sources_tour: >
+    Filter druggable gene category results by selecting particular sources (e.g. limit to dGene data).
   gene_cateogories_tour: >
     Limit to particular gene categories (e.g. kinases and ion channels only).
   html_output: >
     You may view results in your web browser or dump simplified output to a .tsv file.
   search-btn: >
-    When you are satisfied with your settings, click 'Find Drug Interactions' to search.
+    When you are satisfied with your settings, click 'Find Gene Categories' to search.

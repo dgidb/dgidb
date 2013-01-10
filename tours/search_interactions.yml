@@ -13,6 +13,8 @@ search_interactions:
     Filter drug-gene interaction results by selecting particular drug interaction types (e.g. limit to inhibitors).
   sources_tour: >
     Filter drug-gene interaction results by selecting particular sources (e.g. limit to DrugBank data).
+  drug_type_checkbox: >
+    You may limit interaction results to only those where the drug has been categorized as anti-neoplastic
   html_output: >
     You may view results in your web browser or dump simplified output to a .tsv file.
   search-btn: >
