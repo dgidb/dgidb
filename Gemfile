@@ -18,6 +18,7 @@ gem 'exception_notification'
 gem 'rake'
 gem 'nokogiri'
 gem 'xpath'
+gem 'jbuilder'
 
 group :production do
   gem 'dalli'

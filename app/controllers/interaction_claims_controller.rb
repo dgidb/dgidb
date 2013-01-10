@@ -14,10 +14,16 @@ class InteractionClaimsController < ApplicationController
     validate_search_request(params)
 
     search_results = LookupInteractions.find(params)
-    @search_results = InteractionSearchResultsPresenter.new(search_results, start_time)
-    if params[:outputFormat] == 'tsv'
-      generate_tsv_headers('interactions_export.tsv')
-      render 'interactions_export.tsv', content_type: 'text/tsv', layout: false
+
+    respond_to do |format|
+      format.html do
+        @search_results = InteractionSearchResultsPresenter.new(search_results, start_time)
+        if params[:outputFormat] == 'tsv'
+          generate_tsv_headers('interactions_export.tsv')
+          render 'interactions_export.tsv', content_type: 'text/tsv', layout: false
+        end
+      end
+      format.json { @search_results = InteractionSearchResultsApiPresenter.new(search_results) }
     end
   end
 

@@ -5,11 +5,17 @@ class InteractionSearchResult
   def initialize(search_term, genes)
     @search_term = search_term
     @genes = genes.uniq
-    @interaction_claims = genes.flat_map { |g| g.gene_claims }.flat_map{ |gc| gc.interaction_claims }.uniq
+    @interaction_claims = genes.flat_map { |g| g.gene_claims }
+      .flat_map{ |gc| gc.interaction_claims }
+      .uniq
   end
 
   def is_ambiguous?
     genes.length > 1
+  end
+
+  def is_definite?
+    genes.length == 1
   end
 
   def has_results?

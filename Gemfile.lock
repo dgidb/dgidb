@@ -80,6 +80,8 @@ GEM
     hike (1.2.1)
     http_parser.rb (0.5.3)
     i18n (0.6.1)
+    jbuilder (0.9.1)
+      activesupport (>= 3.0.0)
     journey (1.0.4)
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
@@ -219,6 +221,7 @@ DEPENDENCIES
   exception_notification
   factory_girl_rails
   haml
+  jbuilder
   jquery-rails
   launchy
   less-rails
