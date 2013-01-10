@@ -12,7 +12,9 @@
       .well
         %dl
           -to("questions").each do |q|
-            %dt=q["question"]
+            %dt
+              %a{ :name => q["anchor"] }
+              =q["question"]
             %dd=q["answer"].html_safe
             %br
 

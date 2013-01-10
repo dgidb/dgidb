@@ -4,35 +4,55 @@ faq:
   description: This page provides answers to a wide array of general questions. For detailed tutorials on how to use DGIdb, see the tutorials under the "Getting started" section of the help menu.
   questions:
     - question: What is the goal of DGIdb?
+      anchor: goal
       answer: >
         To help you annotate your genes of interest with respect to known drug-gene interactions and potential druggability.
+
     - question: How do I cite DGIdb?
+      anchor: cite
       answer: >
         A manuscript describing DGIdb is currently under preparation.
         Once accepted for publication, citation details will appear here.
         Until then, please simply cite the URL for dgidb.org.
+
     - question: How can I learn more about how to use DGIdb?
+      anchor: learn
       answer: > 
         You can try reading: the 'Getting Started' section under the help menu, the manuscript, the tutorial, and this FAQ. 
         Some sections also cotain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
         If all else fails please email us with your questions.  
         Refer to the 'Contact' section under the help menu for details on how to get in touch with us.
+
     - question: What types of gene names/symbols should I use as input?
+      anchor: types
       answer: >
         The short answer is that you should ideally use official HUGO gene symbols as reported by Entrez Gene. We have developed a gene name grouping
         strategy that attempts to aggregate synonyms for each gene. We start with the official name and alternate names of each Entrez Gene and update
         with additional names from each data source. You should get reasonable results with known synonyms, Ensembl Ids, Uniprot Ids, etc. If you enter a 
         gene name that is ambiguous or unmatched this will be noted in the results. You should attempt to find a more official name for such genes and update
         your gene list.
+
+    - question: How are genes defined in DGIdb?
+      anchor: defined
+      answer: >
+        The gene summary page shows the primary name, alternate names and meta-data for each gene locus as provided by each source of data
+        imported into DGIdb. Genes in DGIdb are first defined by Entrez but mapped together with gene records from other sources by Entrez ID,
+        Ensembl ID, UniProt ID or alternate names/synonyms in that order of preference.
+
     - question: Where can I find the source code for DGIdb?
+      anchor: source
       answer: >
         The code for DGIdb is available at <a href="https://github.com/genome/dgi-db">github</a><i class="icon-share"></i>.
         Refer to the Downloads section for more details.
+
     - question: I have a source of druggable genes or drug-gene interactions that I would like to add to DGIdb. How do I do that?
+      anchor: add
       answer: >
         This is an open source project and you could therefore create your own instance with your own data ... but if you want that source
         we probably do also. Contact us and we will be happy to consider adding your source for you.
+
     - question: What is the difference between a drug-gene interaction and druggable gene category?
+      anchor: difference
       answer: >
         A drug-gene interaction is a known interaction (e.g. inhibition) between a known drug compound (e.g. lapatinib) and a target gene
         (e.g. EGFR). A druggable gene category is a grouping of genes that are thought to be potentially druggable by various methods of 
@@ -40,7 +60,9 @@ faq:
         likely to be successfully targeted by small molecule inhibitors. Genes in these categories are *potentially druggable* and 
         may or may not have existing drugs that target them. On the other hand, all of the genes from the drug-gene interaction sources 
         are targeted by specific known compounds.
+
     - question: How is this application different from DrugBank or TTD?
+      anchor: different
       answer: >
         There are many differences. DGIdb is limited to human genes only. DrugBank and TTD are databases that catalogue drugs and store
         detailed information about those drugs and the genes they target. DGIdb aggregates many such databases into a common framework.
@@ -50,17 +72,23 @@ faq:
         instance. DGIdb incorporates sources of drug-gene interaction data that were previously only available in inaccessible formats (e.g.
         tables in a PDF document). DGIdb is meant to be used in combination with the original sources of raw data. Wherever possible we link
         out to those original sources.
+
     - question: How is DGIdb implemented?
+      anchor: implementation
       answer: >
         The web interface uses Ruby on Rails and Twitter bootstrap. The backend is a Postgres database. The importers that process data
         from each source and populate this database are written in object oriented Perl.
+
     - question: I found a gene in a category that does not really belong there or a drug-gene interaction that appears false.  Should I report it?
+      anchor: belonging
       answer: >  
         We are working on updates to the interface that would allows us to readily capture this kind of information. In the meantime please
         feel free to report it to us. The quality of our data is only as good as the sources of raw data. Throughout the results you will
         be able to see if multiple independant sources report the same findings. Using this as a filter may help you disqualify some spurious 
         entries and have increased confidence in others.
+
     - question: Some druggable gene categories seem very inclusive ... for example are there really >800 human kinases?
+      anchor: inclusive
       answer: >
         This is by design. Druggable gene categories are aggregated from multiple sources, some of which are predictive in nature. Predictions based on
         sequence similarity etc. may result in some false positives. More stringent lists can be obtained by limiting to a particular source(s) (e.g. dGene only)
