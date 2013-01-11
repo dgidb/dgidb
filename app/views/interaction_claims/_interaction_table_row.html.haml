@@ -9,8 +9,8 @@
         = interaction_table_row.gene_name
       = " - "
       %em
-        %small 
-          = interaction_table_row.gene_long_name.downcase[0..49]+(if(interaction_table_row.gene_long_name.length>50) then "..." else "" end)
+        %small
+          =truncate(interaction_table_row.gene_long_name.downcase, length: 50)
   %td
     =link_to interaction_table_row.drug_claim_name, drug_claim_path(interaction_table_row.interaction_claim.drug_claim.name)
   %td
