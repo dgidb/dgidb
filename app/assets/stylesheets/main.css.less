@@ -1,0 +1,149 @@
+/* Import Bootstrap Resources
+**************************************************/
+@import "twitter/bootstrap/variables";
+@import "twitter/bootstrap/mixins";
+
+/* Import Application LESS
+**************************************************/
+@import "color_drugs.css.less";
+@import "color_genes.css.less";
+@import "color_sources.css.less";
+@import "sticky_footer.css";
+
+/* BOOTSTRAP OVERRIDES
+**************************************************/
+// navbar
+// Navbar
+// -------------------------
+@navbarCollapseWidth:             979px;
+@navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
+
+@navbarHeight:                    48px;
+@navbarBackgroundHighlight:       #ffffff;
+@navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
+@navbarBorder:                    darken(@navbarBackground, 12%);
+
+@navbarText:                      #777;
+@navbarLinkColor:                 #777;
+@navbarLinkColorHover:            @grayDark;
+@navbarLinkColorActive:           @gray;
+@navbarLinkBackgroundHover:       transparent;
+@navbarLinkBackgroundActive:      darken(@navbarBackground, 5%);
+
+@navbarBrandColor:                @navbarLinkColor;
+
+// Inverted navbar
+@navbarInverseBackground:                #111111;
+@navbarInverseBackgroundHighlight:       #222222;
+@navbarInverseBorder:                    #252525;
+
+@navbarInverseText:                      @grayLight;
+@navbarInverseLinkColor:                 @grayLight;
+@navbarInverseLinkColorHover:            @white;
+@navbarInverseLinkColorActive:           @navbarInverseLinkColorHover;
+@navbarInverseLinkBackgroundHover:       transparent;
+@navbarInverseLinkBackgroundActive:      @navbarInverseBackground;
+
+@navbarInverseSearchBackground:          lighten(@navbarInverseBackground, 25%);
+@navbarInverseSearchBackgroundFocus:     @white;
+@navbarInverseSearchBorder:              @navbarInverseBackground;
+@navbarInverseSearchPlaceholderColor:    #ccc;
+
+@navbarInverseBrandColor:                @navbarInverseLinkColor;
+
+
+
+.navbar-inner {
+    .brand {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.navbar .nav {
+    bottom: 0;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+/* LAYOUT
+**************************************************/
+body {
+  padding-top: 48px;
+}
+
+.bubble-links a {
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #999999;
+  padding: 1px 9px 2px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  background-color: #444;
+  opacity:0.6;
+}
+
+.item {
+  width: 550px;
+  margin: 5px;
+}
+
+
+/* Data Tables
+**************************************************/
+.dataTables_length {
+  margin-left: 20px;
+}
+
+.dataTables_info {
+  margin-left: 20px;
+}
+
+div.dataTables_length label {
+  float: left;
+  text-align: left;
+}
+
+div.dataTables_length select {
+  width: 75px;
+}
+
+div.dataTables_filter label {
+  float: right;
+}
+
+div.dataTables_info {
+  padding-top: 8px;
+}
+
+div.dataTables_paginate {
+  float: right;
+  margin: 0;
+}
+
+table.table {
+  clear: both;
+  margin-bottom: 6px !important;
+}
+
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
+  cursor: pointer;
+  *cursor: hand;
+}
+
+table.table thead .sorting { background: url('sort_both.png') no-repeat center right; }
+table.table thead .sorting_asc { background: url('sort_asc.png') no-repeat center right; }
+table.table thead .sorting_desc { background: url('sort_desc.png') no-repeat center right; }
+
+table.table thead .sorting_asc_disabled { background: url('sort_asc_disabled.png') no-repeat center right; }
+table.table thead .sorting_desc_disabled { background: url('sort_desc_disabled.png') no-repeat center right; }
+
+table.dataTable th:active {
+  outline: none;
+}
