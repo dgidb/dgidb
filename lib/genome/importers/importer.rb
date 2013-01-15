@@ -13,6 +13,7 @@ module Genome
         @source                       = create_source!
       end
       def import!
+        update_progress('Constructing objects from TSV', 0)
         process_file
         store
       end
@@ -25,14 +26,14 @@ module Genome
       end
 
       def store
-        DataModel::GeneClaim.import @gene_claims if @gene_claims.any?
-        DataModel::GeneClaimAlias.import @gene_claim_aliases if @gene_claim_aliases.any?
-        DataModel::GeneClaimAttribute.import @gene_claim_attributes if @gene_claim_attributes.any?
-        DataModel::DrugClaim.import @drug_claims if @drug_claims.any?
-        DataModel::DrugClaimAlias.import @drug_claim_aliases if @drug_claim_aliases.any?
-        DataModel::DrugClaimAttribute.import @drug_claim_attributes if @drug_claim_attributes.any?
-        DataModel::InteractionClaim.import @interaction_claims if @interaction_claims.any?
-        DataModel::InteractionClaimAttribute.import @interaction_claim_attributes if @interaction_claim_attributes.any?
+        completed_count = store_entities('gene_claims', 5)
+        completed_count = store_entities('gene_claim_aliases', completed_count)
+        completed_count = store_entities('gene_claim_attributes', completed_count)
+        completed_count = store_entities('drug_claims', completed_count)
+        completed_count = store_entities('drug_claim_aliases', completed_count)
+        completed_count = store_entities('drug_claim_attributes', completed_count)
+        completed_count = store_entities('interaction_claims', completed_count)
+        completed_count = store_entities('interaction_claim_attributes', completed_count)
       end
 
       def create_gene_claim_alias(opts = {})
@@ -123,6 +124,29 @@ module Genome
           dca.description   = opts[:description] || ''
           @drug_claim_attributes << dca
         end
+      end
+
+      def update_progress(message, percent)
+        progress = "=" * (percent/5) unless percent < 5
+        printf("\rOverall Import Process: [%-20s] %d%% - %-50s", progress, percent, message)
+      end
+
+      def total_entity_count
+        @gene_claims.count + @gene_claim_aliases.count +
+        @gene_claim_attributes.count + @drug_claims.count + @drug_claim_aliases.count +
+        @drug_claim_attributes.count + @interaction_claims.count + @interaction_claim_attributes.count
+      end
+
+      def store_entities(item_name, completed_count)
+        ivar = instance_variable_get("@#{item_name}")
+        klass = "DataModel::#{item_name.classify}".constantize
+        if ivar.any?
+          update_progress("Storing #{item_name.gsub('_', ' ')}", (completed_count.to_f / total_entity_count) * 100)
+          klass.import ivar
+          completed_count += ivar.count
+          update_progress("Finished storing #{item_name.gsub('_', ' ')}", (completed_count.to_f/total_entity_count) * 100)
+        end
+        completed_count
       end
     end
   end
