@@ -16,5 +16,10 @@ namespace :dgidb do
       Genome::Importers::Ensembl::EnsemblImporter.new(args[:ensembl_tsv_path], args[:source_db_version]).import!
     end
 
+    desc 'import Entrez from a TSV file'
+    task :entrez, [:entrez_tsv_path, :source_db_version] => :environment do |t, args|
+      Genome::Importers::Entrez::EntrezImporter.new(args[:entrez_tsv_path], args[:source_db_version]).import!
+    end
+
   end
 end
