@@ -4,6 +4,7 @@ module Genome
       def initialize
         @gene_claims                  = []
         @gene_claim_aliases           = []
+        @gene_claim_attributes        = []
         @drug_claims                  = []
         @drug_claim_aliases           = []
         @drug_claim_attributes        = []
@@ -26,6 +27,7 @@ module Genome
       def store
         DataModel::GeneClaim.import @gene_claims if @gene_claims.any?
         DataModel::GeneClaimAlias.import @gene_claim_aliases if @gene_claim_aliases.any?
+        DataModel::GeneClaimAttribute.import @gene_claim_attributes if @gene_claim_attributes.any?
         DataModel::DrugClaim.import @drug_claims if @drug_claims.any?
         DataModel::DrugClaimAlias.import @drug_claim_aliases if @drug_claim_aliases.any?
         DataModel::DrugClaimAttribute.import @drug_claim_attributes if @drug_claim_attributes.any?
@@ -41,6 +43,17 @@ module Genome
           gca.nomenclature  = opts[:nomenclature]
           gca.description   = ''
           @gene_claim_aliases << gca
+        end
+      end
+
+      def create_gene_claim_attribute(opts = {})
+        DataModel::GeneClaimAttribute.new.tap do |gca|
+          gca.id            = SecureRandom.uuid
+          gca.gene_claim_id = opts[:gene_claim_id]
+          gca.name          = opts[:name]
+          gca.value         = opts[:value]
+          gca.description       = opts[:description] || ''
+          @gene_claim_attributes << gca
         end
       end
 

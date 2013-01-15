@@ -6,5 +6,10 @@ namespace :dgidb do
       Genome::Importers::DrugBank::DrugBankImporter.new(args[:drug_bank_tsv_path], args[:source_db_version], args[:uniprot_mapping_file]).import!
     end
 
+    desc 'import dGene from a TSV file'
+    task :dgene, [:dgene_tsv_path, :source_db_version] => :environment do |t, args|
+      Genome::Importers::DGene::DGeneImporter.new(args[:dgene_tsv_path], args[:source_db_version]).import!
+    end
+
   end
 end

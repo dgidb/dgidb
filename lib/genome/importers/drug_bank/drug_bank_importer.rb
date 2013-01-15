@@ -12,7 +12,8 @@ module Genome
 
         private
         def rows
-          File.open(@tsv_path).each do |line|
+          File.open(@tsv_path).each_with_index do |line, index|
+            next if index == 0
             row = DrugBankRow.new(line)
             yield row if row.valid?(uniprot_mapping: uniprot_mapping)
           end
