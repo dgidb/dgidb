@@ -54,7 +54,7 @@ module Genome
             s.site_url          = 'http://hematology.wustl.edu/faculty/Bose/BoseBio.html'
             s.citation          = 'The Druggable Gene List, dGENE, provides a Rapid Filter for Cancer Genome Sequencing Data. Kumar R, Chang L, Ellis MJ, Bose R. Manuscript in preparation.'
             s.source_db_version = @source_db_version
-            s.source_type_id    = DataModel::SourceType.GENE
+            s.source_type_id    = DataModel::SourceType.POTENTIALLY_DRUGGABLE
             s.source_db_name    = 'dGene'
             s.full_name         = 'dGENE - The Druggable Gene List'
             s.save

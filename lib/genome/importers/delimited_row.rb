@@ -31,7 +31,12 @@ module Genome
         end
 
         opts = {delimiter: ','}.merge(opts)
-        (@attributes ||=  {})[name] = self.send("#{type.to_s.downcase}_parser", opts)
+
+        (@attributes ||= {})[name] = if opts[:parser]
+          opts[:parser]
+        else
+          self.send("#{type.to_s.downcase}_parser", opts)
+        end
         attr_accessor name
       end
 

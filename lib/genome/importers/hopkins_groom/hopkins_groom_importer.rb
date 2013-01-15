@@ -109,7 +109,7 @@ module Genome
             s.site_url          = 'http://www.ncbi.nlm.nih.gov/pubmed/12209152/',
             s.citation          = 'The druggable genome. Hopkins AL, Groom CR. Nat Rev Drug Discov. 2002 Sep;1(9):727-30. PMID: 12209152'
             s.source_db_version = @source_db_version
-            s.source_type_id    = DataModel::SourceType.GENE
+            s.source_type_id    = DataModel::SourceType.POTENTIALLY_DRUGGABLE
             s.source_db_name    = 'HopkinsGroom'
             s.full_name         = 'The druggable genome (Hopkins & Groom, 2002)'
             s.save
