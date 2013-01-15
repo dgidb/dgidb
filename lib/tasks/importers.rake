@@ -21,5 +21,10 @@ namespace :dgidb do
       Genome::Importers::Entrez::EntrezImporter.new(args[:entrez_tsv_path], args[:source_db_version]).import!
     end
 
+    desc 'import HopkinsGroom from a TSV file'
+    task :hopkins_groom, [:hg_tsv_path, :source_db_version] => :environment do |t, args|
+      Genome::Importers::HopkinsGroom::HopkinsGroomImporter.new(args[:hg_tsv_path], args[:source_db_version]).import!
+    end
+
   end
 end
