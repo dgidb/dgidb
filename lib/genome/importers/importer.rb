@@ -26,14 +26,9 @@ module Genome
       end
 
       def store
-        completed_count = store_entities('gene_claims', 5)
-        completed_count = store_entities('gene_claim_aliases', completed_count)
-        completed_count = store_entities('gene_claim_attributes', completed_count)
-        completed_count = store_entities('drug_claims', completed_count)
-        completed_count = store_entities('drug_claim_aliases', completed_count)
-        completed_count = store_entities('drug_claim_attributes', completed_count)
-        completed_count = store_entities('interaction_claims', completed_count)
-        completed_count = store_entities('interaction_claim_attributes', completed_count)
+        entity_names.inject(0) do |completed_count, entity|
+          completed_count += store_entities(entity, completed_count)
+        end
       end
 
       def create_gene_claim_alias(opts = {})
@@ -135,6 +130,17 @@ module Genome
         @gene_claims.count + @gene_claim_aliases.count +
         @gene_claim_attributes.count + @drug_claims.count + @drug_claim_aliases.count +
         @drug_claim_attributes.count + @interaction_claims.count + @interaction_claim_attributes.count
+      end
+
+      def entity_names
+        ['gene_claims',
+        'gene_claim_aliases',
+        'gene_claim_attributes',
+        'drug_claims',
+        'drug_claim_aliases',
+        'drug_claim_attributes',
+        'interaction_claims',
+        'interaction_claim_attributes']
       end
 
       def store_entities(item_name, completed_count)
