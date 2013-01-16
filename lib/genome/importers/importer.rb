@@ -2,16 +2,10 @@ module Genome
   module Importers
     class Importer
       def initialize
-        @gene_claims                  = []
-        @gene_claim_aliases           = []
-        @gene_claim_attributes        = []
-        @drug_claims                  = []
-        @drug_claim_aliases           = []
-        @drug_claim_attributes        = []
-        @interaction_claims           = []
-        @interaction_claim_attributes = []
-        @source                       = create_source!
+        entity_names.each { |entity| instance_variable_set("@#{entity}", []) }
+        @source = create_source!
       end
+
       def import!
         update_progress('Constructing objects from TSV', 0)
         process_file
