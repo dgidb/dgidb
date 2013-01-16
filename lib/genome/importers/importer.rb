@@ -121,9 +121,7 @@ module Genome
       end
 
       def total_entity_count
-        @gene_claims.count + @gene_claim_aliases.count +
-        @gene_claim_attributes.count + @drug_claims.count + @drug_claim_aliases.count +
-        @drug_claim_attributes.count + @interaction_claims.count + @interaction_claim_attributes.count
+        entity_names.inject(0) { |sum, entity| sum += instance_variable_get("@#{entity}").count }
       end
 
       def entity_names
@@ -137,14 +135,19 @@ module Genome
         'interaction_claim_attributes']
       end
 
+      def calculate_percent(completed_count)
+        (completed_count.to_f / total_entity_count) * 100
+      end
+
       def store_entities(item_name, completed_count)
         ivar = instance_variable_get("@#{item_name}")
         klass = "DataModel::#{item_name.classify}".constantize
         if ivar.any?
-          update_progress("Storing #{item_name.gsub('_', ' ')}", (completed_count.to_f / total_entity_count) * 100)
+          item_text = item_name.gsub('_', ' ')
+          update_progress("Storing #{item_text}", calculate_percent(completed_count))
           klass.import ivar
           completed_count += ivar.count
-          update_progress("Finished storing #{item_name.gsub('_', ' ')}", (completed_count.to_f/total_entity_count) * 100)
+          update_progress("Finished storing #{item_text}", calculate_percent(completed_count))
         end
         completed_count
       end
