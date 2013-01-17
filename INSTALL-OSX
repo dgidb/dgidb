@@ -21,6 +21,7 @@ cd dgi-db
 bundle install
 
 #If you get an error related to 'time zone utc' try rebooting...
+#On OSX Mountain Lion you may have to do this: 'sudo ln -s /usr/bin/gcc /usr/bin/gcc-4.2' to get bundle install to succeed
 
 #bootstrap the local database
 rake dgidb:load_local
