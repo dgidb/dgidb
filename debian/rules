@@ -1,7 +1,10 @@
 #! /usr/bin/make -f
 
 build:
-	bundle install --deployment
+	bundle install
+	bundle install --deployment --without development test
+	rake assets:clean
+	rake assets:precompile:all
 	dh $@
 	dh_install
 
