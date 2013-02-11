@@ -1,1 +1,1 @@
-Rack::MiniProfiler.config.position = 'left'
+Rack::MiniProfiler.config.position = 'left' if Rails.env.development?
