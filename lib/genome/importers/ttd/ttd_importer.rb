@@ -14,7 +14,7 @@ module Genome
           File.open(@tsv_path).each_with_index do |line, index|
             next if index == 0
             row = TTDRow.new(line)
-            yield row if row.valid?(uniprot_mapping: uniprot_mapping)
+            yield row if row.valid?
           end
         end
 
@@ -109,13 +109,6 @@ module Genome
                                     nomenclature: 'Ensembl Gene Id')
           end
 
-        end
-
-        def uniprot_mapping
-          unless @uniprot_mapping
-            @uniprot_mapping = YAML.load_file(@uniprot_mapping_file)
-          end
-          @uniprot_mapping
         end
 
         def create_source!
