@@ -5,6 +5,9 @@ case "$1" in
     configure)
       chown -R www-data /var/www/dgi-db/
       sudo /usr/bin/gem1.9.1 install bundler --no-ri --no-rdoc
+      sudo -u postgres psql -d dgidb -c 'DROP schema public cascade;'
+      sudo -u postgres psql -d dgidb -c 'CREATE schema public;'
+      sudo -u postgres psql -d dgidb -c 'ALTER SCHEMA public OWNER TO dgidb;'
       cd /var/www/dgi-db && sudo -u www-data RAILS_ENV=production /usr/bin/ruby1.9.1 /usr/local/bin/bundle exec rake -f /var/www/dgi-db/Rakefile db:structure:load && cd -
       sudo -u postgres psql -d dgidb -f /var/www/dgi-db/db/data.sql
       sudo -u www-data touch /var/www/dgi-db/tmp/restart.txt
