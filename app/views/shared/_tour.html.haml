@@ -3,7 +3,7 @@
     -tour.each_step do |step|
       %li{ data: { target: step.id, title: tx('title_main') + ' Tour' } }
         =step.content
-  =javascript_include_tag 'bootstrap-tour.coffee'
+  =javascript_include_tag 'bootstrap-tour'
   :javascript
     $(document).ready(function() {
       var startTour = function(cookies){
