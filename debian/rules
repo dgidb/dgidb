@@ -4,7 +4,7 @@ build:
 	bundle install
 	bundle install --deployment --without development test
 	rake assets:clean
-	rake assets:precompile:all
+	rake assets:precompile
 	dh $@
 	dh_install
 
