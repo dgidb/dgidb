@@ -1,4 +1,4 @@
-dgi-db (0.98) lucid; urgency=low
+dgi-db (0.980) lucid; urgency=low
 
   * update rails version, asset tweaks
 
