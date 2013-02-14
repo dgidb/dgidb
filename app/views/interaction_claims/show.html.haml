@@ -11,7 +11,7 @@
       .hero-unit
         %p
           %b Drug:
-          =link_to @drug.name, "/drugs/#{@drug.name}"
+          =link_to @drug.name, "/drug_claims/#{@drug.name}"
         %p
           %b Gene:
           =link_to @gene.name, "/gene_claims/#{@gene.source_db_name}/#{@gene.name}"
