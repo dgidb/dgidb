@@ -18,5 +18,9 @@ module DataModel
       pluck(:name).sort
     end
 
+    def self.for_gene_summary
+      eager_load(gene_claims: [:source, :gene_claim_aliases, :gene_claim_attributes])
+    end
+
   end
 end

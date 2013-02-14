@@ -8,7 +8,7 @@ class GeneNamePresenter
   end
 
   def row_representation
-    @row ||= @all_source_db_names.map{|name| @source_db_names[name]}
+    @row ||= @all_source_db_names.map{ |name| @source_db_names[name] }
   end
 end
 
