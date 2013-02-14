@@ -10,6 +10,10 @@ module DataModel
     has_many :drug_claim_attributes, inverse_of: :drug_claim
     has_and_belongs_to_many :drug_claim_types
 
+    def self.for_show
+      eager_load(:source, :drug_claim_aliases, :drug_claim_attributes)
+    end
+
     def sort_value
       DrugClaimSortOrder.sort_value(self.nomenclature)
     end
