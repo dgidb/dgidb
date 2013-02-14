@@ -4,6 +4,12 @@ class DataSources
     uniq_source_names_with_table(:gene_claims)
   end
 
+  def self.gene_sources_in_display_order
+    uniq_source_names_with_gene_claims.sort_by do |source_db_name|
+      GeneClaimSortOrder.sort_value(source_db_name)
+    end
+  end
+
   def self.uniq_source_names
     DataModel::Source.uniq.pluck(:source_db_name)
   end

@@ -11,12 +11,7 @@ module DataModel
     has_and_belongs_to_many :drug_claim_types
 
     def sort_value
-      case self.nomenclature
-      when 'pubchem'
-        return -1
-      else
-        return 0
-      end
+      DrugClaimSortOrder.sort_value(self.nomenclature)
     end
 
     def original_data_source_url

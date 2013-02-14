@@ -13,16 +13,7 @@ class GenePresenter
   end
 
   def source_db_names
-    @uniq_db_names ||= DataSources.uniq_source_names_with_gene_claims.sort_by do |source_db_name|
-      case source_db_name
-      when 'Entrez'
-        -2
-      when 'Ensembl'
-        -1
-      else
-        0
-      end
-    end
+    @uniq_db_names ||= DataSources.gene_sources_in_display_order
   end
 
   def grouped_names
@@ -32,12 +23,12 @@ class GenePresenter
   private
   def group_map(gene)
     #make a hash (key=name, value=source_db_names)
-    hash = gene.gene_claims.each_with_object({}) do |gene_claim, hash|
+    hash = gene.gene_claims.each_with_object({}) do |gene_claim, h|
       source_db_name = gene_claim.source.source_db_name
       names = gene_claim.gene_claim_aliases.map{|a| a.alias} << gene_claim.name
       names.each do |name|
-        hash[name] ||= Hash.new {|key, val| false}
-        hash[name][source_db_name] = true
+        h[name] ||= Hash.new {|key, val| false}
+        h[name][source_db_name] = true
       end
     end
 

@@ -22,14 +22,7 @@ module DataModel
     end
 
     def sort_value
-      case self.source_db_name
-      when 'Ensembl'
-        return -1
-      when 'Entrez'
-        return -2
-      else
-        return 0
-      end
+      GeneClaimSortOrder.sort_value(self.source_db_name)
     end
 
     def original_data_source_url
