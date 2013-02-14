@@ -1,3 +1,9 @@
+dgi-db (0.985) lucid; urgency=low
+
+  * performance enhancements
+
+ -- Adam Coffman <acoffman@genome.wuslt.edu>  Thu, 14 Feb 2013 12:32:30 -0500
+
 dgi-db (0.980) lucid; urgency=low
 
   * update rails version, asset tweaks
