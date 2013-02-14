@@ -1,14 +1,14 @@
 %dl
   %dt Source Full Name:
   %dd
-    =ext_link_to(source.full_name, source.homepage)
+    =ext_link_to(source.full_name, source.site_url)
   %dt Full Citation:
-  %dd=source.full_citation
+  %dd=source.citation
   %dt Genes
-  %dd="Total: #{source.gene_claims_in_source}"
-  %dd="In Groups: #{source.gene_claims_in_groups}"
+  %dd="Total: #{source.gene_claims.size}"
+  %dd="In Groups: #{source.gene_claims_in_groups_count}"
   %dt Drugs
-  %dd="Total: #{source.drug_claims_in_source}"
-  %dd="In Groups: #{source.drug_claims_in_groups}"
+  %dd="Total: #{source.drug_claims.size}"
+  %dd="In Groups: #{source.drug_claims_in_groups_count}"
   %dt Interactions
-  %dd="Total: #{source.interaction_claims_in_source}"
+  %dd="Total: #{source.interaction_claims.size}"

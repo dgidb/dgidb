@@ -5,7 +5,7 @@ module DataModel
     has_and_belongs_to_many :gene_claim_categories
     has_many :gene_claim_aliases, inverse_of: :gene_claim
     has_many :gene_claim_attributes, inverse_of: :gene_claim
-    belongs_to :source, inverse_of: :gene_claims
+    belongs_to :source, inverse_of: :gene_claims, counter_cache: true
     has_many :interaction_claims, inverse_of: :gene_claim
     has_many :drug_claims, through: :interaction_claims
 

@@ -6,5 +6,10 @@ namespace :dgidb do
       Genome::Normalizers::DrugTypeNormalizers.normalize_types
     end
 
+    desc 'initially populate counter cache columns for sources'
+    task populate_source_counters: :environment do
+      Genome::Normalizers::PopulateCounters.populate_source_counters
+    end
+
   end
 end
