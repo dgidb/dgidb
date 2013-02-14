@@ -4,7 +4,7 @@ class GeneClaimsController < ApplicationController
     @title = params[:name]
     name_param = params[:name]
     source_db_name_param = params[:source_db_name]
-    @genes = DataModel::GeneClaim.joins(:source)
+    @genes = DataModel::GeneClaim.for_show
       .where(name: name_param)
       .where('sources.source_db_name' => source_db_name_param)
   end
