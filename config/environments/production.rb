@@ -67,15 +67,6 @@ DruggableGene::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    :from => 'acoffman@genome.wustl.edu',
-    :address => 'gscsmtp.wustl.edu',
-    :port => 25,
-    :domain => 'genome.wustl.edu',
-    :enable_starttls_auto => false
-  }
-
   config.middleware.use ExceptionNotifier,
   :email_prefix => "[DGIDB] ",
   :sender_address => %{"DGIDB Notifier" <notifier@genome.wustl.edu>},

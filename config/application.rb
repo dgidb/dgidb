@@ -58,5 +58,15 @@ module DruggableGene
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.5'
+
+    ActionMailer::Base.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+      :from => 'acoffman@genome.wustl.edu',
+      :address => 'gscsmtp.wustl.edu',
+      :port => 25,
+      :domain => 'genome.wustl.edu',
+      :enable_starttls_auto => false
+    }
+
   end
 end

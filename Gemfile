@@ -19,6 +19,7 @@ gem 'rake'
 gem 'nokogiri'
 gem 'xpath'
 gem 'jbuilder'
+gem 'feedback_popup'
 
 group :production do
   gem 'dalli'
