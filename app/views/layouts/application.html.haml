@@ -11,20 +11,19 @@
         .navbar.navbar-fixed-top.navbar-inverse
           .navbar-inner
             %a.brand(href="/")
-              %img{:src => "/assets/dgidb-icon_48.png", :class => "logo", :width => "48", :height => "48"}
-              %img{:src => "/assets/dgidb-logotype.png", :class => "logo", :width => "113", :height => "48"}
-            %ul.nav
+              %img{:src => "/assets/dgidb-header-branding_128.png", :class => "logo", :width => "298", :height => "64"}
+            %ul.nav.main-menu
               %li{class: @search_interactions_active}
                 %a(href="/search_interactions") Search Interactions
               %li{class: @search_categories_active}
                 %a(href="/search_categories") Search Categories
               %li{class: @druggable_gene_categories_active}
                 %a(href="/druggable_gene_categories") Browse Categories
-            %ul.nav.pull-right
+            %ul.nav.pull-right.help-menu
               %li.divider-vertical
               %li.dropdown{class: @help_active}
                 %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
-                  Help 
+                  Help
                   %b.caret
                 %ul.dropdown-menu
                   %li

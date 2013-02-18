@@ -1,24 +1,23 @@
 /* Import Bootstrap Resources
-**************************************************/
+ **************************************************/
 @import "twitter/bootstrap/variables";
 @import "twitter/bootstrap/mixins";
 
 /* Import Application LESS
-**************************************************/
+ **************************************************/
 @import "color_drugs.css.less";
 @import "color_genes.css.less";
 @import "color_sources.css.less";
 @import "sticky_footer.css.less";
 
 /* BOOTSTRAP OVERRIDES
-**************************************************/
-// navbar
+ **************************************************/
 // Navbar
 // -------------------------
 @navbarCollapseWidth:             979px;
 @navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
 
-@navbarHeight:                    48px;
+@navbarHeight:                    64px;
 @navbarBackgroundHighlight:       #ffffff;
 @navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
 @navbarBorder:                    darken(@navbarBackground, 12%);
@@ -51,23 +50,8 @@
 
 @navbarInverseBrandColor:                @navbarInverseLinkColor;
 
-
-
-.navbar-inner {
-    .brand {
-        margin: 0;
-        padding: 0;
-    }
-}
-
-.navbar .nav {
-    bottom: 0;
-    margin-left: 20px;
-    margin-top: 5px;
-}
-
 /* LAYOUT
-**************************************************/
+ **************************************************/
 body {
   padding-top: 58px;
 }
@@ -78,9 +62,7 @@ body {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #999999;
   padding: 1px 9px 2px;
-  -webkit-border-radius: 9px;
-  -moz-border-radius: 9px;
-  border-radius: 9px;
+  .border-radius(9px);
   background-color: #444;
   opacity:0.6;
 }
@@ -90,9 +72,38 @@ body {
   margin: 5px;
 }
 
+/* NAVIGATION
+ **************************************************/
+.navbar {
+  border-bottom: 4px solid #9993a9;
+}
+
+.navbar-inner {
+  position: relative;
+  .brand {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.navbar .nav.main-menu {
+  position: absolute;
+  bottom: 0;
+  left: 310px;
+  .active {
+    a {
+      background-color: #47444e;
+      .border-radius(5px 5px 0 0);
+    }
+  }
+}
+
+.navbar .nav.help-menu {
+
+}
 
 /* Data Tables
-**************************************************/
+ **************************************************/
 .dataTables_length {
   margin-left: 20px;
 }
