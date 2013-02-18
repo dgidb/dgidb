@@ -30,9 +30,10 @@ class InteractionClaimsController < ApplicationController
   private
   def validate_search_request(params)
     bad_request('You must enter at least one gene name to search!') if params[:gene_names].size == 0
-    bad_request('You must select at least one source to search!') unless params[:sources]
-    bad_request('You must select at least one gene category to search!') unless params[:gene_categories]
-    bad_request('You must select at least one interaction type to search!') unless params[:interaction_types]
+    #TODO: this is a hack to allow for api users to specify no filters to get all inclusive... need a real way of doing this
+    params[:sources] = DataModel::Source.source_names_with_interactions unless params[:sources]
+    params[:gene_categories] = DataModel::GeneClaimCategory.all_category_names unless params[:gene_categories]
+    params[:interaction_types] = DataModel::InteractionClaimType.all_type_names unless params[:interaction_types]
   end
 
 end

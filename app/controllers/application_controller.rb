@@ -35,7 +35,12 @@ class ApplicationController < ActionController::Base
   end
 
   def combine_input_genes(params)
-    gene_names = params[:genes].split("\n")
+    split_char = if params[:genes].include?(',')
+      ','
+    else
+      "\n"
+    end
+    gene_names = params[:genes].split(split_char)
     gene_names.delete_if{|gene| gene.strip.empty? }
     params[:gene_names] = gene_names.map{ |name| name.strip.upcase }.uniq
   end
