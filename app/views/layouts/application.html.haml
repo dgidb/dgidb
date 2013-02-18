@@ -32,7 +32,6 @@
                     %a(href="/sources") Sources
                     %a(href="/downloads") Downloads
                     %a(href="/contact") Contact
-            =feedback_popup
       .container-fluid
         .page-header
           =h yield(:header)
@@ -50,6 +49,7 @@
             %li.span2
               =dynamic_link_to(l["title"], l["url"])
               %small=l["description"]
+  =feedback_popup
   -if(Rails.env.production?)
     :javascript
       var _gaq = _gaq || [];

@@ -21,7 +21,10 @@ downloads:
       link: "https://github.com/downloads/genome/dgi-db/druggable_gene_tsv.tar.gz"
       description: >
         This is an archive containing the tsv files used to populate the DGIdb database. 
-    - title: PharmGKB data 
+    - title: PharmGKB data
       link: "http://www.pharmgkb.org/downloads.jsp"
       description: >
         Note that PharmGKB is not included in the TSV archive above. This data must be requested directly from PharmGKB.
+    - title: Interactions TSV
+      link: "https://github.com/genome/dgi-db/raw/master/files/interactions.tsv"
+      description: TSV download of all interactions in DGIdb that were mapped to Entrez genes.
