@@ -3,7 +3,8 @@
 =content_for :header do
   %h2
     %span{id: "drug_name"}=@drug_claim.title
-    %small drug detail
+    %small
+      ="drug data from #{@drug_claim.source.source_db_name}"
 
 .row-fluid.span12.well
   %p
