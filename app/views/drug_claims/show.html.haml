@@ -10,7 +10,7 @@
 .row-fluid.span12.well
   -@drugs.each do |drug_claim|
     %p
-      %b Source Name and Link:
+      %b Reported Drug Name and External Link:
       %a{href: drug_claim.original_data_source_url}=drug_claim.name
     %p
       %b Source Database Name:
@@ -19,7 +19,7 @@
       %b Source Database Version:
       =drug_claim.source.source_db_version
     %p
-      %b Primary Name in DGIdb:
+      %b Primary Drug Name in DGIdb:
       -if drug_claim.drugs and drug_claim.drugs.length > 0
         =link_for_drug(drug_claim.drugs.first)
       -else

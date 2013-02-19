@@ -1,6 +1,5 @@
 #notice= notice
-=content_for :title, @title
-
+=content_for :title, @genes.map { |gene_claim| title_for_gene_claim(gene_claim) }.join(' ') 
 .container-fluid
   .row-fluid
     .span12
