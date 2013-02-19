@@ -9,7 +9,7 @@
 .row-fluid.span12.well
   %p
     %b Reported Drug Name:
-    =link_to(@drug_claim.drug_claim_name, @drug_claim.original_data_source_url)
+    =ext_link_to(@drug_claim.drug_claim_name, @drug_claim.original_data_source_url)
   %p
     %b Source Database Name:
     =link_to @drug_claim.source.source_db_name, source_path(@drug_claim.source.source_db_name)
