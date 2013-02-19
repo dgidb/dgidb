@@ -1,48 +1,37 @@
 #notice= notice
-=content_for :title, @drugs.flat_map { |drug_claim| title_for_drug_claim(drug_claim) }.join(' ') 
+=content_for :title, @drug_claim.title
 =content_for :header do
   %h2
-    %span{id: "drug_name"}
-      - @drugs.each do |drug_claim| 
-        = title_for_drug_claim(drug_claim) 
+    %span{id: "drug_name"}=@drug_claim.title
     %small drug detail
 
 .row-fluid.span12.well
-  -@drugs.each do |drug_claim|
-    %p
-      %b Reported Drug Name and External Link:
-      %a{href: drug_claim.original_data_source_url}=drug_claim.name
-    %p
-      %b Source Database Name:
-      =link_to drug_claim.source.source_db_name, source_path(drug_claim.source.source_db_name)
-    %p
-      %b Source Database Version:
-      =drug_claim.source.source_db_version
-    %p
-      %b Primary Drug Name in DGIdb:
-      -if drug_claim.drugs and drug_claim.drugs.length > 0
-        =link_for_drug(drug_claim.drugs.first)
-      -else
-        =#FIXME: coincidental/duck-typing: passing a claim where a drug is needed 
-        =#we can have zero "drugs" returned when we _are_ the primary drug?
-        =link_for_drug(drug_claim)
-    %p
-      %b Alternate Names:
-      %table.table.table-striped
-        -drug_claim.drug_claim_aliases.each do |alt_name|
-          %tr
-            %td=alt_name.alias
-            %td=alt_name.nomenclature
-    %p
-      %b Meta-data:
-      %table.table.table-striped
-        -drug_claim.drug_claim_attributes.each do |attr|
-          %tr
-            %td=attr.name
-            %td=attr.value
-    %p
-      %b Citation:
-      =drug_claim.source.citation
+  %p
+    %b Reported Drug Name and External Link:
+    =link_to(@drug_claim.drug_claim_name, @drug_claim.original_data_source_url)
+  %p
+    %b Source Database Name:
+    =link_to @drug_claim.source.source_db_name, source_path(@drug_claim.source.source_db_name)
+  %p
+    %b Source Database Version:
+    =@drug_claim.source.source_db_version
+  %p
+    %b Alternate Names:
+    %table.table.table-striped
+      -@drug_claim.drug_claim_aliases.each do |alt_name|
+        %tr
+          %td=alt_name.alias
+          %td=alt_name.nomenclature
+  %p
+    %b Meta-data:
+    %table.table.table-striped
+      -@drug_claim.drug_claim_attributes.each do |attr|
+        %tr
+          %td=attr.name
+          %td=attr.value
+  %p
+    %b Citation:
+    =@drug_claim.source.citation
 .row-fluid.span12.well
   %h3 Similarly Named Drugs
   %span{id: "related_drugs"}
