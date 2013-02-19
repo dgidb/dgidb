@@ -3,7 +3,8 @@
 =content_for :header do
   %h2
     =@interaction.title
-    %small drug-gene interaction summary page
+    %small 
+      ="drug-gene interaction data from #{@interaction.source.source_db_name}" 
 .container-fluid
   .row-fluid
     .span12
