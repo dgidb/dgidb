@@ -32,7 +32,8 @@
               .well
                 %h3
                   Search Terms With No Matches
-                  %i.icon-flag.tip(title="Search terms for which we could find no matches")
+                  %small
+                    %i.icon-flag.tip(title="Search terms for which we could find no matches")
                 %ul
                   -@search_results.no_results_results.each do |result|
                     %li=result.search_term
