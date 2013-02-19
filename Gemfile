@@ -19,7 +19,7 @@ gem 'rake'
 gem 'nokogiri'
 gem 'xpath'
 gem 'jbuilder'
-gem 'feedback_popup'
+gem 'feedback_popup', git: 'git://github.com/thecoffman/feedback_popup.git'
 
 group :production do
   gem 'dalli'
