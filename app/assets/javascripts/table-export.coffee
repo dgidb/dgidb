@@ -7,7 +7,10 @@ window.export_table = (table_selector) ->
   row_data = dt.fnSettings().aoData
   tsv = row_data.map (row) ->
     row._aData.map (cell) ->
-     $(cell).text().replace(/\s{2,}/g , ' ') || cell
+      try
+       $(cell).text().replace(/\s{2,}/g , ' ') || cell
+      catch err
+        cell
     .join("%09")
   .join("%0A")
   loading.hide()
