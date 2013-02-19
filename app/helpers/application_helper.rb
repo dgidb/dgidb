@@ -29,10 +29,6 @@ module ApplicationHelper
     end
   end
 
-  def link_for_gene(gene)
-    link_to(gene.name, "/genes/#{gene.name}")
-  end
-
   def link_for_drug(drug)
     link_to(drug.name, "/drugs/#{drug.name}")
   end

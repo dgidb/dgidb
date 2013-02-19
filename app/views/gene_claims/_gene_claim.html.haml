@@ -9,8 +9,7 @@
   =gene_claim.source.source_db_version
 %p
   %b Primary Gene Name in DGIdb:
-  =#link_to gene_claim.genes.first.name, "/genes/#{gene_claim.genes.first.name}"
-  = gene_claim.genes.first.name
+  =gene_claim.gene_link(self)
 %p
   %b Alternate Names:
   %table.table
@@ -20,7 +19,7 @@
           -if(gene_claim.source.source_db_name == 'GO')
             =ext_link_to alt_name.alias, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alias
           -else
-            =alt_name.alias 
+            =alt_name.alias
         %td=alt_name.nomenclature
 %p
   %b Meta-data:
