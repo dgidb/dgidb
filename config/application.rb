@@ -61,7 +61,7 @@ module DruggableGene
 
     ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
-      :from => 'acoffman@genome.wustl.edu',
+      :from => 'dgidb-notifications@genome.wustl.edu',
       :address => 'gscsmtp.wustl.edu',
       :port => 25,
       :domain => 'genome.wustl.edu',

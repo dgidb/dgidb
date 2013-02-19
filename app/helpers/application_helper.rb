@@ -29,4 +29,8 @@ module ApplicationHelper
     end
   end
 
+  def gene_claim_path(gene_claim)
+    "/gene_claims/#{gene_claim.source.source_db_name}/#{gene_claim.name}"
+  end
+
 end

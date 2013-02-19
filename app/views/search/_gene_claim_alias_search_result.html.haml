@@ -1,5 +1,5 @@
 .well
   %em Gene Claim Alias
   %p
-    %strong=link_to r.alias, "/gene_claims/#{r.gene_claim.source.source_db_name}/#{r.gene_claim.name}"
+    %strong=link_to r.alias, gene_claim_path(r.gene_claim)
     %p="Gene:  #{r.gene_claim.name} from #{r.gene_claim.source.source_db_name} version #{r.gene_claim.source.source_db_version}"

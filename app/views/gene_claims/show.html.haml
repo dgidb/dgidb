@@ -1,8 +1,13 @@
 #notice= notice
-=content_for :title, @title
-
+=content_for :title, @gene_claim.title
+=content_for :header do
+  %h2
+    %span{id: "gene_name"}
+      =@gene_claim.title
+    %small 
+      ="gene data from #{@gene_claim.source.source_db_name}" 
 .container-fluid
   .row-fluid
     .span12
       .hero-unit
-        =render partial: 'gene_claims/gene_claim', collection: @genes
+        =render partial: 'gene_claims/gene_claim', locals: {gene_claim: @gene_claim}

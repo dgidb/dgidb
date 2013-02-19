@@ -1,5 +1,5 @@
 %p
-  %b Gene Name:
+  %b Reported Gene Name:
   =ext_link_to gene_claim.name, gene_claim.original_data_source_url
 %p
   %b Source Database Name:
@@ -7,6 +7,9 @@
 %p
   %b Source Database Version:
   =gene_claim.source.source_db_version
+%p
+  %b Primary Gene Name in DGIdb:
+  =gene_claim.gene_link(self)
 %p
   %b Alternate Names:
   %table.table

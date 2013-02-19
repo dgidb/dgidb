@@ -2,7 +2,8 @@
   .well
     %h3
       =title
-      %i.icon-flag.tip{title: tooltip_text}
+      %small
+        %i.icon-flag.tip{title: tooltip_text}
     %dl
       -results.each do |result|
         -result.genes.each do |gene|

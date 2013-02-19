@@ -1,39 +1,38 @@
 #notice= notice
-=content_for :title, @title
+=content_for :title, @drug_claim.title
 =content_for :header do
   %h2
-    %span{id: "drug_name"}
-      =@title
-    %small drug claim page
+    %span{id: "drug_name"}=@drug_claim.title
+    %small
+      ="drug data from #{@drug_claim.source.source_db_name}"
 
 .row-fluid.span12.well
-  -@drugs.each do |drug|
-    %p
-      %b Source Name and Link:
-      %a{href: drug.original_data_source_url}=drug.name
-    %p
-      %b Source Database Name:
-      =link_to drug.source.source_db_name, source_path(drug.source.source_db_name)
-    %p
-      %b Source Database Version:
-      =drug.source.source_db_version
-    %p
-      %b Alternate Names:
-      %table.table.table-striped
-        -drug.drug_claim_aliases.each do |alt_name|
-          %tr
-            %td=alt_name.alias
-            %td=alt_name.nomenclature
-    %p
-      %b Meta-data:
-      %table.table.table-striped
-        -drug.drug_claim_attributes.each do |attr|
-          %tr
-            %td=attr.name
-            %td=attr.value
-    %p
-      %b Citation:
-      =drug.source.citation
+  %p
+    %b Reported Drug Name:
+    =ext_link_to(@drug_claim.drug_claim_name, @drug_claim.original_data_source_url)
+  %p
+    %b Source Database Name:
+    =link_to @drug_claim.source.source_db_name, source_path(@drug_claim.source.source_db_name)
+  %p
+    %b Source Database Version:
+    =@drug_claim.source.source_db_version
+  %p
+    %b Alternate Names:
+    %table.table.table-striped
+      -@drug_claim.drug_claim_aliases.each do |alt_name|
+        %tr
+          %td=alt_name.alias
+          %td=alt_name.nomenclature
+  %p
+    %b Meta-data:
+    %table.table.table-striped
+      -@drug_claim.drug_claim_attributes.each do |attr|
+        %tr
+          %td=attr.name
+          %td=attr.value
+  %p
+    %b Citation:
+    =@drug_claim.source.citation
 .row-fluid.span12.well
   %h3 Similarly Named Drugs
   %span{id: "related_drugs"}

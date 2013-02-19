@@ -1,4 +1,4 @@
--gene.gene_claims.sort_by{|g| g.sort_value}.each do |gene_claim|
+-gene.sorted_gene_claims.each do |gene_claim|
   .item
     %div(class="hero-unit gene bubble-links #{gene_claim.source.source_db_name}")
       =render partial: 'gene_claims/gene_claim', locals: {gene_claim: gene_claim}

@@ -70,6 +70,6 @@ DruggableGene::Application.configure do
   config.middleware.use ExceptionNotifier,
   :email_prefix => "[DGIDB] ",
   :sender_address => %{"DGIDB Notifier" <notifier@genome.wustl.edu>},
-  :exception_recipients => %w{acoffman@genome.wustl.edu jweible@genome.wustl.edu}
+  :exception_recipients => %w{dgidb-notifications@genome.wustl.edu}
 
 end
