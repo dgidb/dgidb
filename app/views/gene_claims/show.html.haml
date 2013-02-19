@@ -1,5 +1,11 @@
 #notice= notice
 =content_for :title, @genes.map { |gene_claim| title_for_gene_claim(gene_claim) }.join(' ') 
+=content_for :header do
+  %h2
+    %span{id: "gene_name"}
+      -@genes.each do |gene_claim|
+        =title_for_gene_claim(gene_claim) 
+    %small gene claim page
 .container-fluid
   .row-fluid
     .span12
