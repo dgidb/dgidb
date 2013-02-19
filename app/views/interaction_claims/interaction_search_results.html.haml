@@ -32,9 +32,9 @@
         .row-fluid
           .span12
             -if @search_results.show_definite?
-              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Definite Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_filter_flag")}
+              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Definite Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_filter_flag"), subtitle: "Search terms matching exactly one gene that has one or more drug interactions.", export_id: 'definite_results_table'}
             -if @search_results.show_ambiguous?
-              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Ambiguous Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_filter_flag")}
+              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Definite Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_filter_flag"), subtitle: "Search terms matching multiple genes, where some of those genes have drug interactions.", export_id: 'ambiguous_results_table'}
         .row-fluid
           -if @search_results.show_ambiguous_no_interactions?
             =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Ambiguously Matched Genes With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: tx("ambiguous_results_no_interactions_flag")}
@@ -54,3 +54,4 @@
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"
 =javascript_include_tag "interaction_search_results"
+=javascript_include_tag "table-export"

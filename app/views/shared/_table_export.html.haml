@@ -1,0 +1,7 @@
+%div{id: "exportLink-#{id}"}
+  %small
+    %a{onclick: "export_table('#{id}')"}Export as TSV...
+%div{id: "loadingBar-#{id}", style: 'display:none;'}
+  .progress.progress-striped.active.span2
+    .bar(style='width: 100%') Preparing Download
+%b
