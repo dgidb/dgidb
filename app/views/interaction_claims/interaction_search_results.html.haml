@@ -18,7 +18,6 @@
         %a(href="#by_gene" data-toggle="tab") By Gene
       %li
         %a(href="#by_source" data-toggle="tab") By Source
-
     .tab-content
       .tab-pane.fade#search_summary_tab
         =render partial: 'interaction_claims/results_summary', locals: {results: @search_results}
@@ -32,21 +31,21 @@
         .row-fluid
           .span12
             -if @search_results.show_definite?
-              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Definite Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_filter_flag")}
+              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Primary Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_filter_flag"), subtitle: "Search terms matching exactly one gene, and with one or more drug interactions."}
             -if @search_results.show_ambiguous?
-              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Ambiguous Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_filter_flag")}
+              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Ambiguous Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_filter_flag"), subtitle: "Search terms matching multiple genes, where some of those genes have drug interactions."}
         .row-fluid
           -if @search_results.show_ambiguous_no_interactions?
-            =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Ambiguously Matched Genes With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: tx("ambiguous_results_no_interactions_flag")}
-
+            =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Ambiguously Matched Genes With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: tx("ambiguous_results_no_interactions_flag"), xsubtitle: 'Search terms matching multiple genes, but none have interactions.'}
           -if @search_results.show_definite_no_interactions?
-            =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions, tooltip_text: tx("definite_results_no_interactions_flag")}
+            =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions, tooltip_text: tx("definite_results_no_interactions_flag"), xsubtitle: 'Search terms matching one gene, but no interactions are present.'}
           -if @search_results.show_no_results_results?
             .span6
               .well
                 %h3
                   Search Terms With No Matches
-                  %i.icon-flag.tip{title: tx("terms_with_no_matches_flag")}
+                  %small
+                    %i.icon-flag.tip{title: tx("terms_with_no_matches_flag")}
                 %ul
                   -@search_results.no_results_results.each do |result|
                     %li=result.search_term
