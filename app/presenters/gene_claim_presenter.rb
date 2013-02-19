@@ -12,8 +12,8 @@ class GeneClaimPresenter < SimpleDelegator
     #the instance exec creates a closure around the local scope
     #this hack stores the result of the "gene" method call in a "gene"
     #variable so that its available in that closure
-    if gene = gene
-      context.instance_exec { link_to gene.name, gene_path(gene.name) }
+    if g = gene
+      context.instance_exec { link_to g.name, gene_path(g.name) }
     else
       'N/A'
     end
