@@ -25,6 +25,10 @@ class GenePresenter < SimpleDelegator
     @wrapped_claims ||= @gene.gene_claims.map { |gc| GeneClaimPresenter.new(gc) }
   end
 
+  def sorted_gene_claims
+    gene_claims.sort_by(&:sort_value)
+  end
+
   private
   def group_map(gene)
     #make a hash (key=name, value=source_db_names)
