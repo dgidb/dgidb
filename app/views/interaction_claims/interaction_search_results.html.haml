@@ -31,7 +31,7 @@
         .row-fluid
           .span12
             -if @search_results.show_definite?
-              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Primary Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_filter_flag"), subtitle: "Search terms matching exactly one gene, and with one or more drug interactions."}
+              =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Primary Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_filter_flag"), subtitle: "Search terms matching exactly one gene that has one or more drug interactions."}
             -if @search_results.show_ambiguous?
               =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Ambiguous Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_filter_flag"), subtitle: "Search terms matching multiple genes, where some of those genes have drug interactions."}
         .row-fluid
