@@ -3,9 +3,9 @@ class GenesController < ApplicationController
   caches_page :show, :druggable_gene_category, :druggable_gene_categories
 
   def show
-    @gene = DataModel::Gene.for_gene_summary.where(name: params[:name]).first
-    @gene_presenter = GenePresenter.new(@gene)
-    @title = @gene_presenter.display_name
+    @gene = GenePresenter.new(
+      DataModel::Gene.for_gene_summary.where(name: params[:name]).first)
+    @title = @gene.display_name
   end
 
   def names

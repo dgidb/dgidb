@@ -3,8 +3,8 @@
     %thead
       %tr
         %th Name
-        -gene_presenter.source_db_names.each do |name|
+        -gene.source_db_names.each do |name|
           %th=name
         %th Count
     %tbody
-      =render partial: 'genes/by_source_table_row', collection: gene_presenter.grouped_names
+      =render partial: 'genes/by_source_table_row', collection: gene.grouped_names

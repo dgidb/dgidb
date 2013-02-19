@@ -20,7 +20,7 @@
       .tab-pane.fade#by_source
         .row-fluid
           .span12
-            =render partial: 'genes/by_source_table', locals:{gene_presenter: @gene_presenter}
+            =render partial: 'genes/by_source_table', locals:{gene: @gene}
 
 =javascript_include_tag "jquery.masonry.min"
 =javascript_include_tag "mason_items"
