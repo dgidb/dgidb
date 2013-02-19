@@ -4,7 +4,6 @@ class InteractionClaimsController < ApplicationController
     @interaction = DataModel::InteractionClaim.for_show.find(params[:id])
     @drug = @interaction.drug_claim
     @gene = @interaction.gene_claim
-    @title = "#{@drug.name} acting on #{@gene.name}"
   end
 
   def interaction_search_results
