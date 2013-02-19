@@ -9,7 +9,7 @@ module DataModel
     has_and_belongs_to_many :interaction_claim_types
 
     def self.for_show
-      eager_load(:interaction_claim_types, :interaction_claim_attributes, :source, :drug_claim, gene_claim: [:source])
+      eager_load(:interaction_claim_types, :interaction_claim_attributes, :source, :drug_claim, gene_claim: [:genes, :source])
     end
   end
 end

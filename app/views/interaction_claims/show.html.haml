@@ -1,8 +1,8 @@
 #notice= notice
-=content_for :title, title_for_interaction_claim(@interaction)
+=content_for :title, @interaction.title
 =content_for :header do
   %h2
-    =title_for_interaction_claim(@interaction)
+    =@interaction.title
     %small drug-gene interaction summary page
 .container-fluid
   .row-fluid
@@ -10,10 +10,10 @@
       .hero-unit
         %p
           %b Drug:
-          =links_for_drug_claim(@drug)
+          =link_to(@interaction.drug_claim.title, drug_claim_path(@interaction.drug_claim.name))
         %p
           %b Gene:
-          =links_for_gene_claim(@gene)
+          =link_to(@interaction.gene_claim.title, gene_claim_path(@interaction.gene_claim))
         %p
           %b Source Database Name:
           =link_to @interaction.source.source_db_name, source_path(@interaction.source.source_db_name)
