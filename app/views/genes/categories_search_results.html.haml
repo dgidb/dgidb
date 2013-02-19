@@ -21,7 +21,7 @@
         -if @search_results.show_result_categories?
           .row-fluid
             .span12
-              =render partial: 'genes/category_results_table', locals: {title: "Results in Selected Categories", categories: @search_results.result_presenters }
+              =render partial: 'genes/category_results_table', locals: {title: "Results in Selected Categories", categories: @search_results.result_presenters, export_id: 'category_result_export' }
         .row-fluid
           -if @search_results.show_ambiguous_results?
             =render partial: 'genes/no_category_result', locals: {title: 'Ambiguous Terms', results: @search_results.ambiguous_results, tooltip_text: tx('ambiguous_terms_flag')}
@@ -49,3 +49,4 @@
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"
 =javascript_include_tag "interaction_search_results"
+=javascript_include_tag "table-export"
