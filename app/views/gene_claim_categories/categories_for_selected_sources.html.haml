@@ -1,6 +1,7 @@
 .control-group
   %label.control-label
     Gene Categories
+  %small
     %i.icon-flag.tip{title: tx('categories_flag', 'search_categories')}
   .controls
     =select_tag 'gene_categories', options_from_collection_for_select(@category_names, 'to_s', 'to_s'), multiple: true, class: :multiselect
