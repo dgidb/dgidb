@@ -28,3 +28,6 @@ downloads:
     - title: Interactions TSV
       link: "https://github.com/genome/dgi-db/raw/master/files/interactions.tsv"
       description: TSV download of all interactions in DGIdb that were mapped to Entrez genes.
+    - title: Categories TSV
+      link: "https://github.com/genome/dgi-db/raw/master/files/categories.tsv"
+      description: TSV download of all genes in druggable categories in DGIdb that were mapped to Entrez genes.
