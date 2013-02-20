@@ -4,7 +4,7 @@ class GenesController < ApplicationController
 
   def show
     @gene = GenePresenter.new(
-      DataModel::Gene.for_gene_summary.where(name: params[:name]).first)
+      DataModel::Gene.for_show.where(name: params[:name]).first)
     @title = @gene.display_name
   end
 
