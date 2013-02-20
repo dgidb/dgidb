@@ -1,3 +1,9 @@
+dgi-db (0.990) lucid; urgency=low
+
+  * beta release
+
+ -- Adam Coffman <acoffman@genome.wuslt.edu>  Mon, 19 Feb 2013 12:32:30 -0500
+
 dgi-db (0.987) lucid; urgency=low
 
   * performance enhancements
