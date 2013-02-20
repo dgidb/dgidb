@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def combine_input_genes(params)
+    bad_request("Please enter at least one gene category to search!") unless params[:genes]
     split_char = if params[:genes].include?(',')
       ','
     else

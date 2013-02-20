@@ -32,8 +32,8 @@ class GenesController < ApplicationController
   def categories_search_results
     @search_categories_active = 'active'
     start_time = Time.now
-    combine_input_genes(params)
     validate_search_request(params)
+    combine_input_genes(params)
 
     search_results = LookupCategories.find(params)
     @search_results = GeneCategorySearchResultsPresenter.new(search_results, params, start_time)
@@ -45,7 +45,8 @@ class GenesController < ApplicationController
 
   private
   def validate_search_request(params)
-    bad_request("Please enter at least one gene category to search!") unless params[:gene_names].size > 0
+    bad_request("Please enter at least one gene to search!") if params[:genes].blank?
+    bad_request("Please enter at least one category to search!") unless params[:gene_categories]
   end
 
 end
