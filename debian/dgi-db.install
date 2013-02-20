@@ -14,6 +14,7 @@ script /var/www/dgi-db
 spec /var/www/dgi-db
 text /var/www/dgi-db
 tours /var/www/dgi-db
+files /var/www/dgi-db
 tmp /var/www/dgi-db
 vendor /var/www/dgi-db
 .bundle /var/www/dgi-db
