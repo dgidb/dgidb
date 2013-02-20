@@ -8,7 +8,7 @@
 .container-fluid
   .row-fluid
     .span12
-      .well=tx "description"
+      .well=html_escape(tx("description"))
       .well
         %ul(class="unstyled")
           -to("links").each do |l|
@@ -25,4 +25,3 @@
             %li
               =dynamic_link_to(l["title"], l["url"])
               %small=l["description"]
-              
