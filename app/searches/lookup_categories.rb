@@ -38,7 +38,7 @@ class LookupCategories
           SELECT gcc.name, COUNT(DISTINCT(gcg.gene_id)) FROM gene_claim_categories_gene_claims gccgc
           INNER JOIN gene_claim_categories gcc ON gcc.id = gccgc.gene_claim_category_id
           INNER JOIN gene_claims_genes gcg ON gcg.gene_claim_id = gccgc.gene_claim_id
-          GROUP BY gcc.name ORDER BY COUNT(DISTINCT(gcg.gene_id)) DESC;
+          GROUP BY gcc.name ORDER BY gcc.name ASC;
         EOS
         ).map { |x| OpenStruct.new(name: x['name'], gene_count: x['count']) }
       categories_with_counts
