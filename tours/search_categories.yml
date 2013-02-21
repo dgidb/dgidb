@@ -1,17 +1,17 @@
 search_categories:
-  show-tour: >
-    This application identifies genes belonging to potentially druggable categories.
-  genes_flag: >
-    Hover your mouse over these flags for detailed explanations of this application.
   genes: >
-    Start by entering a list of gene names (one per line) that you would like to search.
+    Start by entering a list of genes here. 
   defaultGenes: >
     Press this button to use a sample list of genes.
-  sources_tour: >
-    Filter druggable gene category results by selecting particular sources (e.g. limit to dGene data).
-  gene_cateogories_tour: >
-    Limit to particular gene categories (e.g. kinases and ion channels only).
-  html_output: >
-    You may view results in your web browser or dump simplified output to a .tsv file.
   search-btn: >
-    When you are satisfied with your settings, click 'Find Gene Categories' to search.
+    Click here to search if you do not need additinal filtering. 
+  sources_tour: >
+    Reduce your results by selecting particular sources (e.g. limit to dGene data).
+  gene_cateogories_tour: >
+    Reduce your results to particular gene categories (e.g. kinases and ion channels only).
+  html_output: >
+    Check TSV to export data directly to a TSV file.  TSV files can be opened by Excel, and used in bioinformatics scripts. 
+  genes_flag: >
+    Hover your mouse over these flags for detailed explanations of this application.
+  show-tour: >
+    Click here to repeat the tour at any time.  See "Help" for more informtion, including the FAQ. 
