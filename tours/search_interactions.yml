@@ -1,21 +1,22 @@
 search_interactions:
-  show-tour: >
-    Welcome to the DGIdb search interactions tour. This application identifies drugs that interact with your genes of interest.
-  genes_flag: >
-    Hover your mouse over these flags for detailed explanations of this application.
   genes: >
-    Start by entering a list of gene names (one per line) that you would like to search.
+    Start by entering a list of gene names here.
   defaultGenes: >
-    Press this button to use a sample list of genes.
-  gene_cateogories_tour: >
-    Filter drug-gene interaction results by selecting particular gene categories (e.g. limit to kinases).
-  interaction_types_tour: >
-    Filter drug-gene interaction results by selecting particular drug interaction types (e.g. limit to inhibitors).
-  sources_tour: >
-    Filter drug-gene interaction results by selecting particular sources (e.g. limit to DrugBank data).
-  drug_type_checkbox: >
-    You may limit interaction results to only those where the drug has been categorized as anti-neoplastic
-  html_output: >
-    You may view results in your web browser or dump simplified output to a .tsv file.
+    Press this button to fill the box with our sample list of genes.
   search-btn: >
-    When you are satisfied with your settings, click 'Find Drug Interactions' to search.
+    Click to search if you do not want special filtering.  
+  gene_cateogories_tour: >
+    Reduce your results by selecting particular gene categories (e.g. limit to kinases).
+  interaction_types_tour: >
+    Reduce your results by selecting particular drug interaction types (e.g. limit to inhibitors).
+  sources_tour: >
+    Reduce your results by selecting particular sources (e.g. limit to DrugBank data).
+  drug_type_checkbox: >
+    Check this box to see only anti-cancer drugs. 
+  html_output: >
+    Check TSV to download results in TSV format.  This data is usable in Excel, and by bioinformatics scripts. 
+  genes_flag: >
+    Hover your mouse over flags like this for help on a specific field.
+  show-tour: >
+    Re-start the tour at any time by clicking here.
+
