@@ -1,22 +1,22 @@
 search_interactions:
   genes: >
-    Start by entering a list of gene names here.
+    Start by entering one or more gene names here.
   defaultGenes: >
-    Press this button to fill the box with our sample list of genes.
+    Or, press this button to try our sample list of genes.
   search-btn: >
-    Click to search if you do not want special filtering.  
+    Click here to see potential drugs for your gene list, or click 'Next' to continue the tour.  
   gene_cateogories_tour: >
-    Reduce your results by selecting particular gene categories (e.g. limit to kinases).
+    You can limit your results to specific gene categories (e.g., kinases).
   interaction_types_tour: >
-    Reduce your results by selecting particular drug interaction types (e.g. limit to inhibitors).
+    Or, limit to particular drug interaction types (e.g., inhibitors).
   sources_tour: >
-    Reduce your results by selecting particular sources (e.g. limit to DrugBank data).
+    Or, limit to only a subset of data sources (e.g., DrugBank).
   drug_type_checkbox: >
-    Check this box to see only anti-cancer drugs. 
+    Check this box to allow only anti-cancer drugs. 
   html_output: >
     Check TSV to download results in TSV format.  This data is usable in Excel, and by bioinformatics scripts. 
   genes_flag: >
     Hover your mouse over flags like this for help on a specific field.
   show-tour: >
-    Re-start the tour at any time by clicking here.
+    Re-start the tour at any time by clicking here. For frequently asked questions, downloads, contact info, and more see the 'Help' menu (top-right) or submit feedback (bottom-right).
 
