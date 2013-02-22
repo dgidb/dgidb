@@ -1,3 +1,9 @@
+dgi-db (0.991) lucid; urgency=low
+
+  * text changes for tour
+
+ -- Adam Coffman <acoffman@genome.wuslt.edu>  Fri, 22 Feb 2013 12:32:30 -0500
+
 dgi-db (0.990) lucid; urgency=low
 
   * beta release
