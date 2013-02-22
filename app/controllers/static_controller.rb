@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
   before_filter :set_active
 
-  caches_page :index, :getting_started, :faq, :downloads, :contact, :search_categories, :search_interactions, :search
+  caches_page :index, :faq, :downloads, :contact, :search_categories, :search_interactions, :search
 
   def search_categories
     @sources         = DataModel::Source.potentially_druggable_sources.map(&:source_db_name)
