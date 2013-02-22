@@ -14,9 +14,9 @@ search_interactions:
   drug_type_checkbox: >
     Check this box to allow only anti-cancer drugs. 
   html_output: >
-    Check TSV to download results in TSV format.  This data is usable in Excel, and by bioinformatics scripts. 
+    Check TSV to export data directly to a TSV file.  TSV files can be opened by Excel, and used in bioinformatics scripts.
   genes_flag: >
     Hover your mouse over flags like this for help on a specific field.
   show-tour: >
-    Re-start the tour at any time by clicking here. For frequently asked questions, downloads, contact info, and more see the 'Help' menu (top-right) or submit feedback (bottom-right).
+    Re-start the tour at any time by clicking here. For FAQ, downloads, contact info, and more see the 'Help' menu (top-right) or submit feedback (bottom-right).
 

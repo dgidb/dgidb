@@ -1,17 +1,17 @@
 search_categories:
   genes: >
-    Start by entering a list of genes here. 
+    Start by entering one or more gene names here. 
   defaultGenes: >
-    Press this button to use a sample list of genes.
+    Or, press this button to try our sample list of genes.
   search-btn: >
-    Click here to search if you do not need additinal filtering. 
+    Click here to see which of your genes belong to druggable gene categories, or click 'Next' to continue the tour. 
   sources_tour: >
-    Reduce your results by selecting particular sources (e.g. limit to dGene data).
+    You can limit your results to specific data sources (e.g., dGene).
   gene_cateogories_tour: >
-    Reduce your results to particular gene categories (e.g. kinases and ion channels only).
+    Or, limit to particular gene categories (e.g., kinases and ion channels only).
   html_output: >
     Check TSV to export data directly to a TSV file.  TSV files can be opened by Excel, and used in bioinformatics scripts. 
   genes_flag: >
-    Hover your mouse over these flags for detailed explanations of this application.
+    Hover your mouse over flags like this for help on a specific field.
   show-tour: >
-    Click here to repeat the tour at any time.  See "Help" for more informtion, including the FAQ. 
+    Re-start the tour at any time by clicking here. For FAQ, downloads, contact info, and more see the 'Help' menu (top-right) or submit feedback (bottom-right).    
