@@ -21,6 +21,10 @@ module DataModel
       eager_load(:genes, :source, :gene_claim_aliases, :gene_claim_attributes)
     end
 
+    def self.for_gene_id_mapping
+      eager_load(genes: [gene_claims: [:source]])
+    end
+
     def source_db_name
       self.source.source_db_name
     end
