@@ -46,7 +46,7 @@ group :test, :development  do
   gem "capybara"
   gem "launchy"
   gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'binding_of_caller', '~> 0.7.0'
   gem 'activerecord-import'
 end
 
