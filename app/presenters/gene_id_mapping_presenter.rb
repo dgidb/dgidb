@@ -5,6 +5,14 @@ class GeneIdMappingPresenter
     @search_term = search_term
   end
 
+  def primary_name
+    matched? ? gene.name : 'not matched'
+  end
+
+  def long_name
+    matched? ? gene.long_name : 'not matched'
+  end
+
   def match_status
     matched? ? 'matched' : 'not matched'
   end
@@ -23,6 +31,10 @@ class GeneIdMappingPresenter
   private
   def matched?
     @gene_claim.genes.size == 1
+  end
+
+  def gene
+    @gene_claim.genes.first
   end
 
 end
