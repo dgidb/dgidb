@@ -4,4 +4,7 @@
 # User-Agent: *
 # Disallow: /
 User-agent: *
-Disallow: /
+Disallow: /interaction_search_results
+Disallow: /categories_search_results
+Disallow: /search_results
+
