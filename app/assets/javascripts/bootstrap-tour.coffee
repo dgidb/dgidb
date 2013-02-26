@@ -41,7 +41,6 @@ $.fn.extend {}=
       cookieDomain: false                  # Will this cookie be attached to a domain, ie. '.mydomain.com'
       postRideCallback: $.noop             # A method to call once the tour closes
       postStepCallback: $.noop             # A method to call after each step
-      nextOnClose: false                   # If cookies are enabled, increment the current step on close
       debug: false
     # Merge default settings with options.
     settings = $.extend settings, options
@@ -108,7 +107,7 @@ $.fn.extend {}=
       $('a.tour-tip-close').live 'click', ->
         current_step = $(@).data('touridx')
         $(settings.tipContent).first().find("li:nth-child(#{current_step})").data('target').popover('hide')
-        setCookieStep(current_step + 1) if settings.nextOnClose
+        setCookieStep($tips.length + 1)
 
       # handle the next and done buttons
       $('a.tour-tip-next').live 'click', ->
