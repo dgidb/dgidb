@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/thecoffman/feedback_popup.git
-  revision: a430f5a4cb36c646c082ac417d128d29a6d2ea4e
+  revision: 7ae6f309996bdafa329ab683df5b3a5de3cfd156
   specs:
     feedback_popup (0.0.1)
       rails (~> 3.0)
