@@ -13,35 +13,40 @@ module Genome
         def attribute(column, opts)
           opts = @defaults.merge opts
           val = opts[:transform].call(@row.send(column))
-          if !opts[:unless].call(val)
-            @importer.send("create_#{@type}_attribute", "#{@type}_id".to_sym => @id, name: opts[:name], value: val)
-          end
+          create_entity(:attribute, val, opts)
         end
 
         def attributes(column, opts)
           opts = @defaults.merge opts
           @row.send(column).each do |item|
             val = opts[:transform].call(item)
-            if !opts[:unless].call(val)
-              @importer.send("create_#{@type}_attribute", "#{@type}_id".to_sym => @id, name: opts[:name], value: val)
-            end
+            create_entity(:attribute, val, opts)
           end
         end
 
         def name(column, opts)
           opts = @defaults.merge opts
           val = opts[:transform].call(@row.send(column))
-          if !opts[:unless].call(val)
-            @importer.send("create_#{@type}_alias", "#{@type}_id".to_sym => @id, alias: val, nomenclature: opts[:nomenclature])
-          end
+          create_entity(:alias, val, opts)
         end
 
         def names(column, opts)
           opts = @defaults.merge opts
           @row.send(column).each do |item|
             val = opts[:transform].call(item)
-            if !opts[:unless].call(val)
-              @importer.send("create_#{@type}_alias", "#{@type}_id".to_sym => @id, alias: val, nomenclature: opts[:nomenclature])
+            create_entity(:alias, val, opts)
+          end
+        end
+
+        private
+        def create_entity(property_type, val, opts)
+          if !opts[:unless].call(val)
+            if property_type == :alias
+                @importer.send("create_#{@type}_alias", "#{@type}_id".to_sym => @id, alias: val, nomenclature: opts[:nomenclature])
+            elsif property_type == :attribute
+                @importer.send("create_#{@type}_attribute", "#{@type}_id".to_sym => @id, name: opts[:name], value: val)
+            else
+              raise "#{property_type} is not a valid property type!"
             end
           end
         end
