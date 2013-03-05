@@ -1,27 +1,17 @@
 module Genome
   module Importers
     class Importer
-      def initialize
+      def initialize(source_info)
         entity_names.each { |entity| instance_variable_set("@#{entity}", []) }
-        @source = create_source!
-      end
-
-      def import!
-        update_progress('Constructing objects from TSV', 0)
-        process_file
-        store
-      end
-
-      private
-      def create_source!
-        raise 'You must implement create_source, which must create and return a source object'
-      end
-      def process_file
+        @source = create_source(source_info)
       end
 
       def store
-        entity_names.inject(0) do |completed_count, entity|
-          completed_count += store_entities(entity, completed_count)
+        ActiveRecord::Base.transaction do
+          @source.save
+          entity_names.each do |entity|
+            store_entities(entity)
+          end
         end
       end
 
@@ -49,7 +39,7 @@ module Genome
 
       def create_interaction_claim(opts = {})
         DataModel::InteractionClaim.new.tap do |ic|
-          ic.id                = SecureRandom.uuid
+          ic.id                = opts[:id] || SecureRandom.uuid
           ic.drug_claim_id     = opts[:drug_claim_id]
           ic.gene_claim_id     = opts[:gene_claim_id]
           ic.known_action_type = opts[:known_action_type] || 'unknown'
@@ -115,13 +105,11 @@ module Genome
         end
       end
 
-      def update_progress(message, percent)
-        progress = "=" * (percent/5) unless percent < 5
-        printf("\rOverall Import Process: [%-20s] %d%% - %-50s", progress, percent, message)
-      end
-
-      def total_entity_count
-        entity_names.inject(0) { |sum, entity| sum += instance_variable_get("@#{entity}").count }
+      private
+      def create_source(source_info)
+        DataModel::Source.new(source_info).tap do |s|
+          s.id = SecureRandom.uuid
+        end
       end
 
       def entity_names
@@ -135,21 +123,12 @@ module Genome
         'interaction_claim_attributes']
       end
 
-      def calculate_percent(completed_count)
-        (completed_count.to_f / total_entity_count) * 100
-      end
-
-      def store_entities(item_name, completed_count)
+      def store_entities(item_name)
         ivar = instance_variable_get("@#{item_name}")
         klass = "DataModel::#{item_name.classify}".constantize
         if ivar.any?
-          item_text = item_name.gsub('_', ' ')
-          update_progress("Storing #{item_text}", calculate_percent(completed_count))
           klass.import ivar
-          completed_count += ivar.count
-          update_progress("Finished storing #{item_text}", calculate_percent(completed_count))
         end
-        completed_count
       end
     end
   end
