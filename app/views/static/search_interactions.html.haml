@@ -29,7 +29,7 @@
         flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types,
         name_meth: 'to_s', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
       =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Database',
-        flag_text_key: 'source_database_flag', select_tag_name: 'sources', collection: @sources,
+        flag_text_key: 'source_database_flag', select_tag_name: 'interaction_sources', collection: @sources,
         name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
       .control-group
         %label.checkobox
