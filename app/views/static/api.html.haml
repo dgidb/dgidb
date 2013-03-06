@@ -5,34 +5,35 @@
     =tx 'title_main'
     %small=tx 'title_small'
 .row
-  .span3.well
-    %ul.nav.nav-list
-      %li.nav-header Endpoints
-      %li
-        %a{href: '#search-interactions'} Search Interactons
-      %li
-        %a{href: '#interaction-types'} Interaction Types
-      %li
-        %a{href: '#interaction-sources'} Interaction Sources
-      %li
-        %a{href: '#drug-types'} Drug Types
-      %li
-        %a{href: '#gene-categories'} Gene Categories
-      %li.divider
-      %li.nav-header Responses
-      %li
-        %a{href: '#formats'}Formats
-      %li
-        %a{href: '#status-codes'}Status Codes
-      %li.divider
-      %li.nav-header Sample Code
-      %li
-        %a{href: '#perl-sample'}Perl
-      %li
-        %a{href: '#ruby-sample'}Ruby
-      %li
-        %a{href: '#shell-sample'}Shell
-      %li.divider
+  .span3#navbar
+    .well.affix
+      %ul.nav.nav-list
+        %li.nav-header Endpoints
+        %li
+          %a{href: '#search-interactions'} Search Interactons
+        %li
+          %a{href: '#interaction-types'} Interaction Types
+        %li
+          %a{href: '#interaction-sources'} Interaction Sources
+        %li
+          %a{href: '#drug-types'} Drug Types
+        %li
+          %a{href: '#gene-categories'} Gene Categories
+        %li.divider
+        %li.nav-header Responses
+        %li
+          %a{href: '#formats'}Formats
+        %li
+          %a{href: '#status-codes'}Status Codes
+        %li.divider
+        %li.nav-header Sample Code
+        %li
+          %a{href: '#perl-sample'}Perl
+        %li
+          %a{href: '#ruby-sample'}Ruby
+        %li
+          %a{href: '#shell-sample'}Shell
+        %li.divider
   .span9
     %p
       The DGIdb API can be used to query for drug-gene interactions in your own applications
@@ -329,3 +330,8 @@
       %h3 Shell
       %p Coming soon...
     %hr
+:javascript
+  $(document).ready(function() {
+    $('body').attr('data-spy', 'scroll');
+    $('body').attr('data-target', '#navbar');
+  });
