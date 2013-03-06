@@ -1,0 +1,331 @@
+#notice= notice
+=content_for :title, 'API Documentation'
+=content_for :header do
+  %h2
+    =tx 'title_main'
+    %small=tx 'title_small'
+.row
+  .span3.well
+    %ul.nav.nav-list
+      %li.nav-header Endpoints
+      %li
+        %a{href: '#search-interactions'} Search Interactons
+      %li
+        %a{href: '#interaction-types'} Interaction Types
+      %li
+        %a{href: '#interaction-sources'} Interaction Sources
+      %li
+        %a{href: '#drug-types'} Drug Types
+      %li
+        %a{href: '#gene-categories'} Gene Categories
+      %li.divider
+      %li.nav-header Responses
+      %li
+        %a{href: '#formats'}Formats
+      %li
+        %a{href: '#status-codes'}Status Codes
+      %li.divider
+      %li.nav-header Sample Code
+      %li
+        %a{href: '#perl-sample'}Perl
+      %li
+        %a{href: '#ruby-sample'}Ruby
+      %li
+        %a{href: '#shell-sample'}Shell
+      %li.divider
+  .span9
+    %p
+      The DGIdb API can be used to query for drug-gene interactions in your own applications
+      through a simple JSON based interface.
+    %p
+      All endpoints can be reached at:
+      %code http://dgidb.genome.wustl.edu
+    .page-header
+      %section
+        %h2
+          Endpoints
+          %small available API method calls
+    %section#search-interactions
+      %h3 Search Interactions
+      %p.lead
+        The interactions endpoint can be used to return
+        interactions for a given set of gene names or symbols.
+        It also alows you to filter returned interactions.
+      %span.label GET
+      %pre
+        \/api/v1/interactions.json
+      %p
+        %small
+          %span.label.label-info Note:
+          While the preferred method for accessing this endpoint is a
+          %code GET
+          request, it will also accept
+          %code POST
+          requests to accomodate large gene lists if needed.
+      %h5 Accepted Parameters:
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %td Parameter
+            %td Description
+            %td Example
+        %tbody
+          %tr
+            %td
+              genes
+              %small (required)
+            %td A comma delimited list of gene names or symbols
+            %td
+              %code genes=FLT1,STK1,FAKE1
+          %tr
+            %td
+              interaction_sources
+              %small (optional)
+            %td
+              A comma delimited list of source names to include in the the result set.
+              If this field is omitted, all sources will be included
+            %td
+              %code interaction_sources=TTD,DrugBank
+          %tr
+            %td
+              interaction_types
+              %small (optional)
+            %td
+              A comma delimited list of interaction types to include in the result set.
+              If this field is omitted, all interaction types will be included
+            %td
+              %code interaction_types=inhibitor,activator
+          %tr
+            %td
+              drug_types
+              %small (optional)
+            %td
+              A comma delimited list of drug types to include in the result set.
+              If this field is omitted, all drug types will be included
+            %td
+              %code drug_types=antineoplastic
+          %tr
+            %td
+              gene_categories
+              %small (optional)
+            %td
+              A comma delimited list of gene categories to include in the result set.
+              If this field is omitted, all gene categories will be included
+            %td
+              %code gene_categories=kinase,tumor%20suppressor
+      %h5
+        Example Call:
+      %p
+        %span.label.label-info Note:
+        %small
+          The following example would query DGIdb for interactions involving the genes
+          FLT1, STK1, and FAKE. It will only show interactions with antineoplastic drugs reported
+          by the source
+          =link_to('TALC', source_path('TALC')) + '.'
+      %pre
+        \/api/v1/interactions.json?genes=FLT1,MM1,FAKE&drug_types=antineoplastic&interaction_sources=TALC
+      %h5 Example Response:
+      %p
+        The response will come back with two top level items:
+      %p
+        %code matchedTerms
+        will be a list containing a hash for each search term that you provided that we were able
+        to map unambiguously to an Entrez gene.
+        Each hash will contain your original search term, the Entrez long and full names
+        that DGIdb matched them to as well as a list of categories that the given gene is in.
+        Additionally, the hash will contain a list of drug interactions for the gene. This list
+        includes interaction type information as well as the drug name and source that reported
+        the interaction
+      %p
+        %code unmatchedTerms
+        will be a list containing a hash for each search term that you provided that we were unable
+        to map definitiely to a single Entrez gene. Each hash will contain both the orignal search
+        term and a list of possible suggestions if the search term was ambiguous.
+      %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-interaction-response'}}
+        Show/Hide Response
+      %pre#example-interaction-response.collapse
+        :preserve
+          "matchedTerms":[
+            {
+              "searchTerm":"FLT3",
+              "geneName":"FLT3",
+              "geneLongName":"fms-related tyrosine kinase 3",
+              "geneCategories":[
+                "TYROSINE KINASE",
+                "DRUGGABLE GENOME",
+                "KINASE",
+                "CELL SURFACE"
+              ],
+              "interactions":[
+                {
+                  "interactionId":"61577575-b8ec-4916-a25f-edb362047b97",
+                  "interactionType":"inhibitor",
+                  "drugName":"SORAFENIB",
+                  "source":"TALC"
+                },
+                {
+                  "interactionId":"318383b3-3cd5-478d-ada2-f26977caf8eb",
+                  "interactionType":"inhibitor",
+                  "drugName":"AMUVATINIB",
+                  "source":"TALC"
+                },
+                {
+                  "interactionId":"a961d382-4b52-435f-a610-f27673184b09",
+                  "interactionType":"inhibitor",
+                  "drugName":"SUNITINIB",
+                  "source":"TALC"
+                },
+                {
+                  "interactionId":"e3b974f9-cfce-4fa7-9dec-80643c84a571",
+                  "interactionType":"inhibitor",
+                  "drugName":"AS703569",
+                  "source":"TALC"
+                },
+                {
+                  "interactionId":"a211e2dc-7e76-45f9-a031-0ad7b24a5ea0",
+                  "interactionType":"inhibitor",
+                  "drugName":"XL999",
+                  "source":"TALC"
+                },
+                {
+                  "interactionId":"8732ec65-58bb-4dfa-a82d-a335f67bc051",
+                  "interactionType":"inhibitor",
+                  "drugName":"ENMD-0276",
+                  "source":"TALC"
+                }
+              ]
+            }
+          ],
+          "unmatchedTerms":[
+            {
+              "searchTerm":"MM1",
+              "suggestions":[
+                "PFDN5",
+                "PLXNB2"
+              ]
+            },
+            {
+              "searchTerm":"FAKE",
+              "suggestions":[
+
+              ]
+            }
+          ]}
+    %hr
+    %section#interaction-types
+      %h3 Interaction Types
+      %p.lead
+        The interaction types endpoint can be used to retrieve a current list of supported
+        interaction types for use in the interactions endpoint.
+      %span.label GET
+      %pre
+        \/api/v1/interaction_types.json
+      %h5 Example Response:
+      %pre
+        ["activator", "inhibitor", "unknown"]
+    %hr
+    %section#interaction-sources
+      %h3 Interaction Sources
+      %p.lead
+        The interaction sources endpoint can be used to retrieve a current list of supported
+        interaction sources for use in calls to the interactions endpoint.
+      %span.label GET
+      %pre
+        \/api/v1/interaction_sources.json
+      %h5 Example Response:
+      %pre
+        ["DrugBank","PharmGKB","TALC","TEND","TTD"]
+    %hr
+    %section#drug-types
+      %h3 Drug Types
+      %p.lead
+        The drug types endpoint can be used to retrieve a current list of supported
+        drug types for use in calls to the interactions endpoint.
+      %span.label GET
+      %pre
+        \/api/v1/drug_types.json
+      %h5 Example Response:
+      %pre
+        ["antineoplastic"]
+    %hr
+    %section#gene-categories
+      %h3 Gene Categories
+      %p.lead
+        The gene categories endpoint can be used to retrieve a current list of supported
+        gene categories for use in calls to the interactions endpoint.
+      %span.label GET
+      %pre
+        \/api/v1/gene_categories.json
+      %h5 Example Response:
+      %pre
+        ["KINASE", "DNA REPAIR", "TUMOR SUPPRESSOR"]
+    %hr
+    .page-header
+      %section
+        %h2
+          Responses
+          %small response information
+    %section#formats
+      %h3 Formats
+      %p Currently, all API responses are provided only in JSON
+    %hr
+    %section#status-codes
+      %h3 Status Codes
+      %p
+        The DGIdb API can respond to requests with a number of status codes.
+        They are explained in the table below.
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %td Code
+            %td Meaning
+        %tbody
+          %tr
+            %td
+              %span.label.label-success
+                200
+            %td
+              Success. Your query was processed and the response contains the
+              information that was requested
+          %tr
+            %td
+              %span.label.label-warning
+                400
+            %td
+              Bad Request. Something about your request was malformed or incorrect.
+              The response will contain an error message indicating what was wrong.
+          %tr
+            %td
+              %span.label.label-warning
+                404
+            %td
+              Resource Not Found. This indicates that you attempted to get a resource
+              that doesn't exist.
+          %tr
+            %td
+              %span.label.label-important
+                50X
+            %td
+              Server Error. This means there was a server side error processing your request.
+              An email will be automatically dispatched to the developer notifying them of the
+              problem.
+    %hr
+    .page-header
+      %section
+        %h2
+          Sample Code
+          %small get started using DGIdb in the language of your choice
+    %section#perl-sample
+      %h3 Perl
+      %p
+        A sample perl application that interacts with DGIdb can be found
+        =link_to 'here.', 'https://raw.github.com/genome/dgi-db/master/files/perl_example.pl'
+    %hr
+    %section#ruby-sample
+      %h3 Ruby
+      %p Coming soon...
+    %hr
+    %section#shell-sample
+      %h3 Shell
+      %p Coming soon...
+    %hr
