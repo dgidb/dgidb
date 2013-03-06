@@ -9,6 +9,7 @@ module DataModel
     has_many :drug_claims, inverse_of: :source
     has_many :interaction_claims, inverse_of: :source
     belongs_to :source_type, inverse_of: :sources
+    belongs_to :source_trust_level, inverse_of: :sources
 
     cache_query :source_names_with_interactions, :all_source_names_with_interactions
     cache_query :potentially_druggable_sources, :all_potenially_druggable_sources

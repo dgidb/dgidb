@@ -7,7 +7,7 @@ module Genome
         before_create :generate_uuid
 
         def generate_uuid
-          self.id = SecureRandom.uuid
+          self.id = SecureRandom.uuid unless self.id
         end
       end
     end

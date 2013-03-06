@@ -8,6 +8,20 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -551,6 +565,16 @@ ALTER SEQUENCE shopping_carts_id_seq OWNED BY shopping_carts.id;
 
 
 --
+-- Name: source_trust_levels; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE source_trust_levels (
+    id character varying(255) NOT NULL,
+    level character varying(255) NOT NULL
+);
+
+
+--
 -- Name: source_types; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -578,7 +602,8 @@ CREATE TABLE sources (
     interaction_claims_count integer DEFAULT 0,
     interaction_claims_in_groups_count integer DEFAULT 0,
     gene_claims_in_groups_count integer DEFAULT 0,
-    drug_claims_in_groups_count integer DEFAULT 0
+    drug_claims_in_groups_count integer DEFAULT 0,
+    source_trust_level_id character varying(255)
 );
 
 
@@ -972,6 +997,14 @@ ALTER TABLE ONLY shopping_carts
 
 
 --
+-- Name: source_trust_levels_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY source_trust_levels
+    ADD CONSTRAINT source_trust_levels_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: source_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1172,6 +1205,13 @@ CREATE INDEX interaction_claims_source_id_idx ON interaction_claims USING btree 
 
 
 --
+-- Name: sources_source_trust_level_id_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX sources_source_trust_level_id_idx ON sources USING btree (source_trust_level_id);
+
+
+--
 -- Name: sources_source_type_id_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1328,6 +1368,14 @@ ALTER TABLE ONLY interaction_claims
 
 
 --
+-- Name: fk_source_trust_level; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sources
+    ADD CONSTRAINT fk_source_trust_level FOREIGN KEY (source_trust_level_id) REFERENCES source_trust_levels(id);
+
+
+--
 -- Name: fk_source_type; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1358,3 +1406,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121218224238');
 INSERT INTO schema_migrations (version) VALUES ('20130103214307');
 
 INSERT INTO schema_migrations (version) VALUES ('20130214204650');
+
+INSERT INTO schema_migrations (version) VALUES ('20130305165700');
