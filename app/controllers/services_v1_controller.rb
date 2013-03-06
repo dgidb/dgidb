@@ -19,6 +19,7 @@ class ServicesV1Controller < ApplicationController
   def interactions
     combine_input_genes(params)
     validate_interaction_request(params)
+    combine_entries(params)
     search_results = LookupInteractions.find(params)
     @search_results = InteractionSearchResultsApiPresenter.new(search_results)
   end
@@ -35,6 +36,12 @@ class ServicesV1Controller < ApplicationController
   private
   def validate_gene_id_mapping_request(params)
     bad_request('Please specify a gene id as gene_id!') if params[:gene_id].blank?
+  end
+
+  def combine_entries(params)
+    [:interaction_sources, :gene_categories, :interaction_types, :drug_types].each do |arg|
+      params[arg] = params[arg].split(',').map(&:strip) if params[arg]
+    end
   end
 
   def validate_interaction_request(params)
