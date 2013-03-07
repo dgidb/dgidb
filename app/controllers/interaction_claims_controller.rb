@@ -9,19 +9,9 @@ class InteractionClaimsController < ApplicationController
     @search_interactions_active = 'active'
     start_time = Time.now
     combine_input_genes(params)
-    validate_search_request(params)
+    validate_interaction_request(params)
 
     search_results = LookupInteractions.find(params)
     @search_results = InteractionSearchResultsPresenter.new(search_results, start_time)
   end
-
-  private
-  def validate_search_request(params)
-    bad_request('You must enter at least one gene name to search!') if params[:gene_names].size == 0
-    bad_request('You must select at least one source to search!') unless params[:interaction_sources]
-    bad_request('You must select at least one category to search!') unless params[:gene_categories]
-    bad_request('You must select at least one interaction type to search!') unless params[:interaction_types]
-    bad_request('You must select at least one source trust level to search!') unless params[:source_trust_levels]
-  end
-
 end
