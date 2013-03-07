@@ -7,21 +7,22 @@ use LWP::UserAgent;
 use Getopt::Long;
 use Data::Dumper qw(Dumper);
 
-my $domain = 'http://dgidb.genome.wustl.edu/';
-my $api_path = 'interaction_search_results.json';
+#my $domain = 'http://dgidb.genome.wustl.edu/';
+my $domain = 'http://localhost:3000/';
+my $api_path = '/api/v1/interactions.json';
 my $genes;
 my $sources;
 my $gene_categories;
 my $interaction_types;
 my $drug_types;
 my $anti_neoplastic_only = '';
-my %properties = ( genes => \$genes, sources => \$sources, interaction_types => \$interaction_types, gene_categories => \$gene_categories );
+my %properties = ( genes => \$genes, interaction_sources => \$sources, interaction_types => \$interaction_types, gene_categories => \$gene_categories );
 my $ua = LWP::UserAgent->new;
 
 sub parse_opts {
     GetOptions (
-        'anti_neoplastic_only' => \$anti_neoplastic_only,
-        'gene_names=s'         => \$genes,
+        'antineoplastic_only' => \$anti_neoplastic_only,
+        'genes=s'              => \$genes,
         'source_names:s'       => \$sources,
         'interaction_types:s'  => \$interaction_types,
         'category_types:s'     => \$gene_categories,
