@@ -21,6 +21,10 @@ class InteractionSearchResultApiPresenter
     .uniq
   end
 
+  def has_interactions?
+    @interactions.size > 0
+  end
+
   def interactions
     @interactions ||= @result.interaction_claims.map do |i|
       InteractionWrapper.new(i)
