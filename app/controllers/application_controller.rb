@@ -6,15 +6,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :fetch_tour
 
-  def generate_tsv_headers(filename)
-    headers.merge!({
-      'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
-      'Content-Type'              => 'text/tsv',
-      'Content-Disposition'       => "attachment; filename=\"#{filename}\"",
-      'Content-Transfer-Encoding' => 'binary'
-    })
-  end
-
   def not_found(msg = "Not Found")
     raise HTTPStatus::NotFound.new(msg)
   end

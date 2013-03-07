@@ -39,15 +39,6 @@
           Anti-Neoplastic Drugs Only
           %i.icon-flag.tip{title: tx("drug_type_flag")}
           %input(id='drug_type_checkbox' type='checkbox' name='limit_drugs' value='true')
-      .control-group
-        %label.control-label
-          Select Output Format
-          %i.icon-flag.tip{title: tx("output_format_flag")}
-        .controls
-          %label.radio
-            %input(id='html_output' type='radio' name='outputFormat' value='html' checked='true') HTML
-          %label.radio
-            %input(id='tsv_output' type='radio' name='outputFormat' value='tsv') TSV
       .form-actions
         %button.btn.btn-success(type="submit" id='search-btn')Find Drug Interactions
 

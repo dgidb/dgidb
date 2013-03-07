@@ -13,7 +13,10 @@ window.export_table = (table_selector) ->
         cell
     .join("%09")
   .join("%0A")
+  $('<form action="/download_table" method="POST"/>')
+    .append($('<input type="hidden" name="file_contents" value="' + tsv + '">'))
+    .appendTo($(document.body))
+    .submit()
   loading.hide()
-  export_link.html('<small><a href="data:text/tsv;charset=utf8,' + tsv + '">Download TSV</a></small>')
   export_link.show()
   false

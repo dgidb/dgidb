@@ -13,8 +13,6 @@ search_interactions:
     Or, limit to only a subset of data sources (e.g., DrugBank).
   drug_type_checkbox: >
     Check this box to allow only anti-cancer drugs. 
-  html_output: >
-    Check TSV to export data directly to a TSV file.  TSV files can be opened by Excel, and used in bioinformatics scripts.
   genes_flag: >
     Hover your mouse over flags like this for help on a specific field.
   show-tour: >

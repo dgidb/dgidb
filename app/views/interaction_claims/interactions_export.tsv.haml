@@ -1,2 +1,0 @@
-=['Source','Drug','Interaction Type','Gene','Search Term'].join("\t")+"\n"
-=@search_results.definite_interactions.map { |result| [result.source_db_name, result.drug_claim_name, result.types_string, result.gene_name, result.search_term].join("\t") }.join("\n")

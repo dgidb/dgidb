@@ -30,15 +30,6 @@
         =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
           flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories,
           name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_cateogories_tour' }
-      .control-group
-        %label.control-label
-          Select Output Format
-          %i.icon-flag.tip{title: tx("output_format_flag")}
-        .controls
-          %label.radio
-            %input(id='html_output' type='radio' name='outputFormat' value='html' checked='true') HTML
-          %label.radio
-            %input(id='tsv_output' type='radio' name='outputFormat' value='tsv') TSV
       .form-actions
         %button.btn.btn-success(type="submit" id='search-btn')Find Gene Categories
 

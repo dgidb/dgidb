@@ -37,10 +37,6 @@ class GenesController < ApplicationController
 
     search_results = LookupCategories.find(params)
     @search_results = GeneCategorySearchResultsPresenter.new(search_results, params, start_time)
-    if params[:outputFormat] == 'tsv'
-      generate_tsv_headers('gene_categories_export.tsv')
-      render 'gene_categories_export.tsv', content_type: 'text/tsv', layout: false
-    end
   end
 
   private

@@ -9,8 +9,6 @@ search_categories:
     You can limit your results to specific data sources (e.g., dGene).
   gene_cateogories_tour: >
     Or, limit to particular gene categories (e.g., kinases and ion channels only).
-  html_output: >
-    Check TSV to export data directly to a TSV file.  TSV files can be opened by Excel, and used in bioinformatics scripts. 
   genes_flag: >
     Hover your mouse over flags like this for help on a specific field.
   show-tour: >

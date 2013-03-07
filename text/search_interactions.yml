@@ -7,5 +7,4 @@ search_interactions:
   drug_type_flag: Specify which types of drugs you would like included in your search results
   interaction_type_flag: Specify which types of interactions that you would like included in your search results
   filter_flag: Reduce search results to only interactions of a certain type
-  output_format_flag: "HTML selection will keep all results in your browser. TSV will dump a simplified version of the results to a text file of the form: Source, Drug, Interaction Type, Gene"
   source_trust_level_flag: Specify the trust level of sources that you are willing to accept in your interaction results.

@@ -11,4 +11,19 @@ class UtilitiesController < ApplicationController
       render nothing: true, status: ok ? 200 : 400
     end
   end
+
+  def download_request_content
+    generate_tsv_headers(params[:filename] || 'dgidb_table_export.tsv')
+    render text: CGI::unescape(params[:file_contents])
+  end
+
+  private
+  def generate_tsv_headers(filename)
+    headers.merge!({
+      'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+      'Content-Type'              => 'text/tsv',
+      'Content-Disposition'       => "attachment; filename=\"#{filename}\"",
+      'Content-Transfer-Encoding' => 'binary'
+    })
+  end
 end

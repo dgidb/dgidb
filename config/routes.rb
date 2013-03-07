@@ -12,6 +12,7 @@ DruggableGene::Application.routes.draw do
   match 'drugs/:name/related' => 'drugs#related_drugs', as: 'related_drug'
   match 'search_results' => 'search#search_results'
   match 'cache/invalidate' => 'utilities#invalidate_cache'
+  post  'download_table' => 'utilities#download_request_content'
   get   'categories_for_selected_sources' => 'gene_claim_categories#categories_for_selected_sources'
   get   'api/v1/:action' => 'services_v1#:action'
   match 'interaction_search_results' => 'interaction_claims#interaction_search_results'
