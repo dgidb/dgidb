@@ -43,14 +43,14 @@ class ApplicationController < ActionController::Base
       "\n"
     end
     gene_names = params[:genes].split(split_char)
-    gene_names.delete_if{|gene| gene.strip.empty? }
+    gene_names.delete_if{ |gene| gene.strip.empty? }
     params[:gene_names] = gene_names.map{ |name| name.strip.upcase }.uniq
   end
 
   private
   def fetch_tour
    tour_data = TOURS[params[:action]]
-   @tour = Tour.new( tour_data ) if tour_data
+   @tour = Tour.new(tour_data) if tour_data
   end
 
 end
