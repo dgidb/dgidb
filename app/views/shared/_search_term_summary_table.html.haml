@@ -2,6 +2,7 @@
   .span12
     .well
       %h3 Search Term Summary
+      =render partial: 'shared/table_export', locals: {id: 'search_term_summary_export'}
       %table.table.table-striped.table-bordered{cellpadding: "0", cellspacing: "0", border: "0", id: 'search_term_summary_export'}
         %thead
           %tr

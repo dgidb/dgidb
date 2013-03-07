@@ -1,5 +1,6 @@
 .well
   %h3= title
+  =render partial: 'shared/table_export', locals: {id: 'by-gene-category-export'}
   %table#by-gene-category-export.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
     %thead
       %tr
