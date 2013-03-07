@@ -39,5 +39,13 @@ DruggableGene::Application.configure do
   # Use a different cache store in dev
   config.cache_store = :file_store, 'tmp/cache/dev'
 
+  #use pry instead of irb as default console
+  silence_warnings do
+      begin
+          require 'pry'
+          IRB = Pry
+      rescue LoadError
+      end
+  end
 
 end
