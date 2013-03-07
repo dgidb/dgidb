@@ -28,8 +28,8 @@ class ApplicationController < ActionController::Base
       flash.now[:error] = exception.message
       respond_to do |type|
         type.html { render template: "errors/#{status}", layout: 'application', status: status }
-        type json { render json: { error: exception.message }.to_json, status: status }
-        type xml  { render xml: { error: exception.message }.to_xml, status: status }
+        type.json { render json: { error: exception.message }.to_json, status: status }
+        type.xml  { render xml: { error: exception.message }.to_xml, status: status }
         type.all  { render nothing: true, status: status }
       end
     end

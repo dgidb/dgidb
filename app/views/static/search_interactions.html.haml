@@ -31,6 +31,9 @@
       =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Database',
         flag_text_key: 'source_database_flag', select_tag_name: 'interaction_sources', collection: @sources,
         name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
+      =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
+        flag_text_key: 'source_trust_level_flag', select_tag_name: 'source_trust_levels', collection: @source_trust_levels,
+        name_meth: 'to_s', value_meth: 'to_s', tour_id: 'source_trust_level_tour' }
       .control-group
         %label.checkobox
           Anti-Neoplastic Drugs Only

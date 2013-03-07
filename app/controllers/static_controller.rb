@@ -19,10 +19,11 @@ class StaticController < ApplicationController
   end
 
   def prepare_available_filter_actions
-    @sources           = DataModel::Source.source_names_with_interactions
-    @drug_types        = DataModel::DrugClaimType.all_type_names
-    @gene_categories   = DataModel::GeneClaimCategory.all_category_names
-    @interaction_types = DataModel::InteractionClaimType.all_type_names
+    @sources             = DataModel::Source.source_names_with_interactions
+    @drug_types          = DataModel::DrugClaimType.all_type_names
+    @gene_categories     = DataModel::GeneClaimCategory.all_category_names
+    @interaction_types   = DataModel::InteractionClaimType.all_type_names
+    @source_trust_levels = DataModel::SourceTrustLevel.all_trust_levels
   end
 
 end

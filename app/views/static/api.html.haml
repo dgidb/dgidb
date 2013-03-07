@@ -19,6 +19,8 @@
           %a{href: '#drug-types'} Drug Types
         %li
           %a{href: '#gene-categories'} Gene Categories
+        %li
+          %a{href: '#source-trust-levels'} Source Trust Levels
         %li.divider
         %li.nav-header Responses
         %li
@@ -114,6 +116,15 @@
               If this field is omitted, all gene categories will be included
             %td
               %code gene_categories=kinase,tumor%20suppressor
+          %tr
+            %td
+              source_trust_levels
+              %small (optional)
+            %td
+              A comma delimited list of source trust levels to include in the result set.
+              If this field is omitted, all trust levels will be included
+            %td
+              %code source_trust_levels=Expert%20curated
       %h5
         Example Call:
       %p
@@ -260,6 +271,18 @@
       %h5 Example Response:
       %pre
         ["KINASE", "DNA REPAIR", "TUMOR SUPPRESSOR"]
+    %hr
+    %section#source-trust-levels
+      %h3 Source Trust Levels
+      %p.lead
+        The source trust levels endpoint can be used to retrieve a current list of supported
+        source trust levels for use in calls to the interactions endpoint.
+      %span.label GET
+      %pre
+        \/api/v1/source_trust_levels.json
+      %h5 Example Response:
+      %pre
+        ["Expert Curated", "Non-curated"]
     %hr
     .page-header
       %section

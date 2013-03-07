@@ -11,5 +11,10 @@ namespace :dgidb do
       Genome::Normalizers::PopulateCounters.populate_source_counters
     end
 
+    desc 'initialize the source trust level enum and set values for sources'
+    task initialize_trust_levels_for_sources: :environment do
+      Genome::Normalizers::SourceTrustLevel.populate_trust_levels
+    end
+
   end
 end

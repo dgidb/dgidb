@@ -26,6 +26,7 @@ class InteractionClaimsController < ApplicationController
     bad_request('You must select at least one source to search!') unless params[:interaction_sources]
     bad_request('You must select at least one category to search!') unless params[:gene_categories]
     bad_request('You must select at least one interaction type to search!') unless params[:interaction_types]
+    bad_request('You must select at least one source trust level to search!') unless params[:source_trust_levels]
   end
 
 end
