@@ -1,8 +1,6 @@
 %tr
   %td
     =category_results_table_row.search_term
-  -#%td
-  -#  =link_to category_results_table_row.gene_display_name, gene_path(category_results_table_row.gene_name)
   %td{title: category_results_table_row.gene_name + ' - ' + category_results_table_row.gene_display_name}
     = link_to gene_path(category_results_table_row.gene_name) do
       %strong

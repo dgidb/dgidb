@@ -25,7 +25,7 @@ class LookupCategories
   #given a category name this method will return a list of genes
   def self.find_genes_for_category(category_name)
     DataModel::Gene.joins(gene_claims: [:gene_claim_categories, :source])
-       .eager_load(gene_claims: [:source])
+       .eager_load(gene_claims: [source: [:source_trust_level]])
        .where('gene_claim_categories.name' => category_name)
        .uniq
   end

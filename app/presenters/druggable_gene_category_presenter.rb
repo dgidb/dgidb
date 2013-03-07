@@ -12,9 +12,9 @@ class DruggableGeneCategoryPresenter
                   .select { |source| source.source_type_id == DataModel::SourceType.POTENTIALLY_DRUGGABLE }
                   .map { |source| source.source_db_name }
                   .uniq
-                  .sort
+                  .sort_by { |s| CategoryResultSortOrder.sort_value(s) }
       DisplayGene.new(result.long_name, sources, result.name)
-    end
+    end.sort_by { |display_gene| CategoryResultSortOrder.sort_value(display_gene.sources[0]) }
   end
 
   private

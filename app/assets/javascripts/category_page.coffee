@@ -5,6 +5,7 @@ $ ->
     sWrapper: "dataTables_wrapper form-inline"
     aLengthMenu: [[50, 100, 250, -1], [50, 100, 250, "All"]]
     iDisplayLength: 50
+    aaSorting: []
     oLanguage:
       sSearch: 'Filter results:'
       sLengthMenu: "_MENU_ records per page"
