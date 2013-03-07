@@ -19,6 +19,10 @@ class InteractionSearchResultPresenter
     @interaction_claim.drug_claim.primary_name || @interaction_claim.drug_claim.name
   end
 
+  def trust_level
+    @interaction_claim.source.source_trust_level.level
+  end
+
   def types_string
     @types_string ||= @interaction_claim
       .interaction_claim_types

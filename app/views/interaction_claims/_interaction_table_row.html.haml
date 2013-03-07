@@ -1,8 +1,6 @@
 %tr
   %td
     =interaction_table_row.search_term
-  -#%td
-  -#   =link_to interaction_table_row.gene_long_name,  gene_path(interaction_table_row.gene_name)
   %td{title: interaction_table_row.gene_name + ' - ' + interaction_table_row.gene_long_name}
     = link_to gene_path(interaction_table_row.gene_name) do
       %strong
@@ -17,3 +15,5 @@
     =link_to interaction_table_row.types_string, interaction_claims_path(interaction_table_row.interaction_claim)
   %td
     =link_to interaction_table_row.source_db_name, source_path(interaction_table_row.source_db_name)
+  %td
+    = interaction_table_row.trust_level

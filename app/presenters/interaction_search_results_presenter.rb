@@ -156,9 +156,9 @@ class InteractionSearchResultsPresenter
 
   def interaction_result_presenters(result_list)
     result_list.flat_map do |result|
-      result.interaction_claims.map do |interaction|
-        InteractionSearchResultPresenter.new(interaction, result.search_term)
-      end
+      result.interaction_claims
+        .sort_by { |ic| InteractionResultSortOrder.sort_value(ic.source.source_db_name) }
+        .map { |ic| InteractionSearchResultPresenter.new(ic, result.search_term) }
     end
   end
 end
