@@ -2,7 +2,7 @@ class SourceDbName
   include Filter
 
   def initialize(source_db_name)
-    @source_db_name = source_db_name
+    @source_db_name = source_db_name.downcase
   end
 
   def cache_key
@@ -14,7 +14,8 @@ class SourceDbName
   end
 
   def resolve
-    Set.new DataModel::Source.where(source_db_name: @source_db_name)
+    Set.new DataModel::Source
+      .where('lower(source_db_name) = ?', @source_db_name)
       .joins(:interaction_claims)
       .pluck('interaction_claims.id')
   end

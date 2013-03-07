@@ -8,20 +8,6 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -1058,6 +1044,13 @@ CREATE INDEX drug_claim_attributes_drug_claim_id_idx ON drug_claim_attributes US
 
 
 --
+-- Name: drug_claim_types_lower_type_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX drug_claim_types_lower_type_idx ON drug_claim_types USING btree (lower((type)::text));
+
+
+--
 -- Name: drug_claims_full_text; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1097,6 +1090,13 @@ CREATE INDEX gene_claim_aliases_gene_claim_id_idx ON gene_claim_aliases USING bt
 --
 
 CREATE INDEX gene_claim_attributes_gene_claim_id_idx ON gene_claim_attributes USING btree (gene_claim_id);
+
+
+--
+-- Name: gene_claim_categories_lower_name_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX gene_claim_categories_lower_name_idx ON gene_claim_categories USING btree (lower((name)::text));
 
 
 --
@@ -1184,6 +1184,13 @@ CREATE INDEX interaction_claim_attributes_interaction_claim_id_idx ON interactio
 
 
 --
+-- Name: interaction_claim_types_lower_type_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX interaction_claim_types_lower_type_idx ON interaction_claim_types USING btree (lower((type)::text));
+
+
+--
 -- Name: interaction_claims_drug_claim_id_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1202,6 +1209,20 @@ CREATE INDEX interaction_claims_gene_claim_id_idx ON interaction_claims USING bt
 --
 
 CREATE INDEX interaction_claims_source_id_idx ON interaction_claims USING btree (source_id);
+
+
+--
+-- Name: source_trust_levels_lower_level_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX source_trust_levels_lower_level_idx ON source_trust_levels USING btree (lower((level)::text));
+
+
+--
+-- Name: sources_lower_source_db_name_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX sources_lower_source_db_name_idx ON sources USING btree (lower(source_db_name));
 
 
 --
@@ -1408,3 +1429,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130103214307');
 INSERT INTO schema_migrations (version) VALUES ('20130214204650');
 
 INSERT INTO schema_migrations (version) VALUES ('20130305165700');
+
+INSERT INTO schema_migrations (version) VALUES ('20130307160126');

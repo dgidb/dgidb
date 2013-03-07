@@ -2,7 +2,7 @@ class GeneClaimCategory
   include Filter
 
   def initialize(category)
-    @category = category
+    @category = category.downcase
   end
 
   def cache_key
@@ -14,7 +14,8 @@ class GeneClaimCategory
   end
 
   def resolve
-    Set.new DataModel::GeneClaimCategory.where(name: @category)
+    Set.new DataModel::GeneClaimCategory
+      .where('lower(name) = ?', @category)
       .pluck(:id)
       .uniq
   end

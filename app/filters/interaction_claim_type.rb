@@ -1,7 +1,7 @@
 class InteractionClaimType
   include Filter
   def initialize(type)
-    @type = type
+    @type = type.downcase
   end
 
   def cache_key
@@ -13,7 +13,8 @@ class InteractionClaimType
   end
 
   def resolve
-    Set.new DataModel::InteractionClaimType.where(type: @type)
+    Set.new DataModel::InteractionClaimType
+      .where('lower(type) = ?', @type)
       .includes(:interaction_claims)
       .select("interaction_claims.id")
       .first.interaction_claims

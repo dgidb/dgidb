@@ -2,7 +2,7 @@ class GeneClaimCategoryInteraction
   include Filter
 
   def initialize(category)
-    @category = category
+    @category = category.downcase
   end
 
   def cache_key
@@ -14,7 +14,8 @@ class GeneClaimCategoryInteraction
   end
 
   def resolve
-    Set.new DataModel::GeneClaimCategory.where(name: @category)
+    Set.new DataModel::GeneClaimCategory
+      .where('lower(name) = ?', @category)
       .joins(gene_claims: [genes: [gene_claims: [:interaction_claims]]])
       .select("interaction_claims.id")
       .pluck('interaction_claims.id')
