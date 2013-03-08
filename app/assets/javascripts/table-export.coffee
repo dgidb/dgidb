@@ -6,7 +6,7 @@ window.export_table = (table_selector) ->
   dt = $("#" + table_selector).dataTable()
   row_data = dt.fnSettings().aoData
   headers = dt.fnSettings().aoHeader[0].map (c) ->
-    c.cell.innerText.trim()
+    $(c.cell).text().trim()
   .join("%09")
   tsv = row_data.map (row) ->
     row._aData.map (cell) ->
