@@ -5,9 +5,9 @@
     %td
       -if in_source
         %i.icon-ok
-          %p(style="display:none")a
+          %p(style="display:none")true
       -else
         %i
-          %p(style="display:none")z
+          %p(style="display:none")false
   %td
     =results_by_source_table_row.sources.count {|in_source| in_source}
