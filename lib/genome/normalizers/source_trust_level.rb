@@ -15,7 +15,7 @@ module Genome
             'TEND',
             'dGene',
             'RussLampel',
-            'Hopkins/Groom'
+            'HopkinsGroom'
           ],
         'Non-curated' =>
           [
@@ -30,7 +30,8 @@ module Genome
       def self.save_trust_levels
         source_map = {}
         trust_levels.each do |level|
-          source_map[level] = DataModel::SourceTrustLevel.new.tap do |s|
+          existing_trust_level = DataModel::SourceTrustLevel.where(level: level).first
+          source_map[level] = existing_trust_level || DataModel::SourceTrustLevel.new.tap do |s|
             s.level = level
             s.id = SecureRandom.uuid
             s.save
