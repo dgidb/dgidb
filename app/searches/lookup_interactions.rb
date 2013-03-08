@@ -37,7 +37,6 @@ class LookupInteractions
     create_sources_filter(params, filter)
     create_gene_category_filter(params, filter)
     create_interaction_type_filter(params, filter)
-    create_drug_type_filter(params, filter)
     create_source_trust_level_filter(params, filter)
   end
 
