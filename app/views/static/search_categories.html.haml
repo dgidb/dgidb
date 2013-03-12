@@ -23,9 +23,13 @@
           %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace Genes with Demo List
           %button.btn.btn-small.btn-danger#clear(type='button') Clear All Genes
       #source-control
-        =render partial: 'shared/multiselect', locals: { control_group_name: 'Sources',
+        =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
           flag_text_key: 'sources_flag', select_tag_name: 'sources', collection: @sources,
           name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
+      #source-trust-level
+        =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
+          flag_text_key: 'source_trust_level_flag', select_tag_name: 'source_trust_levels', collection: @source_trust_levels,
+          name_meth: 'to_s', value_meth: 'to_s', tour_id: 'source_trust_level_tour' }
       #gene-category-control
         =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
           flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories,

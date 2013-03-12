@@ -6,6 +6,7 @@ class StaticController < ApplicationController
   def search_categories
     @sources         = DataModel::Source.potentially_druggable_sources.map(&:source_db_name)
     @gene_categories = DataModel::GeneClaimCategory.all_category_names
+    @source_trust_levels = DataModel::SourceTrustLevel.all_trust_levels
   end
 
   def search_interactions

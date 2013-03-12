@@ -4,3 +4,5 @@ search_categories:
   genes_flag: Place one gene name per line in the text area. These will be added to names from the file if used above. You may also type gene names in the box and they will be autocompleted (by pressing tab or enter)
   categories_flag: Categories are groups of genes considered by some to be potentially druggable targets
   sources_flag: Specify which source(s) of drug-gene interactions to search against
+  source_trust_level_flag: Specify the trust level of sources that you are willing to accept in your interaction results
+

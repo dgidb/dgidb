@@ -22,18 +22,18 @@
         .controls
           %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace Genes with Demo List
           %button.btn.btn-small.btn-danger#clear(type='button') Clear All Genes
-      =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Category',
-        flag_text_key: 'gene_category_flag', select_tag_name: 'gene_categories', collection: @gene_categories,
-        name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_cateogories_tour' }
-      =render partial: 'shared/multiselect', locals: { control_group_name: 'Interaction Type',
-        flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types,
-        name_meth: 'to_s', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
-      =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Database',
+      =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
         flag_text_key: 'source_database_flag', select_tag_name: 'interaction_sources', collection: @sources,
         name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
       =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
         flag_text_key: 'source_trust_level_flag', select_tag_name: 'source_trust_levels', collection: @source_trust_levels,
         name_meth: 'to_s', value_meth: 'to_s', tour_id: 'source_trust_level_tour' }
+      =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
+        flag_text_key: 'gene_category_flag', select_tag_name: 'gene_categories', collection: @gene_categories,
+        name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_cateogories_tour' }
+      =render partial: 'shared/multiselect', locals: { control_group_name: 'Interaction Types',
+        flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types,
+        name_meth: 'to_s', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
       .control-group
         %label.checkobox
           Anti-Neoplastic Drugs Only
