@@ -1,5 +1,18 @@
+#!/usr/bin/env perl
+
 use strict;
 use warnings;
+
+#You may need to install the CPAN JSON package before this script will work
+#http://www.cpan.org/modules/INSTALL.html
+#On a mac you can do the following:
+# First configure the 'cpan' tool
+# % sudo cpan
+# Then at a cpan prompt:
+# % get JSON
+# % make JSON
+# % install JSON
+# % q
 
 use JSON;
 use HTTP::Request::Common;
