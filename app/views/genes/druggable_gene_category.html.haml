@@ -13,11 +13,11 @@
           %thead
             %tr
               %th
-                Short Gene Name
+                Gene
               %th
-                Full Gene Name
+                Gene Description
               %th
-                Source Database Name(s)
+                Source(s)
           %tbody
             =render partial: 'genes/category_table_row', collection: @genes.display_genes, as: :gene
 

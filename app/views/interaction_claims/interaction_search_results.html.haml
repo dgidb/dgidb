@@ -36,7 +36,7 @@
               =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Ambiguous Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_filter_flag"), subtitle: "Search terms matching multiple genes, where some of those genes have drug interactions.", export_id: 'ambiguous_results_table'}
         .row-fluid
           -if @search_results.show_ambiguous_no_interactions?
-            =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Ambiguously Matched Genes With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: tx("ambiguous_results_no_interactions_flag"), xsubtitle: 'Search terms matching multiple genes, but none have interactions.'}
+            =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Ambiguous Search Terms With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: tx("ambiguous_results_no_interactions_flag"), xsubtitle: 'Search terms matching multiple genes, but none have interactions.'}
           -if @search_results.show_definite_no_interactions?
             =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions, tooltip_text: tx("definite_results_no_interactions_flag"), xsubtitle: 'Search terms matching one gene, but no interactions are present.'}
           -if @search_results.show_no_results_results?

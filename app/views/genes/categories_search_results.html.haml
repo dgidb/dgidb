@@ -9,11 +9,11 @@
   .tabbable
     %ul.nav.nav-tabs
       %li.active
-        %a(href="#by_genes" data-toggle="tab") By Gene Name
+        %a(href="#by_genes" data-toggle="tab") Category Results
       %li
         %a(href="#search_summary_tab" data-toggle="tab") Search Results Summary
       %li
-        %a(href="#by_categories" data-toggle="tab") By Gene Category
+        %a(href="#by_categories" data-toggle="tab") By Category
       %li
         %a(href="#by_source" data-toggle="tab") By Source
     .tab-content
@@ -21,12 +21,12 @@
         -if @search_results.show_result_categories?
           .row-fluid
             .span12
-              =render partial: 'genes/category_results_table', locals: {title: "Results in Selected Categories", categories: @search_results.result_presenters, export_id: 'category_result_export' }
+              =render partial: 'genes/category_results_table', locals: {title: "Primary Results", categories: @search_results.result_presenters, tooltip_text: tx("definite_results_passed_filter_flag"), subtitle: "Search terms matching exactly one gene that belongs to one or more druggable categories.", export_id: 'category_result_export'}
         .row-fluid
           -if @search_results.show_ambiguous_results?
-            =render partial: 'genes/no_category_result', locals: {title: 'Ambiguous Terms', results: @search_results.ambiguous_results, tooltip_text: tx('ambiguous_terms_flag')}
+            =render partial: 'genes/no_category_result', locals: {title: 'Ambiguous Search Terms', results: @search_results.ambiguous_results, tooltip_text: tx('ambiguous_terms_flag'), subtitle: "Search terms matching multiple genes. These genes may or may not belong to druggable gene categories."}
           -if @search_results.show_definite_results_with_no_categories?
-            =render partial: 'genes/no_category_result', locals: {title: 'Matched Genes With No Categories', results: @search_results.definite_results_with_no_categories, tooltip_text: tx('no_matches_flag')}
+            =render partial: 'genes/no_category_result', locals: {title: 'Matched Genes With No Categories', results: @search_results.definite_results_with_no_categories, subtitle: "Search terms matching multiple genes. These genes may or may not belong to druggable gene categories.", tooltip_text: tx('no_matches_flag')}
           -if @search_results.show_no_results_results?
             .span6
               .well
@@ -41,11 +41,11 @@
         -if @search_results.show_genes_by_category?
           .row-fluid
             .span12
-              =render partial: 'genes/results_by_category_table', locals: {title: "Results Grouped by Categories", categories: @search_results.genes_by_category }
+              =render partial: 'genes/results_by_category_table', locals: {title: "Results Grouped by Categories", categories: @search_results.genes_by_category, subtitle: "Number of search terms matching genes in each druggable gene category." }
       .tab-pane.fade#search_summary_tab
         =render partial: 'genes/results_summary', locals: {title: "Results Grouped by Gene Category", results: @search_results}
       .tab-pane.fade#by_source
-        =render partial: 'genes/results_by_source_table', locals: {title: "Results Enumerated by Source", results: @search_results}
+        =render partial: 'genes/results_by_source_table', locals: {title: "Results Enumerated by Source", results: @search_results, subtitle: "Number of search terms matching genes in each druggable gene category broken down by source."}
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"
