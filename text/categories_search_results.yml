@@ -1,6 +1,10 @@
 categories_search_results:
   title_main: Category Search Results
   title_small: druggable categories for your genes
-  category_table_header: Categories are groups of genes considered by some to be potentially druggable targets.
+  definite_results_passed_filter_flag: >
+    Primary results passed all filters and the search term unambiguously matched a single gene belonging to druggable gene categories
   ambiguous_terms_flag: Your search term matched more than one gene record.
   no_matches_flag: Search terms for which we could find no matches
+  category_table_header: Categories are groups of genes considered by some to be potentially druggable targets.
+  gene_table_header_flag: Gene Name within DGIDB that matched your search term (either directly or through a synonym)
+  search_term_table_header_flag: The search term you entered

@@ -1,11 +1,17 @@
 .well
-  %h3= title
+  %p
+    %h3
+      =title
+    %small
+      %strong
+        %em
+          =subtitle
   =render partial: 'shared/table_export', locals: {id: 'by-gene-category-export'}
   %table#by-gene-category-export.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
     %thead
       %tr
         %th
-          Category
+          Druggable Gene Category
           %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
         %th
           Matching Gene Count

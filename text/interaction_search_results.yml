@@ -2,9 +2,7 @@ interaction_search_results:
   title_main: Interaction Search Results
   title_small: drug interactions for your genes
   definite_results_passed_filter_flag: >
-    Definite results that passed the filter are those where the provided
-    search term unambiguously matched a single gene record with known
-    interactions meeting the specified filter criteria
+    Primary results passed all filters and the search term unambiguously matched a single gene with known drug interactions
   definite_results_failed_filter_flag: >
     Definite results that passed the filter are those where the provided
     search term unambiguously matched a single gene record with known interactions
