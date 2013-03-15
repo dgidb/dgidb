@@ -105,8 +105,7 @@ class GeneCategorySearchResultsPresenter
   def gene_category_result_presenters(result_list)
     results = result_list.flat_map do |result|
       result.gene_categories.uniq.map do |category|
-        binding.pry #TODO: remove me
-        GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_name, result.gene_display_name, result.gene, result.sources)
+        GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_name, result.gene_display_name, result.gene, get_sources(result, category))
       end
     end
 
@@ -118,5 +117,14 @@ class GeneCategorySearchResultsPresenter
         hash[key] = result
       end
     end.values
+  end
+
+  def get_sources(result, category)
+    gene_claims = result.genes.map{|g| g.gene_claims}
+    sources = Array.new
+    gene_claims.each do |claim|
+        sources.push(claim.source.source_db_name) if claim.gene_claim_attributes.map{|a| a.value}.include?(category)
+    end
+    sources.uniq
   end
 end
