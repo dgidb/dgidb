@@ -12,4 +12,4 @@
   %td
     =link_to category_results_table_row.gene_category, gene_by_category_path(category_results_table_row.gene_category)
   %td
-    =category_results_table_row.sources.join(", ")
+    =category_results_table_row.sources(self)
