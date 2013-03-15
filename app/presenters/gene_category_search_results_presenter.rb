@@ -105,7 +105,8 @@ class GeneCategorySearchResultsPresenter
   def gene_category_result_presenters(result_list)
     results = result_list.flat_map do |result|
       result.gene_categories.uniq.map do |category|
-        GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_name, result.gene_display_name, result.gene)
+        binding.pry #TODO: remove me
+        GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_name, result.gene_display_name, result.gene, result.sources)
       end
     end
 
