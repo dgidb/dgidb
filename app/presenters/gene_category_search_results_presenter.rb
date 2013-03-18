@@ -2,7 +2,7 @@ class GeneCategorySearchResultsPresenter
   include Genome::Extensions
   def initialize(search_results, params, start_time)
     @start_time = start_time
-    @search_results = search_results
+        @search_results = search_results
   end
 
   def number_of_search_terms
@@ -105,7 +105,7 @@ class GeneCategorySearchResultsPresenter
   def gene_category_result_presenters(result_list)
     results = result_list.flat_map do |result|
       result.gene_categories.uniq.map do |category|
-        GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_name, result.gene_display_name, result.gene)
+        GeneCategorySearchResultPresenter.new(category, result.search_term, result.gene_name, result.gene_display_name, result.gene, get_sources(result, category))
       end
     end
 
@@ -117,5 +117,14 @@ class GeneCategorySearchResultsPresenter
         hash[key] = result
       end
     end.values
+  end
+
+  def get_sources(result, category)
+    gene_claims = result.genes.map{|g| g.gene_claims}.flatten
+    sources = Array.new
+    gene_claims.each do |claim|
+        sources.push(claim.source.source_db_name) if claim.gene_claim_attributes.map{|a| a.value}.include?(category)
+    end
+    sources.uniq
   end
 end
