@@ -37,16 +37,3 @@ $.valHooks.textarea =
         elem.value.replace(/(\n|\r)+$/,"").split("\n").splice(-1,1)[0]
 
 $("#genes").focus()
-
-$("#source-control .multiselect").bind 'multiselectclose', (event, ui)->
-  $.get '/categories_for_selected_sources',
-    selected_sources: $("#sources").val(),
-    (data)->
-      $("#gene-category-control").empty()
-      $("#gene-category-control").html(data)
-      $("#gene-category-control .multiselect").multiselect
-        noneSelectedText: 'Select included items'
-        selectedText: '# of #'
-        minWidth: 400
-      .multiselectfilter()
-      $("#gene-category-control .multiselect").multiselect('checkAll')

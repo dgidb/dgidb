@@ -13,7 +13,6 @@ DruggableGene::Application.routes.draw do
   match 'search_results' => 'search#search_results'
   match 'cache/invalidate' => 'utilities#invalidate_cache'
   post  'download_table' => 'utilities#download_request_content'
-  get   'categories_for_selected_sources' => 'gene_claim_categories#categories_for_selected_sources'
   post  'api/v1/interactions' => 'services_v1#interactions'
   get   'api/v1/:action' => 'services_v1#:action'
   match 'interaction_search_results' => 'interaction_claims#interaction_search_results'
