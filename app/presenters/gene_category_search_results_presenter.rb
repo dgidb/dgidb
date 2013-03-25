@@ -108,14 +108,13 @@ class GeneCategorySearchResultsPresenter
         GeneCategorySearchResultPresenter.new(category, result)
       end
     end
+    de_duplicate_results(results)
+  end
 
+  def de_duplicate_results(results)
     results.each_with_object({}) do |result, hash|
       key = result.gene_category + '-' + result.gene_name
-      if hash.has_key?(key)
-        hash[key].search_terms << result.search_term
-      else
-        hash[key] = result
-      end
+      (hash[key] ||= result).search_terms << result.search_term
     end.values
   end
 end
