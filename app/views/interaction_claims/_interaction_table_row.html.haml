@@ -10,7 +10,7 @@
         %small
           =truncate(interaction_table_row.gene_long_name, length: 50)
   %td{title: interaction_table_row.drug_claim_name}
-    =link_to truncate(interaction_table_row.drug_claim_name, length:50), drug_claim_path(interaction_table_row.interaction_claim.drug_claim.name)
+    =link_to truncate(interaction_table_row.drug_claim_name, length:50), drug_claim_path(interaction_table_row.interaction_claim.drug_claim)
   %td
     =link_to interaction_table_row.types_string, interaction_claims_path(interaction_table_row.interaction_claim)
   %td

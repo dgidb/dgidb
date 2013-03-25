@@ -1,5 +1,5 @@
 DruggableGene::Application.routes.draw do
-  match 'drug_claims/:name' => 'drug_claims#show', as: 'drug_claim'
+  match 'drug_claims/:source_db_name/:name' => 'drug_claims#show'
   match 'gene_claims/:source_db_name/:name' => 'gene_claims#show'
   match 'gene_names' => 'genes#names'
   match 'genes/:name' => 'genes#show', as: 'gene'

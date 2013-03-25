@@ -33,4 +33,8 @@ module ApplicationHelper
     "/gene_claims/#{gene_claim.source.source_db_name}/#{gene_claim.name}"
   end
 
+  def drug_claim_path(drug_claim)
+    "/drug_claims/#{drug_claim.source.source_db_name}/#{drug_claim.name}"
+  end
+
 end

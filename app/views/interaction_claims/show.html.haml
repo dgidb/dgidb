@@ -11,7 +11,7 @@
       .hero-unit
         %p
           %b Drug:
-          =link_to(@interaction.drug_claim.title, drug_claim_path(@interaction.drug_claim.name))
+          =link_to(@interaction.drug_claim.title, drug_claim_path(@interaction.drug_claim))
         %p
           %b Gene:
           =link_to(@interaction.gene_claim.title, gene_claim_path(@interaction.gene_claim))
