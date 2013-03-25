@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
   before_filter :set_active
 
-  caches_page :index, :faq, :downloads, :contact, :search_categories, :search_interactions, :search, :api
+  caches_page :index, :faq, :downloads, :contact, :news, :search_categories, :search_interactions, :search, :api
 
   def search_categories
     @sources         = DataModel::Source.potentially_druggable_sources.map(&:source_db_name)
@@ -14,7 +14,7 @@ class StaticController < ApplicationController
   end
 
   private
-  @@help_pages = Set.new ['getting_started', 'faq', 'downloads', 'contact', 'api']
+  @@help_pages = Set.new ['getting_started', 'news', 'faq', 'downloads', 'contact', 'api']
   def set_active
     @@help_pages.include?(params[:action]) ? instance_variable_set("@help_active", "active") : instance_variable_set("@#{params[:action]}_active", "active")
   end
