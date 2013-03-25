@@ -112,7 +112,7 @@ class GeneCategorySearchResultsPresenter
     results.each_with_object({}) do |result, hash|
       key = result.gene_category + '-' + result.gene_name
       if hash.has_key?(key)
-        hash[key].search_term += ", #{result.search_term}"
+        hash[key].search_terms << result.search_term
       else
         hash[key] = result
       end
