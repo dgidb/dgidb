@@ -5,9 +5,6 @@ class GeneCategorySearchResult
   def initialize(search_term, genes)
     @search_term = search_term
     @genes = genes.uniq
-    @categories = genes.flat_map { |g| g.gene_claims }
-                    .flat_map { |gc| gc.gene_claim_categories }
-                    .uniq
   end
 
   def is_ambiguous?
@@ -30,12 +27,21 @@ class GeneCategorySearchResult
     genes.first
   end
 
+  def gene_claims
+    @filtered_gene_claims || @genes.flat_map { |g| g.gene_claims }
+  end
+
   def filter_categories
-    @filtered_categories = @categories.select { |c| yield c }
+    @filtered_gene_claims = @genes.flat_map { |g| g.gene_claims }
+                            .select { |gc| yield gc }
+
+    @filtered_categories = @filtered_gene_claims
+                            .flat_map { |gc| gc.gene_claim_categories }
+                            .uniq
   end
 
   def gene_categories
-    (@filtered_categories || @categories).map { |c| c.name }
+    @filtered_categories.map { |c| c.name }
   end
 
   def partition

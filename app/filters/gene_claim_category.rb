@@ -15,8 +15,9 @@ class GeneClaimCategory
 
   def resolve
     Set.new DataModel::GeneClaimCategory
-      .where('lower(name) = ?', @category)
-      .pluck(:id)
+      .joins(:gene_claims)
+      .where('lower(gene_claim_categories.name) = ?', @category)
+      .pluck('gene_claim_id')
       .uniq
   end
 end

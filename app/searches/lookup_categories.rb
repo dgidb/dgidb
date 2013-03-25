@@ -9,8 +9,16 @@ class LookupCategories
 
     filter_scope = FilterChain.new
 
+    params[:sources].each do |source|
+      filter_scope.include_category_source_db_name(source)
+    end
+
     params[:gene_categories].each do |category|
       filter_scope.include_gene_claim_category(category)
+    end
+
+    params[:source_trust_levels].each do |trust_level|
+      filter_scope.include_category_source_trust_level(trust_level)
     end
 
     gene_results.each do |result|
@@ -18,8 +26,6 @@ class LookupCategories
         filter_scope.include?(gene_claim.id)
       end
     end
-
-    gene_results
   end
 
   #given a category name this method will return a list of genes
