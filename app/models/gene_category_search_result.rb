@@ -2,8 +2,9 @@ class GeneCategorySearchResult
 
   attr_accessor :search_term, :genes
 
-  def initialize(search_term, genes)
-    @search_term = search_term
+  def initialize(search_terms, genes)
+    @search_term = search_terms.join(", ")
+    @search_terms = search_terms
     @genes = genes.uniq
   end
 

@@ -103,18 +103,10 @@ class GeneCategorySearchResultsPresenter
 
   private
   def gene_category_result_presenters(result_list)
-    results = result_list.flat_map do |result|
+    result_list.flat_map do |result|
       result.gene_categories.uniq.map do |category|
         GeneCategorySearchResultPresenter.new(category, result)
       end
     end
-    de_duplicate_results(results)
-  end
-
-  def de_duplicate_results(results)
-    results.each_with_object({}) do |result, hash|
-      key = result.gene_category + '-' + result.gene_name
-      (hash[key] ||= result).search_terms << result.search_term
-    end.values
   end
 end

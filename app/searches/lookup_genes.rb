@@ -1,20 +1,16 @@
 class LookupGenes
 
   def self.find(search_terms, scope, wrapper_class)
-    results_to_gene_groups = search_terms.each_with_object({}) do |term, hash|
-      hash[term] = []
+    results = match_search_terms_to_objects(search_terms, scope)
+    results_to_genes = match_objects_to_genes(results, search_terms)
+    de_dup_results(results_to_genes).map do |terms, matched_genes|
+      wrapper_class.new(terms, matched_genes)
     end
+  end
 
-    gene_names = search_terms
-
-    gene_results = DataModel::Gene.send(scope).where(name: gene_names)
-    gene_names = gene_names - gene_results.map(&:name)
-    gene_alias_results = DataModel::GeneClaimAlias.send(scope).where(alias: gene_names)
-    gene_names = gene_names - gene_alias_results.map(&:alias)
-    gene_claim_results = DataModel::GeneClaim.send(scope).where(name: gene_names)
-
-    results = gene_results + gene_alias_results + gene_claim_results
-
+  private
+  def self.match_objects_to_genes(results, search_terms)
+    results_to_gene_groups = search_terms.each_with_object({}) { |term, h| h[term] = [] }
     results.each do |result|
       case result
       when DataModel::Gene
@@ -25,9 +21,25 @@ class LookupGenes
         results_to_gene_groups[result.name] += result.genes
       end
     end
+    results_to_gene_groups
+  end
 
-    results_to_gene_groups.map do |search_term, matched_genes|
-      wrapper_class.new(search_term, matched_genes)
+  def self.match_search_terms_to_objects(search_terms, scope)
+    search_terms = search_terms.dup
+    gene_results = DataModel::Gene.send(scope).where(name: search_terms)
+    search_terms = search_terms - gene_results.map(&:name)
+    gene_alias_results = DataModel::GeneClaimAlias.send(scope).where(alias: search_terms)
+    search_terms = search_terms - gene_alias_results.map(&:alias)
+    gene_claim_results = DataModel::GeneClaim.send(scope).where(name: search_terms)
+
+    gene_results + gene_alias_results + gene_claim_results
+  end
+
+  def self.de_dup_results(results)
+    uniq_hash = Hash.new { |h, k| h[k] = [] }
+    results.each do |search_term, value|
+      uniq_hash[value] << search_term
     end
+    uniq_hash.invert
   end
 end

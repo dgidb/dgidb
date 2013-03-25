@@ -2,8 +2,9 @@ class InteractionSearchResult
 
   attr_accessor :search_term, :genes, :interaction_claims
 
-  def initialize(search_term, genes)
-    @search_term = search_term
+  def initialize(search_terms, genes)
+    @search_term = search_terms.join(', ')
+    @search_terms = search_terms
     @genes = genes.uniq
     @interaction_claims = genes.flat_map { |g| g.gene_claims }
       .flat_map{ |gc| gc.interaction_claims }
