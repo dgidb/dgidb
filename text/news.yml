@@ -1,0 +1,9 @@
+news:
+  title_main: News
+  title_small: latest news regarding DGIdb
+  description: >
+    This page provides updates on DGIdb
+  posts:
+    - headline: Hello, World!
+      article: >
+        DGIdb is offically live!
