@@ -21,7 +21,7 @@ module Genome
           opts = @defaults.merge opts
           val = opts[:transform].call(@row.send(column))
           if !opts[:unless].call(val)
-            @drug_claim = @importer.create_drug_claim(name: val, nomenclature: opts[:nomenclature], primary_name: opts[:primary_name])
+            @drug_claim = @importer.create_drug_claim(name: val, nomenclature: opts[:nomenclature], primary_name: opts[:transform].call(@row.send(opts[:primary_name])))
             node = DrugNode.new(@drug_claim.id, @importer, @row)
             node.instance_eval(&block)
           end

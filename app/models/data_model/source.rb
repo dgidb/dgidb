@@ -5,9 +5,9 @@ module DataModel
 
     attr_protected :id
 
-    has_many :gene_claims, inverse_of: :source
-    has_many :drug_claims, inverse_of: :source
-    has_many :interaction_claims, inverse_of: :source
+    has_many :gene_claims, inverse_of: :source, dependent: :delete_all
+    has_many :drug_claims, inverse_of: :source, dependent: :delete_all
+    has_many :interaction_claims, inverse_of: :source, dependent: :delete_all
     belongs_to :source_type, inverse_of: :sources
     belongs_to :source_trust_level, inverse_of: :sources
 

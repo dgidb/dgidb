@@ -26,5 +26,9 @@ namespace :dgidb do
       Genome::Importers::HopkinsGroom::HopkinsGroomImporter.new(args[:hg_tsv_path], args[:source_db_version]).import!
     end
 
+    desc 'import MyCancerGenome from a TSV file'
+    task :my_cancer_genome, [:mcg_tsv_path] => :environment do |t, args|
+      Genome::Importers::MyCancerGenome.run(args[:mcg_tsv_path])
+    end
   end
 end

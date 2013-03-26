@@ -31,7 +31,7 @@ module Genome
 
             attribute :interaction_type, name: 'Interaction Type', unless: blank_filter
           end
-        end
+        end.save!
       end
     end
   end

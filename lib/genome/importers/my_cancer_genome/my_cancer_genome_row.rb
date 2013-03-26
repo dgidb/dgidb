@@ -1,7 +1,7 @@
 require 'genome/importers/delimited_row'
 module Genome
   module Importers
-    module Entrez
+    module MyCancerGenome
       class MyCancerGenomeRow < Genome::Importers::DelimitedRow
         attribute :gene_symbol
         attribute :entrez_gene_id
