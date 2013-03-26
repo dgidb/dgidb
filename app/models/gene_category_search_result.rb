@@ -32,12 +32,15 @@ class GeneCategorySearchResult
     @filtered_gene_claims || @genes.flat_map { |g| g.gene_claims }
   end
 
-  def filter_categories
+  def filter_gene_claims
     @filtered_gene_claims = @genes.flat_map { |g| g.gene_claims }
                             .select { |gc| yield gc }
+  end
 
+  def filter_categories
     @filtered_categories = @filtered_gene_claims
                             .flat_map { |gc| gc.gene_claim_categories }
+                            .select { |gcc| yield gcc }
                             .uniq
   end
 

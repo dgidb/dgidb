@@ -1,4 +1,5 @@
 class LookupCategories
+  extend FilterHelper
 
   def self.find(params)
     gene_results = LookupGenes.find(
@@ -7,25 +8,7 @@ class LookupCategories
       GeneCategorySearchResult
     )
 
-    filter_scope = FilterChain.new
-
-    params[:sources].each do |source|
-      filter_scope.include_category_source_db_name(source)
-    end
-
-    params[:gene_categories].each do |category|
-      filter_scope.include_gene_claim_category(category)
-    end
-
-    params[:source_trust_levels].each do |trust_level|
-      filter_scope.include_category_source_trust_level(trust_level)
-    end
-
-    gene_results.each do |result|
-      result.filter_categories do |gene_claim|
-        filter_scope.include?(gene_claim.id)
-      end
-    end
+    filter_results(gene_results, params)
   end
 
   #given a category name this method will return a list of genes
@@ -49,5 +32,26 @@ class LookupCategories
         ).map { |x| OpenStruct.new(name: x['name'], gene_count: x['count']) }
       categories_with_counts
     end
+  end
+
+  private
+  def self.filter_results(gene_results, params)
+    gene_claim_filter_scope = FilterChain.new
+    category_filter_scope = FilterChain.new
+
+    construct_filter(gene_claim_filter_scope, params[:sources], :include_category_source_db_name)
+    construct_filter(gene_claim_filter_scope, params[:source_trust_levels], :include_category_source_trust_level)
+    construct_filter(category_filter_scope, params[:gene_categories], :include_gene_claim_category)
+
+    gene_results.each do |result|
+      result.filter_gene_claims do |gene_claim|
+        gene_claim_filter_scope.include?(gene_claim.id)
+      end
+
+      result.filter_categories do |gene_claim_category|
+        category_filter_scope.include?(gene_claim_category.id)
+      end
+    end
+    gene_results
   end
 end

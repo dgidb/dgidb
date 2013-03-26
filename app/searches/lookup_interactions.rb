@@ -1,4 +1,5 @@
 class LookupInteractions
+  extend FilterHelper
 
   def self.find(params)
     #find gene results for given search terms. end up with
@@ -58,13 +59,5 @@ class LookupInteractions
 
   def self.create_source_trust_level_filter(params, chain)
     construct_filter(chain, params[:source_trust_levels], :include_source_trust_level)
-  end
-
-  def self.construct_filter(filter, items, filter_name)
-    filter.tap do |f|
-      Array(items).each do |item|
-        f.send(filter_name, item)
-      end
-    end
   end
 end
