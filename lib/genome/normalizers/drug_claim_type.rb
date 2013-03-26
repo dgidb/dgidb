@@ -19,10 +19,10 @@ module Genome
       def self.antineoplastic_drugs
         drug_claims_with_attributes = DataModel::DrugClaim.includes(:drug_claim_attributes)
           .where('drug_claim_attributes.value' => antineoplastic_type_names)
-        drug_claims_from_talc = DataModel::DrugClaim.includes(:source)
+        drug_claims_from_sources = DataModel::DrugClaim.includes(:source)
           .where('sources.source_db_name' => antineoplastic_source_names)
 
-        (drug_claims_from_talc + drug_claims_with_attributes).uniq_by { |dc| dc.id }
+        (drug_claims_from_sources + drug_claims_with_attributes).uniq_by { |dc| dc.id }
       end
 
       def self.antineoplastic_type_names
@@ -45,7 +45,8 @@ module Genome
 
       def self.antineoplastic_source_names
         [
-          'TALC'
+          'TALC',
+          'MyCancerGenome'
         ]
       end
     end

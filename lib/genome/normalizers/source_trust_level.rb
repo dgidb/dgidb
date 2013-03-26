@@ -10,7 +10,7 @@ module Genome
       {
         'Expert curated' =>
           [
-            #TODO: 'MyCancerGenome',
+            'MyCancerGenome',
             'TALC',
             'TEND',
             'dGene',

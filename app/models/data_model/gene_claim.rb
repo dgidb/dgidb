@@ -45,6 +45,8 @@ module DataModel
         base_url + 'Detail.asp?ID=' + name
       when 'GO'
         base_url.gsub(/XXXXXXXX/, name)
+      when 'MyCancerGenome'
+        base_url
       else
         base_url + name
       end
