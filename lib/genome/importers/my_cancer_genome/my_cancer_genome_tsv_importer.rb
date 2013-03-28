@@ -26,7 +26,7 @@ module Genome
             gene :gene_symbol, nomenclature: 'MyCancerGenome Gene Symbol' do
               name :entrez_gene_id, nomenclature: 'Entrez Gene Id', unless: blank_filter
               name :gene_symbol, nomenclature: 'MyCancerGenome Gene Symbol'
-              name :reported_gene_name, nomenclature: 'MyCancer Genome Reported Gene Name', unless: blank_filter
+              name :reported_gene_name, nomenclature: 'MyCancerGenome Reported Gene Name', unless: blank_filter
             end
 
             attribute :interaction_type, name: 'Interaction Type', unless: blank_filter
