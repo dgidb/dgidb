@@ -3,8 +3,6 @@ module DataModel
     include Genome::Extensions::UUIDPrimaryKey
     include Genome::Extensions::HasCacheableQuery
 
-    attr_protected :id
-
     has_many :gene_claims, inverse_of: :source, dependent: :delete_all
     has_many :drug_claims, inverse_of: :source, dependent: :delete_all
     has_many :interaction_claims, inverse_of: :source, dependent: :delete_all
