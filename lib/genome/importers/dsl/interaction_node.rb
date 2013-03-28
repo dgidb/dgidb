@@ -7,10 +7,10 @@ module Genome
         include Genome::Importers::DSL::WithDrugsAndGenes
 
         def create_interaction(known_action_type)
-          raise 'Interactions must link a gene and a drug!' unless @gene_claim && @drug_claim
+          raise 'Interactions must link a gene and a drug!' unless @gene_claim_id && @drug_claim_id
           @importer.create_interaction_claim(id: @id,
-                                             drug_claim_id: @drug_claim.id,
-                                             gene_claim_id: @gene_claim.id,
+                                             drug_claim_id: @drug_claim_id,
+                                             gene_claim_id: @gene_claim_id,
                                              known_action_type: known_action_type)
         end
       end
