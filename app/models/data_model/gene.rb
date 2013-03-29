@@ -19,7 +19,7 @@ module DataModel
     end
 
     def self.for_show
-      eager_load(gene_claims: [:source, :gene_claim_aliases, :gene_claim_attributes, :genes])
+      eager_load(gene_claims: [:gene_claim_aliases, :gene_claim_attributes, :genes, source: [:source_type]])
     end
 
   end

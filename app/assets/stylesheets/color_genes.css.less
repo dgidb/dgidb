@@ -6,39 +6,18 @@
 .color_source_db (@color: @yellow) {
   #gradient > .vertical(@color,@white);
 }
-.gene {
+.bubble-links.gene {
   .color_source_db;
 }
-.gene.Entrez {
+.bubble-links.gene {
   .color_source_db(@green);
 }
-.gene.Ensembl {
-  .color_source_db(@green);
+.bubble-links.drug {
+  .color_source_db(@red);
 }
-.gene.DrugBank {
+.bubble-links.interaction {
   .color_source_db(@blue);
 }
-.gene.TTD {
-  .color_source_db(@blue);
-}
-.gene.GO {
+.bubble-links.potentially_druggable {
   .color_source_db(@orange);
-}
-.gene.dGene {
-  .color_source_db(@orange);
-}
-.gene.RussLampel {
-  .color_source_db(@orange);
-}
-.gene.TALC {
-  .color_source_db(@blue);
-}
-.gene.HopkinsGroom {
-  .color_source_db(@orange);
-}
-.gene.PharmGKB {
-  .color_source_db(@blue);
-}
-.gene.TEND {
-  .color_source_db(@blue);
 }
