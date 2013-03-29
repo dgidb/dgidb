@@ -32,18 +32,16 @@ class FilterChain
   end
 
   def evaluate_filter(filter)
-    computed = nil
-    filter.group_by(&:axis).each do |_, value|
-      if computed
-        computed = computed & evaluate_axis(value)
-      else
-        computed = evaluate_axis(value)
+    Rails.cache.fetch(composite_key(filter)) do
+      computed = nil
+      filter.group_by(&:axis).each do |_, value|
+        if computed
+          computed = computed & evaluate_axis(value)
+        else
+          computed = evaluate_axis(value)
+        end
       end
-    end
-    if computed
-      store(computed, composite_key(filter))
-    else
-      Set.new
+      computed || Set.new
     end
   end
 
