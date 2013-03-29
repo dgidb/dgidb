@@ -12,8 +12,8 @@
               %i.icon-flag.tip{title: tx("search_term_summary_table_header_match_flag")}
             %th Matches
         %tbody
-          -results.each_result(self) do |result|
+          -results.search_term_summaries(self).each do |summary|
             %tr
-              %td=result.search_term
-              %td=result.match_type
-              %td=(result.match_type != 'None' ? result.matches_with_links : 'None')
+              %td=summary.search_term
+              %td=summary.match_type
+              %td=summary.gene_links
