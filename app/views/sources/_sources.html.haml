@@ -1,4 +1,4 @@
 -sources.each do |source|
   .item(style="width:400")
-    %div(class="hero-unit source bubble-links #{source.source_db_name}")
+    %div(class="hero-unit source bubble-links #{source.source_type.type}")
       =render partial: 'sources/source', locals:{source: source}
