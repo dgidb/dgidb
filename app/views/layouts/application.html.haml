@@ -39,6 +39,7 @@
                     %a(href="/sources") Sources
                     %a(href="/downloads") Downloads
                     %a(href="/contact") Contact
+                    %a{href: "#", data: {toggle: 'modal', target:'#disclaimer-modal'}} View Disclaimer
       .container-fluid
         .page-header
           =h yield(:header)
@@ -47,11 +48,12 @@
           = content_tag :div, (content_tag :h3, val), class: "alert alert-#{key}"
       =yield
     =render partial: 'shared/tour', locals: { tour: @tour }
+    =render partial: 'layouts/disclaimer_modal'
   #push
   #footer
     .container
       %ul.span12.muted
-        -to( 'links', 'index' ).each do |l|
+        -to('links','index').each do |l|
           %p
             %li.span2
               =dynamic_link_to(l["title"], l["url"])
