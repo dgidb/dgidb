@@ -38,7 +38,7 @@ module ApplicationHelper
   end
 
   def unread_news_badge(display_badge = false)
-    '<span class="badge badge-important">!</span>'.html_safe if display_badge
+    content_tag(:span, '!', class: ['badge', 'badge-important']) if display_badge
   end
 
 end
