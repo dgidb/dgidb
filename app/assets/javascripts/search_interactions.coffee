@@ -23,7 +23,7 @@ $('#clear').click ->
     $('#genes')[0].value = []
 
 $(".btn-success").click ->
-  $("#loading").modal("show") if $("#html_output").attr("checked")
+  $("#loading").modal("show")
 
 $(window).unload ->
   $("#loading").modal("hide")

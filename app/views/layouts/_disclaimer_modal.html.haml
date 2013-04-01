@@ -1,6 +1,6 @@
 #disclaimer-modal.modal{style: 'display:none;'}
   .modal-header
-    %button.close{data: {dismiss: 'modal'}}x
+    %button.close{data: {dismiss: 'modal', target:'#disclaimer-modal'}}x
     %p.lead
       %strong Disclaimer:
       This resource is intended for purely research purposes. It should not be used for emergencies or medical or professional advice.
@@ -10,6 +10,6 @@
     %p
       The dgidb.org website does not provide any medical or healthcare products, services or advice, and is not for medical emergencies or urgent situations. IF YOU THINK YOU MAY HAVE A MEDICAL EMERGENCY, CALL YOUR DOCTOR OR 911 IMMEDIATELY. Information contained on this website is not a substitute for a doctor's medical judgment or advice.  We recommend that you discuss your specific, individual health concerns with your doctor or health care professional.
   .modal-footer
-    %button#close-disclaimer.btn{data: {dismiss: 'modal'}}
+    %button#close-disclaimer.btn{data: {dismiss: 'modal', target:'#disclaimer-modal'}}
       Close
 
