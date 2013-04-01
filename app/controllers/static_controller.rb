@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
   before_filter :set_active
 
-  caches_page :index, :faq, :downloads, :contact, :news, :search_categories, :search_interactions, :search, :api
+  caches_page :index, :faq, :downloads, :contact, :search_categories, :search_interactions, :search, :api
 
   def search_categories
     @sources         = DataModel::Source.potentially_druggable_sources.map(&:source_db_name)
@@ -11,6 +11,11 @@ class StaticController < ApplicationController
 
   def search_interactions
     prepare_available_filter_actions
+  end
+
+  def news
+    cookies[:most_recent_post_date] = NewsFilter.most_recent_post_date.to_s
+    @unread_news = false
   end
 
   private

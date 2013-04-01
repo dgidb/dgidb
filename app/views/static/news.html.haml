@@ -7,13 +7,9 @@
 
 .container-fluid
   .row-fluid
-    .span12
-      .well=tx "description"
-      .well
-        %dl
-          -to("posts").each do |q|
-            %dt
-              %a{ :name => q["anchor"] }
-              =q["headline"]
-            %dd=q["article"].html_safe
-            %br
+    .span10
+      -to("posts").reverse_each do |q|
+        %p.lead=q['headline']
+        %em.small=q['date']
+        %p=q['article'].html_safe
+        %hr

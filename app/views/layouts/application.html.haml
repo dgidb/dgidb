@@ -26,12 +26,15 @@
               %li.dropdown{class: @help_active}
                 %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
                   Help
+                  =unread_news_badge(@unread_news)
                   %b.caret
                 %ul.dropdown-menu
                   %li
                     %a(href="/getting_started") Getting Started
                     %a(href="/api") API Documentation
-                    %a(href="/news") News
+                    %a(href="/news")
+                      News
+                      =unread_news_badge(@unread_news)
                     %a(href="/faq") FAQ
                     %a(href="/sources") Sources
                     %a(href="/downloads") Downloads

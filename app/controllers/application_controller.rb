@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
   before_filter TourFilter
+  before_filter NewsFilter
 
   def not_found(msg = "Not Found")
     raise HTTPStatus::NotFound.new(msg)

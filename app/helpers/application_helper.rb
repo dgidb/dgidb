@@ -37,4 +37,8 @@ module ApplicationHelper
     "/drug_claims/#{drug_claim.source.source_db_name}/#{drug_claim.name}"
   end
 
+  def unread_news_badge(display_badge = false)
+    '<span class="badge badge-important">!</span>'.html_safe if display_badge
+  end
+
 end
