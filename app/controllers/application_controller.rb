@@ -40,8 +40,9 @@ class ApplicationController < ActionController::Base
 
   private
   def fetch_tour
-   tour_data = TOURS[params[:action]]
-   @tour = Tour.new(tour_data) if tour_data
+   if tour_data = TOURS[params[:action]]
+     @tour = Tour.new(tour_data)
+   end
   end
 
   def validate_interaction_request(params)
