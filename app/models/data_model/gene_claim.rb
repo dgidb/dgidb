@@ -10,7 +10,7 @@ module DataModel
     has_many :drug_claims, through: :interaction_claims
 
     def self.for_search
-      eager_load(genes: [gene_claims: {interaction_claims: { source: [:source_trust_level], drug_claim: [:source], interaction_claim_types: [], gene_claim: [genes: [gene_claims: [:gene_claim_categories]]]}}])
+      eager_load(genes: [gene_claims: {interaction_claims: { source: [], drug_claim: [:source], interaction_claim_types: [], gene_claim: [genes: [gene_claims: [:gene_claim_categories]]]}}])
     end
 
     def self.for_gene_categories
