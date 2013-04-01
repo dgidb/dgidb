@@ -24,15 +24,7 @@ class InteractionSearchResultPresenter
   end
 
   def source_link(context)
-    name = source_db_name
-    type = if trust_level == 'Expert curated'
-             'success'
-            else
-              'warning'
-            end
-    context.instance_exec do
-      link_to(label(name, type), source_path(name))
-    end
+    TrustLevelPresenter.source_link_with_trust_flag(context, @interaction_claim.source)
   end
 
   def types_string

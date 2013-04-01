@@ -29,7 +29,7 @@ interaction_search_results:
   interaction_table_header_flag: Interaction Types are used to categorize the nature of drug-gene interactions (e.g. mechanism) and vary by source.
   search_term_table_header_flag: The search term you entered
   drug_table_header_flag: Drug name as reported by original source. The link will take you to a complete record of information relating to this drug from that source.
-  source_table_header_flag: An abbreviated name for the source of this drug-gene interaction. The link will provide a report and citation for that source.
+  source_table_header_flag: An abbreviated name for the source of this drug-gene interaction. The link will provide a report and citation for that source. Green sources are classified as expert curated while yellow sources are non-curated.
   source_type_table_header_flag: Sources are bucketed into source types based on their level of curation and assumed accuracy
   search_term_summary_table_header_match_flag: >
      Match Type for your Search Terms may be ‘None’, ‘Ambiguous’, or ‘Definite’. ‘None’ means the gene did not match any primary or secondary

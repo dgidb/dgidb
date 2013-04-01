@@ -5,6 +5,7 @@ categories_search_results:
     Primary results passed all filters and the search term unambiguously matched a single gene belonging to druggable gene categories
   ambiguous_terms_flag: Your search term matched more than one gene record.
   no_matches_flag: Search terms for which we could find no matches
-  category_table_header: Categories are groups of genes considered by some to be potentially druggable targets.
+  category_table_header_flag: Categories are groups of genes considered by some to be potentially druggable targets.
   gene_table_header_flag: Gene Name within DGIDB that matched your search term (either directly or through a synonym)
   search_term_table_header_flag: The search term you entered
+  source_table_header_flag: All of the soures in the row report that gene as being a member of the listed category. Green sources are classified as expert curated while yellow sources are non-curated.

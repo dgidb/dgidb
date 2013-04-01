@@ -12,17 +12,9 @@ class GeneCategorySearchResultPresenter < SimpleDelegator
   end
 
   def sources(context)
-    sources_with_category.map do |source|
-      type = if source.source_trust_level.level == 'Expert curated'
-               'success'
-              else
-                'warning'
-              end
-      context.instance_exec do
-        link_to(label(source.source_db_name,type), source_path(source.source_db_name))
-      end
-    end
-    .join(' ').html_safe
+    sources_with_category.map { |s| TrustLevelPresenter.source_link_with_trust_flag(context, s) }
+      .join(' ')
+      .html_safe
   end
 
   private
