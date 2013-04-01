@@ -7,6 +7,10 @@ module ApplicationHelper
     EXTERNAL_STRINGS[action][fragment_id]
   end
 
+  def label(content, type = 'success')
+    content_tag(:span, content, class: ['label', "label-#{type}"])
+  end
+
   def icon( icon_name, content = nil, opts = {}, &block )
     if opts.empty? && content.is_a?( Hash )
       opts = content

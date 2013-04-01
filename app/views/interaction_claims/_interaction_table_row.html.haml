@@ -14,6 +14,6 @@
   %td
     =link_to interaction_table_row.types_string, interaction_claims_path(interaction_table_row.interaction_claim)
   %td
-    =link_to interaction_table_row.source_db_name, source_path(interaction_table_row.source_db_name)
+    = interaction_table_row.source_link(self)
   %td
     = interaction_table_row.trust_level
