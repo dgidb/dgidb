@@ -8,7 +8,7 @@
   %dd=source.source_db_version
   %dt Full Citation:
   -if source.citation =~ /PMID: (\d+)\.?$/
-    =ext_link_to(source.citation, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/'))
+    =[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
   -else
     %dd=source.citation
   %dt Genes
