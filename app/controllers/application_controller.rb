@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   rescue_from HTTPStatus::BadRequest, with: :render_400
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
-  before_filter :fetch_tour
+  before_filter TourFilter
 
   def not_found(msg = "Not Found")
     raise HTTPStatus::NotFound.new(msg)
@@ -39,11 +39,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  def fetch_tour
-   if tour_data = TOURS[params[:action]]
-     @tour = Tour.new(tour_data)
-   end
-  end
 
   def validate_interaction_request(params)
     bad_request('You must enter at least one gene name to search!') if params[:gene_names].size == 0
