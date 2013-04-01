@@ -98,7 +98,7 @@ class GeneCategorySearchResultsPresenter
   end
 
   def result_presenters
-    @result_presenters ||= gene_category_result_presenters(@search_results.group_by { |result| result.partition }[:definite])
+    @result_presenters ||= gene_category_result_presenters(@search_results.group_by { |result| result.partition }[:definite] || [])
   end
 
   private
