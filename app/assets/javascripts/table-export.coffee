@@ -10,10 +10,11 @@ window.export_table = (table_selector) ->
   .join("%09")
   tsv = row_data.map (row) ->
     row._aData.map (cell) ->
-      try
+      val = try
        $(cell).text().replace(/\s{2,}/g , ' ') || cell
       catch err
         cell
+      val.trim()
     .join("%09")
   .join("%0A")
   data = headers + "%0A" + tsv
