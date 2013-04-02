@@ -48,9 +48,8 @@ module Genome
         end
       end
 
-      #TODO: Fix this method
       def self.add_members
-        DataModel::DrugClaim.all.each do |gene_claim|
+        DataModel::DrugClaim.all.each do |drug_claim|
           next if drug_claim.drugs.any?
           indirect_groups = Hash.new { |h, k| h[k] = 0 }
           direct_groups = Hash.new { |h, k| h[k] = 0 }
