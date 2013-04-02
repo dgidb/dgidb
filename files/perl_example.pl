@@ -21,7 +21,7 @@ use Getopt::Long;
 use Data::Dumper qw(Dumper);
 
 #my $domain = 'http://dgidb.genome.wustl.edu/';
-my $domain = 'http://vmpool26/';
+my $domain = 'http://localhost:3000';
 
 my $api_path = '/api/v1/interactions.json';
 my $genes;
@@ -29,9 +29,10 @@ my $sources;
 my $gene_categories;
 my $interaction_types;
 my $drug_types;
+my $trust_levels;
 my $anti_neoplastic_only = '';
 my $help;
-my %properties = ( genes => \$genes, interaction_sources => \$sources, interaction_types => \$interaction_types, gene_categories => \$gene_categories );
+my %properties = ( genes => \$genes, interaction_sources => \$sources, interaction_types => \$interaction_types, gene_categories => \$gene_categories, source_trust_levels => \$trust_levels );
 my $ua = LWP::UserAgent->new;
 
 parse_opts();
@@ -50,6 +51,7 @@ sub parse_opts {
         'category_types:s'     => \$gene_categories,
         'interaction_types:s'  => \$interaction_types,
         'antineoplastic_only'  => \$anti_neoplastic_only,
+        'source_trust_levels:s'  => \$trust_levels,
         'help'                 => \$help,
     );
     if (!$genes || $help){
@@ -67,6 +69,7 @@ sub parse_opts {
         print "\n./perl_example.pl --genes='FLT3,EGFR' --source_names='TALC,TEND'";
         print "\n./perl_example.pl --genes='FLT3,EGFR' --category_types='KINASE'";
         print "\n./perl_example.pl --genes='FLT3,EGFR' --interaction_types='inhibitor'";
+        print "\n./perl_example.pl --genes='FLT3,EGFR' --source_trust_levels='Expert curated'";
         print "\n./perl_example.pl --genes='FLT3,EGFR' --antineoplastic_only";
         print "\n./perl_example.pl --genes='FLT3,EGFR,KRAS' --source_names='TALC,TEND' --category_types='KINASE' --interaction_types='inhibitor' --antineoplastic_only";
         print "\n\n";
@@ -80,7 +83,7 @@ sub get_params_for_request {
      $params{$_} = ${$properties{$_}} if ${$properties{$_}};
     }
     if ($anti_neoplastic_only) {
-        $params{drug_types} = ['antineoplastic'];
+        $params{drug_types} = 'antineoplastic';
     }
     return \%params;
 }
