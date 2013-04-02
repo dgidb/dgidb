@@ -20,8 +20,7 @@ use LWP::UserAgent;
 use Getopt::Long;
 use Data::Dumper qw(Dumper);
 
-#my $domain = 'http://dgidb.genome.wustl.edu/';
-my $domain = 'http://localhost:3000';
+my $domain = 'http://dgidb.genome.wustl.edu/';
 
 my $api_path = '/api/v1/interactions.json';
 my $genes;
