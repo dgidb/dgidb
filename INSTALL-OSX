@@ -34,8 +34,16 @@ bundle install
 #bootstrap the local database
 rake dgidb:load_local
 
+#Occassionally the database may get into a confused state and this rake command no longer works properly
+#In that case you can try this:
+psql -h localhost -d dgidb -f db/data.sql
+
 #launch your development server
 rails s
 
 #View the app in your browser by going to the following url
 http://localhost:3000/
+
+#If the database has been updated to include new sources you may need to clear the dgidb cache by loading the following URL:
+http://localhost:3000/cache/invalidate/
+
