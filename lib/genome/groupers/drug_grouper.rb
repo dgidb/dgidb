@@ -57,21 +57,21 @@ module Genome
           direct_groups[drug_claim.name] += 1 if DataModel::Drug.where(name: drug_claim.name).any?
           drug_claim.drug_claim_aliases.each do |drug_claim_alias|
             direct_groups[drug_claim_alias.alias] +=1 if DataModel::Drug.where(name: drug_claim_alias.alias).any?
-            alt_drugs = @alt_to_other[drug_claim_alias].map(&:drug_claim)
+            alt_drugs = @alt_to_other[drug_claim_alias.alias].map(&:drug_claim)
             alt_drugs.each do |alt_drug|
               indirect_drug = alt_drug.drugs.first
               indirect_group[indirect_drug.name] += 1 if indirect_drug
             end
+          end
 
-            if direct_groups.keys.length == 1
-              drug = DataModel::Drug.where(name: direct_groups.keys.first).first
-              drug.drug_claims << drug_claim unless drug.drug_claims.include?(drug_claim)
-              drug.save
-            elsif direct_groups.keys.length == 0 && indirect_groups.keys.length == 1
-              drug = DataModel::Drug.where(name: indirect_groups.keys.first).first
-              drug.drug_claims << drug_claim unless drug.drug_claims.include?(drug_claim)
-              drug.save
-            end
+          if direct_groups.keys.length == 1
+            drug = DataModel::Drug.where(name: direct_groups.keys.first).first
+            drug.drug_claims << drug_claim unless drug.drug_claims.include?(drug_claim)
+            drug.save
+          elsif direct_groups.keys.length == 0 && indirect_groups.keys.length == 1
+            drug = DataModel::Drug.where(name: indirect_groups.keys.first).first
+            drug.drug_claims << drug_claim unless drug.drug_claims.include?(drug_claim)
+            drug.save
           end
         end
       end

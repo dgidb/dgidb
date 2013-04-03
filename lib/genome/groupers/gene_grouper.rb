@@ -62,16 +62,16 @@ module Genome
               indirect_gene = alt_gene.genes.first
               indirect_group[indirect_gene.name] += 1 if indirect_gene
             end
+          end
 
-            if direct_groups.keys.length == 1
-              gene = DataModel::Gene.where(name: direct_groups.keys.first).first
-              gene.gene_claims << gene_claim unless gene.gene_claims.include?(gene_claim)
-              gene.save
-            elsif direct_groups.keys.length == 0 && indirect_groups.keys.length == 1
-              gene = DataModel::Gene.where(name: indirect_groups.keys.first).first
-              gene.gene_claims << gene_claim unless gene.gene_claims.include?(gene_claim)
-              gene.save
-            end
+          if direct_groups.keys.length == 1
+            gene = DataModel::Gene.where(name: direct_groups.keys.first).first
+            gene.gene_claims << gene_claim unless gene.gene_claims.include?(gene_claim)
+            gene.save
+          elsif direct_groups.keys.length == 0 && indirect_groups.keys.length == 1
+            gene = DataModel::Gene.where(name: indirect_groups.keys.first).first
+            gene.gene_claims << gene_claim unless gene.gene_claims.include?(gene_claim)
+            gene.save
           end
         end
       end
