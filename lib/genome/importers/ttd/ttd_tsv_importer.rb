@@ -1,19 +1,21 @@
 module Genome
   module Importers
     module TTD
-      @source_info = {
-        base_url:          'http://bidd.nus.edu.sg/group/cjttd/ZFTTD',
-        site_url:          'http://bidd.nus.edu.sg/group/ttd/ttd.asp',
-        citation:          "Update of TTD: Therapeutic Target Database. Zhu F, Han BC, ..., Zheng CJ, Chen YZ. Nucleic Acids Res. 38(suppl 1):D787-91, 2010. PMID: 19933260.",
-        source_db_version:  '4.3.02 (2011.08.25)',
-        source_type_id:    DataModel::SourceType.INTERACTION,
-        source_db_name:    'TTD',
-        full_name:         'Therapeutic Target Database'
-      }
+      def source_info
+        {
+          base_url:          'http://bidd.nus.edu.sg/group/cjttd/ZFTTD',
+          site_url:          'http://bidd.nus.edu.sg/group/ttd/ttd.asp',
+          citation:          "Update of TTD: Therapeutic Target Database. Zhu F, Han BC, ..., Zheng CJ, Chen YZ. Nucleic Acids Res. 38(suppl 1):D787-91, 2010. PMID: 19933260.",
+          source_db_version:  '4.3.02 (2011.08.25)',
+          source_type_id:    DataModel::SourceType.INTERACTION,
+          source_db_name:    'TTD',
+          full_name:         'Therapeutic Target Database'
+        }
+      end
 
       def self.run(tsv_path)
         na_filter = ->(x) { x.upcase == 'N/A' }
-        TSVImporter.import tsv_path, TTDRow, @source_info do
+        TSVImporter.import tsv_path, TTDRow, source_info do
           interaction known_action_type: 'unknown' do
             attributes :interaction_types, name: 'Interaction Type'
 
