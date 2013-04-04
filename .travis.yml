@@ -1,6 +1,6 @@
 language: ruby
 script:
-  - rake db:migrate --trace
+  - rake db:structure:load
   - rake db:test:prepare
   - rake spec
 before_script:
