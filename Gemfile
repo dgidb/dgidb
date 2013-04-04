@@ -42,7 +42,7 @@ end
 
 group :test, :development  do
   gem 'rspec-rails'
-  gem 'fabricator'
+  gem 'fabrication'
   gem "capybara"
   gem "launchy"
   gem 'better_errors'
