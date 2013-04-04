@@ -7,7 +7,7 @@ describe 'contact' do
 
   it 'check to see if the page exists' do
     page.status_code.should eq (200)
-    page.should have_content('Contact Us')
+    page.should have_content('contact us')
   end
 
 end

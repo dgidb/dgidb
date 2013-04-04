@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe 'search_interactions' do
 
+  before :all do
+    Rails.cache.clear
+    Fabricate(:source_type, type: 'interaction')
+  end
+
   before :each do
     visit '/search_interactions'
   end

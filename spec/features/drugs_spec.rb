@@ -1,9 +1,10 @@
 require 'spec_helper'
 
-describe 'drug_groups' do
+describe 'drugs' do
 
   it 'SUNITINIB looks reasonable' do
-    visit '/drug_groups/SUNITINIB'
+    Fabricate(:drug, name: 'SUNITINIB')
+    visit '/drugs/SUNITINIB'
     page.status_code.should eq(200)
 
   end
