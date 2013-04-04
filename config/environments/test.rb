@@ -35,7 +35,7 @@ DruggableGene::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  File.mkdir_p(File.join(Rails.root, 'tmp/cache/test'))
+  FileUtils.mkdir_p(File.join(Rails.root, 'tmp/cache/test'))
   # Use a different cache store in dev
   config.cache_store = :file_store, 'tmp/cache/test'
 end
