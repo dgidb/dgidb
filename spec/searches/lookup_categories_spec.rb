@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'pry'
-require 'pry-nav'
-require 'pry-remote'
 
 describe LookupCategories do
   describe '::find_genes_for_category' do
@@ -49,5 +46,22 @@ describe LookupCategories do
       found_genes.include?(gene_in_correct_category).should be_true
       found_genes.include?(gene_in_incorrect_category).should be_false
     end
+  end
+
+  describe '::get_uniq_category_names_with_counts' do
+
+    it 'should return both the category names and the correct count of gene claims in that category' do
+      categories = (1..3).map { Fabricate(:gene_claim_category) }.sort_by { |c| c.name }
+
+      (1..3).each { |i| Fabricate(:gene_claim, gene_claim_categories: categories.take(i)) }
+
+      categories_with_counts = LookupCategories.get_uniq_category_names_with_counts
+
+      categories_with_counts.each_with_index do |category, i|
+        categories[i].name.should eq(category.name)
+        categories[i].gene_claims.count.should eq(category.gene_count.to_i)
+      end
+    end
+
   end
 end
