@@ -1,7 +1,4 @@
 require 'spec_helper'
-require 'pry'
-require 'pry-nav'
-require 'pry-remote'
 
 describe 'druggable_gene_categories' do
   it 'successfully loads' do
