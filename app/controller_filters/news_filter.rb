@@ -9,6 +9,6 @@ class NewsFilter
   end
 
   def self.most_recent_post_date
-    @@most_recent_post_date ||= DateTime.parse(EXTERNAL_STRINGS['news']['posts'].last['date'])
+    @@most_recent_post_date ||= Date.parse(EXTERNAL_STRINGS['news']['posts'].last['date'])
   end
 end

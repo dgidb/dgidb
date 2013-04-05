@@ -48,6 +48,7 @@ group :test, :development  do
   gem 'better_errors'
   gem 'binding_of_caller', '~> 0.7.0'
   gem 'activerecord-import'
+  gem 'stamp'
   gem 'database_cleaner'
 end
 
