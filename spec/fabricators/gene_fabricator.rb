@@ -23,5 +23,5 @@ Fabricator(:gene_claim_attribute, class_name: 'DataModel::GeneClaimAttribute') d
 end
 
 Fabricator(:gene_claim_category, class_name: 'DataModel::GeneClaimCategory') do
-  name { ['KINASE', 'N/A', 'DNA REPAIR', 'DRUGGABLE GENOME'].sample }
+  name { sequence(:gene_claim_category) { |i| "Gene Claim Category ##{i}" } }
 end

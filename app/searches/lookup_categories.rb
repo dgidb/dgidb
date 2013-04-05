@@ -21,16 +21,11 @@ class LookupCategories
 
   def self.get_uniq_category_names_with_counts
     Rails.cache.fetch('unique_category_names_with_counts') do
-      categories_with_counts = DataModel::GeneClaimCategory
-        .connection
-        .select_all(<<-EOS
-          SELECT gcc.name, COUNT(DISTINCT(gcg.gene_id)) FROM gene_claim_categories_gene_claims gccgc
-          INNER JOIN gene_claim_categories gcc ON gcc.id = gccgc.gene_claim_category_id
-          INNER JOIN gene_claims_genes gcg ON gcg.gene_claim_id = gccgc.gene_claim_id
-          GROUP BY gcc.name ORDER BY gcc.name ASC;
-        EOS
-        ).map { |x| OpenStruct.new(name: x['name'], gene_count: x['count']) }
-      categories_with_counts
+      DataModel::GeneClaimCategory.joins(:gene_claims)
+        .group('gene_claim_categories.name')
+        .order('gene_claim_categories.name ASC')
+        .select('COUNT(DISTINCT(gene_claims.id)) as gene_count, gene_claim_categories.name')
+        .map { |x| OpenStruct.new(name: x.name, gene_count: x.gene_count) }
     end
   end
 
