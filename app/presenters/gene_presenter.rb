@@ -14,7 +14,7 @@ class GenePresenter < SimpleDelegator
   end
 
   def source_db_names
-    @uniq_db_names ||= DataSources.gene_sources_in_display_order
+    @uniq_db_names ||= DataModel::Source.source_names_with_gene_claims
   end
 
   def grouped_names
