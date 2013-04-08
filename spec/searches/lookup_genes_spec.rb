@@ -5,44 +5,41 @@ describe LookupGenes do
 
     DummyWrapper = Struct.new(:search_terms, :matched_genes)
 
+    def search_string
+      'TURKEY'
+    end
+
+    def check_matched_gene_against_results(matched_gene)
+      results = LookupGenes.find([search_string], :for_search, DummyWrapper)
+      results.size.should eq(1)
+      results.first.search_terms.should eq Array(search_string)
+      results.first.matched_genes.size.should eq(1)
+      results.first.matched_genes.should eq Array(matched_gene)
+    end
+
     it 'should give gene name matches precedence' do
-      search_string = 'TURKEY'
       gene_claim = Fabricate(:gene_claim, name: search_string)
       gene_claim_with_alias = Fabricate(:gene_claim)
       Fabricate(:gene_claim_alias, gene_claim: gene_claim_with_alias, alias: search_string)
       Fabricate(:gene, gene_claims: [gene_claim_with_alias])
       Fabricate(:gene, gene_claims: [gene_claim])
       matched_gene = Fabricate(:gene, name: search_string)
-      results = LookupGenes.find([search_string], :for_search, DummyWrapper)
-      results.size.should eq(1)
-      results.first.search_terms.should eq Array(search_string)
-      results.first.matched_genes.size.should eq(1)
-      results.first.matched_genes.should eq Array(matched_gene)
+      check_matched_gene_against_results(matched_gene)
     end
 
     it 'should check gene claim aliases after genes' do
-      search_string = 'TURKEY'
       gene_claim = Fabricate(:gene_claim, name: search_string)
       gene_claim_with_alias = Fabricate(:gene_claim)
       Fabricate(:gene_claim_alias, gene_claim: gene_claim_with_alias, alias: search_string)
       matched_gene = Fabricate(:gene, gene_claims: [gene_claim_with_alias])
       Fabricate(:gene, gene_claims: [gene_claim])
-      results = LookupGenes.find([search_string], :for_search, DummyWrapper)
-      results.size.should eq(1)
-      results.first.search_terms.should eq Array(search_string)
-      results.first.matched_genes.size.should eq(1)
-      results.first.matched_genes.should eq Array(matched_gene)
+      check_matched_gene_against_results(matched_gene)
     end
 
     it 'should check gene claim names last' do
-      search_string = 'TURKEY'
       gene_claim = Fabricate(:gene_claim, name: search_string)
       matched_gene = Fabricate(:gene, gene_claims: [gene_claim])
-      results = LookupGenes.find([search_string], :for_search, DummyWrapper)
-      results.size.should eq(1)
-      results.first.search_terms.should eq Array(search_string)
-      results.first.matched_genes.size.should eq(1)
-      results.first.matched_genes.should eq Array(matched_gene)
+      check_matched_gene_against_results(matched_gene)
     end
 
     it 'should de-duplicate search terms that map to the same values' do
