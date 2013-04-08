@@ -4,7 +4,7 @@ news:
   posts:
     - headline: DGIdb beta is launched at AGBT
       article: >
-        The 14th annual Advances in Genome Biology and Technology (AGBT) meeting was held in Marco Island, Florida, on February 20-23, 2013.  A poster describing DGIdb was present by Obi Griffith and results from DGIdb were described during a talk delivered by Malachi Griffith in the Genomic Medicine session. The first publicly available release of DGIdb includes 2 sources of canonical gene information, 1 source of drug information, 5 sources of drug-gene interactions and 4 sources of potentially druggable gene categories.
+        The 14th annual Advances in Genome Biology and Technology (AGBT) meeting was held in Marco Island, Florida, on February 20-23, 2013.  A poster describing DGIdb was presented by Obi Griffith and results from DGIdb were described during a talk delivered by Malachi Griffith in the Genomic Medicine session. The first publicly available release of DGIdb includes 2 sources of canonical gene information, 1 source of drug information, 5 sources of drug-gene interactions and 4 sources of potentially druggable gene categories.
       date: February 22, 2013
     - headline: MyCancerGenome is added as a source for DGIdb
       article: > 
