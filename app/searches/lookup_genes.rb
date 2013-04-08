@@ -1,6 +1,7 @@
 class LookupGenes
 
   def self.find(search_terms, scope, wrapper_class)
+    raise 'You must specify at least one search term!' unless search_terms.any?
     results = match_search_terms_to_objects(search_terms, scope)
     results_to_genes = match_objects_to_genes(results, search_terms)
     de_dup_results(results_to_genes).map do |terms, matched_genes|
@@ -32,7 +33,7 @@ class LookupGenes
     search_terms = search_terms - gene_alias_results.map(&:alias)
     gene_claim_results = DataModel::GeneClaim.send(scope).where(name: search_terms)
 
-    gene_results + gene_alias_results + gene_claim_results
+    gene_result.concat(gene_alias_results).concat(gene_claim_results)
   end
 
   def self.de_dup_results(results)
