@@ -2,15 +2,12 @@ news:
   title_main: News
   title_small: latest news regarding DGIdb
   posts:
-    - headline: DGIdb v1 is live!
+    - headline: DGIdb beta is launched at AGBT
       article: >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        The 14th annual Advances in Genome Biology and Technology (AGBT) meeting was held in Marco Island, Florida, on February 20-23, 2013.  A poster describing DGIdb was present by Obi Griffith and results from DGIdb were described during a talk delivered by Malachi Griffith in the Genomic Medicine session. The first publicly available release of DGIdb includes 2 sources of canonical gene information, 1 source of drug information, 5 sources of drug-gene interactions and 4 sources of potentially druggable gene categories.
+      date: February 22, 2013
+    - headline: MyCancerGenome is added as a source for DGIdb
+      article: > 
+        Highly curated drug-gene interactions have been mined from <a href="http://www.mycancergenome.org/">MyCancerGenome</a> and incorporated into DGIdb. My Cancer Genome is a freely available online personalized cancer medicine resource and decision-making tool for physicians, patients, caregivers and researchers.  From this resource we obtained 835 drug-gene interactions involving 169 genes and 226 drugs.
       date: April 1, 2013
-    - headline: DGIdb v1 is live!
-      article: >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      date: April 2, 2013
-    - headline: DGIdb v1 is live!
-      article: >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      date: April 3, 2013
+
