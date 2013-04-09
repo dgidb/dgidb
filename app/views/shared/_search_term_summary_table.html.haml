@@ -6,11 +6,15 @@
       %table.table.table-striped.table-bordered{cellpadding: "0", cellspacing: "0", border: "0", id: 'search_term_summary_export'}
         %thead
           %tr
-            %th Search Term
+            %th 
+              Search Term
+              %i.icon-flag.tip{title: tx("search_term_table_header_flag")}
             %th
               Match Type
               %i.icon-flag.tip{title: tx("search_term_summary_table_header_match_flag")}
-            %th Matches
+            %th
+              Matches
+              %i.icon-flag.tip{title: tx("search_term_summary_table_header_matches_flag")}
         %tbody
           -results.search_term_summaries(self).each do |summary|
             %tr

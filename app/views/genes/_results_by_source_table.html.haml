@@ -17,6 +17,8 @@
               %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
             -results.source_db_names_for_table.each do |name|
               %th=name
-            %th Count
+            %th 
+              Count
+              %i.icon-flag.tip(title="Number of reports of the submitted genes belonging to each gene category according to each source.")
         %tbody
           =render partial: 'genes/results_by_source_table_row', collection: results.categories_map_by_source_db_names

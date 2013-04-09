@@ -2,11 +2,12 @@ interaction_search_results:
   title_main: Interaction Search Results
   title_small: drug interactions for your genes
   definite_results_passed_filter_flag: >
-    Primary results passed all filters and the search term unambiguously matched a single gene with known drug interactions
+    Primary results passed all filters and the search term unambiguously 
+    matched a single gene with known drug interactions.
   definite_results_failed_filter_flag: >
     Definite results that passed the filter are those where the provided
     search term unambiguously matched a single gene record with known interactions
-    that did not meet the specified filter criteria
+    that did not meet the specified filter criteria.
   ambiguous_results_passed_filter_flag: >
     Ambiguous results are those where the provided search term matched
     more than one gene record of which at least one had known drug interactions
@@ -21,9 +22,10 @@ interaction_search_results:
     the official gene names provided by Entrez Gene.
   ambiguous_results_no_interactions_flag: >
     Your search term matched more than one gene record - none of which had any
-    interactions in any source regardless of any filtering criteria you selected
+    interactions in any source regardless of any filtering criteria you selected.
   definite_results_no_interactions_flag: >
-    Search term was matched definitely but had no interactions in any data source regardless of any filtering criteria
+    Search term was matched definitely but had no interactions in any 
+    data source regardless of any filtering criteria.
   terms_with_no_matches_flag: Search terms for which we could find no matches
   gene_table_header_flag: Gene Name within DGIDB that matched your search term (either directly or through a synonym)
   interaction_table_header_flag: Interaction Types are used to categorize the nature of drug-gene interactions (e.g. mechanism) and vary by source.
@@ -34,3 +36,14 @@ interaction_search_results:
   search_term_summary_table_header_match_flag: >
      Match Type for your Search Terms may be ‘None’, ‘Ambiguous’, or ‘Definite’. ‘None’ means the gene did not match any primary or secondary
      gene names in DGIdb. ‘Ambiguous’ means multiple matches were found. ‘Definite’ means a single matching gene name was found.
+  search_term_summary_table_header_matches_flag: >
+     Genes in DGIdb that match this Search Term. ‘Definite’ matches should only have one entry here while ‘Ambiguous’ matches will have more than one.
+  interaction_by_gene_table_header_distinct_drug_count_flag: >
+     The number of distinct drugs that interact with each gene.
+  interaction_by_gene_table_header_druggable_categories_flag: >
+     The potentially druggable gene categories that each gene belongs to.
+  interaction_by_source_table_header_interaction_flag: >
+     A specific drug-gene interaction is displayed as (‘drug name’ and ‘gene name’). The following
+     columns indicate which sources support an interaction between this drug and gene.
+  interaction_by_source_table_header_count_flag: >
+     The number of independant sources that support a particular drug-gene interaction claim.

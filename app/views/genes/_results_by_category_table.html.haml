@@ -15,9 +15,12 @@
           %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
         %th
           Matching Gene Count
+          %i.icon-flag.tip(title="The number of genes in the submitted gene list that belong to each druggable gene category")
         %th
           Matching Gene(s)
+          %i.icon-flag.tip(title="The identity of genes in the submitted gene list that belong to each druggable gene category")
         %th
           Non-Matching Gene(s)
+          %i.icon-flag.tip(title="The genes in the submitted gene list that do NOT belong to each druggable gene category")
     %tbody
       =render partial: 'genes/results_by_category_table_row', collection: categories
