@@ -5,8 +5,10 @@
     %small data sources and alternate names 
     %a(href="/faq#defined")
       %i.icon-question-sign
-  %a{href: "/interaction_search_results?genes=#{@title}"}
-    search interactions for this gene
+  %a{class: ['btn', 'btn-success'], href: "/interaction_search_results?genes=#{@title}"}
+    ="search interactions for #{@title}"
+  %a{class: ['btn', 'btn-success'], href: "/categories_search_results?genes=#{@title}"}
+    ="search categories for #{@title}"
 
 .container-fluid
   .tabbable.tabs-left
