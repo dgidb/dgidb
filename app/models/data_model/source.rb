@@ -10,13 +10,13 @@ module DataModel
     belongs_to :source_trust_level, inverse_of: :sources
 
     cache_query :source_names_with_interactions, :all_source_names_with_interactions
-    cache_query :potentially_druggable_sources, :all_potenially_druggable_sources
+    cache_query :potentially_druggable_source_names, :potentially_druggable_source_names
     cache_query :source_names_with_gene_claims, :source_names_with_gene_claims
 
-    def self.potentially_druggable_sources
-      #return source entries for druggable gene sources that aren't Entrez
-      #or Ensembl, have genes, and have no interactions
-      where(source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE).all
+    def self.potentially_druggable_source_names
+      where(source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE)
+      .pluck(:source_db_name)
+      .sort
     end
 
     def self.source_names_with_interactions

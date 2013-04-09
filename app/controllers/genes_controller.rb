@@ -42,7 +42,10 @@ class GenesController < ApplicationController
   private
   def validate_search_request(params)
     bad_request("Please enter at least one gene to search!") if params[:genes].blank?
-    bad_request("Please enter at least one category to search!") unless params[:gene_categories]
+    params[:gene_categories] = DataModel::GeneClaimCategory.all_category_names unless params[:gene_categories]
+    params[:sources] = DataModel::Source.potentially_druggable_source_names unless params[:sources]
+    params[:source_trust_levels] = DataModel::SourceTrustLevel.all_trust_levels unless params[:source_trust_levels]
+
   end
 
 end
