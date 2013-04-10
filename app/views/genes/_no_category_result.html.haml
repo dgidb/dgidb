@@ -3,11 +3,13 @@
     %p
       %h3
         =title
+        %small
+          %strong
+            %i.icon-flag.tip{title: tooltip_text}
       %small
         %strong
           %em
             =subtitle
-            %i.icon-flag.tip{title: tooltip_text}
     %dl
       -results.each do |result|
         -result.genes.each do |gene|

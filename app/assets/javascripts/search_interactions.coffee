@@ -16,7 +16,7 @@ $.get '/gene_names.json', (data)->
   $('#loadingBar').hide()
 
 $('#defaultGenes').click ->
-    $('#genes')[0].value = ['FLT1','FLT2','FLT3','STK1','MM1','LOC100508755','FAKE1'].join "\n"
+    $('#genes')[0].value = ['FLT1','FLT2','FLT3','STK1','MM1','AQP9','LOC100508755','FAKE1'].join "\n"
     $('#genes')[0].value += "\n"
 
 $('#clear').click ->

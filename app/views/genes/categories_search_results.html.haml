@@ -33,7 +33,12 @@
                 %h3
                   Search Terms With No Matches
                   %small
-                    %i.icon-flag.tip(title="Search terms for which we could find no matches")
+                    %strong
+                      %i.icon-flag.tip{title: tx("terms_with_no_matches_flag")}
+                %small      
+                  %strong 
+                    %em Search terms that could not be matched to a gene
+                %p  
                 %ul
                   -@search_results.no_results_results.each do |result|
                     %li=result.search_term

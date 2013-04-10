@@ -9,3 +9,4 @@ categories_search_results:
   gene_table_header_flag: Gene Name within DGIDB that matched your search term (either directly or through a synonym)
   search_term_table_header_flag: The search term you entered
   source_table_header_flag: All of the soures in the row report that gene as being a member of the listed category. Green sources are classified as expert curated while yellow sources are non-curated.
+  terms_with_no_matches_flag: Search term for which we could find no matches, not even to an alias of any gene known to DGIdb.

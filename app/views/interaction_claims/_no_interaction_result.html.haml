@@ -1,9 +1,15 @@
 .span6
   .well
-    %h3
-      =title
+    %p
+      %h3
+        =title
+        %small
+          %strong
+            %i.icon-flag.tip{title: tooltip_text}
       %small
-        %i.icon-flag.tip{title: tooltip_text}
+        %strong
+          %em
+            =subtitle
     %dl
       -results.each do |result|
         -result.genes.each do |gene|
