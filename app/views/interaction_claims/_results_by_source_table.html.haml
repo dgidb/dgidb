@@ -1,7 +1,15 @@
 .row-fluid
   .span12
     .well
-      %h3 Results Enumerated by Source
+      %h3 
+        Results Enumerated by Source
+        %small
+          %strong
+            %i.icon-flag.tip{title: tx("search_results_by_source_flag")}
+      %small
+        %strong
+          %em Drug-gene interactions broken down by the source(s) that reported them.
+      %p
       =render partial: 'shared/table_export', locals: {id: 'table-by-source'}
       %table#table-by-source.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
         %thead

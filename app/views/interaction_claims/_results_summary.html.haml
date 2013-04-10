@@ -1,5 +1,13 @@
 #summary.well
-  %h3 Search Results Summary
+  %h3 
+    Search Results Summary
+    %small
+      %strong
+        %i.icon-flag.tip{title: tx("search_results_summary_flag")}
+  %small
+    %strong
+      %em Summary genes mapped and drug interactions found for those genes 
+  %p
   %ul.unstyled
     %li="Search Terms Entered: #{results.number_of_search_terms.to_s}"
     %li="Search Terms Matched Definitely: #{results.number_of_definite_matches.to_s}"

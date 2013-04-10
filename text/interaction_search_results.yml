@@ -47,3 +47,16 @@ interaction_search_results:
      columns indicate which sources support an interaction between this drug and gene.
   interaction_by_source_table_header_count_flag: >
      The number of independant sources that support a particular drug-gene interaction claim.
+  search_results_summary_flag: >
+    The following basic statistics summarize the outcome of querying DGIdb for interactions with your list of genes.
+    First the attempt to map your genes to DGIdb gene names is reported, followed by the number of drug interactions
+    found for those genes that were successfully matched.
+  search_gene_results_summary_flag: >
+    The following basic statistics relate to the outcome of attempting to match
+    genes supplied by the user with gene identities in DGIdb.
+  search_results_by_gene_flag: >
+    For each gene with at least one drug-gene interaction found, the total number of interactions is reported
+    along with the potentially druggable gene categories it belongs to.
+  search_results_by_source_flag: >
+     Specific drug-gene interactions are displayed as (‘drug name’ and ‘gene name’ pairs). The following
+     columns indicate which source(s) support each interaction claim involving the drug and gene.

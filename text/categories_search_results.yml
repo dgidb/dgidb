@@ -10,3 +10,12 @@ categories_search_results:
   search_term_table_header_flag: The search term you entered
   source_table_header_flag: All of the soures in the row report that gene as being a member of the listed category. Green sources are classified as expert curated while yellow sources are non-curated.
   terms_with_no_matches_flag: Search term for which we could find no matches, not even to an alias of any gene known to DGIdb.
+  search_results_summary_flag: >
+    The following basic statistics relate to the outcome of attempting to match
+    genes supplied by the user with gene identities in DGIdb.
+  search_results_by_categories_flag: >
+    The number of search terms matching genes in each potentially druggable gene category are 
+    displayed along with the identies of genes belonging to those categories.
+  search_results_by_source: >
+     The number of search terms matching genes in each potentially druggable gene category are 
+     broken down by the source of the gene category information.

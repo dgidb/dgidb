@@ -1,5 +1,5 @@
 #notice= notice
-=content_for :title, "Category Search Results"
+=content_for :title, "The Drug-Gene Interaction Database (DGIdb) - identify potentially druggable genes for drug development and prioritization"
 =content_for :header do
   %h2
     =tx "title_main"
@@ -46,11 +46,11 @@
         -if @search_results.show_genes_by_category?
           .row-fluid
             .span12
-              =render partial: 'genes/results_by_category_table', locals: {title: "Results Grouped by Categories", categories: @search_results.genes_by_category, subtitle: "Number of search terms matching genes in each druggable gene category." }
+              =render partial: 'genes/results_by_category_table', locals: {title: "Results Grouped by Categories", categories: @search_results.genes_by_category, tooltip_text: tx('search_results_by_categories_flag'), subtitle: "Number of search terms matching genes in each druggable gene category." }
       .tab-pane.fade#search_summary_tab
         =render partial: 'genes/results_summary', locals: {title: "Results Grouped by Gene Category", results: @search_results}
       .tab-pane.fade#by_source
-        =render partial: 'genes/results_by_source_table', locals: {title: "Results Enumerated by Source", results: @search_results, subtitle: "Number of search terms matching genes in each druggable gene category broken down by source."}
+        =render partial: 'genes/results_by_source_table', locals: {title: "Results Enumerated by Source", results: @search_results, tooltip_text: tx('search_results_by_source'), subtitle: "Number of search terms matching genes in each druggable gene category broken down by source."}
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"

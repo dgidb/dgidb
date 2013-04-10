@@ -1,7 +1,15 @@
 .row-fluid
   .span12
     .well
-      %h3 Results Summarized by Gene
+      %h3 
+        Results Summarized by Gene
+        %small
+          %strong
+            %i.icon-flag.tip{title: tx("search_results_by_gene_flag")}
+      %small
+        %strong
+          %em Drug interaction count and druggable categories associated with each gene.
+      %p
       =render partial: 'shared/table_export', locals: {id: 'table-by-gene'}
       %table#table-by-gene.table.table-striped.table-bordered{cellpadding: "0", cellspacing: "0", border: "0"}
         %thead

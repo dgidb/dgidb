@@ -1,7 +1,15 @@
 .row-fluid
   .span12
     .well
-      %h3 Search Term Summary
+      %h3 
+        Search Term Summary
+        %small
+          %strong
+            %i.icon-flag.tip{title: tx("search_gene_results_summary_flag")}
+      %small
+        %strong
+          %em Summary of the attempt to map gene names supplied by the user to gene records in DGIdb.
+      %p
       =render partial: 'shared/table_export', locals: {id: 'search_term_summary_export'}
       %table.table.table-striped.table-bordered{cellpadding: "0", cellspacing: "0", border: "0", id: 'search_term_summary_export'}
         %thead
