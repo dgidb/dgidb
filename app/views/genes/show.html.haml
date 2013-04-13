@@ -9,6 +9,14 @@
     ="search interactions for #{@title}"
   %a{class: ['btn', 'btn-success'], href: "/categories_search_results?genes=#{@title}"}
     ="search categories for #{@title}"
+  %p
+  %p
+    Hit the buttons above to obtain drug-gene interaction or category views for this gene.
+    The following section provides a summary of information from each DGIdb source for the current gene. 
+    Sections are colored by source type (green for gene info, blue for interactions, orange for categories, and red for drugs.  
+    Each section contains information specific to this type of source.
+    Link outs to relevant records from the original source databases are provided wherever possible (marked with a special icon beside them).
+    The 'By Source' tab summarizes the alternate names for this gene as used by each individual source.
 
 .container-fluid
   .tabbable.tabs-left

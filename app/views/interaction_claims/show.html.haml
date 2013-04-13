@@ -9,6 +9,7 @@
   .row-fluid
     .span12
       .hero-unit
+        %h3 Drug-Gene Interaction Record
         %p
           %b Drug:
           =link_to(@interaction.drug_claim.title, drug_claim_path(@interaction.drug_claim))

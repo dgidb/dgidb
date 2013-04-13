@@ -8,8 +8,7 @@
 .container-fluid
   .row-fluid
     .span12
-      .hero-unit
-        %p=tx "description"
+      .well=tx "description"
       .well
         %dl
           -to("people").each do |p|
