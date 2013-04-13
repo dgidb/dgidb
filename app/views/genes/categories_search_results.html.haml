@@ -50,7 +50,7 @@
       .tab-pane.fade#search_summary_tab
         =render partial: 'genes/results_summary', locals: {title: "Results Grouped by Gene Category", results: @search_results}
       .tab-pane.fade#by_source
-        =render partial: 'genes/results_by_source_table', locals: {title: "Results Enumerated by Source", results: @search_results, tooltip_text: tx('search_results_by_source'), subtitle: "Number of search terms matching genes in each druggable gene category broken down by source."}
+        =render partial: 'genes/results_by_source_table', locals: {title: "Results Enumerated by Source", results: @search_results, tooltip_text: tx('title_search_results_by_source'), subtitle: "Number of search terms matching genes in each druggable gene category broken down by source."}
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"

@@ -1,0 +1,4 @@
+druggable_gene_category:
+  gene_table_header_flag: Name (symbol) of each gene belonging to the current druggable gene category.
+  description_table_header_flag: Long form description of each gene obtained from NCBI Entrez Gene.
+  source_table_header_flag: Sources that report this gene as being a member of this druggable gene category. Green sources are classified as expert curated while yellow sources are non-curated.
