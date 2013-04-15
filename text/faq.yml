@@ -1,7 +1,9 @@
 faq:
   title_main: FAQ
   title_small: frequently asked questions
-  description: This page provides answers to a wide array of general questions. For detailed tutorials on how to use DGIdb, see the tutorials under the "Getting started" section of the help menu.
+  description: > 
+    This page provides answers to a wide array of general questions. For detailed tutorials on how to use DGIdb, 
+    see the tutorials under the "Getting started" section of the help menu.
   questions:
     - question: What is the goal of DGIdb?
       anchor: goal

@@ -1,4 +1,4 @@
 druggable_gene_categories:
   title_main: Druggable Gene Categories
   title_small: select gene categories
-  title_flag: Categories are groups of genes considered by some to be potentially druggable targets
+  title_flag: Categories are groups of genes considered by some to be potentially druggable targets.
