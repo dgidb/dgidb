@@ -10,8 +10,7 @@ downloads:
     - title: Source code of DGIdb application
       link: "http://www.github.com/genome/dgi-db"
       description: >
-        This is the full source code of the DGIdb web application. It runs Ruby on Rails
-        and Postgres.
+        This is the full source code of the DGIdb web application. It runs Ruby on Rails and Postgres.
     - title: Source code of DGIdb source importers, gene/drug grouping, etc.
       link: "https://github.com/genome/gms-core/tree/master/lib/perl/Genome/DruggableGene"
       description: >
@@ -21,13 +20,19 @@ downloads:
       link: "https://github.com/downloads/genome/dgi-db/druggable_gene_tsv.tar.gz"
       description: >
         This is an archive containing the TSV files used to populate the DGIdb database. 
+    - title: Interactions TSV
+      link: "https://github.com/genome/dgi-db/raw/master/files/interactions.tsv"
+      description: >
+        TSV download of all drug-gene interactions in DGIdb from all sources that were mapped to Entrez genes.
+    - title: Categories TSV
+      link: "https://github.com/genome/dgi-db/raw/master/files/categories.tsv"
+      description: >
+        TSV download of all genes in druggable categories in DGIdb from all sources that were mapped to Entrez genes.
     - title: PharmGKB data
       link: "http://www.pharmgkb.org/downloads.jsp"
       description: >
         Note that PharmGKB is not included in the TSV archive above. This data must be requested directly from PharmGKB.
-    - title: Interactions TSV
-      link: "https://github.com/genome/dgi-db/raw/master/files/interactions.tsv"
-      description: TSV download of all drug-gene interactions in DGIdb that were mapped to Entrez genes.
-    - title: Categories TSV
-      link: "https://github.com/genome/dgi-db/raw/master/files/categories.tsv"
-      description: TSV download of all genes in druggable categories in DGIdb that were mapped to Entrez genes.
+    - title: dGene data (04-16-2013)
+      link: "https://github.com/genome/dgi-db/raw/master/files/dGene_04-16-2013_2257.tsv"
+      description: >
+        TSV download of the latest version of the dGene database made available here at the request of the dGene creators.
