@@ -21,10 +21,10 @@ class LookupCategories
 
   def self.get_uniq_category_names_with_counts
     Rails.cache.fetch('unique_category_names_with_counts') do
-      DataModel::GeneClaimCategory.joins(:gene_claims)
+      DataModel::GeneClaimCategory.joins(gene_claims: [:genes])
         .group('gene_claim_categories.name')
         .order('gene_claim_categories.name ASC')
-        .select('COUNT(DISTINCT(gene_claims.id)) as gene_count, gene_claim_categories.name')
+        .select('COUNT(DISTINCT(genes.id)) as gene_count, gene_claim_categories.name')
         .map { |x| OpenStruct.new(name: x.name, gene_count: x.gene_count) }
     end
   end
