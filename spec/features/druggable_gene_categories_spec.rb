@@ -10,7 +10,8 @@ describe 'druggable_gene_categories' do
     categories = (1..3).map { Fabricate(:gene_claim_category) }
 
     categories.each do |category|
-      Fabricate(:gene_claim, gene_claim_categories: [category])
+      gene_claim = Fabricate(:gene_claim, gene_claim_categories: [category])
+      Fabricate(:gene, gene_claims: [gene_claim])
     end
 
     visit '/druggable_gene_categories'
