@@ -1,8 +1,6 @@
 class StaticController < ApplicationController
   before_filter :set_active
 
-  caches_page :index, :faq, :downloads, :contact, :search_categories, :search_interactions, :search, :api
-
   def search_categories
     @sources         = DataModel::Source.potentially_druggable_source_names
     @gene_categories = DataModel::GeneClaimCategory.all_category_names

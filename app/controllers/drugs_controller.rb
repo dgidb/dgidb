@@ -1,5 +1,4 @@
 class DrugsController < ApplicationController
-  caches_page :show
 
   def show
     @title = params[:name]

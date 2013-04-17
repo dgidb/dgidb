@@ -1,7 +1,5 @@
 class GenesController < ApplicationController
 
-  caches_page :show, :druggable_gene_category, :druggable_gene_categories
-
   def show
     @gene = GenePresenter.new(
       DataModel::Gene.for_show.where(name: params[:name]).first)

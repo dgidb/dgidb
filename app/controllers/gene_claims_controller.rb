@@ -1,5 +1,4 @@
 class GeneClaimsController < ApplicationController
-  caches_page :show
   def show
     name_param = params[:name]
     source_db_name_param = params[:source_db_name]
