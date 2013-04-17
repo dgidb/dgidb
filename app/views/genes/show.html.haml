@@ -2,7 +2,7 @@
 =content_for :header do
   %h2
     =@title
-    %small data sources and alternate names 
+    %small data sources and alternate names
     %a(href="/faq#defined")
       %i.icon-question-sign
   %a{class: ['btn', 'btn-success'], href: "/interaction_search_results?genes=#{@title}"}
@@ -35,8 +35,7 @@
             =render partial: 'genes/by_source_table', locals:{gene: @gene}
 
 =javascript_include_tag "jquery.masonry.min"
-=javascript_include_tag "mason_items"
+-# =javascript_include_tag "mason_items"
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"
 =javascript_include_tag "gene_groups"
-

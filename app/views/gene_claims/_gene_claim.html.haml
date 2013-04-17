@@ -1,33 +1,98 @@
-%p
-  %b Reported Gene Name:
-  =ext_link_to gene_claim.name, gene_claim.original_data_source_url
-%p
-  %b Source Database Name:
-  =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
-%p
-  %b Source Database Version:
-  =gene_claim.source.source_db_version
-%p
-  %b Primary Gene Name in DGIdb:
-  =gene_claim.gene_link(self)
-%p
-  %b Alternate Names:
-  %table.table
-    -gene_claim.gene_claim_aliases.each do |alt_name|
-      %tr
-        %td
-          -if(gene_claim.source.source_db_name == 'GO')
-            =ext_link_to alt_name.alias, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alias
-          -else
-            =alt_name.alias
-        %td=alt_name.nomenclature
-%p
-  %b Meta-data:
-  %table.table
-    -gene_claim.gene_claim_attributes.each do |category|
-      %tr
-        %td=category.name
-        %td=category.value
-%p
-  %b Citation:
-  %p=gene_claim.source.citation
+%div(class="item-title")
+  %div(class="item-name")
+    %h3
+      =gene_claim.name
+  %div(class="item-corner")
+    %ul(class="attribute-list")
+      %li
+        %strong
+          ID:
+        =ext_link_to gene_claim.name, gene_claim.original_data_source_url
+        =surround '(', ')' do
+          =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
+      %li
+        %strong
+          Version:
+        =gene_claim.source.source_db_version
+
+%div(class="item-content")
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Alternate Names
+      %table(class="table table-condensed table-striped")
+        -gene_claim.gene_claim_aliases.each do |alt_name|
+          %tr
+            %td
+              -if(gene_claim.source.source_db_name == 'GO')
+                =ext_link_to alt_name.alias, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alias
+              -else
+                =alt_name.alias
+            %td=alt_name.nomenclature
+
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Metadata
+      %table.table.table-condensed.table-striped
+        -if(gene_claim.gene_claim_attributes.length > 0)
+          -gene_claim.gene_claim_attributes.each do |category|
+            %tr
+              %td=category.name
+              %td=category.value
+        -else
+          %tr
+            %td
+              None found.
+
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Citations
+      %p=gene_claim.source.citation
+
+-# %p(class="alt-titles")
+-#   %strong
+-#     Alternate Names:
+-#   -counter=0
+-#   -count=gene_claim.gene_claim_aliases.size
+-#   -gene_claim.gene_claim_aliases.each do |alt_name|
+-#     -if counter == (count-1)
+-#       =alt_name.alias
+-#     -else
+-#       =succeed ',' do
+-#         =alt_name.alias
+
+-# %p
+-#   %b Reported Gene Name:
+-#   =ext_link_to gene_claim.name, gene_claim.original_data_source_url
+-# %p
+-#   %b Source Database Name:
+-#   =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
+-# %p
+-#   %b Source Database Version:
+-#   =gene_claim.source.source_db_version
+-# %p
+-#   %b Primary Gene Name in DGIdb:
+-#   =gene_claim.gene_link(self)
+-# %p
+-#   %b Alternate Names:
+-#   %table.table
+-#     -gene_claim.gene_claim_aliases.each do |alt_name|
+-#       %tr
+-#         %td
+-#           -if(gene_claim.source.source_db_name == 'GO')
+-#             =ext_link_to alt_name.alias, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alias
+-#           -else
+-#             =alt_name.alias
+-#         %td=alt_name.nomenclature
+-# %p
+-#   %b Meta-data:
+-#   %table.table
+-#     -gene_claim.gene_claim_attributes.each do |category|
+-#       %tr
+-#         %td=category.name
+-#         %td=category.value
+-# %p
+-#   %b Citation:
+-#   %p=gene_claim.source.citation

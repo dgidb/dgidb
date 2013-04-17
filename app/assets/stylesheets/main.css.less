@@ -50,6 +50,16 @@
 
 @navbarInverseBrandColor:                @navbarInverseLinkColor;
 
+/* BASE COLORS
+ **************************************************/
+@dgidb-green: #69b53e;
+@dgidb-brown: #5f604b;
+@dgidb-purple: #502066;
+@dgidb-red: #a40014;
+@dgidb-blue: #4ea1b9;
+@dgidb-yellow: #f3b128;
+@dgidb-orange: #c54b16;
+
 /* LAYOUT
  **************************************************/
 body {
@@ -108,6 +118,112 @@ body {
 .navbar .nav.help-menu {
 
 }
+
+/* GENE/DRUG/INTERACTION DETAILED RESULT LISTS
+ **************************************************/
+.result-list {
+  // background-color: #FAA;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    background-color: #EFEFEF;
+    margin-bottom: 1em;
+    border-left-width: 5px;
+    border-left-style: solid;
+    .border-radius(5px);
+
+    .item-title {
+      display: table;
+      width: 100%;
+      margin: 3px 5px;
+      
+      .item-name {
+        display: table-cell;
+        h3 {
+          margin: 0;
+          padding: 0;
+          line-height: 32px;
+          background-position: left center;
+          background-repeat: no-repeat;
+          padding-left: 40px;
+        }
+      }
+
+      .item-corner {
+        display: table-cell;
+        padding: 0;
+        float: right;
+
+        ul.attribute-list {
+          margin: 0;
+
+          li {
+            list-style: none;
+            display: inline-block;
+            margin: 0;
+            passing: 0;
+            margin-right: .5em;
+            list-style: none;
+            color: #999;
+          }
+        }
+      }
+    }
+    .item-content {
+      display: table;
+      width: 100%;
+      margin-top: 1em;
+      margin-bottom: 5px;
+
+      .cell {
+        width: 33.3%;
+
+        .item-panel {
+          .border-radius(5px);
+          background-color: #FFF;
+          padding: 3px 8px;
+          margin: 0 5px;
+        }
+
+      }
+      .category {
+        display: table-cell;
+      }
+      .middle {
+        margin: 0 5px;
+      }
+    }
+
+  }
+
+  li.gene {
+    border-left-color: @dgidb-green;
+    .icon { background-image: url('icons/icon-gene_32.png'); background-color: @dgidb-green; }
+    .item-name h3 { background-image: url('icons/icon-gene_32.png'); }
+  }
+  li.drug {
+    border-left-color: @dgidb-red;
+    .icon { background-image: url('icons/icon-drug_32.png'); background-color: @dgidb-red; }
+    .item-name h3 { background-image: url('icons/icon-drug_32.png'); }
+  }
+  li.interaction {
+    border-left-color: @dgidb-blue;
+    .icon { background-image: url('icons/icon-interaction_32.png'); background-color: @dgidb-blue; }
+    .item-name h3 { background-image: url('icons/icon-interaction_32.png'); }
+  }
+  li.potentially_druggable {
+    border-left-color: @dgidb-orange;
+    .icon { background-image: url('icons/icon-drug_32.png'); background-color: @dgidb-orange; }
+    .item-name h3 { background-image: url('icons/icon-drug_32.png'); }
+  }
+
+}
+
 
 /* Data Tables
  **************************************************/

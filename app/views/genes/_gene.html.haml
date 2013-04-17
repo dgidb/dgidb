@@ -1,4 +1,5 @@
--gene.sorted_gene_claims.each do |gene_claim|
-  .item
-    %div(class="hero-unit gene bubble-links #{gene_claim.source.source_type.type}")
+-#-binding.pry
+%ul(class="result-list")
+  -gene.sorted_gene_claims.each do |gene_claim|
+    %li(class="#{gene_claim.source.source_type.type}")
       =render partial: 'gene_claims/gene_claim', locals: {gene_claim: gene_claim}
