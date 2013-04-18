@@ -8,11 +8,16 @@
         %i.icon-flag.tip{title: tx("title_flag")}
 
 #container.container-fluid
-  -@categories.each do |category|
-    .item(style="width:400")
-      .well
-        =link_to content_tag(:h4, "#{category.name} (#{category.gene_count})" ), gene_by_category_path(category.name)
+  #source-list.well.span12{data: {sources: @sources.to_json}}
+    %label.checkbox.inline Limit categories to specific sources:
+    -@sources.each do |source|
+      %label.checkbox.inline
+        %input{type: 'checkbox', value: source, data: {bind: 'checked: sources'}}
+        =source
+  .category-listing{data: {bind: 'foreach: categories'}}
+    .item.well.span3
+      %a{data: {bind: "attr: { href: link }"}}
+        %h4{data: {bind: 'text: text'}}
 
-=javascript_include_tag "jquery.masonry.min"
-=javascript_include_tag "mason_items"
-
+=javascript_include_tag 'knockout-2.2.1'
+=javascript_include_tag 'gene-categories-view-model.coffee'
