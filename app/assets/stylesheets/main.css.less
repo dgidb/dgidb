@@ -151,6 +151,16 @@ body {
           background-position: left center;
           background-repeat: no-repeat;
           padding-left: 40px;
+
+          a {
+            color: @textColor !important;
+            border-bottom: 2px solid #CCC !important;
+          }
+
+          a:hover {
+            text-decoration: none;
+            border-bottom: 2px solid @textColor !important;            
+          }
         }
       }
 
@@ -218,8 +228,8 @@ body {
   }
   li.potentially_druggable {
     border-left-color: @dgidb-orange;
-    .icon { background-image: url('icons/icon-drug_32.png'); background-color: @dgidb-orange; }
-    .item-name h3 { background-image: url('icons/icon-drug_32.png'); }
+    .icon { background-image: url('icons/icon-category_32.png'); background-color: @dgidb-orange; }
+    .item-name h3 { background-image: url('icons/icon-gene-category_32.png'); }
   }
 
 }

@@ -1,15 +1,22 @@
+-# TODO: include source name then colon:
+-# TODO: figure out sort order - best to sort by data source
+-# TODO: sort alternate names by something
+
 %div(class="item-title")
   %div(class="item-name")
-    %h3
-      =gene_claim.name
+    %h3(class="item-source")
+      =succeed ':' do
+        =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
+      %span(class="item-id")
+        =ext_link_to gene_claim.name, gene_claim.original_data_source_url
   %div(class="item-corner")
     %ul(class="attribute-list")
-      %li
-        %strong
-          ID:
-        =ext_link_to gene_claim.name, gene_claim.original_data_source_url
-        =surround '(', ')' do
-          =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
+      -# %li
+      -#   %strong
+      -#     ID:
+      -#   =ext_link_to gene_claim.name, gene_claim.original_data_source_url
+      -#   =surround '(', ')' do
+      -#     =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
       %li
         %strong
           Version:
@@ -49,7 +56,10 @@
     %div(class="item-panel")
       %h4
         Citations
-      %p=gene_claim.source.citation
+      -if gene_claim.source.citation =~ /PMID: (\d+)\.?$/
+        %p=[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
+      -else
+        %p=gene_claim.source.citation
 
 -# %p(class="alt-titles")
 -#   %strong
