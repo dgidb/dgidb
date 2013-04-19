@@ -125,12 +125,35 @@ body {
   .icon-chevron-right {
     float: right;
   }
+
+  li {
+    border-left-width: 4px;
+    border-left-style: solid;
+    .border-radius(4px 0 0 4px);
+  }
+  .nav-tabs.nav-stacked > li:first-child > a {
+    .border-radius (0 4px 0 0);
+  }
+
+  .nav-tabs.nav-stacked > li:last-child > a {
+    .border-radius (0 0 4px 0);
+  }
+
+  li a {
+    border-left-width: 0;
+  }
+
+  li.drug { border-left-color: @dgidb-red; }
+  li.gene { border-left-color: @dgidb-green; }
+  li.interaction { border-left-color: @dgidb-blue; }
+  li.potentially_druggable { border-left-color: @dgidb-orange; }
   
   li.active a {
     background-color: #08C;
     color: #FFF;
   }
 }
+
 .result-list {
   // background-color: #FAA;
   margin: 0;
@@ -238,8 +261,8 @@ body {
   }
   li.potentially_druggable {
     border-left-color: @dgidb-orange;
-    .icon { background-image: url('icons/icon-category_32.png'); background-color: @dgidb-orange; }
-    .item-name h3 { background-image: url('icons/icon-gene-category_32.png'); }
+    .icon { background-image: url('icons/icon-potentially_druggable_32.png'); background-color: @dgidb-orange; }
+    .item-name h3 { background-image: url('icons/icon-gene-potentially_druggable_32.png'); }
   }
 
 }

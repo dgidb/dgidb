@@ -46,7 +46,7 @@ $(function() {
     // create tabs
     $.each(tabs, function(i, val) {
         $("#gene-list-tabs > ul")
-            .append('<li id="' + val.category + '">'
+            .append('<li class="' + val.category + '">'
                     + '<a href="#" data-category="'
                     + val.category + '"><i class="icon-chevron-right"></i>'
                     + val.label
