@@ -40,7 +40,9 @@
           %i.icon-flag.tip{title: tx("drug_type_flag")}
           %input(id='drug_type_checkbox' type='checkbox' name='limit_drugs' value='true')
       .form-actions
-        %button.btn.btn-success(type="submit" id='search-btn')Find Drug Interactions
+        %button.btn.btn-success(type="submit" id='search-btn')
+          =icon('search', class: 'icon-white')
+          Find Drug Interactions
 
 =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
 
