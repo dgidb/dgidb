@@ -1,8 +1,9 @@
-%div{id: "exportLink-#{id}"}
-  %small
-    =icon('download-alt')
-    %a{onclick: "export_table('#{id}')"}Download as TSV
-%div{id: "loadingBar-#{id}", style: 'display:none;'}
-  .progress.progress-striped.active.span2
-    .bar(style='width: 100%') Preparing Download
-%b
+.control-group
+  %div{id: "exportLink-#{id}"}
+    %small
+      %btn.btn.btn-mini{onclick: "export_table('#{id}')"}
+        =icon('download-alt')
+        Download as TSV
+  %div{id: "loadingBar-#{id}", style: 'display:none;'}
+    .progress.progress-striped.active.span2
+      .bar(style='width: 100%') Preparing Download
