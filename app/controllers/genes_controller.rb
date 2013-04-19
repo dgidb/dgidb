@@ -14,15 +14,16 @@ class GenesController < ApplicationController
   end
 
   def druggable_gene_category
-    genes = LookupCategories.find_genes_for_category(params[:name])
-    @genes = DruggableGeneCategoryPresenter.new(genes)
+    sources = params[:sources].split(',')
+    genes = LookupCategories.find_genes_for_category_and_sources(params[:name], sources)
+    @genes = DruggableGeneCategoryPresenter.new(genes, sources)
     @title = "Genes in the #{params[:name]} category"
     @druggable_gene_categories_active = 'active'
     @category_name = params[:name]
   end
 
   def druggable_gene_categories
-    @categories = LookupCategories.get_uniq_category_names_with_counts
+    @sources = DataModel::Source.source_names_with_category_information
     @title = 'Druggable Gene Categories'
     @druggable_gene_categories_active = 'active'
   end

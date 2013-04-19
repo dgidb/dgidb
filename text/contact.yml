@@ -30,6 +30,13 @@ contact:
       email: "mailto:jweible@genome.wustl.edu"
       email_title: Email
 
+    - title: Josh McMichael
+      description: User experience (UX) developer
+      link: "http://genome.wustl.edu/people/individual/joshua-mcmichael/"
+      link_title: Genome Institute profile
+      email: "mailto:jmcmicha@genome.wustl.edu"
+      email_title: Email
+
     - title: Scott Smith
       description: Supervising developer
       link: "http://genome.wustl.edu/people/individual/scott-smith/"
@@ -59,7 +66,7 @@ contact:
       email_title: Email
 
     - title: Additional developers
-      description: Indraniel Das, James Koval, Josh McMichael
+      description: Indraniel Das, James Koval
 
     - title: Beta testers
       description: David Larson, Ron Bose, Runjun Kumar

@@ -20,6 +20,12 @@ class ServicesV1Controller < ApplicationController
     render_format DataModel::SourceTrustLevel.all_trust_levels
   end
 
+  def gene_categories_for_sources
+    render_format LookupCategories.get_category_names_with_counts_in_sources(
+      params[:sources].split(',')
+    )
+  end
+
   def interactions
     combine_input_genes(params)
     validate_interaction_request(params)

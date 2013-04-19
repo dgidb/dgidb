@@ -1,5 +1,6 @@
 class LookupCategories
   extend FilterHelper
+  CategoryResultWithCount = Struct.new(:name, :gene_count)
 
   def self.find(params)
     gene_results = LookupGenes.find(
@@ -11,25 +12,28 @@ class LookupCategories
     filter_results(gene_results, params)
   end
 
-  #given a category name this method will return a list of genes
-  def self.find_genes_for_category(category_name)
+  def self.find_genes_for_category_and_sources(category_name, source_names)
     DataModel::Gene.joins(gene_claims: [:gene_claim_categories, :source])
        .eager_load(gene_claims: [source: [:source_trust_level]])
        .where('gene_claim_categories.name' => category_name)
+       .where('sources.source_db_name' => source_names)
        .uniq
   end
 
-  def self.get_uniq_category_names_with_counts
-    Rails.cache.fetch('unique_category_names_with_counts') do
-      DataModel::GeneClaimCategory.joins(gene_claims: [:genes])
+  def self.get_category_names_with_counts_in_sources(sources)
+    sources = Array(sources)
+    Rails.cache.fetch("unique_category_names_with_counts_#{sources}") do
+      DataModel::GeneClaimCategory.joins(gene_claims: [:genes, :source])
+        .where('sources.source_db_name' => sources)
         .group('gene_claim_categories.name')
         .order('gene_claim_categories.name ASC')
         .select('COUNT(DISTINCT(genes.id)) as gene_count, gene_claim_categories.name')
-        .map { |x| OpenStruct.new(name: x.name, gene_count: x.gene_count) }
+        .map { |x| CategoryResultWithCount.new(x.name, x.gene_count) }
     end
   end
 
   private
+
   def self.filter_results(gene_results, params)
     gene_claim_filter_scope = FilterChain.new
     category_filter_scope = FilterChain.new

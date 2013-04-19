@@ -6,18 +6,19 @@ describe 'druggable_gene_categories' do
     page.status_code.should eq(200)
   end
 
-  it 'should display a list of current gene claim categories' do
+  it 'should display a list of current sources with gene category information' do
+    sources = (1..3).map { Fabricate(:source) }
     categories = (1..3).map { Fabricate(:gene_claim_category) }
 
-    categories.each do |category|
-      gene_claim = Fabricate(:gene_claim, gene_claim_categories: [category])
+    categories.each_with_index do |category, i|
+      gene_claim = Fabricate(:gene_claim, source: sources[i], gene_claim_categories: [category])
       Fabricate(:gene, gene_claims: [gene_claim])
     end
 
     visit '/druggable_gene_categories'
 
-    categories.each do |category|
-      page.should have_content(category.name)
+    sources.each do |source|
+      page.should have_content(source.source_db_name)
     end
 
   end
