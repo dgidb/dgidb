@@ -33,6 +33,8 @@
         %li
           %a{href: '#perl-sample'}Perl
         %li
+          %a{href: '#python-sample'}Python
+        %li
           %a{href: '#ruby-sample'}Ruby
         %li
           %a{href: '#shell-sample'}Shell
@@ -55,7 +57,7 @@
       %p.lead
         The interactions endpoint can be used to return
         interactions for a given set of gene names or symbols.
-        It also alows you to filter returned interactions.
+        It also allows you to filter returned interactions.
       %span.label GET
       %pre
         \/api/v1/interactions.json
@@ -137,7 +139,7 @@
           by the source
           =link_to('TALC', source_path('TALC')) + '.'
       %pre
-        \/api/v1/interactions.json?genes=FLT1,MM1,FAKE&drug_types=antineoplastic&interaction_sources=TALC
+        \http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT1,MM1,FAKE&drug_types=antineoplastic&interaction_sources=TALC
       %h5 Example Response:
       %p
         The response will come back with two top level items:
@@ -233,7 +235,7 @@
         interaction types for use in the interactions endpoint.
       %span.label GET
       %pre
-        \/api/v1/interaction_types.json
+        \http://dgidb.genome.wustl.edu/api/v1/interaction_types.json
       %h5 Example Response:
       %pre
         ["activator", "inhibitor", "unknown"]
@@ -245,7 +247,7 @@
         interaction sources for use in calls to the interactions endpoint.
       %span.label GET
       %pre
-        \/api/v1/interaction_sources.json
+        \http://dgidb.genome.wustl.edu/api/v1/interaction_sources.json
       %h5 Example Response:
       %pre
         ["DrugBank","PharmGKB","TALC","TEND","TTD"]
@@ -257,7 +259,7 @@
         drug types for use in calls to the interactions endpoint.
       %span.label GET
       %pre
-        \/api/v1/drug_types.json
+        \http://dgidb.genome.wustl.edu/api/v1/drug_types.json
       %h5 Example Response:
       %pre
         ["antineoplastic"]
@@ -269,7 +271,7 @@
         gene categories for use in calls to the interactions endpoint.
       %span.label GET
       %pre
-        \/api/v1/gene_categories.json
+        \http://dgidb.genome.wustl.edu/api/v1/gene_categories.json
       %h5 Example Response:
       %pre
         ["KINASE", "DNA REPAIR", "TUMOR SUPPRESSOR"]
@@ -281,7 +283,7 @@
         source trust levels for use in calls to the interactions endpoint.
       %span.label GET
       %pre
-        \/api/v1/source_trust_levels.json
+        \http://dgidb.genome.wustl.edu/api/v1/source_trust_levels.json
       %h5 Example Response:
       %pre
         ["Expert Curated", "Non-curated"]
@@ -344,8 +346,12 @@
     %section#perl-sample
       %h3 Perl
       %p
-        A sample perl application that interacts with DGIdb can be found
+        A sample Perl application that interacts with DGIdb can be found
         =link_to 'here.', 'https://raw.github.com/genome/dgi-db/master/files/perl_example.pl'
+    %hr
+    %section#python-sample
+      %h3 Python
+      %p Coming soon...
     %hr
     %section#ruby-sample
       %h3 Ruby
