@@ -14,10 +14,13 @@
       %label.checkbox.inline
         %input{type: 'checkbox', value: source, data: {bind: 'checked: sources'}}
         =source
+
+#container.container-fluid
   .category-listing{data: {bind: 'foreach: categories'}}
     .item.well.span3
       %a{data: {bind: "attr: { href: link }"}}
         %h4{data: {bind: 'text: text'}}
+%p
 
 =javascript_include_tag 'knockout-2.2.1'
 =javascript_include_tag 'gene-categories-view-model.coffee'
