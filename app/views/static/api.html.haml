@@ -286,7 +286,7 @@
         \http://dgidb.genome.wustl.edu/api/v1/source_trust_levels.json
       %h5 Example Response:
       %pre
-        ["Expert Curated", "Non-curated"]
+        ["Expert curated", "Non-curated"]
     %hr
     .page-header
       %section
@@ -295,7 +295,9 @@
           %small response information
     %section#formats
       %h3 Formats
-      %p Currently, all API responses are provided only in JSON
+      %p 
+        Currently, all API responses are provided only in JSON. If you are experimenting with the API in your browser and you want to improve the display for JSON output you use a JSON formatter such as 
+        =link_to 'this one.', 'http://jsonformatter.curiousconcept.com/'
     %hr
     %section#status-codes
       %h3 Status Codes
@@ -348,6 +350,10 @@
       %p
         A sample Perl application that interacts with DGIdb can be found
         =link_to 'here.', 'https://raw.github.com/genome/dgi-db/master/files/perl_example.pl'
+        %h5 Example Usage:
+        %pre
+          wget https://raw.github.com/genome/dgi-db/master/files/perl_example.pl<br>chmod +x perl_example.pl<br>./perl_example.pl --genes='FLT3'<br>./perl_example.pl --genes='FLT3,EGFR' --category_types='KINASE'
+             
     %hr
     %section#python-sample
       %h3 Python

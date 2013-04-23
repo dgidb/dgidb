@@ -1,8 +1,5 @@
 #!/usr/bin/env perl
 
-use strict;
-use warnings;
-
 #You may need to install the CPAN JSON package before this script will work
 #http://www.cpan.org/modules/INSTALL.html
 #On a mac you can do the following:
@@ -14,6 +11,8 @@ use warnings;
 # % install JSON
 # % q
 
+use strict;
+use warnings;
 use JSON;
 use HTTP::Request::Common;
 use LWP::UserAgent;
@@ -21,17 +20,17 @@ use Getopt::Long;
 use Data::Dumper qw(Dumper);
 
 my $domain = 'http://dgidb.genome.wustl.edu/';
-
 my $api_path = '/api/v1/interactions.json';
+
 my $genes;
-my $sources;
+my $interaction_sources;
 my $gene_categories;
 my $interaction_types;
-my $drug_types;
-my $trust_levels;
+my $source_trust_levels;
 my $anti_neoplastic_only = '';
 my $help;
-my %properties = ( genes => \$genes, interaction_sources => \$sources, interaction_types => \$interaction_types, gene_categories => \$gene_categories, source_trust_levels => \$trust_levels );
+
+my %properties = ( genes => \$genes, interaction_sources => \$interaction_sources, interaction_types => \$interaction_types, gene_categories => \$gene_categories, source_trust_levels => \$source_trust_levels );
 my $ua = LWP::UserAgent->new;
 
 parse_opts();
@@ -45,32 +44,34 @@ if ($resp->is_success) {
 
 sub parse_opts {
     GetOptions (
-        'genes=s'              => \$genes,
-        'source_names:s'       => \$sources,
-        'category_types:s'     => \$gene_categories,
-        'interaction_types:s'  => \$interaction_types,
-        'antineoplastic_only'  => \$anti_neoplastic_only,
-        'source_trust_levels:s'  => \$trust_levels,
-        'help'                 => \$help,
+        'genes=s'               => \$genes,
+        'interaction_sources:s' => \$interaction_sources,
+        'interaction_types:s'   => \$interaction_types,
+        'gene_categories:s'     => \$gene_categories,
+        'source_trust_levels:s' => \$source_trust_levels,
+        'antineoplastic_only'   => \$anti_neoplastic_only,
+        'help'                  => \$help,
     );
     if (!$genes || $help){
-        print "\n\nFor complete documentation refer to http://dgidb.genome.wustl.edu/api";
+        print "\n\nFor complete API documentation refer to http://dgidb.genome.wustl.edu/api";
         print "\n\nRequired parameters:";
         print "\n--genes (List of gene symbols. Use offical entrez symbols for best results)";
         print "\n\nOptional parameters:";
-        print "\n--source_names (Data sources. e.g. DrugBank, PharmGKB, TALC, TEND, TTD)";
-        print "\n--category_types (Druggable gene type. e.g. 'KINASE', 'ION CHANNEL', etc.)";
-        print "\n--interaction_types (Mechanism of drug-gene interaction. e.g. 'inhibitor', 'antibody', etc.)";
-        print "\n--antineoplastic_only (Limit results to anti-cancer drugs only)";
+        print "\n--interaction_sources (Limit results to those from particular data sources. e.g. 'DrugBank', 'PharmGKB', 'TALC', 'TEND', 'TTD', 'MyCancerGenome')";
+        print "\n--interaction_types (Limit results to interactions with drugs that have a particular mechanism of action. e.g. 'inhibitor', 'antibody', etc.)";
+        print "\n--gene_categories (Limit results to genes with a particular druggable gene type. e.g. 'KINASE', 'ION CHANNEL', etc.)";
+	print "\n--source_trust_levels (Limit results based on trust level of the interaction source. e.g. 'Expert curated' or 'Non-curated')";
+	print "\n--antineoplastic_only (Limit results to anti-cancer drugs only)";
+	print "\n--help (Show this documentation)";
         print "\n\nExample usage:";
         print "\n./perl_example.pl --genes='FLT3'";
         print "\n./perl_example.pl --genes='FLT3,EGFR,KRAS'";
-        print "\n./perl_example.pl --genes='FLT3,EGFR' --source_names='TALC,TEND'";
-        print "\n./perl_example.pl --genes='FLT3,EGFR' --category_types='KINASE'";
+        print "\n./perl_example.pl --genes='FLT3,EGFR' --interaction_sources='TALC,TEND'";
+        print "\n./perl_example.pl --genes='FLT3,EGFR' --gene_categories='KINASE'";
         print "\n./perl_example.pl --genes='FLT3,EGFR' --interaction_types='inhibitor'";
         print "\n./perl_example.pl --genes='FLT3,EGFR' --source_trust_levels='Expert curated'";
         print "\n./perl_example.pl --genes='FLT3,EGFR' --antineoplastic_only";
-        print "\n./perl_example.pl --genes='FLT3,EGFR,KRAS' --source_names='TALC,TEND' --category_types='KINASE' --interaction_types='inhibitor' --antineoplastic_only";
+        print "\n./perl_example.pl --genes='FLT3,EGFR,KRAS' --interaction_sources='TALC,TEND,MyCancerGenome' --gene_categories='KINASE' --interaction_types='inhibitor' --antineoplastic_only";
         print "\n\n";
         exit 1;
     }
