@@ -8,5 +8,7 @@
 .container-fluid
   .row-fluid
     .span12
-      .hero-unit
+      .well
+        %h3 Source Record
+        %p
         =render partial: 'sources/source', locals:{source: @source}
