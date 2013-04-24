@@ -7,8 +7,10 @@ search_categories:
     Click here to see which of your genes belong to druggable gene categories, or click 'Next' to continue the tour. 
   sources_tour: >
     You can limit your results to specific data sources (e.g., dGene).
-  gene_cateogories_tour: >
+  gene_categories_tour: >
     Or, limit to particular gene categories (e.g., kinases and ion channels only).
+  source_trust_level_tour: >
+    Or, limit to only sources with a particular trust level (e.g., Expert curated).
   genes_flag: >
     Hover your mouse over flags like this for help on a specific field.
   show-tour: >
