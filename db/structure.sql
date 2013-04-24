@@ -260,7 +260,8 @@ CREATE TABLE source_trust_levels (
 
 CREATE TABLE source_types (
     id character varying(255) NOT NULL,
-    type character varying(255) NOT NULL
+    type character varying(255) NOT NULL,
+    display_name character varying(255)
 );
 
 
@@ -850,3 +851,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130214204650');
 INSERT INTO schema_migrations (version) VALUES ('20130305165700');
 
 INSERT INTO schema_migrations (version) VALUES ('20130307160126');
+
+INSERT INTO schema_migrations (version) VALUES ('20130424183200');
