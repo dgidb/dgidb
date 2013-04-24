@@ -89,8 +89,8 @@
               interaction_sources
               %small (optional)
             %td
-              A comma delimited list of source names to include in the the result set.
-              If this field is omitted, all sources will be included
+              A comma delimited list of source names to include in the result set.
+              If this field is omitted, all sources will be included.
             %td
               %code interaction_sources=TTD,DrugBank
           %tr
@@ -99,7 +99,7 @@
               %small (optional)
             %td
               A comma delimited list of interaction types to include in the result set.
-              If this field is omitted, all interaction types will be included
+              If this field is omitted, all interaction types will be included.
             %td
               %code interaction_types=inhibitor,activator
           %tr
@@ -108,7 +108,7 @@
               %small (optional)
             %td
               A comma delimited list of drug types to include in the result set.
-              If this field is omitted, all drug types will be included
+              If this field is omitted, all drug types will be included.
             %td
               %code drug_types=antineoplastic
           %tr
@@ -117,7 +117,7 @@
               %small (optional)
             %td
               A comma delimited list of gene categories to include in the result set.
-              If this field is omitted, all gene categories will be included
+              If this field is omitted, all gene categories will be included.
             %td
               %code gene_categories=kinase,tumor%20suppressor
           %tr
@@ -126,7 +126,7 @@
               %small (optional)
             %td
               A comma delimited list of source trust levels to include in the result set.
-              If this field is omitted, all trust levels will be included
+              If this field is omitted, all trust levels will be included.
             %td
               %code source_trust_levels=Expert%20curated
       %h5
@@ -136,7 +136,7 @@
         %small
           The following example would query DGIdb for interactions involving the genes
           FLT1, STK1, and FAKE. It will only show interactions with antineoplastic drugs reported
-          by the source
+          by the source.
           =link_to('TALC', source_path('TALC')) + '.'
       %pre
         \http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT1,MM1,FAKE&drug_types=antineoplastic&interaction_sources=TALC
@@ -151,7 +151,7 @@
         that DGIdb matched them to as well as a list of categories that the given gene is in.
         Additionally, the hash will contain a list of drug interactions for the gene. This list
         includes interaction type information as well as the drug name and source that reported
-        the interaction
+        the interaction.
       %p
         %code unmatchedTerms
         will be a list containing a hash for each search term that you provided that we were unable
@@ -316,7 +316,7 @@
                 200
             %td
               Success. Your query was processed and the response contains the
-              information that was requested
+              information that was requested.
           %tr
             %td
               %span.label.label-warning
@@ -351,6 +351,7 @@
         A sample Perl application that interacts with DGIdb can be found
         =link_to 'here.', 'https://raw.github.com/genome/dgi-db/master/files/perl_example.pl'
         %h5 Example Usage:
+        %span.label EXECUTE
         %pre
           wget https://raw.github.com/genome/dgi-db/master/files/perl_example.pl<br>chmod +x perl_example.pl<br>./perl_example.pl --genes='FLT3'<br>./perl_example.pl --genes='FLT3,EGFR' --category_types='KINASE'
              
