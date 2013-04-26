@@ -9,7 +9,7 @@
 .container-fluid
   .row-fluid
     .span12
-      .hero-unit
+      .well
         %h3 Drug Record
         %p
           %b Reported Drug Name:
@@ -38,8 +38,11 @@
           %b Citation:
           =@drug_claim.source.citation
 
-.row-fluid.span12.well
-  %h3 Similarly Named Drugs
-  %span{id: "related_drugs"}
+.container-fluid
+  .row-fluid
+    .span12
+      .well
+        %h3 Potential Drug Matches (by drug synonyms)
+        %span{id: "related_drugs"}
 
 =javascript_include_tag "related_drugs"

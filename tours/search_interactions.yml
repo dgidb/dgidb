@@ -11,6 +11,8 @@ search_interactions:
     Or, limit to particular drug interaction types (e.g., inhibitors).
   sources_tour: >
     Or, limit to only a subset of data sources (e.g., DrugBank).
+  source_trust_level_tour: >
+    Or, limit to only sources with a particular trust level (e.g., Expert curated).
   drug_type_checkbox: >
     Check this box to allow only anti-cancer drugs. 
   genes_flag: >

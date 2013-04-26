@@ -33,9 +33,11 @@
       #gene-category-control
         =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
           flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories,
-          name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_cateogories_tour' }
+          name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_categories_tour' }
       .form-actions
-        %button.btn.btn-success(type="submit" id='search-btn')Find Gene Categories
+        %button.btn.btn-success(type="submit" id='search-btn')
+          =icon('search', class: 'icon-white')
+          Find Gene Categories
 
 =render partial: 'shared/loading_modal', locals: {title: "Searching Druggable Gene Categories..."}
 
