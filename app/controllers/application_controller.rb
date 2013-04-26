@@ -48,4 +48,5 @@ class ApplicationController < ActionController::Base
     #params[:drug_types] = DataModel::DrugClaimType.all_type_names unless params[:drug_types]
     params[:source_trust_levels] = DataModel::SourceTrustLevel.all_trust_levels unless params[:source_trust_levels]
   end
+
 end
