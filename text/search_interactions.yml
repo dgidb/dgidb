@@ -1,4 +1,5 @@
 search_interactions:
+  title: DGIdb - Mining the Druggable Genome for Personalized Medicine
   title_main: Search Interactions
   title_small: search for drug-gene interactons by gene name
   genes_flag: > 

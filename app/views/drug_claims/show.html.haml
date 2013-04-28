@@ -1,5 +1,5 @@
 #notice= notice
-=content_for :title, @drug_claim.title
+=content_for :title, "DGIdb - #{@drug_claim.title} Drug Record"
 =content_for :header do
   %h2
     %span{id: "drug_name"}=@drug_claim.title

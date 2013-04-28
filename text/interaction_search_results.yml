@@ -1,4 +1,5 @@
 interaction_search_results:
+  title: DGIdb - Interaction Search Results
   title_main: Interaction Search Results
   title_small: drug interactions for your genes
   definite_results_passed_filter_flag: >

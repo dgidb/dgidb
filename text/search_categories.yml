@@ -1,4 +1,5 @@
 search_categories:
+  title: DGIdb - Search Druggable Gene Categories
   title_main: Search Druggable Gene Categories
   title_small: Search for genes in druggable gene categories
   genes_flag: Place one gene name per line in the text area. You may also type gene names in the box and they will be autocompleted (by pressing tab or enter).

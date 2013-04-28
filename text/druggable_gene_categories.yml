@@ -1,4 +1,5 @@
 druggable_gene_categories:
+  title: DGIdb - Browse Druggable Gene Categories
   title_main: Druggable Gene Categories
   title_small: select gene categories
   title_flag: Categories are groups of genes considered by some to be potentially druggable targets.

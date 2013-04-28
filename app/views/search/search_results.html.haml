@@ -1,9 +1,10 @@
 #notice= notice
-=content_for :title, "Search Results"
+=content_for :title do
+  =tx "title"
 =content_for :header do
   %h2
-    Search Results
-    %small results for your search term
+    =tx "title_main"
+    %small=tx "title_small"
 
 .row-fluid.span12
   .span6

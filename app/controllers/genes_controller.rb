@@ -17,7 +17,7 @@ class GenesController < ApplicationController
     sources = params[:sources].split(',')
     genes = LookupCategories.find_genes_for_category_and_sources(params[:name], sources)
     @genes = DruggableGeneCategoryPresenter.new(genes, sources)
-    @title = "Genes in the #{params[:name]} category"
+    @title = params[:name]
     @druggable_gene_categories_active = 'active'
     @category_name = params[:name]
   end

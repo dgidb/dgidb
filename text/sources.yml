@@ -1,4 +1,5 @@
 sources:
+  title: DGIdb - Sources
   title_main: Sources
   title_small: details about data sources in DGIdb
   description: DGIdb aggregates drug, gene, and interaction information from a variety of sources. They are listed below.
