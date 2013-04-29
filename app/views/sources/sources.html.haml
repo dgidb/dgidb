@@ -4,8 +4,10 @@
 =content_for :header do
   %h2
     =tx "title_main"
-    %small=tx "title_small"
-
+    %small
+      =tx "title_small"
+      %a(href="/faq#source")
+        =icon('question-sign')
 #container.container-fluid
   =render partial: 'sources/sources', locals:{sources: @sources}
 

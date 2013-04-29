@@ -52,7 +52,7 @@ faq:
       anchor: add
       answer: >
         This is an open source project and you could therefore create your own instance with your own data ... but if you want that source
-        we probably do also. Contact us and we will be happy to consider adding your source for you.
+        we probably do also. <a href="/contact">Contact us</a> and we will be happy to consider adding your source for you.
 
     - question: What is the difference between a drug-gene interaction and druggable gene category?
       anchor: difference

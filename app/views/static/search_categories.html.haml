@@ -3,8 +3,11 @@
 =content_for :header do
   %h2
     =tx "title_main"
-    %small= tx "title_small"
-
+    %small
+      =tx "title_small"
+      %a(href="/faq#difference")
+        =icon('question-sign')
+        
 .container-fluid
   %form.form-horizontal(action="categories_search_results" method="post" enctype="multipart/form-data")
     %fieldset
