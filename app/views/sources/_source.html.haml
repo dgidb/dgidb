@@ -1,20 +1,87 @@
-%dl
-  %dt Source Display Name:
-  %dd=ext_link_to(source.source_db_name, source.site_url)
-  %dt Source Full Name:
-  %dd= source.full_name
-  %dt Source Version:
-  %dd=source.source_db_version
-  %dt Full Citation:
-  -if source.citation =~ /PMID: (\d+)\.?$/
-    =[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
-  -else
-    %dd=source.citation
-  %dt Genes
-  %dd="Total: #{source.gene_claims.size}"
-  %dd="In Groups: #{source.gene_claims_in_groups_count}"
-  %dt Drugs
-  %dd="Total: #{source.drug_claims.size}"
-  %dd="In Groups: #{source.drug_claims_in_groups_count}"
-  %dt Interactions
-  %dd="Total: #{source.interaction_claims.size}"
+%div(class="item-title")
+  %div(class="item-name")
+    %h3(class="item-source")
+      =ext_link_to(source.source_db_name, source.site_url)
+  %div(class="item-corner")
+    %ul(class="attribute-list")
+      %li
+        %strong
+          Full Name:
+        =source.full_name
+        %strong
+          Version:
+        =source.source_db_version
+
+%div(class="item-content")
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Genes
+      %table(class="table table-condensed")
+        %tr
+          %td
+            Total:
+          %td(style="width: 100%;")
+            =source.gene_claims.size
+
+        %tr
+          %td
+            In&nbsp;Groups:
+          %td(style="width: 100%;")
+            =source.gene_claims_in_groups_count
+
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Drugs
+      %table(class="table table-condensed")
+        %tr
+          %td
+            Total:
+          %td(style="width: 100%;")
+            =source.drug_claims.size
+
+        %tr
+          %td
+            In&nbsp;Groups:
+          %td(style="width: 100%;")
+            =source.drug_claims_in_groups_count
+
+      %h4
+        Interactions
+      %table(class="table table-condensed")
+        %tr
+          %td
+            Total:
+          %td(style="width: 100%;")
+            =source.interaction_claims.size
+
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Full Citation
+      -if source.citation =~ /PMID: (\d+)\.?$/
+        %p=[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
+      -else
+        %p=source.citation
+
+-# %dl
+-#   %dt Source Display Name:
+-#   %dd=ext_link_to(source.source_db_name, source.site_url)
+-#   %dt Source Full Name:
+-#   %dd= source.full_name
+-#   %dt Source Version:
+-#   %dd=source.source_db_version
+-#   %dt Full Citation:
+-#   -if source.citation =~ /PMID: (\d+)\.?$/
+-#     =[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
+-#   -else
+-#     %dd=source.citation
+-#   %dt Genes
+-#   %dd="Total: #{source.gene_claims.size}"
+-#   %dd="In Groups: #{source.gene_claims_in_groups_count}"
+-#   %dt Drugs
+-#   %dd="Total: #{source.drug_claims.size}"
+-#   %dd="In Groups: #{source.drug_claims_in_groups_count}"
+-#   %dt Interactions
+-#   %dd="Total: #{source.interaction_claims.size}"
