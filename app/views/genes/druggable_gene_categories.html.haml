@@ -7,6 +7,8 @@
       =tx "title_small"
       %strong
         %i.icon-flag.tip{title: tx("title_flag")}
+      %a(href="/faq#inclusive")
+        =icon('question-sign')
 
 #container.container-fluid
   #source-list.well.span12{data: {sources: @sources.to_json}}

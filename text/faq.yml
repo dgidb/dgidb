@@ -54,6 +54,34 @@ faq:
         This is an open source project and you could therefore create your own instance with your own data ... but if you want that source
         we probably do also. <a href="/contact">Contact us</a> and we will be happy to consider adding your source for you.
 
+    - question: What does 'Source Trust Level' mean?
+      anchor: trust
+      answer: >
+        We assign each source used by DGIdb to one of two trust levels: 'Expert curated' or 'Non-curated'.
+        This status is internal to DGIdb. 'Expert curated' sources were examined manually by domain experts during the process of importing to DGIdb.
+        'Non-curated' sources were imported in an automatic fashion from the primary source using an importer module (i.e. a script).
+        'Non-curated' sources may still have involved some manual curation at the original source.
+        Within each of the two trust levels we further rank each source according to our own assessment of quality.
+        Results will be sorted to favor 'Expert curated' data and by quality rank within those sources.
+
+    - question: What is the meaning of 'Gene Categories' in DGIdb?
+      anchor: categories
+      answer: >
+        Gene categories in DGIdb refers to a set of genes belonging to a group that is deemed to be 
+        <a href="http://en.wikipedia.org/wiki/Druggability">potentially druggable</a>.
+        For example, kinases are generally deemed to have high potential value for development of targeted drugs.
+        For more details on the sources of druggable gene category definitions, refer to the <a href="/sources">sources</a> 
+        and <a href="getting_started">background reading</a>.
+
+    - question: What is an 'Interaction Type'?
+      anchor: interaction
+      answer: >
+        An interaction type describes the nature of the association between a particular gene and drug. 
+        For example, TTD reports the drug-gene interaction, SUNITINIB-FLT3. The interaction type is reported as, 'inhibitor'.
+        Interaction type, as used in DGIdb is very broad. Dozens of interaction types are currently defined.
+        Many interaction types describe the mechanism of action between a small molecule and a protein.
+        Other broader types of 'interaction' might be used. e.g. Gene X mediates 'resistance' or 'sensitivity' to drug Y.
+
     - question: What is the difference between a drug-gene interaction and druggable gene category?
       anchor: difference
       answer: >
@@ -85,8 +113,8 @@ faq:
     - question: I found a gene in a category that does not really belong there or a drug-gene interaction that appears false.  Should I report it?
       anchor: belonging
       answer: >  
-        We are working on updates to the interface that would allows us to readily capture this kind of information. In the meantime please
-        feel free to report it to us. The quality of our data is only as good as the sources of raw data. Throughout the results you will
+        We are working on updates to the interface that would allows us to readily capture this kind of information directly from users. In the meantime 
+        please feel free to report it to us. The quality of our data is only as good as the sources of raw data. Throughout the results you will
         be able to see if multiple independant sources report the same findings. Using this as a filter may help you disqualify some spurious 
         entries and have increased confidence in others.
 
