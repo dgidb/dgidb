@@ -11,7 +11,8 @@ source ~/.bash_profile
     ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
     brew install git
 
-#Install and launch PostgreSQL from: http://postgresapp.com
+#Install PostgreSQL from: http://postgresapp.com
+#Once installed, be sure to launch PostgreSQL before attempting to fire up the rails application below
 
 # check out the code
 git clone git://github.com/genome/dgi-db.git
