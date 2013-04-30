@@ -1,9 +1,4 @@
 %ul(class="result-list" id="source-list-results")
   -sources.each do |source|
-    %li(class="#{source.source_type.type}" data-category="#{source.source_type.type}" data-name="#{source.source_type.type}")
+    %li(class="#{source.source_type.type}" data-category="#{source.source_type.type}" data-name="#{source.source_type.display_name}")
       =render partial: 'sources/source', locals:{source: source}
-
--# -sources.each do |source|
--#   .item(style="width:400")
--#     %div(class="hero-unit source bubble-links #{source.source_type.type}")
--#       =render partial: 'sources/source', locals:{source: source}

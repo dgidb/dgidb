@@ -4,7 +4,8 @@ $(function() {
     var tabs = [];
     
     // create tab names and categories from result-list items
-    $("#gene-list-results > li ").each(function() {
+    $("#source-list-results > li ").each(function() {
+        console.log("Found data-category: " + $(this).attr("data-category") );
         categories.push($(this).attr("data-category"));
         names.push($(this).attr("data-name"));
     });
@@ -33,7 +34,7 @@ $(function() {
             });
 
             // filter list results
-            $("#gene-list-results > li").each(function(i, val){
+            $("#source-list-results > li").each(function(i, val){
                 var item_category = $(this).attr("data-category");
                 if (tab_category == "all") { $(this).show();}
                 else {

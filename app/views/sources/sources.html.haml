@@ -8,8 +8,25 @@
       =tx "title_small"
       %a(href="/faq#source")
         =icon('question-sign')
-#container.container-fluid
-  =render partial: 'sources/sources', locals:{sources: @sources}
+
+.container-fluid
+  .row-fluid#container
+    %div(class="span2")
+      %div(id="list-filter-tabs")
+
+        %ul(class="nav nav-tabs nav-stacked")
+          %li(class="active")
+            %a(href="#" data-category="all")
+              %i(class="icon-chevron-right")
+              All
+
+    %div(class="span10")
+      =render partial: 'sources/sources', locals:{sources: @sources}
+
+=javascript_include_tag "source-list-tabs"
+
+-# #container.container-fluid
+-#   =render partial: 'sources/sources', locals:{sources: @sources}
 
 -# =javascript_include_tag "jquery.masonry.min"
 -# =javascript_include_tag "mason_items"
