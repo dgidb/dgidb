@@ -55,6 +55,6 @@ http://localhost:3000/cache/invalidate/
 #To run the test suite move to within the project dir and execute the following
 #On some systems we encounter sporadic segmentation faults when running the test suite.  Try it several times to see if this is happening on your system
 #This may be an issue with a particular version of Ruby, a Mac compiler issue, or something else...
-rails spec
+rake spec
 
 
