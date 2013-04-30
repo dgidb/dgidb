@@ -5,21 +5,17 @@ $(function() {
     
     // create tab names and categories from result-list items
     $("#source-list-results > li ").each(function() {
-        console.log("Found data-category: " + $(this).attr("data-category") );
         categories.push($(this).attr("data-category"));
         names.push($(this).attr("data-name"));
     });
 
-    // remove dups, sort
-    categories = categories.filter(function(elem, pos, self) {
-        return self.indexOf(elem) == pos; }).sort();
-
-    names = names.filter(function(elem, pos, self) {
-        return self.indexOf(elem) == pos; }).sort();
-
+    var dups = [];
     $.each(categories, function(i, val){
-        tabs.push({ label: names[i], category: val });
+        if (dups.indexOf(val) == -1) { tabs.push({ label: names[i], category: val }); }
+        dups.push(val);
     });
+
+    tabs.sort(tabSort);
 
     // watch for new tabs and attach tabs click event
     $("#list-filter-tabs > ul")
@@ -53,4 +49,10 @@ $(function() {
                     + val.label
                     + '</a></li>');
     });
+
+    function tabSort(a,b) {
+        if (a.label < b.label) { return -1; }
+        if (a.label > b.label) { return  1; }
+        return 0;
+    }
 });

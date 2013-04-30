@@ -51,13 +51,19 @@
 
 /* BASE COLORS
  **************************************************/
-@dgidb-green: #69b53e;
-@dgidb-brown: #5f604b;
+@dgidb-green:  #69b53e;
+@dgidb-brown:  #5f604b;
 @dgidb-purple: #502066;
-@dgidb-red: #a40014;
-@dgidb-blue: #4ea1b9;
+@dgidb-red:    #a40014;
+@dgidb-blue:   #4ea1b9;
 @dgidb-yellow: #f3b128;
 @dgidb-orange: #c54b16;
+
+// entity colors
+@entity-category:     @dgidb-orange;
+@entity-gene:         @dgidb-green;
+@entity-drug:         @dgidb-red;
+@entity-interaction:  @dgidb-blue;
 
 /* LAYOUT
  **************************************************/
@@ -142,10 +148,10 @@ body {
     border-left-width: 0;
   }
 
-  li.drug { border-left-color: @dgidb-red; }
-  li.gene { border-left-color: @dgidb-green; }
-  li.interaction { border-left-color: @dgidb-blue; }
-  li.potentially_druggable { border-left-color: @dgidb-orange; }
+  li.drug { border-left-color: @entity-drug; }
+  li.gene { border-left-color: @entity-gene; }
+  li.interaction { border-left-color: @entity-interaction; }
+  li.potentially_druggable { border-left-color: @entity-category; }
   
   li.active a {
     background-color: #08C;
@@ -244,22 +250,22 @@ body {
   }
 
   li.gene {
-    border-left-color: @dgidb-green;
+    border-left-color: @entity-gene;
     .icon { background-image: url('icons/icon-gene_32.png'); background-color: @dgidb-green; }
     .item-name h3 { background-image: url('icons/icon-gene_32.png'); }
   }
   li.drug {
-    border-left-color: @dgidb-red;
+    border-left-color: @entity-drug;
     .icon { background-image: url('icons/icon-drug_32.png'); background-color: @dgidb-red; }
     .item-name h3 { background-image: url('icons/icon-drug_32.png'); }
   }
   li.interaction {
-    border-left-color: @dgidb-blue;
+    border-left-color: @entity-interaction;
     .icon { background-image: url('icons/icon-interaction_32.png'); background-color: @dgidb-blue; }
     .item-name h3 { background-image: url('icons/icon-interaction_32.png'); }
   }
   li.potentially_druggable {
-    border-left-color: @dgidb-orange;
+    border-left-color: @entity-category;
     .icon { background-image: url('icons/icon-potentially_druggable_32.png'); background-color: @dgidb-orange; }
     .item-name h3 { background-image: url('icons/icon-gene-potentially_druggable_32.png'); }
   }
