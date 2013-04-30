@@ -15,7 +15,7 @@ class GenesController < ApplicationController
 
   def druggable_gene_category
     sources = if params[:sources]
-                  params[:sources].split(',')
+                  params[:sources].split(',').flatten
                 else
                   DataModel::Source.source_names_with_category_information
                 end
