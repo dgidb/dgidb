@@ -23,7 +23,7 @@ $(function() {
             var tab_category = $(this).attr("data-category");
 
             // toggle active tab
-            $("#gene-list-tabs > ul li").each(function() {
+            $("#list-filter-tabs > ul li").each(function() {
                 var current_tab = $(this).find("a").attr("data-category");
                 if(current_tab  == tab_category) { $(this).addClass("active"); }
                 else { $(this).removeClass("active");  };
