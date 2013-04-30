@@ -52,3 +52,9 @@ http://localhost:3000/cache/invalidate/
 #If you encounter errors about a pg_dump version mismatch it is likely that you have multiple completing installs of Postgresql.
 #One likely fix is to find the location of the pg_dump binary in the more recent installation and make sure this dir at the beginning of your $PATH
 
+#To run the test suite move to within the project dir and execute the following
+#On some systems we encounter sporadic segmentation faults when running the test suite.  Try it several times to see if this is happening on your system
+#This may be an issue with a particular version of Ruby, a Mac compiler issue, or something else...
+rails spec
+
+
