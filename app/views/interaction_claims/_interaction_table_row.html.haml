@@ -1,14 +1,15 @@
 %tr
   %td
     =interaction_table_row.search_term
-  %td{title: interaction_table_row.gene_name + ' - ' + interaction_table_row.gene_long_name}
+  %td{title: interaction_table_row.gene_name + ' - ' + interaction_table_row.gene_long_name, class: "truncate"}
     = link_to gene_path(interaction_table_row.gene_name) do
       %strong
         = interaction_table_row.gene_name
       = " - "
       %em
         %small
-          =truncate(interaction_table_row.gene_long_name, length: 50)
+          =interaction_table_row.gene_long_name
+          -# =truncate(interaction_table_row.gene_long_name, length: 50)
   %td{title: interaction_table_row.drug_claim_name}
     =link_to truncate(interaction_table_row.drug_claim_name, length:50), drug_claim_path(interaction_table_row.interaction_claim.drug_claim)
   %td

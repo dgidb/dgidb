@@ -20,6 +20,11 @@ $ ->
 
   $("#interaction_tab").tab("show")
 
+  #truncate long gene names
+  $(".truncate").trunk8()
+  #activate on window resize too
+  $(window).smartresize (event) -> $('.truncate').trunk8()
+
   #$("#search-again").on 'click', ->
     #gene_symbols = []
     #$("button.active").each -> gene_symbols.push $(this).val()
