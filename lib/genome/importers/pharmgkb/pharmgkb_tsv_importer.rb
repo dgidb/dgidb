@@ -17,7 +17,7 @@ module Genome
         na_filter = ->(x) { x.upcase == 'N/A' }
         TSVImporter.import tsv_path, PharmgkbRow, source_info do
           interaction known_action_type: 'unknown' do
-            attributes: 'Interaction Type', name: 'n/a'
+            attribute 'Interaction Type', name: 'n/a'
 
             gene :Entity2_id, nomenclature: 'PharmGKB Gene Accession' do
               name :Entrez_Id, nomenclature: 'Entrez Gene Id', unless: na_filter
