@@ -17,8 +17,8 @@ module Genome
         na_filter = ->(x) {x.upcase = 'N/A'}
         TSVImporter.import tsv_path, TENDRow, source_info do
           interaction known_action_type: 'unknown' do
-            attribute: 'n/a', name: 'Interaction Type'
-            
+            attribute 'n/a', name: 'Interaction Type'
+
             gene :uniprot_id, nomenclature: 'Uniprot Accession' do
               name :uniprot_id, nomenclature: 'Uniprot Accession'
               name :gene_symbol, nomenclature: 'Gene Symbol', unless: na_filter
