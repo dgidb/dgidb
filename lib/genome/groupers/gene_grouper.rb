@@ -60,7 +60,7 @@ module Genome
             alt_genes = @alt_to_other[gene_claim_alias].map(&:gene_claim)
             alt_genes.each do |alt_gene|
               indirect_gene = alt_gene.genes.first
-              indirect_group[indirect_gene.name] += 1 if indirect_gene
+              indirect_groups[indirect_gene.name] += 1 if indirect_gene
             end
           end
 

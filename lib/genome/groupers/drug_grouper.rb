@@ -60,7 +60,7 @@ module Genome
             alt_drugs = @alt_to_other[drug_claim_alias.alias].map(&:drug_claim)
             alt_drugs.each do |alt_drug|
               indirect_drug = alt_drug.drugs.first
-              indirect_group[indirect_drug.name] += 1 if indirect_drug
+              indirect_groups[indirect_drug.name] += 1 if indirect_drug
             end
           end
 
