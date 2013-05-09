@@ -1,8 +1,10 @@
 class GenesController < ApplicationController
 
   def show
-    @gene = GenePresenter.new(
-      DataModel::Gene.for_show.where(name: params[:name]).first)
+    gene_names = [params[:name].upcase, params[:name].downcase]
+    gene = DataModel::Gene.for_show.where(name: gene_names).first ||
+      not_found("#{params[:name]} wasn't found!")
+    @gene = GenePresenter.new(gene)
     @title = @gene.display_name
   end
 
