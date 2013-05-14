@@ -6,7 +6,7 @@ module Genome
         attribute :gene_stable_id
         attribute :display_id
         attribute :description
-        attribute :HumanReadableName, parser: ->(val){val.gsub!('-', ' ') == 'RussLampel' ? 'Druggable Genome' : val}
+        #attribute :HumanReadableName, parser: ->(val){val.gsub!('-', ' ') == 'RussLampel' ? 'Druggable Genome' : val}
         
         def valid?(opts = {})
           true
