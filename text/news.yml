@@ -24,3 +24,9 @@ news:
         Results are now characterized by source trust level and results can now be filtered on this attribute.
         Extensive documentation was added throughout various views in the form of additional help flags.
       date: April 15, 2013
+    - headline: Updated version of the interface is released
+      article: >
+        This version of DGIdb incorporates improvements in gene detail views, source views, the guided tours and the FAQ.
+        Customized browsing and export of druggable gene categories by source is now available.
+        Also included in this release are updates to many Ruby TSV source importers, better coverage in the code test suite, and various minor bug fixes.
+      date: May 14, 2013
