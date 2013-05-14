@@ -30,5 +30,30 @@ namespace :dgidb do
     task :my_cancer_genome, [:mcg_tsv_path] => :environment do |t, args|
       Genome::Importers::MyCancerGenome.run(args[:mcg_tsv_path])
     end
+
+    desc 'import PharmGKB from a TSV file'
+    task :pharmgkb, [:pharmgkb_tsv_path] => :environment do |t, args|
+      Genome::Importers::Pharmgkb.run(args[:pharmgkb_tsv_path])    
+    end
+
+    #desc 'import RussLampel from a TSV file'
+    #task :russ_lampel, [:russ_lampel_path] => :environment do |t, args|
+    #  Genome::Importers::RussLampel.run(args[:russ_lampel_path])
+    #end
+
+    desc 'import TALC from a TSV file'
+    task :talc, [:talc_path] => :environment do |t, args|
+      Genome::Importers::Talc.run(args[:talc_path])
+    end
+
+    desc 'import TEND from a TSV file'
+    task :tend, [:tend_path] => :environment do |t, args|
+      Genome::Importers::Tend.run(args[:tend_path])
+    end
+
+    desc 'import TTD from a TSV file'
+    task :ttd, [:ttd_path] => :environment do |t, args| 
+      Genome::Importers::TTD.run(args[:ttd_path])
+    end
   end
 end
