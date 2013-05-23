@@ -19,6 +19,7 @@ gem 'rake'
 gem 'nokogiri'
 gem 'xpath'
 gem 'jbuilder'
+gem 'recaptcha', require: 'recaptcha/rails'
 gem 'feedback_popup', git: 'git://github.com/thecoffman/feedback_popup.git'
 
 group :production do
