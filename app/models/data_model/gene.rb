@@ -3,6 +3,7 @@ module DataModel
     include Genome::Extensions::UUIDPrimaryKey
     include Genome::Extensions::HasCacheableQuery
     has_and_belongs_to_many :gene_claims
+    has_many :inter_gene_interaction_claims
 
     cache_query :all_gene_names, :all_gene_names
 
