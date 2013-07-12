@@ -3,8 +3,11 @@
 
 ### Rails frontend to The Genome Institute's drug gene interaction database.
 
+#### Publicly accessible instance
+To use DGIdb please first visit the public instance here: [DGIdb](http://www.dgidb.org/ "DGIdb at WashU")
+
 #### Installation
-See the [INSTALL-OSX](https://github.com/genome/dgi-db/blob/master/INSTALL-OSX "INSTALL-OSX") or [INSTALL-LINUX](https://github.com/genome/dgi-db/blob/master/INSTALL-LINUX "INSTALL-OSX") files for installation instructions.
+If you would like to install a local instance of DGIdb to work on the code or maintain a private database, refer to the [INSTALL-OSX](https://github.com/genome/dgi-db/blob/master/INSTALL-OSX "INSTALL-OSX") or [INSTALL-LINUX](https://github.com/genome/dgi-db/blob/master/INSTALL-LINUX "INSTALL-OSX") files for installation instructions. If the public version of DGIdb is missing a datasource that you would like to see added, please [Contact Us](http://dgidb.genome.wustl.edu/contact "Contact Us").
 
 #### Implementation
 DGIdb is built in Ruby on Rails with PostgreSQL as the primary data store. Memcached is utilized heavily for caching, as the data is largely static between new source imports. The site is served with Apache and Phusion Passenger on a server running Ubuntu 12.04 LTS (Precise Pangolin). The code itself is divided into two primary components – the web application itself and the libraries that handle the importing and normalization of new sources.
@@ -17,6 +20,9 @@ Rather than being implemented as SQL WHERE clauses, result filtering is implemen
 
 #### Application Programming Interface (API)
 The DGIdb API can be used to query for drug-gene interactions in your own applications through a simple JSON based interface.  Extensive documentation of the API including functioning code example is maintained at: http://dgidb.genome.wustl.edu/api
+
+#### Citation
+Coming soon...
 
 Additional documentation forthcoming...
 
