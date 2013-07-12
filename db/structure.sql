@@ -308,7 +308,8 @@ CREATE TABLE sources (
     interaction_claims_in_groups_count integer DEFAULT 0,
     gene_claims_in_groups_count integer DEFAULT 0,
     drug_claims_in_groups_count integer DEFAULT 0,
-    source_trust_level_id character varying(255)
+    source_trust_level_id character varying(255),
+    inter_gene_interaction_claims_count integer
 );
 
 
@@ -948,3 +949,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130307160126');
 INSERT INTO schema_migrations (version) VALUES ('20130424183200');
 
 INSERT INTO schema_migrations (version) VALUES ('20130712222803');
+
+INSERT INTO schema_migrations (version) VALUES ('20130712225648');

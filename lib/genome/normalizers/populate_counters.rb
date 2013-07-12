@@ -6,6 +6,7 @@ module Genome
           source.gene_claims_count = source.gene_claims.pluck(:id).size
           source.drug_claims_count = source.drug_claims.pluck(:id).size
           source.interaction_claims_count = source.interaction_claims.pluck(:id).size
+          source.inter_gene_interaction_claims_count = source.inter_gene_interaction_claims.pluck(:id).count
           #TODO support interaction groups when they exist
           #source.interaction_claims_in_groups = relation_in_groups_for_source(:interaction_claims, source)
           source.interaction_claims_in_groups_count = 0
