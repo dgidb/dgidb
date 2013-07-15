@@ -32,7 +32,7 @@ namespace :dgidb do
     end
 
     desc 'import CancerCommons from a TSV file'
-    task :my_cancer_genome, [:tsv_path] => :environment do |t, args|
+    task :cancer_commons, [:tsv_path] => :environment do |t, args|
       Genome::Importers::CancerCommons.run(args[:tsv_path])
     end
 
