@@ -25,7 +25,7 @@ module Genome
             name :entrez_id, nomenclature: 'Entrez Gene Id', transform: upcase, unless: na_filter
             names :ensembl_ids, nomenclature: 'Ensembl Gene Id', transform: upcase, unless: na_filter
 
-            #TODO: DRUGGABLE GENOME (human readable name) attribute  (support hard coded values)
+            attribute 'DRUGGABLE GENOME', nomenclature: 'Human Readable Name'
             attribute :dgidb_human_readable, nomenclature: 'Human Readable Name', transform: ->(x) { x.gsub('-',' ').gsub('/', ' ').gsub('.', '_').upcase }, unless: na_filter
             attribute :interpro_acc, nomenclature: 'Interpro Acc'
             attribute :uniprot_evidence, nomenclature: 'Uniprot Evidence'

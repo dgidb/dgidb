@@ -2,7 +2,7 @@ module Genome
   module Importers
     module MyCancerGenome
 
-      def source_info
+      def self.source_info
         {
           base_url: 'http://www.mycancergenome.org/content/other/molecular-medicine/targeted-therapeutics',
           site_url: 'http://www.mycancergenome.org/',
