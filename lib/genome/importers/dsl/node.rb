@@ -11,9 +11,7 @@ module Genome
         end
 
         def attribute(column, opts)
-          opts = @defaults.merge opts
-          val = opts[:transform].call(@row.send(column))
-          create_entity(:attribute, val, opts)
+          create_entity(:attribute, get_val(column, opts), opts)
         end
 
         def attributes(column, opts)
@@ -25,9 +23,7 @@ module Genome
         end
 
         def name(column, opts)
-          opts = @defaults.merge opts
-          val = opts[:transform].call(@row.send(column))
-          create_entity(:alias, val, opts)
+          create_entity(:alias, get_val(column, opts), opts)
         end
 
         def names(column, opts)
@@ -39,6 +35,15 @@ module Genome
         end
 
         private
+        def get_val(column, opts)
+          opts = @defaults.merge opts
+          if column.is_a?(Symbol)
+            opts[:transform].call(@row.send(column))
+          else
+            column
+          end
+        end
+
         def create_entity(property_type, val, opts)
           if !opts[:unless].call(val)
             if property_type == :alias
