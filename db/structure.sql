@@ -206,8 +206,8 @@ CREATE TABLE inter_gene_interaction_claim_attributes (
 
 CREATE TABLE inter_gene_interaction_claims (
     id character varying(255) NOT NULL,
-    left_gene_id character varying(255) NOT NULL,
-    right_gene_id character varying(255) NOT NULL,
+    gene_id character varying(255) NOT NULL,
+    interacting_gene_id character varying(255) NOT NULL,
     source_id character varying(255) NOT NULL
 );
 
@@ -645,17 +645,17 @@ CREATE INDEX index_genes_on_name ON genes USING btree (name);
 
 
 --
--- Name: index_inter_gene_interaction_claims_on_left_gene_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_inter_gene_interaction_claims_on_gene_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_inter_gene_interaction_claims_on_left_gene_id ON inter_gene_interaction_claims USING btree (left_gene_id);
+CREATE INDEX index_inter_gene_interaction_claims_on_gene_id ON inter_gene_interaction_claims USING btree (gene_id);
 
 
 --
--- Name: index_inter_gene_interaction_claims_on_right_gene_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_inter_gene_interaction_claims_on_interacting_gene_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_inter_gene_interaction_claims_on_right_gene_id ON inter_gene_interaction_claims USING btree (right_gene_id);
+CREATE INDEX index_inter_gene_interaction_claims_on_interacting_gene_id ON inter_gene_interaction_claims USING btree (interacting_gene_id);
 
 
 --
@@ -701,10 +701,10 @@ CREATE INDEX interaction_claims_source_id_idx ON interaction_claims USING btree 
 
 
 --
--- Name: left_and_right_gene_interaction_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: left_and_interacting_gene_interaction_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX left_and_right_gene_interaction_index ON inter_gene_interaction_claims USING btree (left_gene_id, right_gene_id);
+CREATE INDEX left_and_interacting_gene_interaction_index ON inter_gene_interaction_claims USING btree (gene_id, interacting_gene_id);
 
 
 --
@@ -831,19 +831,19 @@ ALTER TABLE ONLY interaction_claims
 
 
 --
--- Name: fk_gene_interaction_claims_left_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_gene_interaction_claims_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY inter_gene_interaction_claims
-    ADD CONSTRAINT fk_gene_interaction_claims_left_gene FOREIGN KEY (left_gene_id) REFERENCES genes(id) MATCH FULL;
+    ADD CONSTRAINT fk_gene_interaction_claims_gene FOREIGN KEY (gene_id) REFERENCES genes(id) MATCH FULL;
 
 
 --
--- Name: fk_gene_interaction_claims_right_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_gene_interaction_claims_interacting_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY inter_gene_interaction_claims
-    ADD CONSTRAINT fk_gene_interaction_claims_right_gene FOREIGN KEY (right_gene_id) REFERENCES genes(id) MATCH FULL;
+    ADD CONSTRAINT fk_gene_interaction_claims_interacting_gene FOREIGN KEY (interacting_gene_id) REFERENCES genes(id) MATCH FULL;
 
 
 --
