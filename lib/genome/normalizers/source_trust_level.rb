@@ -15,7 +15,8 @@ module Genome
             'TEND',
             'dGene',
             'RussLampel',
-            'HopkinsGroom'
+            'HopkinsGroom',
+            'CancerCommons'
           ],
         'Non-curated' =>
           [
