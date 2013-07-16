@@ -16,6 +16,7 @@ module Genome
       def self.each_row(row_delimiter)
         File.open(@tsv_path).each_with_index do |line, index|
           next if index == 0
+          next if line.blank?
           row = @rowtype.new(line, row_delimiter)
           yield row if row.valid?
         end
