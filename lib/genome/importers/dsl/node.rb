@@ -11,6 +11,7 @@ module Genome
         end
 
         def attribute(column, opts)
+          opts = @defaults.merge opts
           create_entity(:attribute, get_val(column, opts), opts)
         end
 
@@ -23,6 +24,7 @@ module Genome
         end
 
         def name(column, opts)
+          opts = @defaults.merge opts
           create_entity(:alias, get_val(column, opts), opts)
         end
 
