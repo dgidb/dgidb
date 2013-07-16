@@ -67,8 +67,12 @@ module SnapshotHelpers
       .split("\t")
   end
 
+  def current_sha
+    `git log --pretty=format:'%h' --abbrev-commit -1`.strip
+  end
+
   def update_version_file(version_file, new_version)
-    File.open(version_file, 'w') { |f| f.puts [new_version, Time.now].join("\t") }
+    File.open(version_file, 'w') { |f| f.puts [new_version, Time.now, current_sha].join("\t") }
   end
 
 end
