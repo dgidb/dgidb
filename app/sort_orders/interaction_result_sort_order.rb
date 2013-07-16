@@ -7,12 +7,14 @@ module InteractionResultSortOrder
       2
     when 'TEND'
       3
-    when 'PharmGKB'
+    when 'CancerCommons'
       4
-    when 'TTD'
+    when 'PharmGKB'
       5
-    when 'DrugBank'
+    when 'TTD'
       6
+    when 'DrugBank'
+      7
     else
       99
     end
