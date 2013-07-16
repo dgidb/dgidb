@@ -1,0 +1,74 @@
+require 'time'
+require 'fileutils'
+
+module SnapshotHelpers
+  def update_version(version_file, version_type)
+    current_version, _ = parse_version_file(version_file)
+    new_version = bump_version_number(current_version, version_type)
+    update_version_file(version_file, new_version)
+    new_version
+  end
+
+  def pull_latest
+    system_or_die("git pull")
+  end
+
+  def push_changes
+    system_or_die("git push origin master --tags")
+  end
+
+  def commit_db_update(submodule_dir, file, commit_message)
+    cur_dir = Dir.pwd
+    Dir.chdir(submodule_dir)
+    system_or_die("git add #{File.basename(file)}")
+    system_or_die("git commit -m '#{commit_message}'")
+    system_or_die("git push origin master")
+    Dir.chdir(cur_dir)
+  end
+
+  def commit_data_submodule_update(commit_message, *files)
+    files.each { |f| system_or_die("git add #{f}") }
+    system_or_die("git commit -m '#{commit_message}'")
+  end
+
+  def create_tag(version_number)
+    system_or_die("git tag -a v#{version_number} -m 'tag for v#{version_number}'")
+  end
+
+  def in_git_pop
+    pwd = Dir.pwd
+    system_or_die("git stash")
+    yield
+  ensure
+    Dir.chdir(pwd)
+    system_or_die("git stash pop")
+  end
+
+  def update_data_submodule
+    system_or_die("git submodule update data")
+  end
+
+  private
+  def system_or_die(syscall)
+    puts syscall
+    system(syscall) or raise "Failed trying to #{syscall} in #{Dir.pwd}"
+  end
+
+  def bump_version_number(old_version, revision_type)
+    parts = {}
+    parts[:major], parts[:minor], parts[:patch] = old_version.split('.')
+    parts[revision_type].next!
+    parts.values.join('.')
+  end
+
+  def parse_version_file(path)
+    File.read(path)
+      .strip
+      .split("\t")
+  end
+
+  def update_version_file(version_file, new_version)
+    File.open(version_file, 'w') { |f| f.puts [new_version, Time.now].join("\t") }
+  end
+
+end

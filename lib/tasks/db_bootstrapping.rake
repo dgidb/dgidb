@@ -1,8 +1,13 @@
 require 'rbconfig'
+require_relative 'snapshot_helpers'
+
+include SnapshotHelpers
 
 namespace :dgidb do
 
-  data_file = "#{Rails.root}/db/data.sql"
+  data_submodule_path = File.join(Rails.root, 'data')
+  data_file = File.join(data_submodule_path, 'data.sql')
+  version_file = File.join(Rails.root, 'VERSION')
 
   desc 'set up path for macs running Postgres.app'
   task :setup_path do
@@ -26,12 +31,29 @@ namespace :dgidb do
 
   desc 'create a dump of the current local database'
   task dump_local: [:setup_path] do
+    update_data_submodule
     system "pg_dump -T schema_migrations -E UTF8 -a -f #{data_file} -h localhost dgidb"
   end
 
   desc 'load the source controlled db dump and schema into the local db, blowing away what is currently there'
   task load_local: ['setup_path', 'db:drop', 'db:create', 'db:structure:load'] do
+    update_data_submodule
     system "psql -h localhost -d dgidb -f #{data_file}"
+  end
+
+  desc 'create a new data snapshot'
+  task :create_snapshot, [:message, :version_type] do |t, args|
+    args.with_defaults(version_type: :patch)
+    raise 'You must supply a commit message!' unless args[:message]
+    Rake::Task['dgidb:dump_local'].execute
+    in_git_pop do
+      pull_latest
+      new_version = update_version(version_file, args[:version_type].to_sym)
+      commit_db_update(data_submodule_path, data_file, args[:message])
+      commit_data_submodule_update(args[:message], data_submodule_path, version_file)
+      create_tag(new_version)
+      push_changes
+    end
   end
 
 end
