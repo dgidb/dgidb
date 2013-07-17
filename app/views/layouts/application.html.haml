@@ -58,6 +58,11 @@
             %li.span2
               =dynamic_link_to(l["title"], l["url"])
               %small=l["description"]
+      .container.muted.span12
+        %p.span5.offset3
+          ="DGIdb (v#{CURRENT_VERSION.version} - sha1 #{CURRENT_VERSION.sha})"
+          •
+          ="Last updated #{CURRENT_VERSION.time}"
   =feedback_popup
   -if(Rails.env.production?)
     :javascript
