@@ -1,6 +1,6 @@
 module DataModel
-  class InterGeneInteractionClaimAttribute < ::ActiveRecord::Base
+  class GeneGeneInteractionClaimAttribute < ::ActiveRecord::Base
     include Genome::Extensions::UUIDPrimaryKey
-    belongs_to :inter_gene_interaction_claim, inverse_of: :attributes
+    belongs_to :gene_gene_interaction_claim, inverse_of: :attributes
   end
 end

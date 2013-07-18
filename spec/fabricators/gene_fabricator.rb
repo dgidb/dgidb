@@ -26,9 +26,9 @@ Fabricator(:gene_claim_category, class_name: 'DataModel::GeneClaimCategory') do
   name { sequence(:gene_claim_category) { |i| "Gene Claim Category ##{i}" } }
 end
 
-Fabricator(:inter_gene_interaction_claim, class_name: 'DataModel::InterGeneInteractionClaim')
+Fabricator(:gene_gene_interaction_claim, class_name: 'DataModel::GeneGeneInteractionClaim')
 
-Fabricator(:inter_gene_interaction_claim_attribute, class_name: 'DataModel::InterGeneInteractionClaimAttribute') do
-  name { sequence(:inter_gene_interaction_claim_attribute_name) { |i| "Inter gene interaction ##{i} name" } }
-  name { sequence(:inter_gene_interaction_claim_attribute_value) { |i| "Inter gene interaction ##{i} value" } }
+Fabricator(:gene_gene_interaction_claim_attribute, class_name: 'DataModel::GeneGeneInteractionClaimAttribute') do
+  name { sequence(:gene_gene_interaction_claim_attribute_name) { |i| "Inter gene interaction ##{i} name" } }
+  value { sequence(:gene_gene_interaction_claim_attribute_value) { |i| "Inter gene interaction ##{i} value" } }
 end

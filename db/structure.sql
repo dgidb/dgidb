@@ -178,6 +178,30 @@ CREATE TABLE gene_claims_genes (
 
 
 --
+-- Name: gene_gene_interaction_claim_attributes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE gene_gene_interaction_claim_attributes (
+    id character varying(255) NOT NULL,
+    gene_gene_interaction_claim_id character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    value character varying(255) NOT NULL
+);
+
+
+--
+-- Name: gene_gene_interaction_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE gene_gene_interaction_claims (
+    id character varying(255) NOT NULL,
+    gene_id character varying(255) NOT NULL,
+    interacting_gene_id character varying(255) NOT NULL,
+    source_id character varying(255) NOT NULL
+);
+
+
+--
 -- Name: genes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -185,30 +209,6 @@ CREATE TABLE genes (
     id text NOT NULL,
     name text,
     long_name character varying(255)
-);
-
-
---
--- Name: inter_gene_interaction_claim_attributes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE inter_gene_interaction_claim_attributes (
-    id character varying(255) NOT NULL,
-    inter_gene_interaction_claim_id character varying(255) NOT NULL,
-    name character varying(255) NOT NULL,
-    value character varying(255) NOT NULL
-);
-
-
---
--- Name: inter_gene_interaction_claims; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE inter_gene_interaction_claims (
-    id character varying(255) NOT NULL,
-    gene_id character varying(255) NOT NULL,
-    interacting_gene_id character varying(255) NOT NULL,
-    source_id character varying(255) NOT NULL
 );
 
 
@@ -309,7 +309,7 @@ CREATE TABLE sources (
     gene_claims_in_groups_count integer DEFAULT 0,
     drug_claims_in_groups_count integer DEFAULT 0,
     source_trust_level_id character varying(255),
-    inter_gene_interaction_claims_count integer
+    gene_gene_interaction_claims_count integer
 );
 
 
@@ -418,27 +418,27 @@ ALTER TABLE ONLY gene_claims
 
 
 --
+-- Name: gene_gene_interaction_claim_attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY gene_gene_interaction_claim_attributes
+    ADD CONSTRAINT gene_gene_interaction_claim_attributes_pkey PRIMARY KEY (gene_gene_interaction_claim_id);
+
+
+--
+-- Name: gene_gene_interaction_claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY gene_gene_interaction_claims
+    ADD CONSTRAINT gene_gene_interaction_claims_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: genes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY genes
     ADD CONSTRAINT genes_pkey PRIMARY KEY (id);
-
-
---
--- Name: inter_gene_interaction_claim_attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY inter_gene_interaction_claim_attributes
-    ADD CONSTRAINT inter_gene_interaction_claim_attributes_pkey PRIMARY KEY (inter_gene_interaction_claim_id);
-
-
---
--- Name: inter_gene_interaction_claims_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY inter_gene_interaction_claims
-    ADD CONSTRAINT inter_gene_interaction_claims_pkey PRIMARY KEY (id);
 
 
 --
@@ -638,24 +638,24 @@ CREATE INDEX index_gene_claims_on_name ON gene_claims USING btree (name);
 
 
 --
+-- Name: index_gene_gene_interaction_claims_on_gene_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_gene_gene_interaction_claims_on_gene_id ON gene_gene_interaction_claims USING btree (gene_id);
+
+
+--
+-- Name: index_gene_gene_interaction_claims_on_interacting_gene_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_gene_gene_interaction_claims_on_interacting_gene_id ON gene_gene_interaction_claims USING btree (interacting_gene_id);
+
+
+--
 -- Name: index_genes_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_genes_on_name ON genes USING btree (name);
-
-
---
--- Name: index_inter_gene_interaction_claims_on_gene_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_inter_gene_interaction_claims_on_gene_id ON inter_gene_interaction_claims USING btree (gene_id);
-
-
---
--- Name: index_inter_gene_interaction_claims_on_interacting_gene_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_inter_gene_interaction_claims_on_interacting_gene_id ON inter_gene_interaction_claims USING btree (interacting_gene_id);
 
 
 --
@@ -704,7 +704,7 @@ CREATE INDEX interaction_claims_source_id_idx ON interaction_claims USING btree 
 -- Name: left_and_interacting_gene_interaction_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX left_and_interacting_gene_interaction_index ON inter_gene_interaction_claims USING btree (gene_id, interacting_gene_id);
+CREATE INDEX left_and_interacting_gene_interaction_index ON gene_gene_interaction_claims USING btree (gene_id, interacting_gene_id);
 
 
 --
@@ -746,8 +746,8 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- Name: fk_attributes_gene_interaction_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY inter_gene_interaction_claim_attributes
-    ADD CONSTRAINT fk_attributes_gene_interaction_claim FOREIGN KEY (inter_gene_interaction_claim_id) REFERENCES inter_gene_interaction_claims(id) MATCH FULL;
+ALTER TABLE ONLY gene_gene_interaction_claim_attributes
+    ADD CONSTRAINT fk_attributes_gene_interaction_claim FOREIGN KEY (gene_gene_interaction_claim_id) REFERENCES gene_gene_interaction_claims(id) MATCH FULL;
 
 
 --
@@ -834,7 +834,7 @@ ALTER TABLE ONLY interaction_claims
 -- Name: fk_gene_interaction_claims_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY inter_gene_interaction_claims
+ALTER TABLE ONLY gene_gene_interaction_claims
     ADD CONSTRAINT fk_gene_interaction_claims_gene FOREIGN KEY (gene_id) REFERENCES genes(id) MATCH FULL;
 
 
@@ -842,7 +842,7 @@ ALTER TABLE ONLY inter_gene_interaction_claims
 -- Name: fk_gene_interaction_claims_interacting_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY inter_gene_interaction_claims
+ALTER TABLE ONLY gene_gene_interaction_claims
     ADD CONSTRAINT fk_gene_interaction_claims_interacting_gene FOREIGN KEY (interacting_gene_id) REFERENCES genes(id) MATCH FULL;
 
 
@@ -850,7 +850,7 @@ ALTER TABLE ONLY inter_gene_interaction_claims
 -- Name: fk_gene_interaction_claims_sources; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY inter_gene_interaction_claims
+ALTER TABLE ONLY gene_gene_interaction_claims
     ADD CONSTRAINT fk_gene_interaction_claims_sources FOREIGN KEY (source_id) REFERENCES sources(id) MATCH FULL;
 
 
