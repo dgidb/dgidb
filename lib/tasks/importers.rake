@@ -60,5 +60,11 @@ namespace :dgidb do
     task :ttd, [:ttd_path] => :environment do |t, args| 
       Genome::Importers::TTD.run(args[:ttd_path])
     end
+
+    desc 'import Entrez gene pathway information from a TSV file'
+    task :entrez_pathway, [:tsv_path] => :environment do |t, args|
+      Genome::Importers::EntrezGenePathway::EntrezGenePathwayImporter.new(args[:tsv_path])
+        .import!
+    end
   end
 end
