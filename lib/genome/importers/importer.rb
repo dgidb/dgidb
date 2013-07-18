@@ -2,9 +2,9 @@
 module Genome
   module Importers
     class Importer
-      def initialize(source_info)
+      def initialize(source_info, existing_source = nil)
         entity_names.each { |entity| instance_variable_set("@#{entity}", {}) }
-        @source = create_source(source_info)
+        @source = existing_source || create_source(source_info)
       end
 
       def store
@@ -53,14 +53,18 @@ module Genome
       end
 
       def entity_names
-        ['gene_claims',
+        [
+          'gene_claims',
           'gene_claim_aliases',
           'gene_claim_attributes',
+          'gene_gene_interaction_claims',
+          'gene_gene_interaction_claim_attributes',
           'drug_claims',
           'drug_claim_aliases',
           'drug_claim_attributes',
           'interaction_claims',
-          'interaction_claim_attributes']
+          'interaction_claim_attributes'
+        ]
       end
 
       def create_models_from_hashes(entity_name)
