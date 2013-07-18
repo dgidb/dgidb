@@ -2,7 +2,7 @@ module Genome
   module Importers
     class DelimitedRow
       def initialize(row, row_delimiter = "\t")
-        @row = row.split(row_delimiter)
+        @row = row.split(row_delimiter, -1)
         if @row.size != self.class.attributes.keys.size
           raise 'Given row does not match specified attributes'
         end
