@@ -7,10 +7,23 @@ class InteractionClaimsController < ApplicationController
 
   def interaction_search_results
     @search_interactions_active = 'active'
-    start_time = Time.now
     combine_input_genes(params)
-    validate_interaction_request(params)
+    perform_interaction_search
+  end
 
+  def interactions_for_related_genes
+    combine_input_genes(params)
+    related_genes = LookupRelatedGenes.find(params[:gene_names])
+    params[:gene_names] = related_genes.flat_map(&:gene_gene_interaction_claims)
+      .map { |ic| ic.interacting_gene.name }
+    perform_interaction_search
+    render :interaction_search_results
+  end
+
+  private
+  def perform_interaction_search
+    start_time = Time.now
+    validate_interaction_request(params)
     search_results = LookupInteractions.find(params)
     @search_results = InteractionSearchResultsPresenter.new(search_results, start_time)
   end

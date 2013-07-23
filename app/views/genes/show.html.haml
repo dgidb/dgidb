@@ -12,6 +12,9 @@
   %a{class: ['btn', 'btn-success'], href: "/categories_search_results?genes=#{@title}"}
     =icon('search', class: 'icon-white')
     =" categories for #{@title}"
+  %a{class: ['btn', 'btn-success'], href: "/interactions_for_related_genes?genes=#{@title}"}
+    =icon('search', class: 'icon-white')
+    =" interactions for genes related to #{@title}"
   %p
   %p
     Hit the buttons above to obtain drug-gene interaction or category views for this gene.
