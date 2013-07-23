@@ -26,6 +26,11 @@ class ServicesV1Controller < ApplicationController
     )
   end
 
+  def related_genes
+    combine_input_genes(params)
+    @genes = LookupRelatedGenes.find(params[:gene_names])
+  end
+
   def interactions
     combine_input_genes(params)
     validate_interaction_request(params)
