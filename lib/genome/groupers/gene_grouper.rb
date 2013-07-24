@@ -77,7 +77,7 @@ module Genome
             gene.gene_claims << gene_claim unless gene.gene_claims.include?(gene_claim)
             gene.save
           end
-          puts "Completed #{current} out of #{total} gene claims. (#{current.to_f/total.to_f*100.0}%)" if rand(100) < 10
+          puts "Completed #{current} out of #{total} gene claims. (#{current.to_f/total.to_f*100.0}%)" if rand(100) < 2
         end
       end
     end

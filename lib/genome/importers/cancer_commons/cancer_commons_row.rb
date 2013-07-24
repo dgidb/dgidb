@@ -11,7 +11,7 @@ module Genome
         attribute :source_reported_drug_name
         attribute :drug_trade_name
         attribute :drug_development_name
-        attribute :primary_drug_name
+        attribute :primary_drug_name, String, parser: ->(x) { x.strip.upcase }
         attribute :drug_class
         attribute :interaction_type
         attribute :pharmaceutical_developer
