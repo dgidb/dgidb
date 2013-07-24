@@ -11,6 +11,10 @@ class InteractionSearchResultPresenter
     @interaction_claim.source.source_db_name
   end
 
+  def source_db_version
+    @interaction_claim.source.source_db_version
+  end
+
   def source_db_url
     @interaction_claim.source.site_url
   end

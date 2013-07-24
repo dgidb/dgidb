@@ -3,11 +3,11 @@ module InteractionResultSortOrder
     case sortval
     when 'MyCancerGenome'
       1
-    when 'TALC'
-      2
-    when 'TEND'
-      3
     when 'CancerCommons'
+      2
+    when 'TALC'
+      3
+    when 'TEND'
       4
     when 'PharmGKB'
       5

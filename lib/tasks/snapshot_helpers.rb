@@ -45,7 +45,7 @@ module SnapshotHelpers
   end
 
   def update_data_submodule
-    system_or_die("git submodule update data")
+    system_or_die("git submodule update --init data")
   end
 
   private

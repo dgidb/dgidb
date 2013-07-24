@@ -18,9 +18,9 @@ module Genome
       def self.run(tsv_path)
         TSVImporter.import tsv_path, CancerCommonsRow, source_info do
           interaction known_action_type: 'unknown' do
-            gene :primary_gene_name, nomenclature: 'Gene Target Symbol' do
+            gene :primary_gene_name, nomenclature: 'Gene Target Symbol', transform: ->(x) { x.upcase } do
               name :entrez_gene_id, nomenclature: 'Entrez Gene ID'
-              names :reported_gene_names, nomenclature: 'CancerCommons Reported Gene Name'
+              attribute :reported_gene_names, name: 'CancerCommons Reported Gene Name'
             end
 
             drug :primary_drug_name, nomenclature: 'Primary Drug Name', primary_name: :primary_drug_name do

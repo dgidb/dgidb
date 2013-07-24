@@ -49,7 +49,11 @@ module Genome
       end
 
       def self.add_members
+        total = DataModel::GeneClaim.count
+        current = 0
+        puts "Starting to process #{total} gene claims"
         DataModel::GeneClaim.all.each do |gene_claim|
+          current += 1
           next if gene_claim.genes.any?
           indirect_groups = Hash.new { |h, k| h[k] = 0 }
           direct_groups = Hash.new { |h, k| h[k] = 0 }
@@ -73,6 +77,7 @@ module Genome
             gene.gene_claims << gene_claim unless gene.gene_claims.include?(gene_claim)
             gene.save
           end
+          puts "Completed #{current} out of #{total} gene claims. (#{current.to_f/total.to_f*100.0}%)" if rand(100) < 2
         end
       end
     end

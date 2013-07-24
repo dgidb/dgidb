@@ -1,4 +1,4 @@
-interaction_search_results:
+interaction_search_results: &interaction_results
   title: DGIdb - Interaction Search Results
   title_main: Interaction Search Results
   title_small: drug interactions for your genes
@@ -59,3 +59,7 @@ interaction_search_results:
   search_results_by_source_flag: >
     Specific drug-gene interactions are displayed as (‘drug name’ and ‘gene name’ pairs). The following columns indicate which source(s) support each 
     interaction claim involving the drug and gene.
+interactions_for_related_genes:
+  << : *interaction_results
+  title_main: Interactions For Related Genes
+  title_small: drug interactions for genes related to your gene

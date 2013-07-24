@@ -5,13 +5,13 @@ module Genome
       class CancerCommonsRow < Genome::Importers::DelimitedRow
         attribute :primary_gene_name
         attribute :entrez_gene_id
-        attribute :reported_gene_names, Array
+        attribute :reported_gene_names
         attribute :pubchem_drug_id
         attribute :pubchem_drug_name
         attribute :source_reported_drug_name
         attribute :drug_trade_name
         attribute :drug_development_name
-        attribute :primary_drug_name
+        attribute :primary_drug_name, String, parser: ->(x) { x.strip.upcase }
         attribute :drug_class
         attribute :interaction_type
         attribute :pharmaceutical_developer
