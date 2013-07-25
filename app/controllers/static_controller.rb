@@ -2,6 +2,7 @@ class StaticController < ApplicationController
   before_filter :set_active
 
   def search_categories
+    @current_sources = DataModel::Source.all_sources
     @sources         = DataModel::Source.potentially_druggable_source_names
     @gene_categories = DataModel::GeneClaimCategory.all_category_names
     @source_trust_levels = DataModel::SourceTrustLevel.all_trust_levels
@@ -9,6 +10,7 @@ class StaticController < ApplicationController
 
   def search_interactions
     prepare_available_filter_actions
+    @current_sources = DataModel::Source.all_sources
   end
 
   def news

@@ -7,8 +7,8 @@
       =tx "title_small"
       %a(href="/faq#difference")
         =icon('question-sign')
-        
-.container-fluid
+
+.container-fluid.span8
   %form.form-horizontal(action="categories_search_results" method="post" enctype="multipart/form-data")
     %fieldset
       .control-group
@@ -45,6 +45,7 @@
           =icon('search', class: 'icon-white')
           Find Gene Categories
 
+=render partial: 'all_sources', locals: { sources: @current_sources }
 =render partial: 'shared/loading_modal', locals: {title: "Searching Druggable Gene Categories..."}
 
 =javascript_include_tag 'jquery-ui-1.8.21.custom.min'

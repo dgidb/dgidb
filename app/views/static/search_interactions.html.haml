@@ -8,7 +8,7 @@
       %a(href="/faq#goal")
         =icon('question-sign')
 
-.container-fluid
+.container-fluid.span8
   %form.form-horizontal(action="interaction_search_results" method="post" enctype="multipart/form-data")
     %fieldset
       .control-group
@@ -49,7 +49,7 @@
         %button.btn.btn-success(type="submit" id='search-btn')
           =icon('search', class: 'icon-white')
           Find Drug Interactions
-
+=render partial: 'all_sources', locals: { sources: @current_sources }
 =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
 
 =javascript_include_tag 'jquery-ui-1.8.21.custom.min'
