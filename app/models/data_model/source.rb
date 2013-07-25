@@ -14,6 +14,11 @@ module DataModel
     cache_query :potentially_druggable_source_names, :potentially_druggable_source_names
     cache_query :source_names_with_gene_claims, :source_names_with_gene_claims
     cache_query :source_names_with_category_information, :source_names_with_category_information
+    cache_query :all_sources, :all_sources
+
+    def self.all_sources
+      all.sort_by { |s| s.full_name.upcase }
+    end
 
     def self.potentially_druggable_source_names
       where(source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE)

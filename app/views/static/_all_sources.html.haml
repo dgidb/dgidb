@@ -1,0 +1,11 @@
+.container.offset10.span6
+  .well
+    %h4 Current data sources:
+    %ul
+      -sources.each do |s|
+        %li
+          = link_to(s.full_name, source_path(s.source_db_name))
+          = "Version: #{s.source_db_version}"
+
+
+

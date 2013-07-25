@@ -1,47 +1,60 @@
-# Install dependencies (works on Ubuntu Precise):
+#Dvelopment installation for Ubunutu 12.04 LTS
+
+#set locale - this section is probably only needed if you're using the vagrant precise64 box
+#and will need to happen before you install postgres
+export LANGUAGE="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+#then run:
+sudo locale-gen en_US.UTF-8
+sudo dpkg-reconfigure locales
+
+#install deps
 sudo apt-get update
-sudo apt-get install git ruby1.9.1  ruby1.9.1-dev  rubygems1.9.1  irb1.9.1  ri1.9.1  rdoc1.9.1  build-essential  apache2  libopenssl-ruby1.9.1  libssl-dev  zlib1g-dev  libcurl4-openssl-dev  apache2-prefork-dev  libapr1-dev  libaprutil1-dev
-sudo apt-get install memcached postgresql postgresql-contrib libpq-dev libxslt-dev libxml2-dev
+sudo apt-get install postgresql postgresql-contrib libpq-dev libxslt-dev libxml2-dev git build-essential libssl-dev zlib1g-dev libcurl4-openssl-dev nodejs libreadline-dev
 
-# Install Gems:
-sudo /usr/bin/gem1.9.1 install bundler --no-ri --no-rdoc
-sudo /usr/bin/gem1.9.1 install rails --no-ri --no-rdoc    
-/usr/bin/ruby1.9.1 /usr/local/bin/bundle install
+#install rbenv
+git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+exec $SHELL
 
-# Either switch to Ruby 1.9.1, or plan to use full paths _everywhere_:
-#NOTE: Some enviroments need to stay on 1.8 so only do this if you know you can.
-    # choose ruby 1.9.1
-    sudo update-alternatives --config ruby
+#install ruby-build
+mkdir ~/.rbenv/plugins
+git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+exec $SHELL
 
-    # choose gem 1.9.1 (gem 1.8.11 is /usr/bin/gem1.9.1 because it works with 1.9.1)
-    sudo update-alternatives --config gem
+#install ruby and bundler
+rbenv install 2.0.0-p247
+rbenv rehash
 
-# Setup the database:
-sudo -u postgres /usr/bin/createuser -A -D -R -E dgidb 
-sudo -u postgres /usr/bin/psql postgres -tAc "ALTER USER \"dgidb\" WITH PASSWORD 'changeme'"
-sudo -u postgres /usr/bin/createdb -T template0 -O dgidb dgidb 
-sudo -u postgres /usr/bin/psql -c "GRANT ALL PRIVILEGES ON database dgidb TO \"dgidb\";"
-/usr/bin/ruby1.9.1 RAILS_ENV=production /usr/local/bin/bundle exec rake -f Rakefile db:schema:load 
-sudo -u postgres psql -d dgidb -f db/data.sql 
+#set your global ruby
+rbenv global 2.0.0-p247
+gem install bundler
+rbenv rehash
 
-# Start the server for testing:
-/usr/bin/ruby1.9.1 /usr/local/bin/rails s
+#set up your username as a local postgres superuser
+sudo -u postgres createuser --superuser `logname`
+sudo vi /etc/postgresql/9.1/main/pg_hba.conf
+#in the document you just opened, change this line:
+#host    all             all             127.0.0.1/32            md5
+#to look like this:
+#host    all             all             127.0.0.1/32            trust
+#this will make it so a password isn't needed for connections from localhost
+#if you prefer, you can assign a password to your user and fill
+#it in the config/database.yml file in the development section
+#restart postgres
+sudo /etc/init.d/postgresql restart
 
-# To run in production: 
-cd ..
-sudo mv dgi-db /var/www/
-sudo chown -R www-data /var/www/dgi-db/
-sudo /usr/bin/gem1.9.1 install passenger
-sudo passenger-install-apache2-module --auto
-sudo cp passenger-config /etc/apache2/conf.d/passenger
-sudo cp apache.config /etc/apache2/sites-available/dgidb
-## edit /etc/apache2/sites-available/dgidb to use your server name
-sudo ln -s /etc/apache2/sites-{available,enabled}/dgidb-apache.conf
-## edit config/database.yml to have a different production password and also set it on the server as follows
-sudo -u postgres /usr/bin/psql postgres -tAc "ALTER USER \"dgidb\" WITH PASSWORD 'changeme'"
-sudo /etc/init.d/apache2 restart
+#setup dgidb
+git clone https://github.com/genome/dgi-db.git dgi-db
+cd dgi-db
+bundle install
+rbenv rehash
+rake dgidb:load_local
 
-# Do this if you make changes to the production installation
-# sudo -u www-data touch /var/www/dgi-db/tmp/restart.txt
+#start the development server
+rails s
 
+#visit localhost:3000 to view the site
 

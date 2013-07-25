@@ -14,7 +14,7 @@ faq:
     - question: How do I cite DGIdb?
       anchor: cite
       answer: >
-        A manuscript describing DGIdb is currently under preparation.
+        A manuscript describing DGIdb has been submitted for publication and is currently under peer review...
         Once accepted for publication, citation details will appear here.
         Until then, please simply cite the URL for dgidb.org.
 
@@ -104,12 +104,6 @@ faq:
         tables in a PDF document). DGIdb is meant to be used in combination with the original sources of raw data. Wherever possible we link
         out to those original sources.
 
-    - question: How is DGIdb implemented?
-      anchor: implementation
-      answer: >
-        The web interface uses Ruby on Rails and Twitter bootstrap. The backend is a Postgres database. The importers that process data
-        from each source and populate this database are written in object oriented Perl.
-
     - question: I found a gene in a category that does not really belong there or a drug-gene interaction that appears false.  Should I report it?
       anchor: belonging
       answer: >  
@@ -125,4 +119,43 @@ faq:
         sequence similarity etc. may result in some false positives. More stringent lists can be obtained by limiting to a particular source(s) (e.g. dGene only)
         or by requiring that multiple sources agree.
 
+    - question: What does the 'interactions for genes related to $GENE' button on the genes pages do?
+      anchor: related
+      answer: >
+        This button will submit a search for drug-gene interactions of genes that have direct gene-gene interactions with the current gene.
+        For example, say you search for drugs that interact with the gene MPL. This search returns no drug interactions, but there are drugs that 
+        inhibit other genes that form complexes with or are in the same pathway as MPL.  This button search for interactions with all of these genes.
+        Gene-gene interaction information is obtained from <a href="http://www.ncbi.nlm.nih.gov/books/NBK3841/#EntrezGene.Interactions_2">Entrez Gene Interactions</a>. 
+        Entrez obtains these interactions from <a href="http://bind.ca">BIND</a>, <a href="http://thebiogrid.org">BioGRID</a>, <a href="http://www.hprd.org">HPRD</a>, etc.
+
+    - question: How is DGIdb implemented?
+      anchor: implementation
+      answer: >
+        The web interface uses Ruby on Rails and Twitter bootstrap. The backend is a Postgres database. The importers that process data
+        from each source and populate this database are written in object oriented Perl.
+
+    - question: How is versioning handled in DGIdb?
+      anchor: versioning
+      answer: >
+        This question has several answers.  The footer of every page in the web interface contains a version stamp that describes versions for various components.
+        The interface code itself is meticulously tracked in <a href="https://github.com/genome/dgi-db">dgi-db at github</a>. 
+        The source stamp contains a SHA-1 tag that corresponds to the version of code being run.
+        Each input source of data we import may itself have a version. If so, we maintain this info and display it on the <a href="http://dgidb.genome.wustl.edu/sources">source summary view</a>.
+        If an input source does not have concept of versioning we note the date of import instead.
+        Source version are included in TSV export results for each drug-gene interaction found.
+
+    - question: What does the version stamp at the foot of each view mean?
+      anchor: stamp
+      answer: >
+        Its currently generated whenever we perform a rake task to create a new data snapshot for DGIdb.
+        The version number corresponds to a tag in git and eventually the debian package we use to push a development version of DGIdb to the publicly facing server.. 
+        The SHA-1 is the commit id from when the snapshot was generated, as is the datestamp.
+
+    - question: I think I have identified a bug in the DGIdb code. What should I do?
+      anchor: bugs
+      answer: >
+        Please let us know. For minor issues, use the feedback form in the bottom right of views at dgidb.org.
+        If you question is more complicated, please ask it publicly on <a href="http://www.biostars.org/">BioStars</a>. 
+        Finally, the <a href="https://github.com/genome/dgi-db">code for DGIdb</a> is open-source, 
+        if you are the curious/ambitious type, feel free to investigate a solution and let us know what you find.
 
