@@ -46,7 +46,8 @@ module Genome
       def self.antineoplastic_source_names
         [
           'TALC',
-          'MyCancerGenome'
+          'MyCancerGenome',
+          'CancerCommons'
         ]
       end
     end
