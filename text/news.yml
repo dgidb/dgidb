@@ -12,7 +12,7 @@ news:
       date: February 22, 2013
     - headline: MyCancerGenome is added as a source for DGIdb
       article: > 
-        Highly curated drug-gene interactions have been mined from <a href="http://www.mycancergenome.org/">MyCancerGenome</a> and incorporated 
+        Highly curated drug-gene interactions have been mined from <a href="http://www.mycancergenome.org/">My Cancer Genome</a> and incorporated 
         into DGIdb. My Cancer Genome is a freely available online personalized cancer medicine resource and decision-making tool for physicians, 
         patients, caregivers and researchers.  From this resource we obtained 835 drug-gene interactions involving 169 genes and 226 drugs.
       date: April 1, 2013
@@ -30,3 +30,15 @@ news:
         Customized browsing and export of druggable gene categories by source is now available.
         Also included in this release are updates to many Ruby TSV source importers, better coverage in the code test suite, and various minor bug fixes.
       date: May 14, 2013
+    - headline: Cancer Commons is added as a source for DGIdb
+      article: >
+        Highly curated drug-gene interactions have been mined from <a href="http://www.cancercommons.org/">Cancer Commons</a> and incorporated 
+        into DGIdb. Cancer Commons is a patient-centered nonprofit uniting patients, clinicians, and researchers in rapid learning communities.
+        From this resource we obtained 109 drug-gene interactions involving 48 genes and 80 drugs.
+      date: July 25, 2013
+    - headline: Updated version of the interface is released
+      article: >
+        This version of DGIdb incorporates improvements in versioning, the ability to perform drug interaction searches against the gene-gene interactors of a specific gene,
+        and additional minor fixes and improvements.
+      date: July 30, 2013
+
