@@ -36,6 +36,11 @@ namespace :dgidb do
       Genome::Importers::CancerCommons.run(args[:tsv_path])
     end
 
+    desc 'import ClearityFoundation from a TSV file'
+    task :clearity_foundation, [:tsv_path] => :environment do |t, args|
+      Genome::Importers::ClearityFoundation.run(args[:tsv_path])
+    end
+
     desc 'import PharmGKB from a TSV file'
     task :pharmgkb, [:pharmgkb_tsv_path] => :environment do |t, args|
       Genome::Importers::Pharmgkb.run(args[:pharmgkb_tsv_path])    
