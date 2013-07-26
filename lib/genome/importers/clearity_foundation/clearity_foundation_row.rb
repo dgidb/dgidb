@@ -2,7 +2,7 @@ require 'genome/importers/delimited_row'
 module Genome
   module Importers
     module ClearityFoundation
-      class ClearityFoundationRow < Genome::Importers::DelimitedRow
+      class ClearityRow < Genome::Importers::DelimitedRow
 	attribute :gene_name
 	attribute :entrez_gene_id
 	attribute :interaction_mechanism
