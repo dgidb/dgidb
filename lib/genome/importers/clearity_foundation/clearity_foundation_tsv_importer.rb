@@ -7,8 +7,8 @@ module Genome
 	   base_url: 'https://www.clearityfoundation.org/healthcare-pros/',
 	   site_url: 'https://www.clearityfoundation.org/',
            citation: 'https://www.clearityfoundation.org/', 
-	   source_db_version: '26-July-2013',
-  	   source_type_id: DataModel::SourceType.INTERACTION,
+	   source_db_version: '26-July-2013'
+	   source_type_id: DataModel::SourceType.INTERACTION,
 	   source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
 	   source_db_name: 'ClearityFoundation',
 	   full_name: 'Clearity Foundation',
