@@ -1,58 +1,59 @@
-%div(class="item-title")
-  %div(class="item-name")
-    %h3(class="item-source")
-      =succeed ':' do
-        =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
-      %span(class="item-id")
-        =ext_link_to gene_claim.name, gene_claim.original_data_source_url
-  %div(class="item-corner")
-    %ul(class="attribute-list")
-      -# %li
-      -#   %strong
-      -#     ID:
-      -#   =ext_link_to gene_claim.name, gene_claim.original_data_source_url
-      -#   =surround '(', ')' do
-      -#     =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
-      %li
-        %strong
-          Version:
-        =gene_claim.source.source_db_version
+- cache gene_claim do
+  %div(class="item-title")
+    %div(class="item-name")
+      %h3(class="item-source")
+        =succeed ':' do
+          =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
+        %span(class="item-id")
+          =ext_link_to gene_claim.name, gene_claim.original_data_source_url
+    %div(class="item-corner")
+      %ul(class="attribute-list")
+        -# %li
+        -#   %strong
+        -#     ID:
+        -#   =ext_link_to gene_claim.name, gene_claim.original_data_source_url
+        -#   =surround '(', ')' do
+        -#     =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
+        %li
+          %strong
+            Version:
+          =gene_claim.source.source_db_version
 
-%div(class="item-content")
-  %div(class="cell category")
-    %div(class="item-panel")
-      %h4
-        Alternate Names
-      %table(class="table table-condensed table-striped")
-        -gene_claim.gene_claim_aliases.each do |alt_name|
-          %tr
-            %td
-              -if(gene_claim.source.source_db_name == 'GO')
-                =ext_link_to alt_name.alias, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alias
-              -else
-                =alt_name.alias
-            %td=alt_name.nomenclature
-
-  %div(class="cell category")
-    %div(class="item-panel")
-      %h4
-        Metadata
-      %table.table.table-condensed.table-striped
-        -if(gene_claim.gene_claim_attributes.length > 0)
-          -gene_claim.gene_claim_attributes.each do |category|
+  %div(class="item-content")
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Alternate Names
+        %table(class="table table-condensed table-striped")
+          -gene_claim.gene_claim_aliases.each do |alt_name|
             %tr
-              %td=category.name
-              %td=category.value
-        -else
-          %tr
-            %td
-              None found.
+              %td
+                -if(gene_claim.source.source_db_name == 'GO')
+                  =ext_link_to alt_name.alias, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alias
+                -else
+                  =alt_name.alias
+              %td=alt_name.nomenclature
 
-  %div(class="cell category")
-    %div(class="item-panel")
-      %h4
-        Citations
-      -if gene_claim.source.citation =~ /PMID: (\d+)\.?$/
-        %p=[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
-      -else
-        %p=gene_claim.source.citation
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Metadata
+        %table.table.table-condensed.table-striped
+          -if(gene_claim.gene_claim_attributes.length > 0)
+            -gene_claim.gene_claim_attributes.each do |category|
+              %tr
+                %td=category.name
+                %td=category.value
+          -else
+            %tr
+              %td
+                None found.
+
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Citations
+        -if gene_claim.source.citation =~ /PMID: (\d+)\.?$/
+          %p=[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
+        -else
+          %p=gene_claim.source.citation

@@ -8,47 +8,48 @@
       %a(href="/faq#difference")
         =icon('question-sign')
 
-.container-fluid.span8
-  %form.form-horizontal(action="categories_search_results" method="post" enctype="multipart/form-data")
-    %fieldset
-      .control-group
-        %label.control-label(id='genes_flag')
-          Genes
-          %i.icon-flag.tip{title: tx("genes_flag")}
-          %a(href="/faq#types") 
-            =icon('question-sign')
-        .controls
-          %textarea#genes(name='genes' rows="13")
-      .control-group#loadingBar
-        %label(style='display: none')
-        .controls
-          .progress.progress-striped.active.span2
-            .bar(style='width: 100%') Loading Autocomplete
-      .control-group
-        .controls
-          %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace Genes with Demo List
-          %button.btn.btn-small.btn-danger#clear(type='button') Clear All Genes
-      #source-control
-        =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
-          flag_text_key: 'sources_flag', select_tag_name: 'sources', collection: @sources,
-          name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
-      #source-trust-level
-        =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
-          flag_text_key: 'source_trust_level_flag', select_tag_name: 'source_trust_levels', collection: @source_trust_levels,
-          name_meth: 'to_s', value_meth: 'to_s', tour_id: 'source_trust_level_tour' }
-      #gene-category-control
-        =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
-          flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories,
-          name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_categories_tour' }
-      .form-actions
-        %button.btn.btn-success(type="submit" id='search-btn')
-          =icon('search', class: 'icon-white')
-          Find Gene Categories
+- cache do
+  .container-fluid.span8
+    %form.form-horizontal(action="categories_search_results" method="post" enctype="multipart/form-data")
+      %fieldset
+        .control-group
+          %label.control-label(id='genes_flag')
+            Genes
+            %i.icon-flag.tip{title: tx("genes_flag")}
+            %a(href="/faq#types") 
+              =icon('question-sign')
+          .controls
+            %textarea#genes(name='genes' rows="13")
+        .control-group#loadingBar
+          %label(style='display: none')
+          .controls
+            .progress.progress-striped.active.span2
+              .bar(style='width: 100%') Loading Autocomplete
+        .control-group
+          .controls
+            %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace Genes with Demo List
+            %button.btn.btn-small.btn-danger#clear(type='button') Clear All Genes
+        #source-control
+          =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
+            flag_text_key: 'sources_flag', select_tag_name: 'sources', collection: @sources,
+            name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
+        #source-trust-level
+          =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
+            flag_text_key: 'source_trust_level_flag', select_tag_name: 'source_trust_levels', collection: @source_trust_levels,
+            name_meth: 'to_s', value_meth: 'to_s', tour_id: 'source_trust_level_tour' }
+        #gene-category-control
+          =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
+            flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories,
+            name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_categories_tour' }
+        .form-actions
+          %button.btn.btn-success(type="submit" id='search-btn')
+            =icon('search', class: 'icon-white')
+            Find Gene Categories
 
-=render partial: 'all_sources', locals: { sources: @current_sources }
-=render partial: 'shared/loading_modal', locals: {title: "Searching Druggable Gene Categories..."}
+  =render partial: 'all_sources', locals: { sources: @current_sources }
+  =render partial: 'shared/loading_modal', locals: {title: "Searching Druggable Gene Categories..."}
 
-=javascript_include_tag 'jquery-ui-1.8.21.custom.min'
-=javascript_include_tag 'jquery.multiselect.min'
-=javascript_include_tag 'jquery.multiselect.filter.min'
-=javascript_include_tag 'search_categories'
+  =javascript_include_tag 'jquery-ui-1.8.21.custom.min'
+  =javascript_include_tag 'jquery.multiselect.min'
+  =javascript_include_tag 'jquery.multiselect.filter.min'
+  =javascript_include_tag 'search_categories'

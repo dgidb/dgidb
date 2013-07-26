@@ -6,9 +6,10 @@
       =@gene_claim.title
     %small 
       ="gene data from #{@gene_claim.source.source_db_name}" 
-.container-fluid
-  .row-fluid
-    .span12
-      .well
-        %h3 Gene Record
-        =render partial: 'gene_claims/gene_claim', locals: {gene_claim: @gene_claim}
+- cache @gene_claim do
+  .container-fluid
+    .row-fluid
+      .span12
+        .well
+          %h3 Gene Record
+          =render partial: 'gene_claims/gene_claim', locals: {gene_claim: @gene_claim}

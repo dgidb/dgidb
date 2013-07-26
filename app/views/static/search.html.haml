@@ -5,18 +5,19 @@
     =tx "title_main"
     %small=tx "title_small"
 
-.container-fluid
-  %form.form-horizontal(action="search_results" method="post")
-    .control-group
-      %label.control-label
-        Search term
-        %i.icon-flag.tip{title: tx("input_flag")}
-      .controls
-        %input.search-query(id='search_term' type='search' name='search_term')
-    .form-actions
-      %button.btn.btn-success(type="submit")Search
+- cache do
+  .container-fluid
+    %form.form-horizontal(action="search_results" method="post")
+      .control-group
+        %label.control-label
+          Search term
+          %i.icon-flag.tip{title: tx("input_flag")}
+        .controls
+          %input.search-query(id='search_term' type='search' name='search_term')
+      .form-actions
+        %button.btn.btn-success(type="submit")Search
 
 
-=javascript_include_tag 'jquery-ui-1.8.21.custom.min.js'
-=javascript_include_tag 'jquery.multiselect.min'
-=javascript_include_tag 'jquery.multiselect.filter.min'
+  =javascript_include_tag 'jquery-ui-1.8.21.custom.min.js'
+  =javascript_include_tag 'jquery.multiselect.min'
+  =javascript_include_tag 'jquery.multiselect.filter.min'

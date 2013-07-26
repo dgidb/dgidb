@@ -6,43 +6,44 @@
     %small
       ="drug data from #{@drug_claim.source.source_db_name}"
 
-.container-fluid
-  .row-fluid
-    .span12
-      .well
-        %h3 Drug Record
-        %p
-          %b Reported Drug Name:
-          =ext_link_to(@drug_claim.drug_claim_name, @drug_claim.original_data_source_url)
-        %p
-          %b Source Database Name:
-          =link_to @drug_claim.source.source_db_name, source_path(@drug_claim.source.source_db_name)
-        %p
-          %b Source Database Version:
-          =@drug_claim.source.source_db_version
-        %p
-          %b Alternate Names:
-          %table.table.table-striped
-            -@drug_claim.drug_claim_aliases.each do |alt_name|
-              %tr
-                %td=alt_name.alias
-                %td=alt_name.nomenclature
-        %p
-          %b Meta-data:
-          %table.table.table-striped
-            -@drug_claim.drug_claim_attributes.each do |attr|
-              %tr
-                %td=attr.name
-                %td=attr.value
-        %p
-          %b Citation:
-          =@drug_claim.source.citation
+- cache @drug_claim do
+  .container-fluid
+    .row-fluid
+      .span12
+        .well
+          %h3 Drug Record
+          %p
+            %b Reported Drug Name:
+            =ext_link_to(@drug_claim.drug_claim_name, @drug_claim.original_data_source_url)
+          %p
+            %b Source Database Name:
+            =link_to @drug_claim.source.source_db_name, source_path(@drug_claim.source.source_db_name)
+          %p
+            %b Source Database Version:
+            =@drug_claim.source.source_db_version
+          %p
+            %b Alternate Names:
+            %table.table.table-striped
+              -@drug_claim.drug_claim_aliases.each do |alt_name|
+                %tr
+                  %td=alt_name.alias
+                  %td=alt_name.nomenclature
+          %p
+            %b Meta-data:
+            %table.table.table-striped
+              -@drug_claim.drug_claim_attributes.each do |attr|
+                %tr
+                  %td=attr.name
+                  %td=attr.value
+          %p
+            %b Citation:
+            =@drug_claim.source.citation
 
-.container-fluid
-  .row-fluid
-    .span12
-      .well
-        %h3 Potential Drug Matches (by drug synonyms)
-        %span{id: "related_drugs"}
+  .container-fluid
+    .row-fluid
+      .span12
+        .well
+          %h3 Potential Drug Matches (by drug synonyms)
+          %span{id: "related_drugs"}
 
-=javascript_include_tag "related_drugs"
+  =javascript_include_tag "related_drugs"

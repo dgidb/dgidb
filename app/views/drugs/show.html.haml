@@ -5,17 +5,18 @@
       =@title
     %small data sources and alternate names 
 
-.container-fluid
-  .row-fluid#container
-    =render partial: 'drugs/drug', locals:{drug: @drug}
-  .row-fluid
-    .hero-unit
-      %h3 Potential Drug Matches (by drug synonyms)
-      %span{id: "related_drugs"}
+- cache @drug do
+  .container-fluid
+    .row-fluid#container
+      =render partial: 'drugs/drug', locals:{drug: @drug}
+    .row-fluid
+      .hero-unit
+        %h3 Potential Drug Matches (by drug synonyms)
+        %span{id: "related_drugs"}
 
-=javascript_include_tag "jquery.masonry.min"
-=javascript_include_tag "mason_items"
-=javascript_include_tag "jquery.dataTables.min"
-=javascript_include_tag "pagination_bootstrap"
-=javascript_include_tag "gene_groups"
-=javascript_include_tag "related_drugs"
+  =javascript_include_tag "jquery.masonry.min"
+  =javascript_include_tag "mason_items"
+  =javascript_include_tag "jquery.dataTables.min"
+  =javascript_include_tag "pagination_bootstrap"
+  =javascript_include_tag "gene_groups"
+  =javascript_include_tag "related_drugs"

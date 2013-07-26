@@ -5,17 +5,17 @@
   %h2
     =tx 'title_main'
     %small=tx 'title_small'
-
-.container-fluid
-  .row-fluid
-    .span12
-      .well=tx 'description'
-      .well
-        %dl
-          -to('questions').each do |q|
-            %dt
-              %a.anchor{ name: q['anchor'] }
-              =q['question']
-            %dd=q['answer'].html_safe
-            %br
+- cache do
+  .container-fluid
+    .row-fluid
+      .span12
+        .well=tx 'description'
+        .well
+          %dl
+            -to('questions').each do |q|
+              %dt
+                %a.anchor{ name: q['anchor'] }
+                =q['question']
+              %dd=q['answer'].html_safe
+              %br
 

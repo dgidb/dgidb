@@ -45,4 +45,8 @@ module ApplicationHelper
     content_tag(:span, '!', class: ['badge', 'badge-important']) if display_badge
   end
 
+  def cache_key_for_druggable_category(sources, category_name)
+    sources.hash.to_s + category_name
+  end
+
 end

@@ -5,24 +5,24 @@
   %h2
     =tx "title_main"
     %small=tx "title_small"
+- cache do
+  .container-fluid
+    .row-fluid
+      .span12
+        .well=tx "description"
+        .well
+          %ul(class="unstyled")
+            -to("links").each do |l|
+              %li
+                =dynamic_link_to(l["title"], l["url"])
+                %small=l["description"]
 
-.container-fluid
-  .row-fluid
-    .span12
-      .well=tx "description"
-      .well
-        %ul(class="unstyled")
-          -to("links").each do |l|
-            %li
-              =dynamic_link_to(l["title"], l["url"])
-              %small=l["description"]
-
-.container-fluid
-  .row-fluid
-    .span12
-      .well
-        %ul(class="unstyled")
-          -to("papers").each do |l|
-            %li
-              =dynamic_link_to(l["title"], l["url"])
-              %small=l["description"]
+  .container-fluid
+    .row-fluid
+      .span12
+        .well
+          %ul(class="unstyled")
+            -to("papers").each do |l|
+              %li
+                =dynamic_link_to(l["title"], l["url"])
+                %small=l["description"]

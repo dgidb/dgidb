@@ -5,18 +5,18 @@
   %h2
     =tx "title_main"
     %small=tx "title_small"
-
-.container-fluid
-  .row-fluid
-    .span12
-      .well=tx "description"
-      .well
-        %dl
-          -to("people").each do |p|
-            %dt=p["title"]
-            %dd=p["description"]
-            -if p["link"]
-              %dd=dynamic_link_to(p["link_title"], p["link"])
-            -if p["email"]
-              %dd=dynamic_link_to(p["email_title"], p["email"])
-            %br
+-cache do
+  .container-fluid
+    .row-fluid
+      .span12
+        .well=tx "description"
+        .well
+          %dl
+            -to("people").each do |p|
+              %dt=p["title"]
+              %dd=p["description"]
+              -if p["link"]
+                %dd=dynamic_link_to(p["link_title"], p["link"])
+              -if p["email"]
+                %dd=dynamic_link_to(p["email_title"], p["email"])
+              %br

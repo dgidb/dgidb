@@ -5,12 +5,12 @@
   %h2
     =tx "title_main"
     %small=tx "title_small"
-
-.container-fluid
-  .row-fluid
-    .span10
-      -to("posts").reverse_each do |q|
-        %p.lead=q['headline']
-        %em.small=q['date']
-        %p=q['article'].html_safe
-        %hr
+- cache do
+  .container-fluid
+    .row-fluid
+      .span10
+        -to("posts").reverse_each do |q|
+          %p.lead=q['headline']
+          %em.small=q['date']
+          %p=q['article'].html_safe
+          %hr
