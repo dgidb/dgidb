@@ -6,8 +6,8 @@ module Genome
 	 {
 	   base_url: 'https://www.clearityfoundation.org/healthcare-pros/',
 	   site_url: 'https://www.clearityfoundation.org/',
-           citation: 'INSERT-CITATION-HERE', 
-	   source_db_version: '2013'
+           citation: 'https://www.clearityfoundation.org/', 
+	   source_db_version: '26-July-2013'
   	   source_type_id: DataModel::SourceType.INTERACTION,
 	   source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
 	   source_db_name: 'ClearityFoundation',
@@ -23,7 +23,7 @@ module Genome
 		attribute :reported_gene_name, name: 'Clearity Reported Gene Name'		
 		end
 
-	      drug :drug_name, nomenclature: 'Primary Drug Name', primary_name: :primary_drug_name do 
+	      drug :drug_name, nomenclature: 'Primary Drug Name', primary_name: :drug_name do 
 		attribute :drug_class, name: 'Drug Class'
 		name :drug_trade_name, nomenclature: 'Drug Trade Name'
 		name :pubchem_id, nomenclature: 'PubChem Drug ID' 
