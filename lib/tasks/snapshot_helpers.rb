@@ -35,13 +35,13 @@ module SnapshotHelpers
     system_or_die("git tag -a v#{version_number} -m 'tag for v#{version_number}'")
   end
 
-  def in_git_pop
+  def in_git_stash
     pwd = Dir.pwd
-    system_or_die("git stash")
+    result = `git stash`
     yield
   ensure
     Dir.chdir(pwd)
-    system_or_die("git stash pop")
+    system_or_die('git stash pop') unless result =~ /No local changes/
   end
 
   def update_data_submodule
