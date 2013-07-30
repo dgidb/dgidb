@@ -9,7 +9,7 @@ gem 'pg'
 gem 'less-rails-bootstrap'
 gem 'nokogiri'
 gem 'haml'
-gem 'texticle', require: 'texticle/rails'
+gem 'textacular', require: 'textacular/rails'
 gem 'jquery-rails'
 gem 'therubyracer', '~> 0.11.1'
 gem 'libv8', '~> 3.11.8.3', :platform => :ruby
