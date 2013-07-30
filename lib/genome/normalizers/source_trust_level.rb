@@ -16,7 +16,8 @@ module Genome
             'dGene',
             'RussLampel',
             'HopkinsGroom',
-            'CancerCommons'
+            'CancerCommons',
+            'ClearityFoundation'
           ],
         'Non-curated' =>
           [
