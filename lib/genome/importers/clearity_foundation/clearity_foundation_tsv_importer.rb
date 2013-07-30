@@ -16,6 +16,7 @@ module Genome
       end
 
       def self.run(tsv_path)
+        blank_filter = ->(x) { x.blank? }
         TSVImporter.import tsv_path, ClearityRow, source_info do
           interaction known_action_type: 'unknown' do
             gene :gene_name, nomenclature: 'Gene Target Symbol', transform: ->(x) { x.upcase } do
@@ -25,7 +26,7 @@ module Genome
 
             drug :drug_name, nomenclature: 'Primary Drug Name', primary_name: :drug_name do
               attribute :drug_class, name: 'Drug Class'
-              name :drug_trade_name, nomenclature: 'Drug Trade Name'
+              name :drug_trade_name, nomenclature: 'Drug Trade Name', unless: blank_filter
               name :pubchem_id, nomenclature: 'PubChem Drug ID' 
               attribute :drug_subclass, name: 'Drug Classification'
               attribute :linked_class_info, name: 'Link to Clearity Drug Class Schematic'
