@@ -3,7 +3,7 @@ news:
   title_main: News
   title_small: latest news regarding DGIdb
   posts:
-    - headline: DGIdb beta is launched at AGBT
+    - headline: DGIdb beta is launched at AGBT 2013
       article: >
         The 14th annual Advances in Genome Biology and Technology (AGBT) meeting was held in Marco Island, Florida, on February 20-23, 2013. 
         A poster describing DGIdb was presented by Obi Griffith and results from DGIdb were described during a talk delivered by Malachi Griffith 
@@ -19,8 +19,8 @@ news:
     - headline: Updated version of the interface is released
       article: > 
         Many improvements and fixes have been incorporated into DGIdb.  
-        API access has been added along with detailed documentation and examples (see Help -> API Documentation). 
-        TSV export functionality has been improved.  
+        API access has been added along with detailed documentation and examples (see Help -> <a href="http://dgidb.genome.wustl.edu/api">API Documentation</a>). 
+        TSV export functionality has been improved.
         Results are now characterized by source trust level and results can now be filtered on this attribute.
         Extensive documentation was added throughout various views in the form of additional help flags.
       date: April 15, 2013
