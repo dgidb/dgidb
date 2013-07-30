@@ -49,4 +49,8 @@ module ApplicationHelper
     sources.hash.to_s + category_name
   end
 
+  def download_link(filename)
+    link_to("/downloads/#{filename}")
+  end
+
 end
