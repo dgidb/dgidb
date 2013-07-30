@@ -62,4 +62,4 @@ interaction_search_results: &interaction_results
 interactions_for_related_genes:
   << : *interaction_results
   title_main: Interactions For Related Genes
-  title_small: drug interactions for genes related to your gene
+  title_small: drug interactions for genes related to 

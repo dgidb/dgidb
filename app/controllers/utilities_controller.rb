@@ -13,7 +13,7 @@ class UtilitiesController < ApplicationController
   end
 
   def download_request_content
-    generate_tsv_headers(params[:filename] || 'dgidb_table_export.tsv')
+    generate_tsv_headers(params[:filename] || "dgidb_export_#{Date.today}.tsv")
     render text: CGI::unescape(params[:file_contents])
   end
 

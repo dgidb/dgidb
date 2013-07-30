@@ -6,6 +6,8 @@
     =tx "title_main"
     %small
       =tx "title_small"
+      - if @related_source_gene
+        = @related_source_gene
       %a(href="/faq#difference")
         =icon('question-sign')
 
