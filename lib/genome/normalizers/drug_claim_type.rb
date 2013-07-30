@@ -47,7 +47,8 @@ module Genome
         [
           'TALC',
           'MyCancerGenome',
-          'CancerCommons'
+          'CancerCommons',
+          'ClearityFoundation'
         ]
       end
     end
