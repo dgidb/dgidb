@@ -12,6 +12,7 @@ class InteractionClaimsController < ApplicationController
   end
 
   def interactions_for_related_genes
+    @related_source_gene = params[:genes]
     combine_input_genes(params)
     related_genes = LookupRelatedGenes.find(params[:gene_names])
     params[:gene_names] = related_genes.flat_map(&:gene_gene_interaction_claims)
