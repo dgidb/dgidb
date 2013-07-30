@@ -37,6 +37,10 @@ downloads:
       link: "http://dgidb.genome.wustl.edu/downloads/dGene_04-16-2013_2257.tsv"
       description: >
         TSV download of the latest version of the dGene database made available here at the request of the dGene creators.
+    - title: Clearity Foundation data
+      link: "http://dgidb.genome.wustl.edu/downloads/clearity_foundation.tsv"
+      description: >
+        TSV download of the latest version of the dGene database made available here at the request of the dGene creators.
     - title: DGIdb database dump
       link: "http://dgidb.genome.wustl.edu/downloads/data.sql"
       description: >
