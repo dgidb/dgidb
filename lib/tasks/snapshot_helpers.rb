@@ -48,6 +48,11 @@ module SnapshotHelpers
     system_or_die("git submodule update --init data")
   end
 
+  def download_data_dump(desination)
+    Dir.mkdir('data')
+    system_or_die("wget -O #{desination} http://dgidb.genome.wustl.edu/downloads/data.sql")
+  end
+
   private
   def system_or_die(syscall)
     puts syscall
