@@ -1,7 +1,7 @@
 require 'time'
 require 'fileutils'
 
-module SnapshotHelpers
+module Utils; module SnapshotHelpers
   def update_version(version_file, version_type)
     current_version, _ = parse_version_file(version_file)
     new_version = bump_version_number(current_version, version_type)
@@ -80,4 +80,4 @@ module SnapshotHelpers
     File.open(version_file, 'w') { |f| f.puts [new_version, Time.now, current_sha].join("\t") }
   end
 
-end
+end; end

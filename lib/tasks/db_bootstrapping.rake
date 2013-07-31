@@ -1,7 +1,7 @@
 require 'rbconfig'
-require_relative 'snapshot_helpers'
+require_relative '../utils/snapshot_helpers.rb'
 
-include SnapshotHelpers
+include Utils::SnapshotHelpers
 
 namespace :dgidb do
 
