@@ -21,6 +21,8 @@ gem 'xpath'
 gem 'jbuilder'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'feedback_popup', git: 'git://github.com/thecoffman/feedback_popup.git'
+gem 'lograge'
+gem "logstash-event"
 
 group :production do
   gem 'dalli'
