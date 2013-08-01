@@ -1,11 +1,17 @@
-.container.offset10.span6
-  .well
-    %h4 Current data sources:
-    %ul
-      -sources.each do |s|
-        %li
-          = link_to(s.full_name, source_path(s.source_db_name))
-          = "Version: #{s.source_db_version}"
+%h4 Current data sources:
+%table.table.table-bordered.table-condensed.table-striped.current-sources
+  %tr
+    %th.db-name
+      Name
+    %th.db-version
+      Version
+
+  -sources.each do |s|
+    %tr
+      %td.db-name
+        = link_to(s.full_name, source_path(s.source_db_name))
+      %td.db-version
+        = "#{s.source_db_version}"
 
 
 

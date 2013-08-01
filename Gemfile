@@ -10,7 +10,7 @@ gem 'less-rails-bootstrap'
 gem 'nokogiri'
 gem 'haml'
 gem 'textacular', require: 'textacular/rails'
-gem 'jquery-rails'
+gem 'jquery-rails', '2.1.4'
 gem 'therubyracer', '~> 0.11.1'
 gem 'libv8', '~> 3.11.8.3', :platform => :ruby
 gem 'less-rails'
