@@ -79,6 +79,7 @@ end
 
 #Create a new API client
 #if you are running your own dgidb locally, you can supply custom hostnames and ports
+#otherwise you can use the default constructor
 client = DgidbApiClient.new('http://localhost', 3000)
 
 #get a list of endpoints that the client supports and print it out
@@ -95,6 +96,7 @@ interaction_results = client.query(:interactions, query_params)
 puts interaction_results
 
 #If you are making multiple requests, you can reuse the same http connection
+#for better performance
 client.connect do |http|
   puts client.query(:drug_types, http)
   puts client.query(:interaction_sources, http)
