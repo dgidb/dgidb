@@ -2,6 +2,7 @@ app /var/www/dgi-db
 data /var/www/dgi-db
 config /var/www/dgi-db
 config.ru /var/www/dgi-db
+VERSION /var/www/dgi-db
 db /var/www/dgi-db
 doc /var/www/dgi-db
 Gemfile /var/www/dgi-db

@@ -9,7 +9,7 @@ case "$1" in
       sudo -u postgres psql -d dgidb -c 'CREATE schema public;'
       sudo -u postgres psql -d dgidb -c 'ALTER SCHEMA public OWNER TO dgidb;'
       cd /var/www/dgi-db && sudo -u www-data RAILS_ENV=production /usr/bin/ruby1.9.1 /usr/local/bin/bundle exec rake -f /var/www/dgi-db/Rakefile db:structure:load && cd -
-      sudo -u postgres psql -d dgidb -f /var/www/dgi-db/db/data.sql
+      sudo -u postgres psql -d dgidb -f /var/www/dgi-db/data/data.sql
       sudo -u www-data touch /var/www/dgi-db/tmp/restart.txt
     ;;
 
