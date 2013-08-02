@@ -5,16 +5,18 @@ module InteractionResultSortOrder
       1
     when 'CancerCommons'
       2
-    when 'TALC'
+    when 'ClearityFoundation'
       3
-    when 'TEND'
+    when 'TALC'
       4
-    when 'PharmGKB'
+    when 'TEND'
       5
-    when 'TTD'
+    when 'PharmGKB'
       6
-    when 'DrugBank'
+    when 'TTD'
       7
+    when 'DrugBank'
+      8
     else
       99
     end
