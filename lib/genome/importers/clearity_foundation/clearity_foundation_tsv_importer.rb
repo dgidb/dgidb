@@ -4,9 +4,9 @@ module Genome
 
       def self.source_info
         {
-          base_url: 'https://www.clearityfoundation.org/healthcare-pros/',
+          base_url: 'http://www.clearityfoundation.org/healthcare-pros/drugs-and-biomarkers.aspx',
+          citation: 'http://www.clearityfoundation.org/healthcare-pros/drugs-and-biomarkers.aspx',
           site_url: 'https://www.clearityfoundation.org/',
-          citation: 'https://www.clearityfoundation.org/',
           source_db_version: '26-July-2013',
           source_type_id: DataModel::SourceType.INTERACTION,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
