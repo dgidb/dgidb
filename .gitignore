@@ -21,4 +21,7 @@
 /log/*.log
 /tmp
 
+# Ignore IDE project directories
+.idea
+
 .agignore
