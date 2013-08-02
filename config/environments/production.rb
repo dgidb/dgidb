@@ -67,9 +67,10 @@ DruggableGene::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.middleware.use ExceptionNotifier,
-  :email_prefix => "[DGIDB] ",
-  :sender_address => %{"DGIDB Notifier" <notifier@genome.wustl.edu>},
-  :exception_recipients => %w{dgidb-notifications@genome.wustl.edu}
-
+  config.middleware.use ExceptionNotification::Rack,
+  email: {
+    :email_prefix => "[DGIDB] ",
+    :sender_address => %{"DGIDB Notifier" <notifier@genome.wustl.edu>},
+    :exception_recipients => %w{dgidb-notifications@genome.wustl.edu}
+  }
 end
