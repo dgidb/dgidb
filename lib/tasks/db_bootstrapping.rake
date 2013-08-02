@@ -53,7 +53,7 @@ namespace :dgidb do
     args.with_defaults(version_type: :patch)
     raise 'You must supply a commit message!' unless args[:message]
     Rake::Task['dgidb:dump_local'].execute
-    in_git_pop do
+    in_git_stash do
       pull_latest
       new_version = update_version(version_file, args[:version_type].to_sym)
       commit_db_update(data_submodule_path, data_file, args[:message])
