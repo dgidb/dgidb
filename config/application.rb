@@ -15,6 +15,10 @@ module DruggableGene
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    #log in the logstash json format instead of normal rails format
+    config.lograge.enabled = true
+    config.lograge.log_format = :logstash
+
     #don't try to hit the db when compiling assets
     config.assets.initialize_on_precompile = false
 

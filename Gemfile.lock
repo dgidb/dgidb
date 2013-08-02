@@ -93,6 +93,10 @@ GEM
     less-rails-bootstrap (2.3.3)
       less-rails (~> 2.3.1)
     libv8 (3.11.8.17)
+    lograge (0.2.0)
+      actionpack
+      activesupport
+    logstash-event (1.1.5)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -203,6 +207,8 @@ DEPENDENCIES
   less-rails
   less-rails-bootstrap
   libv8 (~> 3.11.8.3)
+  lograge
+  logstash-event
   nokogiri
   pg
   pry

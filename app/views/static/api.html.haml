@@ -460,15 +460,20 @@
           %span.label EXECUTE
           %pre
             wget https://raw.github.com/genome/dgi-db/master/files/perl_example.pl<br>chmod +x perl_example.pl<br>./perl_example.pl --genes='FLT3'<br>./perl_example.pl --genes='FLT3,EGFR' --category_types='KINASE'
-               
       %hr
       %section#python-sample
         %h3 Python
         %p Coming soon...
       %hr
       %section#ruby-sample
-        %h3 Ruby
-        %p Coming soon...
+        %h3= link_to 'Ruby', 'https://github.com/genome/dgi-db/blob/master/files/ruby_example.rb'
+        %p 
+          A small Ruby client library, along with a short usage demo can be found 
+          =link_to 'on github.','https://github.com/genome/dgi-db/blob/master/files/ruby_example.rb'
+          %h5 Use the client library to search for interactions involving FLT3 or EGFR, only from trusted sources
+          %span.label SAMPLE USAGE
+          %pre
+            client = DgidbApiClient.new<br/>query_params = { source_trust_levels: 'Expert curated', genes: 'FLT3,EGFR' }<br/>interaction_results = client.query(:interactions, query_params)
       %hr
       %section#shell-sample
         %h3 Shell
