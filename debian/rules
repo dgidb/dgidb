@@ -3,8 +3,9 @@
 build:
 	bundle install
 	bundle install --deployment --without development test
-	rake assets:clean
-	rake assets:precompile
+	git submodule update --init data
+	bundle exec rake assets:clean
+	bundle exec rake assets:precompile
 	dh $@
 	dh_install
 
