@@ -455,11 +455,11 @@
         %h3 Perl
         %p
           A sample Perl application that interacts with DGIdb can be found
-          =link_to 'here.', 'https://raw.github.com/genome/dgi-db/master/files/perl_example.pl'
-          %h5 Example Usage:
-          %span.label EXECUTE
+          =link_to 'on github.', 'https://raw.github.com/genome/dgi-db/master/files/perl_example.pl'
+          <br><br>Use the command line script to search for interactions FLT3 or EGFR, and limit to drugs that act as inhibitors:<br>
+          %span.label EXECUTE EXAMPLE SCRIPT
           %pre
-            wget https://raw.github.com/genome/dgi-db/master/files/perl_example.pl<br>chmod +x perl_example.pl<br>./perl_example.pl --genes='FLT3'<br>./perl_example.pl --genes='FLT3,EGFR' --category_types='KINASE'
+            wget https://raw.github.com/genome/dgi-db/master/files/perl_example.pl<br>chmod +x perl_example.pl<br>./perl_example.pl --genes='FLT3,EGFR' --interaction_types='inhibitor'
       %hr
       %section#python-sample
         %h3 Python
@@ -470,10 +470,13 @@
         %p 
           A small Ruby client library, along with a short usage demo can be found 
           =link_to 'on github.','https://github.com/genome/dgi-db/blob/master/files/ruby_example.rb'
-          %h5 Use the client library to search for interactions involving FLT3 or EGFR, only from trusted sources
-          %span.label SAMPLE USAGE
+          <br><br>Use the client library to search for interactions involving FLT3 or EGFR, only from trusted sources:<br>
+          %span.label SAMPLE CODE
           %pre
-            client = DgidbApiClient.new<br/>query_params = { source_trust_levels: 'Expert curated', genes: 'FLT3,EGFR' }<br/>interaction_results = client.query(:interactions, query_params)
+            client = DgidbApiClient.new<br>query_params = { source_trust_levels: 'Expert curated', genes: 'FLT3,EGFR' }<br>interaction_results = client.query(:interactions, query_params)
+          %span.label EXECUTE EXAMPLE SCRIPT
+          %pre
+            wget https://raw.github.com/genome/dgi-db/master/files/ruby_example.rb<br>ruby ruby_example.rb
       %hr
       %section#shell-sample
         %h3 Shell
