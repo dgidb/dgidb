@@ -38,7 +38,16 @@ news:
       date: July 25, 2013
     - headline: Updated version of the interface is released
       article: >
-        This version of DGIdb incorporates improvements in versioning, the ability to perform drug interaction searches against the gene-gene interactors of a specific gene,
-        and additional minor fixes and improvements.
+        This version of DGIdb incorporates improvements in versioning, the ability to perform drug interaction searches against the gene-gene 
+        interactors of a specific gene, and additional minor fixes and improvements.
       date: July 30, 2013
+
+    - headline: Clearity Foundation is added as a source for DGIdb
+      article: >
+        Highly curated drug-gene interactions have been mined from <a href="https://www.clearityfoundation.org/">the Clearity Foundation</a> and
+        incorporated into DGIdb. The Clearity Foundation is a 501(c)(3) not-for-profit organization that provides patient support services including
+        lab test coordination, tumor blueprint interpretation, and clinical trial identification free of charge. The Clearity Foundation was launched 
+        in 2008 to help ovarian cancer patients and their physicians make better-informed treatment decisions, based on molecular profiling of tumors.
+        From this resource we obtained 175 drug-gene interactions involving 34 genes and 64 drugs.
+      date: August 7, 2013
 
