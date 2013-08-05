@@ -32,7 +32,6 @@ namespace :dgidb do
 
   desc 'create a dump of the current local database'
   task dump_local: [:setup_path] do
-    update_data_submodule
     system "pg_dump -T schema_migrations -E UTF8 -a -f #{data_file} -h localhost #{database_name}"
   end
 
