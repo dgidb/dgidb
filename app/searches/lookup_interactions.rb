@@ -29,35 +29,19 @@ class LookupInteractions
   end
 
   def self.create_filter_from_params(params)
-    filter = FilterChain.new
     #TODO this is currently a hack since we're only supporting one drug type on our form
     if params[:limit_drugs] == 'true' || params[:drug_types]
       params[:drug_types] ||= ['antineoplastic']
-      create_drug_type_filter(params, filter)
     end
-    create_sources_filter(params, filter)
-    create_gene_category_filter(params, filter)
-    create_interaction_type_filter(params, filter)
-    create_source_trust_level_filter(params, filter)
+
+    construct_filter(PARAM_KEY_TO_FILTER_NAME_MAP, params)
   end
 
-  def self.create_sources_filter(params, chain)
-    construct_filter(chain, params[:interaction_sources], :include_source_db_name)
-  end
-
-  def self.create_gene_category_filter(params, chain)
-    construct_filter(chain, params[:gene_categories], :include_gene_claim_category_interaction)
-  end
-
-  def self.create_interaction_type_filter(params, chain)
-    construct_filter(chain, params[:interaction_types], :include_interaction_claim_type)
-  end
-
-  def self.create_drug_type_filter(params, chain)
-    construct_filter(chain, params[:drug_types], :include_drug_claim_type)
-  end
-
-  def self.create_source_trust_level_filter(params, chain)
-    construct_filter(chain, params[:source_trust_levels], :include_source_trust_level)
-  end
+  PARAM_KEY_TO_FILTER_NAME_MAP = {
+    drug_types: :include_drug_claim_type,
+    interaction_sources: :include_source_db_name,
+    gene_categories: :include_gene_claim_category_interaction,
+    interaction_types:  :include_interaction_claim_type,
+    source_trust_levels: :include_source_trust_level
+  }
 end

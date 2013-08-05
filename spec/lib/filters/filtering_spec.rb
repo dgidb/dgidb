@@ -59,8 +59,8 @@ describe FilterChain do
     @filter_chain.include?(2).should be_false
   end
 
-  it 'should not break when given no filters' do
-    @filter_chain.include?('test').should be_false
+  it 'should default to all inclusive when empty' do
+    @filter_chain.include?('test').should be_true
   end
 
   it 'should cache the final result' do

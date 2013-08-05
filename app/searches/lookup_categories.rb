@@ -33,14 +33,9 @@ class LookupCategories
   end
 
   private
-
   def self.filter_results(gene_results, params)
-    gene_claim_filter_scope = FilterChain.new
-    category_filter_scope = FilterChain.new
-
-    construct_filter(gene_claim_filter_scope, params[:sources], :include_category_source_db_name)
-    construct_filter(gene_claim_filter_scope, params[:source_trust_levels], :include_category_source_trust_level)
-    construct_filter(category_filter_scope, params[:gene_categories], :include_gene_claim_category)
+    gene_claim_filter_scope = construct_filter(PARAM_KEY_TO_GENE_CLAIM_FILTER_MAP, params)
+    category_filter_scope = construct_filter(PARAM_KEY_TO_CATEGORY_FILTER_MAP, params)
 
     gene_results.each do |result|
       result.filter_gene_claims do |gene_claim|
@@ -53,4 +48,13 @@ class LookupCategories
     end
     gene_results
   end
+
+  PARAM_KEY_TO_GENE_CLAIM_FILTER_MAP = {
+    category_sources: :include_category_source_db_name,
+    source_trust_levels: :include_category_source_trust_level,
+  }
+
+  PARAM_KEY_TO_CATEGORY_FILTER_MAP = {
+    gene_categories: :include_gene_claim_category
+  }
 end

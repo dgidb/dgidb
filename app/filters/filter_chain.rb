@@ -21,10 +21,14 @@ class FilterChain
   end
 
   def include?(id)
-    evaluate_all_filters.include?(id)
+    empty? || evaluate_all_filters.include?(id)
   end
 
   private
+  def empty?
+    @all_include.empty? && @all_exclude.empty?
+  end
+
   def evaluate_all_filters
     @computed_include ||= evaluate_filter(@all_include)
     @computed_exclude ||= evaluate_filter(@all_exclude)

@@ -33,7 +33,7 @@
                 %button.btn.btn-small.btn-danger#clear(type='button') Clear All Genes
             #source-control
               =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
-                flag_text_key: 'sources_flag', select_tag_name: 'sources', collection: @sources,
+                flag_text_key: 'sources_flag', select_tag_name: 'category_sources', collection: @sources,
                 name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
             #source-trust-level
               =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
