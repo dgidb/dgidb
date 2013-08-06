@@ -3,14 +3,14 @@
     =results_by_gene_table_row.search_term
   -#%td
   -#  =link_to results_by_gene_table_row.gene_display_name, gene_path(results_by_gene_table_row.gene_name)
-  %td{title: results_by_gene_table_row.gene_name + ' - ' + results_by_gene_table_row.gene_display_name}
+  %td{title: results_by_gene_table_row.gene_name + ' - ' + results_by_gene_table_row.gene_display_name, class: "truncate"}
     = link_to gene_path(results_by_gene_table_row.gene_name) do
       %strong
         = results_by_gene_table_row.gene_name
       = " - "
       %em
-        %small
-          =truncate(results_by_gene_table_row.gene_display_name, length: 50)
+        %small{ class: "truncate" }
+          =results_by_gene_table_row.gene_display_name
   %td
     =results_by_gene_table_row.drug_count
   %td

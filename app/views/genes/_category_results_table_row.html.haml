@@ -7,8 +7,8 @@
         = category_results_table_row.gene_name
       = " - "
       %em
-        %small
-          =truncate(category_results_table_row.gene_display_name, length: 50)
+        %small{class: "truncate"}
+          =category_results_table_row.gene_display_name
   %td
     =link_to category_results_table_row.gene_category, gene_by_category_path(category_results_table_row.gene_category, sources: params[:sources])
   %td
