@@ -12,13 +12,8 @@ downloads:
       link: "http://www.github.com/genome/dgi-db"
       description: >
         This is the full source code of the DGIdb web application. It runs Ruby on Rails and Postgres.
-    - title: Source code of DGIdb source importers, gene/drug grouping, etc.
-      link: "https://github.com/genome/gms-core/tree/master/lib/perl/Genome/DruggableGene"
-      description: >
-        The source code for parsing primary data sources and building the DGIdb database.
-        This component is written in object oriented Perl.
     - title: Druggable gene TSV archive
-      link: "https://github.com/downloads/genome/dgi-db/druggable_gene_tsv.tar.gz"
+      link: "http://dgidb.genome.wustl.edu/downalods/druggable_gene_tsvs.tar.gz"
       description: >
         This is an archive containing the TSV files used to populate the DGIdb database. 
     - title: Interactions TSV
@@ -35,10 +30,6 @@ downloads:
         Note that PharmGKB is not included in the TSV archive above. This data must be requested directly from PharmGKB.
     - title: dGene data (04-16-2013)
       link: "http://dgidb.genome.wustl.edu/downloads/dGene_04-16-2013_2257.tsv"
-      description: >
-        TSV download of the latest version of the dGene database made available here at the request of the dGene creators.
-    - title: Clearity Foundation data
-      link: "http://dgidb.genome.wustl.edu/downloads/clearity_foundation.tsv"
       description: >
         TSV download of the latest version of the dGene database made available here at the request of the dGene creators.
     - title: DGIdb database dump
