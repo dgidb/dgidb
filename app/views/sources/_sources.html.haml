@@ -1,4 +1,5 @@
 %ul(class="result-list" id="source-list-results")
-  -sources.each do |source|
+
+  -sources.sort_by{|s| s.source_type.type}.reverse.each do |source|
     %li(class="#{source.source_type.type}" data-category="#{source.source_type.type}" data-name="#{source.source_type.display_name}")
       =render partial: 'sources/source', locals:{source: source}
