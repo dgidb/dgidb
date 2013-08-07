@@ -13,7 +13,7 @@ downloads:
       description: >
         This is the full source code of the DGIdb web application. It runs Ruby on Rails and Postgres.
     - title: Druggable gene TSV archive
-      link: "http://dgidb.genome.wustl.edu/downalods/druggable_gene_tsvs.tar.gz"
+      link: "http://dgidb.genome.wustl.edu/downloads/druggable_gene_tsvs.tar.gz"
       description: >
         This is an archive containing the TSV files used to populate the DGIdb database. 
     - title: Interactions TSV
