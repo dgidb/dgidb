@@ -40,6 +40,8 @@ DruggableGene::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
   logger = Logger::Syslog.new('dgidb')
   logger.level = Logger::INFO
+  # override default syslog message formatter since we're using logstash-event instead
+  logger.formatter = ->(severity, time, progname, msg) { msg }
   config.logger = logger
 
   # Use a different cache store in production
