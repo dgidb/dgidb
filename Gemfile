@@ -21,8 +21,8 @@ gem 'xpath'
 gem 'jbuilder'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'feedback_popup', git: 'git://github.com/acoffman/feedback_popup.git'
-gem 'lograge'
-gem 'logstash-event'
+gem 'lograge', git: 'https://github.com/roidrage/lograge.git'
+#gem 'logstash-event'
 gem 'syslog-logger'
 
 group :production do

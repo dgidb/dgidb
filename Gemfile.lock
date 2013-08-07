@@ -5,6 +5,15 @@ GIT
     feedback_popup (0.0.1)
       rails (~> 3.0)
 
+GIT
+  remote: https://github.com/roidrage/lograge.git
+  revision: 30ac730455d14836a9c2eeda2e69a1f956b934e7
+  specs:
+    lograge (0.2.0)
+      actionpack (>= 3)
+      activesupport (>= 3)
+      railties (>= 3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -93,10 +102,6 @@ GEM
     less-rails-bootstrap (2.3.3)
       less-rails (~> 2.3.1)
     libv8 (3.11.8.17)
-    lograge (0.2.0)
-      actionpack
-      activesupport
-    logstash-event (1.1.5)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -208,8 +213,7 @@ DEPENDENCIES
   less-rails
   less-rails-bootstrap
   libv8 (~> 3.11.8.3)
-  lograge
-  logstash-event
+  lograge!
   nokogiri
   pg
   pry

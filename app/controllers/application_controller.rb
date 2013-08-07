@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
   before_filter TourFilter
   before_filter NewsFilter
 
+  def append_info_to_payload(payload)
+    super
+    payload[:genes] = params[:gene_names] if params[:gene_names]
+  end
+
   def not_found(msg = "Not Found")
     raise HTTPStatus::NotFound.new(msg)
   end
