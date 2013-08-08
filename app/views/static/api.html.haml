@@ -452,7 +452,7 @@
             Sample Code
             %small get started using DGIdb in the language of your choice
       %section#perl-sample
-        %h3 Perl
+        %h3= link_to 'Perl', 'https://github.com/genome/dgi-db/blob/master/files/perl_example.pl'
         %p
           A sample Perl application that interacts with DGIdb can be found
           =link_to 'on github.', 'https://raw.github.com/genome/dgi-db/master/files/perl_example.pl'
@@ -479,8 +479,14 @@
             wget https://raw.github.com/genome/dgi-db/master/files/ruby_example.rb<br>ruby ruby_example.rb
       %hr
       %section#shell-sample
-        %h3 Shell
-        %p Coming soon...
+        %h3= link_to 'Shell', 'https://github.com/genome/dgi-db/blob/master/files/shell_example.sh'
+        %p 
+          A small tutorial showing command-line usage of the DGIdb API using shell commands
+          =link_to 'on github.','https://github.com/genome/dgi-db/blob/master/files/shell_example.sh'
+          <br><br>Try the following examples from the command line to view and format output from the API:<br>
+          %span.label SAMPLE CODE
+          %pre
+            curl http://dgidb.genome.wustl.edu/api/v1/interactions.json<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank\&interaction_type=inhibitor | python -mjson.tool<br>
       %hr
   :javascript
     $(document).ready(function() {
