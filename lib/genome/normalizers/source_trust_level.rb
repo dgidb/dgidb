@@ -17,14 +17,17 @@ module Genome
             'RussLampel',
             'HopkinsGroom',
             'CancerCommons',
-            'ClearityFoundation'
+            'ClearityFoundation',
+            'Entrez',
           ],
         'Non-curated' =>
           [
             'PharmGKB',
             'TTD',
             'DrugBank',
-            'GO'
+            'GO',
+            'Ensembl',
+            'PubChem',
           ]
       }
       end

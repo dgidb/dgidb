@@ -46,5 +46,9 @@ module DataModel
         .sort_by { |name| GeneClaimSortOrder.sort_value(name) }
     end
 
+    def self.for_show
+      eager_load(:source_type, :source_trust_level)
+    end
+
   end
 end

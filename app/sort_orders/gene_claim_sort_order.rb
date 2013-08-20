@@ -1,12 +1,12 @@
 module GeneClaimSortOrder
   def self.sort_value(sortval)
     case sortval
-    when 'Ensembl'
-      return -1
     when 'Entrez'
-      return -2
+      return 1
+    when 'Ensembl'
+      return 2
     else
-      return 0
+      return 99
     end
   end
 end

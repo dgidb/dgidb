@@ -22,7 +22,7 @@
           %td
             Total:
           %td(style="width: 100%;")
-            =source.gene_claims.size
+            =source.gene_claims_count
 
         %tr
           %td
@@ -44,7 +44,7 @@
           %td
             Total:
           %td(style="width: 100%;")
-            =source.drug_claims.size
+            =source.drug_claims_count
 
         %tr
           %td
@@ -59,13 +59,34 @@
           %td
             Total:
           %td(style="width: 100%;")
-            =source.interaction_claims.size
+            =source.interaction_claims_count
 
   %div(class="cell category")
     %div(class="item-panel")
       %h4
         Full Citation
-      -if source.citation =~ /PMID: (\d+)\.?$/
-        %p=[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
-      -else
-        %p=source.citation
+      %p=source.citation_with_pmid_link(self).html_safe
+
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Trust Information
+      %table(class="table table-condensed")
+        %tr
+          %td
+            Trust Level:
+          %td(style="width: 100%;")
+            =source.trust_level
+
+        %tr
+          %td
+            Interaction Precedence:
+          %td(style="width: 100%;")
+            =source.interaction_precedence
+
+        %tr
+          %td
+            Category Precedence:
+          %td(style="width: 100%;")
+            =source.category_precedence
+

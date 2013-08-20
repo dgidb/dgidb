@@ -1,13 +1,16 @@
 class SourcesController < ApplicationController
   def show
-    @source = DataModel::Source.eager_load(:source_type).where('source_db_name ILIKE ?', params[:source_db_name]).first
-    !@source.blank? || not_found("This source doesn't exist in our system!")
-    @title = @source.source_db_name
+    source = DataModel::Source.for_show
+      .where('source_db_name ILIKE ?', params[:source_db_name]).first
+    !source.blank? || not_found("This source doesn't exist in our system!")
+    @title = source.source_db_name
+    @source = SourcePresenter.new(source)
   end
 
   def sources
     @help_active = 'active'
-    @sources = DataModel::Source.eager_load(:source_type).all
+    @sources = DataModel::Source.for_show.all
+      .map { |s| SourcePresenter.new(s) }
   end
 
 end

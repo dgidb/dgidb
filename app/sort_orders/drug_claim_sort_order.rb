@@ -1,7 +1,7 @@
 module DrugClaimSortOrder
   def self.sort_value(sortval)
     case sortval
-    when 'pubchem'
+    when 'PubChem'
       return -1
     else
       return 0
