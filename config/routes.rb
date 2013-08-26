@@ -1,15 +1,18 @@
 DruggableGene::Application.routes.draw do
-  match 'drug_claims/:source_db_name/:name' => 'drug_claims#show'
+  match 'drug_claims/:source_db_name/:name' => 'drug_claims#show',
+    constraints: { name: /[^\/]+/ }
   match 'gene_claims/:source_db_name/:name' => 'gene_claims#show'
   match 'gene_names' => 'genes#names'
   match 'genes/:name' => 'genes#show', as: 'gene'
   match 'interaction_claims/:id' => 'interaction_claims#show', as: 'interaction_claims'
   match 'druggable_gene_categories/:name' => 'genes#druggable_gene_category', as: 'gene_by_category'
   match 'druggable_gene_categories' => 'genes#druggable_gene_categories'
-  match 'drugs/:name' => 'drugs#show', as: 'drug'
+  match 'drugs/:name' => 'drugs#show', as: 'drug',
+    constraints: { name: /[^\/]+/ }
   match 'sources/:source_db_name' => 'sources#show', as: 'source'
   match 'sources' => 'sources#sources'
-  match 'drugs/:name/related' => 'drugs#related_drugs', as: 'related_drug'
+  match 'drugs/:name/related' => 'drugs#related_drugs', as: 'related_drug',
+    constraints: { name: /[^\/]+/ }
   match 'search_results' => 'search#search_results'
   match 'cache/invalidate' => 'utilities#invalidate_cache'
   post  'download_table' => 'utilities#download_request_content'
