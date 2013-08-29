@@ -42,6 +42,7 @@ group :development do
   gem 'pry-remote'
   gem 'pry-nav'
   gem 'rack-mini-profiler'
+  gem 'rye'
 end
 
 group :test, :development  do
