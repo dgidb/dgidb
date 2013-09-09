@@ -1,6 +1,6 @@
 module Genome
   module Importers
-    module EntrezGenePathway
+    module Entrez
       class EntrezGenePathwayImporter
         def initialize(tsv_path)
           @tsv_path = tsv_path

@@ -1,6 +1,6 @@
 module Genome
   module Importers
-    module EntrezGenePathway
+    module Entrez
       class EntrezGenePathwayRow < Genome::Importers::DelimitedRow
         attribute :taxon_id
         attribute :entrez_gene_id
