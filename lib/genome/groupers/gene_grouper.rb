@@ -12,6 +12,7 @@ module Genome
           create_groups
           puts 'add members'
           add_members
+          puts 'saving'
         end
       end
 
@@ -27,40 +28,37 @@ module Genome
             @alt_to_other[gene_claim_alias] << gca
           end
         end
+        @gene_names_to_genes = DataModel::Gene.includes(:gene_claims).all.group_by(&:name)
       end
 
       def self.create_groups
         @alt_to_entrez.each_key do |key|
           gene_claims = @alt_to_entrez[key].map(&:gene_claim)
-          gene = DataModel::Gene.where(name: key).first
+          gene = @gene_names_to_genes[key].first
           if gene
             gene_claims.each do |gene_claim|
               gene_claim.genes << gene unless gene_claim.genes.include?(gene)
               gene_claim.save
             end
           else
-            DataModel::Gene.new.tap do |g|
+            @gene_names_to_genes[key] = [DataModel::Gene.new.tap do |g|
               g.name = key
               g.gene_claims = gene_claims
               g.save
-            end
+            end]
           end
         end
       end
 
       def self.add_members
-        total = DataModel::GeneClaim.count
-        current = 0
-        puts "Starting to process #{total} gene claims"
-        DataModel::GeneClaim.all.each do |gene_claim|
-          current += 1
+        DataModel::GeneClaim.includes(:genes).all.each do |gene_claim|
           next if gene_claim.genes.any?
           indirect_groups = Hash.new { |h, k| h[k] = 0 }
           direct_groups = Hash.new { |h, k| h[k] = 0 }
 
-          direct_groups[gene_claim.name] += 1 if DataModel::Gene.where(name: gene_claim.name).any?
+          direct_groups[gene_claim.name] += 1 if @gene_names_to_genes[gene_claim.name]
           gene_claim.gene_claim_aliases.each do |gene_claim_alias|
-            direct_groups[gene_claim_alias.alias] +=1 if DataModel::Gene.where(name: gene_claim_alias.alias).any?
+            direct_groups[gene_claim_alias.alias] +=1 if @gene_names_to_genes[gene_claim_alias.alias]
             alt_genes = @alt_to_other[gene_claim_alias].map(&:gene_claim)
             alt_genes.each do |alt_gene|
               indirect_gene = alt_gene.genes.first
@@ -69,15 +67,14 @@ module Genome
           end
 
           if direct_groups.keys.length == 1
-            gene = DataModel::Gene.where(name: direct_groups.keys.first).first
+            gene = @gene_names_to_genes[direct_groups.keys.first].first
             gene.gene_claims << gene_claim unless gene.gene_claims.include?(gene_claim)
             gene.save
           elsif direct_groups.keys.length == 0 && indirect_groups.keys.length == 1
-            gene = DataModel::Gene.where(name: indirect_groups.keys.first).first
+            gene = @gene_names_to_genes[indirect_groups.keys.first].first
             gene.gene_claims << gene_claim unless gene.gene_claims.include?(gene_claim)
             gene.save
           end
-          puts "Completed #{current} out of #{total} gene claims. (#{current.to_f/total.to_f*100.0}%)" if rand(1000) < 2
         end
       end
     end
