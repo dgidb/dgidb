@@ -16,11 +16,11 @@ class GenesController < ApplicationController
 
   def druggable_gene_category
     sources = if params[:sources]
-                  params[:sources].split(',').flatten.map(&:downcase)
+                  params[:sources].split(',').flatten
                 else
                   DataModel::Source.source_names_with_category_information
                 end
-    genes = LookupCategories.find_genes_for_category_and_sources(params[:name].downcase, sources)
+    genes = LookupCategories.find_genes_for_category_and_sources(params[:name], sources)
     @genes = DruggableGeneCategoryPresenter.new(genes, sources)
     @title = params[:name]
     @druggable_gene_categories_active = 'active'
