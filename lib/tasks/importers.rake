@@ -1,69 +1,37 @@
 namespace :dgidb do
   namespace :import do
 
-    desc 'import DrugBank from a TSV file'
-    task :drug_bank, [:drug_bank_tsv_path, :source_db_version, :uniprot_mapping_file] => :environment do |t, args|
-      Genome::Importers::DrugBank::DrugBankImporter.new(args[:drug_bank_tsv_path], args[:source_db_version], args[:uniprot_mapping_file]).import!
-    end
+    # Rake tasks will be automatically generated if you put your TSV importers under
+    # lib/genome/importers/<source_name>
+    # A file in that directory should define a module named Genome::Importers::SourceName
+    # that responds to a method run() that takes a single argument - the path to the tsv file
 
-    desc 'import dGene from a TSV file'
-    task :dgene, [:dgene_tsv_path, :source_db_version] => :environment do |t, args|
-      Genome::Importers::DGene::DGeneImporter.new(args[:dgene_tsv_path], args[:source_db_version]).import!
-    end
+    importer_path = File.join(Rails.root, 'lib/genome/importers/*/')
+    #ignore the DSL files
+    Dir.glob(importer_path).reject { |path| path =~ /dsl\/$/ }.each do |importer|
+      importer_dir = importer.split('/')[-1]
+      importer_name = importer_dir.camelize
+      send(:desc, "Import #{importer_dir} from a provided tsv file. If the source already exists, it will be overwritten!")
+      send(:task, importer_dir.to_sym, [:tsv_path, :group] => :environment) do |_, args|
+        importer_class = if Genome::Importers.const_defined?(importer_name)
+                           "Genome::Importers::#{importer_name}".constantize
+                         else
+                           "Genome::Importers::#{importer_name.upcase}".constantize
+                         end
+          if DataModel::Source.where('lower(sources.source_db_name) = ?', importer_name.downcase).any?
+            puts 'Found existing source! Deleting...'
+            Utils::Database.delete_source(importer_name)
+          end
 
-    desc 'import Ensembl from a TSV file'
-    task :ensembl, [:ensembl_tsv_path, :source_db_version] => :environment do |t, args|
-      Genome::Importers::Ensembl::EnsemblImporter.new(args[:ensembl_tsv_path], args[:source_db_version]).import!
-    end
+          puts 'Starting import!'
+          importer_class.run(args[:tsv_path])
 
-    desc 'import Entrez from a TSV file'
-    task :entrez, [:entrez_tsv_path, :source_db_version] => :environment do |t, args|
-      Genome::Importers::Entrez::EntrezImporter.new(args[:entrez_tsv_path], args[:source_db_version]).import!
-    end
-
-    desc 'import HopkinsGroom from a TSV file'
-    task :hopkins_groom, [:hg_tsv_path, :source_db_version] => :environment do |t, args|
-      Genome::Importers::HopkinsGroom::HopkinsGroomImporter.new(args[:hg_tsv_path], args[:source_db_version]).import!
-    end
-
-    desc 'import MyCancerGenome from a TSV file'
-    task :my_cancer_genome, [:mcg_tsv_path] => :environment do |t, args|
-      Genome::Importers::MyCancerGenome.run(args[:mcg_tsv_path])
-    end
-
-    desc 'import CancerCommons from a TSV file'
-    task :cancer_commons, [:tsv_path] => :environment do |t, args|
-      Genome::Importers::CancerCommons.run(args[:tsv_path])
-    end
-
-    desc 'import ClearityFoundation from a TSV file'
-    task :clearity_foundation, [:tsv_path] => :environment do |t, args|
-      Genome::Importers::ClearityFoundation.run(args[:tsv_path])
-    end
-
-    desc 'import PharmGKB from a TSV file'
-    task :pharmgkb, [:pharmgkb_tsv_path] => :environment do |t, args|
-      Genome::Importers::Pharmgkb.run(args[:pharmgkb_tsv_path])    
-    end
-
-    #desc 'import RussLampel from a TSV file'
-    #task :russ_lampel, [:russ_lampel_path] => :environment do |t, args|
-    #  Genome::Importers::RussLampel.run(args[:russ_lampel_path])
-    #end
-
-    desc 'import TALC from a TSV file'
-    task :talc, [:talc_path] => :environment do |t, args|
-      Genome::Importers::Talc.run(args[:talc_path])
-    end
-
-    desc 'import TEND from a TSV file'
-    task :tend, [:tend_path] => :environment do |t, args|
-      Genome::Importers::Tend.run(args[:tend_path])
-    end
-
-    desc 'import TTD from a TSV file'
-    task :ttd, [:ttd_path] => :environment do |t, args| 
-      Genome::Importers::TTD.run(args[:ttd_path])
+          binding.pry
+          if args[:group]
+            puts 'Running Gene Grouper - this takes awhile!'
+            Genome::Groupers::GeneGrouper.run
+          end
+      end
     end
 
     desc 'import Entrez gene pathway information from a TSV file'
