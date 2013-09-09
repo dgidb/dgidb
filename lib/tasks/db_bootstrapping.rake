@@ -10,6 +10,11 @@ namespace :dgidb do
   version_file = File.join(Rails.root, 'VERSION')
   database_name = Rails.configuration.database_configuration[Rails.env]['database']
 
+  desc 'Remove a source from the database given the source_db_name'
+  task :remove_source, [:source_db_name] => :environment do |_, args|
+    Utils::Database.delete_source(args[:source_db_name])
+  end
+
   desc 'set up path for macs running Postgres.app'
   task :setup_path do
     #special case for macs running Postgres.app
