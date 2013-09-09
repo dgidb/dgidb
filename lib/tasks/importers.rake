@@ -9,7 +9,7 @@ namespace :dgidb do
     importer_path = File.join(Rails.root, 'lib/genome/importers/*/')
     #ignore the DSL files
     Dir.glob(importer_path).reject { |path| path =~ /dsl\/$/ }.each do |importer|
-      importer_dir = importer.split('/')[-1]
+      importer_dir = File.basename(importer)
       importer_name = importer_dir.camelize
       send(:desc, "Import #{importer_dir} from a provided tsv file. If the source already exists, it will be overwritten!")
       send(:task, importer_dir.to_sym, [:tsv_path, :group] => :environment) do |_, args|
