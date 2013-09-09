@@ -1,8 +1,8 @@
 module Utils
   module Database
     def self.delete_source(source_db_name)
-      source_id = DataModel::Source.where(source_db_name: source_db_name)
-        .pluck(:id).first
+      source_id = DataModel::Source.where('lower(sources.source_db_name) = ?',
+        source_db_name.downcase).pluck(:id).first
 
       sql = <<-SQL
         delete from interaction_claim_attributes where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
