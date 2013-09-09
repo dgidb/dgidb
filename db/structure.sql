@@ -547,6 +547,13 @@ CREATE INDEX drugs_full_text ON drugs USING gin (to_tsvector('english'::regconfi
 
 
 --
+-- Name: drugs_lower_name_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX drugs_lower_name_idx ON drugs USING btree (lower(name));
+
+
+--
 -- Name: gene_claim_aliases_full_text; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -558,6 +565,13 @@ CREATE INDEX gene_claim_aliases_full_text ON gene_claim_aliases USING gin (to_ts
 --
 
 CREATE INDEX gene_claim_aliases_gene_claim_id_idx ON gene_claim_aliases USING btree (gene_claim_id);
+
+
+--
+-- Name: gene_claim_aliases_lower_alias_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX gene_claim_aliases_lower_alias_idx ON gene_claim_aliases USING btree (lower(alias));
 
 
 --
@@ -593,6 +607,13 @@ CREATE INDEX gene_claims_source_id_idx ON gene_claims USING btree (source_id);
 --
 
 CREATE INDEX genes_full_text ON genes USING gin (to_tsvector('english'::regconfig, name));
+
+
+--
+-- Name: genes_lower_name_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX genes_lower_name_idx ON genes USING btree (lower(name));
 
 
 --
@@ -922,6 +943,8 @@ ALTER TABLE ONLY sources
 -- PostgreSQL database dump complete
 --
 
+SET search_path TO "$user",public;
+
 INSERT INTO schema_migrations (version) VALUES ('0');
 
 INSERT INTO schema_migrations (version) VALUES ('20121212223401');
@@ -951,3 +974,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130424183200');
 INSERT INTO schema_migrations (version) VALUES ('20130712222803');
 
 INSERT INTO schema_migrations (version) VALUES ('20130712225648');
+
+INSERT INTO schema_migrations (version) VALUES ('20130906013631');

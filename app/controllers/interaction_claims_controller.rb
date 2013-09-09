@@ -15,6 +15,9 @@ class InteractionClaimsController < ApplicationController
     @related_source_gene = params[:genes]
     combine_input_genes(params)
     related_genes = LookupRelatedGenes.find(params[:gene_names])
+    if related_genes.empty?
+      not_found("Sorry, we don't have any genes related to #{@related_source_gene}")
+    end
     params[:gene_names] = related_genes.flat_map(&:gene_gene_interaction_claims)
       .map { |ic| ic.interacting_gene.name }
     perform_interaction_search

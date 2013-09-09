@@ -15,8 +15,8 @@ class LookupCategories
   def self.find_genes_for_category_and_sources(category_name, source_names)
     DataModel::Gene.joins(gene_claims: [:gene_claim_categories, :source])
        .eager_load(gene_claims: [source: [:source_trust_level]])
-       .where('gene_claim_categories.name' => category_name)
-       .where('sources.source_db_name' => source_names)
+       .where('lower(gene_claim_categories.name) = ?', category_name)
+       .where('lower(sources.source_db_name) IN (?)', source_names)
        .uniq
   end
 

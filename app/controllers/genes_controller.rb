@@ -1,9 +1,8 @@
 class GenesController < ApplicationController
 
   def show
-    gene_names = [params[:name].upcase, params[:name].downcase]
-    gene = DataModel::Gene.for_show.where(name: gene_names).first ||
-      not_found("#{params[:name]} wasn't found!")
+    gene = DataModel::Gene.for_show.where('lower(genes.name) = ?', params[:name].downcase)
+      .first || not_found("#{params[:name]} wasn't found!")
     @gene = GenePresenter.new(gene)
     @title = @gene.display_name
   end
@@ -17,11 +16,11 @@ class GenesController < ApplicationController
 
   def druggable_gene_category
     sources = if params[:sources]
-                  params[:sources].split(',').flatten
+                  params[:sources].split(',').flatten.map(&:downcase)
                 else
                   DataModel::Source.source_names_with_category_information
                 end
-    genes = LookupCategories.find_genes_for_category_and_sources(params[:name], sources)
+    genes = LookupCategories.find_genes_for_category_and_sources(params[:name].downcase, sources)
     @genes = DruggableGeneCategoryPresenter.new(genes, sources)
     @title = params[:name]
     @druggable_gene_categories_active = 'active'

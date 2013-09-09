@@ -1,8 +1,8 @@
 class SourcesController < ApplicationController
   def show
     source = DataModel::Source.for_show
-      .where('source_db_name ILIKE ?', params[:source_db_name]).first
-    !source.blank? || not_found("This source doesn't exist in our system!")
+      .where('source_db_name ILIKE ?', params[:source_db_name]).first ||
+        not_found("This source doesn't exist in our system!")
     @title = source.source_db_name
     @source = SourcePresenter.new(source)
   end
