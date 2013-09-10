@@ -16,7 +16,8 @@ module Genome
         end
 
         def save!
-          @importer.store
+          res = @importer.store
+          puts res.map { |(entity, num)| "Imported #{num} #{entity}." }.join("\n")
         end
 
         def initialize(source_info)

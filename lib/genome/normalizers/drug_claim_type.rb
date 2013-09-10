@@ -5,8 +5,7 @@ module Genome
       def self.normalize_types
         antineoplastic_type = DataModel::DrugClaimType.where(type: 'antineoplastic').first
         drug_claims = antineoplastic_drugs
-        puts "Found type: #{antineoplastic_type}"
-        puts "Found #{drug_claims.size} drugs"
+        puts "Found #{drug_claims.size} total antineoplastic drugs"
         drug_claims.each do |dc|
           unless dc.drug_claim_types.include? antineoplastic_type
             dc.drug_claim_types << antineoplastic_type

@@ -10,7 +10,7 @@ module Genome
       def store
         ActiveRecord::Base.transaction do
           @source.save
-          entity_names.each { |entity| store_entities(entity) }
+          entity_names.map { |entity| store_entities(entity) }
         end
       end
 
@@ -81,6 +81,7 @@ module Genome
         objs = create_models_from_hashes(item_name)
         klass = class_from_entity(item_name)
         klass.import(objs) if objs.any?
+        [item_name, objs.size]
       end
 
       def has_source?(klass)

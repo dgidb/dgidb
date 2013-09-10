@@ -26,11 +26,16 @@ namespace :dgidb do
           puts 'Starting import!'
           importer_class.run(args[:tsv_path])
 
-          binding.pry
           if args[:group]
             puts 'Running Gene Grouper - this takes awhile!'
             Genome::Groupers::GeneGrouper.run
           end
+
+          puts 'Populating source counters.'
+          Genome::Normalizers::PopulateCounters.populate_source_counters
+          puts 'Attempting to normalize drug types.'
+          Genome::Normalizers::DrugTypeNormalizers.normalize_types
+          puts 'Done.'
       end
     end
 
