@@ -6,7 +6,7 @@ module Genome
         {
           base_url: 'http://www.clearityfoundation.org/healthcare-pros/drugs-and-biomarkers.aspx',
           citation: 'http://www.clearityfoundation.org/healthcare-pros/drugs-and-biomarkers.aspx',
-          site_url: 'https://www.clearityfoundation.org/',
+          site_url: 'https://www.clearityfoundation.org/healthcare-pros/drugs-and-biomarkers.aspx',
           source_db_version: '26-July-2013',
           source_type_id: DataModel::SourceType.INTERACTION,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
@@ -22,7 +22,7 @@ module Genome
           interaction known_action_type: 'unknown' do
             gene :gene_name, nomenclature: 'Gene Target Symbol', transform: upcase do
               name :entrez_gene_id, nomenclature: 'Entrez Gene ID'
-              attribute :reported_gene_name, name: 'Clearity Reported Gene Name'
+              attribute :reported_gene_name, name: 'Reported Genome Event Targeted'
             end
 
             drug :drug_name, nomenclature: 'Primary Drug Name', primary_name: :drug_name, transform: upcase do
@@ -32,7 +32,7 @@ module Genome
               attribute :drug_subclass, name: 'Drug Classification'
               attribute :linked_class_info, name: 'Link to Clearity Drug Class Schematic'
             end
-
+	    attribute :interaction_type, name: 'Interaction Type'
             attribute :interaction_mechanism, name: 'Mechanism of Interaction'
           end
         end.save!
