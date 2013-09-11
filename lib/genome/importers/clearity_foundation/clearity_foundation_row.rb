@@ -4,7 +4,7 @@ module Genome
     module ClearityFoundation
       class ClearityRow < Genome::Importers::DelimitedRow
         attribute :gene_name
-        attribute :entrez_gene_id
+	attribute :entrez_gene_id
         attribute :interaction_mechanism
         attribute :reported_gene_name
         attribute :drug_name
@@ -13,6 +13,7 @@ module Genome
         attribute :drug_class
         attribute :drug_subclass
         attribute :linked_class_info
+	attribute :interaction_type
       end
     end
   end
