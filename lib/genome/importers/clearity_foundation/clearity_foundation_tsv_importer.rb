@@ -32,7 +32,7 @@ module Genome
               attribute :drug_subclass, name: 'Drug Classification'
               attribute :linked_class_info, name: 'Link to Clearity Drug Class Schematic'
             end
-	    attribute :interaction_type, name: 'Interaction Type'
+            attribute :interaction_type, name: 'Interaction Type'
             attribute :interaction_mechanism, name: 'Mechanism of Interaction'
           end
         end.save!

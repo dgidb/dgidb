@@ -52,6 +52,6 @@ news:
       date: August 7, 2013
     - headline: TALC data updated, Clearity Foundation data fixed.
       article : >
-	Clearity Foundation data is updated and bugs are fixed. TALC data is updated to refelct the new interactions added in the December 2012 paper, "A Tabulated Summary of Targeted and Biologic Therapies for Non-Small-Cell Lung Cancer", from Somaiah et. al.
-	date: September 11, 2013
+        Clearity Foundation data is updated and bugs are fixed. TALC data is updated to refelct the new interactions added in the December 2012 paper, "A Tabulated Summary of Targeted and Biologic Therapies for Non-Small-Cell Lung Cancer", from Somaiah et. al.
+      date: September 11, 2013
 
