@@ -2,23 +2,23 @@ module Genome
   module Groupers
     class GeneGrouper
 
-      def self.run
+      def self.run(logger = NullObject.new)
         ActiveRecord::Base.transaction do
-          puts 'Preloading genes and gene names into memory.'
-          preload!
-          puts 'Creating initial gene groups.'
+          logger.info 'Preloading genes and gene names into memory.'
+          preload
+          logger.info 'Creating initial gene groups.'
           create_groups
-          puts 'Adding members to gene groups.'
+          @alt_to_other = preload_non_entrez_gene_aliases
+          logger.info 'Adding members to gene groups.'
           add_members
-          puts 'Committing to database.'
+          logger.info 'Committing to database.'
         end
       end
 
       private
-      def self.preload!
+      def self.preload
         @gene_names_to_genes = preload_gene_names
         @alt_to_entrez = preload_entrez_gene_aliases
-        @alt_to_other = preload_non_entrez_gene_aliases
       end
 
       def self.preload_entrez_gene_aliases
@@ -56,7 +56,7 @@ module Genome
       def self.create_groups
         @alt_to_entrez.each_key do |gene_name|
           gene_claims = @alt_to_entrez[gene_name].map(&:gene_claim)
-          gene = @gene_names_to_genes[gene_name].first
+          gene = @gene_names_to_genes[gene_name].first if @gene_names_to_genes[gene_name]
 
           if gene
             gene_claims.each do |gene_claim|
