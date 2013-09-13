@@ -12,6 +12,13 @@ class LookupCategories
     filter_results(gene_results, params)
   end
 
+  def self.gene_names_in_category(category_name)
+    DataModel::GeneClaimCategory
+      .joins(gene_claims: [:genes])
+      .where(name: category_name.upcase).uniq
+      .pluck('genes.name')
+  end
+
   def self.find_genes_for_category_and_sources(category_name, source_names)
     DataModel::Gene.joins(gene_claims: [:gene_claim_categories, :source])
        .eager_load(gene_claims: [source: [:source_trust_level]])

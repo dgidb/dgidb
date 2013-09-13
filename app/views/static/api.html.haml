@@ -26,6 +26,8 @@
             %a{href: '#source-trust-levels'} Source Trust Levels
           %li
             %a{href: '#related-genes'} Related Genes
+          %li
+            %a{href: '#genes-in-category'} Genes in Category
           %li.divider
           %li.nav-header Responses
           %li
@@ -393,6 +395,44 @@
                 }
               ]
             }
+      %hr
+      %section#genes-in-category
+        %h3 Genes in Category
+        %p.lead
+          The Genes in Category endpoint can be used to get a list of all genes in DGIdb
+          that are known to be in a specific category.
+        %span.label GET
+        %pre
+          \/api/v1/genes_in_category.json
+        %h5 Accepted Parameters:
+        %table.table.table-bordered.table-striped
+          %thead
+            %tr
+              %td Parameter
+              %td Description
+              %td Example
+          %tbody
+            %tr
+              %td
+                category
+                %small (required)
+              %td The name of the category to retrieve genes from
+              %td
+                %code category=kinase
+        %h5
+          Example Call:
+        %p
+          %span.label.label-info Note:
+          %small
+            The following example would query DGIdb for a list of genes known to be Kinases
+        %pre
+          \http://dgidb.genome.wustl.edu/api/v1/genes_in_category.json?category=kinase
+        %h5 Example Response:
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-genes-in-category-response'}}
+          Show/Hide Response
+        %pre#example-genes-in-category-response.collapse
+          :preserve
+            ["SNRK","BCR","FKBP1A","TAB2","DGKE","PHKA1","PRKCH"]
       %hr
       .page-header
         %section

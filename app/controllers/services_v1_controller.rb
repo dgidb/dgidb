@@ -26,6 +26,14 @@ class ServicesV1Controller < ApplicationController
     )
   end
 
+  def genes_in_category
+    category_name = params[:category].upcase
+    DataModel::GeneClaimCategory.where(name: category_name).any? ||
+      not_found("Sorry, no category with the name #{category_name} was found.")
+
+    render_format LookupCategories.gene_names_in_category(category_name)
+  end
+
   def related_genes
     combine_input_genes(params)
     @genes = LookupRelatedGenes.find(params[:gene_names])

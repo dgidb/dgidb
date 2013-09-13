@@ -71,7 +71,6 @@ describe LookupCategories do
   end
 
   describe '::get_category_names_with_counts_with_sources' do
-
     it 'should return both the category names and the correct count of gene claims in that category' do
       categories = (1..3).map { Fabricate(:gene_claim_category) }.sort_by { |c| c.name }
 
@@ -89,6 +88,34 @@ describe LookupCategories do
 
       empty_results = LookupCategories.get_category_names_with_counts_in_sources(source2.source_db_name)
       empty_results.size.should eq(0)
+    end
+  end
+
+  describe '::gene_names_in_category' do
+    def setup_category
+      category = Fabricate(:gene_claim_category, name: 'TESTCATEGORY')
+      gene_claim = Fabricate(:gene_claim, gene_claim_categories: [category])
+      gene = Fabricate(:gene, gene_claims: [gene_claim])
+      [gene, category.name]
+    end
+
+    it 'should return gene names in the given category' do
+      (gene, category_name) = setup_category
+
+      gene_names = LookupCategories.gene_names_in_category(category_name)
+      Array(gene.name).should eq gene_names
+    end
+
+    it 'should be case insensitive' do
+      (_, category_name) = setup_category
+      LookupCategories.gene_names_in_category(category_name.downcase)
+        .should eq LookupCategories.gene_names_in_category(category_name.upcase)
+    end
+
+    it 'should not return gene names that are not in the category' do
+      (_, category_name) = setup_category
+      gene = Fabricate(:gene)
+      LookupCategories.gene_names_in_category(category_name).should_not include(gene.name)
     end
 
   end
