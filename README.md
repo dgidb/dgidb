@@ -16,13 +16,25 @@ The web application is organized in a fairly traditional Model-View-Controller (
 
 Two of the web application’s primary pieces of functionality are its gene name matching algorithm and its implementation of filtering. The gene name matching process attempts to account for potential ambiguity in user search terms. It first attempts to make an exact match on Entrez gene symbols. If it finds such a match, it assumes it to be what the user meant. If it is unable to find an exact Entrez match for a search term, it reverts to searching through all reported aliases for gene clusters in the system. If the system finds more than one gene cluster that matches the search term, it will classify the result as ambiguous and return all potential gene group matches.  The ambiguity is expressed in both the user interface and API responses in order to help the user decide which gene they meant.
 
-Rather than being implemented as SQL WHERE clauses, result filtering is implemented using sets. For interaction filtering, the set of all interactions meeting each possible filter criterion is pre-calculated into a set of ids. Each of these sets can be individually cached for fast retrieval later. Set operations are then utilized to combine filters quickly. For instance, if a user wanted to see only inhibitor interactions that involved kinase genes and are from DrugBank, the following steps would take place. The set of all inhibitor interactions would be intersected with the set of all interactions involving kinases, which would then be intersected with the set of all interactions reported by DrugBank. Each intermediate step as well as the final filter will be cached. Over time, the most common permutations are calculated and cached, making filtering almost instantaneous. Once the final set is calculated, each returned interaction’s id can be checked for presence in the set in constant (O(1)) time.
-
 #### Application Programming Interface (API)
 The DGIdb API can be used to query for drug-gene interactions in your own applications through a simple JSON based interface.  Extensive documentation of the API including functioning code example is maintained at: http://dgidb.genome.wustl.edu/api
 
 #### Citation
 Coming soon...
 
-Additional documentation forthcoming...
+#### License
 
+Copyright (C) 2013 The Genome Institute at Washington University
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see [http://www.gnu.org/licenses/].
