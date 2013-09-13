@@ -2,16 +2,12 @@ module Genome
   module Groupers
     class GeneGrouper
 
-      def self.run(logger = NullObject.new)
+      def self.run
         ActiveRecord::Base.transaction do
-          logger.info 'Preloading genes and gene names into memory.'
           preload
-          logger.info 'Creating initial gene groups.'
           create_groups
           @alt_to_other = preload_non_entrez_gene_aliases
-          logger.info 'Adding members to gene groups.'
           add_members
-          logger.info 'Committing to database.'
         end
       end
 
