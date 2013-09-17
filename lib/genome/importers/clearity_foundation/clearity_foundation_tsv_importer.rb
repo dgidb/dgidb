@@ -28,7 +28,7 @@ module Genome
             drug :drug_name, nomenclature: 'Primary Drug Name', primary_name: :drug_name, transform: upcase do
               attribute :drug_class, name: 'Drug Class'
               name :drug_trade_name, nomenclature: 'Drug Trade Name', unless: blank_filter
-              name :pubchem_id, nomenclature: 'PubChem Drug ID' 
+              name :pubchem_id, nomenclature: 'PubChem Drug ID'
               attribute :drug_subclass, name: 'Drug Classification'
               attribute :linked_class_info, name: 'Link to Clearity Drug Class Schematic'
             end
