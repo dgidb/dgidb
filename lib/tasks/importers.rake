@@ -35,6 +35,8 @@ namespace :dgidb do
           Genome::Normalizers::PopulateCounters.populate_source_counters
           puts 'Attempting to normalize drug types.'
           Genome::Normalizers::DrugTypeNormalizers.normalize_types
+          puts 'Filling in source trust levels'
+          Genome::Normalizers::SourceTrustLevel.populate_trust_levels
           puts 'Done.'
       end
     end

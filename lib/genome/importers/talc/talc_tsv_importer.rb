@@ -8,6 +8,7 @@ module Genome
           citation:          "Molecular targeted agents and biologic therapies for lung cancer. Somaiah N, Simon GR. J Thorac Oncol. 2011 Nov;6(11 Suppl 4):S1758-85. PMID: 22005529",
           source_db_version: '17-Sept-2013',
           source_type_id:    DataModel::SourceType.INTERACTION,
+          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           source_db_name:    'TALC',
           full_name:         'Targeted Agents in Lung Cancer (Santa Monica Supplement, 2011)'
         }
