@@ -25,7 +25,7 @@ module Genome
               name :gene_target, nomenclature: 'Gene Symbol'
             end
 
-            drug :drug_name, nomenclature: 'TALC', primary_name: :drug_name, transform: -> (x) { x.upcase } do
+            drug :drug_name, nomenclature: 'TALC', primary_name: :drug_name, transform: ->(x) { x.upcase } do
               name :drug_name, nomenclature: 'Primary Drug Name'
               names :drug_synonym, nomenclature: 'Drug Synonym', unless: na_filter
               name :drug_generic_name, nomenclature: 'Drug Generic Name', unless: na_filter
