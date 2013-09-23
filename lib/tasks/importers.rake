@@ -37,6 +37,8 @@ namespace :dgidb do
           Genome::Normalizers::DrugTypeNormalizers.normalize_types
           puts 'Filling in source trust levels'
           Genome::Normalizers::SourceTrustLevel.populate_trust_levels
+          puts 'Attempting to normalize interaction types'
+          Genome::Normalizers::InteractionClaimType.normalize_types
           puts 'Done.'
       end
     end
