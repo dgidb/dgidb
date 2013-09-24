@@ -44,8 +44,7 @@ class InteractionSearchResultApiPresenter
     def types_string
       interaction_claim
         .interaction_claim_types
-        .map{ |x| x.type.sub(/^na$/,'n/a') }
-        .join('/')
+        .join(',')
     end
 
     def interaction_id

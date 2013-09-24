@@ -5,7 +5,8 @@ module Genome
         ActiveRecord::Base.transaction do
           fill_in_new_types
           backfill_with_default_type
-          cleanup_default_type
+          cleanup_type(default_type)
+          cleanup_type(other_type)
         end
       end
 
@@ -19,13 +20,12 @@ module Genome
         end
       end
 
-      def self.cleanup_default_type
-        type = default_type
-
+      def self.cleanup_type(type)
         interaction_claims_with_more_than_one_type = type.interaction_claims
           .reject { |ic| ic.interaction_claim_types.size == 1 }
         interaction_claims_with_more_than_one_type.each do |ic|
           ic.interaction_claim_types.delete(type)
+          ic.save
         end
       end
 
@@ -40,6 +40,10 @@ module Genome
 
       def self.default_type
         DataModel::InteractionClaimType.where(type: 'n/a').first
+      end
+
+      def self.other_type
+        DataModel::InteractionClaimType.where(type: 'other/unknown').first
       end
 
       def self.add_unless_exists(type, interaction_claim)
