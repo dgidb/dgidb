@@ -75,7 +75,7 @@ DruggableGene::Application.configure do
   if defined?(PhusionPassenger)
     require 'phusion_passenger/rack/out_of_band_gc'
     # Trigger out-of-band GC every 5 requests.
-    use PhusionPassenger::Rack::OutOfBandGc, 5
+    config.middleware.use PhusionPassenger::Rack::OutOfBandGc, 5
   end
 
   config.middleware.use ExceptionNotification::Rack,
