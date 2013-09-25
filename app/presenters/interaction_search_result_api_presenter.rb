@@ -44,6 +44,7 @@ class InteractionSearchResultApiPresenter
     def types_string
       interaction_claim
         .interaction_claim_types
+        .map(&:type)
         .join(',')
     end
 
