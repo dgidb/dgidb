@@ -17,7 +17,8 @@ module Genome
             'RussLampel',
             'HopkinsGroom',
             'CancerCommons',
-            'ClearityFoundation',
+            'ClearityFoundationBiomarker',
+            'ClearityFoundationClinical',
             'Entrez',
           ],
         'Non-curated' =>

@@ -1,6 +1,6 @@
 module Genome
   module Importers
-    module ClearityFoundation
+    module ClearityFoundationBiomarker
 
       def self.source_info
         {
@@ -10,15 +10,15 @@ module Genome
           source_db_version: '26-July-2013',
           source_type_id: DataModel::SourceType.INTERACTION,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
-          source_db_name: 'ClearityFoundation',
-          full_name: 'Clearity Foundation',
+          source_db_name: 'ClearityFoundationBiomarkers',
+          full_name: 'Clearity Foundation Biomarkers',
         }
       end
 
       def self.run(tsv_path)
         blank_filter = ->(x) { x.blank? }
         upcase = ->(x) { x.upcase }
-        TSVImporter.import tsv_path, ClearityRow, source_info do
+        TSVImporter.import tsv_path, ClearityBiomarkerRow, source_info do
           interaction known_action_type: 'unknown' do
             gene :gene_name, nomenclature: 'Gene Target Symbol', transform: upcase do
               name :entrez_gene_id, nomenclature: 'Entrez Gene ID'
