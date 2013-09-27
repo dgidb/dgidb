@@ -72,6 +72,12 @@ DruggableGene::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  if defined?(PhusionPassenger)
+    require 'phusion_passenger/rack/out_of_band_gc'
+    # Trigger out-of-band GC every 5 requests.
+    config.middleware.use PhusionPassenger::Rack::OutOfBandGc, 5
+  end
+
   config.middleware.use ExceptionNotification::Rack,
   email: {
     :email_prefix => "[DGIDB] ",
