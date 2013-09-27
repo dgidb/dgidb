@@ -3,7 +3,7 @@ module Genome
   module Importers
     module TALC
       class TALCRow < Genome::Importers::DelimitedRow
-        attribute :interaction_id
+        attribute :entrez_id
         attribute :gene_target
         attribute :drug_name
         attribute :interaction_type
@@ -12,7 +12,7 @@ module Genome
         attribute :drug_generic_name
         attribute :drug_trade_name, Array, delimiter: ','
         attribute :drug_synonym, Array, delimiter: ','
-        attribute :entrez_id
+        attribute :interaction_id
         attribute :drug_cas_number
         attribute :drug_drugbank_id
 
