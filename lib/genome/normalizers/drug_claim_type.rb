@@ -47,7 +47,8 @@ module Genome
           'TALC',
           'MyCancerGenome',
           'CancerCommons',
-          'ClearityFoundation'
+          'ClearityFoundationBiomarker',
+          'ClearityFoundationClinical'
         ]
       end
     end

@@ -5,7 +5,7 @@ module Genome
         {
           base_url:          'http://www.ncbi.nlm.nih.gov/gene?term=',
           site_url:          'http://www.ncbi.nlm.nih.gov/pubmed/22005529/',
-          citation:          "A tabulated summary of targeted and biologic therapies for non-small-cell lung cancer. Somaiah N, Simon NG, Simon GR. J Thorac Oncol. 2012 Dec;7 (16 Suppl 5):S342-68. PMID: 23160320"
+          citation:          "A tabulated summary of targeted and biologic therapies for non-small-cell lung cancer. Somaiah N, Simon NG, Simon GR. J Thorac Oncol. 2012 Dec;7 (16 Suppl 5):S342-68. PMID: 23160320",
           source_db_version: '17-Sept-2013',
           source_type_id:    DataModel::SourceType.INTERACTION,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,

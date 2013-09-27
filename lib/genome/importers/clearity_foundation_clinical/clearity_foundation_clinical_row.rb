@@ -1,7 +1,7 @@
 require 'genome/importers/delimited_row'
 module Genome
   module Importers
-    module ClearityFoundation
+    module ClearityFoundationClinical
       class ClearityClinicalRow < Genome::Importers::DelimitedRow
         attribute :molecular_target
         attribute :entrez_gene_name
