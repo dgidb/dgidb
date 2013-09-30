@@ -1,7 +1,7 @@
 require 'genome/importers/delimited_row'
 module Genome
 	module Importers
-		module FoundationOne
+		module FoundationOneRow
 			class FoundationOne < Genome::Importers::DelimitedRow
 				attribute :reported_gene_name
 				attribute :entrez_gene_name
