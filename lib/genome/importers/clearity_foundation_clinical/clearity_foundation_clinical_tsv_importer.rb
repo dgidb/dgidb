@@ -28,14 +28,14 @@ module Genome
             drug :pubchem_name, nomenclature: 'Primary Drug Name', primary_name: :pubchem_name, transform: upcase do
               attribute :drug_class, name: 'Drug Class'
               name :drug__name, nomenclature: 'Drug Trade Name', unless: blank_filter
-              name :CID, nomenclature: 'PubChem Drug CID', unless: blank_filter
-              name :SID, nomenclature: 'Pubchem Substance SID', unless: blank_filter
+              name :cid, nomenclature: 'PubChem Drug CID', unless: blank_filter
+              name :sid, nomenclature: 'Pubchem Substance SID', unless: blank_filter
               name :other_drug_name, nomenclature: 'Other Drug Name', unless: blank_filter
-              attribute :clinical_trial_ID, name: 'Clinical Trial ID'
+              attribute :clinical_trial_id, name: 'Clinical Trial ID'
             end
             attribute :interaction_type, name: 'Interaction Type'
             attribute :mode_of_action, name: 'Mechanism of Interaction'
-            attribute :clinical_trial_ID, name: 'Clinical Trial ID'
+            attribute :clinical_trial_id, name: 'Clinical Trial ID'
           end
         end.save!
       end

@@ -9,11 +9,11 @@ module Genome
         attribute :drug_name
         attribute :other_drug_name
         attribute :pubchem_name
-        attribute :CID
-        attribute :SID
+        attribute :cid
+        attribute :sid
         attribute :interaction_type
         attribute :mode_of_action
-        attribute :clinical_trial_ID
+        attribute :clinical_trial_id
         attribute :detail
         attribute :phase
         attribute :include
