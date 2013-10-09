@@ -50,10 +50,10 @@ news:
         in 2008 to help ovarian cancer patients and their physicians make better-informed treatment decisions, based on molecular profiling of tumors.
         From this resource we obtained 175 drug-gene interactions involving 34 genes and 64 drugs.
       date: August 7, 2013
-    - headline: TALC and Clearity Foundation data has been updated,
+    - headline: TALC and Clearity Foundation data have been updated,
       article : >
-        This version of DGIdb incorporated updates and bug fixes for the Clearity Foundation data. 
-        The TALC data has beed updated to reflect the new interactions added in the December 2012 publication:  
+        This version of DGIdb incorporates updates and bug fixes for the Clearity Foundation data. 
+        The TALC data has been updated to reflect the new interactions added in the December 2012 publication:  
         "A Tabulated Summary of Targeted and Biologic Therapies for Non-Small-Cell Lung Cancer" 
         (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23160320">J Thorac Oncol. 2012 Dec;7(16 Suppl 5):S342-68</a>).
       date: September 11, 2013
