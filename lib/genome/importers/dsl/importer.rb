@@ -12,7 +12,7 @@ module Genome
           interaction_claim_id = SecureRandom.uuid
           node = InteractionNode.new(interaction_claim_id, @importer, @row)
           node.instance_eval(&block)
-          node.create_interaction(opts[:known_action_type] || 'unknown')
+          node.create_interaction(opts)
         end
 
         def save!
