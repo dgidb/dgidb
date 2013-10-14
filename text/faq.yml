@@ -14,9 +14,7 @@ faq:
     - question: How do I cite DGIdb?
       anchor: cite
       answer: >
-        A manuscript describing DGIdb has been submitted for publication and is currently under peer review...
-        Once accepted for publication, citation details will appear here.
-        Until then, please simply cite the URL for dgidb.org.
+        Please cite: 9.	Griffith M*, Griffith OL*, Coffman AC, Weible JV, McMichael JF, Spies NC, Koval J, Das I, Callaway MB, Eldred JM, Miller CA, Subramanian J, Govindan R, Kumar RD, Bose R, Ding L, Larson DE, Dooling DJ, Smith SM, Ley TJ, Mardis ER, Wilson RK. 2013. DGIdb – Mining the druggable genome for personalized medicine. Nature Methods. Advance online publication. *These authors contributed equally to this work.
 
     - question: Is DGIdb open source and open access?
       anchor: source
