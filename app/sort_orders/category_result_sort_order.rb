@@ -3,12 +3,14 @@ module CategoryResultSortOrder
     case sortval
     when 'dGene'
       1
-    when 'RussLampel'
+    when 'FoundationOne'
       2
-    when 'HopkinsGroom'
+    when 'RussLampel'
       3
-    when 'GO'
+    when 'HopkinsGroom'
       4
+    when 'GO'
+      5
     else
       99
     end
