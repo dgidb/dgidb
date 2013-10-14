@@ -2,7 +2,11 @@ contact:
   title: DGIdb - Contact Info
   title_main: Contact Info
   title_small: get in touch with us
-  description: DGIdb was developed at The Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us.
+  description: >
+    DGIdb was developed at The Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us.<br><br>
+
+    Citation: <strong>DGIdb - mining the druggable genome</strong>. Malachi Griffith*, Obi L Griffith*, Adam C Coffman, James V Weible, Josh F McMichael, Nicholas C Spies, James Koval, Indraniel Das, Matthew B Callaway, James M Eldred, Christopher A Miller, Janakiraman Subramanian, Ramaswamy Govindan, 
+    Runjun D Kumar, Ron Bose, Li Ding, Jason R Walker, David E Larson, David J Dooling, Scott M Smith, Timothy J Ley, Elaine R Mardis, Richard K Wilson. <a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.2689.html">Nature Methods</a> (2013) doi:10.1038/nmeth.2689. *These authors contributed equally to this work.<br><br>
 
   people:
     - title: Malachi Griffith
