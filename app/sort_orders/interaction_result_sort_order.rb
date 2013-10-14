@@ -15,10 +15,12 @@ module InteractionResultSortOrder
       6
     when 'PharmGKB'
       7
-    when 'TTD'
+    when 'FoundationOneGenes'
       8
-    when 'DrugBank'
+    when 'TTD'
       9
+    when 'DrugBank'
+      10
     else
       99
     end
