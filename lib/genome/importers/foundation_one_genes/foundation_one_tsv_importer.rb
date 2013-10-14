@@ -1,6 +1,6 @@
 module Genome
   module Importers
-    module FoundationOne
+    module FoundationOneGenes
 
       def self.source_info
       {
@@ -10,13 +10,13 @@ module Genome
         source_db_version: '20-Sept-2013',
         source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE,
         source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
-        source_db_name: 'FoundationOne',
-        full_name: 'Foundation One',
+        source_db_name: 'FoundationOneGenes',
+        full_name: 'Foundation One Genes',
       }
       end
 
       def self.run(tsv_path)
-        TSVImporter.import tsv_path, FoundationOneRow, source_info do 
+        TSVImporter.import tsv_path, FoundationOneGenesRow, source_info do 
           gene :entrez_gene_name, nomenclature: 'Entrez Gene Name' do
             name :entrez_gene_id, nomenclature: "Entrez Gene ID"
             attribute :reported_gene_name, name: 'Source Reported Gene Name'
