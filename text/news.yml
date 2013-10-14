@@ -41,7 +41,6 @@ news:
         This version of DGIdb incorporates improvements in versioning, the ability to perform drug interaction searches against the gene-gene 
         interactors of a specific gene, and additional minor fixes and improvements.
       date: July 30, 2013
-
     - headline: Clearity Foundation is added as a source for DGIdb
       article: >
         Highly curated drug-gene interactions have been mined from <a href="https://www.clearityfoundation.org/">the Clearity Foundation</a> and
@@ -57,4 +56,16 @@ news:
         "A Tabulated Summary of Targeted and Biologic Therapies for Non-Small-Cell Lung Cancer" 
         (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23160320">J Thorac Oncol. 2012 Dec;7(16 Suppl 5):S342-68</a>).
       date: September 11, 2013
+
+    - headline: DGIdb is published online in Nature Methods,
+      article : >
+        A paper describing this resource is now available online:
+        <a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.2689.html">
+        DGIdb - mining the druggable genome. Nature Methods (2013) doi:10.1038/nmeth.2689
+        </a>
+      date: October 14, 2013
+
+
+
+
 
