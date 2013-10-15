@@ -24,7 +24,7 @@ DGIdb - mining the druggable genome. Malachi Griffith*, Obi L Griffith*, Adam C 
 James Koval, Indraniel Das, Matthew B Callaway, James M Eldred, Christopher A Miller, Janakiraman Subramanian, Ramaswamy Govindan, Runjun D Kumar, 
 Ron Bose, Li Ding, Jason R Walker, David E Larson, David J Dooling, Scott M Smith, Timothy J Ley, Elaine R Mardis, Richard K Wilson. 
 <a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.2689.html">Nature Methods</a> (2013) doi:10.1038/nmeth.2689. 
-*These authors contributed equally to this work.<br><br>
+*These authors contributed equally to this work.
 
 #### License
 
