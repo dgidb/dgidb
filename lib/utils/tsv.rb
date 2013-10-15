@@ -1,28 +1,25 @@
 module Utils
   module TSV
     def self.generate_interactions_tsv(filename = 'interactions.tsv')
-      Logging.without_sql do
-        File.open(filename, 'w') do |file|
-          print_interaction_header(file)
-          DataModel::Gene.for_search.find_each do |gene|
-            print_interaction_row(file, gene)
-          end
-        end
-      end
+      write_tsv_file_for_query(filename, DataModel::Gene.for_search, 'interaction')
     end
 
     def self.generate_categories_tsv(filename = 'categories.tsv')
+      write_tsv_file_for_query(filename, DataModel::Gene.for_gene_categories, 'category')
+    end
+
+    private
+    def self.write_tsv_file_for_query(filename, query, type)
       Logging.without_sql do
         File.open(filename, 'w') do |file|
-          print_category_header(file)
-          DataModel::Gene.for_gene_categories.find_each do |gene|
-            print_category_row(file, gene)
+          self.send("print_#{type}_header".to_sym, file)
+          query.find_each do |gene|
+            self.send("print_#{type}_row".to_sym, file, gene)
           end
         end
       end
     end
 
-    private
     def self.print_category_header(file_handle)
       header = ['entrez_gene_symbol','gene_long_name',
         'category_sources','category'].join("\t")
@@ -49,6 +46,7 @@ module Utils
         'interaction_types','drug_name','drug_primary_name'].join("\t")
       file_handle.puts(header)
     end
+
     def self.print_interaction_row(file_handle, gene)
       gene.gene_claims.flat_map(&:interaction_claims).each do |interaction|
         row = [
