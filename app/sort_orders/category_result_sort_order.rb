@@ -3,7 +3,7 @@ module CategoryResultSortOrder
     case sortval
     when 'dGene'
       1
-    when 'FoundationOne'
+    when 'FoundationOneGenes'
       2
     when 'RussLampel'
       3

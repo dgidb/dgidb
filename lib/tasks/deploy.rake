@@ -11,7 +11,10 @@ namespace :dgidb do
   task :stage do
     Rake::Task['dgidb:build_package'].execute
     staging_box = Rye::Box.new('vmpool26', user: 'vmuser', safe: false)
-    staging_box.execute('sudo dpkg', :i, 'dgi-db_*.deb')
+    puts '====INSTALL THE PACKAGE===='
+    puts 'sudo dpkg -i dgi-db_*.deb'
+    puts '==========================='
+    staging_box.interactive_ssh
   end
 
   desc 'publish built package to puppet'
