@@ -1,5 +1,6 @@
 class InteractionSearchResultsPresenter
   include Genome::Extensions
+  include InteractionResultValueClasses
   attr_reader :search_results
 
   def initialize(search_results, start_time)
@@ -90,7 +91,6 @@ class InteractionSearchResultsPresenter
   end
 
   def search_term_summaries(context)
-    search_term_summary = Struct.new(:search_term, :match_type, :gene_links)
     @search_results.map do |result|
       gene_links = if result.match_type_label == 'None'
                      'None'
@@ -100,12 +100,12 @@ class InteractionSearchResultsPresenter
                      .join(', ').html_safe
                    end
 
-      search_term_summary.new(result.search_term, result.match_type_label, gene_links)
+      SearchTermSummary.new(result.search_term, result.match_type_label, gene_links)
     end
   end
 
   def source_db_names_for_table
-    definite_interactions
+    @source_db_names_for_table ||= definite_interactions
       .flat_map { |i| i.source_db_name }
       .uniq
       .sort
@@ -113,44 +113,28 @@ class InteractionSearchResultsPresenter
 
   def interactions_map_by_source_db_names
     unless @interactions_map_by_source_db_names
-      interaction_groups =
-        definite_interactions.inject(Hash.new() {|hash, key| hash[key] = []}) do |hash, presenter|
-          hash.tap do |h|
-            name = [presenter.drug_claim_name, presenter.gene_name].join(" and ")
-            h[name] << presenter
-          end
-        end
-      @interactions_map_by_source_db_names = interaction_groups.inject([]) do |array, (name, gene)|
-        gene_sources = gene.map{|g| g.source_db_name}
-        array << OpenStruct.new(
-          name: name,
-          sources: source_db_names_for_table.map{ |s| gene_sources.include?(s) }
-        )
+      interaction_groups = definite_interactions.group_by do |presenter|
+        [presenter.drug_claim_name, presenter.gene_name].join(" and ")
+      end
+      @interactions_map_by_source_db_names = interaction_groups.map do |name, gene|
+        gene_sources = gene.map(&:source_db_name)
+        InteractionNameWithSources.new(name, source_db_names_for_table.map{ |s| gene_sources.include?(s) })
       end
     end
     @interactions_map_by_source_db_names
   end
 
   def interactions_by_gene
-    unless @interactions_by_gene
-      interactions_by_gene = definite_interactions.inject(Hash.new() {|hash, key| hash[key] = []}) do |hash, presenter|
-        hash[presenter.gene_name] << presenter
-        hash
-      end
-      gene_names = interactions_by_gene.keys.uniq
-      @interactions_by_gene = gene_names.inject([]) do |array, gene_name|
-        presenters = interactions_by_gene[gene_name]
-        array << OpenStruct.new(
-          search_term: presenters.first.search_term,
-          gene_name: gene_name,
-          gene_display_name: presenters.first.gene_long_name,
-          drug_count: interactions_by_gene[gene_name]
-            .map{ |i| i.drug_claim_name }.uniq.count,
-          category_list: presenters.first.potentially_druggable_categories
-        )
-      end
+    @interactions_by_gene ||= definite_interactions.group_by(&:gene_name).map do |gene_name, interactions|
+      presenter = interactions.first
+      InteractionByGene.new(
+        presenter.search_term,
+        gene_name,
+        presenter.gene_long_name,
+        interactions.map(&:drug_claim_name).uniq.count,
+        presenter.potentially_druggable_categories
+      )
     end
-    @interactions_by_gene
   end
 
   private
