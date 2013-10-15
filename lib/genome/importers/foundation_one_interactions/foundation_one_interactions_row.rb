@@ -10,7 +10,7 @@ module Genome
                 attribute :pubchem_drug_name
                 attribute :primary_drug_name
                 attribute :pubchem_drug_id
-                attribute :pharmacogenic_loci_hg18
+                attribute :pharmacogenic_loci_hg19
             end
         end
     end
