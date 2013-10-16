@@ -1,7 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
-require 'simplecov'
-SimpleCov.start 'rails' do
+require 'coveralls'
+Coveralls.wear! 'rails' do
   add_filter '/importers/.+/'
 end
 
