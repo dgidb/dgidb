@@ -1,6 +1,6 @@
 class InteractionSearchResultsPresenter
   include Genome::Extensions
-  include InteractionResultValueClasses
+  include InteractionResultRowClasses
   attr_reader :search_results
 
   def initialize(search_results, start_time)
@@ -92,15 +92,7 @@ class InteractionSearchResultsPresenter
 
   def search_term_summaries(context)
     @search_results.map do |result|
-      gene_links = if result.match_type_label == 'None'
-                     'None'
-                   else
-                     result.genes
-                     .map { |g| context.instance_exec { link_to(g.name, gene_path(g.name)) } }
-                     .join(', ').html_safe
-                   end
-
-      SearchTermSummary.new(result.search_term, result.match_type_label, gene_links)
+      SearchTermSummary.new(result.search_term, result.match_type_label, result.genes, context)
     end
   end
 
@@ -116,9 +108,8 @@ class InteractionSearchResultsPresenter
       interaction_groups = definite_interactions.group_by do |presenter|
         [presenter.drug_claim_name, presenter.gene_name].join(" and ")
       end
-      @interactions_map_by_source_db_names = interaction_groups.map do |name, gene|
-        gene_sources = gene.map(&:source_db_name)
-        InteractionNameWithSources.new(name, source_db_names_for_table.map{ |s| gene_sources.include?(s) })
+      @interactions_map_by_source_db_names = interaction_groups.map do |name, genes|
+        InteractionNameWithSources.new(name, source_db_names_for_table, genes)
       end
     end
     @interactions_map_by_source_db_names
@@ -126,14 +117,7 @@ class InteractionSearchResultsPresenter
 
   def interactions_by_gene
     @interactions_by_gene ||= definite_interactions.group_by(&:gene_name).map do |gene_name, interactions|
-      presenter = interactions.first
-      InteractionByGene.new(
-        presenter.search_term,
-        gene_name,
-        presenter.gene_long_name,
-        interactions.map(&:drug_claim_name).uniq.count,
-        presenter.potentially_druggable_categories
-      )
+      InteractionByGene.new(gene_name, interactions)
     end
   end
 
