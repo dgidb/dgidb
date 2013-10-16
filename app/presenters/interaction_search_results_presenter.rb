@@ -109,7 +109,7 @@ class InteractionSearchResultsPresenter
         [presenter.drug_claim_name, presenter.gene_name].join(" and ")
       end
       @interactions_map_by_source_db_names = interaction_groups.map do |name, genes|
-        InteractionNameWithSources.new(name, source_db_names_for_table, genes)
+        InteractionBySource.new(name, source_db_names_for_table, genes)
       end
     end
     @interactions_map_by_source_db_names

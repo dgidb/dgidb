@@ -19,7 +19,7 @@ module InteractionResultRowClasses
     end
   end
 
-  class InteractionNameWithSources
+  class InteractionBySource
     attr_reader :name, :sources
     def initialize(name, source_db_names, genes)
       @name = name
