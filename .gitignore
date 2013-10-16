@@ -25,3 +25,5 @@
 .idea
 
 .agignore
+
+/coverage
