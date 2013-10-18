@@ -1,5 +1,6 @@
 module DataModel
   class DrugClaim < ::ActiveRecord::Base
+    include Genome::Extensions::UUIDPrimaryKey
 
     has_and_belongs_to_many :drugs
     has_many :drug_claim_aliases, inverse_of: :drug_claim, dependent: :delete_all

@@ -1,5 +1,6 @@
 module DataModel
   class SourceTrustLevel < ActiveRecord::Base
+    include Genome::Extensions::UUIDPrimaryKey
     include Genome::Extensions::HasCacheableQuery
     include Genome::Extensions::EnumerableType
     has_many :sources, inverse_of: :source_trust_level

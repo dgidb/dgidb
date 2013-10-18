@@ -1,5 +1,6 @@
 module DataModel
   class Source < ::ActiveRecord::Base
+    include Genome::Extensions::UUIDPrimaryKey
     include Genome::Extensions::HasCacheableQuery
 
     has_many :gene_claims, inverse_of: :source, dependent: :delete_all

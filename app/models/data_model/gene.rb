@@ -1,5 +1,6 @@
 module DataModel
   class Gene < ::ActiveRecord::Base
+    include Genome::Extensions::UUIDPrimaryKey
     include Genome::Extensions::HasCacheableQuery
 
     has_and_belongs_to_many :gene_claims

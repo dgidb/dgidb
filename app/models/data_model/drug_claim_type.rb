@@ -1,5 +1,6 @@
 module DataModel
   class DrugClaimType < ::ActiveRecord::Base
+    include Genome::Extensions::UUIDPrimaryKey
     include Genome::Extensions::EnumerableType
     include Genome::Extensions::HasCacheableQuery
     has_and_belongs_to_many :drug_claims
