@@ -1,6 +1,5 @@
 module DataModel
   class InteractionClaim < ::ActiveRecord::Base
-    include Genome::Extensions::UUIDPrimaryKey
 
     has_many :interaction_claim_attributes, inverse_of: :interaction_claim
     belongs_to :gene_claim, inverse_of: :interaction_claims

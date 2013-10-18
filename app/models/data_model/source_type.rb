@@ -1,6 +1,5 @@
 module DataModel
   class SourceType < ::ActiveRecord::Base
-    include Genome::Extensions::UUIDPrimaryKey
     include Genome::Extensions::EnumerableType
     has_many :sources, inverse_of: :source_type
 

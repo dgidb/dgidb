@@ -1,6 +1,5 @@
 module DataModel
   class InteractionClaimType < ::ActiveRecord::Base
-    include Genome::Extensions::UUIDPrimaryKey
     include Genome::Extensions::EnumerableType
     include Genome::Extensions::HasCacheableQuery
 

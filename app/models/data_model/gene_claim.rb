@@ -1,6 +1,5 @@
 module DataModel
   class GeneClaim < ::ActiveRecord::Base
-    include Genome::Extensions::UUIDPrimaryKey
     has_and_belongs_to_many :genes
     has_and_belongs_to_many :gene_claim_categories
     has_many :gene_claim_aliases, inverse_of: :gene_claim, dependent: :delete_all
