@@ -1,12 +1,10 @@
 module Utils
   module Logging
     def self.without_sql
-      puts 'Disabling ActiveRecord logging...'
       old_logger = ActiveRecord::Base.logger
       ActiveRecord::Base.logger = nil
       yield
       ensure
-        puts 'Enabling ActiveRecord logging...'
         ActiveRecord::Base.logger = old_logger
     end
   end
