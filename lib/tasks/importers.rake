@@ -16,7 +16,7 @@ namespace :dgidb do
         importer_class = if Genome::Importers.const_defined?(importer_name)
                            "Genome::Importers::#{importer_name}".constantize
                          else
-                           "Genome::Importers::#{importer_name.upcase}".constantize
+                           "Genome::Importers::#{importer_name.camelize}".constantize
                          end
           if DataModel::Source.where('lower(sources.source_db_name) = ?', importer_name.downcase).any?
             puts 'Found existing source! Deleting...'
