@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.15'
+gem 'rails', '3.2.16'
 
 gem 'pg'
 gem 'less-rails-bootstrap'
@@ -13,7 +13,6 @@ gem 'libv8', '~> 3.11.8.3', :platform => :ruby
 gem 'less-rails'
 gem 'exception_notification'
 gem 'rake'
-gem 'nokogiri'
 gem 'xpath'
 gem 'jbuilder'
 gem 'recaptcha', require: 'recaptcha/rails'
