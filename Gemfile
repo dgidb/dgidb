@@ -19,6 +19,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'feedback_popup', git: 'git://github.com/acoffman/feedback_popup.git'
 gem 'lograge', git: 'https://github.com/roidrage/lograge.git'
 gem 'syslog-logger'
+gem 'rye'
 
 group :production do
   gem 'dalli'
@@ -35,7 +36,6 @@ group :development do
   gem 'pry-remote'
   gem 'pry-nav'
   gem 'rack-mini-profiler'
-  gem 'rye'
 end
 
 group :test, :development  do
