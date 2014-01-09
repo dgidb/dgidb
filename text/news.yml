@@ -88,3 +88,13 @@ news:
         At AGBT in Feb. 12-15 we will present DGIdb as part of the first AGBT software demonstration session.  
       date: Dec 10, 2013
 
+    - headline: Clearity Clinical Trials added as a new source of drug-gene interactions
+      article : >
+        The previous ClearityFoundation source of interactions has been renamed to ClearityFoundationBiomarkers and a new source ClearityFoundationClinicalTrial has been added. The former are biomarkers determined by the Clearity Foundation to be relevant for (typically) sensitivity or resistance to a specific therapeutic agent in Ovarian Cancer. The latter are interactions that were manually curated from the list of relevant clinical trials (themselves manually curated) by the Clearity Foundation as of potential relevance to Ovarian Cancer patients.
+      date: Jan 9, 2014
+      
+    - headline: Foundation One genes added as a new source of potentially druggable genes (Category)
+      article : >
+        The list of genes determined to be "Clinically Actionable" has been added as a new category of potentially druggable genes of the same name.
+      date: Jan 9, 2014
+ 
