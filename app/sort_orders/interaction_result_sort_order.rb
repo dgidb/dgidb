@@ -5,9 +5,9 @@ module InteractionResultSortOrder
       1
     when 'CancerCommons'
       2
-    when 'ClearityFoundationBiomarker'
+    when 'ClearityFoundationBiomarkers'
       3
-    when 'ClearityFoundationClinical'
+    when 'ClearityFoundationClinicalTrial'
       4
     when 'TALC'
       5
