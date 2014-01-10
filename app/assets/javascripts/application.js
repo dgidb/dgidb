@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require jquery.cookie
 //= require twitter/bootstrap
-//= require feedback_popup
 //= require global
 
 
