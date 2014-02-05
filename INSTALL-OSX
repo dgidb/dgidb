@@ -23,6 +23,9 @@ brew install git
 #Install PostgreSQL from: http://postgresapp.com
 #Once installed, be sure to launch PostgreSQL before attempting to fire up the rails application below
 
+#You may also need to install postgres as follows:
+brew install postgres
+
 # check out the code
 mkdir ~/git/
 cd ~/git/
