@@ -10,8 +10,8 @@ module Genome
 		source_db_version: '',
 		source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE,
 		source_trust_level_id:DataModel::SourceTrustLevel.EXPERT_CURATED, 
-		source_db_name: 'BaderLabGenes'
-		full_name: 'Bader Lab Genes'
+		source_db_name: 'BaderLabGenes',
+		full_name: 'Bader Lab Genes',
 	}
 	end
 	
