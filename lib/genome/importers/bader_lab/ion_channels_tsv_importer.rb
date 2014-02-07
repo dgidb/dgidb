@@ -23,8 +23,8 @@ module Genome
 				attribute :citations, name: 'Counted Citations from 1950-2000'				
 				attribute :gene_category, name: 'Gene Category'
 					end
-				end
-			end.save!
+				end.save!
+			end
 		end
 	end
 end 
