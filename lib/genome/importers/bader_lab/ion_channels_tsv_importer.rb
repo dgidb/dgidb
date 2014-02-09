@@ -10,10 +10,9 @@ module Genome
 		source_db_version: '',
 		source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE,
 		source_trust_level_id:DataModel::SourceTrustLevel.EXPERT_CURATED, 
-		source_db_name: 'BaderLabGenes'
-		full_name: 'Bader Lab Genes'
-	}
-	end
+		source_db_name: 'BaderLabGenes',
+		full_name: 'Bader Lab Genes',
+	}	end
 	
 	def self.run(tsv_path)
 		TSVImporter.import tsv_path, BaderLabGenesRow, source_info do
