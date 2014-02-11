@@ -976,4 +976,36 @@ INSERT INTO schema_migrations (version) VALUES ('20130712222803');
 
 INSERT INTO schema_migrations (version) VALUES ('20130712225648');
 
+INSERT INTO schema_migrations (version) VALUES ('20130906013631');SET search_path TO "$user",public;
+
+INSERT INTO schema_migrations (version) VALUES ('0');
+
+INSERT INTO schema_migrations (version) VALUES ('20121212223401');
+
+INSERT INTO schema_migrations (version) VALUES ('20121213151709');
+
+INSERT INTO schema_migrations (version) VALUES ('20121214160809');
+
+INSERT INTO schema_migrations (version) VALUES ('20121214161439');
+
+INSERT INTO schema_migrations (version) VALUES ('20121214191000');
+
+INSERT INTO schema_migrations (version) VALUES ('20121218184952');
+
+INSERT INTO schema_migrations (version) VALUES ('20121218224238');
+
+INSERT INTO schema_migrations (version) VALUES ('20130103214307');
+
+INSERT INTO schema_migrations (version) VALUES ('20130214204650');
+
+INSERT INTO schema_migrations (version) VALUES ('20130305165700');
+
+INSERT INTO schema_migrations (version) VALUES ('20130307160126');
+
+INSERT INTO schema_migrations (version) VALUES ('20130424183200');
+
+INSERT INTO schema_migrations (version) VALUES ('20130712222803');
+
+INSERT INTO schema_migrations (version) VALUES ('20130712225648');
+
 INSERT INTO schema_migrations (version) VALUES ('20130906013631');

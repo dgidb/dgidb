@@ -4,10 +4,11 @@ module Genome
 	
 	def self.source_info
 	{
-		base_url: '',
-		citation: '',
-		site_url: '',
-		source_db_version: '',
+		base_url: 'http://baderlab.org/Data/RoadsNotTaken',
+		citation: 'Too many roads not taken: Aled M. Edwards,	 Ruth Isserlin,	 Gary D. Bader,	 Stephen V. Frye,	 Timothy M. Willson	 & Frank H. Yu
+Nature 470, 163–165 (10 February 2011) doi:10.1038/470163a',
+		site_url: 'http://baderlab.org/Data/RoadsNotTaken',
+		source_db_version: 'February 2014'
 		source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE,
 		source_trust_level_id:DataModel::SourceTrustLevel.EXPERT_CURATED, 
 		source_db_name: 'BaderLabGenes',
