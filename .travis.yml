@@ -1,8 +1,8 @@
 language: ruby
 script:
-  - rake db:structure:load
-  - rake db:test:prepare
-  - rake spec
+  - bundle exec rake db:structure:load
+  - bundle exec rake db:test:prepare
+  - bundle exec rake spec
 before_script:
   - psql -c 'create database dgidb_test;' -U postgres
 rvm:
