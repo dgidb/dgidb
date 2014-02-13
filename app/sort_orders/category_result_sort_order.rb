@@ -10,9 +10,9 @@ module CategoryResultSortOrder
     when 'HopkinsGroom'
       4
     when 'BaderLabGenes'
-      4
-    when 'GO'
       5
+    when 'GO'
+      6
     else
       99
     end

@@ -5,7 +5,7 @@ module Genome
       class BaderLabRow < Genome::Importers::DelimitedRow
         attribute :initial_gene_query
         attribute :primary_name
-        attribute :entrez_gene
+        attribute :entrez_gene_id
         attribute :citations
         attribute :gene_category
       end
