@@ -27,7 +27,7 @@
               %li.dropdown{class: @help_active}
                 %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
                   Help
-                  =unread_news_badge(@unread_news)
+                  =@news.unread_news_badge
                   %b.caret
                 %ul.dropdown-menu
                   %li
@@ -35,7 +35,7 @@
                     %a(href="/api") API Documentation
                     %a(href="/news")
                       News
-                      =unread_news_badge(@unread_news)
+                      =@news.unread_news_badge
                     %a(href="/faq") FAQ
                     %a(href="/sources") Sources
                     %a(href="/downloads") Downloads
@@ -43,6 +43,7 @@
                     %a{href: "#", data: {toggle: 'modal', target:'#disclaimer-modal'}} View Disclaimer
         .container-fluid
           .page-header
+            =@news.news_ticker
             =h yield(:header)
         .container-fluid
           - flash.each do |key, val|
