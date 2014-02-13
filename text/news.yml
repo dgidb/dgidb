@@ -97,4 +97,9 @@ news:
       article : >
         The list of genes determined to be "Clinically Actionable" has been added as a new category of potentially druggable genes of the same name.
       date: Jan 9, 2014
+
+    - headline: Bader Lab genes added as a new source of potentially druggable genes
+      article : >
+        Gene category information for the genes in the Bader Lab <a href="http://baderlab.org/Data/RoadsNotTaken">"Roads not taken"</a> data set have been added to DGIdb.
+      date: Feb 13, 2014
  
