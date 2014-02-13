@@ -86,14 +86,3 @@ describe ApplicationHelper, '#label' do
     helper.label('this is a success label').should  be_html_safe
   end
 end
-
-describe ApplicationHelper, '#unread_news_badge' do
-  it 'should create the appropriate span if given true' do
-    helper.unread_news_badge(true).should eq('<span class="badge badge-important">!</span>')
-  end
-
-  it 'should create nothing if given false or default' do
-    helper.unread_news_badge(false).should eq(nil)
-    helper.unread_news_badge.should eq(nil)
-  end
-end

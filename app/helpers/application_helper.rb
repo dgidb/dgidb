@@ -41,10 +41,6 @@ module ApplicationHelper
     "/drug_claims/#{drug_claim.source.source_db_name}/#{drug_claim.name}"
   end
 
-  def unread_news_badge(display_badge = false)
-    content_tag(:span, '!', class: ['badge', 'badge-important']) if display_badge
-  end
-
   def cache_key_for_druggable_category(sources, category_name)
     sources.hash.to_s + category_name
   end

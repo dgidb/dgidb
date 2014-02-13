@@ -15,7 +15,7 @@ class StaticController < ApplicationController
 
   def news
     cookies[:most_recent_post_date] = NewsFilter.most_recent_post_date.to_s
-    @unread_news = false
+    @news.mark_read!
   end
 
   private
