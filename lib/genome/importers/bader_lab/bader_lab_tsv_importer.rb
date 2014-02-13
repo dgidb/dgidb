@@ -16,7 +16,7 @@ module Genome
       end
 
       def self.run(tsv_path)
-        TSVImporter.import tsv_path, BaderLabGenesRow, source_info do
+        TSVImporter.import tsv_path, BaderLabRow, source_info do
           gene :primary_name, nomenclature: 'Entrez Gene Name' do
             name :entrez_gene_id, nomenclature: "Entrez Gene ID"
             attribute :initial_gene_query, name: 'Initial Gene Query'
