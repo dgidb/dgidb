@@ -1,5 +1,10 @@
 class SourcePresenter < SimpleDelegator
 
+  def initialize(source, view_context)
+    @view_context = view_context
+    super(source)
+  end
+
   def type
     source_type.type
   end
@@ -20,14 +25,12 @@ class SourcePresenter < SimpleDelegator
     sort_order_to_string(CategoryResultSortOrder, source_db_name)
   end
 
-  def citation_with_pmid_link(context)
+  def citation_with_pmid_link
     if match_data = citation.match(/PMID: (?<pmid_id>\d+)\.?$/)
-      pmid_link = context.instance_exec do
-        ext_link_to(match_data['pmid_id'], "http://www.ncbi.nlm.nih.gov/pubmed/#{match_data['pmid_id']}")
-      end
+      pmid_link = @view_context.ext_link_to(match_data['pmid_id'], "http://www.ncbi.nlm.nih.gov/pubmed/#{match_data['pmid_id']}")
       sprintf('%s PMID: %s %s',
               match_data.pre_match,
-              pmid_link, 
+              pmid_link,
               match_data.post_match)
     else
      citation

@@ -5,8 +5,6 @@ class TrustLevelPresenter
               else
                 'warning'
               end
-      context.instance_exec do
-        link_to(label(source.source_db_name, type), source_path(source.source_db_name))
-      end
+    context.link_to(context.label(source.source_db_name, type), context.source_path(source.source_db_name))
   end
 end

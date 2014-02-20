@@ -13,7 +13,7 @@ module InteractionResultRowClasses
         'None'
       else
         @genes
-        .map { |g| @context.instance_exec { link_to(g.name, gene_path(g.name)) } }
+        .map { |g| @context.link_to(g.name, @context.gene_path(g.name))}
         .join(', ').html_safe
       end
     end

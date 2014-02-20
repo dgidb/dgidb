@@ -24,7 +24,7 @@
               Matches
               %i.icon-flag.tip{title: tx("search_term_summary_table_header_matches_flag")}
         %tbody
-          -results.search_term_summaries(self).each do |summary|
+          -results.search_term_summaries.each do |summary|
             %tr
               %td=summary.search_term
               %td=summary.match_type

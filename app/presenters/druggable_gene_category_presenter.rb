@@ -1,4 +1,4 @@
-class DruggableGeneCategoryPresenter < Struct.new(:search_results, :source_db_names)
+class DruggableGeneCategoryPresenter < Struct.new(:search_results, :source_db_names, :view_context)
   include Genome::Extensions
 
   def display_genes
@@ -8,14 +8,14 @@ class DruggableGeneCategoryPresenter < Struct.new(:search_results, :source_db_na
                   .select { |source| source_db_names.include?(source.source_db_name)  }
                   .uniq
                   .sort_by { |s| CategoryResultSortOrder.sort_value(s.source_db_name) }
-      DisplayGene.new(result.long_name, sources, result.name)
+      DisplayGene.new(result.long_name, sources, result.name, view_context)
     end.sort_by { |display_gene| CategoryResultSortOrder.sort_value(display_gene.sources.first.source_db_name) }
   end
 
   private
-  class DisplayGene < Struct.new(:gene_name, :sources, :short_name)
-    def source_links(context)
-      sources.map { |s| TrustLevelPresenter.source_link_with_trust_flag(context, s) }
+  class DisplayGene < Struct.new(:gene_name, :sources, :short_name, :view_context)
+    def source_links
+      sources.map { |s| TrustLevelPresenter.source_link_with_trust_flag(view_context, s) }
         .join(' ')
         .html_safe
     end

@@ -1,8 +1,9 @@
 class GeneCategorySearchResultsPresenter
   include Genome::Extensions
-  def initialize(search_results, params, start_time)
+  def initialize(search_results, params, start_time, view_context)
     @start_time = start_time
-        @search_results = search_results
+    @search_results = search_results
+    @view_context = view_context
   end
 
   def number_of_search_terms
@@ -33,8 +34,8 @@ class GeneCategorySearchResultsPresenter
     @definite_results_with_no_categories ||= @search_results.select{|i| i.partition == :definite && i.gene_categories.count == 0 }
   end
 
-  def time_elapsed(context)
-    context.instance_exec(@start_time){|start_time| distance_of_time_in_words(start_time, Time.now, true)}
+  def time_elapsed
+    @view_context.distance_of_time_in_words(@start_time, Time.now, true)
   end
 
   def show_result_categories?
@@ -105,7 +106,7 @@ class GeneCategorySearchResultsPresenter
   def gene_category_result_presenters(result_list)
     result_list.flat_map do |result|
       result.gene_categories.uniq.map do |category|
-        GeneCategorySearchResultPresenter.new(category, result)
+        GeneCategorySearchResultPresenter.new(category, result, @view_context)
       end
     end
   end

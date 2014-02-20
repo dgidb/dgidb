@@ -29,7 +29,7 @@ class InteractionClaimsController < ApplicationController
     start_time = Time.now
     validate_interaction_request(params)
     search_results = LookupInteractions.find(params)
-    @search_results = InteractionSearchResultsPresenter.new(search_results, start_time)
+    @search_results = InteractionSearchResultsPresenter.new(search_results, start_time, view_context)
   end
 
 end

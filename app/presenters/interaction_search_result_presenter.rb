@@ -2,9 +2,10 @@ class InteractionSearchResultPresenter
   include Genome::Extensions
 
   attr_accessor :search_term, :interaction_claim
-  def initialize(interaction_claim, search_term)
+  def initialize(interaction_claim, search_term, view_context)
     @interaction_claim = interaction_claim
     @search_term = search_term
+    @view_context = view_context
   end
 
   def source_db_name
@@ -27,8 +28,8 @@ class InteractionSearchResultPresenter
     @interaction_claim.source.source_trust_level.level
   end
 
-  def source_link(context)
-    TrustLevelPresenter.source_link_with_trust_flag(context, @interaction_claim.source)
+  def source_link
+    TrustLevelPresenter.source_link_with_trust_flag(@view_context, @interaction_claim.source)
   end
 
   def types_string

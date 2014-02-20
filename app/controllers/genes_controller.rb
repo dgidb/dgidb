@@ -21,7 +21,7 @@ class GenesController < ApplicationController
                   DataModel::Source.source_names_with_category_information
                 end
     genes = LookupCategories.find_genes_for_category_and_sources(params[:name], sources)
-    @genes = DruggableGeneCategoryPresenter.new(genes, sources)
+    @genes = DruggableGeneCategoryPresenter.new(genes, sources, view_context)
     @title = params[:name]
     @druggable_gene_categories_active = 'active'
     @category_name = params[:name]
@@ -40,7 +40,7 @@ class GenesController < ApplicationController
     combine_input_genes(params)
 
     search_results = LookupCategories.find(params)
-    @search_results = GeneCategorySearchResultsPresenter.new(search_results, params, start_time)
+    @search_results = GeneCategorySearchResultsPresenter.new(search_results, params, start_time, view_context)
   end
 
   private

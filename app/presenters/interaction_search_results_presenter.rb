@@ -3,9 +3,10 @@ class InteractionSearchResultsPresenter
   include InteractionResultRowClasses
   attr_reader :search_results
 
-  def initialize(search_results, start_time)
+  def initialize(search_results, start_time, view_context)
     @start_time = start_time
     @search_results = search_results
+    @view_context = view_context
   end
 
   def number_of_search_terms
@@ -56,10 +57,8 @@ class InteractionSearchResultsPresenter
     Maybe(grouped_results[:definite_no_interactions])
   end
 
-  def time_elapsed(context)
-   context.instance_exec(@start_time) do |start_time|
-     distance_of_time_in_words(start_time, Time.now, true)
-   end
+  def time_elapsed
+   @view_context.distance_of_time_in_words(@start_time, Time.now, true)
   end
 
   def definite_interactions
@@ -90,9 +89,9 @@ class InteractionSearchResultsPresenter
     !grouped_results[:definite_no_interactions].nil?
   end
 
-  def search_term_summaries(context)
+  def search_term_summaries
     @search_results.map do |result|
-      SearchTermSummary.new(result.search_term, result.match_type_label, result.genes, context)
+      SearchTermSummary.new(result.search_term, result.match_type_label, result.genes, @view_context)
     end
   end
 
@@ -130,7 +129,7 @@ class InteractionSearchResultsPresenter
     result_list.flat_map do |result|
       result.interaction_claims
         .sort_by { |ic| InteractionResultSortOrder.sort_value(ic.source.source_db_name) }
-        .map { |ic| InteractionSearchResultPresenter.new(ic, result.search_term) }
+        .map { |ic| InteractionSearchResultPresenter.new(ic, result.search_term, @view_context) }
     end
   end
 end

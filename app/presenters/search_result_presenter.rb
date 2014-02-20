@@ -1,4 +1,3 @@
-
 class SearchResultPresenter
   include Genome::Extensions
 
