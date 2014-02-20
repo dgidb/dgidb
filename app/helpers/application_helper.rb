@@ -1,6 +1,11 @@
 module ApplicationHelper
   def tx( fragment_id, action = params['action'] )
-    EXTERNAL_STRINGS[action][fragment_id].html_safe
+    action_hash = Maybe(EXTERNAL_STRINGS[action])
+    if !action_hash[fragment_id].nil?
+      action_hash[fragment_id].html_safe
+    else
+      ""
+    end
   end
 
   def to( fragment_id, action = params['action'] )
