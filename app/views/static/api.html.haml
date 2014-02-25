@@ -502,8 +502,14 @@
             wget https://raw.github.com/genome/dgi-db/master/files/perl_example.pl<br>chmod +x perl_example.pl<br>./perl_example.pl --genes='FLT3,EGFR' --interaction_types='inhibitor'
       %hr
       %section#python-sample
-        %h3 Python
-        %p Coming soon...
+        %h3= link_to 'Python', 'https://github.com/genome/dgi-db/blob/master/files/python_example.py'
+        %p
+          A sample Python application that interacts with DGIdb can be found
+          =link_to 'on github.', 'https://raw.github.com/genome/dgi-db/master/files/python_example.py'
+          <br><br>Use the command line script to search for interactions FLT3 or EGFR, and limit to drugs that act as inhibitors:<br>
+          %span.label EXECUTE EXAMPLE SCRIPT
+          %pre
+            wget https://raw.github.com/genome/dgi-db/master/files/python_example.py<br>chmod +x python_example.py<br>./python_example.py --genes='FLT3,EGFR' --interaction_types='inhibitor'
       %hr
       %section#ruby-sample
         %h3= link_to 'Ruby', 'https://github.com/genome/dgi-db/blob/master/files/ruby_example.rb'

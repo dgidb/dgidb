@@ -103,3 +103,8 @@ news:
         Gene category information for the genes in the Bader Lab <a href="http://baderlab.org/Data/RoadsNotTaken">"Roads not taken"</a> data set have been added to DGIdb.
       date: Feb 13, 2014
  
+    - headline: Python DGIdb API example added
+      article : >
+        A Python example to interrogate DGIdb has been added here <a href="http://dgidb.genome.wustl.edu/api"> Start hacking !
+      date: Feb 25, 2014
+
