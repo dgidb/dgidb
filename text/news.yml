@@ -105,6 +105,6 @@ news:
  
     - headline: Python DGIdb API example added
       article : >
-        A Python example to interrogate DGIdb has been added here <a href="http://dgidb.genome.wustl.edu/api"> Start hacking!</a>
+        A Python example to interrogate DGIdb has been added here <a href="http://dgidb.genome.wustl.edu/api">Start hacking!</a>
       date: Feb 25, 2014
 
