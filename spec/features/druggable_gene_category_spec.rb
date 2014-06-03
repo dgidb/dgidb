@@ -12,7 +12,7 @@ describe 'druggable_gene_categories' do
     gene_claim = Fabricate(:gene_claim, source: source, gene_claim_categories: [category])
     Fabricate(:gene, gene_claims: [gene_claim])
     visit "/druggable_gene_categories/#{URI.encode(category.name)}?sources=#{URI.encode(source.source_db_name)}"
-    page.status_code.should eq(200)
+    expect(page.status_code).to eq(200)
   end
 
 end

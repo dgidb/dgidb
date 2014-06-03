@@ -4,14 +4,14 @@ describe LookupRelatedDrugs do
   it 'should find drugs that have matching names' do
     drug = Fabricate(:drug, name: 'Turkey Sandwich')
     results = LookupRelatedDrugs.find('Turkey')
-    results.size.should eq(1)
-    results.first.instance_variable_get("@drug").should eq(drug)
+    expect(results.size).to eq(1)
+    expect(results.first.instance_variable_get("@drug")).to eq(drug)
   end
 
   it 'should wrap the result(s) in a RelatedDrugPresenter object' do
     Fabricate(:drug, name: 'Turkey Sandwich')
     results = LookupRelatedDrugs.find('Turkey')
-    results.first.should be_a(RelatedDrugPresenter)
+    expect(results.first).to be_a(RelatedDrugPresenter)
   end
 
   it 'should not return the same drug that was searched' do
@@ -19,8 +19,8 @@ describe LookupRelatedDrugs do
     Fabricate(:drug, name: 'turkey sandwich')
 
     results = LookupRelatedDrugs.find('turkey')
-    results.size.should eq(1)
-    results.first.instance_variable_get("@drug").name.should eq('turkey sandwich')
+    expect(results.size).to eq(1)
+    expect(results.first.instance_variable_get("@drug").name).to eq('turkey sandwich')
   end
 
   it 'should find drugs that have drug claims with matching names' do
@@ -29,8 +29,8 @@ describe LookupRelatedDrugs do
     Fabricate(:drug_claim, drugs: [drug], name: 'turkey')
 
     results = LookupRelatedDrugs.find('turkey')
-    results.size.should eq(1)
-    results.first.instance_variable_get("@drug").should eq(drug)
+    expect(results.size).to eq(1)
+    expect(results.first.instance_variable_get("@drug")).to eq(drug)
   end
 
   it 'should find drugs that have drug claim aliases with matching names' do
@@ -39,8 +39,8 @@ describe LookupRelatedDrugs do
     drug_claim = Fabricate(:drug_claim, drugs: [drug], name: 'lunchable')
     Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: 'turkey sandwich')
     results = LookupRelatedDrugs.find('turkey')
-    results.size.should eq(1)
-    results.first.instance_variable_get("@drug").should eq(drug)
+    expect(results.size).to eq(1)
+    expect(results.first.instance_variable_get("@drug")).to eq(drug)
   end
 
   it 'should only return unique drugs' do
@@ -48,6 +48,6 @@ describe LookupRelatedDrugs do
     Fabricate(:drug_claim, name: 'turkey', drugs: [drug])
     Fabricate(:drug_claim, name: 'turkey sandwich', drugs: [drug])
     results = LookupRelatedDrugs.find('turkey')
-    results.size.should eq(1)
+    expect(results.size).to eq(1)
   end
 end

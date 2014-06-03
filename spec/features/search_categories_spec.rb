@@ -5,7 +5,7 @@ describe 'search_categories' do
   it 'loads successfully' do
     Fabricate(:source_type, type: 'potentially_druggable')
     visit '/search_categories'
-    page.status_code.should eq(200)
+    expect(page.status_code).to eq(200)
   end
 
   it 'should display a list of sources that are considered potentially druggable' do
@@ -18,10 +18,10 @@ describe 'search_categories' do
     visit '/search_categories'
 
     druggable_sources.each do |source|
-      page.should have_content(source.source_db_name)
+      expect(page).to have_content(source.source_db_name)
     end
 
-    page.should_not have_content(non_druggable_source.source_db_name)
+    expect(page).not_to have_content(non_druggable_source.source_db_name)
   end
 
   it 'should display a list of source trust levels' do
@@ -31,7 +31,7 @@ describe 'search_categories' do
     visit '/search_categories'
 
     trust_levels.each do |level|
-      page.should have_content(level.level)
+      expect(page).to have_content(level.level)
     end
   end
 
@@ -42,7 +42,7 @@ describe 'search_categories' do
     visit '/search_categories'
 
     gene_categories.each do |category|
-      page.should have_content(category.name)
+      expect(page).to have_content(category.name)
     end
   end
 

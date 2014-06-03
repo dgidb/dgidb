@@ -14,7 +14,7 @@ describe Search do
 
   it 'should use the textacular .advanced_search to leverage postgres full text search' do
     @entities.keys.each do |model|
-      model.should_receive(:advanced_search).and_return([])
+      expect(model).to receive(:advanced_search).and_return([])
     end
     Search.search('turkey')
   end
@@ -29,14 +29,14 @@ describe Search do
     Fabricate(:drug, name: 'turkey')
     results = Search.search('turkey')
 
-    results.size.should eq(1)
-    results.first.should be_a(SearchResultPresenter)
+    expect(results.size).to eq(1)
+    expect(results.first).to be_a(SearchResultPresenter)
   end
 
   it 'should search the correct field for each entity type' do
     search_term = 'test'
     @entities.each do |model, field|
-      model.should_receive(:advanced_search)
+      expect(model).to receive(:advanced_search)
         .with({field => "#{search_term}:*"})
         .and_return([])
     end

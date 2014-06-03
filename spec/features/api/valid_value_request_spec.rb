@@ -5,10 +5,10 @@ describe 'api endpoints that request valid enumerations' do
       objs = (1..3).map { Fabricate(type_name) }
 
       visit path
-      page.status_code.should eq(200)
+      expect(page.status_code).to eq(200)
       body = JSON.parse(page.body)
-      body.should be_an_instance_of(Array)
-      body.sort.should eq objs.map(&compare_column).sort
+      expect(body).to be_an_instance_of(Array)
+      expect(body.sort).to eq objs.map(&compare_column).sort
   end
 
   describe 'gene_categories' do
@@ -44,13 +44,13 @@ describe 'api endpoints that request valid enumerations' do
 
       visit '/api/v1/interaction_sources.json'
 
-      page.status_code.should eq(200)
+      expect(page.status_code).to eq(200)
       body = JSON.parse(page.body)
 
-      body.should be_an_instance_of(Array)
-      body.should include(source.source_db_name)
+      expect(body).to be_an_instance_of(Array)
+      expect(body).to include(source.source_db_name)
 
-      body.should_not include(non_interaction_source.source_db_name)
+      expect(body).not_to include(non_interaction_source.source_db_name)
     end
   end
 

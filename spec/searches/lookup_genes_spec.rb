@@ -11,10 +11,10 @@ describe LookupGenes do
 
     def check_matched_gene_against_results(matched_gene)
       results = LookupGenes.find([search_string], :for_search, DummyWrapper)
-      results.size.should eq(1)
-      results.first.search_terms.should eq Array(search_string)
-      results.first.matched_genes.size.should eq(1)
-      results.first.matched_genes.should eq Array(matched_gene)
+      expect(results.size).to eq(1)
+      expect(results.first.search_terms).to eq Array(search_string)
+      expect(results.first.matched_genes.size).to eq(1)
+      expect(results.first.matched_genes).to eq Array(matched_gene)
     end
 
     it 'should give gene name matches precedence' do
@@ -47,16 +47,16 @@ describe LookupGenes do
       gene = Fabricate(:gene, gene_claims: [gene_claim])
       gene_claim_aliases = (1..2).map { Fabricate(:gene_claim_alias, gene_claim: gene_claim) }
       results = LookupGenes.find(gene_claim_aliases.map(&:alias), :for_search, DummyWrapper)
-      results.size.should eq(1)
-      results.first.search_terms.should eq(gene_claim_aliases.map(&:alias))
-      results.first.matched_genes.should eq(Array(gene))
+      expect(results.size).to eq(1)
+      expect(results.first.search_terms).to eq(gene_claim_aliases.map(&:alias))
+      expect(results.first.matched_genes).to eq(Array(gene))
     end
 
     it 'should wrap the results in the given class' do
       genes = (1..3).map { Fabricate(:gene) }
       results = LookupGenes.find(genes.map(&:name), :for_search, DummyWrapper)
       results.each do |result|
-        result.is_a?(DummyWrapper).should be_true
+        expect(result.is_a?(DummyWrapper)).to be true
       end
     end
 
@@ -67,14 +67,14 @@ describe LookupGenes do
     it 'should handle no search terms being matched gracefully' do
       (1..3).each { Fabricate(:gene) }
       results = LookupGenes.find(['fake name'], :for_search, DummyWrapper)
-      results.size.should eq(1)
-      results.first.matched_genes.empty?.should be_true
+      expect(results.size).to eq(1)
+      expect(results.first.matched_genes.empty?).to be true
     end
 
     it 'should send the correct eager loading scope to the underlying model' do
       genes = (1..3).map { Fabricate(:gene) }
       [DataModel::Gene, DataModel::GeneClaimAlias, DataModel::GeneClaim].each do |klass|
-        klass.should_receive(:for_search).once.and_return(klass)
+        expect(klass).to receive(:for_search).once.and_return(klass)
       end
       LookupGenes.find(genes.map(&:name), :for_search, DummyWrapper)
     end

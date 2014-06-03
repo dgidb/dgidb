@@ -6,8 +6,8 @@ describe 'faq' do
   end
 
   it 'check to see if the page exists' do
-    page.status_code.should eq (200)
-    page.should have_content('frequently asked questions')
+    expect(page.status_code).to eq (200)
+    expect(page).to have_content('frequently asked questions')
   end
 
 end

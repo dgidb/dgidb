@@ -42,19 +42,19 @@ describe 'EnumerableType concern' do
   end
 
   it 'should allow you to call a class method with a type name' do
-    EnumerableTypeMockBase.ABD.should eq(1)
+    expect(EnumerableTypeMockBase.ABD).to eq(1)
   end
 
   it 'should transform the type column appropriately' do
     #apply all transforms, transforms with arguments
     #multiple transforms
-    EnumerableTypeMockBase.abd.should eq(1)
-    EnumerableTypeWithMultipleTransForms.A_B_D.should eq(1)
+    expect(EnumerableTypeMockBase.abd).to eq(1)
+    expect(EnumerableTypeWithMultipleTransForms.A_B_D).to eq(1)
   end
 
   it 'should cache the value of all_types after the first call' do
-    EnumerableTypeMockBase.ABD.should eq(1)
-    Rails.cache.exist?('enumerable_type_mock_base').should be_true
+    expect(EnumerableTypeMockBase.ABD).to eq(1)
+    expect(Rails.cache.exist?('enumerable_type_mock_base')).to be true
   end
 
   it 'should pass methods that are not types along to super' do
@@ -64,7 +64,7 @@ describe 'EnumerableType concern' do
   it 'should return the id of the appropriate item' do
     method = 'ABC'
     (1..10).each do |num|
-      EnumerableTypeMockBase.send(method.next!.dup.to_sym).should eq(num)
+      expect(EnumerableTypeMockBase.send(method.next!.dup.to_sym)).to eq(num)
     end
   end
 end

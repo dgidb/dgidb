@@ -12,7 +12,7 @@ describe LookupCategories do
 
       genes = gene_claims.map { |gc| Fabricate(:gene, gene_claims: [gc]) }
       found_genes = LookupCategories.find_genes_for_category_and_sources(category.name, [source.source_db_name])
-      genes.sort.should eq(found_genes.sort)
+      expect(genes.sort).to eq(found_genes.sort)
     end
 
     it 'should only find unique genes' do
@@ -26,7 +26,7 @@ describe LookupCategories do
       gene = Fabricate(:gene, gene_claims: gene_claims)
       found_gene = LookupCategories.find_genes_for_category_and_sources(category.name, [source.source_db_name])
 
-      Array(gene).should eq(found_gene)
+      expect(Array(gene)).to eq(found_gene)
     end
 
     it 'should only find genes in the selected category' do
@@ -46,8 +46,8 @@ describe LookupCategories do
 
       found_genes = LookupCategories.find_genes_for_category_and_sources(categories.last.name, [source.source_db_name])
 
-      found_genes.include?(gene_in_correct_category).should be_true
-      found_genes.include?(gene_in_incorrect_category).should be_false
+      expect(found_genes.include?(gene_in_correct_category)).to be true
+      expect(found_genes.include?(gene_in_incorrect_category)).to be false
     end
 
     it 'should only find genes in the selected source' do
@@ -66,7 +66,7 @@ describe LookupCategories do
       genes_to_find = gene_claims_in_source_and_category.map { |gc| Fabricate(:gene, gene_claims: [gc]) }
       gene_claims_not_in_source.each { |gc| Fabricate(:gene, gene_claims: [gc]) }
       found_genes = LookupCategories.find_genes_for_category_and_sources(category.name, [source1.source_db_name])
-      genes_to_find.sort.should eq(found_genes.sort)
+      expect(genes_to_find.sort).to eq(found_genes.sort)
     end
   end
 
@@ -82,12 +82,12 @@ describe LookupCategories do
       categories_with_counts = LookupCategories.get_category_names_with_counts_in_sources(source1.source_db_name)
 
       categories_with_counts.each_with_index do |category, i|
-        categories[i].name.should eq(category.name)
-        categories[i].gene_claims.count.should eq(category.gene_count.to_i)
+        expect(categories[i].name).to eq(category.name)
+        expect(categories[i].gene_claims.count).to eq(category.gene_count.to_i)
       end
 
       empty_results = LookupCategories.get_category_names_with_counts_in_sources(source2.source_db_name)
-      empty_results.size.should eq(0)
+      expect(empty_results.size).to eq(0)
     end
   end
 
@@ -103,19 +103,19 @@ describe LookupCategories do
       (gene, category_name) = setup_category
 
       gene_names = LookupCategories.gene_names_in_category(category_name)
-      Array(gene.name).should eq gene_names
+      expect(Array(gene.name)).to eq gene_names
     end
 
     it 'should be case insensitive' do
       (_, category_name) = setup_category
-      LookupCategories.gene_names_in_category(category_name.downcase)
-        .should eq LookupCategories.gene_names_in_category(category_name.upcase)
+      expect(LookupCategories.gene_names_in_category(category_name.downcase))
+        .to eq LookupCategories.gene_names_in_category(category_name.upcase)
     end
 
     it 'should not return gene names that are not in the category' do
       (_, category_name) = setup_category
       gene = Fabricate(:gene)
-      LookupCategories.gene_names_in_category(category_name).should_not include(gene.name)
+      expect(LookupCategories.gene_names_in_category(category_name)).not_to include(gene.name)
     end
 
   end

@@ -16,10 +16,10 @@ describe Genome::Groupers::GeneGrouper do
 
     Genome::Groupers::GeneGrouper.run
 
-    DataModel::Gene.all.count.should eq DataModel::GeneClaimAlias.all.count
+    expect(DataModel::Gene.all.count).to eq DataModel::GeneClaimAlias.all.count
     gene_names = DataModel::Gene.pluck(:name).sort
     gene_claim_aliases = DataModel::GeneClaimAlias.pluck(:alias).sort
-    gene_names.should eq gene_claim_aliases
+    expect(gene_names).to eq gene_claim_aliases
   end
 
   it 'should not create gene entities for non-Entrez gene symbols' do
@@ -30,15 +30,15 @@ describe Genome::Groupers::GeneGrouper do
 
     Genome::Groupers::GeneGrouper.run
 
-    DataModel::Gene.all.count.should eq DataModel::GeneClaimAlias.all.count - 1
-    DataModel::Gene.where(name: gene_claim_alias.alias).count.should eq 0
+    expect(DataModel::Gene.all.count).to eq DataModel::GeneClaimAlias.all.count - 1
+    expect(DataModel::Gene.where(name: gene_claim_alias.alias).count).to eq 0
   end
 
   it 'should add the gene claims used to create the gene entities to their genes' do
     gene_claims = create_entrez_gene_aliases
-    gene_claims.each { |gc| gc.genes.count.should eq 0 }
+    gene_claims.each { |gc| expect(gc.genes.count).to eq 0 }
     Genome::Groupers::GeneGrouper.run
-    gene_claims.each { |gc| gc.genes.count.should eq 1 }
+    gene_claims.each { |gc| expect(gc.genes.count).to eq 1 }
   end
 
   it 'should add gene claims to the gene if there was only one direct match' do
@@ -47,7 +47,7 @@ describe Genome::Groupers::GeneGrouper do
                                     name: grouped_gene_claim.gene_claim_aliases.first.alias)
     Genome::Groupers::GeneGrouper.run
 
-    grouped_gene_claim.genes.should eq gene_claim_to_group.genes
+    expect(grouped_gene_claim.genes).to eq gene_claim_to_group.genes
   end
 
   it 'should add gene claims if there were no direct matches and one indirect match' do
@@ -63,7 +63,7 @@ describe Genome::Groupers::GeneGrouper do
     entrez_gene = grouped_gene_claims.first.genes.first
     grouped_gene = ungrouped_gene_claim.genes.first
 
-    entrez_gene.should eq grouped_gene
+    expect(entrez_gene).to eq grouped_gene
   end
 
   it 'should add the gene claim to the gene if there is 1 direct match even if there are indirect matches' do
@@ -79,7 +79,7 @@ describe Genome::Groupers::GeneGrouper do
               alias: test_name, gene_claim: ungrouped_gene_claim)
 
     Genome::Groupers::GeneGrouper.run
-    ungrouped_gene_claim.genes.should_not be_empty
+    expect(ungrouped_gene_claim.genes).not_to be_empty
   end
 
   describe 'it should not add gene claims if there was any ambiguity' do
@@ -92,7 +92,7 @@ describe Genome::Groupers::GeneGrouper do
 
       Genome::Groupers::GeneGrouper.run
 
-      gene_claim_to_group.genes.should be_empty
+      expect(gene_claim_to_group.genes).to be_empty
     end
 
     it 'has > 1 indirect' do
@@ -108,7 +108,7 @@ describe Genome::Groupers::GeneGrouper do
 
       Genome::Groupers::GeneGrouper.run
 
-      ungrouped_gene_claim.genes.should be_empty
+      expect(ungrouped_gene_claim.genes).to be_empty
     end
 
   end

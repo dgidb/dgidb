@@ -6,8 +6,8 @@ describe 'getting_started' do
   end
 
   it 'check to see if the page exists' do
-    page.status_code.should eq (200)
-    page.should have_content('familiarize yourself with DGIdb')
+    expect(page.status_code).to eq (200)
+    expect(page).to have_content('familiarize yourself with DGIdb')
   end
 
 end

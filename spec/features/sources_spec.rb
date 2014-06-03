@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'sources' do
   it 'loads successfully' do
     visit '/sources'
-    page.status_code.should eq (200)
+    expect(page.status_code).to eq (200)
   end
 
   it 'displays a list of sources in the database' do
@@ -11,7 +11,7 @@ describe 'sources' do
     visit '/sources'
 
     sources.each do |source|
-      page.should have_content(source.source_db_name)
+      expect(page).to have_content(source.source_db_name)
     end
   end
 

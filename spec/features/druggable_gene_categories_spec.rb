@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'druggable_gene_categories' do
   it 'successfully loads' do
     visit '/druggable_gene_categories'
-    page.status_code.should eq(200)
+    expect(page.status_code).to eq(200)
   end
 
   it 'should display a list of current sources with gene category information' do
@@ -18,7 +18,7 @@ describe 'druggable_gene_categories' do
     visit '/druggable_gene_categories'
 
     sources.each do |source|
-      page.should have_content(source.source_db_name)
+      expect(page).to have_content(source.source_db_name)
     end
 
   end

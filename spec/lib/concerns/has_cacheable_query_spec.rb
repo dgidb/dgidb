@@ -41,36 +41,36 @@ describe 'HasCacheableQuery concern' do
   end
 
   it 'should define a method called cache_query on the class it is mixed in to' do
-    CachedMockOperation.respond_to?(:cache_query).should be_true
-    MockOperation.respond_to?(:cache_query).should be_false
+    expect(CachedMockOperation.respond_to?(:cache_query)).to be true
+    expect(MockOperation.respond_to?(:cache_query)).to be false
   end
 
   it 'should produce the same result as a method that is not cached' do
-    @cached.mock_calculation.should eq(@uncached.mock_calculation)
-    @cached.mock_calculation.should eq(@uncached.mock_calculation)
+    expect(@cached.mock_calculation).to eq(@uncached.mock_calculation)
+    expect(@cached.mock_calculation).to eq(@uncached.mock_calculation)
   end
 
   it 'should cache the result of the query' do
     @cached.mock_calculation
-    Rails.cache.exist?("cached_mock.#{[].to_s}").should be_true
+    expect(Rails.cache.exist?("cached_mock.#{[].to_s}")).to be true
   end
 
   it 'should cache results differently given different argument lists' do
-    @cached.mock_calculation.should eq 3
-    Rails.cache.exist?("cached_mock.#{[].to_s}").should be_true
-    @cached.mock_calculation(4,5).should eq 9
-    Rails.cache.exist?("cached_mock.#{[4,5].to_s}").should be_true
+    expect(@cached.mock_calculation).to eq 3
+    expect(Rails.cache.exist?("cached_mock.#{[].to_s}")).to be true
+    expect(@cached.mock_calculation(4,5)).to eq 9
+    expect(Rails.cache.exist?("cached_mock.#{[4,5].to_s}")).to be true
   end
 
   it 'should cache different methods with different keys when given them' do
-    @cached.mock_calculation.should eq 3
-    Rails.cache.exist?("cached_mock.#{[].to_s}").should be_true
-    @cached.mock_calculation2.should eq 5
-    Rails.cache.exist?("cached_mock2.#{[].to_s}").should be_true
+    expect(@cached.mock_calculation).to eq 3
+    expect(Rails.cache.exist?("cached_mock.#{[].to_s}")).to be true
+    expect(@cached.mock_calculation2).to eq 5
+    expect(Rails.cache.exist?("cached_mock2.#{[].to_s}")).to be true
   end
 
   it 'should work regardless of the order of method definition vs the cache_query call' do
     @unordered.mock_calculation
-    Rails.cache.exist?("unordered_cached_mock.#{[].to_s}").should be_true
+    expect(Rails.cache.exist?("unordered_cached_mock.#{[].to_s}")).to be true
   end
 end

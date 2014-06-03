@@ -14,15 +14,15 @@ describe 'gene_categories_for_sources' do
     source_name = CGI::escape(source.source_db_name)
     visit "/api/v1/gene_categories_for_sources.json?sources=#{source_name}"
 
-    page.status_code.should eq(200)
+    expect(page.status_code).to eq(200)
     body = JSON.parse(page.body)
 
-    body.should be_an_instance_of(Array)
-    body.first.should be_an_instance_of(Hash)
+    expect(body).to be_an_instance_of(Array)
+    expect(body.first).to be_an_instance_of(Hash)
 
 
-    body.first['name'].should eq(category.name)
-    body.first['gene_count'].to_i.should eq(genes.count)
+    expect(body.first['name']).to eq(category.name)
+    expect(body.first['gene_count'].to_i).to eq(genes.count)
   end
 
   it 'should only return categories in requested_sources' do
@@ -32,11 +32,11 @@ describe 'gene_categories_for_sources' do
     source_name = CGI::escape(source1.source_db_name)
     visit "/api/v1/gene_categories_for_sources.json?sources=#{source_name}"
 
-    page.status_code.should eq(200)
+    expect(page.status_code).to eq(200)
     body = JSON.parse(page.body)
 
     category_names = body.map { |category_hash| category_hash['name'] }
-    category_names.should include(category1.name)
-    category_names.should_not include(category2.name)
+    expect(category_names).to include(category1.name)
+    expect(category_names).not_to include(category2.name)
   end
 end
