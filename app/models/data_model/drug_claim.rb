@@ -32,7 +32,7 @@ module DataModel
         'http://www.ncbi.nlm.nih.gov/pubmed/22005529/' #TODO: This is a hack.  Fix it with another db column
       when 'TEND'
         'http://www.ncbi.nlm.nih.gov/pubmed/21804595/' #TODO: as above
-      when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial'
+      when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial'
         base_url
       else
         base_url + name

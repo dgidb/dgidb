@@ -45,7 +45,7 @@ module DataModel
         base_url + 'Detail.asp?ID=' + name
       when 'GO'
         base_url.gsub(/XXXXXXXX/, name)
-      when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial'
+      when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial'
         base_url
       else
         base_url + name
