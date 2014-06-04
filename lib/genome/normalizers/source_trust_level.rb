@@ -11,6 +11,7 @@ module Genome
         'Expert curated' =>
           [
             'MyCancerGenome',
+            'MyCancerGenomeClinicalTrial',
             'TALC',
             'TEND',
             'dGene',
