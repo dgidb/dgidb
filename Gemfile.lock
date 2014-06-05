@@ -88,13 +88,13 @@ GEM
     json (1.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
-    less (2.5.1)
-      commonjs (~> 0.2.7)
-    less-rails (2.5.0)
+    less (2.3.3)
+      commonjs (~> 0.2.6)
+    less-rails (2.3.3)
       actionpack (>= 3.1)
-      less (~> 2.5.0)
-    less-rails-bootstrap (3.1.1.1)
-      less-rails (~> 2.5.0)
+      less (~> 2.3.1)
+    less-rails-bootstrap (2.3.3)
+      less-rails (~> 2.3.1)
     libv8 (3.11.8.17)
     lograge (0.3.0)
       actionpack (>= 3)
@@ -236,8 +236,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails (= 2.1.4)
   launchy
-  less-rails
-  less-rails-bootstrap
+  less-rails-bootstrap (= 2.3.3)
   libv8 (~> 3.11.8.3)
   lograge
   nokogiri
