@@ -2,8 +2,8 @@ require 'genome/importers/delimited_row'
 
 module Genome
   module Importers
-    module MyCancerGenomeClinical
-      class MyCancerGenomeClinicalRow < Genome::Importers::DelimitedRow
+    module MyCancerGenomeClinicalTrial
+      class MyCancerGenomeClinicalTrialRow < Genome::Importers::DelimitedRow
         attribute :disease
         attribute :my_cancer_genome_call
         attribute :molecular_target

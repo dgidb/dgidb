@@ -1,6 +1,6 @@
   module Genome
     module Importers
-      module MyCancerGenome
+      module MyCancerGenomeClinicalTrial
         def self.source_info
           {
               base_url: 'http://www.mycancergenome.org/',
@@ -18,7 +18,7 @@
           blank_filter = ->(x) { x.blank? }
           upcase = ->(x) { x.upcase }
 
-          TSVImporter.import tsv_path, MyCancerGenomeClinicalRow, source_info do
+          TSVImporter.import tsv_path, MyCancerGenomeClinicalTrialRow, source_info do
             interaction known_action_type: :interaction_type do
               attribute :interaction_type, name: 'Interaction Type'
               gene :entrez_gene_name, nomenclature: 'Gene Target Symbol', transform: upcase do
@@ -27,14 +27,14 @@
               end
 
               drug :pubchem_name, nomenclature: 'Primary Drug Name', primary_name: :pubchem_name, transform: upcase do
-                attribute :drug_class, name: 'Drug Class'
                 name :drug_name, nomenclature: 'Drug Trade Name', unless: blank_filter
                 name :cid, nomenclature: 'PubChem Drug ID', unless: blank_filter
                 names :other_drug_names, nomenclature: 'Other Drug Name', unless: blank_filter
-                attribute :clinical_trial_id, name: 'Clinical Trial ID'
               end
 
+              attribute :clinical_trial_id, name: 'Clinical Trial ID'
               attribute :disease, name: 'Type of Cancer Targeted'
+              attribute :indication_of_interaction, name: 'Indication of Interaction'
             end
           end.save!
         end
