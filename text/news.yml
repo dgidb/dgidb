@@ -108,3 +108,8 @@ news:
         A Python example to interrogate DGIdb has been added here <a href="http://dgidb.genome.wustl.edu/api">Start hacking!</a>
       date: Feb 25, 2014
 
+    - headline: My Cancer Genome Clinical Trials added as new source of drug-gene interactions
+      article : >
+        Clinical trial data from <a href="http://www.mycancergenome.org/">My Cancer Genome</a> has been added to DGIdb as a new source of drug-gene interactions.
+      date: Jun 9, 2014
+

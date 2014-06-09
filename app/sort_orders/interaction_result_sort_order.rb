@@ -3,22 +3,24 @@ module InteractionResultSortOrder
     case sortval
     when 'MyCancerGenome'
       1
-    when 'CancerCommons'
+    when 'MyCancerGenomeClinicalTrial'
       2
-    when 'ClearityFoundationBiomarkers'
+    when 'CancerCommons'
       3
-    when 'ClearityFoundationClinicalTrial'
+    when 'ClearityFoundationBiomarkers'
       4
-    when 'TALC'
+    when 'ClearityFoundationClinicalTrial'
       5
-    when 'TEND'
+    when 'TALC'
       6
-    when 'PharmGKB'
+    when 'TEND'
       7
-    when 'TTD'
+    when 'PharmGKB'
       8
-    when 'DrugBank'
+    when 'TTD'
       9
+    when 'DrugBank'
+      10
     else
       99
     end
