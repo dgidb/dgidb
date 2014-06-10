@@ -16,6 +16,10 @@ module Genome
         attribute :clinical_trial_id
         attribute :indication_of_interaction
         attribute :interaction_type
+
+        def valid?(opts = {})
+          pubchem_name.downcase =~ /n\/a/ ? false : true
+        end
       end
     end
   end
