@@ -1,0 +1,20 @@
+name: DGIdb
+short_name: dgidb
+icon_16: gmt/gmt_dgidb_16.png
+icon_48: gmt/gmt_dgidb_48.png
+biostars_tag: dgidb
+
+menu:
+  - text: Overview
+    href: index.md
+  - text: Installation
+    href: install.md
+
+additonal_downloads:
+  - text: Walkthrough
+    href: http://dgidb.genome.wustl.edu/downloads/walkthroughUpdated.pdf
+
+doc_downloads:
+  - text: API Documentation
+    href: http://dgidb.genome.wustl.edu/api
+
