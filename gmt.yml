@@ -6,11 +6,11 @@ biostars_tag: dgidb
 
 menu:
   - text: Overview
-    href: index.md
+    href: gmt/index.md
   - text: Installation
-    href: install.md
+    href: gmt/install.md
 
-additonal_downloads:
+additional_downloads:
   - text: Walkthrough
     href: http://dgidb.genome.wustl.edu/downloads/walkthroughUpdated.pdf
 
