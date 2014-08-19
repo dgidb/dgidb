@@ -13,7 +13,7 @@ Identifying clinically relevant genes using DGIdb has a number of limitations th
 To use DGIdb please first visit the public instance here: [DGIdb](http://www.dgidb.org/ "DGIdb at WashU")
 
 ### Citation
-DGIdb - mining the druggable genome. Malachi Griffith*, Obi L Griffith*, Adam C Coffman, James V Weible, Josh F McMichael, Nicholas C Spies, 
+DGIdb - mining the druggable genome. Malachi Griffith, Obi L Griffith, Adam C Coffman, James V Weible, Josh F McMichael, Nicholas C Spies, 
 James Koval, Indraniel Das, Matthew B Callaway, James M Eldred, Christopher A Miller, Janakiraman Subramanian, Ramaswamy Govindan, Runjun D Kumar, 
 Ron Bose, Li Ding, Jason R Walker, David E Larson, David J Dooling, Scott M Smith, Timothy J Ley, Elaine R Mardis, Richard K Wilson. 
 <a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.2689.html">Nature Methods</a> (2013) doi:10.1038/nmeth.2689. 
