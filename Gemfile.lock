@@ -95,7 +95,7 @@ GEM
       less (~> 2.3.1)
     less-rails-bootstrap (2.3.3)
       less-rails (~> 2.3.1)
-    libv8 (3.11.8.17)
+    libv8 (3.16.14.7)
     lograge (0.3.0)
       actionpack (>= 3)
       activesupport (>= 3)
@@ -202,8 +202,8 @@ GEM
       tins (~> 1.0)
     textacular (3.2.0)
       activerecord (>= 3.0, < 4.2)
-    therubyracer (0.11.4)
-      libv8 (~> 3.11.8.12)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
       ref
     thor (0.19.1)
     tilt (1.4.1)
@@ -237,7 +237,7 @@ DEPENDENCIES
   jquery-rails (= 2.1.4)
   launchy
   less-rails-bootstrap (= 2.3.3)
-  libv8 (~> 3.11.8.3)
+  libv8 (~> 3.16.14.7)
   lograge
   nokogiri
   pg
@@ -253,6 +253,6 @@ DEPENDENCIES
   stamp
   syslog-logger
   textacular
-  therubyracer (~> 0.11.1)
+  therubyracer (~> 0.12.1)
   uglifier (>= 1.0.3)
   xpath
