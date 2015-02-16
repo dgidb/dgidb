@@ -8,8 +8,8 @@ gem 'nokogiri'
 gem 'haml'
 gem 'textacular', require: 'textacular/rails'
 gem 'jquery-rails', '2.1.4'
-gem 'therubyracer', '~> 0.11.1'
-gem 'libv8', '~> 3.11.8.3', :platform => :ruby
+gem 'therubyracer', '~> 0.12.1'
+gem 'libv8', '~> 3.16.14.7', :platform => :ruby
 gem 'exception_notification'
 gem 'rake'
 gem 'xpath'

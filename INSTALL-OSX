@@ -52,7 +52,7 @@ rake dgidb:load_local
 #Occassionally the database may get into a confused state and this rake command no longer works properly
 #In that case you can try this:
 psql -h localhost -d dgidb -f db/structure.sql
-psql -h localhost -d dgidb -f db/data.sql
+psql -h localhost -d dgidb -f data/data.sql
 
 #launch your development server
 rails s
