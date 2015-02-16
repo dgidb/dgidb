@@ -20,7 +20,7 @@ namespace :dgidb do
     #special case for macs running Postgres.app
     if RbConfig::CONFIG['host_os'] =~ /darwin/ && File.exist?( '/Applications/Postgres.app' )
       puts 'Found Postgres.app'
-      ENV['PATH'] = "/Applications/Postgres.app/Contents/MacOS/bin:#{ENV['PATH']}"
+      ENV['PATH'] = "/Applications/Postgres.app/Contents/Versions/9.4/bin:#{ENV['PATH']}"
     end
 
     # MacPorts Handling
