@@ -1,0 +1,52 @@
+module Genome
+  module Importers
+    module GuideToPharmacologyInteractions
+
+      def self.source_info
+        {
+          base_url: 'http://www.guidetopharmacology.org/DATA/interactions.csv',
+          site_url: 'http://www.guidetopharmacology.org/',
+          citation: 'Pawson, Adam J., et al. "The IUPHAR/BPS Guide to PHARMACOLOGY: an expert-driven knowledgebase of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D1106. PMID: 24234439.',
+          source_db_version: '4-Mar-2015',
+          source_type_id: DataModel::SourceType.INTERACTION,
+          source_db_name: 'GuideToPharmacologyInteractions',
+          full_name: 'Guide to Pharmacology Interactions'
+          #source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
+        }
+      end
+
+      def self.run(tsv_path)
+        blank_filter = ->(x) { x.blank? || x == "''" || x == '""' }
+        upcase = ->(x) {x.upcase}
+        downcase = ->(x) {x.downcase}
+        TSVImporter.import tsv_path, GuideToPharmacologyInteractionsRow, source_info do
+          interaction known_action_type: :type, transform: downcase do
+            drug :ligand, nomenclature: 'GuideToPharmacology Primary Drug Name', primary_name: :ligand, transform: upcase do
+              attribute :ligand_id, name: 'GuideToPharmacology Ligand Identifier', unless: blank_filter
+              name :ligand_gene_symbol, nomenclature: 'Gene Symbol (for Endogenous Peptides)', unless: blank_filter
+              attribute :ligand_species, name: 'Name of the Ligand Species (if a Peptide)', unless: blank_filter
+              name :ligand_pubchem_sid, nomenclature: 'PubChem Substance ID', unless: blank_filter
+            end
+            gene :target, nomenclature: 'GuideToPharmacology Name' do
+              names :target_uniprot, nomenclature: 'UniProtKB ID', unless: blank_filter
+              names :target_gene_symbol, nomenclature: 'Gene Symbol', unless: blank_filter
+              name :target_id, nomenclature: 'GuideToPharmacology ID', unless: blank_filter
+              # target_ligand fields are ignored for now.
+            end
+
+            attributes :pubmed_id, name: 'PubMed ID for Interaction', unless: blank_filter
+            attribute :ligand_context, name: 'Interaction Context', unless: blank_filter
+            attribute :receptor_site, name: 'Specific Binding Site for Interaction', unless: blank_filter
+            attribute :assay_description, name: 'Details of the Assay for Interaction', unless: blank_filter
+            attribute :action, name: 'Specific Action of the Ligand', unless: blank_filter
+            attribute :action_comment, name: 'Details of Interaction', unless: blank_filter
+            attribute :endogenous, name: 'Endogenous Drug?', unless: blank_filter
+            attribute :primary_target, name: 'Direct Interaction?', unless: blank_filter
+            #attribute :concentration_range, name: 'Micromolar Concentration Range of Drug From Study', unless: blank_filter
+            #the attributes for affinity + concentration are left out, due to the kludgy appearance they would have in this format.
+          end
+        end.save!
+      end
+    end
+  end
+end
