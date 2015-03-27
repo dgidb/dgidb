@@ -5,7 +5,7 @@ namespace :dgidb do
       Utils::TSV.generate_interactions_tsv
     end
 
-    desc 'generate a complete interactions tsv file'
+    desc 'generate a complete druggable categories tsv file'
     task categories_tsv: :environment do
       Utils::TSV.generate_categories_tsv
     end
