@@ -15,12 +15,14 @@ module InteractionResultSortOrder
       6
     when 'TEND'
       7
-    when 'PharmGKB'
+    when 'GuideToPharmacologyInteractions'
       8
-    when 'TTD'
+    when 'PharmGKB'
       9
-    when 'DrugBank'
+    when 'TTD'
       10
+    when 'DrugBank'
+      11
     else
       99
     end

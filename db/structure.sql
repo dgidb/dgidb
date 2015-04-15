@@ -310,7 +310,7 @@ CREATE TABLE sources (
     gene_claims_in_groups_count integer DEFAULT 0,
     drug_claims_in_groups_count integer DEFAULT 0,
     source_trust_level_id character varying(255),
-    gene_gene_interaction_claims_count integer
+    gene_gene_interaction_claims_count integer DEFAULT 0
 );
 
 

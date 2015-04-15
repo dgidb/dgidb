@@ -112,4 +112,9 @@ news:
       article : >
         Clinical trial data from <a href="http://www.mycancergenome.org/">My Cancer Genome</a> has been added to DGIdb as a new source of drug-gene interactions.
       date: Jun 9, 2014
+      
+    - headline: IUPHAR/BPS Guide to Pharmacology added as new source of drug-gene interactions
+      article : >
+        Expert-curated drug-gene interactions from <a href="http://guidetopharmacology.org/">IUPHAR/BPD Guide to Pharmacology</a> has been added as a new source of drug-gene interactions.
+      date: Mar 18, 2015
 

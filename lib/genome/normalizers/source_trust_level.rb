@@ -21,6 +21,7 @@ module Genome
             'ClearityFoundationBiomarker',
             'ClearityFoundationClinical',
             'Entrez',
+            'GuideToPharmacologyInteractions',
           ],
         'Non-curated' =>
           [
