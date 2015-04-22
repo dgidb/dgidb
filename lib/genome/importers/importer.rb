@@ -20,7 +20,7 @@ module Genome
         add_entity_by_name(match_data['entity_name'], args.first)
       end
 
-      private      
+      private
       def add_entity_by_name(entity_name, attrs)
         entities = instance_variable_get("@#{entity_name.pluralize}")
         key = attrs.hash
@@ -80,13 +80,12 @@ module Genome
 
       def store_entities(item_name)
         if match_data = item_name.match(/(?<entity_name>.+)_categories/)
-          # Start with a slow ActiveRecord update. This may be okay, since category updates are infrequent?
           entity_name = match_data['entity_name']
           klass = class_from_entity(entity_name)
           hashes = instance_variable_get("@#{item_name}").values
           category_class = class_from_entity("#{entity_name}_category")
           hashes.each do |hash|
-            # Assumes that category exists in db already
+            # Assumes that category exists in db already (TODO: don't assume this)
             category = category_class.find(hash["#{entity_name}_category_id".to_sym])
             entity = klass.find(hash["#{entity_name}_id".to_sym])
             entity.send("#{entity_name}_categories") << category
