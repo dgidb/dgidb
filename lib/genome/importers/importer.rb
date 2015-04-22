@@ -20,14 +20,14 @@ module Genome
         add_entity_by_name(match_data['entity_name'], args.first)
       end
 
-      private
+      private      
       def add_entity_by_name(entity_name, attrs)
         entities = instance_variable_get("@#{entity_name.pluralize}")
         key = attrs.hash
         if entities.include?(key)
           entities[key][:id]
         else
-          prepare_new_entity(attrs,key, entities)
+          prepare_new_entity(attrs, key, entities)
         end
       end
 
@@ -59,6 +59,7 @@ module Genome
           'gene_claim_attributes',
           'gene_gene_interaction_claims',
           'gene_gene_interaction_claim_attributes',
+          'gene_claim_categories_gene_claims', 
           'drug_claims',
           'drug_claim_aliases',
           'drug_claim_attributes',
@@ -78,10 +79,25 @@ module Genome
       end
 
       def store_entities(item_name)
-        objs = create_models_from_hashes(item_name)
-        klass = class_from_entity(item_name)
-        klass.import(objs) if objs.any?
-        [item_name, objs.size]
+        if match_data = item_name.match(/(?<entity_name>.+)_categories/)
+          # Start with a slow ActiveRecord update. This may be okay, since category updates are infrequent?
+          entity_name = match_data['entity_name']
+          klass = class_from_entity(entity_name)
+          hashes = instance_variable_get("@#{item_name}").values
+          category_class = class_from_entity("#{entity_name}_category")
+          hashes.each do |hash|
+            # Assumes that category exists in db already
+            category = category_class.find(hash["#{entity_name}_category_id".to_sym])
+            entity = klass.find(hash["#{entity_name}_id".to_sym])
+            entity.send("#{entity_name}_categories") << category
+          end
+          [item_name, hashes.size]
+        else
+          objs = create_models_from_hashes(item_name)
+          klass = class_from_entity(item_name)
+          klass.import(objs) if objs.any?
+          [item_name, objs.size]
+        end
       end
 
       def has_source?(klass)
