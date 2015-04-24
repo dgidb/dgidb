@@ -26,7 +26,7 @@ module Genome
               attributes :target_subclass, name: 'Target Subclass', unless: blank_filter
             end
 
-            drug :drug_name, nomenclature: 'Drug Name', primary_name: :drug_name do
+            drug :drug_name, nomenclature: 'Drug Name', primary_name: :drug_name, transform: upcase do
               attributes :indication, name: 'Drug Indications', unless: blank_filter
               attribute :drug_class, name: 'Drug Class', unless: blank_filter
               attribute :fda_approval, name: 'FDA Approval', unless: blank_filter
