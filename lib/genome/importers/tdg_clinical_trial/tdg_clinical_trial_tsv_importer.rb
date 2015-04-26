@@ -4,7 +4,7 @@ module Genome
       
       def self.source_info
         {
-          base_url:          'http://www.uniprot.org/uniprot/',
+          base_url:          'https://clinicaltrials.gov/ct2/results?Search=Search&term=',
           site_url:          'http://www.ncbi.nlm.nih.gov/pubmed/24016212',
           citation:          "The druggable genome: Evaluation of drug targets in clinical trials suggests major shifts in molecular class and indication. Rask-Andersen M, Masuram S, Schioth HB. Annu Rev Pharmacol Toxicol. 2014;54:9-26. doi: 10.1146/annurev-pharmtox-011613-135943. PMID: 24016212",
           source_db_version:  'Jan-2014',
