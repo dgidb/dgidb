@@ -14,6 +14,7 @@ module Genome
             'MyCancerGenomeClinicalTrial',
             'TALC',
             'TEND',
+            'TdgClinicalTrial',
             'dGene',
             'RussLampel',
             'HopkinsGroom',

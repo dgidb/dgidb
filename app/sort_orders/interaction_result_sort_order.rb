@@ -13,16 +13,18 @@ module InteractionResultSortOrder
       5
     when 'TALC'
       6
-    when 'TEND'
+    when 'TdgClinicalTrial'
       7
-    when 'GuideToPharmacologyInteractions'
+    when 'TEND'
       8
-    when 'PharmGKB'
+    when 'GuideToPharmacologyInteractions'
       9
-    when 'TTD'
+    when 'PharmGKB'
       10
-    when 'DrugBank'
+    when 'TTD'
       11
+    when 'DrugBank'
+      12
     else
       99
     end
