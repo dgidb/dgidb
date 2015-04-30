@@ -39,6 +39,8 @@ namespace :dgidb do
           Genome::Normalizers::SourceTrustLevel.populate_trust_levels
           puts 'Attempting to normalize interaction types'
           Genome::Normalizers::InteractionClaimType.normalize_types
+          puts 'Clearing cache'
+          Rails.cache.clear
           puts 'Done.'
       end
     end

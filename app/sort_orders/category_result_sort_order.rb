@@ -9,10 +9,12 @@ module CategoryResultSortOrder
       3
     when 'HopkinsGroom'
       4
-    when 'BaderLabGenes'
+    when 'GuideToPharmacologyGenes'
       5
-    when 'GO'
+    when 'BaderLabGenes'
       6
+    when 'GO'
+      7
     else
       99
     end
