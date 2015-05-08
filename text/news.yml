@@ -49,7 +49,7 @@ news:
         in 2008 to help ovarian cancer patients and their physicians make better-informed treatment decisions, based on molecular profiling of tumors.
         From this resource we obtained 175 drug-gene interactions involving 34 genes and 64 drugs.
       date: August 7, 2013
-    - headline: TALC and Clearity Foundation data have been updated,
+    - headline: TALC and Clearity Foundation data have been updated
       article : >
         This version of DGIdb incorporates updates and bug fixes for the Clearity Foundation data. 
         The TALC data has been updated to reflect the new interactions added in the December 2012 publication:  
@@ -57,7 +57,7 @@ news:
         (<a href="http://www.ncbi.nlm.nih.gov/pubmed/23160320">J Thorac Oncol. 2012 Dec;7(16 Suppl 5):S342-68</a>).
       date: September 11, 2013
 
-    - headline: DGIdb is published online in Nature Methods,
+    - headline: DGIdb is published online in Nature Methods
       article : >
         A paper describing this resource is now available online:
         <a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.2689.html">
@@ -65,7 +65,7 @@ news:
         </a>
       date: October 14, 2013
 
-    - headline: DGIdb press coverage,
+    - headline: DGIdb press coverage
       article : >
         Since the online publication of the DGIdb paper in Nature Methods, various news organizations have described DGIdb. 
         <a href="https://news.wustl.edu/news/Pages/25973.aspx">Washington University Newsroom</a> wrote a press release that was picked up by 
@@ -93,7 +93,7 @@ news:
         The previous ClearityFoundation source of interactions has been renamed to ClearityFoundationBiomarkers and a new source ClearityFoundationClinicalTrial has been added. The former are biomarkers determined by the Clearity Foundation to be relevant for (typically) sensitivity or resistance to a specific therapeutic agent in Ovarian Cancer. The latter are interactions that were manually curated from the list of relevant clinical trials (themselves manually curated) by the Clearity Foundation as of potential relevance to Ovarian Cancer patients.
       date: Jan 9, 2014
       
-    - headline: Foundation One genes added as a new source of potentially druggable genes (Category)
+    - headline: Foundation One genes added as a new source of potentially druggable gene categories
       article : >
         The list of genes determined to be "Clinically Actionable" has been added as a new category of potentially druggable genes of the same name.
       date: Jan 9, 2014
@@ -115,6 +115,15 @@ news:
       
     - headline: IUPHAR/BPS Guide to Pharmacology added as new source of drug-gene interactions
       article : >
-        Expert-curated drug-gene interactions from <a href="http://guidetopharmacology.org/">IUPHAR/BPD Guide to Pharmacology</a> has been added as a new source of drug-gene interactions.
+        The expert-curated <a href="http://guidetopharmacology.org/">IUPHAR/BPD Guide to Pharmacology</a> has been added as a new source of drug-gene interactions.
       date: Apr 23, 2015
 
+    - headline: Drug Targets in Clinical Trials added as new source of drug-gene interactions
+      article : >
+        The article <a href="http://www.ncbi.nlm.nih.gov/pubmed/24016212">The Druggable Genome: Evaluation of Drug Targets in Clinical Trials Suggests Major Shifts in Molecular Class and Indication (Rask-Andersen, et al.)</a> has been added as a new source of drug-gene interactions.
+      date: May 7, 2015
+
+    - headline: IUPHAR/BPS Guide to Pharmacology added as new source of druggable gene categories
+      article : >
+        The expert-curated <a href="http://guidetopharmacology.org/">IUPHAR/BPD Guide to Pharmacology</a> has been added as a new source of potentially druggable gene categories.
+      date: May 7, 2015
