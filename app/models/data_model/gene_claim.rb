@@ -45,7 +45,7 @@ module DataModel
         base_url + 'Detail.asp?ID=' + name
       when 'GO'
         base_url.gsub(/XXXXXXXX/, name)
-      when 'GuideToPharmacologyInteractions'
+      when 'GuideToPharmacologyInteractions', 'GuideToPharmacologyGenes'
         'http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=' + name
       when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial'
         base_url

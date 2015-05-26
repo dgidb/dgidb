@@ -4,7 +4,7 @@ module Genome
       
       def self.source_info
         {
-          base_url: 'http://www.guidetopharmacology.org/DATA/targets_and_families.csv',
+          base_url: 'http://www.guidetopharmacology.org/DATA/',
           site_url: 'http://www.guidetopharmacology.org/',
           citation: 'Pawson, Adam J., et al. "The IUPHAR/BPS Guide to PHARMACOLOGY: an expert-driven knowledgebase of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D1106. PMID: 24234439.',
           source_db_version: '4-Mar-2015',
