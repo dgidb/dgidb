@@ -19,7 +19,7 @@ namespace :dgidb do
 
   desc 'publish built package to puppet'
   task :publish_package do
-    workstation = Rye::Box.new('linus83', user: 'acoffman', safe: false)
+    workstation = Rye::Box.new('linus202', user: 'awagner', safe: false)
     workstation.cd('deploy')
     workstation.rm(:f, '*')
     workstation.scp('vmuser@vmpool26:dgi-db_*', '.')
