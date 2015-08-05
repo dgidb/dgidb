@@ -15,20 +15,13 @@
         %form.form-horizontal(action="interaction_search_results" method="post" enctype="multipart/form-data")
           %fieldset
             .control-group
-              .textarea-labels
-                %label.control-label(id='genes_flag')
+              %label.control-label(id='genes_flag')
                 Genes
                 =icon(:flag, title: tx("genes_flag"), class: 'tip')
                 %a(href="/faq#types")
                   =icon('question-sign')
-                %label.control-label(id='drugs_flag')
-                Drugs
-                =icon(:flag, title: tx("drugs_flag"), class: 'tip')
-                %a(href="/faq#types")
-                  =icon('question-sign')
               .controls
                 %textarea#genes(name='genes' rows="13")
-                %textarea#drugs(name='drugs' rows="13")
             .control-group#loadingBar
               %label(style='display: none')
               .controls
