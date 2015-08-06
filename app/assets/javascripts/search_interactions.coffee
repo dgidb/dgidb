@@ -5,22 +5,38 @@ $(".multiselect").multiselect
 .multiselectfilter()
 $(".multiselect").multiselect("checkAll")
 
+
+
+# testing this from http://goo.gl/69VtL2  perhaps updating $ta will serve purpose?
+ta = $('#identifiers').typeahead
+  items: 20
+  updater: (item)->
+    oldval = this.$element[0]?.value?.split("\n")[0..-2].join("\n")
+    (if oldval then oldval + "\n" else ""  ) + item + "\n"
+
 $('#loadingBar').show()
 $.get '/gene_names.json', (data)->
-  $('#genes').typeahead
-    source: data
-    items: 20
-    updater: (item)->
-      oldval = this.$element[0]?.value?.split("\n")[0..-2].join("\n")
-      (if oldval then oldval + "\n" else ""  ) + item + "\n"
+  ta.data('typeahead').source = data
   $('#loadingBar').hide()
+
+$('#geneSearch').click ->
+  $('#loadingBar').show()
+  $.get '/gene_names.json', (data)->
+    ta.data('typeahead').source = data
+    $('#loadingBar').hide()
+
+$('#drugSearch').click ->
+  $('#loadingBar').show()
+  $.get '/drug_names.json', (data)->
+    ta.data('typeahead').source = data
+    $('#loadingBar').hide()
 
 $('#defaultGenes').click ->
     $('#genes')[0].value = ['FLT1','FLT2','FLT3','STK1','MM1','AQP9','LOC100508755','FAKE1'].join "\n"
     $('#genes')[0].value += "\n"
 
 $('#clear').click ->
-    $('#genes')[0].value = []
+    $('#identifiers')[0].value = []
 
 $(".btn-success").click ->
   $("#loading").modal("show")

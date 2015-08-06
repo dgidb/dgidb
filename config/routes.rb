@@ -3,6 +3,8 @@ DruggableGene::Application.routes.draw do
     constraints: { name: /[^\/]+/ }
   match 'gene_claims/:source_db_name/:name' => 'gene_claims#show'
   match 'gene_names' => 'genes#names'
+  # add a drug_names thing here, so that they can be pulled via json?
+  match 'drug_names' => 'drugs#names'
   match 'genes/:name' => 'genes#show', as: 'gene'
   match 'interaction_claims/:id' => 'interaction_claims#show', as: 'interaction_claims'
   match 'druggable_gene_categories/:name' => 'genes#druggable_gene_category', as: 'gene_by_category'
