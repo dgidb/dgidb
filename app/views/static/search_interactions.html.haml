@@ -31,12 +31,12 @@
               .controls
                 .btn-group(data-toggle='buttons-radio')
                   %label.btn.btn-primary.radio.active
-                    .input#geneSearch(type='radio' name='options') Genes
+                    .input#geneSearch(type='radio' name='searchMode' value='genes') Genes
                   %label.btn.btn-primary.radio
-                    .input#drugSearch(type='radio' name='options') Drugs
+                    .input#drugSearch(type='radio' name='searchMode' value='drugs') Drugs
             .control-group
               .controls
-                %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace Genes with Demo List
+                %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace Identifiers with Demo List
                 %button.btn.btn-small.btn-danger#clear(type='button') Clear All Identifiers
             =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
               flag_text_key: 'source_database_flag', select_tag_name: 'interaction_sources', collection: @sources,
@@ -51,14 +51,14 @@
               flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types,
               name_meth: 'to_s', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
             .control-group
-              %label.checkbox
+              %label.checkobox
                 Anti-Neoplastic Drugs Only
                 %i.icon-flag.tip{title: tx("drug_type_flag")}
                 %input(id='drug_type_checkbox' type='checkbox' name='limit_drugs' value='true')
             .form-actions
               %button.btn.btn-success(type="submit" id='search-btn')
                 =icon('search', class: 'icon-white')
-                Find Drug Interactions
+                Find Drug-Gene Interactions
 
   =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
 
