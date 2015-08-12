@@ -30,10 +30,10 @@
             .control-group
               .controls
                 .btn-group(data-toggle='buttons-radio')
-                  %label.btn.btn-primary.radio.active
-                    .input#geneSearch(type='radio' name='searchMode' value='genes') Genes
-                  %label.btn.btn-primary.radio
-                    .input#drugSearch(type='radio' name='searchMode' value='drugs') Drugs
+                  .btn.radio.active
+                    .input#geneSearch(type='radio' name='search_mode' value='genes') Genes
+                  .btn.radio
+                    .input#drugSearch(type='radio' name='search_mode' value='drugs') Drugs
             .control-group
               .controls
                 %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace Identifiers with Demo List
