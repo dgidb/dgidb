@@ -14,15 +14,15 @@ class InteractionSearchResultsPresenter
   end
 
   def number_of_definite_matches
-    @search_results.select{ |r| r.genes.count == 1 }.count
+    @search_results.select{ |r| r.identifiers.count == 1 }.count
   end
 
   def number_of_ambiguous_matches
-    @search_results.select{ |r| r.genes.count > 1 }.count
+    @search_results.select{ |r| r.identifiers.count > 1 }.count
   end
 
   def number_of_no_matches
-    @search_results.select{ |r| r.genes.count == 0 }.count
+    @search_results.select{ |r| r.identifiers.count == 0 }.count
   end
 
   def number_of_definite_interactions
@@ -91,7 +91,7 @@ class InteractionSearchResultsPresenter
 
   def search_term_summaries
     @search_results.map do |result|
-      SearchTermSummary.new(result.search_term, result.match_type_label, result.genes, @view_context)
+      SearchTermSummary.new(result.search_term, result.match_type_label, result.identifiers, @view_context)
     end
   end
 

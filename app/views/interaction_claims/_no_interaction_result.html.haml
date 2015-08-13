@@ -12,6 +12,6 @@
             =subtitle
     %dl
       -results.each do |result|
-        -result.genes.each do |gene|
-          %dt=link_to gene.name, gene_path(gene.name)
+        -result.identifiers.each do |id|
+          %dt=link_to id.name, gene_path(id.name)
           %dd="For search term: #{result.search_term}"

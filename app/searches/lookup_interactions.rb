@@ -5,16 +5,25 @@ class LookupInteractions
     #find gene results for given search terms. end up with
     #an object of type "InteractionSearchResult" for each
     #search result
-    gene_results = LookupGenes.find(
-      params[:gene_names],
-      :for_search,
-      InteractionSearchResult
-    )
+    if params[:search_mode] == 'genes'
+      interaction_results = LookupGenes.find(
+        params[:gene_names],
+        :for_search,
+        InteractionSearchResult
+      )
+    else
+      interaction_results = LookupDrugs.find(
+        params[:drug_names],
+        :for_search,
+        InteractionSearchResult
+      )
+    end
+
     #get a filter chain encompassing all the given filters from the search form
     filter = create_filter_from_params(params)
-    filter_results(gene_results, filter)
+    filter_results(interaction_results, filter)
 
-    gene_results
+    interaction_results
   end
 
   private

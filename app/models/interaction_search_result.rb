@@ -1,26 +1,33 @@
 class InteractionSearchResult
 
-  attr_accessor :search_term, :genes, :interaction_claims
+  attr_accessor :search_term, :identifiers, :interaction_claims, :type
 
-  def initialize(search_terms, genes)
+  def initialize(search_terms, identifiers, type = 'genes')
     @search_term = search_terms.join(', ')
     @search_terms = search_terms
-    @genes = genes.uniq
-    @interaction_claims = genes.flat_map { |g| g.gene_claims }
-      .flat_map{ |gc| gc.interaction_claims }
-      .uniq
+    @type = type
+    @identifiers = identifiers.uniq
+    if type == 'genes'
+      @interaction_claims = identifiers.flat_map { |g| g.gene_claims }
+        .flat_map{ |gc| gc.interaction_claims }
+        .uniq
+    else
+      @interaction_claims = identifiers.flat_map { |d| d.drug_claims }
+        .flat_map{ |dc| dc.interaction_claims }
+        .uniq
+    end
   end
 
   def is_ambiguous?
-    genes.length > 1
+    identifiers.length > 1
   end
 
   def is_definite?
-    genes.length == 1
+    identifiers.length == 1
   end
 
   def has_results?
-    genes.length > 0
+    identifiers.length > 0
   end
 
   def has_interactions?
