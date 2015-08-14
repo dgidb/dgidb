@@ -14,12 +14,16 @@ class LookupDrugs
     results_to_drug_groups = search_terms.each_with_object({}) { |term, h| h[term] = [] }
     results.each do |result|
       case result
-      when DataModel::Drug
-        results_to_drug_groups[result.name] << result
-      when DataModel::DrugClaimAlias
-        results_to_drug_groups[result.alias] += result.drug_claim.drugs # Come back to this
-      when DataModel::DrugClaim
-        results_to_drug_groups[result.name] += result.drugs
+        when DataModel::Drug
+          results_to_drug_groups[result.name] << result
+        when DataModel::DrugClaimAlias
+          results_to_drug_groups[result.alias] += result.drug_claim.drugs
+        when DataModel::DrugClaim
+          if results_to_drug_groups.has_key?(result.name)
+            results_to_drug_groups[result.name] += result.drugs
+          else
+            results_to_drug_groups[result.primary_name] += result.drugs
+          end
       end
     end
     results_to_drug_groups
@@ -32,8 +36,9 @@ class LookupDrugs
     drug_alias_results = DataModel::DrugClaimAlias.send(scope).where(alias: search_terms)
     search_terms = search_terms - drug_alias_results.map(&:alias)
     drug_claim_results = DataModel::DrugClaim.send(scope).where(name: search_terms)
-
-    drug_results.concat(drug_alias_results).concat(drug_claim_results)
+    search_terms = search_terms - drug_claim_results.map(&:name)
+    drug_claim_primary_results = DataModel::DrugClaim.send(scope).where(primary_name: search_terms)
+    drug_results.concat(drug_alias_results).concat(drug_claim_results).concat(drug_claim_primary_results)
   end
 
   def self.de_dup_results(results)
