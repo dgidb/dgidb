@@ -13,5 +13,8 @@
     %dl
       -results.each do |result|
         -result.identifiers.each do |id|
-          %dt=link_to id.name, gene_path(id.name)
+          -if result.type == 'genes'
+            %dt=link_to id.name, gene_path(id.name)
+          -else
+            %dt=link_to id.name, drug_path(id.name)
           %dd="For search term: #{result.search_term}"

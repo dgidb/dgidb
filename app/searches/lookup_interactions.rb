@@ -29,8 +29,8 @@ class LookupInteractions
   private
   #for each interaction in each result, remove it from the list of interactions
   #for that result if it doesn't meet the filter
-  def self.filter_results(gene_results, filter)
-    gene_results.each do |result|
+  def self.filter_results(interaction_results, filter)
+    interaction_results.each do |result|
       result.filter_interactions do |interaction|
         filter.include?(interaction.id)
       end
