@@ -19,12 +19,14 @@ module Genome
         blank_filter = ->(x) { x.blank? || x == "''" || x == '""' }
         upcase = ->(x) {x.upcase}
         downcase = ->(x) {x.downcase}
+        clean = ->(x) {x.sanitize.upcase}
         TSVImporter.import tsv_path, GuideToPharmacologyInteractionsRow, source_info do
           interaction known_action_type: :type, transform: downcase do
             drug :ligand_id, nomenclature: 'GuideToPharmacology Ligand Identifier', primary_name: :ligand, transform: upcase do
               name :ligand_gene_symbol, nomenclature: 'Gene Symbol (for Endogenous Peptides)', unless: blank_filter
+              name :ligand, nomenclature: 'GuideToPharmacology Ligand Name', transform: clean
               attribute :ligand_species, name: 'Name of the Ligand Species (if a Peptide)', unless: blank_filter
-              name :ligand_pubchem_sid, nomenclature: 'PubChem Substance ID', unless: blank_filter
+              name :ligand_pubchem_sid, nomenclature: 'PubChem Drug SID', unless: blank_filter
             end
             gene :target_id, nomenclature: 'GuideToPharmacology ID' do
               names :target_uniprot, nomenclature: 'UniProtKB ID', unless: blank_filter

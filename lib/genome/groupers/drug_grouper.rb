@@ -3,6 +3,8 @@ module Genome
     class DrugGrouper
       @alt_to_pubchem = Hash.new() {|hash, key| hash[key] = []}
       @alt_to_other = Hash.new() {|hash, key| hash[key] = []}
+      @alt_to_pubchem_sid = Hash.new() {|hash, key| hash[key] = []}
+      @alt_to_pubchem_cid = Hash.new() {|hash, key| hash[key] = []}
 
       def self.run
         ActiveRecord::Base.transaction do
@@ -18,10 +20,17 @@ module Genome
       def self.preload
         DataModel::DrugClaimAlias.includes(drug_claim: [:drugs, :source]).all.each do |dca|
           drug_claim_alias = dca.alias
-          next if drug_claim_alias.length == 1
-          next if drug_claim_alias =~ /^\d\d$/
-
-          if dca.nomenclature == 'pubchem_primary_name'
+          if drug_claim_alias =~ /^\d+$/
+            if dca.nomenclature =~ /pubchem.*(substance)|(sid)/i
+              @alt_to_pubchem_sid[drug_claim_alias] << dca
+            elsif dca.nomenclature =~ /pubchem.*(compound)|(cid)/i
+              @alt_to_pubchem_cid[drug_claim_alias] << dca
+            else
+              next
+            end
+          elsif drug_claim_alias.length == 1
+            next
+          elsif dca.nomenclature == 'pubchem_primary_name'
             @alt_to_pubchem[drug_claim_alias] << dca
           else
             @alt_to_other[drug_claim_alias] << dca
@@ -53,7 +62,6 @@ module Genome
           next if drug_claim.drugs.any?
           indirect_groups = Hash.new { |h, k| h[k] = 0 }
           direct_groups = Hash.new { |h, k| h[k] = 0 }
-
           direct_groups[drug_claim.name] += 1 if DataModel::Drug.where(name: drug_claim.name).any?
           drug_claim.drug_claim_aliases.each do |drug_claim_alias|
             direct_groups[drug_claim_alias.alias] +=1 if DataModel::Drug.where(name: drug_claim_alias.alias).any?
@@ -61,6 +69,22 @@ module Genome
             alt_drugs.each do |alt_drug|
               indirect_drug = alt_drug.drugs.first
               indirect_groups[indirect_drug.name] += 1 if indirect_drug
+            end
+            nomenclature = drug_claim_alias.nomenclature
+            if nomenclature =~ /pubchem.*(substance)|(sid)/i
+              alt_drugs = @alt_to_pubchem_sid[drug_claim_alias.alias].map(&:drug_claim)
+              alt_drugs.each do |alt_drug|
+                next unless alt_drug.nomenclature =~ /pubchem.*(substance)|(sid)/i
+                indirect_drug = alt_drug.drugs.first
+                indirect_groups[indirect_drug.name] += 1 if indirect_drug
+              end
+            elsif nomenclature =~ /pubchem.*(compound)|(cid)/i
+              alt_drugs = @alt_to_pubchem_cid[drug_claim_alias.alias].map(&:drug_claim)
+              alt_drugs.each do |alt_drug|
+                next unless alt_drug.nomenclature =~ /pubchem.*(compound)|(cid)/i
+                indirect_drug = alt_drug.drugs.first
+                indirect_groups[indirect_drug.name] += 1 if indirect_drug
+              end
             end
           end
 
