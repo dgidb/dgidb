@@ -29,6 +29,8 @@ namespace :dgidb do
           if args[:group]
             puts 'Running Gene Grouper - this takes awhile!'
             Genome::Groupers::GeneGrouper.run
+            puts 'Running Drug Grouper - this takes awhile!'
+            Genome::Groupers::DrugGrouper.run
           end
 
           puts 'Populating source counters.'
