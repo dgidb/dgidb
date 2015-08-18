@@ -1,6 +1,7 @@
 module Genome
   module Importers
     module GuideToPharmacologyInteractions
+      include ActionView::Helpers::SanitizeHelper
 
       def self.source_info
         {
@@ -19,7 +20,7 @@ module Genome
         blank_filter = ->(x) { x.blank? || x == "''" || x == '""' }
         upcase = ->(x) {x.upcase}
         downcase = ->(x) {x.downcase}
-        clean = ->(x) {x.sanitize.upcase}
+        clean = ->(x) {strip_tags x.upcase}
         TSVImporter.import tsv_path, GuideToPharmacologyInteractionsRow, source_info do
           interaction known_action_type: :type, transform: downcase do
             drug :ligand_id, nomenclature: 'GuideToPharmacology Ligand Identifier', primary_name: :ligand, transform: upcase do
