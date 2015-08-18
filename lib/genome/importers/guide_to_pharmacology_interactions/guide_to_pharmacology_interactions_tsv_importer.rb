@@ -1,7 +1,8 @@
+include ActionView::Helpers::SanitizeHelper
+
 module Genome
   module Importers
     module GuideToPharmacologyInteractions
-      include ActionView::Helpers::SanitizeHelper
 
       def self.source_info
         {
