@@ -9,6 +9,7 @@
 
 # Ignore generated data directory
 /data
+/lib/genome/updaters/data
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
