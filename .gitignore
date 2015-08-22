@@ -7,6 +7,9 @@
 # Ignore bundler config
 /.bundle
 
+# Ignore python notebooks
+*.ipynb
+
 # Ignore generated data directory
 /data
 /lib/genome/updaters/data
