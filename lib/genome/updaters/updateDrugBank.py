@@ -1,11 +1,3 @@
-
-# coding: utf-8
-
-# Run imports
-# ===
-
-# In[1]:
-
 import wget
 import zipfile
 import os
@@ -25,20 +17,13 @@ from bs4 import BeautifulSoup
 
 # Pull files from web
 # ===
-
-# In[2]:
-
+print('Downloading DrugBank XML...')
 filename = wget.download("http://www.drugbank.ca/system/downloads/current/drugbank.xml.zip")
 
-
-# In[3]:
-
+print('\nExtracting DrugBank XML...')
 zfile = zipfile.ZipFile(filename)
 zfile.extract('drugbank.xml', 'data/new.drugbank.xml')
 os.remove(filename)
-
-
-# In[4]:
 
 def extract(file):
     with gzip.open(file, 'rb') as rf:
@@ -49,12 +34,15 @@ def extract(file):
                 if species == '9606':  # Grab human only
                     wf.write(line_ascii)
 
-
-# In[5]:
-
+print('Downloading Entrez Accessions...')
+print('File 1:')
 g2a_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2accession.gz")
+print('\nFile 2:')
 gi_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene_info.gz")
+print('\nExtracting Entrez Accessions...')
+print('File 1...')
 extract("gene_info.gz")
+print('File 2...')
 extract("gene2accession.gz")
 os.remove(g2a_filename)
 os.remove(gi_filename)
@@ -66,13 +54,9 @@ os.remove(gi_filename)
 # Check Database Version
 # ---
 
-# In[6]:
-
+print('Checking DrugBank Version...')
 html = urlopen('http://www.drugbank.ca/downloads')
 bsObj = BeautifulSoup(html.read(), "html.parser")
-
-
-# In[7]:
 
 r = re.compile(r'Version ([\d\.]+)')
 match = r.search(bsObj.h1.text)
@@ -85,8 +69,7 @@ else:
 # Load gene annotation resources
 # ---
 
-# In[8]:
-
+print('Parsing Entrez...')
 symbol_to_info = dict()
 hgnc_id_to_info = dict()
 entrez_to_info = dict()
@@ -111,9 +94,6 @@ with open('data/gene_info.human') as f:
             hgnc_id_to_info[symbol_to_info[gene_symbol]['HGNC']] = symbol_to_info[gene_symbol]
         entrez_to_info[entrez_id] = symbol_to_info[gene_symbol]
 
-
-# In[9]:
-
 uniprot_to_entrez = dict()
 r = re.compile(r'[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}')
     # regex from: http://www.uniprot.org/help/accession_numbers
@@ -128,29 +108,14 @@ with open('data/gene2accession.human') as f:
         entrez_id = line[1]
         uniprot_to_entrez[uniprot_id] = entrez_id
 
-
 # Parse XML
 # ---
-
-# In[10]:
-
+print('Parsing DrugBank XML...')
 ns = {'entry': 'http://www.drugbank.ca'}
-
-def elements(x):
-    c = Counter()
-    for elem in x:
-        c[elem.tag[len(ns['entry'])+2:]] += 1
-    return c
-
-
-# In[11]:
 
 tree = ET.parse('data/old.drugbank.xml')
 drugbank = tree.getroot()
 drugs = drugbank.findall('entry:drug', ns)
-
-
-# In[12]:
 
 interactions = dict()
 drug_info = dict()
@@ -251,9 +216,7 @@ for drug in drugs:
 
 # Write interactions to tsv
 # ---
-
-# In[18]:
-
+print('Writing to .tsv...')
 i = 0
 no_ensembl = no_entrez = total = 0
 header = ('count','drug_id','drug_name','drug_synonyms','drug_cas_number','drug_brands',
@@ -280,27 +243,12 @@ with open('data/DrugBankInteractions.tsv', 'w') as f:
             if out[15] == 'N/A':
                 no_ensembl += 1
             writer.writerow(out)
-            
-
-
-# In[19]:
-
-# Unknown entrez ID for interaction
-no_entrez / i
-
-
-# In[20]:
-
-# Unknown ensembl ID for interaction
-no_ensembl / i
-
 
 # Update DGIdb `version` File
 # ===
-
-# In[16]:
 
 today = datetime.date.today().strftime("%d-%B-%Y")
 with open('data/version', 'w') as f:
     f.write("DrugBank\t{0}, {1}".format(version, today))
 
+print('Done.')
