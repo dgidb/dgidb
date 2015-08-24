@@ -1,16 +1,13 @@
+__author__ = 'Alex H Wagner'
+
 import wget
 import zipfile
 import os
-from subprocess import call, check_output
-import subprocess
-from shutil import move
 import gzip
 import xml.etree.ElementTree as ET
-from collections import Counter
-import operator
 import csv
 import re
-import datetime
+from version_logger import Logger
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
@@ -113,7 +110,7 @@ with open('data/gene2accession.human') as f:
 print('Parsing DrugBank XML...')
 ns = {'entry': 'http://www.drugbank.ca'}
 
-tree = ET.parse('data/old.drugbank.xml')
+tree = ET.parse('data/new.drugbank.xml')
 drugbank = tree.getroot()
 drugs = drugbank.findall('entry:drug', ns)
 
@@ -233,7 +230,7 @@ with open('data/DrugBankInteractions.tsv', 'w') as f:
             for datum in data:
                 if isinstance(datum, tuple):
                     datum = ','.join(datum)
-                datum = str(datum).replace("\t",'')
+                datum = str(datum).replace("\t", '')
                 if not datum or datum == 'None':
                     datum = 'N/A'
                 out.append(datum)
@@ -247,8 +244,7 @@ with open('data/DrugBankInteractions.tsv', 'w') as f:
 # Update DGIdb `version` File
 # ===
 
-today = datetime.date.today().strftime("%d-%B-%Y")
-with open('data/version', 'w') as f:
-    f.write("DrugBank\t{0}, {1}".format(version, today))
+version = Logger('DrugBank', version=version)
+version.log()
 
 print('Done.')
