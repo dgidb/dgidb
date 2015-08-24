@@ -2,6 +2,7 @@ import requests
 import sys
 from version_logger import Version
 
+civic_ids = ["civic_ids"]
 genes = ["gene_symbol"]
 drugs = ["drug_name"]
 entrez_ids = ["entrez_gene_id"]
@@ -24,6 +25,7 @@ for i in range(gene_count):
         for item in evidence:
             for x in item['drugs']:
                 if x['name'] != "N/A":
+                    civic_ids.append(i)
                     genes.append(gene)
                     drugs.append(x['name'])
                     entrez_ids.append(entrez_id)
@@ -31,7 +33,7 @@ for i in range(gene_count):
 
 with open("data/civic_dgi.tsv", "w") as f:
     for i in range(len(genes)):
-        f.write("\t".join((genes[i], str(entrez_ids[i]),
+        f.write("\t".join((str(civic_ids[i]), genes[i], str(entrez_ids[i]),
                            drugs[i], interaction_type[i])) + "\n")
 
 version = Version('CIViC', append_date=True)
