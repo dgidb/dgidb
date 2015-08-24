@@ -1,6 +1,6 @@
 import requests
 import sys
-from version_logger import Logger
+from version_logger import Version
 
 genes = ["gene_symbol"]
 drugs = ["drug_name"]
@@ -34,7 +34,7 @@ with open("data/civic_dgi.tsv", "w") as f:
         f.write("\t".join((genes[i], str(entrez_ids[i]),
                            drugs[i], interaction_type[i])) + "\n")
 
-version = Logger('CIViC')
-version.log()
+version = Version('CIViC', append_date=True)
+version.write_log()
 
 print('Done.')
