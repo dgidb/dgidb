@@ -123,7 +123,7 @@ class DrugBank():
                 drug_groups.add(group.text)
             drug_categories = set()
             for category in drug.find('entry:categories', ns):
-                drug_categories.add(category.find('entry:category', ns).text)
+                drug_categories.add(category.find('entry:category', ns).text.lower())
             targets = drug.find('entry:targets', ns)
             if len(targets) == 0:
                 continue
@@ -206,7 +206,7 @@ class DrugBank():
             for drug in sorted(self.interactions):
                 for interaction in self.interactions[drug]:
                     i += 1
-                    data = (i,drug) + self.drug_info[drug] + interaction
+                    data = (i, drug) + self.drug_info[drug] + interaction
                     out = list()
                     for datum in data:
                         if isinstance(datum, tuple):
