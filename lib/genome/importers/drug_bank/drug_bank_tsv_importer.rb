@@ -47,7 +47,7 @@ module Genome
               name :ensembl_id, nomenclature: 'Ensembl Gene Id', unless: blank_filter
               # target_ligand fields are ignored for now.
             end
-            attributes :target_actions, name: 'Interaction Type', unless: blank_filter
+            attributes :target_actions, name: 'Interaction Type', transform: downcase, unless: blank_filter
           end
         end.save!
       end
