@@ -4,8 +4,8 @@ module Genome
     
       def self.source_info
         {
-          base_url: 'https://www.civicdb.org',
-          site_url: 'https://civic.genome.wustl.edu',
+          base_url: 'https://civic.genome.wustl.edu',
+          site_url: 'https://www.civicdb.org',
           citation: 'CIViC: Clinical Interpretations of Variants in Cancer',
           source_db_version: '24-Aug-2015',
           source_type_id: DataModel::SourceType.INTERACTION,
@@ -16,9 +16,10 @@ module Genome
 
       def self.run(tsv_path)
         blank_filter = ->(x) { x.blank? }
+        upcase = ->(x) { x.upcase }
         TSVImporter.import tsv_path, CivicRow, source_info do
           interaction known_action_type: 'unknown' do
-            drug :drug_name, nomenclature: 'CIViC Drug Name', primary_name: :drug_name do
+            drug :drug_name, nomenclature: 'CIViC Drug Name', primary_name: :drug_name, transform: upcase do
             end
             gene :gene_symbol, nomenclature: 'CIViC Gene Name' do
               name :entrez_gene_id, nomenclature: 'Entrez Gene ID', unless: blank_filter
