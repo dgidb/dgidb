@@ -6,6 +6,7 @@ import csv
 from version_logger import Version
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import datetime
 
 
 class Entrez:
@@ -25,7 +26,7 @@ class Entrez:
         html = urlopen('http://ftp.ncbi.nlm.nih.gov/gene/DATA/')
         bsObj = BeautifulSoup(html.read(), "html.parser")
         a = bsObj.hr.find('a', {"href": "gene2accession.gz"})
-        self.online_version = a.next.next.split()[0]
+        self.online_version = datetime.datetime.strptime(a.next.next.split()[0], '%d-%b-%Y').strftime('%d-%B-%Y')
 
     @staticmethod
     def extract(file):

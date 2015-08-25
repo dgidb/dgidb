@@ -12,7 +12,7 @@ namespace :dgidb do
       importer_dir = File.basename(importer)
       importer_name = importer_dir.camelize
       send(:desc, "Import #{importer_dir} from a provided tsv file. If the source already exists, it will be overwritten!")
-      send(:task, importer_dir.to_sym, [:tsv_path, :group] => :environment) do |_, args|
+      send(:task, importer_dir.to_sym, [:tsv_path, :gene_group, :drug_group] => :environment) do |_, args|
         importer_class = if Genome::Importers.const_defined?(importer_name)
                            "Genome::Importers::#{importer_name}".constantize
                          else
@@ -26,9 +26,12 @@ namespace :dgidb do
           puts 'Starting import!'
           importer_class.run(args[:tsv_path])
 
-          if args[:group]
+          if args[:gene_group] == 'true'
             puts 'Running Gene Grouper - this takes awhile!'
             Genome::Groupers::GeneGrouper.run
+          end
+
+          if args[:drug_group] == 'true'
             puts 'Running Drug Grouper - this takes awhile!'
             Genome::Groupers::DrugGrouper.run
           end
