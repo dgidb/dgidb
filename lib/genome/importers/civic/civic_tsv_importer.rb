@@ -20,6 +20,7 @@ module Genome
           source_db_version: get_version,
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'CIViC',
+          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           full_name: 'CIViC: Clinical Interpretations of Variants in Cancer'
         }
       end
