@@ -18,24 +18,25 @@ namespace :dgidb do
                          else
                            "Genome::Importers::#{importer_name.camelize}".constantize
                          end
-          if DataModel::Source.where('lower(sources.source_db_name) = ?', importer_name.downcase).any?
-            puts 'Found existing source! Deleting...'
-            Utils::Database.delete_source(importer_name)
-          end
+        if DataModel::Source.where('lower(sources.source_db_name) = ?', importer_name.downcase).any?
+          puts 'Found existing source! Deleting...'
+          Utils::Database.delete_source(importer_name)
+        end
 
-          puts 'Starting import!'
-          importer_class.run(args[:tsv_path])
+        puts 'Starting import!'
+        importer_class.run(args[:tsv_path])
 
-          if args[:gene_group] == 'true'
-            puts 'Running Gene Grouper - this takes awhile!'
-            Genome::Groupers::GeneGrouper.run
-          end
+        if args[:gene_group] == 'true'
+          puts 'Running Gene Grouper - this takes awhile!'
+          Genome::Groupers::GeneGrouper.run
+        end
 
-          if args[:drug_group] == 'true'
-            puts 'Running Drug Grouper - this takes awhile!'
-            Genome::Groupers::DrugGrouper.run
-          end
+        if args[:drug_group] == 'true'
+          puts 'Running Drug Grouper - this takes awhile!'
+          Genome::Groupers::DrugGrouper.run
+        end
 
+        if args[:gene_group] == 'true' or args[:drug_group] == 'true'
           puts 'Populating source counters.'
           Genome::Normalizers::PopulateCounters.populate_source_counters
           puts 'Attempting to normalize drug types.'
@@ -44,9 +45,10 @@ namespace :dgidb do
           Genome::Normalizers::SourceTrustLevel.populate_trust_levels
           puts 'Attempting to normalize interaction types'
           Genome::Normalizers::InteractionClaimType.normalize_types
-          puts 'Clearing cache'
-          Rails.cache.clear
-          puts 'Done.'
+        end
+        puts 'Clearing cache'
+        Rails.cache.clear
+        puts 'Done.'
       end
     end
 
