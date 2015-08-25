@@ -70,7 +70,9 @@ class Entrez:
                          'description', 'type', 'sym_from_auth', 'full_from_auth',
                          'nom_status', 'other_designations', 'mod_date']
             reader = csv.DictReader(f, delimiter='\t', fieldnames=fieldnames)
-            for row in reader:
+            for i, row in enumerate(reader):
+                if i == 0:
+                    continue
                 ensembl = set()
                 for key, value in row.items():
                     if value == '-':
