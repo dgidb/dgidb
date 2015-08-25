@@ -32,11 +32,14 @@ class Entrez:
     def extract(file):
         with gzip.open(file, 'rb') as rf:
             with open('data/' + file.rsplit('.', 1)[0] + '.human', 'w') as wf:
-                for line in rf:
+                for i, line in enumerate(rf):
                     line_ascii = line.decode('utf-8')
-                    species = line_ascii.split()[0]
-                    if species == '9606':  # Grab human only
+                    if i == 0:
                         wf.write(line_ascii)
+                    else:
+                        species = line_ascii.split()[0]
+                        if species == '9606':  # Grab human only
+                            wf.write(line_ascii)
 
     @staticmethod
     def download_files():
@@ -46,13 +49,18 @@ class Entrez:
         g2a_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2accession.gz")
         print('\ngene2accession:')
         gi_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene_info.gz")
+        print('\ninteractions:')
+        ia_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/GeneRIF/interactions.gz")
         print('\nExtracting Entrez Accessions...')
         print('gene_info...')
         Entrez.extract("gene_info.gz")
         print('gene2accession...')
         Entrez.extract("gene2accession.gz")
+        print('interactions...')
+        Entrez.extract("interactions.gz")
         os.remove(g2a_filename)
         os.remove(gi_filename)
+        os.remove(ia_filename)
 
     def parse(self):
         self.rows = []
