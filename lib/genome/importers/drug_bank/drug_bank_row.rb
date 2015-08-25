@@ -6,15 +6,15 @@ module Genome
         attribute :count
         attribute :drug_id
         attribute :drug_name
-        attribute :drug_synonyms, Array
+        attribute :drug_synonyms, Array, delimiter: ','
         attribute :drug_cas_number
-        attribute :drug_brands, Array
+        attribute :drug_brands, Array, delimiter: ','
         attribute :drug_type
-        attribute :drug_groups, Array
-        attribute :drug_categories, Array
+        attribute :drug_groups, Array, delimiter: ','
+        attribute :drug_categories, Array, delimiter: ','
         attribute :gene_id
         attribute :known_action
-        attribute :target_actions, Array
+        attribute :target_actions, Array, delimiter: ','
         attribute :gene_symbol
         attribute :uniprot_id
         attribute :entrez_id
@@ -22,7 +22,6 @@ module Genome
 
         def valid?(opts = {})
           return false if uniprot_id == 'N/A' && gene_symbol == 'N/A'
-          return false unless opts[:uniprot_mapping][uniprot_id]
           true
         end
       end

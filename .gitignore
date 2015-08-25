@@ -7,8 +7,12 @@
 # Ignore bundler config
 /.bundle
 
+# Ignore python notebooks
+*.ipynb
+
 # Ignore generated data directory
 /data
+/lib/genome/updaters/data
 
 # Ignore the default SQLite database.
 /db/*.sqlite3

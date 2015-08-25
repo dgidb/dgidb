@@ -16,7 +16,7 @@
         end
 
         def self.run(tsv_path)
-          blank_filter = ->(x) { x.blank? }
+          blank_filter = ->(x) { x.blank? || x.upcase == 'N/A' || x.upcase == 'NA' }
           upcase = ->(x) { x.upcase }
           TSVImporter.import tsv_path, ClearityFoundationClinicalTrialRow, source_info do
             interaction known_action_type: :interaction_type do
