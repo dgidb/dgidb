@@ -3,6 +3,7 @@ module Genome
   module Importers
     module Civic
       class CivicRow < Genome::Importers::DelimitedRow
+        attribute :civic_id
         attribute :gene_symbol
         attribute :entrez_gene_id
         attribute :drug_name

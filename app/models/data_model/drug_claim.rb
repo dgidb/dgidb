@@ -24,6 +24,8 @@ module DataModel
       case self.source.source_db_name
       when 'DrugBank'
         [base_url, 'drugs', name].join('/')
+      when 'CIViC'
+        'https://www.ncbi.nlm.nih.gov/pccompound?term=' + name
       when 'PharmGKB'
         [base_url, 'drug', name].join('/')
       when 'TTD'

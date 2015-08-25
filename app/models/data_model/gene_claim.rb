@@ -38,7 +38,9 @@ module DataModel
       name = self.name
       case self.source.source_db_name
       when 'DrugBank'
-        [base_url, 'molecules', name, '?as=target'].join('/')
+        [base_url, 'biodb', 'bio_entities', name].join('/')
+      when 'CIViC'
+        [base_url, '#', 'events', 'genes', name, 'summary'].join('/')
       when 'PharmGKB'
         [base_url, 'gene', name].join('/')
       when 'TTD'
