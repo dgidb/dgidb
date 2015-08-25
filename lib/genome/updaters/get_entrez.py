@@ -93,7 +93,6 @@ class Entrez:
             self.write()
 
 
-
 if __name__ == '__main__':
     e = Entrez()
     e.update()
