@@ -5,8 +5,8 @@ module Genome
       class EntrezRow < Genome::Importers::DelimitedRow
         attribute :entrez_id
         attribute :entrez_gene_symbol
-        attribute :entrez_gene_synonyms, Array
-        attribute :ensembl_ids, Array
+        attribute :entrez_gene_synonyms, Array, delimiter: '|'
+        attribute :ensembl_ids, Array, delimiter: '|'
         attribute :description
 
         def
