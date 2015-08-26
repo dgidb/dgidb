@@ -2,9 +2,11 @@ __author__ = 'Alex H Wagner'
 import wget
 import os
 import gzip
+import csv
 from version_logger import Version
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import datetime
 
 
 class Entrez:
@@ -24,38 +26,81 @@ class Entrez:
         html = urlopen('http://ftp.ncbi.nlm.nih.gov/gene/DATA/')
         bsObj = BeautifulSoup(html.read(), "html.parser")
         a = bsObj.hr.find('a', {"href": "gene2accession.gz"})
-        self.online_version = a.next.next.split()[0]
+        self.online_version = datetime.datetime.strptime(a.next.next.split()[0], '%d-%b-%Y').strftime('%d-%B-%Y')
 
     @staticmethod
     def extract(file):
         with gzip.open(file, 'rb') as rf:
             with open('data/' + file.rsplit('.', 1)[0] + '.human', 'w') as wf:
-                for line in rf:
+                for i, line in enumerate(rf):
                     line_ascii = line.decode('utf-8')
-                    species = line_ascii.split()[0]
-                    if species == '9606':  # Grab human only
+                    if i == 0:
                         wf.write(line_ascii)
+                    else:
+                        species = line_ascii.split()[0]
+                        if species == '9606':  # Grab human only
+                            wf.write(line_ascii)
 
     @staticmethod
     def download_files():
         """Download and extract the gene2accession and gene_info files"""
         print('Downloading Entrez Accessions...')
-        print('File 1:')
+        print('gene_info:')
         g2a_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2accession.gz")
-        print('\nFile 2:')
+        print('\ngene2accession:')
         gi_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene_info.gz")
+        print('\ninteractions:')
+        ia_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/GeneRIF/interactions.gz")
         print('\nExtracting Entrez Accessions...')
-        print('File 1...')
+        print('gene_info...')
         Entrez.extract("gene_info.gz")
-        print('File 2...')
+        print('gene2accession...')
         Entrez.extract("gene2accession.gz")
+        print('interactions...')
+        Entrez.extract("interactions.gz")
         os.remove(g2a_filename)
         os.remove(gi_filename)
+        os.remove(ia_filename)
+
+    def parse(self):
+        self.rows = []
+        with open('data/gene_info.human') as f:
+            fieldnames = ['tax_id', 'entrez_id', 'entrez_gene_symbol', 'locus_tag',
+                         'entrez_gene_synonyms', 'dbXrefs', 'chromosome', 'map_loc',
+                         'description', 'type', 'sym_from_auth', 'full_from_auth',
+                         'nom_status', 'other_designations', 'mod_date']
+            reader = csv.DictReader(f, delimiter='\t', fieldnames=fieldnames)
+            for i, row in enumerate(reader):
+                if i == 0:
+                    continue
+                ensembl = set()
+                for key, value in row.items():
+                    if value == '-':
+                        row[key] = 'N/A'
+                dbXrefs = row['dbXrefs'].split('|')
+                for xRef in dbXrefs:
+                    if xRef == 'N/A':
+                        continue
+                    source, label = xRef.split(':', 1)
+                    if source == 'Ensembl':
+                        ensembl.add(label)
+                row['ensembl_ids'] = '|'.join(ensembl) or 'N/A'
+                self.rows.append(row)
+
+    def write(self):
+        with open('data/entrez_genes.tsv', 'w') as f:
+            fieldnames = ['entrez_id', 'entrez_gene_symbol', 'entrez_gene_synonyms',
+                          'ensembl_ids', 'description']
+            writer = csv.DictWriter(f, delimiter='\t', fieldnames=fieldnames, extrasaction='ignore')
+            writer.writeheader()
+            writer.writerows(self.rows)
+        self.version.write_log()
 
     def update(self):
         if not self.is_current():
             self.download_files()
-            self.version.write_log()
+            self.parse()
+            self.write()
 
 
 if __name__ == '__main__':

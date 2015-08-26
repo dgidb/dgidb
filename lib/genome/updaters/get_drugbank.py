@@ -56,7 +56,9 @@ class DrugBank():
         sources = set()
         with open('data/gene_info.human') as f:
             c = csv.reader(f, delimiter='\t')
-            for line in c:
+            for i, line in enumerate(c):
+                if i == 0:
+                    continue
                 if line[0] != '9606':
                     continue
                 gene_symbol = line[2]
@@ -79,7 +81,9 @@ class DrugBank():
         # regex from: http://www.uniprot.org/help/accession_numbers
         with open('data/gene2accession.human') as f:
             c = csv.reader(f, delimiter='\t')
-            for line in c:
+            for i, line in enumerate(c):
+                if i == 0:
+                    continue
                 if line[0] != '9606':
                     continue
                 uniprot_id = line[5].split('.',1)[0]
