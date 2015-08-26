@@ -16,10 +16,17 @@ module Genome
 
       def self.run(tsv_path)
         TSVImporter.import tsv_path, DocmRow, source_info do
-          interaction
-        end
+          interaction known_action_type: :effect do
+            drug :drug, nomenclature: 'DoCM Drug Name', primary_name: :drug do
+            end
+            gene :gene, nomenclature: 'DoCM Entrez Gene Symbol' do
+              name :entrez_id, nomenclature: 'Entrez Gene Id'
+            end
+            attribute :status, name: 'Clinical Status'
+            attribute :pathway, name: 'Pathway'
+          end
+        end.save!
       end
-
     end
   end
 end
