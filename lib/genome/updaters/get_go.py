@@ -113,26 +113,16 @@ class GO:
 
     def parse(self):
         self.rows = [['uniprot_id', 'gene_name', 'gene_category', 'description']]
-        go_ids = [':'.join((x['go_id'][:2], x['go_id'][2:])) for x in self.dgidb_go_terms]
         category_lookup = {x['go_id']: x['human_readable'].upper() for x in self.dgidb_go_terms}
-        with gzip.open('data/goa_human.gz', 'rt', encoding='utf-8') as f:
-            reader = csv.reader(f, delimiter='\t')
+        with gzip.open('data/associations.tsv.gz', 'rt', encoding='utf-8') as f:
+            reader = csv.DictReader(f, delimiter='\t')
             for row in reader:
-                if row[0].startswith('!'):
-                    continue
-                elif row[4] not in go_ids:
-                    continue
-                elif row[0] != 'UniProtKB':
-                    continue
-                elif row[12] != 'taxon:9606':
-                    continue
-                else:
-                    row[4] = category_lookup[row[4].replace(':', '')]
-                    self.rows.append([row[x] for x in (1, 2, 4, 9)])
+                row['GO Category'] = category_lookup[row['GO ID'].replace(':', '')]
+                self.rows.append(row)
 
     def write(self):
         with open('data/go.human.tsv', 'w') as f:
-            writer = csv.writer(f, delimiter='\t')
+            writer = csv.DictWriter(f, delimiter='\t', )
             writer.writerows(self.rows)
 
     def update(self):
