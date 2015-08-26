@@ -3,15 +3,10 @@ module Genome
   module Importers
     module Go
       class GoRow < Genome::Importers::DelimitedRow
-        attribute :go_id
-        attribute :go_short_name
-        attribute :human_readable_name
-        attribute :go_term
-        attribute :go_full_name
-        attribute :go_description
-        attribute :secondary_go_term
-        attribute :go_name
-        attribute :alternate_symbol_references
+        attribute :uniprotkb_id
+        attribute :gene_name
+        attribute :gene_category
+        attribute :description
 
         def valid?(opts = {})
           true
