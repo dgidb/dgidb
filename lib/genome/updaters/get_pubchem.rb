@@ -15,7 +15,8 @@ module Genome
         puts 'Downloading PubChem file...'
         getter.download_file(tmpfile.path)
         puts 'Processing PubChem file...'
-        getter.process_pubchem_file(tmpfile.open) ensure
+        getter.process_pubchem_file(tmpfile.open)
+      ensure
         puts 'Cleaning up tmpfile...'
         tmpfile.close
         tmpfile.unlink
@@ -53,8 +54,8 @@ module Genome
       end
 
       def process_drug(current_id, alternate_names)
-        pubchem_primary_name = alternate_names.first.upcase.strip
-        if existing_drugs[pubchem_primary_name]
+        if alternate_names.any? { |name| existing_drugs[name.upcase.strip] }
+          pubchem_primary_name = alternate_names.first.upcase.strip
           drug_claim = DataModel::DrugClaim.create(
             {
               source: source,
@@ -67,7 +68,7 @@ module Genome
           DataModel::DrugClaimAlias.create(
             {
               alias: pubchem_primary_name,
-              nomenclature: 'PubChem Primary Name',
+              nomenclature: 'pubchem_primary_name',
               drug_claim: drug_claim
             },
             without_protection: true
@@ -94,8 +95,12 @@ module Genome
       end
 
       def existing_drugs
-        @existing_drugs ||= DataModel::DrugClaim.all.inject({}) do |h, drug_claim|
-          h[drug_claim.name.upcase] = true; h
+        @existing_drugs ||= DataModel::DrugClaim.includes(:drug_claim_aliases).all.inject({}) do |h, drug_claim|
+          h[drug_claim.name.upcase] = true
+          drug_claim.drug_claim_aliases.each do |a|
+            h[a.alias.upcase] = true
+          end
+          h
         end
       end
 
