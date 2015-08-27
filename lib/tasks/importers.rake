@@ -57,5 +57,10 @@ namespace :dgidb do
       Genome::Importers::Entrez::EntrezGenePathwayImporter.new(args[:tsv_path])
         .import!
     end
+
+    desc 'import PubChem synonyms for drug claims'
+    task :pubchem, [] => :environment do
+      Genome::Updaters::GetPubchem.run!
+    end
   end
 end
