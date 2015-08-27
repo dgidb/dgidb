@@ -3,8 +3,8 @@ module Genome
   module Importers
     module Go
       class GoRow < Genome::Importers::DelimitedRow
-        attribute :uniprotkb_id
         attribute :gene_name
+        attribute :uniprot_ids, Array, delimiter: '|'
         attribute :gene_category
 
         def valid?(opts = {})

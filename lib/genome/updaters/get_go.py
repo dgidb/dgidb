@@ -90,26 +90,31 @@ class GO:
         self.rows = []
         go_ids = [':'.join((x['go_id'][:2], x['go_id'][2:])) for x in self.dgidb_go_terms]
         category_lookup = {x['go_id']: x['human_readable'].upper() for x in self.dgidb_go_terms}
+
         for go_id in go_ids:
+            temp = {}
             category = category_lookup[go_id.replace(':', '')]
             file = 'data/GO/' + go_id.replace(':', '') + '.tsv'
             with open(file, 'r') as f:
                 reader = csv.DictReader(f, delimiter='\t')
                 for row in reader:
-                    row['Category'] = category
-                    self.rows.append(row)
+                    if row['Symbol'] == '-' or ' ' in row['Symbol']:
+                        continue
+                    try:
+                        temp[row['Symbol']].add(row['ID'])
+                    except KeyError:
+                        temp[row['Symbol']] = set((row['ID'],))
+            for symbol in temp:
+                row = {'Symbol': symbol, 'Category': category, 'IDs': '|'.join(temp[symbol])}
+                self.rows.append(row)
 
     def write(self):
-        fieldnames = ['ID', 'Symbol', 'Category']
+        fieldnames = ['Symbol', 'IDs', 'Category']
         with open('data/go.human.tsv', 'w') as f:
             writer = csv.DictWriter(f, delimiter='\t', fieldnames=fieldnames, extrasaction='ignore')
             writer.writeheader()
-            previous = ''
             for row in self.rows:
-                key = '|'.join((row['ID'], row['Symbol'], row['Category']))
-                if key != previous:
-                    writer.writerow(row)
-                previous = key
+                writer.writerow(row)
         self.version.write_log()
 
     def update(self):

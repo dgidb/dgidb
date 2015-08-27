@@ -27,8 +27,8 @@ module Genome
       def self.run(tsv_path)
         blank_filter = ->(x) { x.blank? || x == "''" || x == '""' || x == '-'}
         TSVImporter.import tsv_path, GoRow, source_info do
-          gene :uniprotkb_id, nomenclature: 'UniProt ID' do
-            name :gene_name, nomenclature: 'GO Gene Name', unless: blank_filter
+          gene :gene_name, nomenclature: 'Gene Symbol' do
+            names :uniprot_ids, nomenclature: 'UniProt ID', unless: blank_filter
             category :gene_category
           end
         end.save!
