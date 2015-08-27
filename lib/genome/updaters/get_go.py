@@ -104,12 +104,17 @@ class GO:
         with open('data/go.human.tsv', 'w') as f:
             writer = csv.DictWriter(f, delimiter='\t', fieldnames=fieldnames, extrasaction='ignore')
             writer.writeheader()
-            writer.writerows(self.rows)
+            previous = ''
+            for row in self.rows:
+                key = '|'.join((row['ID'], row['Symbol'], row['Category']))
+                if key != previous:
+                    writer.writerow(row)
+                previous = key
         self.version.write_log()
 
     def update(self):
         if not self.is_current():
-            self.download_files()
+            #self.download_files()
             self.parse()
             self.write()
 
