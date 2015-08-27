@@ -6,7 +6,6 @@ module Genome
         attribute :uniprotkb_id
         attribute :gene_name
         attribute :gene_category
-        attribute :description
 
         def valid?(opts = {})
           true

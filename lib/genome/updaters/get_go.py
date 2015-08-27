@@ -1,13 +1,7 @@
 import wget
 import os
 import csv
-import gzip
 from version_logger import Version
-from bs4 import BeautifulSoup
-from selenium import webdriver
-import time
-import re
-import datetime
 
 __author__ = 'Alex H Wagner'
 
@@ -69,24 +63,8 @@ class GO:
             {"short_name": "ProteaseActivity", "full_go_name": "PeptidaseActivity",
              "human_readable": "Protease", "go_id": "GO0008233"}]
 
-        url = 'http://geneontology.org/page/download-annotations'
-
-        # This will require PhantomJS installed in your path. For OS X 10.10, go here: https://goo.gl/sjbtQT
-        driver = webdriver.PhantomJS(service_log_path='data/ghostdriver.log')
-        driver.get(url)
-        time.sleep(3)
-        html = driver.page_source
-        soup = BeautifulSoup(html, "html.parser")
-        for parent in soup.find('strong', text='Homo sapiens').parents:
-            if parent.name == 'tr':
-                break
-        if parent:
-            self.parent = parent
-        else:
-            raise ValueError
-        date_string = parent.find('td', text=re.compile(r'\d+/\d+/\d+')).text
-        self.online_version = datetime.datetime.strptime(date_string, '%m/%d/%Y').strftime('%d-%B-%Y')
-        self.version = Version('GO', version=self.online_version)
+        #TODO: Use http://www.ebi.ac.uk/QuickGO/GHistory#info=2 for versioning.
+        self.version = Version('GO', append_date=True)
         self.logged_version = self.version.last_logged_version()
 
         self.rows = []
@@ -97,33 +75,37 @@ class GO:
 
     def download_files(self):
         """Download and extract the gene2accession and gene_info files"""
-        readme = self.parent.find(text='README').parent.attrs['href']
-        download = self.parent.find(text='gene_association.goa_human.gz').parent.attrs['href']
-        try:
-            os.remove('data/goa_README.txt')
-        except FileNotFoundError:
-            pass
-        try:
-            os.remove('data/goa_human.gz')
-        except FileNotFoundError:
-            pass
-        wget.download(readme, out='data/goa_README.txt')
-        wget.download(download, out='data/goa_human.gz')
-        self.version.write_log()
+        go_ids = [':'.join((x['go_id'][:2], x['go_id'][2:])) for x in self.dgidb_go_terms]
+        url = 'http://www.ebi.ac.uk/QuickGO/GAnnotation?format=tsv&limit=-1&gz=false&tax=9606&goid='
+        os.makedirs('data/GO', exist_ok=True)
+        for go_id in go_ids:
+            file = 'data/GO/' + go_id.replace(':','') + '.tsv'
+            try:
+                os.remove(file)
+            except FileNotFoundError:
+                pass
+            wget.download(url + go_id, out=file)
 
     def parse(self):
-        self.rows = [['uniprot_id', 'gene_name', 'gene_category', 'description']]
+        self.rows = []
+        go_ids = [':'.join((x['go_id'][:2], x['go_id'][2:])) for x in self.dgidb_go_terms]
         category_lookup = {x['go_id']: x['human_readable'].upper() for x in self.dgidb_go_terms}
-        with gzip.open('data/associations.tsv.gz', 'rt', encoding='utf-8') as f:
-            reader = csv.DictReader(f, delimiter='\t')
-            for row in reader:
-                row['GO Category'] = category_lookup[row['GO ID'].replace(':', '')]
-                self.rows.append(row)
+        for go_id in go_ids:
+            category = category_lookup[go_id.replace(':', '')]
+            file = 'data/GO/' + go_id.replace(':', '') + '.tsv'
+            with open(file, 'r') as f:
+                reader = csv.DictReader(f, delimiter='\t')
+                for row in reader:
+                    row['Category'] = category
+                    self.rows.append(row)
 
     def write(self):
+        fieldnames = ['ID', 'Symbol', 'Category']
         with open('data/go.human.tsv', 'w') as f:
-            writer = csv.DictWriter(f, delimiter='\t', )
+            writer = csv.DictWriter(f, delimiter='\t', fieldnames=fieldnames, extrasaction='ignore')
+            writer.writeheader()
             writer.writerows(self.rows)
+        self.version.write_log()
 
     def update(self):
         if not self.is_current():
