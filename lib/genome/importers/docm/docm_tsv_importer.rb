@@ -24,7 +24,7 @@ module Genome
             end
             attribute :status, name: 'Clinical Status'
             attribute :pathway, name: 'Pathway'
-            attribte :effect, name: 'Variant Effect'
+            attribute :effect, name: 'Variant Effect'
           end
         end.save!
       end
