@@ -46,7 +46,9 @@ module Genome
             current_id = cid
             alternate_names = []
           end
-          alternate_names << name
+          if name.size <= 250
+            alternate_names << name
+          end
           if lines_processed % 1_000_000 == 0
             puts "Processed #{lines_processed}..."
           end
