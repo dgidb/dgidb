@@ -32,7 +32,7 @@ for gene in resp:
                     entrez_ids.append(entrez_id)
                     interaction_type.append("N/A")
 
-with open("civic_dgi.tsv", "w+") as f:
+with open("data/civic_dgi.tsv", "w") as f:
     for i in range(len(civic_ids)):
         f.write("\t".join((str(civic_ids[i]), genes[i], str(entrez_ids[i]),
                            drugs[i], interaction_type[i])) + "\n")
