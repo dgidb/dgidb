@@ -22,7 +22,9 @@ module Genome
             'ClearityFoundationBiomarker',
             'ClearityFoundationClinical',
             'Entrez',
-            'GuideToPharmacologyInteractions',
+            'CIViC',
+            'DoCM',
+            'BaderLabGenes'
           ],
         'Non-curated' =>
           [
@@ -32,6 +34,8 @@ module Genome
             'GO',
             'Ensembl',
             'PubChem',
+            'GuideToPharmacologyInteractions',
+            'GuideToPharmacologyGenes'
           ]
       }
       end
