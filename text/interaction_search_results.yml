@@ -1,7 +1,8 @@
 interaction_search_results: &interaction_results
   title: DGIdb - Interaction Search Results
   title_main: Interaction Search Results
-  title_small: drug interactions for your genes
+  title_small: drug-gene interactions for your genes
+  title_small_drugs: drug-gene interactions for your drugs
   definite_results_passed_filter_flag: >
     Primary results passed all filters and the search term unambiguously matched a single gene with known drug interactions.
   definite_results_passed_drug_filter_flag: >

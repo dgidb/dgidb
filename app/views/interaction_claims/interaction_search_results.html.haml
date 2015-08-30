@@ -5,7 +5,10 @@
   %h2
     =tx "title_main"
     %small
-      =tx "title_small"
+      - if @search_mode == 'genes'
+        =tx "title_small"
+      - else
+        =tx "title_small_drugs"
       - if @related_source_gene
         = @related_source_gene
       %a(href="/faq#difference")
