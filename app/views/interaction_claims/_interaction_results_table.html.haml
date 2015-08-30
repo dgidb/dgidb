@@ -16,22 +16,34 @@
         %th
           Search Term
           %i.icon-flag.tip{title: tx("search_term_table_header_flag")}
-        %th
-          Gene
-          %i.icon-flag.tip{title: tx("gene_table_header_flag")}
-        %th
-          Drug
-          %i.icon-flag.tip{title: tx("drug_table_header_flag")}
+        - if @search_mode == 'genes'
+          %th
+            Gene
+            %i.icon-flag.tip{title: tx("gene_table_header_flag")}
+          %th
+            Drug
+            %i.icon-flag.tip{title: tx("drug_table_header_flag")}
+        - else
+          %th
+            Drug
+            %i.icon-flag.tip{title: tx("drug_table_header_flag")}
+          %th
+            Gene
+            %i.icon-flag.tip{title: tx("gene_table_header_flag")}
         %th
           Interaction Type
           %i.icon-flag.tip{title: tx("interaction_table_header_flag")}
         %th
           Source
           %i.icon-flag.tip{title: tx("source_table_header_flag")}
-        %th{style: 'display: none;'}
-          Gene Symbol
-        %th{style: 'display: none;'}
-          Full Gene Name
+        - if @search_mode == 'genes'
+          %th{style: 'display: none;'}
+            Gene Symbol
+          %th{style: 'display: none;'}
+            Full Gene Name
+        - else
+          %th{style: 'display: none;'}
+            Drug Name
         %th{style: 'display: none;'}
           Source Version
     %tbody

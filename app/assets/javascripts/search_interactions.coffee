@@ -29,7 +29,8 @@ $('#geneSearch').click ->
     $('#loadingBar').hide()
 
 $('#drugSearch').click ->
-  example_ids = ['ABBOLEXIN','AMINOMUX','ZALCITABINE','PHLORETIN','GABOXADOL','HG2+','NOTREAL'].join "\n"
+  example_ids = ['ABBOLEXIN','AMINOMUX', 'DOCETAXEL','SORAFENIB','SUNITINIB',
+                 'NEXIUM','ZALCITABINE','PHLORETIN','GABOXADOL','HG2+','NOTREAL'].join "\n"
   $('#loadingBar').show()
   $.get '/drug_names.json', (data)->
     ta.data('typeahead').source = data
