@@ -7,7 +7,14 @@ class InteractionClaimsController < ApplicationController
 
   def interaction_search_results
     @search_interactions_active = 'active'
-    combine_input_genes(params)
+    @search_mode = params[:search_mode]
+    if @search_mode == 'genes'
+      params[:genes] = params[:identifiers]
+      combine_input_genes(params)
+    else
+      params[:drugs] = params[:identifiers]
+      combine_input_drugs(params)
+    end
     perform_interaction_search
   end
 

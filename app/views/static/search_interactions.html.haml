@@ -15,22 +15,24 @@
         %form.form-horizontal(action="interaction_search_results" method="post" enctype="multipart/form-data")
           %fieldset
             .control-group
-              %label.control-label(id='genes_flag')
-                Genes
-                =icon(:flag, title: tx("genes_flag"), class: 'tip')
+              .controls
+                .btn-group(data-toggle='buttons-radio')
+                  %input#geneSearch(type='radio' name='search_mode' value='genes' style='display:none;' checked='checked')
+                  %label.btn.radio.active(for='geneSearch') Genes
+                  %input#drugSearch(type='radio' name='search_mode' value='drugs' style='display:none;')
+                  %label.btn.radio(for='drugSearch') Drugs
+            .control-group
+              %label.control-label(id='ids_flag')
+                #ids_text Genes
+                =icon(:flag, title: tx("ids_flag"), class: 'tip')
                 %a(href="/faq#types")
                   =icon('question-sign')
               .controls
-                %textarea#genes(name='genes' rows="13")
-            .control-group#loadingBar
-              %label(style='display: none')
-              .controls
-                .progress.progress-striped.active.span2
-                  .bar(style='width: 100%') Loading Autocomplete
+                %textarea#identifiers(name='identifiers' rows="13")
             .control-group
               .controls
-                %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace Genes with Demo List
-                %button.btn.btn-small.btn-danger#clear(type='button') Clear All Genes
+                %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace Identifiers with Demo List
+                %button.btn.btn-small.btn-danger#clear(type='button') Clear All Identifiers
             =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
               flag_text_key: 'source_database_flag', select_tag_name: 'interaction_sources', collection: @sources,
               name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
@@ -51,7 +53,7 @@
             .form-actions
               %button.btn.btn-success(type="submit" id='search-btn')
                 =icon('search', class: 'icon-white')
-                Find Drug Interactions
+                Find Drug-Gene Interactions
 
   =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
 

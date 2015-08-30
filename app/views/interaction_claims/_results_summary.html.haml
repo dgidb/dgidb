@@ -3,10 +3,16 @@
     Search Results Summary
     %small
       %strong
-        %i.icon-flag.tip{title: tx("search_results_summary_flag")}
+        - if @search_mode == 'genes'
+          %i.icon-flag.tip{title: tx("search_results_summary_flag")}
+        - else
+          %i.icon-flag.tip{title: tx("search_results_drug_summary_flag")}
   %small
     %strong
-      %em Summary of genes mapped and drug interactions found for those genes. 
+      - if @search_mode == 'genes'
+        %em Summary of genes mapped and drug interactions found for those genes.
+      - else
+        %em Summary of drugs mapped and gene interactions found for those drugs.
   %p
   %ul.unstyled
     %li="Search Terms Entered: #{results.number_of_search_terms.to_s}"

@@ -24,6 +24,10 @@ class InteractionSearchResultPresenter
     @interaction_claim.drug_claim.primary_name || @interaction_claim.drug_claim.name
   end
 
+  def gene_claim_name
+    @interaction_claim.gene_claim.name
+  end
+
   def trust_level
     @interaction_claim.source.source_trust_level.level
   end
@@ -40,11 +44,23 @@ class InteractionSearchResultPresenter
   end
 
   def gene_name
-    @interaction_claim.gene_claim.genes.first.name
+    gene = @interaction_claim.gene_claim.genes.first
+    if gene
+      return gene.name
+    end
+    nil
+  end
+
+  def drug_name
+    @interaction_claim.drug_claim.drugs.first.name
   end
 
   def gene_long_name
-    @interaction_claim.gene_claim.genes.first.long_name
+    gene = @interaction_claim.gene_claim.genes.first
+    if gene
+      return gene.long_name
+    end
+    nil
   end
 
   def potentially_druggable_categories

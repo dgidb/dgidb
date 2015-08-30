@@ -6,6 +6,7 @@ class InteractionSearchResultsPresenter
   def initialize(search_results, start_time, view_context)
     @start_time = start_time
     @search_results = search_results
+    @search_context = search_results[0].type
     @view_context = view_context
   end
 
@@ -14,15 +15,15 @@ class InteractionSearchResultsPresenter
   end
 
   def number_of_definite_matches
-    @search_results.select{ |r| r.genes.count == 1 }.count
+    @search_results.select{ |r| r.identifiers.count == 1 }.count
   end
 
   def number_of_ambiguous_matches
-    @search_results.select{ |r| r.genes.count > 1 }.count
+    @search_results.select{ |r| r.identifiers.count > 1 }.count
   end
 
   def number_of_no_matches
-    @search_results.select{ |r| r.genes.count == 0 }.count
+    @search_results.select{ |r| r.identifiers.count == 0 }.count
   end
 
   def number_of_definite_interactions
@@ -91,7 +92,7 @@ class InteractionSearchResultsPresenter
 
   def search_term_summaries
     @search_results.map do |result|
-      SearchTermSummary.new(result.search_term, result.match_type_label, result.genes, @view_context)
+      SearchTermSummary.new(result.search_term, result.match_type_label, result.identifiers, @view_context)
     end
   end
 
@@ -104,11 +105,17 @@ class InteractionSearchResultsPresenter
 
   def interactions_map_by_source_db_names
     unless @interactions_map_by_source_db_names
-      interaction_groups = definite_interactions.group_by do |presenter|
-        [presenter.drug_claim_name, presenter.gene_name].join(" and ")
+      if @search_context == 'genes'
+        interaction_groups = definite_interactions.group_by do |presenter|
+          [presenter.drug_claim_name, presenter.gene_name].join(" and ")
+        end
+      else
+        interaction_groups = definite_interactions.group_by do |presenter|
+          [presenter.gene_claim_name, presenter.drug_name].join(" and ")
+        end
       end
-      @interactions_map_by_source_db_names = interaction_groups.map do |name, genes|
-        InteractionBySource.new(name, source_db_names_for_table, genes)
+      @interactions_map_by_source_db_names = interaction_groups.map do |name, ids|
+        InteractionBySource.new(name, source_db_names_for_table, ids)
       end
     end
     @interactions_map_by_source_db_names
@@ -117,6 +124,12 @@ class InteractionSearchResultsPresenter
   def interactions_by_gene
     @interactions_by_gene ||= definite_interactions.group_by(&:gene_name).map do |gene_name, interactions|
       InteractionByGene.new(gene_name, interactions)
+    end
+  end
+
+  def interactions_by_drug
+    @interactions_by_drug ||= definite_interactions.group_by(&:drug_name).map do |drug_name, interactions|
+      InteractionByDrug.new(drug_name, interactions)
     end
   end
 

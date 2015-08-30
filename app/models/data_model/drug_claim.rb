@@ -10,6 +10,10 @@ module DataModel
     has_many :drug_claim_attributes, inverse_of: :drug_claim, dependent: :delete_all
     has_and_belongs_to_many :drug_claim_types
 
+    def self.for_search
+      eager_load(drugs: [drug_claims: {interaction_claims: { source: [], gene_claim: [:source, :gene_claim_categories], interaction_claim_types: [], drug_claim: [drugs: [drug_claims: [:drug_claim_types]]]}}])
+    end
+
     def self.for_show
       eager_load(:source, :drug_claim_aliases, :drug_claim_attributes)
     end

@@ -5,10 +5,16 @@
         Search Term Summary
         %small
           %strong
-            %i.icon-flag.tip{title: tx("search_gene_results_summary_flag")}
+            - if @search_mode == 'genes'
+              %i.icon-flag.tip{title: tx("search_gene_results_summary_flag")}
+            -else
+              %i.icon-flag.tip{title: tx("search_drug_results_summary_flag")}
       %small
         %strong
-          %em Summary of the attempt to map gene names supplied by the user to gene records in DGIdb.
+          - if @search_mode == 'genes'
+            %em Summary of the attempt to map gene names supplied by the user to gene records in DGIdb.
+          - else
+            %em Summary of the attempt to map drug names supplied by the user to drug records in DGIdb.
       %p
       =render partial: 'shared/table_export', locals: {id: 'search_term_summary_export'}
       %table.table.table-striped.table-bordered{cellpadding: "0", cellspacing: "0", border: "0", id: 'search_term_summary_export'}
@@ -17,12 +23,20 @@
             %th 
               Search Term
               %i.icon-flag.tip{title: tx("search_term_table_header_flag")}
-            %th
-              Match Type
-              %i.icon-flag.tip{title: tx("search_term_summary_table_header_match_flag")}
-            %th
-              Matches
-              %i.icon-flag.tip{title: tx("search_term_summary_table_header_matches_flag")}
+            - if @search_mode == 'genes'
+              %th
+                Match Type
+                %i.icon-flag.tip{title: tx("search_term_summary_table_header_match_flag")}
+              %th
+                Matches
+                %i.icon-flag.tip{title: tx("search_term_summary_table_header_matches_flag")}
+            - else
+              %th
+                Match Type
+                %i.icon-flag.tip{title: tx("search_term_summary_table_drug_header_match_flag")}
+              %th
+                Matches
+                %i.icon-flag.tip{title: tx("search_term_summary_table_drug_header_matches_flag")}
         %tbody
           -results.search_term_summaries.each do |summary|
             %tr

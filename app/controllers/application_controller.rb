@@ -33,20 +33,28 @@ class ApplicationController < ActionController::Base
   end
 
   def combine_input_genes(params)
-    bad_request("Please enter at least one gene category to search!") unless params[:genes]
-    split_char = if params[:genes].include?(',')
-      ','
-    else
-      "\n"
-    end
+    bad_request("You must enter at least one gene name to search!") unless params[:genes]
+    split_char = params[:genes].include?(',') ? ',' : "\n"
     gene_names = params[:genes].split(split_char)
     gene_names.delete_if{ |gene| gene.strip.empty? }
     params[:gene_names] = gene_names.map{ |name| name.strip.upcase }.uniq
   end
 
+  def combine_input_drugs(params)
+    bad_request("You must enter at least one drug name to search!") unless params[:drugs]
+    split_char = params[:drugs].include?(',') ? ',' : "\n"
+    drug_names = params[:drugs].split(split_char)
+    drug_names.delete_if{ |drug| drug.strip.empty? }
+    params[:drug_names] = drug_names.map{ |name| name.strip.upcase }.uniq
+  end
+
   private
   def validate_interaction_request(params)
-    bad_request('You must enter at least one gene name to search!') if params[:gene_names].size == 0
+    if params[:search_mode] == 'genes'
+      bad_request('You must enter at least one gene name to search!') if params[:gene_names].size == 0
+    else
+      bad_request('You must enter at least one drug name to search!') if params[:drug_names].size == 0
+    end
   end
 
 end

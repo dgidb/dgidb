@@ -44,4 +44,19 @@ module InteractionResultRowClasses
       @interactions.map(&:drug_claim_name).uniq.count
     end
   end
+
+  class InteractionByDrug
+    attr_reader :search_term, :drug_name
+
+    def initialize(drug_name, interaction_presenters)
+      presenter = interaction_presenters.first
+      @drug_name = drug_name
+      @search_term = presenter.search_term
+      @interactions = interaction_presenters
+    end
+
+    def gene_count
+      @interactions.map(&:gene_claim_name).uniq.count
+    end
+  end
 end
