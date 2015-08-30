@@ -1,10 +1,10 @@
 module InteractionResultRowClasses
   class SearchTermSummary
     attr_reader :search_term, :match_type
-    def initialize(search_term, match_type, genes, context)
+    def initialize(search_term, match_type, ids, context)
       @search_term = search_term
       @match_type = match_type
-      @genes = genes
+      @ids = ids
       @context = context
     end
 
@@ -12,8 +12,18 @@ module InteractionResultRowClasses
       if match_type == 'None'
         'None'
       else
-        @genes
+        @ids
         .map { |g| @context.link_to(g.name, @context.gene_path(g.name))}
+        .join(', ').html_safe
+      end
+    end
+
+    def drug_links
+      if match_type == 'None'
+        'None'
+      else
+        @ids
+        .map { |d| @context.link_to(d.name, @context.drug_path(d.name))}
         .join(', ').html_safe
       end
     end
