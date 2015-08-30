@@ -42,4 +42,7 @@
             %tr
               %td=summary.search_term
               %td=summary.match_type
-              %td=summary.gene_links
+              - if @search_mode == 'genes'
+                %td=summary.gene_links
+              - else
+                %td=summary.drug_links
