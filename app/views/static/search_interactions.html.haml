@@ -14,14 +14,6 @@
       .span8
         %form.form-horizontal(action="interaction_search_results" method="post" enctype="multipart/form-data")
           %fieldset
-            .control-group
-              %label.control-label(id='ids_flag')
-                Identifiers
-                =icon(:flag, title: tx("ids_flag"), class: 'tip')
-                %a(href="/faq#types")
-                  =icon('question-sign')
-              .controls
-                %textarea#identifiers(name='identifiers' rows="13")
             .control-group#loadingBar
               %label(style='display: none')
               .controls
@@ -34,6 +26,14 @@
                   %label.btn.radio.active(for='geneSearch') Genes
                   %input#drugSearch(type='radio' name='search_mode' value='drugs' style='display:none;')
                   %label.btn.radio(for='drugSearch') Drugs
+            .control-group
+              %label.control-label(id='ids_flag')
+                #ids_text Genes
+                =icon(:flag, title: tx("ids_flag"), class: 'tip')
+                %a(href="/faq#types")
+                  =icon('question-sign')
+              .controls
+                %textarea#identifiers(name='identifiers' rows="13")
             .control-group
               .controls
                 %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace Identifiers with Demo List

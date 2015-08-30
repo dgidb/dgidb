@@ -24,6 +24,7 @@ $.get '/gene_names.json', (data)->
 $('#geneSearch').click ->
   example_ids = ['FLT1','FLT2','FLT3','STK1','MM1','AQP9','LOC100508755','FAKE1'].join "\n"
   $('#loadingBar').show()
+  $('#ids_text').text("Genes")
   $.get '/gene_names.json', (data)->
     ta.data('typeahead').source = data
     $('#loadingBar').hide()
@@ -31,6 +32,7 @@ $('#geneSearch').click ->
 $('#drugSearch').click ->
   example_ids = ['SUNITINIB','ZALCITABINE','PHLORETIN','NOTREAL'].join "\n"
   $('#loadingBar').show()
+  $('#ids_text').text("Drugs")
   $.get '/drug_names.json', (data)->
     ta.data('typeahead').source = data
     $('#loadingBar').hide()
