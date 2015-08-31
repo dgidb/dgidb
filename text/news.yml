@@ -115,7 +115,7 @@ news:
       
     - headline: IUPHAR/BPS Guide to Pharmacology added as new source of drug-gene interactions
       article : >
-        The expert-curated <a href="http://guidetopharmacology.org/">IUPHAR/BPD Guide to Pharmacology</a> has been added as a new source of drug-gene interactions.
+        The <a href="http://guidetopharmacology.org/">IUPHAR/BPD Guide to Pharmacology</a> has been added as a new source of drug-gene interactions.
       date: Apr 23, 2015
 
     - headline: Drug Targets in Clinical Trials added as new source of drug-gene interactions
@@ -125,5 +125,33 @@ news:
 
     - headline: IUPHAR/BPS Guide to Pharmacology added as new source of druggable gene categories
       article : >
-        The expert-curated <a href="http://guidetopharmacology.org/">IUPHAR/BPD Guide to Pharmacology</a> has been added as a new source of potentially druggable gene categories.
+        The <a href="http://guidetopharmacology.org/">IUPHAR/BPD Guide to Pharmacology</a> has been added as a new source of potentially druggable gene categories.
       date: May 7, 2015
+
+    - headline: DGIdb 2.0 released
+      article : >
+        DGIdb 2.0 is here, and brings with it several major improvements:
+        <ul>
+          <li>New Sources of Drug-Gene Interactions
+            <ul>
+              <li><a href="http://www.civicdb.org">CIViC</a>, an open access, open source, community-driven web resource for <strong>C</strong>linical <strong>I</strong>nterpretation of <strong>V</strong>ariants <strong>i</strong>n <strong>C</strong>ancer.</li>
+              <li><a href="http://www.docm.info">DoCM</a>, the <strong>D</strong>atabase <strong>o</strong>f <strong>C</strong>urated <strong>M</strong>utations, a highly curated database of known, disease-causing mutations.</li>
+            </ul>
+          </li>
+          <li>Automatic updating of sources
+            <ul>
+              <li>CIViC - drug-gene interactions</li>
+              <li>DoCM - drug-gene interactions</li>
+              <li>DrugBank - drug-gene interactions</li>
+              <li>Gene Ontology - druggable gene categories</li>
+              <li>Entrez Gene - genes</li>
+              <li>PubChem - drugs</li>
+            </ul>
+          </li>
+          <li>Search drug-gene interactions by drug identifiers
+            <ul>
+              <li>Go to the <a href="/">search interactions</a> page and click on the <em>Drugs</em> button to try it out</li>
+            </ul>
+          </li>
+        </ul>
+      date: August 31, 2015
