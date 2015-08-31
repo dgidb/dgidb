@@ -1,7 +1,7 @@
 search_interactions:
   title: DGIdb - Mining the Druggable Genome
   title_main: Search Interactions
-  title_small: search for drug-gene interactions by gene and drug names
+  title_small: search for drug-gene interactions by gene or drug names
   ids_flag: >
     Place one identifier per line in the text area. You may also type identifiers in the box and they will be
     auto-completed (by pressing tab or enter).
