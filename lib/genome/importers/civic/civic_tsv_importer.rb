@@ -32,9 +32,9 @@ module Genome
           interaction known_action_type: 'unknown' do
             drug :drug_name, nomenclature: 'CIViC Drug Name', primary_name: :drug_name, transform: upcase do
             end
-            gene :civic_id, nomenclature: 'CIViC Gene ID' do
+            gene :gene_symbol, nomenclature: 'Entrez Gene Symbol' do
               name :entrez_gene_id, nomenclature: 'Entrez Gene ID', unless: blank_filter
-              name :gene_symbol, nomenclature: 'Entrez Gene Symbol', unless: blank_filter
+              name :civic_id, nomenclature: 'CIViC Gene ID'
             end
 
             attribute :interaction_type, name: 'Interaction Type', unless: blank_filter
