@@ -50,6 +50,9 @@ class ApplicationController < ActionController::Base
 
   private
   def validate_interaction_request(params)
+    if params[:search_mode].nil?
+      params[:search_mode] = 'genes'
+    end
     if params[:search_mode] == 'genes'
       bad_request('You must enter at least one gene name to search!') if params[:gene_names].size == 0
     else

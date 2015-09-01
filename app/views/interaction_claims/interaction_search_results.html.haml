@@ -1,6 +1,8 @@
 #notice= notice
 =content_for :title do
   =tx "title"
+- if @search_mode.nil?
+  - @search_mode = 'genes'
 =content_for :header do
   %h2
     =tx "title_main"
