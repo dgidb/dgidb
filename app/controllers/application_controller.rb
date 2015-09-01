@@ -59,8 +59,10 @@ class ApplicationController < ActionController::Base
     end
     if params[:search_mode] == 'genes'
       bad_request('You must enter at least one gene name to search!') if params[:gene_names].size == 0
-    else
+    elsif params[:search_mode] == 'drugs'
       bad_request('You must enter at least one drug name to search!') if params[:drug_names].size == 0
+    else
+      bad_request('You must enter at least one gene or drug name to search!')
     end
   end
 
