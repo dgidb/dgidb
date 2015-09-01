@@ -13,5 +13,5 @@ end
 
 json.unmatchedTerms @search_results.unmatched_results do |result|
   json.searchTerm result.search_term
-  json.suggestions result.genes.map { |g| g.name }
+  json.suggestions result.identifiers.map { |g| g.name }
 end
