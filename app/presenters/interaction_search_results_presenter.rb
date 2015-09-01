@@ -14,6 +14,10 @@ class InteractionSearchResultsPresenter
     @search_results.count
   end
 
+  def get_context
+    @search_context
+  end
+
   def number_of_definite_matches
     @search_results.select{ |r| r.identifiers.count == 1 }.count
   end
