@@ -9,6 +9,7 @@ module Genome
         attribute :effect
         attribute :pathway
         attribute :status
+        attribute :pmid
       end
     end
   end

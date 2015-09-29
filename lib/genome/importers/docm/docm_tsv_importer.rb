@@ -25,6 +25,7 @@ module Genome
             attribute :status, name: 'Clinical Status'
             attribute :pathway, name: 'Pathway'
             attribute :effect, name: 'Variant Effect'
+            attribute :pmid, name: 'PMID'
           end
         end.save!
       end
