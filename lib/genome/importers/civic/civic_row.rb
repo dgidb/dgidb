@@ -8,6 +8,7 @@ module Genome
         attribute :entrez_gene_id
         attribute :drug_name
         attribute :interaction_type
+        attribute :pmid, Array, delimiter: ','
 
         def
           valid?(opts = {})
