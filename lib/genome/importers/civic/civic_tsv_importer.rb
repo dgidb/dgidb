@@ -26,7 +26,7 @@ module Genome
               name :entrez_gene_id, nomenclature: 'Entrez Gene ID', unless: blank_filter
               name :civic_id, nomenclature: 'CIViC Gene ID'
             end
-            attribute :pmid, name: 'PMID'
+            attributes :pmid, name: 'PMID'
             attribute :interaction_type, name: 'Interaction Type', unless: blank_filter
           end
         end.save!
