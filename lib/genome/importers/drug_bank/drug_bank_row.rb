@@ -19,6 +19,7 @@ module Genome
         attribute :uniprot_id
         attribute :entrez_id
         attribute :ensembl_id
+        attribute :pmid, Array, delimiter: ','
 
         def valid?(opts = {})
           return false if uniprot_id == 'N/A' && gene_symbol == 'N/A'
