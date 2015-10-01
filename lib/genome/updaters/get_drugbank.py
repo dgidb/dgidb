@@ -240,7 +240,7 @@ class DrugBank():
 
     def update(self):
         if not self.is_current():
-            #self.download_files()
+            self.download_files()
             self.parse()
             self.write()
 
