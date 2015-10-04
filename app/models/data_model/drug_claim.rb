@@ -26,26 +26,28 @@ module DataModel
       base_url = self.source.base_url
       name = self.name
       case self.source.source_db_name
-      when 'DrugBank'
-        [base_url, 'drugs', name].join('/')
-      when 'CIViC'
-        'https://www.ncbi.nlm.nih.gov/pccompound?term=' + name
-      when 'PharmGKB'
-        [base_url, 'drug', name].join('/')
-      when 'TTD'
-        base_url + 'DRUG.asp?ID=' + name
-      when 'TALC'
-        'http://www.ncbi.nlm.nih.gov/pubmed/22005529/' #TODO: This is a hack.  Fix it with another db column
-                                                       #Alternative: set this as base_url in source.
-      when 'TEND'
-        'http://www.ncbi.nlm.nih.gov/pubmed/21804595/' #TODO: as above
-        																							 #Alternative: as above
-      when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial'
-        base_url
-      when 'GuideToPharmacologyInteractions'
-        'http://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=' + name
-      else
-        base_url + name
+        when 'DrugBank'
+          [base_url, 'drugs', name].join('/')
+        when 'CIViC'
+          'https://www.ncbi.nlm.nih.gov/pccompound?term=' + name
+        when 'PharmGKB'
+          [base_url, 'drug', name].join('/')
+        when 'TTD'
+          base_url + 'DRUG.asp?ID=' + name
+        when 'TALC'
+          'http://www.ncbi.nlm.nih.gov/pubmed/22005529/' #TODO: This is a hack.  Fix it with another db column
+                                                         #Alternative: set this as base_url in source.
+        when 'TEND'
+          'http://www.ncbi.nlm.nih.gov/pubmed/21804595/' #TODO: as above
+                                                         #Alternative: as above
+        when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial'
+          base_url
+        when 'GuideToPharmacologyInteractions'
+          'http://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=' + name
+        when 'ChEMBL'
+          'https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/' + name
+        else
+          base_url + name
       end
     end
 
