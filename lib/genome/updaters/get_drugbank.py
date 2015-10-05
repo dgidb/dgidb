@@ -144,13 +144,24 @@ class DrugBank():
                 for action in target.find('entry:actions', ns):
                     target_actions.add(action.text)
                 gene_symbol = hgnc_gene_acc = uniprot_id = entrez_id = ensembl_id = None
-                polypeptide = target.find('entry:polypeptide',ns)
+                raw_refs = target.find('entry:references', ns).text
+                refs_regex = re.compile(r'"Pubmed":http://www.ncbi.nlm.nih.gov/pubmed/(\d+)')
+                references = set()
+                try:
+                    for string in raw_refs.split('#'):
+                        match = refs_regex.search(string)
+                        if match:
+                            references.add(match.group(1))
+                except AttributeError:
+                    pass
+                references = tuple(references)
+                polypeptide = target.find('entry:polypeptide', ns)
                 synonyms = None
                 if polypeptide is not None:
                     gene_symbol = polypeptide.find('entry:gene-name', ns).text
-                    for identifier in polypeptide.find('entry:external-identifiers',ns):
+                    for identifier in polypeptide.find('entry:external-identifiers', ns):
                         if identifier.find('entry:resource',ns).text == 'HUGO Gene Nomenclature Committee (HGNC)':
-                            hgnc_gene_acc = identifier.find('entry:identifier',ns).text
+                            hgnc_gene_acc = identifier.find('entry:identifier', ns).text
                             # Some identifiers are incorrectly labeled by DrugBank
                             r = re.compile(r'^\d+$')
                             if hgnc_gene_acc.startswith('GNC:'):
@@ -169,7 +180,7 @@ class DrugBank():
                                     no_ensembl += 1
                                 hgnc_success += 1
                         elif identifier.find('entry:resource',ns).text == 'UniProtKB':
-                            uniprot_id = identifier.find('entry:identifier',ns).text
+                            uniprot_id = identifier.find('entry:identifier', ns).text
                             if not synonyms:
                                 try:
                                     entrez_id = uniprot_to_entrez[uniprot_id]
@@ -188,7 +199,7 @@ class DrugBank():
                             ensembl_id = synonyms['Ensembl']
                             info += 1
                 interaction_tuple = (gene_id, known_action, tuple(sorted(target_actions)),
-                                     gene_symbol, uniprot_id, entrez_id, ensembl_id)
+                                     gene_symbol, uniprot_id, entrez_id, ensembl_id, references)
                 total += 1
                 try:
                     interactions[drug_id].append(interaction_tuple)
@@ -201,9 +212,9 @@ class DrugBank():
         print('Writing to .tsv...')
         i = 0
         no_ensembl = no_entrez = total = 0
-        header = ('count','drug_id','drug_name','drug_synonyms','drug_cas_number','drug_brands',
-                  'drug_type','drug_groups','drug_categories','gene_id','known_action','target_actions',
-                  'gene_symbol','uniprot_id','entrez_id','ensembl_id')
+        header = ('count', 'drug_id', 'drug_name', 'drug_synonyms', 'drug_cas_number', 'drug_brands',
+                  'drug_type', 'drug_groups', 'drug_categories', 'gene_id', 'known_action', 'target_actions',
+                  'gene_symbol', 'uniprot_id', 'entrez_id', 'ensembl_id', 'pmid')
         with open('data/DrugBankInteractions.tsv', 'w') as f:
             writer = csv.writer(f, delimiter='\t')
             writer.writerow(header)

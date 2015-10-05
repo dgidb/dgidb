@@ -1,23 +1,13 @@
 module Genome
   module Importers
     module Civic
-
-      def self.get_version
-        File.open('lib/genome/updaters/data/version').readlines.each do |line|
-          source, version = line.split("\t")
-          if source == 'CIViC'
-            return version.strip
-          end
-        end
-        return nil
-      end
     
       def self.source_info
         {
           base_url: 'https://civic.genome.wustl.edu',
           site_url: 'https://www.civicdb.org',
           citation: 'CIViC: Clinical Interpretations of Variants in Cancer',
-          source_db_version: get_version,
+          source_db_version: Time.new().strftime("%d-%B-%Y"),
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'CIViC',
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
@@ -36,7 +26,7 @@ module Genome
               name :entrez_gene_id, nomenclature: 'Entrez Gene ID', unless: blank_filter
               name :civic_id, nomenclature: 'CIViC Gene ID'
             end
-
+            attributes :pmid, name: 'PMID'
             attribute :interaction_type, name: 'Interaction Type', unless: blank_filter
           end
         end.save!

@@ -6,7 +6,7 @@ module Genome
         {
             base_url: 'http://docm.genome.wustl.edu/',
             citation: 'Manuscript in preparation. Please cite http://docm.genome.wustl.edu/',
-            source_db_version: '25-Aug-2015',
+            source_db_version: Time.new().strftime("%d-%B-%Y"),
             source_type_id: DataModel::SourceType.INTERACTION,
             source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
             source_db_name: 'DoCM',
@@ -25,6 +25,7 @@ module Genome
             attribute :status, name: 'Clinical Status'
             attribute :pathway, name: 'Pathway'
             attribute :effect, name: 'Variant Effect'
+            attribute :pmid, name: 'PMID'
           end
         end.save!
       end

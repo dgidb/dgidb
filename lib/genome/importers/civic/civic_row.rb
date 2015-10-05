@@ -5,9 +5,10 @@ module Genome
       class CivicRow < Genome::Importers::DelimitedRow
         attribute :civic_id
         attribute :gene_symbol
-        attribute :entrez_gene_id
         attribute :drug_name
+        attribute :entrez_gene_id
         attribute :interaction_type
+        attribute :pmid, Array, delimiter: ','
 
         def
           valid?(opts = {})

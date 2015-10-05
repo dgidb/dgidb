@@ -53,7 +53,8 @@ module Genome
                     drug,
                     interaction['effect'],
                     interaction['pathway'],
-                    interaction['status']
+                    interaction['status'],
+                    interaction['source_pubmed_id']
                 ]
               end
             end
@@ -62,7 +63,7 @@ module Genome
       end
 
       def headers
-        ['gene', 'entrez_id', 'drug', 'effect', 'pathway', 'status']
+        ['gene', 'entrez_id', 'drug', 'effect', 'pathway', 'status', 'pmid']
       end
 
       def to_tsv(filename)

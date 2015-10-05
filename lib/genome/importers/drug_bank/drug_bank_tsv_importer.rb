@@ -48,6 +48,7 @@ module Genome
               # target_ligand fields are ignored for now.
             end
             attributes :target_actions, name: 'Interaction Type', transform: downcase, unless: blank_filter
+            attributes :pmid, name: 'PMID', unless: blank_filter
           end
         end.save!
       end

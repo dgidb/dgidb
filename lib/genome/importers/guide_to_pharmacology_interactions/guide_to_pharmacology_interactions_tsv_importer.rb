@@ -9,7 +9,7 @@ module Genome
           base_url: 'http://www.guidetopharmacology.org/DATA/',
           site_url: 'http://www.guidetopharmacology.org/',
           citation: 'Pawson, Adam J., et al. "The IUPHAR/BPS Guide to PHARMACOLOGY: an expert-driven knowledgebase of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D1106. PMID: 24234439.',
-          source_db_version: '4-Mar-2015',
+          source_db_version: '04-March-2015',
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'GuideToPharmacologyInteractions',
           full_name: 'Guide to Pharmacology Interactions'
@@ -37,7 +37,7 @@ module Genome
               # target_ligand fields are ignored for now.
             end
 
-            attributes :pubmed_id, name: 'PubMed ID for Interaction', unless: blank_filter
+            attributes :pubmed_id, name: 'PMID', unless: blank_filter
             attribute :ligand_context, name: 'Interaction Context', unless: blank_filter
             attribute :receptor_site, name: 'Specific Binding Site for Interaction', unless: blank_filter
             attribute :assay_description, name: 'Details of the Assay for Interaction', unless: blank_filter
