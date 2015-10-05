@@ -38,7 +38,7 @@
         =render partial: 'interaction_claims/results_summary', locals: {results: @search_results, search_mode: @search_mode}
       .tab-pane.fade#term_summary_tab
         =render partial: 'shared/search_term_summary_table', locals: {results: @search_results, search_mode: @search_mode}
-      .tab-pane.fade#by_source
+      .tab-pane.active#by_source
         =render partial: 'interaction_claims/results_by_source_table', locals: {results: @search_results}
       - if @search_mode == 'genes'
         .tab-pane.fade#by_gene
@@ -46,7 +46,7 @@
       - else
         .tab-pane.fade#by_drug
           =render partial: 'interaction_claims/results_by_drug_table', locals: {results: @search_results}
-      .tab-pane.active#interaction_tab
+      .tab-pane.fade#interaction_tab
         - if @search_mode == 'genes'
           .row-fluid
             .span12
