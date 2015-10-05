@@ -15,20 +15,22 @@ module InteractionResultSortOrder
         6
       when 'TEND'
         7
-      when 'GuideToPharmacologyInteractions'
+      when 'ChEMBL'
         8
-      when 'MyCancerGenomeClinicalTrial'
+      when 'GuideToPharmacologyInteractions'
         9
-      when 'ClearityFoundationClinicalTrial'
+      when 'MyCancerGenomeClinicalTrial'
         10
-      when 'TdgClinicalTrial'
+      when 'ClearityFoundationClinicalTrial'
         11
-      when 'PharmGKB'
+      when 'TdgClinicalTrial'
         12
-      when 'TTD'
+      when 'PharmGKB'
         13
-      when 'DrugBank'
+      when 'TTD'
         14
+      when 'DrugBank'
+        15
     else
       99
     end

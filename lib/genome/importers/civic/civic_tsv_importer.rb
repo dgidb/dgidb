@@ -19,7 +19,7 @@ module Genome
         blank_filter = ->(x) { x.blank? }
         upcase = ->(x) { x.upcase }
         TSVImporter.import tsv_path, CivicRow, source_info do
-          interaction known_action_type: 'unknown' do
+          interaction known_action_type: 'n/a' do
             drug :drug_name, nomenclature: 'CIViC Drug Name', primary_name: :drug_name, transform: upcase do
             end
             gene :gene_symbol, nomenclature: 'Entrez Gene Symbol' do

@@ -16,7 +16,7 @@ module Genome
         {
           base_url: 'http://www.drugbank.ca',
           site_url: 'http://www.drugbank.ca/',
-          citation: "DrugBank 4.0: shedding new light on drug metabolism.Law V, Knox C, Djoumbou Y, Jewison T, Guo AC, Liu Y, Maciejewski A, Arndt D, Wilson M, Neveu V, Tang A, Gabriel G, Ly C, Adamjee S, Dame ZT, Han B, Zhou Y, Wishart DS.Nucleic Acids Res. 2014 Jan 1;42(1):D1091-7. PubMed ID: 24203711",
+          citation: "DrugBank 4.0: shedding new light on drug metabolism. Law V, Knox C, Djoumbou Y, Jewison T, Guo AC, Liu Y, Maciejewski A, Arndt D, Wilson M, Neveu V, Tang A, Gabriel G, Ly C, Adamjee S, Dame ZT, Han B, Zhou Y, Wishart DS.Nucleic Acids Res. 2014 Jan 1;42(1):D1091-7. PubMed ID: 24203711",
           source_db_version: get_version,
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'DrugBank',
