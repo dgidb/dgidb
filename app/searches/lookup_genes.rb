@@ -14,12 +14,12 @@ class LookupGenes
     results_to_gene_groups = search_terms.each_with_object({}) { |term, h| h[term] = [] }
     results.each do |result|
       case result
-      when DataModel::Gene
-        results_to_gene_groups[result.name] << result
-      when DataModel::GeneClaimAlias
-        results_to_gene_groups[result.alias] += result.gene_claim.genes
-      when DataModel::GeneClaim
-        results_to_gene_groups[result.name] += result.genes
+        when DataModel::Gene
+          results_to_gene_groups[result.name] << result
+        when DataModel::GeneClaimAlias
+          results_to_gene_groups[result.alias] += result.gene_claim.genes
+        when DataModel::GeneClaim
+          results_to_gene_groups[result.name] += result.genes
       end
     end
     results_to_gene_groups

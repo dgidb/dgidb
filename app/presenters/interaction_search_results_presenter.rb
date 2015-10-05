@@ -115,7 +115,7 @@ class InteractionSearchResultsPresenter
         end
       else
         interaction_groups = definite_interactions.group_by do |presenter|
-          [presenter.gene_claim_name, presenter.drug_name].join(" and ")
+          [presenter.gene_name, presenter.drug_name].join(" and ")
         end
       end
       @interactions_map_by_source_db_names = interaction_groups.map do |name, ids|
