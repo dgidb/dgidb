@@ -30,11 +30,18 @@ module InteractionResultRowClasses
   end
 
   class InteractionBySource
-    attr_reader :name, :sources
-    def initialize(name, source_db_names, genes)
+    attr_reader :name, :sources, :pmids, :score
+    def initialize(name, source_db_names, identifiers)
       @name = name
-      gene_sources = genes.map(&:source_db_name)
-      @sources  = source_db_names.map { |s| gene_sources.include?(s) }
+      identifier_sources = identifiers.map(&:source_db_name)
+      @sources  = source_db_names.map { |s| identifier_sources.include?(s) }
+      pmid_claims = identifiers.flat_map(&:pmids)
+      @pmids = pmid_claims.map{ |pc| pc.value }.uniq
+      @score = @sources.count(true) + @pmids.count
+      # TODO: Expert sources * 2 + Non-expert sources + PMIDs
+      if @score == 100
+        raise "boom"
+      end
     end
   end
 

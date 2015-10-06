@@ -19,7 +19,7 @@
 .container-fluid
   .tabbable
     %ul.nav.nav-tabs
-      %li.active
+      %li
         %a(href="#interaction_tab" data-toggle="tab") Interaction Results
       %li
         %a(href="#search_summary_tab" data-toggle="tab") Search Results Summary
@@ -31,7 +31,7 @@
       - else
         %li
           %a(href="#by_drug" data-toggle="tab") By Drug
-      %li
+      %li.active
         %a(href="#by_source" data-toggle="tab") By Source
     .tab-content
       .tab-pane.fade#search_summary_tab

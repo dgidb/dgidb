@@ -63,6 +63,10 @@ class InteractionSearchResultPresenter
     nil
   end
 
+  def pmids
+    @interaction_claim.interaction_claim_attributes.where(name: 'PMID')
+  end
+
   def potentially_druggable_categories
     @interaction_claim.gene_claim
       .genes.first

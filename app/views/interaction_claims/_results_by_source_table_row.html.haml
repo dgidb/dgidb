@@ -11,3 +11,7 @@
           %p(style="display:none")false
   %td
     =results_by_source_table_row.sources.count {|in_source| in_source}
+  %td
+    =results_by_source_table_row.pmids.count
+  %td
+    =results_by_source_table_row.score
