@@ -18,9 +18,14 @@
               Interaction
               %i.icon-flag.tip{title: tx("interaction_by_source_table_header_interaction_flag")}
             -results.source_db_names_for_table.each do |name|
-              %th=name
-            %th 
-              Count
+              %th{title: name}=name.gsub(/[a-z]/,'')[0..1]
+            %th
+              Srcs
               %i.icon-flag.tip{title: tx("interaction_by_source_table_header_count_flag")}
+            %th
+              PMID
+              %i.icon-flag.tip{title: tx("interaction_by_source_table_pmid_count_flag")}
+            %th
+              Sum
         %tbody
           =render partial: 'interaction_claims/results_by_source_table_row', collection: results.interactions_map_by_source_db_names
