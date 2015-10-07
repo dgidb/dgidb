@@ -1,6 +1,8 @@
 %tr
   %td
-    =results_by_source_table_row.name
+    - name_links = results_by_source_table_row.names.map do |(type, name)|
+      - link_to(name, "/#{type}s/#{name}")
+    = name_links.join(' and ').html_safe
   -results_by_source_table_row.sources.each do |in_source|
     %td
       -if in_source
