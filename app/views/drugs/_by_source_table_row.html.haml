@@ -1,0 +1,13 @@
+%tr
+  %td
+    =by_source_table_row.name
+  -by_source_table_row.row_representation.each do |in_source|
+    %td
+      -if in_source
+        %i.icon-ok
+          %p(style="display:none")a
+      -else
+        %i
+          %p(style="display:none")z
+  %td
+    =by_source_table_row.row_representation.count {|in_source| in_source}

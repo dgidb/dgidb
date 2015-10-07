@@ -13,6 +13,7 @@ module DataModel
     cache_query :source_names_with_interactions, :all_source_names_with_interactions
     cache_query :potentially_druggable_source_names, :potentially_druggable_source_names
     cache_query :source_names_with_gene_claims, :source_names_with_gene_claims
+    cache_query :source_names_with_drug_claims, :source_names_with_drug_claims
     cache_query :source_names_with_category_information, :source_names_with_category_information
     cache_query :all_sources, :all_sources
 
@@ -44,6 +45,13 @@ module DataModel
         .uniq
         .pluck(:source_db_name)
         .sort_by { |name| GeneClaimSortOrder.sort_value(name) }
+    end
+
+    def self.source_names_with_drug_claims
+      joins(:drug_claims)
+        .uniq
+        .pluck(:source_db_name)
+        .sort_by { |name| DrugClaimSortOrder.sort_value(name) }
     end
 
     def self.for_show
