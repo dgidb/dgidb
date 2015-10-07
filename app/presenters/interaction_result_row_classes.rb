@@ -30,9 +30,9 @@ module InteractionResultRowClasses
   end
 
   class InteractionBySource
-    attr_reader :name, :sources, :pmids, :score
-    def initialize(name, source_db_names, identifiers)
-      @name = name
+    attr_reader :names, :sources, :pmids, :score
+    def initialize(names, source_db_names, identifiers)
+      @names = names
       identifier_sources = identifiers.map(&:source_db_name)
       @sources  = source_db_names.map { |s| identifier_sources.include?(s) }
       pmid_claims = identifiers.flat_map(&:pmids)
