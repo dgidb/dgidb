@@ -111,7 +111,7 @@ class InteractionSearchResultsPresenter
     unless @interactions_map_by_source_db_names
       if @search_context == 'genes'
         interaction_groups = definite_interactions.group_by do |presenter|
-          [presenter.drug_claim_name, presenter.gene_name].join(" and ")
+          [presenter.drug_name, presenter.gene_name].join(" and ")
         end
       else
         interaction_groups = definite_interactions.group_by do |presenter|

@@ -8,14 +8,19 @@ class InteractionSearchResult
     @type = type
     @identifiers = identifiers.uniq
     if type == 'genes'
-      @interaction_claims = identifiers.flat_map { |g| g.gene_claims }
+      results = identifiers.flat_map { |g| g.gene_claims }
         .flat_map{ |gc| gc.interaction_claims }
         .uniq
+      @interaction_claims = results.reject { |ic| ic.drug_claim.drugs.first.nil? ||
+                                                  ic.drug_claim.drugs.first.name.include?('/')}
+      # TODO: This is a hack that removes any interactions with drugs that have the forward slash. Needs to be addressed.
     else
       results = identifiers.flat_map { |d| d.drug_claims }
         .flat_map{ |dc| dc.interaction_claims }
         .uniq
-      @interaction_claims = results.reject { |ic| ic.gene_claim.genes.first.nil? }
+      @interaction_claims = results.reject { |ic| ic.gene_claim.genes.first.nil? ||
+                                                  ic.drug_claim.drugs.first.name.include?('/')}
+      # TODO: Same hack as above.
     end
   end
 

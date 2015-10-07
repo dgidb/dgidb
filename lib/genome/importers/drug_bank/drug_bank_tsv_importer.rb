@@ -26,7 +26,7 @@ module Genome
       end
 
       def self.run(tsv_path)
-        blank_filter = ->(x) { x.blank? || x == "''" || x == '""' }
+        blank_filter = ->(x) { x.blank? || x == "''" || x == '""' || x.downcase.tr('/','') == 'na'}
         upcase = ->(x) {x.upcase}
         downcase = ->(x) {x.downcase}
         TSVImporter.import tsv_path, DrugBankRow, source_info do

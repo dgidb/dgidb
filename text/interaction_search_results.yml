@@ -41,6 +41,8 @@ interaction_search_results: &interaction_results
     Gene Name within DGIDB that matched your search term (either directly or through a synonym). Click any gene to visit its summary page and search for interactions of related genes.
   interaction_table_header_flag: >
     Interaction Types are used to categorize the nature of drug-gene interactions (e.g. mechanism) and vary by source.
+  pmid_table_header_flag: >
+    PubMed IDs (PMIDs) directly supporting the reported interaction.
   search_term_table_header_flag: >
     The search term you entered.
   drug_table_header_flag: >
