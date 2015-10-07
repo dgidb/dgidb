@@ -1,6 +1,7 @@
 class LookupDrugs
 
   def self.find(search_terms, scope, wrapper_class)
+    search_terms = search_terms.reject { |term| term.include?('/') }
     raise 'You must specify at least one search term!' unless search_terms.any?
     results = match_search_terms_to_objects(search_terms, scope)
     results_to_drugs = match_objects_to_drugs(results, search_terms)

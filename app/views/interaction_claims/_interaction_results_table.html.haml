@@ -46,5 +46,8 @@
             Drug Name
         %th{style: 'display: none;'}
           Source Version
+        %th
+          PubMed IDs
+          %i.icon-flag.tip{title: tx("pmid_table_header_flag")}
     %tbody
       =render partial: 'interaction_claims/interaction_table_row', collection: interactions
