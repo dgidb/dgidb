@@ -19,20 +19,20 @@
 .container-fluid
   .tabbable
     %ul.nav.nav-tabs
+      %li.active
+        %a(href="#by_source" data-toggle="tab") Results Summary
       %li
-        %a(href="#interaction_tab" data-toggle="tab") Interaction Results
-      %li
-        %a(href="#search_summary_tab" data-toggle="tab") Search Results Summary
-      %li
-        %a(href="#term_summary_tab" data-toggle="tab") Search Term Summary
+        %a(href="#interaction_tab" data-toggle="tab") Detailed Results
       - if @search_mode == 'genes'
         %li
           %a(href="#by_gene" data-toggle="tab") By Gene
       - else
         %li
           %a(href="#by_drug" data-toggle="tab") By Drug
-      %li.active
-        %a(href="#by_source" data-toggle="tab") By Source
+      %li
+        %a(href="#term_summary_tab" data-toggle="tab") Search Term Summary
+      %li
+        %a(href="#search_summary_tab" data-toggle="tab") Statistics
     .tab-content
       .tab-pane.fade#search_summary_tab
         =render partial: 'interaction_claims/results_summary', locals: {results: @search_results, search_mode: @search_mode}
