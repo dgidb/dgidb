@@ -16,13 +16,180 @@
               %li
                 =dynamic_link_to(l["title"], l["url"])
                 %small=l["description"]
-
-  .container-fluid
-    .row-fluid
-      .span12
         .well
-          %ul(class="unstyled")
-            -to("papers").each do |l|
-              %li
-                =dynamic_link_to(l["title"], l["url"])
-                %small=l["description"]
+          %h5 Definitions of Drug-Gene Interaction Types
+          %table.table.table-bordered.table-striped
+            %thead
+              %tr
+                %td Interaction Type
+                %td Sources Using This Type
+                %td Description
+                %td Reference
+            %tbody
+              %tr
+                %td activator
+                %td ChEMBL, DrugBank, MyCancerGenomeClinicalTrial, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td adduct
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td agonist
+                %td ChEMBL, DrugBank, TALC, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td allosteric modulator
+                %td DrugBank
+                %td Allosteric modulators are ligands for proteins that exert their effects via a different binding site than the natural (orthosteric) ligand site and hence form a conceptually distinct class of ligands for a target of interest.
+                %td PMID: 24699297
+              %tr
+                %td antagonist
+                %td ChEMBL, DrugBank, TALC, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td antibody
+                %td CancerCommons, DrugBank, MyCancerGenome, TALC, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td antisense
+                %td TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td antisense oligonucleotide
+                %td TALC
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td binder
+                %td DrugBank, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td blocker
+                %td ChEMBL, DrugBank, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td chaperone
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td cleavage
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td cofactor
+                %td DrugBank, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td competitive
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td immunotherapy
+                %td MyCancerGenome
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td inducer
+                %td DrugBank, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td inhibitor
+                %td CancerCommons, ChEMBL, DrugBank, MyCancerGenome, MyCancerGenomeClinicalTrial, TALC, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td inhibitory allosteric modulator
+                %td CancerCommons, DrugBank
+                %td An allosteric modulator that inhibits activity of the target
+                %td PMID: 24699297
+              %tr
+                %td inverse agonist
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td ligand
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td modulator
+                %td ChEMBL, DrugBank, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td multitarget
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td n/a
+                %td CIViC, ChEMBL, ClearityFoundationBiomarkers, ClearityFoundationClinicalTrial, DoCM, DrugBank, GuideToPharmacologyInteractions, PharmGKB, TALC, TEND, TTD, TdgClinicalTrial
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td negative modulator
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td other/unknown
+                %td DrugBank, MyCancerGenome
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td partial agonist
+                %td ChEMBL, DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td partial antagonist
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td positive allosteric modulator
+                %td ChEMBL, DrugBank
+                %td An allosteric modulator that increases activity of the target
+                %td PMID: 24699297
+              %tr
+                %td potentiator
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td product of
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td stimulator
+                %td DrugBank, TTD
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td suppressor
+                %td DrugBank
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td vaccine
+                %td TALC
+                %td Coming Soon
+                %td N/A
+              %tr
+                %td
