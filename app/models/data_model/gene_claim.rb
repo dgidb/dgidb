@@ -49,7 +49,8 @@ module DataModel
         base_url.gsub(/XXXXXXXX/, name)
       when 'GuideToPharmacologyInteractions', 'GuideToPharmacologyGenes'
         'http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=' + name
-      when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial'
+        when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial',
+            'MyCancerGenomeClinicalTrial', 'MskImpact', 'CarisMolecularIntelligence'
         base_url
       else
         base_url + name
