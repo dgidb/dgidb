@@ -58,7 +58,7 @@ class InteractionSearchResultPresenter
   def gene_long_name
     gene = @interaction_claim.gene_claim.genes.first
     if gene
-      return gene.long_name
+      return gene.long_name || gene.name
     end
     nil
   end
