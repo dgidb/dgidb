@@ -21,7 +21,7 @@ class GeneCategorySearchResult
   end
 
   def gene_display_name
-    genes.first.long_name
+    genes.first.long_name || genes.first.name
   end
 
   def gene
