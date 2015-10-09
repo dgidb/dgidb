@@ -18,6 +18,13 @@
                 %small=l["description"]
         .well
           %h5 Definitions of Drug-Gene Interaction Types
+          %p
+            This table has been assembled based upon our own understanding of the definitions of these terms, and we have
+            provided citations to support these definitions. Many of the resources we curate do not provide their own
+            definitions of these terms, and so we encourage users of DGIdb to use these definitions as a starting point,
+            and review interactions of interest from their primary sources. If you have any questions or comments
+            regarding these definitions or the use of DGIdb,
+            %a{:href => "/contact"}please contact us!
           %table.table.table-bordered.table-striped
             %thead
               %tr
@@ -29,33 +36,49 @@
               %tr
                 %td activator
                 %td ChEMBL, DrugBank, MyCancerGenomeClinicalTrial, TTD
-                %td Coming Soon
-                %td N/A
+                %td
+                  An activator activates a biological response from a target, although the mechanism by which it does
+                  so may not be understood.
+                %td
+                  DrugBank example:
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/12070353"}Pubmed - 12070353
               %tr
                 %td adduct
                 %td DrugBank
-                %td Coming Soon
-                %td N/A
+                %td
+                  A drug-protein adduct is a protein complex that forms when electrophilic drugs or their reactive
+                  metabolite(s) covalently bind to a protein molecule.
+                %td
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/16199025"}Pubmed - 16199025
               %tr
                 %td agonist
                 %td ChEMBL, DrugBank, TALC, TTD
-                %td Coming Soon
-                %td N/A
+                %td An agonist is a drug that binds to a receptor and activates the receptor to produce a biological response.
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Agonist"}Wikipedia - Agonist
               %tr
                 %td allosteric modulator
                 %td DrugBank
-                %td Allosteric modulators are ligands for proteins that exert their effects via a different binding site than the natural (orthosteric) ligand site and hence form a conceptually distinct class of ligands for a target of interest.
-                %td PMID: 24699297
+                %td
+                  Allosteric modulators are ligands for proteins that exert their effects via a different binding site
+                  than the natural (orthosteric) ligand site and hence form a conceptually distinct class of ligands
+                  for a target of interest.
+                %td
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/24699297"}Pubmed - 24699297
               %tr
                 %td antagonist
                 %td ChEMBL, DrugBank, TALC, TTD
-                %td Coming Soon
-                %td N/A
+                %td
+                  A receptor antagonist is a type of receptor ligand or drug that blocks or dampens agonist-mediated
+                  responses rather than provoking a biological response itself upon binding to a receptor.
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Receptor_antagonist"}Wikipedia - Receptor Antagonist
               %tr
                 %td antibody
                 %td CancerCommons, DrugBank, MyCancerGenome, TALC, TTD
-                %td Coming Soon
-                %td N/A
+                %td An antibody is a protein that specifically binds a unique molecule (the target).
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Antibody#Disease_diagnosis_and_therapy"}Wikipedia - Antibody
               %tr
                 %td antisense
                 %td TTD
@@ -64,68 +87,97 @@
               %tr
                 %td antisense oligonucleotide
                 %td TALC
-                %td Coming Soon
-                %td N/A
+                %td Antisense oligonucleotides bind to an mRNA target to inhibit translation by physically obstructing the translation machinery.
+                %td
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/10228554"}Pubmed - 10228554
               %tr
                 %td binder
                 %td DrugBank, TTD
-                %td Coming Soon
-                %td N/A
+                %td These are ligands that physically bind to their target. They may be antibodies, agonists, or other types of molecules.
+                %td
+                  DrugBank examples: Pubmed -
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/12388666"}12388666,
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/7584665"}7584665,
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/14507470"}14507470
               %tr
                 %td blocker
                 %td ChEMBL, DrugBank, TTD
-                %td Coming Soon
-                %td N/A
+                %td Antagonists are sometimes referred to as blockers; examples include alpha blockers, beta blockers, and calcium channel blockers.
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Receptor_antagonist"}Wikipedia - Receptor Antagonist
               %tr
                 %td chaperone
                 %td DrugBank
-                %td Coming Soon
-                %td N/A
+                %td
+                  Pharmacological chaperones are substrates or modulators that function by directly binding to a
+                  partially folded biosynthetic intermediate to stabilise the protein and allow it to complete the
+                  folding process to yield a functional protein.
+                %td
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/17597553"}PubMed - 17597553
               %tr
                 %td cleavage
                 %td DrugBank
-                %td Coming Soon
-                %td N/A
+                %td
+                  Cleavage interactions take place when the drug promotes degeneration of the target protein through
+                  cleaving of the peptide bonds.
+                %td
+                  DrugBank example:
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/10666203"}PubMed - 10666203
               %tr
                 %td cofactor
                 %td DrugBank, TTD
-                %td Coming Soon
-                %td N/A
+                %td A cofactor is a drug that is required for a target protein's biological activity.
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Cofactor_(biochemistry)"}Wikipedia - Cofactor
               %tr
                 %td competitive
                 %td DrugBank
-                %td Coming Soon
-                %td N/A
+                %td
+                  Competitive antagonists (also known as surmountable antagonists) are drugs that reversibly bind to
+                  receptors at the same binding site (active site) on the target as the endogenous ligand or agonist,
+                  but without activating the receptor.
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Receptor_antagonist#Competitive"}Wikipedia - Receptor Antagonist
               %tr
                 %td immunotherapy
                 %td MyCancerGenome
-                %td Coming Soon
-                %td N/A
+                %td The result of the drug acting on the target is an induction, enhancement, or suppression of an immune response.
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Immunotherapy"}Wikipedia - Immunotherapy
               %tr
                 %td inducer
                 %td DrugBank, TTD
-                %td Coming Soon
-                %td N/A
+                %td An enzyme inducer is a drug that increases the activity of a target enzyme.
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Enzyme_inducer"}Wikipedia - Enzyme Inducer
               %tr
                 %td inhibitor
                 %td CancerCommons, ChEMBL, DrugBank, MyCancerGenome, MyCancerGenomeClinicalTrial, TALC, TTD
-                %td Coming Soon
-                %td N/A
+                %td
+                  An inhibitor is a drug that binds to a target and decreases its expression or activity.
+                  Most interactions of this class are enzyme inhibitors, which bind an enzyme to reduce enzyme activity.
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Enzyme_inhibitor"}Wikipedia - Enzyme Inhibitor
               %tr
                 %td inhibitory allosteric modulator
                 %td CancerCommons, DrugBank
-                %td An allosteric modulator that inhibits activity of the target
-                %td PMID: 24699297
+                %td An allosteric modulator that inhibits activity of the target.
+                %td
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/24699297"}Pubmed - 24699297
               %tr
                 %td inverse agonist
                 %td DrugBank
-                %td Coming Soon
-                %td N/A
+                %td
+                  An inverse agonist is a drug that binds to the same target as an agonist but induces a
+                  pharmacological response opposite to that agonist.
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Inverse_agonist"}Wikipedia - Inverse Agonist
               %tr
                 %td ligand
                 %td DrugBank
-                %td Coming Soon
-                %td N/A
+                %td A ligand is a drug that forms a complex with a target protein to serve a biological function.
+                %td
+                  %a{:href => "https://en.wikipedia.org/wiki/Ligand_(biochemistry)"}Wikipedia - Ligand
               %tr
                 %td modulator
                 %td ChEMBL, DrugBank, TTD
@@ -138,7 +190,9 @@
                 %td N/A
               %tr
                 %td n/a
-                %td CIViC, ChEMBL, ClearityFoundationBiomarkers, ClearityFoundationClinicalTrial, DoCM, DrugBank, GuideToPharmacologyInteractions, PharmGKB, TALC, TEND, TTD, TdgClinicalTrial
+                %td
+                  CIViC, ChEMBL, ClearityFoundationBiomarkers, ClearityFoundationClinicalTrial, DoCM,
+                  DrugBank, GuideToPharmacologyInteractions, PharmGKB, TALC, TEND, TTD, TdgClinicalTrial
                 %td Coming Soon
                 %td N/A
               %tr
@@ -164,8 +218,9 @@
               %tr
                 %td positive allosteric modulator
                 %td ChEMBL, DrugBank
-                %td An allosteric modulator that increases activity of the target
-                %td PMID: 24699297
+                %td An allosteric modulator that increases activity of the target.
+                %td
+                  %a{:href => "http://www.ncbi.nlm.nih.gov/pubmed/24699297"}Pubmed - 24699297
               %tr
                 %td potentiator
                 %td DrugBank
