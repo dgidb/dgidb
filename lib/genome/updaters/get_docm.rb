@@ -74,6 +74,18 @@ module Genome
           end
         end
       end
+
+      def current_version
+        DataModel::Source.where(source_db_name: 'DoCM').first['source_db_version']
+      end
+
+      def new_version
+        Date.today.strftime("%d-%B-%Y")
+      end
+
+      def is_current?
+        current_version == new_version
+      end
     end
   end
 end
