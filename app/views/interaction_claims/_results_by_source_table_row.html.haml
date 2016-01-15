@@ -1,7 +1,7 @@
 %tr
   %td
     - name_links = results_by_source_table_row.names.map do |(type, name)|
-      - link_to(name, "/#{type}s/#{name}")
+      - link_to(name, "/#{type}s/#{CGI::escape(name)}")
     = name_links.join(' and ').html_safe
   -results_by_source_table_row.sources.each do |in_source|
     %td

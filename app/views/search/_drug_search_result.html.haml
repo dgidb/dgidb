@@ -1,5 +1,5 @@
 .well
   %em Drug
   %p
-    %strong=link_to r.name , drug_path(r.name)
+    %strong=link_to r.name , drug_path(CGI::escape(r.name))
     %p="Drug Claims:  #{r.drug_claims.count}"

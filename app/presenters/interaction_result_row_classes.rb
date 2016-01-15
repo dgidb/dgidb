@@ -23,7 +23,7 @@ module InteractionResultRowClasses
         'None'
       else
         @ids
-        .map { |d| @context.link_to(d.name, @context.drug_path(d.name))}
+        .map { |d| @context.link_to(d.name, @context.drug_path(CGI::escape(d.name)))}
         .join(', ').html_safe
       end
     end

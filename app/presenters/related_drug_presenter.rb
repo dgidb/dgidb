@@ -5,6 +5,6 @@ class RelatedDrugPresenter
   end
 
   def name_link(context)
-    context.link_to @drug.name, context.drug_path(@drug.name)
+    context.link_to @drug.name, context.drug_path(CGI::escape(@drug.name))
   end
 end
