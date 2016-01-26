@@ -155,3 +155,11 @@ news:
           </li>
         </ul>
       date: August 31, 2015
+
+    - headline: DGIdb 2.0 publication released
+      article : >
+        DGIdb 2.0 has been published (open-access) in the 2016 Nucleic Acids Research
+        <a href="http://http://nar.oxfordjournals.org/content/44/D1/D1036.long">
+          Database edition.
+        </a>
+      date: January 4, 2016
