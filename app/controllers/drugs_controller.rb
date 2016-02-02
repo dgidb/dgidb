@@ -1,7 +1,7 @@
 class DrugsController < ApplicationController
 
   def show
-    drug = DataModel::Drug.for_show.where('lower(drugs.name) = ?', params[:name].downcase)
+    drug = DataModel::Drug.for_show.where('lower(drugs.name) = ?', CGI::unescape(params[:name].downcase))
       .first || not_found("No drug matches name #{params[:name]}")
 
     @drug = DrugPresenter.new(drug)

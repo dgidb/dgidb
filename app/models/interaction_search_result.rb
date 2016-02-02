@@ -7,26 +7,22 @@ class InteractionSearchResult
     @search_terms = search_terms
     @type = type
     @identifiers = identifiers.uniq
-    exclude_chars = %w{/ , [ (}
     if type == 'genes'
       results = identifiers.flat_map { |g| g.gene_claims }
         .flat_map{ |gc| gc.interaction_claims }
         .uniq
       @interaction_claims = results.reject do |ic|
-        ic.drug_claim.drugs.first.nil? ||
-        exclude_chars.any? { |char| ic.drug_claim.drugs.first.name.include?(char) }
+        ic.drug_claim.drugs.first.nil?
       end
 
-      # TODO: This is a hack that removes any interactions with drugs that have special characters. Needs to be addressed.
     else
       results = identifiers.flat_map { |d| d.drug_claims }
         .flat_map{ |dc| dc.interaction_claims }
         .uniq
       @interaction_claims = results.reject do |ic|
-        ic.gene_claim.genes.first.nil? || exclude_chars.any? { |char| ic.drug_claim.drugs.first.name.include?(char) }
+        ic.gene_claim.genes.first.nil?
       end
 
-      # TODO: Same hack as above.
     end
   end
 

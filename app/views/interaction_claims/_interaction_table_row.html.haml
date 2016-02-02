@@ -11,7 +11,7 @@
           %small
             =interaction_table_row.gene_long_name.html_safe
     %td{title: interaction_table_row.drug_name}
-      =link_to truncate(interaction_table_row.drug_name.html_safe, length:50), drug_path(interaction_table_row.drug_name)
+      =link_to truncate(interaction_table_row.drug_name.html_safe, length:50), drug_path(CGI::escape(interaction_table_row.drug_name))
     %td
       =link_to interaction_table_row.types_string, interaction_claims_path(interaction_table_row.interaction_claim)
     %td
@@ -24,7 +24,7 @@
       = interaction_table_row.source_db_version
   - else
     %td{title: interaction_table_row.drug_name, class: "truncate"}
-      = link_to drug_path(interaction_table_row.drug_name) do
+      = link_to drug_path(CGI::escape(interaction_table_row.drug_name)) do
         %strong
           = interaction_table_row.drug_name.html_safe
     %td{title: interaction_table_row.gene_name + ' - ' + interaction_table_row.gene_long_name, class: "truncate"}

@@ -2,7 +2,7 @@
   %td
     =results_by_drug_table_row.search_term
   %td{title: results_by_drug_table_row.drug_name, class: "truncate"}
-    = link_to drug_path(results_by_drug_table_row.drug_name) do
+    = link_to drug_path(CGI::escape(results_by_drug_table_row.drug_name)) do
       %strong
         = results_by_drug_table_row.drug_name
   %td
