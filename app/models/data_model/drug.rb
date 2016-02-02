@@ -11,6 +11,7 @@ module DataModel
     def self.for_search
       eager_load(drug_claims: {interaction_claims: { source: [], gene_claim: [:source, :gene_claim_categories], interaction_claim_types: [], drug_claim: [drugs: [drug_claims: [:drug_claim_types]]]}})
     end
+
     def self.for_show
       eager_load(drug_claims: [:drug_claim_aliases, :drug_claim_attributes, :drugs, source: [:source_type]])
     end

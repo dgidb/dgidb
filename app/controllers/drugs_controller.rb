@@ -2,8 +2,15 @@ class DrugsController < ApplicationController
 
   def show
     drug = DataModel::Drug.for_show.where('lower(drugs.name) = ?', params[:name].downcase)
-      .first || not_found("No drug matches name #{params[:name]}")
-
+      .first ||
+      related_drugs.first
+    if drug.nil?
+      raise()
+      #TODO: Redirect to a drug search on params[:name]
+    end
+    if drug.instance_of?(RelatedDrugPresenter)
+      drug = drug.drug
+    end
     @drug = DrugPresenter.new(drug)
     @title = @drug.name
   end
