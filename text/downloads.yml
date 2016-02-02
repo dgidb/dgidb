@@ -17,7 +17,8 @@ downloads:
       description: >
         This is an archive containing the TSV files used to populate the DGIdb database. 
         Note that this file is periodically updated and may not contain data from all of the latest sources.
-        Use the <a href="http://dgidb.genome.wustl.edu/api">API</a> or SQL database dump below to ensure all the latest data are included.
+        Use the <a href="http://dgidb.genome.wustl.edu/api">API</a> or SQL database dump below to ensure all the latest
+        data are included.
     - title: Interactions TSV
       link: "http://dgidb.genome.wustl.edu/downloads/interactions.tsv"
       description: >
