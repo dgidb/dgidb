@@ -18,8 +18,6 @@ $ ->
       sSearch: 'Filter results:'
       sLengthMenu: "_MENU_ records per page"
 
-#  $("#summary").tab("show")
-
 # Following snippet from: http://stackoverflow.com/a/19015027
   $('#myTab a').click (e) ->
     e.preventDefault()
