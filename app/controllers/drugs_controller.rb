@@ -4,7 +4,7 @@ class DrugsController < ApplicationController
     drug = DataModel::Drug.for_show.where('lower(drugs.name) = ?', params[:name].downcase)
       .first ||
       related_drugs.first
-    if drug.nil?
+    if drug.nil? || @drugs.count != 1
       redirect_to controller: :interaction_claims, action: 'interaction_search_results',
                   name: params[:name], anchor: 'terms' and return
     end
