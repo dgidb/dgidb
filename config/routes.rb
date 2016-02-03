@@ -9,18 +9,17 @@ DruggableGene::Application.routes.draw do
   match 'interaction_claims/:id' => 'interaction_claims#show', as: 'interaction_claims'
   match 'druggable_gene_categories/:name' => 'genes#druggable_gene_category', as: 'gene_by_category'
   match 'druggable_gene_categories' => 'genes#druggable_gene_categories'
-  match 'drugs/:name' => 'drugs#show', as: 'drug',
-    constraints: { name: /[^\/]+/ }
+  match 'drugs/:name' => 'drugs#show', as: 'drug', name: /.*/
   match 'sources/:source_db_name' => 'sources#show', as: 'source'
   match 'sources' => 'sources#sources'
-  match 'drugs/:name/related' => 'drugs#related_drugs', as: 'related_drug',
-    constraints: { name: /[^\/]+/ }
+  # match 'drugs/:name/related' => 'drugs#related_drugs', as: 'related_drug'
   match 'search_results' => 'search#search_results'
   match 'cache/invalidate' => 'utilities#invalidate_cache'
   post  'download_table' => 'utilities#download_request_content'
   post  'api/v1/interactions' => 'services_v1#interactions'
   post  'api/v1/related_genes' => 'services_v1#related_genes'
   get   'api/v1/:action' => 'services_v1#:action'
+  match 'interaction_search_results/:name' => 'interaction_claims#interaction_search_results', name: /.*[^#]/
   match 'interaction_search_results' => 'interaction_claims#interaction_search_results'
   match 'interactions_for_related_genes' => 'interaction_claims#interactions_for_related_genes'
   match 'categories_search_results' => 'genes#categories_search_results'

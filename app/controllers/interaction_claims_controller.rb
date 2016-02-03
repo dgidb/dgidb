@@ -6,6 +6,13 @@ class InteractionClaimsController < ApplicationController
   end
 
   def interaction_search_results
+    if !params[:name].nil?
+      params[:search_mode] = 'drugs'
+      params[:identifiers] = params[:name]
+      params[:gene_categories] = DataModel::GeneClaimCategory.all_category_names unless params[:gene_categories]
+      params[:sources] = DataModel::Source.potentially_druggable_source_names unless params[:sources]
+      params[:source_trust_levels] = DataModel::SourceTrustLevel.all_trust_levels unless params[:source_trust_levels]
+    end
     @search_interactions_active = 'active'
     @search_mode = params[:search_mode]
     if @search_mode == 'drugs'

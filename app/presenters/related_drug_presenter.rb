@@ -7,4 +7,8 @@ class RelatedDrugPresenter
   def name_link(context)
     context.link_to @drug.name, context.drug_path(@drug.name)
   end
+
+  def drug
+    @drug
+  end
 end
