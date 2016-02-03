@@ -5,8 +5,8 @@ class DrugsController < ApplicationController
       .first ||
       related_drugs.first
     if drug.nil?
-      raise()
-      #TODO: Redirect to a drug search on params[:name]
+      redirect_to controller: :interaction_claims, action: 'interaction_search_results',
+                  name: params[:name], anchor: 'terms' and return
     end
     if drug.instance_of?(RelatedDrugPresenter)
       drug = drug.drug

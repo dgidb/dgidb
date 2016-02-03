@@ -19,6 +19,7 @@ DruggableGene::Application.routes.draw do
   post  'api/v1/interactions' => 'services_v1#interactions'
   post  'api/v1/related_genes' => 'services_v1#related_genes'
   get   'api/v1/:action' => 'services_v1#:action'
+  match 'interaction_search_results/:name' => 'interaction_claims#interaction_search_results', name: /.*[^#]/
   match 'interaction_search_results' => 'interaction_claims#interaction_search_results'
   match 'interactions_for_related_genes' => 'interaction_claims#interactions_for_related_genes'
   match 'categories_search_results' => 'genes#categories_search_results'
