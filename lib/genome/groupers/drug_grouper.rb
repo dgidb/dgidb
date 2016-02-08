@@ -3,7 +3,6 @@ module Genome
     class DrugGrouper
       @alt_to_pubchem = Hash.new() {|hash, key| hash[key] = []}
       @alt_to_other = Hash.new() {|hash, key| hash[key] = []}
-      @alt_to_pubchem_sid = Hash.new() {|hash, key| hash[key] = []}
       @alt_to_pubchem_cid = Hash.new() {|hash, key| hash[key] = []}
 
       def self.run
@@ -21,9 +20,7 @@ module Genome
         DataModel::DrugClaimAlias.includes(drug_claim: [:drugs, :source]).all.each do |dca|
           drug_claim_alias = dca.alias
           if drug_claim_alias =~ /^\d+$/
-            if dca.nomenclature =~ /pubchem.*(substance)|(sid)/i
-              @alt_to_pubchem_sid[drug_claim_alias] << dca
-            elsif dca.nomenclature =~ /pubchem.*(compound)|(cid)/i
+            if dca.nomenclature =~ /pubchem.*(compound)|(cid)/i
               @alt_to_pubchem_cid[drug_claim_alias] << dca
             else
               next
@@ -71,17 +68,9 @@ module Genome
               indirect_groups[indirect_drug.name] += 1 if indirect_drug
             end
             nomenclature = drug_claim_alias.nomenclature
-            if nomenclature =~ /pubchem.*(substance)|(sid)/i
-              alt_drugs = @alt_to_pubchem_sid[drug_claim_alias.alias].map(&:drug_claim)
-              alt_drugs.each do |alt_drug|
-                next unless alt_drug.nomenclature =~ /pubchem.*(substance)|(sid)/i
-                indirect_drug = alt_drug.drugs.first
-                indirect_groups[indirect_drug.name] += 1 if indirect_drug
-              end
-            elsif nomenclature =~ /pubchem.*(compound)|(cid)/i
+            if nomenclature =~ /pubchem.*(compound)|(cid)/i
               alt_drugs = @alt_to_pubchem_cid[drug_claim_alias.alias].map(&:drug_claim)
               alt_drugs.each do |alt_drug|
-                next unless alt_drug.nomenclature =~ /pubchem.*(compound)|(cid)/i
                 indirect_drug = alt_drug.drugs.first
                 indirect_groups[indirect_drug.name] += 1 if indirect_drug
               end

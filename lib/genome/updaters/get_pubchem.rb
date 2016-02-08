@@ -27,7 +27,7 @@ module Genome
         Net::FTP.open(pubchem_ftp_sever) do |ftp|
           ftp.passive = true
           ftp.login
-          ftp.getbinaryfile(puchem_file_path, destination_path)
+          ftp.getbinaryfile(pubchem_file_path, destination_path)
         end
       end
 
@@ -106,7 +106,7 @@ module Genome
         end
       end
 
-      def puchem_file_path
+      def pubchem_file_path
         'pubchem/Compound/Extras/CID-Synonym-filtered.gz'
       end
 
