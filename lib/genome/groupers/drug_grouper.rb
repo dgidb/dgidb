@@ -16,6 +16,10 @@ module Genome
         end
       end
 
+      def self.reset
+        DataModel::Drug.destroy_all
+      end
+
       def self.preload
         DataModel::DrugClaimAlias.includes(drug_claim: [:drugs, :source]).all.each do |dca|
           drug_claim_alias = dca.alias
