@@ -53,6 +53,11 @@ bundle install
 rbenv rehash
 rake dgidb:load_local
 
+#Occassionally the database may get into a confused state and this rake command no longer works properly
+#In that case you can try this:
+psql -h localhost -d dgidb -f db/structure.sql
+psql -h localhost -d dgidb -f data/data.sql
+
 #start the development server
 rails s
 

@@ -15,16 +15,16 @@ describe 'news' do
 
   it 'should display an alert when there is unread news' do
     visit '/'
-    expect(find('.dropdown-toggle')).to have_content("Help !")
+    expect(find('.dropdown-toggle')).to have_content("Info !")
   end
 
   it 'should clear the alert once news has been read' do
     visit '/'
-    expect(find('.dropdown-toggle')).to have_content("Help !")
+    expect(find('.dropdown-toggle')).to have_content("Info !")
     visit '/news'
-    expect(find('.dropdown-toggle')).not_to have_content("Help !")
+    expect(find('.dropdown-toggle')).not_to have_content("Info !")
     visit '/'
-    expect(find('.dropdown-toggle')).not_to have_content("Help !")
+    expect(find('.dropdown-toggle')).not_to have_content("Info !")
   end
 
   it 'should set a cookie containing the recent post date when the news page is visited' do

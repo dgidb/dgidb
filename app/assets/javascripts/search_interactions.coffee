@@ -26,7 +26,7 @@ $('#geneSearch').click ->
     ta.data('typeahead').source = data
 
 $('#drugSearch').click ->
-  example_ids = ['SUNITINIB','ZALCITABINE','LINCOCIN', 'ALPHA','TRASTUZUMAB','PHLORETIN','NOTREAL'].join "\n"
+  example_ids = ['SUNITINIB','ZALCITABINE','LINCOCIN','TRASTUZUMAB','PHLORETIN','NOTREAL'].join "\n"
   $('#ids_text').text("Drugs")
   $.get '/drug_names.json', (data)->
     ta.data('typeahead').source = data

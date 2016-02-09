@@ -14,10 +14,13 @@ faq:
     - question: How do I cite DGIdb?
       anchor: cite
       answer: >
-        Please cite: Griffith M*, Griffith OL*, Coffman AC, Weible JV, McMichael JF, Spies NC, Koval J, Das I, 
-        Callaway MB, Eldred JM, Miller CA, Subramanian J, Govindan R, Kumar RD, Bose R, Ding L, Larson DE, Dooling DJ, 
-        Smith SM, Ley TJ, Mardis ER, Wilson RK. 2013. DGIdb – Mining the druggable genome for personalized medicine. 
-        Nature Methods. 10(12):1209-10. *These authors contributed equally to this work.
+        Please cite: Wagner AH, Coffman AC, Ainscough BJ, Spies NC, Skidmore ZL,
+        Campbell KM, Krysiak K, Pan D, McMichael JF, Eldred JM, Walker JR,
+        Wilson RK, Mardis ER, Griffith M, Griffith OL.
+        DGIdb 2.0: mining clinically relevant drug-gene interactions.
+        <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">Nucleic Acids Research.</a>
+        2016 Jan 4;44(D1):D1036-44. doi:10.1093/nar/gkv1165.
+
 
     - question: Is DGIdb open source and open access?
       anchor: source

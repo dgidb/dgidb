@@ -51,6 +51,7 @@ namespace :dgidb do
       download_data_dump(data_file)
     end
     system "psql -h #{host} -d #{database_name} -f #{data_file}"
+    Rails.cache.clear
   end
 
   desc 'create a new data snapshot'

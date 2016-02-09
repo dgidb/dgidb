@@ -18,9 +18,22 @@ $ ->
       sSearch: 'Filter results:'
       sLengthMenu: "_MENU_ records per page"
 
-  $("#interaction_tab").tab("show")
+# Following snippet from: http://stackoverflow.com/a/19015027
+  $('#myTab a').click (e) ->
+    e.preventDefault()
+    $(this).tab 'show'
+    return
+# store the currently selected tab in the hash value
+  $('ul.nav-tabs > li > a').on 'shown.bs.tab', (e) ->
+    id = $(e.target).attr('href').substr(1)
+    window.location.hash = id
+    return
+# on load of the page: switch to the currently selected tab
+  hash = window.location.hash
+  $('#myTab a[href="' + hash + '"]').tab 'show'
 
-  #truncate long gene names
+
+#truncate long gene names
   $(".truncate").trunk8()
   #activate on window resize too
   $(window).smartresize (event) -> $('.truncate').trunk8()
