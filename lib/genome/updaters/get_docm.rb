@@ -66,13 +66,20 @@ module Genome
         ['gene', 'entrez_id', 'drug', 'effect', 'pathway', 'status', 'pmid']
       end
 
-      def to_tsv(filename)
+      def to_tsv(filename = nil)
+        if filename.nil?
+          filename = default_savefile
+        end
         File.open(filename, 'w') do |file|
           file.puts(headers.join("\t"))
           to_rows.each do |row|
             file.puts(row.join("\t"))
           end
         end
+      end
+
+      def default_savefile
+        [Rails.root.to_s, 'lib', 'genome', 'updaters', 'data', 'docm_interactions.tsv'].join('/')
       end
 
       def current_version

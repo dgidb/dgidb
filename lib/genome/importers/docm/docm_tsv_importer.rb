@@ -6,7 +6,7 @@ module Genome
         {
             base_url: 'http://docm.genome.wustl.edu/',
             citation: 'Manuscript in preparation. Please cite http://docm.genome.wustl.edu/',
-            source_db_version: Time.new().strftime("%d-%B-%Y"),
+            source_db_version: @version || Time.new().strftime("%d-%B-%Y"),
             source_type_id: DataModel::SourceType.INTERACTION,
             source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
             source_db_name: 'DoCM',
@@ -14,7 +14,8 @@ module Genome
         }
       end
 
-      def self.run(tsv_path)
+      def self.run(tsv_path, version=nil)
+        @version = version
         TSVImporter.import tsv_path, DocmRow, source_info do
           interaction known_action_type: 'n/a' do
             drug :drug, nomenclature: 'DoCM Drug Name', primary_name: :drug do

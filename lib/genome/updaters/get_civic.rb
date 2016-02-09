@@ -62,7 +62,7 @@ module Genome
                 next
               end
               if item['evidence_type'] == 'Predictive' and item['evidence_direction'] == 'Supports' \
-              and item['evidence_level'] != 'E' and item['rating'] > 2
+              and item['evidence_level'] != 'E' and item['rating'] and item['rating'] > 2
                 item['drugs'].flat_map do |drug|
                   if drug['name'].upcase == 'N/A' or drug['name'].include?(';')
                     next
@@ -89,7 +89,7 @@ module Genome
         [Rails.root.to_s, 'lib', 'genome', 'updaters', 'data', 'civic_interactions.tsv'].join('/')
       end
 
-      def to_tsv(filename = NIL)
+      def to_tsv(filename = nil)
         if filename.nil?
           filename = default_savefile
         end
