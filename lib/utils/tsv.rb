@@ -1,10 +1,10 @@
 module Utils
   module TSV
-    def self.generate_interactions_tsv(filename = 'interactions.tsv')
+    def self.generate_interactions_tsv(filename = File.join(Rails.root, 'data/interactions.tsv'))
       write_tsv_file_for_query(filename, DataModel::Gene.for_search, 'interaction')
     end
 
-    def self.generate_categories_tsv(filename = 'categories.tsv')
+    def self.generate_categories_tsv(filename = File.join(Rails.root, 'data/categories.tsv'))
       write_tsv_file_for_query(filename, DataModel::Gene.for_gene_categories, 'category')
     end
 
