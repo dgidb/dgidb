@@ -13,6 +13,9 @@ module Genome
           File.open(@tsv_path).each_with_index do |line, index|
             next if (line.blank? || index == 0)
             process_row(EntrezGenePathwayRow.new(line))
+            if index % 10_000 == 0
+              puts('Processed ' + index.to_s + ' records')
+            end
           end
           @importer.store
         end
@@ -23,7 +26,7 @@ module Genome
           right_gene = @entrez_id_hash[row.interactant_gene_id]
 
           unless left_gene && right_gene
-            puts "Unable to find entrez genes for #{row.entrez_gene_id} and #{row.interactant_gene_id}"
+            # puts "Unable to find entrez genes for #{row.entrez_gene_id} and #{row.interactant_gene_id}"
             return
           end
 
