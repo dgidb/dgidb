@@ -29,5 +29,24 @@ module Utils
 
       ActiveRecord::Base.connection.execute(sql)
     end
+
+    def self.destroy_common_aliases
+      sql = <<-SQL
+        DELETE FROM drug_claim_aliases
+        WHERE alias in (
+          select alias from (
+            select * from (
+              select count(distinct d.id), alias, length(alias)
+              from drugs d, drug_claims_drugs dcd, drug_claim_aliases dca
+              where d.id = dcd.drug_id and dcd.drug_claim_id = dca.drug_claim_id
+              group by alias
+            ) t
+            where (count >= 5 and length <= 4) or length <= 2 or count >= 10
+          ) t
+        )
+      SQL
+
+      ActiveRecord::Base.connection.execute(sql)
+    end
   end
 end
