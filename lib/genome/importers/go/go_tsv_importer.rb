@@ -3,7 +3,8 @@ module Genome
     module Go
 
       def self.get_version
-        File.open('lib/genome/updaters/data/version').readlines.each do |line|
+        f = File.join([Rails.root.to_s, 'lib/genome/updaters/data/version'])
+        File.open(f).readlines.each do |line|
           source, version = line.split("\t")
           if source == 'GO'
             return version.strip
