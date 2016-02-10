@@ -7,6 +7,8 @@ module Genome
 
       def self.run
         ActiveRecord::Base.transaction do
+          puts 'reset groups'
+          reset
           puts 'preload'
           preload
           puts 'create groups'
