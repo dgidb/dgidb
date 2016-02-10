@@ -38,6 +38,8 @@ namespace :dgidb do
     staging_box.rm(:f, 'dgi-db_*')
     staging_box.cd('dgi-db')
     staging_box.git('pull')
+    staging_box.cd('data')
+    staging_box.git('pull')
     staging_box.cd
     staging_box.cp(:f, './deploy/database.yml', './dgi-db/config/database.yml')
     staging_box.execute('./deploy/bump_changelog')
