@@ -27,7 +27,7 @@ module Genome
             attribute :family_id, name: 'GuideToPharmacology Gene Category ID'
             attribute :type, name: 'GuideToPharmacology Gene Type'
             #attributes :gene_category, name: 'Gene Category'
-            categories :gene_category # Add support for addition of gene to a category through importer
+            categories :gene_category
             name :human_nucleotide_refseq, nomenclature: 'RefSeq Nucleotide Accession', unless: blank_filter
             name :human_protein_refseq, nomenclature: 'RefSeq Protein Accession', unless: blank_filter
             name :human_swissprot, nomenclature: 'SwissProt Accession', unless: blank_filter
