@@ -1,22 +1,20 @@
 search_interactions:
-  genes: >
-    Start by entering one or more gene names here.
-  defaultGenes: >
-    Or, press this button to try our sample list of genes.
+  toggleIdentifiers: >
+    Start by selecting whether to search interactions by drug or by gene.
+  identifiers: >
+    Next, enter one or more gene or drug names here.
+  defaultIdentifiers: >
+    Or, press this button to try our sample identifier list.
   search-btn: >
-    Click here to see potential drugs for your gene list, or click 'Next' to continue the tour.  
+    Click here to see potential interactions for your list, or click 'Next' to continue the tour.
   gene_cateogories_tour: >
     You can limit your results to specific gene categories (e.g., kinases).
   interaction_types_tour: >
     Or, limit to particular drug interaction types (e.g., inhibitors).
   sources_tour: >
     Or, limit to only a subset of data sources (e.g., DrugBank).
-  source_trust_level_tour: >
-    Or, limit to only sources with a particular trust level (e.g., Expert curated).
-  drug_type_checkbox: >
-    Check this box to allow only anti-cancer drugs. 
-  genes_flag: >
+  ids_flag: >
     Hover your mouse over flags like this for help on a specific field.
   show-tour: >
-    Re-start the tour at any time by clicking here. For FAQ, downloads, contact info, and more see the 'Help' menu (top-right) or submit feedback (bottom-right).
+    Re-start the tour at any time by clicking here. For FAQ, downloads, contact info, and more see the 'Info' menu (top-right).
 
