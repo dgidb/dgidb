@@ -13,7 +13,7 @@ class InteractionClaimPresenter < SimpleDelegator
   end
 
   def title
-    @title ||= "#{drug_claim.title} acting on #{gene_claim.title}"
+    @title ||= "#{drug_claim.title} interacting with #{gene_claim.title}"
   end
 
 end
