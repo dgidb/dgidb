@@ -79,8 +79,9 @@ namespace :dgidb do
       Genome::Importers::Entrez::EntrezGenePathwayImporter.new(pathway_file).import!
       puts 'Grouping Drugs...'
       Genome::Groupers::DrugGrouper.run
-      puts 'Removing Common Aliases...'
+      puts 'Removing undesired entries...'
       Utils::Database.destroy_common_aliases
+      Utils::Database.destroy_na
       puts 'Populating source counters...'
       Genome::Normalizers::PopulateCounters.populate_source_counters
       puts 'Attempting to normalize drug types...'

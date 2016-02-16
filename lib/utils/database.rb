@@ -48,5 +48,124 @@ module Utils
 
       ActiveRecord::Base.connection.execute(sql)
     end
+
+    def self.destroy_na
+      sql = <<-SQL
+        delete from drug_claim_types_drug_claims d
+        where
+        d.drug_claim_id in
+          (select id from drug_claims
+          where upper(drug_claims.name) in ('NA','N/A')
+          );
+
+        delete from drug_claims_drugs d
+        where
+        d.drug_claim_id in
+          (select id from drug_claims
+          where upper(drug_claims.name) in ('NA','N/A')
+          );
+
+        delete from drug_claim_aliases d
+        where
+        d.drug_claim_id in
+          (select id from drug_claims
+          where upper(drug_claims.name) in ('NA','N/A')
+          );
+
+        delete from drug_claim_attributes d
+        where
+        d.drug_claim_id in
+          (select id from drug_claims
+          where upper(drug_claims.name) in ('NA','N/A')
+          );
+
+        delete from interaction_claim_types_interaction_claims i
+        where
+        i.interaction_claim_id in
+          (select id from interaction_claims d
+          where
+          d.drug_claim_id in
+            (select id from drug_claims
+            where upper(drug_claims.name) in ('NA','N/A')
+            )
+          );
+
+        delete from interaction_claim_attributes i
+        where
+        i.interaction_claim_id in
+          (select id from interaction_claims d
+          where
+          d.drug_claim_id in
+            (select id from drug_claims
+            where upper(drug_claims.name) in ('NA','N/A')
+            )
+          );
+
+        delete from interaction_claims d
+        where
+        d.drug_claim_id in
+          (select id from drug_claims
+          where upper(drug_claims.name) in ('NA','N/A')
+          );
+
+        delete from drug_claims d
+        where
+        upper(name) in ('NA','N/A');
+
+        delete from drug_claim_aliases
+        where upper(alias) in ('NA','N/A');
+
+        delete from gene_claim_aliases g
+        where
+        g.gene_claim_id in
+          (select id from gene_claims
+          where upper(name) in ('NA','N/A')
+          );
+
+        delete from gene_claim_attributes g
+        where
+        g.gene_claim_id in
+          (select id from gene_claims
+          where upper(name) in ('NA','N/A')
+          );
+
+        delete from interaction_claim_types_interaction_claims i
+        where
+        i.interaction_claim_id in
+          (select id from interaction_claims
+          where
+            interaction_claims.gene_claim_id in
+            (select id from gene_claims
+            where upper(name) in ('NA','N/A')
+            )
+          );
+
+        delete from interaction_claim_attributes i
+        where
+        i.interaction_claim_id in
+          (select id from interaction_claims
+          where
+            interaction_claims.gene_claim_id in
+            (select id from gene_claims
+            where upper(name) in ('NA','N/A')
+            )
+          );
+
+        delete from interaction_claims g
+        where
+        g.gene_claim_id in
+          (select id from gene_claims
+          where upper(name) in ('NA','N/A')
+          );
+
+        delete from gene_claims
+        where upper(name) in ('NA','N/A');
+
+        delete from gene_claim_aliases
+        where upper(alias) in ('NA', 'N/A');
+      SQL
+
+      ActiveRecord::Base.connection.execute(sql)
+    end
   end
 end
