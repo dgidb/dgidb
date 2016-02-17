@@ -24,17 +24,6 @@ describe 'search_interactions' do
     expect(page).not_to have_content(other_source.source_db_name)
   end
 
-  it 'should display a list of source trust levels' do
-    Fabricate(:source_type, type: 'interaction')
-    trust_levels = (1..3).map { Fabricate(:source_trust_level) }
-
-    visit '/search_interactions'
-
-    trust_levels.each do |level|
-      expect(page).to have_content(level.level)
-    end
-  end
-
   it 'should display a list of gene categories' do
     Fabricate(:source_type, type: 'interaction')
     gene_categories = (1..3).map { Fabricate(:gene_claim_category) }

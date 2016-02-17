@@ -8,6 +8,22 @@ module Utils
       write_tsv_file_for_query(filename, DataModel::Gene.for_gene_categories, 'category')
     end
 
+    def self.update_druggable_gene_tsvs_archive(filename = Rails.root.join('data', 'druggable_gene_tsvs.tar.gz'))
+      old_dir = Dir.pwd
+      Dir.chdir(filename.parent)
+      system("tar -xvzf #{filename.basename}")
+      Dir.chdir(filename.basename('.tar.gz'))
+
+      # Add stuff to tar
+      ['CIViC', 'DoCM'].each do |source|
+        copy_tsv(source, 'INTERACTIONS')
+      end
+
+      Dir.chdir(filename.parent)
+      system("tar -czf #{filename} #{filename.basename('.tar.gz')}") && FileUtils.rmtree(filename.basename('.tar.gz'))
+      Dir.chdir(old_dir)
+    end
+
     private
     def self.write_tsv_file_for_query(filename, query, type)
       Logging.without_sql do
@@ -18,6 +34,14 @@ module Utils
           end
         end
       end
+    end
+
+    def self.copy_tsv(source_name, type, path = Dir.pwd)
+      klass = "Genome::Updaters::Get#{source_name.downcase.classify}".constantize
+      obj = klass.new
+      origin = obj.default_savefile
+      dest = Pathname(File.join(path, "#{source_name}_#{type}.tsv"))
+      FileUtils::cp(origin, dest)
     end
 
     def self.print_category_header(file_handle)

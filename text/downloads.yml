@@ -15,22 +15,20 @@ downloads:
     - title: Druggable gene TSV archive
       link: "http://dgidb.genome.wustl.edu/downloads/druggable_gene_tsvs.tar.gz"
       description: >
-        This is an archive containing the TSV files used to populate the DGIdb database. 
-        Note that this file is periodically updated and may not contain data from all of the latest sources.
-        Use the <a href="http://dgidb.genome.wustl.edu/api">API</a> or SQL database dump below to ensure all the latest
-        data are included.
+        This is an archive containing the TSV files used to populate the DGIdb database. For ease of use,
+        we recommend working directly with the <a href="http://dgidb.genome.wustl.edu/api">API</a> or SQL database dump below.
     - title: Interactions TSV
       link: "http://dgidb.genome.wustl.edu/downloads/interactions.tsv"
       description: >
         TSV download of all drug-gene interactions in DGIdb from all sources that were mapped to Entrez genes.
-        Note that this file is periodically updated and may not contain data from all of the latest sources.
-        Use the <a href="http://dgidb.genome.wustl.edu/api">API</a> or SQL database dump below to ensure all the latest data are included.
+        For ease of use, we recommend working directly with the <a href="http://dgidb.genome.wustl.edu/api">API</a>
+        or SQL database dump below.
     - title: Categories TSV
       link: "http://dgidb.genome.wustl.edu/downloads/categories.tsv"
       description: >
         TSV download of all genes in druggable categories in DGIdb from all sources that were mapped to Entrez genes.
-        Note that this file is periodically updated and may not contain data from all of the latest sources.
-        Use the <a href="http://dgidb.genome.wustl.edu/api">API</a> or SQL database dump below to ensure all the latest data are included.
+        For ease of use, we recommend working directly with the <a href="http://dgidb.genome.wustl.edu/api">API</a>
+        or SQL database dump below.
     - title: PharmGKB data
       link: "http://www.pharmgkb.org/downloads.jsp"
       description: >
@@ -44,7 +42,5 @@ downloads:
     - title: DGIdb database dump
       link: "http://dgidb.genome.wustl.edu/downloads/data.sql"
       description: >
-        SQL dump of the contents of the DGIdb Postgres database. This SQL dump is automatically generated with each deployment
-        of the resource. Updated or added sources should therefore be present in this file which under normal circumstances 
-        will be in sync with data on the live site.
+        SQL dump of the contents of the DGIdb Postgres database.
 

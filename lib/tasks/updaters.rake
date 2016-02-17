@@ -72,12 +72,12 @@ namespace :dgidb do
       Rake::Task['dgidb:update:pubchem'].execute
 
       # Cleanup
-      puts 'Grouping Genes...'
+      puts 'Grouping genes...'
       Genome::Groupers::GeneGrouper.run
-      puts 'Importing Pathways...'
+      puts 'Importing pathways...'
       pathway_file = File.join(Rails.root, 'lib/genome/updaters/data/interactions.human')
       Genome::Importers::Entrez::EntrezGenePathwayImporter.new(pathway_file).import!
-      puts 'Grouping Drugs...'
+      puts 'Grouping drugs...'
       Genome::Groupers::DrugGrouper.run
       puts 'Removing undesired entries...'
       Utils::Database.destroy_common_aliases
@@ -90,10 +90,12 @@ namespace :dgidb do
       Genome::Normalizers::SourceTrustLevel.populate_trust_levels
       puts 'Attempting to normalize interaction types...'
       Genome::Normalizers::InteractionClaimType.normalize_types
-      puts 'Exporting Categories...'
+      puts 'Exporting categories...'
       Utils::TSV.generate_categories_tsv
-      puts 'Exporting Interactions...'
+      puts 'Exporting interactions...'
       Utils::TSV.generate_interactions_tsv
+      puts 'Exporting source TSVs...'
+      Utils::TSV.update_druggable_gene_tsvs_archive
       puts 'Clearing cache...'
       Rails.cache.clear
     end
