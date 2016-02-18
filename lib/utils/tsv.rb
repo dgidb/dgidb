@@ -15,7 +15,7 @@ module Utils
       Dir.chdir(filename.basename('.tar.gz'))
 
       # Add stuff to tar
-      ['CIViC', 'DoCM'].each do |source|
+      ['CIViC', 'DoCM', 'Drug_Bank'].each do |source|
         copy_tsv(source, 'INTERACTIONS')
       end
 
@@ -40,7 +40,7 @@ module Utils
       klass = "Genome::Updaters::Get#{source_name.downcase.classify}".constantize
       obj = klass.new
       origin = obj.default_savefile
-      dest = Pathname(File.join(path, "#{source_name}_#{type}.tsv"))
+      dest = Pathname(File.join(path, "#{source_name.gsub('_','')}_#{type}.tsv"))
       FileUtils::cp(origin, dest)
     end
 
