@@ -2,29 +2,20 @@ module Genome
   module Importers
     module Entrez
 
-      def self.get_version
-        File.open('lib/genome/updaters/data/version').readlines.each do |line|
-          source, version = line.split("\t")
-          if source == 'Entrez'
-            return version.strip
-          end
-        end
-        return nil
-      end
-
       def self.source_info
         {
           base_url: 'http://www.ncbi.nlm.nih.gov/gene?term=',
           site_url: 'http://www.ncbi.nlm.nih.gov/gene',
           citation: 'Entrez Gene: gene-centered information at NCBI. Maglott D, Ostell J, Pruitt KD, Tatusova T. Nucleic Acids Res. 2011 Jan;39(Database issue)52-7. Epub 2010 Nov 28. PMID: 21115458.',
-          source_db_version: get_version,
+          source_db_version: @version ||= Genome::Updaters::GetEntrez.new.new_version,
           source_type_id: DataModel::SourceType.GENE,
           source_db_name: 'Entrez',
           full_name: 'NCBI Entrez Gene'
         }
       end
 
-      def self.run(tsv_path)
+      def self.run(tsv_path, version=nil)
+        @version = version
         TSVImporter.import tsv_path, EntrezRow, source_info do
           gene :entrez_id, nomenclature: 'Entrez Gene Id' do
             name :description, nomenclature: 'Gene Description'

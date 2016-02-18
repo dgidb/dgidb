@@ -6,7 +6,7 @@ module Genome
         {
             base_url: 'http://docm.genome.wustl.edu/',
             citation: 'Manuscript in preparation. Please cite http://docm.genome.wustl.edu/',
-            source_db_version: @version || Time.new().strftime("%d-%B-%Y"),
+            source_db_version: @version ||= Time.new().strftime("%d-%B-%Y"),
             source_type_id: DataModel::SourceType.INTERACTION,
             source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
             source_db_name: 'DoCM',

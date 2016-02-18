@@ -7,7 +7,7 @@ module Genome
           base_url: 'https://civic.genome.wustl.edu',
           site_url: 'https://www.civicdb.org',
           citation: 'CIViC: Clinical Interpretations of Variants in Cancer',
-          source_db_version: @version || Time.new().strftime("%d-%B-%Y"),
+          source_db_version: @version ||= Time.new().strftime("%d-%B-%Y"),
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'CIViC',
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
