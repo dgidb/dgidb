@@ -30,22 +30,27 @@ namespace :dgidb do
 
     desc 'update GO'
     task go: :environment do
-      Rake::Task['dgidb:import:go']
+      #TODO: update GO
     end
 
     desc 'update DrugBank'
-    task go: :environment do
-      Rake::Task['dgidb:import:drugbank']
+    task drugbank: :environment do
+      #TODO: update DrugBank
     end
 
     desc 'update Entrez'
     task entrez: :environment do
-      #TODO: Port updater code
-      if DataModel::Source.where('lower(sources.source_db_name) = ?', 'entrez').any?
-        Utils::Database.delete_source('Entrez')
+      entrez = Genome::Updaters::GetEntrez.new
+      if entrez.is_current?
+        puts('is current')
+      else
+        entrez.to_tsv
+        if DataModel::Source.where('lower(sources.source_db_name) = ?', 'entrez').any?
+          Utils::Database.delete_source('Entrez')
+        end
+        Genome::Importers::Entrez.run(entrez.local_path('gene_info.human'))
       end
-      f = File.join(Rails.root, 'lib/genome/updaters/data/entrez_genes.tsv')
-      Genome::Importers::Entrez.run(f)
+
     end
 
     desc 'update PubChem'
