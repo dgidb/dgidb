@@ -2,7 +2,7 @@ namespace :dgidb do
   namespace :update do
     desc 'update CIViC'
     task civic: :environment do
-      civic = Genome::Updaters::GetCivic.new()
+      civic = Genome::Updaters::GetCivic.new
       if civic.is_current?
         puts('is current')
       else
@@ -16,7 +16,7 @@ namespace :dgidb do
 
     desc 'update DoCM'
     task docm: :environment do
-      docm = Genome::Updaters::GetDocm.new()
+      docm = Genome::Updaters::GetDocm.new
       if docm.is_current?
         puts('is current')
       else
@@ -30,12 +30,30 @@ namespace :dgidb do
 
     desc 'update GO'
     task go: :environment do
-      #TODO: update GO
+      go = Genome::Updaters::GetGo.new
+      if go.is_current?
+        puts('is current')
+      else
+        go.to_tsv
+        if DataModel::Source.where('lower(sources.source_db_name) = ?', 'go').any?
+          Utils::Database.delete_source('GO')
+        end
+        Genome::Importers::Go.run(go.default_savefile, go.new_version)
+      end
     end
 
     desc 'update DrugBank'
     task drugbank: :environment do
-      #TODO: update DrugBank
+      go = Genome::Updaters::GetGo.new
+      if go.is_current?
+        puts('is current')
+      else
+        go.to_tsv
+        if DataModel::Source.where('lower(sources.source_db_name) = ?', 'go').any?
+          Utils::Database.delete_source('GO')
+        end
+        Genome::Importers::Go.run(go.default_savefile, go.new_version)
+      end
     end
 
     desc 'update Entrez'

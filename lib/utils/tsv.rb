@@ -14,10 +14,15 @@ module Utils
       system("tar -xvzf #{filename.basename}")
       Dir.chdir(filename.basename('.tar.gz'))
 
+      copy_tsv_explicit('Entrez', 'GENES',
+                        Genome::Updaters::GetEntrez.new.local_path('gene_info.human'))
+
       # Add stuff to tar
       ['CIViC', 'DoCM', 'Drug_Bank'].each do |source|
         copy_tsv(source, 'INTERACTIONS')
       end
+
+      copy_tsv('GO', 'TARGETS')
 
       Dir.chdir(filename.parent)
       system("tar -czf #{filename} #{filename.basename('.tar.gz')}") && FileUtils.rmtree(filename.basename('.tar.gz'))
@@ -36,12 +41,17 @@ module Utils
       end
     end
 
-    def self.copy_tsv(source_name, type, path = Dir.pwd)
+    def self.copy_tsv(source_name, type)
       klass = "Genome::Updaters::Get#{source_name.downcase.classify}".constantize
       obj = klass.new
       origin = obj.default_savefile
+      copy_tsv_explicit(source_name, type, origin)
+    end
+
+    def self.copy_tsv_explicit(source_name, type, origin_path)
+      path = Dir.pwd
       dest = Pathname(File.join(path, "#{source_name.gsub('_','')}_#{type}.tsv"))
-      FileUtils::cp(origin, dest)
+      FileUtils::cp(origin_path, dest)
     end
 
     def self.print_category_header(file_handle)
