@@ -40,11 +40,6 @@ contact:
       email: "mailto:acoffman@genome.wustl.edu"
       email_title: Email
 
-    - title: Jim Weible
-      description: Lead software developer
-      email: "mailto:jweible@genome.wustl.edu"
-      email_title: Email
-
     - title: Josh McMichael
       description: User experience (UX) developer
       link: "http://genome.wustl.edu/people/individual/joshua-mcmichael/"
@@ -57,13 +52,6 @@ contact:
       link: "http://genome.wustl.edu/people/individual/matt-callaway/"
       link_title: Genome Institute profile
       email: "mailto:mcallaway@genome.wustl.edu"
-      email_title: Email
-
-    - title: Scott Smith
-      description: Supervising software developer
-      link: "http://genome.wustl.edu/people/individual/scott-smith/"
-      link_title: Genome Institute profile
-      email: "mailto:ssmith@genome.wustl.edu"
       email_title: Email
 
     - title: Jim Eldred
