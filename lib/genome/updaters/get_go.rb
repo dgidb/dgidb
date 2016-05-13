@@ -9,13 +9,13 @@ module Genome
       end
 
       def new_version
-        @new_version ||= calculate_live_version
+        @new_version ||= scrape_live_version
       end
 
-      def calculate_live_version
+      def scrape_live_version
         url = 'http://www.ebi.ac.uk/QuickGO/GHistory?period=6m&limit=10000#info=3'
         doc = Nokogiri::HTML(open(url))
-
+        doc #Parse doc here
       end
 
       def is_current?
