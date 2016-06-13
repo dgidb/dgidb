@@ -26,8 +26,8 @@ class InteractionSearchResultApiPresenter
   end
 
   def interactions
-    @interactions ||= @result.interaction_claims.map do |i|
-      InteractionWrapper.new(i)
+    @interactions ||= @result.interaction_claims.sort_by { |res| InteractionResultSortOrder.sort_value(res.source.source_db_name) }.map do |i| 
+      InteractionWrapper.new(i) 
     end
   end
 
