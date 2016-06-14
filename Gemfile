@@ -17,6 +17,7 @@ gem 'jbuilder'
 gem 'lograge'
 gem 'syslog-logger'
 gem 'rye'
+gem 'stable_sort', '~> 1.1'
 
 group :production do
   gem 'dalli'
