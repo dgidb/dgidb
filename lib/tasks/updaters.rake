@@ -42,7 +42,7 @@ namespace :dgidb do
       end
     end
 
-    desc 'update DrugBank'
+    desc 'update DrugBank' # TODO: Update DrugBank
     task drugbank: :environment do
       go = Genome::Updaters::GetGo.new
       if go.is_current?
@@ -89,6 +89,10 @@ namespace :dgidb do
       Rake::Task['dgidb:update:civic'].execute
       puts 'Updating DoCM...'
       Rake::Task['dgidb:update:docm'].execute
+
+      # TODO: Add GO
+      # TODO: Add DrugBank
+      # TODO: Add ChEMBL(?)
 
       # PubChem last
       puts 'Updating PubChem...'
