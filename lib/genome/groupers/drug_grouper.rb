@@ -4,7 +4,10 @@ module Genome
       @alt_to_pubchem = Hash.new() {|hash, key| hash[key] = []}
       @alt_to_other = Hash.new() {|hash, key| hash[key] = []}
       @alt_to_pubchem_cid = Hash.new() {|hash, key| hash[key] = []}
-
+      @alt_to_drugbank_cas = Hash.new() {|hash, key| hash[key] = []}
+      @alt_to_drugbank = Hash.new() {|hash, key| hash[key] = []}
+      @alt_to_chembl = Hash.new() {|hash, key| hash[key] = []}
+      
       def self.run
         ActiveRecord::Base.transaction do
           puts 'reset groups'
@@ -28,6 +31,8 @@ module Genome
           if drug_claim_alias =~ /^\d+$/
             if dca.nomenclature =~ /pubchem.*(compound)|(cid)/i
               @alt_to_pubchem_cid[drug_claim_alias] << dca
+            elsif dca.nomenclature =~ /CAS Number/i
+              @alt_to_drugbank_cas[drug_claim_alias] << dca
             else
               next
             end
@@ -35,6 +40,10 @@ module Genome
             next
           elsif dca.nomenclature == 'pubchem_primary_name'
             @alt_to_pubchem[drug_claim_alias] << dca
+          elsif dca.nomenclature == 'DrugBank Drug Name' 
+            @alt_to_drugbank[drug_claim_alias] << dca
+          elsif dca.nomenclature == 'ChEMBL Drug Name'
+            @alt_to_chembl[drug_claim_alias] << dca
           else
             @alt_to_other[drug_claim_alias] << dca
           end
@@ -44,6 +53,38 @@ module Genome
       def self.create_groups
         @alt_to_pubchem.each_key do |key|
           drug_claims = @alt_to_pubchem[key].map(&:drug_claim)
+          drug = DataModel::Drug.where(name: key).first
+          if drug 
+            drug_claims.each do |drug_claim|
+              drug_claim.drugs << drug unless drug_claim.drugs.include?(drug)
+              drug_claim.save
+            end
+          else
+            DataModel::Drug.new.tap do |g|
+              g.name = key
+              g.drug_claims = drug_claims
+              g.save
+            end
+          end
+        end
+        @alt_to_drugbank.each_key do |key|
+          drug_claims = @alt_to_drugbank[key].map(&:drug_claim)
+          drug = DataModel::Drug.where(name: key).first
+          if drug 
+            drug_claims.each do |drug_claim|
+              drug_claim.drugs << drug unless drug_claim.drugs.include?(drug)
+              drug_claim.save
+            end
+          else
+            DataModel::Drug.new.tap do |g|
+              g.name = key
+              g.drug_claims = drug_claims
+              g.save
+            end
+          end
+        end
+        @alt_to_chembl.each_key do |key|
+          drug_claims = @alt_to_chembl[key].map(&:drug_claim)
           drug = DataModel::Drug.where(name: key).first
           if drug 
             drug_claims.each do |drug_claim|
@@ -78,6 +119,12 @@ module Genome
               alt_drugs = @alt_to_pubchem_cid[drug_claim_alias.alias].map(&:drug_claim)
               alt_drugs.each do |alt_drug|
                 indirect_drug = alt_drug.drugs.first
+                indirect_groups[indirect_drug.name] += 1 if indirect_drug
+              end
+            elsif nomenclature =~ /CAS Number/i
+              alt_drugs = @alt_to_drugbank_cas[drug_claim_alias.alias].map(&:drug_claim)
+              alt_drugs.each do |alt_drug|
+                indirect_drug = alt_drug.drugs.first 
                 indirect_groups[indirect_drug.name] += 1 if indirect_drug
               end
             end

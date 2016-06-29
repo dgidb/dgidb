@@ -26,9 +26,11 @@ class InteractionSearchResultApiPresenter
   end
 
   def interactions
-    @interactions ||= @result.interaction_claims.map do |i|
-      InteractionWrapper.new(i)
-    end
+    @interactions ||= @result.interaction_claims
+      .sort_by { |res| InteractionResultSortOrder.sort_value(res.source.source_db_name) }
+      .stable_sort_by{ |res| res.drug_claim.drugs.first.name}
+      .map{ |i| InteractionWrapper.new(i)}
+    
   end
 
   private
