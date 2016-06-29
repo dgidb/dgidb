@@ -7,7 +7,6 @@ module Genome
       @alt_to_drugbank_cas = Hash.new() {|hash, key| hash[key] = []}
       @alt_to_drugbank = Hash.new() {|hash, key| hash[key] = []}
       @alt_to_chembl = Hash.new() {|hash, key| hash[key] = []}
-      #@alt_to_drugbank = Hash.new() {|hash, key| hash[key] = []}
       
       def self.run
         ActiveRecord::Base.transaction do
@@ -128,13 +127,6 @@ module Genome
                 indirect_drug = alt_drug.drugs.first 
                 indirect_groups[indirect_drug.name] += 1 if indirect_drug
               end
-=begin            elsif nomenclature =~ /chembl.*|id/i#PROBABLY NOT CORRECT###############
-              alt_drugs = @alt_to_chembl_id[drug_claim_alias.alias].map(&:drug_claim)
-              alt_drugs.each do |alt_drug|
-                indirect_drug = alt_drug.drugs.first #should this be direct_drug????
-                indirect_groups[indirect_drug.name] += 1 if indirect_drug
-              end
-=end            end
             end
           end
 
