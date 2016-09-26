@@ -37,9 +37,15 @@ class LookupDrugs
   end
 
   def self.de_dup_results(results)
+    non_match_val = 0
     uniq_hash = Hash.new { |h, k| h[k] = [] }
     results.each do |search_term, value|
-      uniq_hash[value] << search_term
+      if value != []
+        uniq_hash[value] << search_term
+      else
+        drug = DataModel::Drug.for_show.where('lower(drugs.name) = ?', search_term.downcase)
+        uniq_hash[drug] << search_term
+      end
     end
     uniq_hash.invert
   end
