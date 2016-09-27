@@ -40,6 +40,7 @@ class LookupDrugs
     non_match_val = 0
     uniq_hash = Hash.new { |h, k| h[k] = [] }
     results.each do |search_term, value|
+      
       if value != []
         uniq_hash[value] << search_term
       else
