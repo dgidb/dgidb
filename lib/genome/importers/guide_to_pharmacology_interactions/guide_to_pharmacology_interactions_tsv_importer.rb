@@ -23,7 +23,7 @@ module Genome
         downcase = ->(x) {x.downcase}
         clean = ->(x) {strip_tags x.upcase}
         TSVImporter.import tsv_path, GuideToPharmacologyInteractionsRow, source_info do
-          interaction known_action_type: :type, transform: downcase do
+          interaction known_action_type: 'unknown', transform: downcase do
             drug :ligand_id, nomenclature: 'GuideToPharmacology Ligand Identifier', primary_name: :ligand, transform: upcase do
               name :ligand_gene_symbol, nomenclature: 'Gene Symbol (for Endogenous Peptides)', unless: blank_filter
               name :ligand, nomenclature: 'GuideToPharmacology Ligand Name', transform: clean
@@ -36,7 +36,6 @@ module Genome
               name :target, nomenclature: 'GuideToPharmacology Name', unless: blank_filter
               # target_ligand fields are ignored for now.
             end
-
             attributes :pubmed_id, name: 'PMID', unless: blank_filter
             attribute :ligand_context, name: 'Interaction Context', unless: blank_filter
             attribute :receptor_site, name: 'Specific Binding Site for Interaction', unless: blank_filter
@@ -45,9 +44,11 @@ module Genome
             attribute :action_comment, name: 'Details of Interaction', unless: blank_filter
             attribute :endogenous, name: 'Endogenous Drug?', unless: blank_filter
             attribute :primary_target, name: 'Direct Interaction?', unless: blank_filter
+            attribute :type, name: 'Interaction Type'
             #attribute :concentration_range, name: 'Micromolar Concentration Range of Drug From Study', unless: blank_filter
             #the attributes for affinity + concentration are left out, due to the kludgy appearance they would have in this format.
-          end
+          #binding.pry
+	        end
         end.save!
       end
     end
