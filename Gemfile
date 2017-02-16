@@ -47,5 +47,6 @@ group :test, :development  do
   gem 'stamp'
   gem 'database_cleaner'
   gem 'coveralls'
+  gem 'test-unit'
 end
 
