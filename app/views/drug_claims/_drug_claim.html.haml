@@ -19,11 +19,19 @@
         %h4
           Alternate Names
         %table(class="table table-condensed table-striped")
+          %button(class="my_popup_open")Open popup
           -drug_claim.drug_claim_aliases.each do |alt_name|
             %tr
               %td
                 =alt_name.alias
               %td=alt_name.nomenclature
+          %div(id="my_popup")
+            -drug_claim.drug_claim_aliases.each do |alt_name|
+              %tr
+                %td
+                  =alt_name.alias
+                %td=alt_name.nomenclature
+            / %button(class="my_popup_close"Close)
 
     %div(class="cell category")
       %div(class="item-panel")
@@ -48,3 +56,8 @@
           %p=[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
         -else
           %p=drug_claim.source.citation
+
+:javascript
+  $(document).ready(function() {
+    $('#my_popup').popup();
+  });
