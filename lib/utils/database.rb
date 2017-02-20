@@ -19,7 +19,6 @@ module Utils
 
         delete from gene_claim_attributes where gene_claim_id in (select id from gene_claims where source_id = '#{source_id}');
         delete from gene_claim_aliases where gene_claim_id in (select id from gene_claims where source_id = '#{source_id}');
-        delete from gene_claims_genes where gene_claim_id in (select id from gene_claims where source_id = '#{source_id}');
         delete from gene_claim_categories_gene_claims where gene_claim_id in (select id from gene_claims where source_id = '#{source_id}');
         delete from gene_claims where source_id = '#{source_id}';
 

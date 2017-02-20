@@ -44,7 +44,7 @@ class InteractionSearchResultPresenter
   end
 
   def gene_name
-    gene = @interaction_claim.gene_claim.genes.first
+    gene = @interaction_claim.gene_claim.gene
     if gene
       return gene.name
     end
@@ -56,7 +56,7 @@ class InteractionSearchResultPresenter
   end
 
   def gene_long_name
-    gene = @interaction_claim.gene_claim.genes.first
+    gene = @interaction_claim.gene_claim.gene
     if gene
       return gene.long_name || gene.name
     end
@@ -69,7 +69,7 @@ class InteractionSearchResultPresenter
 
   def potentially_druggable_categories
     @interaction_claim.gene_claim
-      .genes.first
+      .gene
       .gene_claims
       .flat_map { |gc| gc.gene_claim_categories }
       .map { |c| c.name }
