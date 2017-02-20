@@ -52,7 +52,7 @@ class InteractionSearchResultPresenter
   end
 
   def drug_name
-    @interaction_claim.drug_claim.drugs.first.name
+    @interaction_claim.drug_claim.drug.name
   end
 
   def gene_long_name
