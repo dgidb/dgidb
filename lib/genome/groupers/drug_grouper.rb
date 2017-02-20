@@ -23,7 +23,7 @@ module Genome
       end
 
       def self.preload
-        DataModel::DrugClaimAlias.includes(drug_claim: [:drugs, :source]).all.each do |dca|
+        DataModel::DrugClaimAlias.includes(drug_claim: [:drug, :source]).all.each do |dca|
           drug_claim_alias = dca.alias
           if drug_claim_alias =~ /^\d+$/
             if dca.nomenclature =~ /pubchem.*(compound)|(cid)/i
@@ -47,7 +47,7 @@ module Genome
           drug = DataModel::Drug.where(name: key).first
           if drug 
             drug_claims.each do |drug_claim|
-              drug_claim.drugs << drug unless drug_claim.drugs.include?(drug)
+              drug_claim.drug = drug if drug_claim.drug.nil?
               drug_claim.save
             end
           else
@@ -62,7 +62,7 @@ module Genome
 
       def self.add_members
         DataModel::DrugClaim.all.each do |drug_claim|
-          next if drug_claim.drugs.any?
+          next unless drug_claim.drug.nil?
           indirect_groups = Hash.new { |h, k| h[k] = 0 }
           direct_groups = Hash.new { |h, k| h[k] = 0 }
           direct_groups[drug_claim.name] += 1 if DataModel::Drug.where(name: drug_claim.name).any?
@@ -70,14 +70,14 @@ module Genome
             direct_groups[drug_claim_alias.alias] +=1 if DataModel::Drug.where(name: drug_claim_alias.alias).any?
             alt_drugs = @alt_to_other[drug_claim_alias.alias].map(&:drug_claim)
             alt_drugs.each do |alt_drug|
-              indirect_drug = alt_drug.drugs.first
+              indirect_drug = alt_drug.drug
               indirect_groups[indirect_drug.name] += 1 if indirect_drug
             end
             nomenclature = drug_claim_alias.nomenclature
             if nomenclature =~ /pubchem.*(compound)|(cid)/i
               alt_drugs = @alt_to_pubchem_cid[drug_claim_alias.alias].map(&:drug_claim)
               alt_drugs.each do |alt_drug|
-                indirect_drug = alt_drug.drugs.first
+                indirect_drug = alt_drug.drug
                 indirect_groups[indirect_drug.name] += 1 if indirect_drug
               end
             end
