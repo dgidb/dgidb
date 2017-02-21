@@ -17,8 +17,8 @@
     %div(class="cell category")
       %div(class="item-panel")
         %h4{style: "display: inline-block;"}
-          Alternate Names 
-          %button{id:drug_claim.id, style: "display: inline; align: right;"} Show All
+          Alternate Names
+          %button{class: "btn btn-default", disabled: ("disabled" if all_shown), id:drug_claim.id, style: "display: inline; align: right;"} Show All
         %table{class: "table table-condensed table-striped", id:"table_#{drug_claim.id}"}
           -drug_claim.drug_claim_aliases.each do |alt_name|
             %tr
@@ -51,4 +51,3 @@
           %p=[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
         -else
           %p=drug_claim.source.citation
-
