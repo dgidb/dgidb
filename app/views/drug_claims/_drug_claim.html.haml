@@ -16,22 +16,17 @@
   %div(class="item-content")
     %div(class="cell category")
       %div(class="item-panel")
-        %h4
-          Alternate Names
-        %table(class="table table-condensed table-striped")
-          %button(class="my_popup_open")Open popup
+        %h4{style: "display: inline-block;"}
+          Alternate Names 
+          %button{id:drug_claim.id, style: "display: inline; align: right;"} Show All
+        %table{class: "table table-condensed table-striped", id:"table_#{drug_claim.id}"}
           -drug_claim.drug_claim_aliases.each do |alt_name|
             %tr
               %td
                 =alt_name.alias
               %td=alt_name.nomenclature
-          %div(id="my_popup")
-            -drug_claim.drug_claim_aliases.each do |alt_name|
-              %tr
-                %td
-                  =alt_name.alias
-                %td=alt_name.nomenclature
-            / %button(class="my_popup_close"Close)
+        
+        
 
     %div(class="cell category")
       %div(class="item-panel")
@@ -57,7 +52,3 @@
         -else
           %p=drug_claim.source.citation
 
-:javascript
-  $(document).ready(function() {
-    $('#my_popup').popup();
-  });

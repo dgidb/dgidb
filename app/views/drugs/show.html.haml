@@ -36,9 +36,29 @@
             .span12
               =render partial: 'drugs/by_source_table', locals: {drug: @drug}
 
+%br
+
   =javascript_include_tag "jquery.masonry.min"
   =javascript_include_tag "jquery.dataTables.min"
   =javascript_include_tag "pagination_bootstrap"
   =javascript_include_tag "gene_groups"
   =javascript_include_tag "gene-list-tabs"
 
+:javascript
+  // show more/fewer aliases
+  $("table").find('tr:gt(4)').hide();
+  $("button").show_all = 0;
+
+  $("button").on("click", function() {
+      $("#table_" + this.id).find('tr:gt(4)').toggle();
+      this.show_all = !this.show_all;
+      console.log(this.show_all);
+
+      if (this.show_all) {
+        $(this).html("Show Less");
+      }
+      else {
+        $(this).html("Show All");
+      }
+
+  });

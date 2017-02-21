@@ -4,7 +4,6 @@
     %title=h yield(:title)
     =stylesheet_link_tag    "application",   media: 'all'
     =javascript_include_tag "application"
-    =javascript_include_tag "https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"
     =csrf_meta_tags
     %meta(name="description" content="DGIdb, The Drug Gene Interaction Database, is a research resource that can be used to search candidate genes or drugs against the known and potentially druggable genome.")
     %meta(name="keywords" content="genomics,genome,drug,gene,interactions,druggable,druggability,drugability,druggable-genome,drugable,dgidb,dgi-db,precision,medicine,precision-medicine,McDonnell,genome,institute,washington,university")
@@ -77,3 +76,4 @@
        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
        })();
+       
