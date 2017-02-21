@@ -1,5 +1,5 @@
 class NewsFilter
-  def self.filter(controller)
+  def self.before(controller)
     unread_news = if read_date = controller.send(:cookies)[:most_recent_post_date]
                      most_recent_post_date > DateTime.parse(read_date)
                    else
