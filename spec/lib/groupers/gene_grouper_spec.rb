@@ -36,9 +36,9 @@ describe Genome::Groupers::GeneGrouper do
 
   it 'should add the gene claims used to create the gene entities to their genes' do
     gene_claims = create_entrez_gene_aliases
-    gene_claims.each { |gc| expect(gc.genes.count).to eq 0 }
+    gene_claims.each { |gc| expect(gc.gene).to be_nil }
     Genome::Groupers::GeneGrouper.run
-    gene_claims.each { |gc| expect(gc.genes.count).to eq 1 }
+    gene_claims.each { |gc| gc.reload; expect(gc.gene).not_to be_nil }
   end
 
   it 'should add gene claims to the gene if there was only one direct match' do
@@ -47,7 +47,7 @@ describe Genome::Groupers::GeneGrouper do
                                     name: grouped_gene_claim.gene_claim_aliases.first.alias)
     Genome::Groupers::GeneGrouper.run
 
-    expect(grouped_gene_claim.genes).to eq gene_claim_to_group.genes
+    expect(grouped_gene_claim.gene).to eq gene_claim_to_group.gene
   end
 
   it 'should add gene claims if there were no direct matches and one indirect match' do
@@ -60,8 +60,8 @@ describe Genome::Groupers::GeneGrouper do
 
     Genome::Groupers::GeneGrouper.run
 
-    entrez_gene = grouped_gene_claims.first.genes.first
-    grouped_gene = ungrouped_gene_claim.genes.first
+    entrez_gene = grouped_gene_claims.first.gene
+    grouped_gene = ungrouped_gene_claim.gene
 
     expect(entrez_gene).to eq grouped_gene
   end
@@ -79,7 +79,8 @@ describe Genome::Groupers::GeneGrouper do
               alias: test_name, gene_claim: ungrouped_gene_claim)
 
     Genome::Groupers::GeneGrouper.run
-    expect(ungrouped_gene_claim.genes).not_to be_empty
+    ungrouped_gene_claim.reload
+    expect(ungrouped_gene_claim.gene).not_to be_nil
   end
 
   describe 'it should not add gene claims if there was any ambiguity' do
@@ -92,7 +93,7 @@ describe Genome::Groupers::GeneGrouper do
 
       Genome::Groupers::GeneGrouper.run
 
-      expect(gene_claim_to_group.genes).to be_empty
+      expect(gene_claim_to_group.gene).to be_nil
     end
 
     it 'has > 1 indirect' do
@@ -108,7 +109,7 @@ describe Genome::Groupers::GeneGrouper do
 
       Genome::Groupers::GeneGrouper.run
 
-      expect(ungrouped_gene_claim.genes).to be_empty
+      expect(ungrouped_gene_claim.gene).to be_nil
     end
 
   end

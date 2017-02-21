@@ -4,13 +4,13 @@ describe 'gene_categories_for_sources' do
   def setup_categories_and_genes
     category = Fabricate(:gene_claim_category)
     source = Fabricate(:source)
-    gene_claim = Fabricate(:gene_claim, source: source, gene_claim_categories: [category])
-    genes = (1..3).map { Fabricate(:gene, gene_claims: [gene_claim]) }
-    [category, source, gene_claim, genes]
+    gene = Fabricate(:gene)
+    gene_claim = Fabricate(:gene_claim, source: source, gene_claim_categories: [category], gene: gene)
+    [category, source, gene_claim, gene]
   end
 
   it 'should return a list of json hashes that contain category names and gene counts' do
-    (category, source, _, genes) = setup_categories_and_genes
+    (category, source, _, gene) = setup_categories_and_genes
     source_name = CGI::escape(source.source_db_name)
     visit "/api/v1/gene_categories_for_sources.json?sources=#{source_name}"
 
@@ -22,7 +22,7 @@ describe 'gene_categories_for_sources' do
 
 
     expect(body.first['name']).to eq(category.name)
-    expect(body.first['gene_count'].to_i).to eq(genes.count)
+    expect(body.first['gene_count'].to_i).to eq(1)
   end
 
   it 'should only return categories in requested_sources' do
