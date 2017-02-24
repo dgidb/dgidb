@@ -5,6 +5,7 @@ module DataModel
 
     has_many :gene_claims
     has_many :gene_gene_interaction_claims, inverse_of: :gene
+    has_many :interactions
 
     cache_query :all_gene_names, :all_gene_names
 
