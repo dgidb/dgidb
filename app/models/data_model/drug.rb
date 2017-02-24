@@ -4,6 +4,7 @@ module DataModel
     include Genome::Extensions::HasCacheableQuery
 
     has_many :drug_claims
+    has_many :interactions
 
     cache_query :all_drug_names, :all_drug_names
 
