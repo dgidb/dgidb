@@ -249,14 +249,23 @@ CREATE TABLE interaction_claims (
 
 
 --
+-- Name: interaction_types_interactions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE interaction_types_interactions (
+    interaction_claim_type_id text NOT NULL,
+    interaction_id text NOT NULL
+);
+
+
+--
 -- Name: interactions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE interactions (
     id text NOT NULL,
     drug_id text NOT NULL,
-    gene_id text NOT NULL,
-    interaction_type text
+    gene_id text NOT NULL
 );
 
 
@@ -456,6 +465,14 @@ ALTER TABLE ONLY interaction_claim_types
 
 ALTER TABLE ONLY interaction_claims
     ADD CONSTRAINT interaction_claims_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: interaction_types_interactions interaction_types_interactions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_types_interactions
+    ADD CONSTRAINT interaction_types_interactions_pkey PRIMARY KEY (interaction_claim_type_id, interaction_id);
 
 
 --
@@ -909,6 +926,14 @@ ALTER TABLE ONLY interaction_claims
 
 
 --
+-- Name: interaction_types_interactions fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_types_interactions
+    ADD CONSTRAINT fk_interaction FOREIGN KEY (interaction_id) REFERENCES interactions(id);
+
+
+--
 -- Name: interaction_claim_types_interaction_claims fk_interaction_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -930,6 +955,14 @@ ALTER TABLE ONLY interaction_claim_attributes
 
 ALTER TABLE ONLY interaction_claim_types_interaction_claims
     ADD CONSTRAINT fk_interaction_claim_type FOREIGN KEY (interaction_claim_type_id) REFERENCES interaction_claim_types(id) MATCH FULL;
+
+
+--
+-- Name: interaction_types_interactions fk_interaction_type; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_types_interactions
+    ADD CONSTRAINT fk_interaction_type FOREIGN KEY (interaction_claim_type_id) REFERENCES interaction_claim_types(id);
 
 
 --
