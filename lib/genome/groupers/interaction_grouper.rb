@@ -3,15 +3,9 @@ module Genome
     class InteractionGrouper
       def self.run
         ActiveRecord::Base.transaction do
-          puts 'reset interactions'
-          reset
           puts 'add members'
           add_members
         end
-      end
-
-      def self.reset
-        DataModel::Interaction.destroy_all
       end
 
       def self.add_members
