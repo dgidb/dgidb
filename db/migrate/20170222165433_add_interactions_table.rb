@@ -1,5 +1,6 @@
 class AddInteractionsTable < ActiveRecord::Migration
   def up
+    remove_column :interaction_claims, :interaction_type
     add_column :interaction_claims, :interaction_id, :text
     create_table :interactions, id: false do |t|
       t.text :id, null: false
