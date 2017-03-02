@@ -240,7 +240,6 @@ CREATE TABLE interaction_claims (
     id text NOT NULL,
     drug_claim_id text NOT NULL,
     gene_claim_id text NOT NULL,
-    interaction_type text,
     description text,
     source_id text,
     known_action_type character varying(255),
