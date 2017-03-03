@@ -35,6 +35,19 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: drug_aliases; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE drug_aliases (
+    id text NOT NULL,
+    drug_id text NOT NULL,
+    alias text NOT NULL,
+    nomenclature text NOT NULL,
+    source_id text NOT NULL
+);
+
+
+--
 -- Name: drug_claim_aliases; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -42,7 +55,6 @@ CREATE TABLE drug_claim_aliases (
     id text NOT NULL,
     drug_claim_id text NOT NULL,
     alias text NOT NULL,
-    description text,
     nomenclature text NOT NULL
 );
 
@@ -321,6 +333,14 @@ CREATE TABLE sources (
     source_trust_level_id character varying(255),
     gene_gene_interaction_claims_count integer DEFAULT 0
 );
+
+
+--
+-- Name: drug_aliases drug_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_aliases
+    ADD CONSTRAINT drug_aliases_pkey PRIMARY KEY (id);
 
 
 --
@@ -798,6 +818,14 @@ ALTER TABLE ONLY interactions
 
 
 --
+-- Name: drug_aliases fk_drug; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_aliases
+    ADD CONSTRAINT fk_drug FOREIGN KEY (drug_id) REFERENCES drugs(id);
+
+
+--
 -- Name: drug_claim_types_drug_claims fk_drug_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -966,6 +994,14 @@ ALTER TABLE ONLY interaction_types_interactions
 
 
 --
+-- Name: drug_aliases fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_aliases
+    ADD CONSTRAINT fk_source FOREIGN KEY (source_id) REFERENCES sources(id);
+
+
+--
 -- Name: drug_claims fk_source_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1052,3 +1088,5 @@ INSERT INTO schema_migrations (version) VALUES ('20170217172327');
 INSERT INTO schema_migrations (version) VALUES ('20170217184303');
 
 INSERT INTO schema_migrations (version) VALUES ('20170222165433');
+
+INSERT INTO schema_migrations (version) VALUES ('20170302155212');
