@@ -19,7 +19,6 @@ end
 Fabricator(:drug_claim_attribute, class_name: 'DataModel::DrugClaimAttribute') do
   name { sequence(:name) { |i| "Drug Claim Attribute Name ##{i}" } }
   value { sequence(:value) { |i| "Drug Claim Attribute Value ##{i}" } }
-  description ''
 end
 
 Fabricator(:drug_claim_type, class_name: 'DataModel::DrugClaimType') do
