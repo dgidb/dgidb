@@ -12,7 +12,6 @@ end
 
 Fabricator(:drug_claim_alias, class_name: 'DataModel::DrugClaimAlias') do |f|
   f.alias { sequence(:alias) { |i| "Drug Claim Alias ##{i}" } }
-  f.description ''
   f.nomenclature { sequence(:nomenclature) { |i| "Drug Claim Alias nomenclature ##{i}" } }
 end
 
