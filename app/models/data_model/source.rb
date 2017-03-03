@@ -7,6 +7,7 @@ module DataModel
     has_many :drug_claims, inverse_of: :source, dependent: :delete_all
     has_many :interaction_claims, inverse_of: :source, dependent: :delete_all
     has_many :gene_gene_interaction_claims, inverse_of: :source, dependent: :delete_all
+    has_and_belongs_to_many :drug_aliases
     belongs_to :source_type, inverse_of: :sources
     belongs_to :source_trust_level, inverse_of: :sources
 
