@@ -17,6 +17,8 @@ module Genome
           add_members
           puts 'add drug aliases'
           add_aliases
+          puts 'add drug attributes'
+          add_attributes
         end
       end
 
@@ -26,6 +28,7 @@ module Genome
           drug_claim.save
         end
         DataModel::DrugAlias.destroy_all
+        DataModel::DrugAttribute.destroy_all
         DataModel::InteractionClaim.all.each do |interaction_claim|
           interaction_claim.interaction = nil
           interaction_claim.save
@@ -128,6 +131,35 @@ module Genome
                 existing_drug_aliases.each do |drug_alias|
                   unless drug_alias.sources.include? drug_claim.source
                     drug_alias.sources << drug_claim.source
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+
+      def self.add_attributes
+        DataModel::Drug.all.each do |drug|
+          drug.drug_claims.each do |drug_claim|
+            drug_claim.drug_claim_attributes.each do |dca|
+              existing_drug_attributes = DataModel::DrugAttribute.where(
+                drug_id: drug.id,
+                name: dca.name,
+                value: dca.value
+              )
+              if existing_drug_attributes.empty?
+                DataModel::DrugAttribute.new.tap do |a|
+                  a.drug = drug
+                  a.name = dca.name
+                  a.value = dca.value
+                  a.sources << drug_claim.source
+                  a.save
+                end
+              else
+                existing_drug_attributes.each do |drug_attribute|
+                  unless drug_attribute.sources.include? drug_claim.source
+                    drug_attribute.sources << drug_claim.source
                   end
                 end
               end

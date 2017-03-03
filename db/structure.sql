@@ -57,6 +57,28 @@ CREATE TABLE drug_aliases_sources (
 
 
 --
+-- Name: drug_attributes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE drug_attributes (
+    id text NOT NULL,
+    drug_id text NOT NULL,
+    name text NOT NULL,
+    value text NOT NULL
+);
+
+
+--
+-- Name: drug_attributes_sources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE drug_attributes_sources (
+    drug_attribute_id text NOT NULL,
+    source_id text NOT NULL
+);
+
+
+--
 -- Name: drug_claim_aliases; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -76,8 +98,7 @@ CREATE TABLE drug_claim_attributes (
     id text NOT NULL,
     drug_claim_id text NOT NULL,
     name text NOT NULL,
-    value text NOT NULL,
-    description text
+    value text NOT NULL
 );
 
 
@@ -357,6 +378,22 @@ ALTER TABLE ONLY drug_aliases
 
 ALTER TABLE ONLY drug_aliases_sources
     ADD CONSTRAINT drug_aliases_sources_pkey PRIMARY KEY (drug_alias_id, source_id);
+
+
+--
+-- Name: drug_attributes drug_attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_attributes
+    ADD CONSTRAINT drug_attributes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: drug_attributes_sources drug_attributes_sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_attributes_sources
+    ADD CONSTRAINT drug_attributes_sources_pkey PRIMARY KEY (drug_attribute_id, source_id);
 
 
 --
@@ -842,11 +879,27 @@ ALTER TABLE ONLY drug_aliases
 
 
 --
+-- Name: drug_attributes fk_drug; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_attributes
+    ADD CONSTRAINT fk_drug FOREIGN KEY (drug_id) REFERENCES drugs(id);
+
+
+--
 -- Name: drug_aliases_sources fk_drug_alias; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY drug_aliases_sources
     ADD CONSTRAINT fk_drug_alias FOREIGN KEY (drug_alias_id) REFERENCES drug_aliases(id);
+
+
+--
+-- Name: drug_attributes_sources fk_drug_attribute; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_attributes_sources
+    ADD CONSTRAINT fk_drug_attribute FOREIGN KEY (drug_attribute_id) REFERENCES drug_attributes(id);
 
 
 --
@@ -1026,6 +1079,14 @@ ALTER TABLE ONLY drug_aliases_sources
 
 
 --
+-- Name: drug_attributes_sources fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_attributes_sources
+    ADD CONSTRAINT fk_source FOREIGN KEY (source_id) REFERENCES sources(id);
+
+
+--
 -- Name: drug_claims fk_source_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1114,3 +1175,5 @@ INSERT INTO schema_migrations (version) VALUES ('20170217184303');
 INSERT INTO schema_migrations (version) VALUES ('20170222165433');
 
 INSERT INTO schema_migrations (version) VALUES ('20170302155212');
+
+INSERT INTO schema_migrations (version) VALUES ('20170303162418');
