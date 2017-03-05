@@ -1,0 +1,2 @@
+module InteractionsHelper
+end
