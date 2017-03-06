@@ -15,6 +15,8 @@ module Genome
           create_groups
           puts 'add members'
           add_members
+          puts 'add drug aliases'
+          add_aliases
         end
       end
 
@@ -91,6 +93,30 @@ module Genome
             drug = DataModel::Drug.where(name: indirect_groups.keys.first).first
             drug.drug_claims << drug_claim unless drug.drug_claims.include?(drug_claim)
             drug.save
+          end
+        end
+      end
+
+      def self.add_aliases
+        DataModel::Drug.all.each do |drug|
+          drug.drug_claims.each do |drug_claim|
+            drug_claim.drug_claim_aliases.each do |dca|
+              existing_drug_aliases = DataModel::DrugAlias.where(
+                drug_id: drug.id,
+                alias: dca.alias,
+                nomenclature: dca.nomenclature,
+                source_id: drug_claim.source_id
+              )
+              if existing_drug_aliases.empty?
+                DataModel::DrugAlias.new.tap do |a|
+                  a.drug = drug
+                  a.alias = dca.alias
+                  a.nomenclature = dca.nomenclature
+                  a.source = drug_claim.source
+                  a.save
+                end
+              end
+            end
           end
         end
       end
