@@ -1,64 +1,55 @@
+/ show.html.erb
+/ view for show action in drug controller
+/ rendered in application layout by drug show action
+
+/ similar to show.html.haml, as in it provides the scaffold for the tabs
+/ - shared summary tab partial
+/ - shared interactions tab partial
+/ - shared claims tab partial
+
 =content_for :title, "DGIdb - #@title Drug Record"
 =content_for :header do
-  %h2
-    %span{id: "drug_name"}
-      =@title
-    %small
-      data sources and alternate names 
-      %a(href="/faq#defined")
-        =icon('question-sign')
+	%h2
+		%span{id: "drug_name"}
+			=@title
+		%small
+			Drug Record
+			%a(href="/faq#defined")
+				=icon('question-sign') # this is not going to the right spot
 
 - cache @drug do
-  .container-fluid
-    .tabbable
-      %ul.nav.nav-tabs
-        %li.active
-          %a(href="#detailed_view" data-toggle="tab") Detailed View
-        %li
-          %a(href="#by_source" data-toggle="tab") By Source
-      .tab-content
-        .tab-pane.active#detailed_view
-          .row-fluid#container
-            %div(class="span2")
-              %div(id="list-filter-tabs")
+	.container-fluid
+		.tabbable
+			%ul.nav.nav-tabs
+				%li.active
+					%a(href="#summary data-toggle="tab") Summary
+				%li
+					%a(href="#interactions" data-toggle="tab") Interactions
+				%li
+					%a(href="#interactions" data-toggle="tab") Claims
+			.tab-content
+				.tab-pane.active#summary
+					.row-fluid#container 
+					-# what is #container doing, and what is this span doing? I want to eventually have sort of a 3 card layout in summary... original had a div class=span10
+						.span10
+							=render partial: 'shared/gene_drug_summary_tab', locals: { drug: @drug } # partial will check if drug is null to tell if it is in drug or gene mode
 
-                %ul(class="nav nav-tabs nav-stacked")
-                  %li(class="active")
-                    %a(href="#" data-category="all")
-                      %i(class="icon-chevron-right")
-                      All
+				.tab-pane.fade#interactions
+					.row-fluid#container
+						.span10
+							=render partial: 'shared/interactions_tab', locals: {drug: @drug}
 
-            %div(class="span10")
-              =render partial: 'drugs/drug', locals: { drug: @drug }
-
-        .tab-pane.fade#by_source
-          .row-fluid
-            .span12
-              =render partial: 'drugs/by_source_table', locals: {drug: @drug}
+				.tab-pane.fade#interactions
+					.row-fluid
+						.span10
+							=render partial: 'shared/claims_tab', locals: {drug: @drug}
 
 %br
+-# pretty sure I put break here because the body was overlapping with the footer
 
+-# I should figure out what this is all doing... I suspect gene_groups and gene-list-tabs are actually for both gene and drug
   =javascript_include_tag "jquery.masonry.min"
   =javascript_include_tag "jquery.dataTables.min"
   =javascript_include_tag "pagination_bootstrap"
   =javascript_include_tag "gene_groups"
   =javascript_include_tag "gene-list-tabs"
-
-:javascript
-  // show more/fewer aliases
-  $("table").find('tr:gt(4)').hide();
-  $("button").show_all = 0;
-
-  $("button").on("click", function() {
-      $("#table_" + this.id).find('tr:gt(4)').toggle();
-      this.show_all = !this.show_all;
-      console.log(this.show_all);
-
-      if (this.show_all) {
-        $(this).html("Show Less");
-      }
-      else {
-        $(this).html("Show All");
-      }
-
-  });
