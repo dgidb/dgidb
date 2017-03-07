@@ -1,0 +1,35 @@
+-#summary panel for claim to be used in lists
+
+- cache drug_claim do
+  %div(class="item-title")
+    %div(class="item-name")
+      %h3(class="item-source")
+        =succeed ':' do
+          =link_to drug_claim.source.source_db_name, source_path(drug_claim.source.source_db_name)
+        %span(class="item-id")
+          =ext_link_to drug_claim.name, drug_claim.original_data_source_url
+    %div(class="item-corner")
+      %ul(class="attribute-list")
+        %li
+          %strong
+            Version:
+          =drug_claim.source.source_db_version
+
+  %div(class="item-content")
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4{style: "display: inline-block;"}
+          Alternate Names: 
+          = drug_claim.drug_claim_aliases.count    
+
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Metadata:
+          = drug_claim.drug_claim_attributes.length
+
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Citations:
+          

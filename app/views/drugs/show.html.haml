@@ -22,34 +22,33 @@
 		.tabbable
 			%ul.nav.nav-tabs
 				%li.active
-					%a(href="#summary data-toggle="tab") Summary
+					%a(href="#summary" data-toggle="tab") Summary
 				%li
 					%a(href="#interactions" data-toggle="tab") Interactions
 				%li
-					%a(href="#interactions" data-toggle="tab") Claims
+					%a(href="#claims" data-toggle="tab") Claims
 			.tab-content
 				.tab-pane.active#summary
 					.row-fluid#container 
-					-# what is #container doing, and what is this span doing? I want to eventually have sort of a 3 card layout in summary... original had a div class=span10
-						.span10
+						.span12
 							=render partial: 'shared/gene_drug_summary_tab', locals: { drug: @drug } # partial will check if drug is null to tell if it is in drug or gene mode
 
 				.tab-pane.fade#interactions
 					.row-fluid#container
-						.span10
-							=render partial: 'shared/interactions_tab', locals: {drug: @drug}
+						.span12
+							=render partial: 'shared/interactions_tab', locals: { drug: @drug }
 
-				.tab-pane.fade#interactions
-					.row-fluid
-						.span10
-							=render partial: 'shared/claims_tab', locals: {drug: @drug}
+				.tab-pane.fade#claims
+					.row-fluid#container
+						.span12
+							=render partial: 'shared/claims_tab', locals: { drug: @drug }
 
 %br
 -# pretty sure I put break here because the body was overlapping with the footer
 
 -# I should figure out what this is all doing... I suspect gene_groups and gene-list-tabs are actually for both gene and drug
-  =javascript_include_tag "jquery.masonry.min"
-  =javascript_include_tag "jquery.dataTables.min"
-  =javascript_include_tag "pagination_bootstrap"
-  =javascript_include_tag "gene_groups"
-  =javascript_include_tag "gene-list-tabs"
+	=javascript_include_tag "jquery.masonry.min"
+	=javascript_include_tag "jquery.dataTables.min"
+	=javascript_include_tag "pagination_bootstrap"
+	=javascript_include_tag "gene_groups"
+	=javascript_include_tag "gene-list-tabs"

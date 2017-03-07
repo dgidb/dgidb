@@ -1,0 +1,41 @@
+=content_for :title, "DGIdb - #@title Interaction Record"
+=content_for :header do
+	%h2
+		%span{id: "interaction_name"}
+			=@title # just something simple like "Drug and Gene"?
+		%small
+			Interaction Record
+			%a(href="/faq#defined")
+				=icon('question-sign') # this is not going to the right spot
+
+- cache @interaction do
+	.container-fluid
+		.tabbable
+			%ul.nav.nav-tabs
+				%li.active
+					%a(href="#summary data-toggle="tab") Summary
+				%li
+					%a(href="#claims" data-toggle="tab") Claims
+			.tab-content
+			-# I think this is the problem adam was talking about, with how it loads all at once...
+			-# look at drug/gene presenter, the issue is probably that it indiscriminantly just performs a bunch of actions all together - I should just split up those actions so they only get run in certain partials
+				.tab-pane.active#summary
+					.row-fluid#container 
+					-# what is #container doing, and what is this span doing? I want to eventually have sort of a 3 card layout in summary... original had a div class=span10
+						.span10
+							=render partial: 'shared/gene_drug_summary_tab', locals: { drug: @drug } # partial will check if drug is null to tell if it is in drug or gene mode
+
+				.tab-pane.fade#claims
+					.row-fluid
+						.span10
+							=render partial: 'shared/claims_tab', locals: {drug: @drug}
+
+%br
+-# pretty sure I put break here because the body was overlapping with the footer
+
+-# I should figure out what this is all doing... I suspect gene_groups and gene-list-tabs are actually for both gene and drug
+  =javascript_include_tag "jquery.masonry.min"
+  =javascript_include_tag "jquery.dataTables.min"
+  =javascript_include_tag "pagination_bootstrap"
+  =javascript_include_tag "gene_groups" # these might have to be a bit different for interactions
+  =javascript_include_tag "gene-list-tabs"

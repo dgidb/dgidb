@@ -1,0 +1,60 @@
+=content_for :title, "DGIdb - #@title Gene Record"
+=content_for :header do
+  %h2
+    =@title
+    %small
+      data sources and alternate names
+      %a(href="/faq#defined")
+        =icon('question-sign')
+  %a{class: ['btn', 'btn-success'], href: "/interaction_search_results?genes=#{@title}"}
+    =icon('search', class: 'icon-white')
+    =" interactions for #{@title}"
+  %a{class: ['btn', 'btn-success'], href: "/categories_search_results?genes=#{@title}"}
+    =icon('search', class: 'icon-white')
+    =" categories for #{@title}"
+  %a{class: ['btn', 'btn-success'], href: "/interactions_for_related_genes?genes=#{@title}"}
+    =icon('search', class: 'icon-white')
+    =" interactions for genes related to #{@title}"
+  %p
+  %p
+    Hit the buttons above to obtain drug-gene interaction or category views for this gene.
+    The following section provides a summary of information from each DGIdb source for the current gene.
+    Sections are colored by source type (green for gene info, blue for interactions, orange for categories, and red for drugs.
+    Each section contains information specific to this type of source.
+    Link outs to relevant records from the original source databases are provided wherever possible (marked with a special icon beside them).
+    The 'By Source' tab summarizes the alternate names for this gene as used by each individual source.
+
+-cache @gene do
+  .container-fluid
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a(href="#detailed_view" data-toggle="tab") Detailed View
+        %li
+          %a(href="#by_source" data-toggle="tab") By Source
+      .tab-content
+        .tab-pane.active#detailed_view
+          .row-fluid#container
+            %div(class="span2")
+              %div(id="list-filter-tabs")
+
+                %ul(class="nav nav-tabs nav-stacked")
+                  %li(class="active")
+                    %a(href="#" data-category="all")
+                      %i(class="icon-chevron-right")
+                      All
+
+            %div(class="span10")
+              =render partial: 'genes/gene', locals:{gene: @gene}
+
+        .tab-pane.fade#by_source
+          .row-fluid
+            .span12
+              =render partial: 'genes/by_source_table', locals:{gene: @gene}
+
+  =javascript_include_tag "jquery.masonry.min"
+  =javascript_include_tag "jquery.dataTables.min"
+  =javascript_include_tag "pagination_bootstrap"
+  =javascript_include_tag "gene_groups"
+  =javascript_include_tag "gene-list-tabs"
+

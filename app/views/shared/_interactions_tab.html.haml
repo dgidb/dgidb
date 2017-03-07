@@ -1,0 +1,12 @@
+-#view for interactions tab for gene/drug
+
+-#lists interaction summary panels
+
+-#will rely on helper to get all interactions for gene or drug
+
+-#entity = gene || drug ... this doesn't look like it work since i got that error undefined gene
+
+/ %ul(class="result-list" id="list-results")
+/   -entity.interactions.sort_by{ |d| d.sort_value }.each do |interaction| # sort by what?
+/     %li(class="#{interaction.source.source_type.type}" data-category="#{interaction.source.source_type.type}" data-name="#{interaction.source.source_type.display_name}")
+/       =render partial: 'shared/interaction_summary_tab', locals: { interaction: interaction }
