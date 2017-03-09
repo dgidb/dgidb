@@ -12,7 +12,7 @@ class InteractionSearchResult
         .flat_map{ |gc| gc.interaction_claims }
         .uniq
       @interaction_claims = results.reject do |ic|
-        ic.drug_claim.drugs.first.nil?
+        ic.drug_claim.drug.nil?
       end
     else
       results = identifiers.flat_map { |d| d.drug_claims }

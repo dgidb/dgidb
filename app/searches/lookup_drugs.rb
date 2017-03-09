@@ -5,7 +5,7 @@ class LookupDrugs
     results = match_search_terms_to_objects(search_terms, scope)
     results_to_drugs = match_objects_to_drugs(results, search_terms)
     de_dup_results(results_to_drugs).map do |terms, matched_genes|
-      wrapper_class.new(terms, matched_genes, 'drugs')
+      wrapper_class.new(terms, matched_genes.compact, 'drugs')
     end
   end
 
@@ -17,9 +17,9 @@ class LookupDrugs
         when DataModel::Drug
           results_to_drug_groups[result.name] << result
         when DataModel::DrugClaimAlias
-          results_to_drug_groups[result.alias] += result.drug_claim.drugs # Come back to this
+          results_to_drug_groups[result.alias] << result.drug_claim.drug # Come back to this
         when DataModel::DrugClaim
-          results_to_drug_groups[result.name] += result.drugs
+          results_to_drug_groups[result.name] << result.drug
       end
     end
     results_to_drug_groups
