@@ -5,8 +5,13 @@ getting_started:
   description: >
     <h5>Mining the druggable genome for personalized medicine</h5>
 
-    Citation: <a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.2689.html">DGIdb - mining the druggable genome.</a> Malachi Griffith*, Obi L Griffith*, Adam C Coffman, James V Weible, Josh F McMichael, Nicholas C Spies, James Koval, Indraniel Das, Matthew B Callaway, James M Eldred, Christopher A Miller, Janakiraman Subramanian, Ramaswamy Govindan, 
-    Runjun D Kumar, Ron Bose, Li Ding, Jason R Walker, David E Larson, David J Dooling, Scott M Smith, Timothy J Ley, Elaine R Mardis, Richard K Wilson. Nature Methods (2013) doi:10.1038/nmeth.2689. *These authors contributed equally to this work.<br><br>
+    Citation: <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">DGIdb 2.0: mining clinically relevant drug-gene interactions.</a>
+              Wagner AH, Coffman AC, Ainscough BJ, Spies NC, Skidmore ZL,
+              Campbell KM, Krysiak K, Pan D, McMichael JF, Eldred JM, Walker JR,
+              Wilson RK, Mardis ER, Griffith M, Griffith OL.
+
+              Nucleic Acids Research.
+              2016 Jan 4;44(D1):D1036-44. doi:10.1093/nar/gkv1165.<br><br>
 
     In the era of clinical sequencing and personalized medicine, investigators are frequently presented with lists of mutated or otherwise altered genes implicated in disease of a specific patient or cohort. Numerous resources exist to help form hypotheses about how such genomic events might be targeted therapeutically. However, utilizing these resources typically involves tedious manual review of literature, clinical trial records, and knowledge bases. No tools currently exist which collect and curate these resources and provide a simple interface for searching lists of genes against the existing compendia of known or potential drug-gene interactions. The drug-gene interaction database (DGIdb) attempts to address this challenge. Using a combination of expert curation and text-mining, drug-gene interactions have been mined from DrugBank, therapeutic target database (TTD), PharmGKB, a list of targeted agents in lung cancer and ClinicalTrials.gov. Genes have also been categorized as potentially druggable according to membership in selected pathways, molecular functions and gene families from the Gene Ontology, dGene, and “druggable genome” lists from Hopkins and Groom (2002) and Russ and Lampel (2005). Genes are defined according to Entrez and Ensembl and drugs according to PubChem.  DGIdb contains over 40,000 genes and 10,000 drugs involved in over 15,000 drug-gene interactions or belonging to one of 39 potentially druggable gene categories. Users can enter a list of genes to retrieve all known or potentially druggable genes in that list. Results can be filtered by source, interaction type, or treatment type. DGIdb is implemented as part of The Genome Institute’s Genome Modeling System and forms an integral part of the Clin-Seq pipeline for analyzing genomes in a clinical context. It is built on Ruby on Rails and PostgreSQL with a flexible relational database schema to accommodate metadata from various sources. <br><br>
 
