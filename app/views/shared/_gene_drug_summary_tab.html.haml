@@ -1,6 +1,26 @@
 -#takes in variable for type of summary (drug or gene)
 -#displays lists of aliases, drug/gene info, publications
-
-
-
 - #figure out how to get "card" aesthetic
+
+%table
+	%tr
+		%td 
+			%ul(class="result-list" id="list-results")
+				-drug.drug_claims.sort_by{ |d| d.sort_value }.each do |drug_claim|
+					%li
+						%table{class: "table table-condensed table-striped", id:"table_#{drug_claim.id}"}
+							-drug_claim.drug_claim_aliases.each do |alt_name|
+								%tr
+									%td
+										=alt_name.alias
+									%td=alt_name.nomenclature
+		%td 
+			%ul(class="result-list" id="list-results")
+				-drug.drug_claims.sort_by{ |d| d.sort_value }.each do |drug_claim|
+					%li
+						%table{class: "table table-condensed table-striped", id:"table_#{drug_claim.id}"}
+							-drug_claim.drug_claim_aliases.each do |alt_name|
+								%tr
+									%td
+										=alt_name.alias
+									%td=alt_name.nomenclature
