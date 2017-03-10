@@ -240,10 +240,31 @@ CREATE TABLE interaction_claims (
     id text NOT NULL,
     drug_claim_id text NOT NULL,
     gene_claim_id text NOT NULL,
-    interaction_type text,
     description text,
     source_id text,
-    known_action_type character varying(255)
+    known_action_type character varying(255),
+    interaction_id text
+);
+
+
+--
+-- Name: interaction_types_interactions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE interaction_types_interactions (
+    interaction_claim_type_id text NOT NULL,
+    interaction_id text NOT NULL
+);
+
+
+--
+-- Name: interactions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE interactions (
+    id text NOT NULL,
+    drug_id text NOT NULL,
+    gene_id text NOT NULL
 );
 
 
@@ -443,6 +464,22 @@ ALTER TABLE ONLY interaction_claim_types
 
 ALTER TABLE ONLY interaction_claims
     ADD CONSTRAINT interaction_claims_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: interaction_types_interactions interaction_types_interactions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_types_interactions
+    ADD CONSTRAINT interaction_types_interactions_pkey PRIMARY KEY (interaction_claim_type_id, interaction_id);
+
+
+--
+-- Name: interactions interactions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interactions
+    ADD CONSTRAINT interactions_pkey PRIMARY KEY (id);
 
 
 --
@@ -752,6 +789,14 @@ ALTER TABLE ONLY drug_claims
 
 
 --
+-- Name: interactions fk_drug; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interactions
+    ADD CONSTRAINT fk_drug FOREIGN KEY (drug_id) REFERENCES drugs(id);
+
+
+--
 -- Name: drug_claim_types_drug_claims fk_drug_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -797,6 +842,14 @@ ALTER TABLE ONLY drug_claim_types_drug_claims
 
 ALTER TABLE ONLY gene_claims
     ADD CONSTRAINT fk_gene FOREIGN KEY (gene_id) REFERENCES genes(id) MATCH FULL;
+
+
+--
+-- Name: interactions fk_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interactions
+    ADD CONSTRAINT fk_gene FOREIGN KEY (gene_id) REFERENCES genes(id);
 
 
 --
@@ -864,6 +917,22 @@ ALTER TABLE ONLY gene_gene_interaction_claims
 
 
 --
+-- Name: interaction_claims fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_claims
+    ADD CONSTRAINT fk_interaction FOREIGN KEY (interaction_id) REFERENCES interactions(id);
+
+
+--
+-- Name: interaction_types_interactions fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_types_interactions
+    ADD CONSTRAINT fk_interaction FOREIGN KEY (interaction_id) REFERENCES interactions(id);
+
+
+--
 -- Name: interaction_claim_types_interaction_claims fk_interaction_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -885,6 +954,14 @@ ALTER TABLE ONLY interaction_claim_attributes
 
 ALTER TABLE ONLY interaction_claim_types_interaction_claims
     ADD CONSTRAINT fk_interaction_claim_type FOREIGN KEY (interaction_claim_type_id) REFERENCES interaction_claim_types(id) MATCH FULL;
+
+
+--
+-- Name: interaction_types_interactions fk_interaction_type; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_types_interactions
+    ADD CONSTRAINT fk_interaction_type FOREIGN KEY (interaction_claim_type_id) REFERENCES interaction_claim_types(id);
 
 
 --
@@ -972,3 +1049,5 @@ INSERT INTO schema_migrations (version) VALUES ('20170216165933');
 INSERT INTO schema_migrations (version) VALUES ('20170217172327');
 
 INSERT INTO schema_migrations (version) VALUES ('20170217184303');
+
+INSERT INTO schema_migrations (version) VALUES ('20170222165433');
