@@ -63,17 +63,9 @@ contact:
 
     - title: Elaine Mardis
       description: PI/Mentor
-      link: "http://genome.wustl.edu/people/individual/elaine-mardis/"
-      link_title: Genome Institute profile
-      email: "mailto:emardis@genome.wustl.edu"
-      email_title: Email
 
     - title: Rick Wilson
       description: PI/Mentor
-      link: "http://genome.wustl.edu/people/individual/richard-wilson/"
-      link_title: Genome Institute profile
-      email: "mailto:rwilson@genome.wustl.edu"
-      email_title: Email
 
     - title: Additional software developers
       description: Indraniel Das, James Koval, Nicholas Spies, Avinash Ramu
