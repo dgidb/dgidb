@@ -13,7 +13,13 @@
 /     %li(class="#{claim.source.source_type.type}" data-category="#{claim.source.source_type.type}" data-name="#{claim.source.source_type.display_name}")
 /       =render partial: 'shared/claim_summary_tab', locals: { claim: claim }
 
-%ul(class="result-list" id="list-results")
-  -drug.drug_claims.sort_by{ |d| d.sort_value }.each do |drug_claim|
-    %li(class="#{drug_claim.source.source_type.type}" data-category="#{drug_claim.source.source_type.type}" data-name="#{drug_claim.source.source_type.display_name}")
-      =render partial: 'shared/claim_summary', locals: { drug_claim: drug_claim }
+- if defined? drug
+	%ul(class="result-list" id="list-results")
+		-drug.drug_claims.sort_by{ |d| d.sort_value }.each do |drug_claim|
+			%li(class="#{drug_claim.source.source_type.type}" data-category="#{drug_claim.source.source_type.type}" data-name="#{drug_claim.source.source_type.display_name}")
+				=render partial: 'shared/claim_summary', locals: { drug_claim: drug_claim }
+- else
+	%ul(class="result-list" id="list-results")
+		-drug.drug_claims.sort_by{ |d| d.sort_value }.each do |drug_claim|
+			%li(class="#{drug_claim.source.source_type.type}" data-category="#{drug_claim.source.source_type.type}" data-name="#{drug_claim.source.source_type.display_name}")
+				=render partial: 'shared/claim_summary', locals: { drug_claim: drug_claim }

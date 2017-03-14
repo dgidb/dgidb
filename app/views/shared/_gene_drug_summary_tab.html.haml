@@ -29,8 +29,7 @@
 				%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; overflow-y: scroll", id:"table_info"}
 					-drug_claim_attrs.each do |attribute|
 						%tr
-							%td
-								=attribute.name
+							%td=attribute.name
 							%td=attribute.value
 		%div(class="cell category")
 			%div(class="item-panel")

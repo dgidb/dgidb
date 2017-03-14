@@ -6,33 +6,44 @@
 / - main info in one column? then same 2nd column as gene drug summary tab? so main info replaces aliases?
 / - 
 
+- # this is just taken from drug gene summary - will work once interactions have been merged
+- attributes = interaction.interaction_claims.map{|claim| claim.interaction_claim_attributes}.flatten
+- claim_types = interaction.interaction_claims.map{|claim| claim.interaction_claim_types}.flatten
+- types = claim_types.map{|claim_type| claim_type.type}.flatten
+- info = attributes.reject{|attribute| attribute.name == 'PMID' || attribute.name == 'Interaction Type'}
+- publications = attributes.select{|attribute| attribute.name == 'PMID'}.map{|pub| pub.value}
 
-/ - # this is just taken from drug gene summary - will work once interactions have been merged
-/ %table
-/ 	%tr
-/ 		%td 
-/ 			%ul(class="result-list" id="list-results")
-/ 				%li
-/ 					%table{class: "table table-condensed table-striped", id:"table_main"}
-/ 						-interaction.main_info.each do |attribute| # in some specific order.. may need helper
-/ 							%tr
-/ 								%td
-/ 									=attribute.name
-/ 								%td=attribute.value
-/ 				- # publications?
-/ 				%li
-/ 					%table{class: "table table-condensed table-striped", id:"table_info"}
-/ 						-interaction.metadata.each do |attribute|
-/ 							%tr
-/ 								%td
-/ 									=attribute.name
-/ 								%td=attribute.value
-/ 		%td 
-/ 			%ul(class="result-list" id="list-results")
-/ 				%li
-/ 					%table{class: "table table-condensed table-striped", id:"table_publications"}
-/ 						-interaction.publications.each do |pub|
-/ 							%tr
-/ 								%td
-/ 								=publication_info(pub) # adam's civic extractor + maybe some formatting
+%div(class="item-content")
+	%div(class="cell category")
+		%div(class="item-panel")
+			%h4
+				Main Info:
+			%table{class: "table table-condensed table-striped", style: "display: block; height: 100px", id: "table_aliases"}
+				%tr
+					%td="Gene"
+					%td=interaction.gene.name
+				%tr
+					%td="Drug"
+					%td=interaction.drug.name
+				%tr
+					%td="Interaction Types"
+					%td=types.join(", ")
+		%br
+		%div(class="item-panel")
+			%h4
+				Publications:
+			%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; overflow-y: scroll", id:"table_publications"}
+				-publications.each do |pub|
+					%tr
+						%td
+							=pub	
+	%div(class="cell category")
+		%div(class="item-panel")
+			%h4
+				Other Info:
+			%table{class: "table table-condensed table-striped", style: "display: block; height: 372px", id: "table_aliases"}
+				-info.each do |attribute|
+					%tr
+						%td=attribute.name
+						%td=attribute.value	
 		

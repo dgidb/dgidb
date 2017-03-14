@@ -18,14 +18,12 @@
 				%li
 					%a(href="#claims" data-toggle="tab") Claims
 			.tab-content
-			-# I think this is the problem adam was talking about, with how it loads all at once...
-			-# look at drug/gene presenter, the issue is probably that it indiscriminantly just performs a bunch of actions all together - I should just split up those actions so they only get run in certain partials
 				.tab-pane.active#summary
-					.row-fluid#container 
-					-# what is #container doing, and what is this span doing? I want to eventually have sort of a 3 card layout in summary... original had a div class=span10
+					.row-fluid#container
 						.span10
-							=render partial: 'shared/interaction_summary_tab', locals: { interaction: @interaction } # partial will check if drug is null to tell if it is in drug or gene mode
-
+							%ul(class="result-list" id="list-results")
+								%li
+									=render partial: 'shared/interaction_summary_tab', locals: { interaction: @interaction } # partial will check if drug is null to tell if it is in drug or gene mode
 				.tab-pane.fade#claims
 					.row-fluid
 						.span10
