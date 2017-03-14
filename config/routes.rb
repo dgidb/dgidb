@@ -1,5 +1,5 @@
 DruggableGene::Application.routes.draw do
-  get "interactions/show"
+  match 'interactions/:id' => 'interactions#show'
 
   match 'drug_claims/:source_db_name/:name' => 'drug_claims#show',
     constraints: { name: /[^\/]+/ }

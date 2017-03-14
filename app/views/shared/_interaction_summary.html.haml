@@ -1,32 +1,47 @@
 /summary panel to be used in lists for interaction tab
 
 - cache interaction do
+  
+  - attributes = interaction.interaction_claims.map{|claim| claim.interaction_claim_attributes}.flatten
+  
   %div(class="item-title")
     %div(class="item-name")
       %h3(class="item-source")
-        =succeed ' ->' do
-          =interaction.drug.name
-        %span(class="item-id")
-          =interaction.gene.name
+        %a{href: "/interactions/#{interaction.id}"} 
+          =succeed ' ->' do
+            =interaction.drug.name
+          %span(class="item-id")
+            =interaction.gene.name 
 
   %div(class="item-content")
     %div(class="cell category")
-      %div(class="item-panel")
+      %div{class: "item-panel", style: "display: block; height: 100px; overflow-y: hidden"}
         %h4{style: "display: inline-block;"}
-          Types:
-          -types = interaction.interaction_claims.map { |claim| claim.interaction_claim_types}.flatten
+          Interaction Types:
+          -types = interaction.interaction_claims.map {|claim| claim.interaction_claim_types}.flatten
 
           %table{class: "table table-condensed table-striped"}
-          -types.each do |claim_type|
-            %tr
-              %td=claim_type.type
+            -types.each do |claim_type|
+              %tr
+                %td=claim_type.type
 
     %div(class="cell category")
-      %div(class="item-panel")
+      %div{class: "item-panel", style: "display: block; height: 100px; overflow-y: hidden"}
         %h4
-          Metadata:
+          Interaction Info:
+          %table{class: "table table-condensed table-striped"}
+            - info = attributes.reject{|attribute| attribute.name == 'PMID' || attribute.name == 'Interaction Type'}[0..1]
+            - info.each do |attribute|
+              %tr
+                %td=attribute.name
+                %td=attribute.value
 
     %div(class="cell category")
-      %div(class="item-panel")
+      %div{class: "item-panel", style: "display: block; height: 100px; overflow-y: hidden"}
         %h4
-          Citations:
+          Publications:
+          %table{class: "table table-condensed table-striped"}
+            - pubs = attributes.select{|attribute| attribute.name == 'PMID'}[0..1]
+            - pubs.each do |pub|
+              %tr
+                %td=pub.value

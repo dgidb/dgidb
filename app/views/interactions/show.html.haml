@@ -1,3 +1,4 @@
+- @title = "#{@interaction.gene.name} AND #{@interaction.drug.name}" # should go in presenter
 =content_for :title, "DGIdb - #@title Interaction Record"
 =content_for :header do
 	%h2
@@ -13,7 +14,7 @@
 		.tabbable
 			%ul.nav.nav-tabs
 				%li.active
-					%a(href="#summary data-toggle="tab") Summary
+					%a(href="#summary" data-toggle="tab") Summary
 				%li
 					%a(href="#claims" data-toggle="tab") Claims
 			.tab-content
@@ -34,8 +35,8 @@
 -# pretty sure I put break here because the body was overlapping with the footer
 
 -# I should figure out what this is all doing... I suspect gene_groups and gene-list-tabs are actually for both gene and drug
-  =javascript_include_tag "jquery.masonry.min"
-  =javascript_include_tag "jquery.dataTables.min"
-  =javascript_include_tag "pagination_bootstrap"
-  =javascript_include_tag "gene_groups" # these might have to be a bit different for interactions
-  =javascript_include_tag "gene-list-tabs"
+	=javascript_include_tag "jquery.masonry.min"
+	=javascript_include_tag "jquery.dataTables.min"
+	=javascript_include_tag "pagination_bootstrap"
+	=javascript_include_tag "gene_groups" # these might have to be a bit different for interactions
+	=javascript_include_tag "gene-list-tabs"
