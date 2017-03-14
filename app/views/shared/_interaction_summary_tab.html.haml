@@ -1,0 +1,38 @@
+/ special partial for summary tab of interaction view
+
+/ displays main interaction info, other info, and publications
+
+/ - card layout, just like gene drug summary tab
+/ - main info in one column? then same 2nd column as gene drug summary tab? so main info replaces aliases?
+/ - 
+
+
+/ - # this is just taken from drug gene summary - will work once interactions have been merged
+/ %table
+/ 	%tr
+/ 		%td 
+/ 			%ul(class="result-list" id="list-results")
+/ 				%li
+/ 					%table{class: "table table-condensed table-striped", id:"table_main"}
+/ 						-interaction.main_info.each do |attribute| # in some specific order.. may need helper
+/ 							%tr
+/ 								%td
+/ 									=attribute.name
+/ 								%td=attribute.value
+/ 				- # publications?
+/ 				%li
+/ 					%table{class: "table table-condensed table-striped", id:"table_info"}
+/ 						-interaction.metadata.each do |attribute|
+/ 							%tr
+/ 								%td
+/ 									=attribute.name
+/ 								%td=attribute.value
+/ 		%td 
+/ 			%ul(class="result-list" id="list-results")
+/ 				%li
+/ 					%table{class: "table table-condensed table-striped", id:"table_publications"}
+/ 						-interaction.publications.each do |pub|
+/ 							%tr
+/ 								%td
+/ 								=publication_info(pub) # adam's civic extractor + maybe some formatting
+		

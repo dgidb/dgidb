@@ -28,4 +28,11 @@ class DrugPresenter < SimpleDelegator
       end
     end
   end
+
+  def info # non pmid info
+    #@info = drug_attributes.select { |attribute| attribute.name = }
+  end 
+
+  def publications
+  end
 end

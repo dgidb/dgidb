@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906013631) do
+ActiveRecord::Schema.define(:version => 20170222165433) do
 
   create_table "drug_claim_aliases", :id => false, :force => true do |t|
     t.text "id",            :null => false
@@ -52,14 +52,10 @@ ActiveRecord::Schema.define(:version => 20130906013631) do
     t.text   "nomenclature", :null => false
     t.text   "source_id"
     t.string "primary_name"
+    t.text   "drug_id"
   end
 
   add_index "drug_claims", ["source_id"], :name => "drug_claims_source_id_idx"
-
-  create_table "drug_claims_drugs", :id => false, :force => true do |t|
-    t.text "drug_id",       :null => false
-    t.text "drug_claim_id", :null => false
-  end
 
   create_table "drugs", :id => false, :force => true do |t|
     t.text "id",   :null => false
@@ -105,15 +101,11 @@ ActiveRecord::Schema.define(:version => 20130906013631) do
     t.text "description"
     t.text "nomenclature", :null => false
     t.text "source_id"
+    t.text "gene_id"
   end
 
   add_index "gene_claims", ["name"], :name => "index_gene_claims_on_name"
   add_index "gene_claims", ["source_id"], :name => "gene_claims_source_id_idx"
-
-  create_table "gene_claims_genes", :id => false, :force => true do |t|
-    t.text "gene_id",       :null => false
-    t.text "gene_claim_id", :null => false
-  end
 
   create_table "gene_gene_interaction_claim_attributes", :id => false, :force => true do |t|
     t.string "id",                             :null => false
@@ -164,16 +156,27 @@ ActiveRecord::Schema.define(:version => 20130906013631) do
     t.text   "id",                :null => false
     t.text   "drug_claim_id",     :null => false
     t.text   "gene_claim_id",     :null => false
-    t.text   "interaction_type"
     t.text   "description"
     t.text   "source_id"
     t.string "known_action_type"
+    t.text   "interaction_id"
   end
 
   add_index "interaction_claims", ["drug_claim_id"], :name => "interaction_claims_drug_claim_id_idx"
   add_index "interaction_claims", ["gene_claim_id"], :name => "interaction_claims_gene_claim_id_idx"
   add_index "interaction_claims", ["known_action_type"], :name => "index_interaction_claims_on_known_action_type"
   add_index "interaction_claims", ["source_id"], :name => "interaction_claims_source_id_idx"
+
+  create_table "interaction_types_interactions", :id => false, :force => true do |t|
+    t.text "interaction_claim_type_id", :null => false
+    t.text "interaction_id",            :null => false
+  end
+
+  create_table "interactions", :id => false, :force => true do |t|
+    t.text "id",      :null => false
+    t.text "drug_id", :null => false
+    t.text "gene_id", :null => false
+  end
 
   create_table "source_trust_levels", :id => false, :force => true do |t|
     t.string "id",    :null => false

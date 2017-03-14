@@ -1,0 +1,32 @@
+/summary panel to be used in lists for interaction tab
+
+- cache interaction do
+  %div(class="item-title")
+    %div(class="item-name")
+      %h3(class="item-source")
+        =succeed ' ->' do
+          =interaction.drug.name
+        %span(class="item-id")
+          =interaction.gene.name
+
+  %div(class="item-content")
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4{style: "display: inline-block;"}
+          Types:
+          -types = interaction.interaction_claims.map { |claim| claim.interaction_claim_types}.flatten
+
+          %table{class: "table table-condensed table-striped"}
+          -types.each do |claim_type|
+            %tr
+              %td=claim_type.type
+
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Metadata:
+
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Citations:

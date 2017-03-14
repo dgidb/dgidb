@@ -23,12 +23,12 @@
 					.row-fluid#container 
 					-# what is #container doing, and what is this span doing? I want to eventually have sort of a 3 card layout in summary... original had a div class=span10
 						.span10
-							=render partial: 'shared/gene_drug_summary_tab', locals: { drug: @drug } # partial will check if drug is null to tell if it is in drug or gene mode
+							=render partial: 'shared/interaction_summary_tab', locals: { interaction: @interaction } # partial will check if drug is null to tell if it is in drug or gene mode
 
 				.tab-pane.fade#claims
 					.row-fluid
 						.span10
-							=render partial: 'shared/claims_tab', locals: {drug: @drug}
+							=render partial: 'shared/claims_tab', locals: {interaction: @interaction}
 
 %br
 -# pretty sure I put break here because the body was overlapping with the footer
