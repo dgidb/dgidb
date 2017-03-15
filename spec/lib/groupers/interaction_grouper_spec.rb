@@ -33,4 +33,20 @@ describe Genome::Groupers::InteractionGrouper do
     expect(DataModel::Interaction.all.count).to eq 1
   end
 
+  it 'add interaction attributes' do
+    drug = Fabricate(:drug)
+    gene = Fabricate(:gene)
+    (1..2).map do |i|
+      drug_claim = Fabricate(:drug_claim, drug: drug)
+      gene_claim = Fabricate(:gene_claim, gene: gene)
+      source = Fabricate(:source, source_db_name: "Some source#{i}")
+      interaction_claim = Fabricate(:interaction_claim, drug_claim: drug_claim, gene_claim: gene_claim, source: source)
+      Fabricate(:interaction_claim_attribute, interaction_claim: interaction_claim, name: 'Test name', value: 'Test value')
+    end
+    Genome::Groupers::InteractionGrouper.run
+    expect(DataModel::InteractionAttribute.count).to eq 1
+    expect(DataModel::InteractionAttribute.first.sources.count).to eq 2
+  end
+
+
 end
