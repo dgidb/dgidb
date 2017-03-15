@@ -55,7 +55,8 @@ describe Genome::Groupers::GeneGrouper do
     test_name = 'test gene name'
     Fabricate(:gene_claim_alias, alias: test_name, gene_claim: grouped_gene_claims.first)
 
-    ungrouped_gene_claim = Fabricate(:gene_claim)
+    entrez_source = Fabricate(:source, source_db_name: 'Entrez')
+    ungrouped_gene_claim = Fabricate(:gene_claim, source: entrez_source)
     Fabricate(:gene_claim_alias, alias: test_name, gene_claim: ungrouped_gene_claim)
 
     Genome::Groupers::GeneGrouper.run
@@ -72,8 +73,10 @@ describe Genome::Groupers::GeneGrouper do
     Fabricate(:gene_claim_alias, alias: test_name,
               gene_claim: grouped_gene_claims.first)
 
+    entrez_source = Fabricate(:source, source_db_name: 'Entrez')
     ungrouped_gene_claim = Fabricate(:gene_claim,
-              name: grouped_gene_claims.last.gene_claim_aliases.first.alias)
+              name: grouped_gene_claims.last.gene_claim_aliases.first.alias,
+              source: entrez_source)
 
     Fabricate(:gene_claim_alias,
               alias: test_name, gene_claim: ungrouped_gene_claim)

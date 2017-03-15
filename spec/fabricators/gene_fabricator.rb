@@ -12,14 +12,12 @@ end
 
 Fabricator(:gene_claim_alias, class_name: 'DataModel::GeneClaimAlias') do |f|
   f.alias { sequence(:alias) { |i| "Gene Claim Alias ##{i}" } }
-  f.description ''
   f.nomenclature { sequence(:nomenclature) { |i| "Gene Claim Alias nomenclature ##{i}" } }
 end
 
 Fabricator(:gene_claim_attribute, class_name: 'DataModel::GeneClaimAttribute') do
   name { sequence(:name) { |i| "Gene Claim Attribute Name ##{i}" } }
   value { sequence(:value) { |i| "Gene Claim Attribute Value ##{i}" } }
-  description ''
 end
 
 Fabricator(:gene_claim_category, class_name: 'DataModel::GeneClaimCategory') do
