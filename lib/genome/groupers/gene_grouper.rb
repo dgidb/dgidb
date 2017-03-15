@@ -8,6 +8,8 @@ module Genome
           create_groups
           @alt_to_other = preload_non_entrez_gene_aliases
           add_members
+          add_aliases
+          add_attributes
         end
       end
 
@@ -102,6 +104,64 @@ module Genome
       def self.gene_claims_not_in_groups
         DataModel::GeneClaim.eager_load(:gene, :gene_claim_aliases)
           .where('gene_claims.gene_id IS NULL')
+      end
+
+      def self.add_aliases
+        DataModel::Gene.all.each do |gene|
+          gene.gene_claims.each do |gene_claim|
+            gene_claim.gene_claim_aliases.each do |gca|
+              existing_gene_aliases = DataModel::GeneAlias.where(
+                gene_id: gene.id,
+                alias: gca.alias,
+                nomenclature: gca.nomenclature
+              )
+              if existing_gene_aliases.empty?
+                DataModel::GeneAlias.new.tap do |a|
+                  a.gene = gene
+                  a.alias = gca.alias
+                  a.nomenclature = gca.nomenclature
+                  a.sources << gene_claim.source
+                  a.save
+                end
+              else
+                existing_gene_aliases.each do |gene_alias|
+                  unless gene_alias.sources.include? gene_claim.source
+                    gene_alias.sources << gene_claim.source
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+
+      def self.add_attributes
+        DataModel::Gene.all.each do |gene|
+          gene.gene_claims.each do |gene_claim|
+            gene_claim.gene_claim_attributes.each do |gca|
+              existing_gene_attributes = DataModel::GeneAttribute.where(
+                gene_id: gene.id,
+                name: gca.name,
+                value: gca.value
+              )
+              if existing_gene_attributes.empty?
+                DataModel::GeneAttribute.new.tap do |a|
+                  a.gene = gene
+                  a.name = gca.name
+                  a.value = gca.value
+                  a.sources << gene_claim.source
+                  a.save
+                end
+              else
+                existing_gene_attributes.each do |gene_attribute|
+                  unless gene_attribute.sources.include? gene_claim.source
+                    gene_attribute.sources << gene_claim.source
+                  end
+                end
+              end
+            end
+          end
+        end
       end
     end
   end
