@@ -28,10 +28,12 @@ module Genome
               interaction_claim.save
             end
           else
-            existing_interaction_types = existing_interactions.first.interaction_types
+            existing_interaction = existing_interactions.first
+            interaction_claim.interaction = existing_interaction
+            interaction_claim.save
             interaction_claim.interaction_claim_types.each do |t|
-              unless existing_interaction_types.include? t
-                existing_interactions.first.interaction_types << t
+              unless existing_interaction.interaction_types.include? t
+                existing_interaction.interaction_types << t
               end
             end
           end

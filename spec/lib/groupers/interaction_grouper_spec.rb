@@ -31,6 +31,7 @@ describe Genome::Groupers::InteractionGrouper do
     Genome::Groupers::InteractionGrouper.run
     expect(DataModel::InteractionClaim.all.count).to eq 2
     expect(DataModel::Interaction.all.count).to eq 1
+    expect(DataModel::Interaction.first.interaction_claims.count).to eq 2
   end
 
   it 'add interaction attributes' do
