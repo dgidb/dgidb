@@ -117,4 +117,50 @@ describe Genome::Groupers::GeneGrouper do
 
   end
 
+  it 'it should add gene aliase' do
+    entrez_source = Fabricate(:source, source_db_name: 'Entrez')
+    other_source = Fabricate(:source, source_db_name: 'Other')
+    entrez_gene_claim = Fabricate(:gene_claim, source: entrez_source)
+    other_gene_claim = Fabricate(:gene_claim, source: other_source)
+    test_name = 'test gene name'
+    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: entrez_gene_claim, nomenclature: 'Gene Symbol')
+    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: other_gene_claim, nomenclature: 'Gene Symbol')
+
+    Genome::Groupers::GeneGrouper.run
+
+    expect(DataModel::GeneAlias.count).to eq 1
+    expect(DataModel::GeneAlias.first.sources.count).to eq 2
+
+    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: other_gene_claim, nomenclature: 'test nomenclature')
+
+    Genome::Groupers::GeneGrouper.run
+
+    expect(DataModel::GeneAlias.count).to eq 2
+  end
+
+  it 'it should add gene attributes' do
+    entrez_source = Fabricate(:source, source_db_name: 'Entrez')
+    other_source = Fabricate(:source, source_db_name: 'Other')
+    entrez_gene_claim = Fabricate(:gene_claim, source: entrez_source)
+    other_gene_claim = Fabricate(:gene_claim, source: other_source)
+    test_name = 'test gene name'
+    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: entrez_gene_claim, nomenclature: 'Gene Symbol')
+    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: other_gene_claim, nomenclature: 'Gene Symbol')
+
+    Fabricate(:gene_claim_attribute, gene_claim: entrez_gene_claim, name: 'test attribute', value: 'test value')
+    Fabricate(:gene_claim_attribute, gene_claim: other_gene_claim, name: 'test attribute', value: 'test value')
+
+    Genome::Groupers::GeneGrouper.run
+
+    expect(DataModel::GeneAttribute.count).to eq 1
+    expect(DataModel::GeneAttribute.first.sources.count).to eq 2
+
+    Fabricate(:gene_claim_attribute, gene_claim: other_gene_claim, name: 'other test attribute', value: 'test value')
+
+    Genome::Groupers::GeneGrouper.run
+
+    expect(DataModel::GeneAttribute.count).to eq 2
+  end
+
+
 end
