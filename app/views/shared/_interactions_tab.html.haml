@@ -1,15 +1,14 @@
--#view for interactions tab for gene/drug
+/view for interactions tab for gene/drug
+/lists interaction summary panels
 
--#lists interaction summary panels
-
--#will rely on helper to get all interactions for gene or drug
-
--#entity = gene || drug ... this doesn't look like it work since i got that error undefined gene
+- if defined? drug
+	- entity = drug 
+- else	# do i need to handle edge case where neither is defiend?
+	- entity = gene 
 
 %ul(class="result-list" id="list-results")
-	-drug.interactions.each do |interaction| # sort by what?
+	-entity.interactions.each do |interaction| # sort by what?
 		%li
 			=render partial: 'shared/interaction_summary', locals: { interaction: interaction }
 
--#how are the interactions going to be pulled?
 

@@ -41,34 +41,3 @@
 							%td
 								=pub	
 
-
-
-/ %table
-/ 	%tr
-/ 		%td 
-/ 			Alternate Names:
-/ 			%table{class: "table table-condensed table-striped", style: "width:50%", id: "table_aliases"}
-/ 				-aliases.each do |alt_name|
-/ 					%tr
-/ 						%td
-/ 							=alt_name.alias
-/ 						%td=alt_name.nomenclature
-/ 		%td 
-/ 			%table
-/ 				%tr
-/ 					%td
-/ 						Drug Info:
-/ 						%table{class: "table table-condensed table-striped", id:"table_info"}
-/ 							-drug_claim_attrs.each do |attribute|
-/ 								%tr
-/ 									%td
-/ 										=attribute.name
-/ 									%td=attribute.value
-/ 				%tr
-/ 					%td
-/ 						Publications:
-/ 						%table{class: "table table-condensed table-striped", id:"table_publications"}
-/ 							-publications.each do |pub|
-/ 								%tr
-/ 									%td
-/ 										=pub

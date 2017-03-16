@@ -1,0 +1,48 @@
+/summary panel for claim to be used in lists
+
+- cache drug_claim do
+  - info = drug_claim.drug_claim_attributes.reject{|attribute| attribute.name == 'PMID' || attribute.name == 'Interaction Type'}
+  - publications = drug_claim.drug_claim_attributes.select{|attribute| attribute.name == 'PMID'}
+  %div(class="item-title")
+    %div(class="item-name")
+      %h3(class="item-source")
+        =succeed ':' do
+          =link_to drug_claim.source.source_db_name, source_path(drug_claim.source.source_db_name)
+        %span(class="item-id")
+          =ext_link_to drug_claim.name, drug_claim.original_data_source_url
+    %div(class="item-corner")
+      %ul(class="attribute-list")
+        %li
+          %strong
+            Version:
+          =drug_claim.source.source_db_version
+
+  %div(class="item-content")
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4{style: "display: inline-block;"}
+          Alternate Names: 
+          %table{class: "table table-condensed table-striped", style: "display: block; height: 95px"}
+            -drug_claim.drug_claim_aliases[0..2].each do |alt_name|
+              %tr
+                %td=alt_name.alias
+                %td=alt_name.nomenclature
+
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Drug Info:
+          %table{class: "table table-condensed table-striped", style: "display: block; height: 100px"}
+            -info[0..2].each do |attribute|
+              %tr
+                %td=attribute.name
+                %td=attribute.value
+
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Publications:
+          %table{class: "table table-condensed table-striped", style: "display: block; height: 100px"}
+            -publications.each do |pub|
+              %tr
+                %td=pub
