@@ -5,7 +5,6 @@ end
 
 Fabricator(:gene_claim, class_name: 'DataModel::GeneClaim') do
   name { sequence(:name) { |i| "Gene Claim ##{i}" } }
-  description ''
   nomenclature { |attrs| "#{attrs[:source].source_db_name} gene claim name" }
   nomenclature { sequence(:nomenclature) { |i| "Gene claim ##{i} nomenclature" } }
 end
