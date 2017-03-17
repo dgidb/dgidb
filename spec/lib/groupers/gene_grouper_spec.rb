@@ -162,5 +162,16 @@ describe Genome::Groupers::GeneGrouper do
     expect(DataModel::GeneAttribute.count).to eq 2
   end
 
+  it 'it should add gene categories' do
+    source = Fabricate(:source, source_db_name: 'Entrez')
+    gene_claim = Fabricate(:gene_claim, source: source)
+    Fabricate(:gene_claim_category, gene_claims: [gene_claim])
+    test_name = 'test gene name'
+    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: gene_claim, nomenclature: 'Gene Symbol')
+
+    Genome::Groupers::GeneGrouper.run
+
+    expect(DataModel::Gene.first.gene_categories.first).to eq DataModel::GeneClaim.first.gene_claim_categories.first
+  end
 
 end
