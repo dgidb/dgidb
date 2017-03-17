@@ -23,7 +23,7 @@
 						.span10
 							%ul(class="result-list" id="list-results")
 								%li
-									=render partial: 'shared/interaction_summary_tab', locals: { interaction: @interaction } # partial will check if drug is null to tell if it is in drug or gene mode
+									=render partial: 'interactions/interaction_summary_tab', locals: { interaction: @interaction } # partial will check if drug is null to tell if it is in drug or gene mode
 				.tab-pane.fade#claims
 					.row-fluid
 						.span10

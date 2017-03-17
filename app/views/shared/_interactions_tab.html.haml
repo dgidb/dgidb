@@ -9,6 +9,6 @@
 %ul(class="result-list" id="list-results")
 	-entity.interactions.each do |interaction| # sort by what?
 		%li
-			=render partial: 'shared/interaction_summary', locals: { interaction: interaction }
+			=render partial: 'interactions/interaction_summary', locals: { interaction: interaction }
 
 

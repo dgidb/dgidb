@@ -17,14 +17,14 @@
 	%ul(class="result-list" id="list-results")
 		-drug.drug_claims.sort_by{ |d| d.sort_value }.each do |drug_claim|
 			%li(class="#{drug_claim.source.source_type.type}" data-category="#{drug_claim.source.source_type.type}" data-name="#{drug_claim.source.source_type.display_name}")
-				=render partial: 'shared/claim_summary', locals: { drug_claim: drug_claim }
+				=render partial: 'drug_claims/drug_claim_summary', locals: { drug_claim: drug_claim }
 - elsif defined? gene
 	%ul(class="result-list" id="list-results")
 		-gene.gene_claims.sort_by{ |d| d.sort_value }.each do |gene_claim|
-			%li(class="#{drug_claim.source.source_type.type}" data-category="#{drug_claim.source.source_type.type}" data-name="#{drug_claim.source.source_type.display_name}")
-				=render partial: 'shared/claim_summary', locals: { gene_claim: gene_claim }
+			%li(class="#{gene_claim.source.source_type.type}" data-category="#{gene_claim.source.source_type.type}" data-name="#{gene_claim.source.source_type.display_name}")
+				=render partial: 'gene_claims/gene_claim_summary', locals: { gene_claim: gene_claim }
 - else
 	%ul(class="result-list" id="list-results")
 		-interaction.interaction_claims.each do |interaction_claim|
 			%li(class="#{interaction_claim.source.source_type.type}" data-category="#{interaction_claim.source.source_type.type}" data-name="#{interaction_claim.source.source_type.display_name}")
-				=render partial: 'shared/claim_summary', locals: { interaction_claim: interaction_claim }
+				=render partial: 'interaction_claims/interaction_claim_summary', locals: { interaction_claim: interaction_claim }
