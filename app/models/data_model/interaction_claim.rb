@@ -10,7 +10,7 @@ module DataModel
     belongs_to :interaction
 
     def self.for_show
-      eager_load(:interaction_claim_types, :interaction_claim_attributes, :source, :drug_claim, gene_claim: [:genes, :source])
+      eager_load(:interaction_claim_types, :interaction_claim_attributes, :source, :drug_claim, gene_claim: [:gene, :source])
     end
   end
 end

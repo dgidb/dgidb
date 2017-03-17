@@ -22,27 +22,32 @@
       %div(class="item-panel")
         %h4{style: "display: inline-block;"}
           Alternate Names: 
-          %table{class: "table table-condensed table-striped", style: "display: block; height: 95px"}
+          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
             -gene_claim.gene_claim_aliases[0..2].each do |alt_name|
               %tr
-                %td=alt_name.alias
-                %td=alt_name.nomenclature
+                %td{style: "word-wrap: break-word;"} 
+                  =alt_name.alias
+                %td 
+                  =alt_name.nomenclature
 
     %div(class="cell category")
       %div(class="item-panel")
         %h4
           Gene Info:
-          %table{class: "table table-condensed table-striped", style: "display: block; height: 100px"}
+          %table{class: "table table-condensed table-striped"}
             -info[0..2].each do |attribute|
               %tr
-                %td=attribute.name
-                %td=attribute.value
+                %td 
+                  =attribute.name
+                %td 
+                  =attribute.value
 
     %div(class="cell category")
       %div(class="item-panel")
         %h4
           Publications:
-          %table{class: "table table-condensed table-striped", style: "display: block; height: 100px"}
+          %table{class: "table table-condensed table-striped"}
             -publications.each do |pub|
               %tr
-                %td=pub
+                %td 
+                  =pub

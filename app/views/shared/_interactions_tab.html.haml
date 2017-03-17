@@ -8,7 +8,11 @@
 
 %ul(class="result-list" id="list-results")
 	-entity.interactions.each do |interaction| # sort by what?
-		%li
+		%li(class="interaction-panel" onclick="location.href='/interactions/#{interaction.id}';")
 			=render partial: 'interactions/interaction_summary', locals: { interaction: interaction }
 
-
+:css
+	li.interaction-panel:hover {
+		background-color:rgba(220, 220, 220, 1);
+		cursor: pointer;
+	}

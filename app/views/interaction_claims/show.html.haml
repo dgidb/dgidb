@@ -1,41 +1,42 @@
-#notice= notice
-=content_for :title, "DGIdb - #{@interaction.title}"
-=content_for :header do
-  %h2
-    =@interaction.title
-    %small 
-      ="drug-gene interaction data from #{@interaction.source.source_db_name}" 
-- cache @interaction do
-  .container-fluid
-    .row-fluid
-      .span12
-        .well
-          %h3 Drug-Gene Interaction Record
-          %p
-            %b Drug:
-            =link_to(@interaction.drug_claim.title, drug_claim_path(@interaction.drug_claim))
-          %p
-            %b Gene:
-            =link_to(@interaction.gene_claim.title, gene_claim_path(@interaction.gene_claim))
-          %p
-            %b Source Database Name:
-            =link_to @interaction.source.source_db_name, source_path(@interaction.source.source_db_name)
-          %p
-            %b Source Database Version:
-            =@interaction.source.source_db_version
-          %p
-            %b Types:
-            %table.table.table-striped
-              -@interaction.interaction_claim_types.each do |type|
-                %tr
-                  %td=type.type
-          %p
-            %b Attributes:
-            %table.table.table-striped
-              -@interaction.interaction_claim_attributes.each do |attribute|
-                %tr
-                  %td=attribute.name
-                  %td=attribute.value
-          %p
-            %b Citation:
-            %p=@interaction.source.citation
+OH HAI THERE
+/ #notice= notice
+/ =content_for :title, "DGIdb - #{@interaction_claim.title}"
+/ =content_for :header do
+/   %h2
+/     =@interaction_claim.title
+/     %small 
+/       ="drug-gene interaction data from #{@interaction.source.source_db_name}" 
+/ - cache @interaction_claim do
+/   .container-fluid
+/     .row-fluid
+/       .span12
+/         .well
+/           %h3 Drug-Gene Interaction Record
+/           %p
+/             %b Drug:
+/             =link_to(@interaction.drug_claim.title, drug_claim_path(@interaction.drug_claim))
+/           %p
+/             %b Gene:
+/             =link_to(@interaction.gene_claim.title, gene_claim_path(@interaction.gene_claim))
+/           %p
+/             %b Source Database Name:
+/             =link_to @interaction.source.source_db_name, source_path(@interaction.source.source_db_name)
+/           %p
+/             %b Source Database Version:
+/             =@interaction.source.source_db_version
+/           %p
+/             %b Types:
+/             %table.table.table-striped
+/               -@interaction.interaction_claim_types.each do |type|
+/                 %tr
+/                   %td=type.type
+/           %p
+/             %b Attributes:
+/             %table.table.table-striped
+/               -@interaction.interaction_claim_attributes.each do |attribute|
+/                 %tr
+/                   %td=attribute.name
+/                   %td=attribute.value
+/           %p
+/             %b Citation:
+/             %p=@interaction.source.citation
