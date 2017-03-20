@@ -19,7 +19,7 @@
 				-aliases.each do |alt_name|
 					%tr
 						%td=alt_name.alias
-						%td=alt_name.nomenclature
+						%td{style: "text-align: right"}=alt_name.nomenclature
 	%div{class: "cell category", style: "float: left; width: 50%" }
 		%div(class="item-panel")
 			%h4

@@ -29,10 +29,15 @@ class DrugPresenter < SimpleDelegator
     end
   end
 
+  def sorted_claims
+    drug_claims.sort_by{ |d| [(d.drug_claim_attributes.empty? ? 1 : 0), (d.drug_claim_aliases.empty? ? 1 : 0), -d.drug_claim_attributes.length, d.sort_value] }
+  end
+
   def info # non pmid info
     #@info = drug_attributes.select { |attribute| attribute.name = }
   end 
 
-  def publications
+  def pmids
+      
   end
 end

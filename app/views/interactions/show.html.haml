@@ -19,13 +19,13 @@
 			.tab-content
 				.tab-pane.active#summary
 					.row-fluid#container
-						.span10
+						.span12
 							%ul(class="result-list" id="list-results")
 								%li
 									=render partial: 'interactions/interaction_summary_tab', locals: { interaction: @interaction } 
 				.tab-pane.fade#claims
 					.row-fluid
-						.span10
+						.span12
 							=render partial: 'shared/claims_tab', locals: {interaction: @interaction}
 
 %br
@@ -34,3 +34,4 @@
 	=javascript_include_tag "pagination_bootstrap"
 	=javascript_include_tag "gene_groups"
 	=javascript_include_tag "gene-list-tabs"
+	

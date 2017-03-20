@@ -1,5 +1,7 @@
 /summary panel to be used in lists for interaction tab
 
+
+
 - cache interaction do
   
   - attributes = interaction.interaction_claims.map{|claim| claim.interaction_claim_attributes}.flatten
@@ -7,11 +9,11 @@
   %div(class="item-title")
     %div(class="item-name")
       %h3(class="item-source")
-        %a{href: "/interactions/#{interaction.id}"} 
-          =succeed ' ->' do
-            =interaction.drug.name
-          %span(class="item-id")
-            =interaction.gene.name 
+        %a{href: "/drugs/#{interaction.drug.name}"} 
+          =interaction.drug.name
+        %span{class: "glyphicon glyphicon-triangle-right"} ->
+        %a{href: "/genes/#{interaction.gene.name}"} 
+          =interaction.gene.name 
 
   %div(class="item-content")
     %div(class="cell category")
