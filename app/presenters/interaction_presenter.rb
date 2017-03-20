@@ -1,8 +1,12 @@
 class InteractionPresenter < SimpleDelegator
-	# straight from gene.. doesnt make sense
   attr_accessor :interaction
+  
   def initialize(interaction)
     @interaction = interaction
     super
+  end
+
+  def display_name
+  	"#{@interaction.gene.name} AND #{@interaction.drug.name}"
   end
 end

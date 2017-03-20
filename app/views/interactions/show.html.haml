@@ -1,9 +1,8 @@
-- @title = "#{@interaction.gene.name} AND #{@interaction.drug.name}" # should go in presenter
 =content_for :title, "DGIdb - #@title Interaction Record"
 =content_for :header do
 	%h2
 		%span{id: "interaction_name"}
-			=@title # just something simple like "Drug and Gene"?
+			=@title
 		%small
 			Interaction Record
 			%a(href="/faq#defined")
@@ -23,18 +22,15 @@
 						.span10
 							%ul(class="result-list" id="list-results")
 								%li
-									=render partial: 'interactions/interaction_summary_tab', locals: { interaction: @interaction } # partial will check if drug is null to tell if it is in drug or gene mode
+									=render partial: 'interactions/interaction_summary_tab', locals: { interaction: @interaction } 
 				.tab-pane.fade#claims
 					.row-fluid
 						.span10
 							=render partial: 'shared/claims_tab', locals: {interaction: @interaction}
 
 %br
--# pretty sure I put break here because the body was overlapping with the footer
-
--# I should figure out what this is all doing... I suspect gene_groups and gene-list-tabs are actually for both gene and drug
 	=javascript_include_tag "jquery.masonry.min"
 	=javascript_include_tag "jquery.dataTables.min"
 	=javascript_include_tag "pagination_bootstrap"
-	=javascript_include_tag "gene_groups" # these might have to be a bit different for interactions
+	=javascript_include_tag "gene_groups"
 	=javascript_include_tag "gene-list-tabs"
