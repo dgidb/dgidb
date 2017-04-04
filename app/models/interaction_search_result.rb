@@ -19,7 +19,7 @@ class InteractionSearchResult
         .flat_map{ |dc| dc.interaction_claims }
         .uniq
       @interaction_claims = results.reject do |ic|
-        ic.gene_claim.genes.first.nil?
+        ic.gene_claim.gene.nil?
       end
     end
   end

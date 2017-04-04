@@ -29,7 +29,7 @@ class GenePresenter < SimpleDelegator
     gene_claims.sort_by(&:sort_value)
   end
 
-  def sort_claims
+  def sorted_claims
     gene_claims.sort_by{ |g| [(g.gene_claim_attributes.empty? ? 1 : 0), (g.gene_claim_aliases.empty? ? 1 : 0), -g.gene_claim_attributes.length, g.sort_value] }
   end
   
