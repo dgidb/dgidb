@@ -191,6 +191,16 @@ CREATE TABLE gene_attributes_sources (
 
 
 --
+-- Name: gene_categories_genes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE gene_categories_genes (
+    gene_claim_category_id text NOT NULL,
+    gene_id text NOT NULL
+);
+
+
+--
 -- Name: gene_claim_aliases; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -535,6 +545,14 @@ ALTER TABLE ONLY gene_attributes
 
 ALTER TABLE ONLY gene_attributes_sources
     ADD CONSTRAINT gene_attributes_sources_pkey PRIMARY KEY (gene_attribute_id, source_id);
+
+
+--
+-- Name: gene_categories_genes gene_categories_genes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_categories_genes
+    ADD CONSTRAINT gene_categories_genes_pkey PRIMARY KEY (gene_claim_category_id, gene_id);
 
 
 --
@@ -1084,6 +1102,14 @@ ALTER TABLE ONLY gene_attributes
 
 
 --
+-- Name: gene_categories_genes fk_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_categories_genes
+    ADD CONSTRAINT fk_gene FOREIGN KEY (gene_id) REFERENCES genes(id);
+
+
+--
 -- Name: gene_aliases_sources fk_gene_alias; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1113,6 +1139,14 @@ ALTER TABLE ONLY gene_claim_categories_gene_claims
 
 ALTER TABLE ONLY gene_claim_categories_gene_claims
     ADD CONSTRAINT fk_gene_claim_category FOREIGN KEY (gene_claim_category_id) REFERENCES gene_claim_categories(id) MATCH FULL;
+
+
+--
+-- Name: gene_categories_genes fk_gene_claim_category; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_categories_genes
+    ADD CONSTRAINT fk_gene_claim_category FOREIGN KEY (gene_claim_category_id) REFERENCES gene_claim_categories(id);
 
 
 --
@@ -1366,3 +1400,5 @@ INSERT INTO schema_migrations (version) VALUES ('20170314161924');
 INSERT INTO schema_migrations (version) VALUES ('20170315152806');
 
 INSERT INTO schema_migrations (version) VALUES ('20170317143034');
+
+INSERT INTO schema_migrations (version) VALUES ('20170317175150');

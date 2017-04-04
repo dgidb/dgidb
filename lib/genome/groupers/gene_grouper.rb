@@ -10,6 +10,7 @@ module Genome
           add_members
           add_aliases
           add_attributes
+          add_categories
         end
       end
 
@@ -163,6 +164,19 @@ module Genome
           end
         end
       end
+
+      def self.add_categories
+        DataModel::Gene.all.each do |gene|
+          gene.gene_claims.each do |gene_claim|
+            gene_claim.gene_claim_categories.each do |category|
+              unless gene.gene_categories.include? category
+                gene.gene_categories << category
+              end
+            end
+          end
+        end
+      end
+
     end
   end
 end
