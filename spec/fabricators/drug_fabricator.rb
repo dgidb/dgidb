@@ -12,14 +12,12 @@ end
 
 Fabricator(:drug_claim_alias, class_name: 'DataModel::DrugClaimAlias') do |f|
   f.alias { sequence(:alias) { |i| "Drug Claim Alias ##{i}" } }
-  f.description ''
   f.nomenclature { sequence(:nomenclature) { |i| "Drug Claim Alias nomenclature ##{i}" } }
 end
 
 Fabricator(:drug_claim_attribute, class_name: 'DataModel::DrugClaimAttribute') do
   name { sequence(:name) { |i| "Drug Claim Attribute Name ##{i}" } }
   value { sequence(:value) { |i| "Drug Claim Attribute Value ##{i}" } }
-  description ''
 end
 
 Fabricator(:drug_claim_type, class_name: 'DataModel::DrugClaimType') do
