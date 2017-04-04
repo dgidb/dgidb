@@ -30,6 +30,7 @@ namespace :db do
             else
                 raise "Task not supported by '#{config['adapter']}'"
             end
+
             if ActiveRecord::Base.connection.supports_migrations?
                 File.open(filename, "a") { |f| f << ActiveRecord::Base.connection.dump_schema_information }
             end

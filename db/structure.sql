@@ -35,6 +35,50 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: drug_aliases; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE drug_aliases (
+    id text NOT NULL,
+    drug_id text NOT NULL,
+    alias text NOT NULL,
+    nomenclature text NOT NULL
+);
+
+
+--
+-- Name: drug_aliases_sources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE drug_aliases_sources (
+    drug_alias_id text NOT NULL,
+    source_id text NOT NULL
+);
+
+
+--
+-- Name: drug_attributes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE drug_attributes (
+    id text NOT NULL,
+    drug_id text NOT NULL,
+    name text NOT NULL,
+    value text NOT NULL
+);
+
+
+--
+-- Name: drug_attributes_sources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE drug_attributes_sources (
+    drug_attribute_id text NOT NULL,
+    source_id text NOT NULL
+);
+
+
+--
 -- Name: drug_claim_aliases; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -42,7 +86,6 @@ CREATE TABLE drug_claim_aliases (
     id text NOT NULL,
     drug_claim_id text NOT NULL,
     alias text NOT NULL,
-    description text,
     nomenclature text NOT NULL
 );
 
@@ -55,8 +98,7 @@ CREATE TABLE drug_claim_attributes (
     id text NOT NULL,
     drug_claim_id text NOT NULL,
     name text NOT NULL,
-    value text NOT NULL,
-    description text
+    value text NOT NULL
 );
 
 
@@ -106,6 +148,50 @@ CREATE TABLE drugs (
 
 
 --
+-- Name: gene_aliases; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE gene_aliases (
+    id text NOT NULL,
+    gene_id text NOT NULL,
+    alias text NOT NULL,
+    nomenclature text NOT NULL
+);
+
+
+--
+-- Name: gene_aliases_sources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE gene_aliases_sources (
+    gene_alias_id text NOT NULL,
+    source_id text NOT NULL
+);
+
+
+--
+-- Name: gene_attributes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE gene_attributes (
+    id text NOT NULL,
+    gene_id text NOT NULL,
+    name text NOT NULL,
+    value text NOT NULL
+);
+
+
+--
+-- Name: gene_attributes_sources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE gene_attributes_sources (
+    gene_attribute_id text NOT NULL,
+    source_id text NOT NULL
+);
+
+
+--
 -- Name: gene_claim_aliases; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -113,7 +199,6 @@ CREATE TABLE gene_claim_aliases (
     id text NOT NULL,
     gene_claim_id text NOT NULL,
     alias text NOT NULL,
-    description text,
     nomenclature text NOT NULL
 );
 
@@ -126,8 +211,7 @@ CREATE TABLE gene_claim_attributes (
     id text NOT NULL,
     gene_claim_id text NOT NULL,
     name text NOT NULL,
-    value text NOT NULL,
-    description text
+    value text NOT NULL
 );
 
 
@@ -323,6 +407,38 @@ CREATE TABLE sources (
 
 
 --
+-- Name: drug_aliases drug_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_aliases
+    ADD CONSTRAINT drug_aliases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: drug_aliases_sources drug_aliases_sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_aliases_sources
+    ADD CONSTRAINT drug_aliases_sources_pkey PRIMARY KEY (drug_alias_id, source_id);
+
+
+--
+-- Name: drug_attributes drug_attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_attributes
+    ADD CONSTRAINT drug_attributes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: drug_attributes_sources drug_attributes_sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_attributes_sources
+    ADD CONSTRAINT drug_attributes_sources_pkey PRIMARY KEY (drug_attribute_id, source_id);
+
+
+--
 -- Name: drug_claim_aliases drug_claim_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -368,6 +484,38 @@ ALTER TABLE ONLY drug_claims
 
 ALTER TABLE ONLY drugs
     ADD CONSTRAINT drugs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: gene_aliases gene_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_aliases
+    ADD CONSTRAINT gene_aliases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: gene_aliases_sources gene_aliases_sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_aliases_sources
+    ADD CONSTRAINT gene_aliases_sources_pkey PRIMARY KEY (gene_alias_id, source_id);
+
+
+--
+-- Name: gene_attributes gene_attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_attributes
+    ADD CONSTRAINT gene_attributes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: gene_attributes_sources gene_attributes_sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_attributes_sources
+    ADD CONSTRAINT gene_attributes_sources_pkey PRIMARY KEY (gene_attribute_id, source_id);
 
 
 --
@@ -797,6 +945,38 @@ ALTER TABLE ONLY interactions
 
 
 --
+-- Name: drug_aliases fk_drug; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_aliases
+    ADD CONSTRAINT fk_drug FOREIGN KEY (drug_id) REFERENCES drugs(id);
+
+
+--
+-- Name: drug_attributes fk_drug; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_attributes
+    ADD CONSTRAINT fk_drug FOREIGN KEY (drug_id) REFERENCES drugs(id);
+
+
+--
+-- Name: drug_aliases_sources fk_drug_alias; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_aliases_sources
+    ADD CONSTRAINT fk_drug_alias FOREIGN KEY (drug_alias_id) REFERENCES drug_aliases(id);
+
+
+--
+-- Name: drug_attributes_sources fk_drug_attribute; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_attributes_sources
+    ADD CONSTRAINT fk_drug_attribute FOREIGN KEY (drug_attribute_id) REFERENCES drug_attributes(id);
+
+
+--
 -- Name: drug_claim_types_drug_claims fk_drug_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -850,6 +1030,38 @@ ALTER TABLE ONLY gene_claims
 
 ALTER TABLE ONLY interactions
     ADD CONSTRAINT fk_gene FOREIGN KEY (gene_id) REFERENCES genes(id);
+
+
+--
+-- Name: gene_aliases fk_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_aliases
+    ADD CONSTRAINT fk_gene FOREIGN KEY (gene_id) REFERENCES genes(id);
+
+
+--
+-- Name: gene_attributes fk_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_attributes
+    ADD CONSTRAINT fk_gene FOREIGN KEY (gene_id) REFERENCES genes(id);
+
+
+--
+-- Name: gene_aliases_sources fk_gene_alias; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_aliases_sources
+    ADD CONSTRAINT fk_gene_alias FOREIGN KEY (gene_alias_id) REFERENCES gene_aliases(id);
+
+
+--
+-- Name: gene_attributes_sources fk_gene_attribute; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_attributes_sources
+    ADD CONSTRAINT fk_gene_attribute FOREIGN KEY (gene_attribute_id) REFERENCES gene_attributes(id);
 
 
 --
@@ -965,6 +1177,38 @@ ALTER TABLE ONLY interaction_types_interactions
 
 
 --
+-- Name: drug_aliases_sources fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_aliases_sources
+    ADD CONSTRAINT fk_source FOREIGN KEY (source_id) REFERENCES sources(id);
+
+
+--
+-- Name: drug_attributes_sources fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_attributes_sources
+    ADD CONSTRAINT fk_source FOREIGN KEY (source_id) REFERENCES sources(id);
+
+
+--
+-- Name: gene_aliases_sources fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_aliases_sources
+    ADD CONSTRAINT fk_source FOREIGN KEY (source_id) REFERENCES sources(id);
+
+
+--
+-- Name: gene_attributes_sources fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_attributes_sources
+    ADD CONSTRAINT fk_source FOREIGN KEY (source_id) REFERENCES sources(id);
+
+
+--
 -- Name: drug_claims fk_source_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1051,3 +1295,11 @@ INSERT INTO schema_migrations (version) VALUES ('20170217172327');
 INSERT INTO schema_migrations (version) VALUES ('20170217184303');
 
 INSERT INTO schema_migrations (version) VALUES ('20170222165433');
+
+INSERT INTO schema_migrations (version) VALUES ('20170302155212');
+
+INSERT INTO schema_migrations (version) VALUES ('20170303162418');
+
+INSERT INTO schema_migrations (version) VALUES ('20170314140736');
+
+INSERT INTO schema_migrations (version) VALUES ('20170314161924');
