@@ -4,7 +4,6 @@ end
 
 Fabricator(:drug_claim, class_name: 'DataModel::DrugClaim') do
   name { sequence(:name) { |i| "Drug Claim ##{i}" } }
-  description ''
   source
   nomenclature { |attrs| "#{attrs[:source].source_db_name} drug claim name" }
   primary_name { sequence(:primary_name) { |i| "Drug claim primary name ##{i}" } }

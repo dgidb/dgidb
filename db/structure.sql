@@ -129,7 +129,6 @@ CREATE TABLE drug_claim_types_drug_claims (
 CREATE TABLE drug_claims (
     id text NOT NULL,
     name text NOT NULL,
-    description text,
     nomenclature text NOT NULL,
     source_id text,
     primary_name character varying(255),
@@ -242,7 +241,6 @@ CREATE TABLE gene_claim_categories_gene_claims (
 CREATE TABLE gene_claims (
     id text NOT NULL,
     name text NOT NULL,
-    description text,
     nomenclature text NOT NULL,
     source_id text,
     gene_id text
@@ -346,7 +344,6 @@ CREATE TABLE interaction_claims (
     id text NOT NULL,
     drug_claim_id text NOT NULL,
     gene_claim_id text NOT NULL,
-    description text,
     source_id text,
     known_action_type character varying(255),
     interaction_id text
@@ -1367,3 +1364,5 @@ INSERT INTO schema_migrations (version) VALUES ('20170314140736');
 INSERT INTO schema_migrations (version) VALUES ('20170314161924');
 
 INSERT INTO schema_migrations (version) VALUES ('20170315152806');
+
+INSERT INTO schema_migrations (version) VALUES ('20170317143034');
