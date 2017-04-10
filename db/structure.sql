@@ -129,7 +129,6 @@ CREATE TABLE drug_claim_types_drug_claims (
 CREATE TABLE drug_claims (
     id text NOT NULL,
     name text NOT NULL,
-    description text,
     nomenclature text NOT NULL,
     source_id text,
     primary_name character varying(255),
@@ -192,6 +191,16 @@ CREATE TABLE gene_attributes_sources (
 
 
 --
+-- Name: gene_categories_genes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE gene_categories_genes (
+    gene_claim_category_id text NOT NULL,
+    gene_id text NOT NULL
+);
+
+
+--
 -- Name: gene_claim_aliases; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -242,7 +251,6 @@ CREATE TABLE gene_claim_categories_gene_claims (
 CREATE TABLE gene_claims (
     id text NOT NULL,
     name text NOT NULL,
-    description text,
     nomenclature text NOT NULL,
     source_id text,
     gene_id text
@@ -281,6 +289,28 @@ CREATE TABLE genes (
     id text NOT NULL,
     name text,
     long_name character varying(255)
+);
+
+
+--
+-- Name: interaction_attributes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE interaction_attributes (
+    id text NOT NULL,
+    interaction_id text NOT NULL,
+    name text NOT NULL,
+    value text NOT NULL
+);
+
+
+--
+-- Name: interaction_attributes_sources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE interaction_attributes_sources (
+    interaction_attribute_id text NOT NULL,
+    source_id text NOT NULL
 );
 
 
@@ -324,7 +354,6 @@ CREATE TABLE interaction_claims (
     id text NOT NULL,
     drug_claim_id text NOT NULL,
     gene_claim_id text NOT NULL,
-    description text,
     source_id text,
     known_action_type character varying(255),
     interaction_id text
@@ -519,6 +548,14 @@ ALTER TABLE ONLY gene_attributes_sources
 
 
 --
+-- Name: gene_categories_genes gene_categories_genes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_categories_genes
+    ADD CONSTRAINT gene_categories_genes_pkey PRIMARY KEY (gene_claim_category_id, gene_id);
+
+
+--
 -- Name: gene_claim_aliases gene_claim_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -580,6 +617,22 @@ ALTER TABLE ONLY gene_gene_interaction_claims
 
 ALTER TABLE ONLY genes
     ADD CONSTRAINT genes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: interaction_attributes interaction_attributes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_attributes
+    ADD CONSTRAINT interaction_attributes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: interaction_attributes_sources interaction_attributes_sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_attributes_sources
+    ADD CONSTRAINT interaction_attributes_sources_pkey PRIMARY KEY (interaction_attribute_id, source_id);
 
 
 --
@@ -1049,6 +1102,14 @@ ALTER TABLE ONLY gene_attributes
 
 
 --
+-- Name: gene_categories_genes fk_gene; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_categories_genes
+    ADD CONSTRAINT fk_gene FOREIGN KEY (gene_id) REFERENCES genes(id);
+
+
+--
 -- Name: gene_aliases_sources fk_gene_alias; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1078,6 +1139,14 @@ ALTER TABLE ONLY gene_claim_categories_gene_claims
 
 ALTER TABLE ONLY gene_claim_categories_gene_claims
     ADD CONSTRAINT fk_gene_claim_category FOREIGN KEY (gene_claim_category_id) REFERENCES gene_claim_categories(id) MATCH FULL;
+
+
+--
+-- Name: gene_categories_genes fk_gene_claim_category; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY gene_categories_genes
+    ADD CONSTRAINT fk_gene_claim_category FOREIGN KEY (gene_claim_category_id) REFERENCES gene_claim_categories(id);
 
 
 --
@@ -1145,6 +1214,22 @@ ALTER TABLE ONLY interaction_types_interactions
 
 
 --
+-- Name: interaction_attributes fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_attributes
+    ADD CONSTRAINT fk_interaction FOREIGN KEY (interaction_id) REFERENCES interactions(id);
+
+
+--
+-- Name: interaction_attributes_sources fk_interaction_attribute; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_attributes_sources
+    ADD CONSTRAINT fk_interaction_attribute FOREIGN KEY (interaction_attribute_id) REFERENCES interaction_attributes(id);
+
+
+--
 -- Name: interaction_claim_types_interaction_claims fk_interaction_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1205,6 +1290,14 @@ ALTER TABLE ONLY gene_aliases_sources
 --
 
 ALTER TABLE ONLY gene_attributes_sources
+    ADD CONSTRAINT fk_source FOREIGN KEY (source_id) REFERENCES sources(id);
+
+
+--
+-- Name: interaction_attributes_sources fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_attributes_sources
     ADD CONSTRAINT fk_source FOREIGN KEY (source_id) REFERENCES sources(id);
 
 
@@ -1303,3 +1396,9 @@ INSERT INTO schema_migrations (version) VALUES ('20170303162418');
 INSERT INTO schema_migrations (version) VALUES ('20170314140736');
 
 INSERT INTO schema_migrations (version) VALUES ('20170314161924');
+
+INSERT INTO schema_migrations (version) VALUES ('20170315152806');
+
+INSERT INTO schema_migrations (version) VALUES ('20170317143034');
+
+INSERT INTO schema_migrations (version) VALUES ('20170317175150');

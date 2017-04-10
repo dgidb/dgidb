@@ -7,6 +7,8 @@ module Genome
           reset_members
           puts 'add members'
           add_members
+          puts 'add attributes'
+          add_attributes
         end
       end
 
@@ -36,10 +38,41 @@ module Genome
               interaction_claim.save
             end
           else
-            existing_interaction_types = existing_interactions.first.interaction_types
+            existing_interaction = existing_interactions.first
+            interaction_claim.interaction = existing_interaction
+            interaction_claim.save
             interaction_claim.interaction_claim_types.each do |t|
-              unless existing_interaction_types.include? t
-                existing_interactions.first.interaction_types << t
+              unless existing_interaction.interaction_types.include? t
+                existing_interaction.interaction_types << t
+              end
+            end
+          end
+        end
+      end
+
+      def self.add_attributes
+        DataModel::Interaction.all.each do |interaction|
+          interaction.interaction_claims.each do |interaction_claim|
+            interaction_claim.interaction_claim_attributes.each do |ica|
+              existing_interaction_attributes = DataModel::InteractionAttribute.where(
+                interaction_id: interaction.id,
+                name: ica.name,
+                value: ica.value
+              )
+              if existing_interaction_attributes.empty?
+                DataModel::InteractionAttribute.new.tap do |a|
+                  a.interaction = interaction
+                  a.name = ica.name
+                  a.value = ica.value
+                  a.sources << interaction_claim.source
+                  a.save
+                end
+              else
+                existing_interaction_attributes.each do |interaction_attribute|
+                  unless interaction_attribute.sources.include? interaction_claim.source
+                    interaction_attribute.sources << interaction_claim.source
+                  end
+                end
               end
             end
           end

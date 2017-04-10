@@ -8,6 +8,9 @@ module DataModel
     has_many :interactions
     has_many :gene_aliases
     has_many :gene_attributes
+    has_and_belongs_to_many :gene_categories,
+      :join_table => 'gene_categories_genes',
+      :class_name => 'GeneClaimCategory'
 
     cache_query :all_gene_names, :all_gene_names
 

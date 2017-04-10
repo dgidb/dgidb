@@ -11,6 +11,7 @@ module DataModel
     has_and_belongs_to_many :drug_attributes
     has_and_belongs_to_many :gene_aliases
     has_and_belongs_to_many :gene_attributes
+    has_and_belongs_to_many :interaction_attributes
     belongs_to :source_type, inverse_of: :sources
     belongs_to :source_trust_level, inverse_of: :sources
 
