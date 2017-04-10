@@ -11,13 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170222165433) do
+ActiveRecord::Schema.define(:version => 20170410204422) do
+
+  create_table "drug_aliases", :id => false, :force => true do |t|
+    t.text "id",           :null => false
+    t.text "drug_id",      :null => false
+    t.text "alias",        :null => false
+    t.text "nomenclature", :null => false
+  end
+
+  create_table "drug_aliases_sources", :id => false, :force => true do |t|
+    t.text "drug_alias_id", :null => false
+    t.text "source_id",     :null => false
+  end
+
+  create_table "drug_attributes", :id => false, :force => true do |t|
+    t.text "id",      :null => false
+    t.text "drug_id", :null => false
+    t.text "name",    :null => false
+    t.text "value",   :null => false
+  end
+
+  create_table "drug_attributes_sources", :id => false, :force => true do |t|
+    t.text "drug_attribute_id", :null => false
+    t.text "source_id",         :null => false
+  end
 
   create_table "drug_claim_aliases", :id => false, :force => true do |t|
     t.text "id",            :null => false
     t.text "drug_claim_id", :null => false
     t.text "alias",         :null => false
-    t.text "description"
     t.text "nomenclature",  :null => false
   end
 
@@ -28,7 +51,6 @@ ActiveRecord::Schema.define(:version => 20170222165433) do
     t.text "drug_claim_id", :null => false
     t.text "name",          :null => false
     t.text "value",         :null => false
-    t.text "description"
   end
 
   add_index "drug_claim_attributes", ["drug_claim_id"], :name => "drug_claim_attributes_drug_claim_id_idx"
@@ -48,7 +70,6 @@ ActiveRecord::Schema.define(:version => 20170222165433) do
   create_table "drug_claims", :id => false, :force => true do |t|
     t.text   "id",           :null => false
     t.text   "name",         :null => false
-    t.text   "description"
     t.text   "nomenclature", :null => false
     t.text   "source_id"
     t.string "primary_name"
@@ -62,11 +83,39 @@ ActiveRecord::Schema.define(:version => 20170222165433) do
     t.text "name"
   end
 
+  create_table "gene_aliases", :id => false, :force => true do |t|
+    t.text "id",           :null => false
+    t.text "gene_id",      :null => false
+    t.text "alias",        :null => false
+    t.text "nomenclature", :null => false
+  end
+
+  create_table "gene_aliases_sources", :id => false, :force => true do |t|
+    t.text "gene_alias_id", :null => false
+    t.text "source_id",     :null => false
+  end
+
+  create_table "gene_attributes", :id => false, :force => true do |t|
+    t.text "id",      :null => false
+    t.text "gene_id", :null => false
+    t.text "name",    :null => false
+    t.text "value",   :null => false
+  end
+
+  create_table "gene_attributes_sources", :id => false, :force => true do |t|
+    t.text "gene_attribute_id", :null => false
+    t.text "source_id",         :null => false
+  end
+
+  create_table "gene_categories_genes", :id => false, :force => true do |t|
+    t.text "gene_claim_category_id", :null => false
+    t.text "gene_id",                :null => false
+  end
+
   create_table "gene_claim_aliases", :id => false, :force => true do |t|
     t.text "id",            :null => false
     t.text "gene_claim_id", :null => false
     t.text "alias",         :null => false
-    t.text "description"
     t.text "nomenclature",  :null => false
   end
 
@@ -78,7 +127,6 @@ ActiveRecord::Schema.define(:version => 20170222165433) do
     t.text "gene_claim_id", :null => false
     t.text "name",          :null => false
     t.text "value",         :null => false
-    t.text "description"
   end
 
   add_index "gene_claim_attributes", ["gene_claim_id"], :name => "gene_claim_attributes_gene_claim_id_idx"
@@ -98,7 +146,6 @@ ActiveRecord::Schema.define(:version => 20170222165433) do
   create_table "gene_claims", :id => false, :force => true do |t|
     t.text "id",           :null => false
     t.text "name",         :null => false
-    t.text "description"
     t.text "nomenclature", :null => false
     t.text "source_id"
     t.text "gene_id"
@@ -133,6 +180,18 @@ ActiveRecord::Schema.define(:version => 20170222165433) do
 
   add_index "genes", ["name"], :name => "index_genes_on_name"
 
+  create_table "interaction_attributes", :id => false, :force => true do |t|
+    t.text "id",             :null => false
+    t.text "interaction_id", :null => false
+    t.text "name",           :null => false
+    t.text "value",          :null => false
+  end
+
+  create_table "interaction_attributes_sources", :id => false, :force => true do |t|
+    t.text "interaction_attribute_id", :null => false
+    t.text "source_id",                :null => false
+  end
+
   create_table "interaction_claim_attributes", :id => false, :force => true do |t|
     t.text "id",                   :null => false
     t.text "interaction_claim_id", :null => false
@@ -156,7 +215,6 @@ ActiveRecord::Schema.define(:version => 20170222165433) do
     t.text   "id",                :null => false
     t.text   "drug_claim_id",     :null => false
     t.text   "gene_claim_id",     :null => false
-    t.text   "description"
     t.text   "source_id"
     t.string "known_action_type"
     t.text   "interaction_id"
@@ -176,6 +234,14 @@ ActiveRecord::Schema.define(:version => 20170222165433) do
     t.text "id",      :null => false
     t.text "drug_id", :null => false
     t.text "gene_id", :null => false
+  end
+
+  create_table "publications", :force => true do |t|
+    t.string   "pmid"
+    t.string   "citation"
+    t.string   "link"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "source_trust_levels", :id => false, :force => true do |t|
