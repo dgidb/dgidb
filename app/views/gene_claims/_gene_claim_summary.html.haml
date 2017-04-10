@@ -50,4 +50,4 @@
             -publications.each do |pub|
               %tr
                 %td 
-                  =pub
+                  =Utils.get_citation_from_pubmed_id(pub)
