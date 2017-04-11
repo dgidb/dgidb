@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170410204422) do
+ActiveRecord::Schema.define(:version => 20170412204422) do
 
   create_table "drug_aliases", :id => false, :force => true do |t|
     t.text "id",           :null => false
@@ -234,14 +234,6 @@ ActiveRecord::Schema.define(:version => 20170410204422) do
     t.text "id",      :null => false
     t.text "drug_id", :null => false
     t.text "gene_id", :null => false
-  end
-
-  create_table "publications", :force => true do |t|
-    t.string   "pmid"
-    t.string   "citation"
-    t.string   "link"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "source_trust_levels", :id => false, :force => true do |t|

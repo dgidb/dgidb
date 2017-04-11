@@ -386,32 +386,12 @@ CREATE TABLE interactions (
 --
 
 CREATE TABLE publications (
-    id integer NOT NULL,
     pmid character varying(255),
-    citation character varying(255),
+    citation text,
     link character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
-
-
---
--- Name: publications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE publications_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: publications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE publications_id_seq OWNED BY publications.id;
 
 
 --
@@ -466,13 +446,6 @@ CREATE TABLE sources (
     source_trust_level_id character varying(255),
     gene_gene_interaction_claims_count integer DEFAULT 0
 );
-
-
---
--- Name: publications id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY publications ALTER COLUMN id SET DEFAULT nextval('publications_id_seq'::regclass);
 
 
 --
@@ -721,14 +694,6 @@ ALTER TABLE ONLY interaction_types_interactions
 
 ALTER TABLE ONLY interactions
     ADD CONSTRAINT interactions_pkey PRIMARY KEY (id);
-
-
---
--- Name: publications publications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY publications
-    ADD CONSTRAINT publications_pkey PRIMARY KEY (id);
 
 
 --
@@ -1452,3 +1417,7 @@ INSERT INTO schema_migrations (version) VALUES ('20170317143034');
 INSERT INTO schema_migrations (version) VALUES ('20170317175150');
 
 INSERT INTO schema_migrations (version) VALUES ('20170410204422');
+
+INSERT INTO schema_migrations (version) VALUES ('20170412204422');
+
+INSERT INTO schema_migrations (version) VALUES ('20170412204423');
