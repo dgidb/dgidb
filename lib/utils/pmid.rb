@@ -10,13 +10,11 @@ module PMID
     PubMedResponse.new(http_resp)
   end
   def self.get_citation_from_pubmed_id(pubmed_id)
-    puts("yo")
     resp = PMID.call_pubmed_api(pubmed_id)
     resp.citation
   end
 
   def self.pubmed_url(pubmed_id)
-
     "https://www.ncbi.nlm.nih.gov/pubmed/#{pubmed_id}"
   end
 

@@ -19,8 +19,4 @@ class GeneClaimPresenter < SimpleDelegator
     end
   end
 
-  def gene
-    genes.first
-  end
-
 end
