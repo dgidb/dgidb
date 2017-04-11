@@ -6,6 +6,7 @@ namespace :dgidb do
         Genome::Groupers::GeneGrouper.run
       end
     end
+    desc 'run the drug grouper'
     task drugs: :environment do
       Utils::Logging::without_sql do
         Genome::Groupers::DrugGrouper.run
