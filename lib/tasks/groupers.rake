@@ -12,5 +12,11 @@ namespace :dgidb do
         Genome::Groupers::DrugGrouper.run
       end
     end
+    desc 'run the interaction grouper'
+    task interactions: :environment do
+      Utils::Logging::without_sql do
+        Genome::Groupers::InteractionGrouper.run
+      end
+    end
   end
 end
