@@ -4,8 +4,9 @@
 
 - cache interaction do
   
-  - attributes = interaction.interaction_claims.map{|claim| claim.interaction_claim_attributes}.flatten
-  
+  /- attributes = interaction.interaction_claims.map{|claim| claim.interaction_claim_attributes}.flatten
+  - attributes = interaction.interaction_attributes
+
   %div(class="item-title")
     %div(class="item-name")
       %h3(class="item-source")
@@ -20,12 +21,12 @@
       %div{class: "item-panel"}
         %h4{style: "display: inline-block;"}
           Interaction Types:
-          -types = interaction.interaction_claims.map {|claim| claim.interaction_claim_types}.flatten
+          /-types = interaction.interaction_claims.map {|claim| claim.interaction_claim_types}.flatten
 
           %table{class: "table table-condensed table-striped"}
-            -types.each do |claim_type|
+            -interaction.interaction_types.each do |interaction_type|
               %tr
-                %td=claim_type.type
+                %td=interaction_type.type
 
     %div(class="cell category")
       %div{class: "item-panel"}

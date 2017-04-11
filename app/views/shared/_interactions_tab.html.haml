@@ -8,7 +8,7 @@
 
 %ul(class="result-list" id="list-results")
 	-entity.interactions.each do |interaction| # sort by what?
-		%li(class="interaction-panel" onclick="location.href='/interactions/#{interaction.id}';")
+		%li(class="interaction interaction-panel" onclick="location.href='/interactions/#{interaction.id}';" data-category="interaction" data-name="Interaction")
 			=render partial: 'interactions/interaction_summary', locals: { interaction: interaction }
 
 :css
