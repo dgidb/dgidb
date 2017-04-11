@@ -33,14 +33,6 @@ class DrugPresenter < SimpleDelegator
     drug_claims.sort_by{ |d| [(d.drug_claim_attributes.empty? ? 1 : 0), (d.drug_claim_aliases.empty? ? 1 : 0), -d.drug_claim_attributes.length, d.sort_value] }
   end
 
-- aliases = gene.gene_claims.map{|claim| claim.gene_claim_aliases}.flatten
-- gene_claim_attrs = gene.gene_claims.map{|claim| claim.gene_claim_attributes}.flatten
-- interaction_claims = gene.interactions.map{|interaction| interaction.interaction_claims}.flatten
-- interaction_claim_attrs = interaction_claims.map{|claim| claim.interaction_claim_attributes}.flatten
-- all_attrs = gene_claim_attrs | interaction_claim_attrs
-- info = all_attrs.reject{|attribute| attribute.name == 'PMID'}
-- publications = all_attrs.select{|attribute| attribute.name == 'PMID'}.map{|pub| pub.value}
-
   def info # non pmid info
     drug.drug_attributes
     .reject{|attribute| attribute.name == 'PMID'}
