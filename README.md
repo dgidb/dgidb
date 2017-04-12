@@ -19,16 +19,16 @@ Two of the web application’s primary pieces of functionality are its gene name
 #### Application Programming Interface (API)
 The DGIdb API can be used to query for drug-gene interactions in your own applications through a simple JSON based interface.  Extensive documentation of the API including functioning code example is maintained at: http://dgidb.genome.wustl.edu/api
 
-#### Citation
+#### Citations
 DGIdb - mining the druggable genome. Malachi Griffith\*, Obi L Griffith\*, Adam C Coffman, James V Weible, Josh F McMichael, Nicholas C Spies, 
 James Koval, Indraniel Das, Matthew B Callaway, James M Eldred, Christopher A Miller, Janakiraman Subramanian, Ramaswamy Govindan, Runjun D Kumar, 
-Ron Bose, Li Ding, Jason R Walker, David E Larson, David J Dooling, Scott M Smith, Timothy J Ley, Elaine R Mardis, Richard K Wilson. 
-<a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.2689.html">Nature Methods</a> (2013) doi:10.1038/nmeth.2689. 
+Ron Bose, Li Ding, Jason R Walker, David E Larson, David J Dooling, Scott M Smith, Timothy J Ley, Elaine R Mardis, Richard K Wilson. Nature Methods. 2013 Dec;10(12):1209-10. doi: <a href="https://doi.org/10.1038/nmeth.2689">10.1038/nmeth.2689</a>. 
 \*These authors contributed equally to this work.
 
-#### License
+DGIdb 2.0: mining clinically relevant drug-gene interactions. Alex H Wagner, Adam C Coffman, Benjamin J Ainscough, Nicholas C Spies, Zachary L Skidmore, Katie M Campbell, Kilannin Krysiak, Deng Pan, Joshua F McMichael, James M Eldred, Jason R Walker, Richard K Wilson, Elaine R Mardis, Malachi Griffith, Obi L Griffith. Nucleic Acids Research. 2016 Jan 4;44(D1):D1036-44. doi: <a href="https://doi.org/10.1093/nar/gkv1165">10.1093/nar/gkv1165</a>.
 
-Copyright (C) 2013 The Genome Institute at Washington University
+#### License
+Copyright (C) 2017 The Genome Institute at Washington University
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
