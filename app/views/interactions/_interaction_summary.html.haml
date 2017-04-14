@@ -1,7 +1,5 @@
 /summary panel to be used in lists for interaction tab
 
-
-
 - cache interaction do
   
   /- attributes = interaction.interaction_claims.map{|claim| claim.interaction_claim_attributes}.flatten
@@ -47,4 +45,7 @@
             - pubs = attributes.select{|attribute| attribute.name == 'PMID'}[0..1]
             - pubs.each do |pub|
               %tr
-                %td=pub.value
+                %td
+                  - publication =  DataModel::Publication.find(pub.value)
+                  %a{href: publication.link}
+                    = publication.citation

@@ -37,7 +37,8 @@
 				-publications.each do |pub|
 					%tr
 						%td
-							%a{href: PMID.pubmed_url(pub)}
-								=PMID.get_citation_from_pubmed_id(pub)
+							- publication =  DataModel::Publication.find(pub)
+							%a{href: publication.link}
+								= publication.citation
 							
 
