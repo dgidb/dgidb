@@ -35,9 +35,8 @@ class InteractionSearchResultApiPresenter
   def gene
     @result.interaction_claims
       .first
-      .gene_claim
-      .genes
-      .first
+      .interaction
+      .gene
   end
 
   InteractionWrapper = Struct.new(:interaction_claim) do
