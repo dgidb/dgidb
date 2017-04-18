@@ -4,8 +4,8 @@ class LookupDrugs
     raise 'You must specify at least one search term!' unless search_terms.any?
     results = match_search_terms_to_objects(search_terms, scope)
     results_to_drugs = match_objects_to_drugs(results, search_terms)
-    de_dup_results(results_to_drugs).map do |terms, matched_genes|
-      wrapper_class.new(terms, matched_genes.compact, 'drugs')
+    de_dup_results(results_to_drugs).map do |terms, matched_drugs|
+      wrapper_class.new(terms, matched_drugs.compact, 'drugs')
     end
   end
 
