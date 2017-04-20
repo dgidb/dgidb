@@ -2,7 +2,7 @@ class LookupInteractions
   extend FilterHelper
 
   def self.find(params)
-    #find gene results for given search terms. end up with
+    #find identifier results for given search terms. end up with
     #an object of type "InteractionSearchResult" for each
     #search result
     if params[:search_mode] == 'genes'
