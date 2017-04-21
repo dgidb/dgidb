@@ -21,5 +21,9 @@ namespace :dgidb do
       Genome::Normalizers::InteractionClaimType.normalize_types
     end
 
+    desc 'get citations from PMIDs'
+    task publications: :environment do
+      Genome::Normalizers::Publications.populate_interaction_claims
+    end
   end
 end

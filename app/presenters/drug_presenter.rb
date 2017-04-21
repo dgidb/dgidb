@@ -33,15 +33,10 @@ class DrugPresenter < SimpleDelegator
     drug_claims.sort_by{ |d| [(d.drug_claim_attributes.empty? ? 1 : 0), (d.drug_claim_aliases.empty? ? 1 : 0), -d.drug_claim_attributes.length, d.sort_value] }
   end
 
-  def info # non pmid info
-    drug.drug_attributes
-    .reject{|attribute| attribute.name == 'PMID'}
-  end 
-
-  def pubs # publication model objects
-    drug.drug_attributes
-    .select{|attribute| attribute.name == 'PMID'}
-    .map{|pub| DataModel::Publication.find(pub.value)}
+  def sorted_interactions
   end
 
+  def publications
+    interactions.map{|i| i.publications}.flatten
+  end
 end

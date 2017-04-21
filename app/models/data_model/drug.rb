@@ -7,6 +7,7 @@ module DataModel
     has_many :interactions
     has_many :drug_aliases
     has_many :drug_attributes
+    has_and_belongs_to_many :publications
 
     cache_query :all_drug_names, :all_drug_names
 

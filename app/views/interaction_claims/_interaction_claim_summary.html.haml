@@ -1,7 +1,4 @@
 - cache interaction_claim do
-  - info = interaction_claim.interaction_claim_attributes.reject{|attribute| attribute.name == 'PMID' || attribute.name == 'Interaction Type'}
-  - types = interaction_claim.interaction_claim_types.map{|claim_type| claim_type.type}.flatten
-  - publications = interaction_claim.interaction_claim_attributes.select{|attribute| attribute.name == 'PMID'}
   %div(class="item-title")
     %div(class="item-name")
       %h3(class="item-source")
@@ -27,14 +24,14 @@
               %td=@interaction.drug.name
             %tr
               %td="Interaction Types"
-              %td=types.join(", ")
+              %td=interaction_claim.interaction_claim_types.join(", ")
 
     %div(class="cell category")
       %div(class="item-panel")
         %h4
           Other Info:
           %table{class: "table table-condensed table-striped", style: "display: block; height: 100px"}
-            -info[0..2].each do |attribute|
+            -interaction_claim.interaction_claim_attributes[0..2].each do |attribute|
               %tr
                 %td=attribute.name
                 %td=attribute.value
@@ -44,6 +41,8 @@
         %h4
           Publications:
           %table{class: "table table-condensed table-striped", style: "display: block; height: 100px"}
-            -publications[0..2].each do |pub|
+            -interaction_claim.publications[0..2].each do |publication|
               %tr
-                %td=pub.value
+                %td
+                  %a{href: PMID.pubmed_url(publication.pmid)}
+                    = publication.citation

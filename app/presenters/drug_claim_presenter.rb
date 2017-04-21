@@ -12,4 +12,8 @@ class DrugClaimPresenter < SimpleDelegator
     end
   end
 
+  def publications
+    interaction_claim.publications
+  end
+
 end

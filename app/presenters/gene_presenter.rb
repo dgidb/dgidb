@@ -32,6 +32,9 @@ class GenePresenter < SimpleDelegator
   def sorted_claims
     gene_claims.sort_by{ |g| [(g.gene_claim_attributes.empty? ? 1 : 0), (g.gene_claim_aliases.empty? ? 1 : 0), -g.gene_claim_attributes.length, g.sort_value] }
   end
+
+  def sorted_interactions
+  end
   
   private
   def group_map(gene)

@@ -1,8 +1,6 @@
 /summary panel for claim to be used in lists
 
 - cache drug_claim do
-  - info = drug_claim.drug_claim_attributes.reject{|attribute| attribute.name == 'PMID' || attribute.name == 'Interaction Type'}
-  - publications = drug_claim.drug_claim_attributes.select{|attribute| attribute.name == 'PMID'}
   %div(class="item-title")
     %div(class="item-name")
       %h3(class="item-source")
@@ -35,17 +33,21 @@
       %div(class="item-panel")
         %h4
           Drug Info:
-          %table{class: "table table-condensed table-striped"}
-            -info[0..2].each do |attribute|
+          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;"}
+            -drug_claim.drug_claim_attributes[0..2].each do |attribute|
               %tr
-                %td=attribute.name
-                %td=attribute.value
+                %td{style: "word-wrap: break-word;"} 
+                  =attribute.name
+                %td{style: "word-wrap: break-word;"} 
+                  =attribute.value
 
     %div(class="cell category")
       %div(class="item-panel")
         %h4
           Publications:
-          %table{class: "table table-condensed table-striped"}
-            -publications.each do |pub|
+          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;"}
+            -drug_claim.publications[0..2].each do |publication|
               %tr
-                %td=pub
+                %td
+                  %a{href: PMID.pubmed_url(publication.pmid)}
+                    = publication.citation

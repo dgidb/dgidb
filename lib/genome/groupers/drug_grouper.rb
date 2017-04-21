@@ -7,18 +7,18 @@ module Genome
 
       def self.run
         ActiveRecord::Base.transaction do
-          puts 'reset groups'
-          reset
-          puts 'preload'
-          preload
-          puts 'create groups'
-          create_groups
-          puts 'add members'
-          add_members
+          #puts 'reset groups'
+          #reset
+          #puts 'preload'
+          #preload
+          #puts 'create groups'
+          #create_groups
+          #puts 'add members'
+          #add_members
           puts 'add drug aliases'
           add_aliases
-          puts 'add drug attributes'
-          add_attributes
+          #puts 'add drug attributes'
+          #add_attributes
         end
       end
 
@@ -114,6 +114,7 @@ module Genome
         DataModel::Drug.all.each do |drug|
           drug.drug_claims.each do |drug_claim|
             drug_claim.drug_claim_aliases.each do |dca|
+              puts(dca.inspect)
               existing_drug_aliases = DataModel::DrugAlias.where(
                 drug_id: drug.id,
                 alias: dca.alias,
@@ -141,8 +142,10 @@ module Genome
 
       def self.add_attributes
         DataModel::Drug.all.each do |drug|
+          #puts(drug.inspect)
           drug.drug_claims.each do |drug_claim|
             drug_claim.drug_claim_attributes.each do |dca|
+              puts(dca.inspect)
               existing_drug_attributes = DataModel::DrugAttribute.where(
                 drug_id: drug.id,
                 name: dca.name,

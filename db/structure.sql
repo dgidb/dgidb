@@ -361,6 +361,16 @@ CREATE TABLE interaction_claims (
 
 
 --
+-- Name: interaction_claims_publications; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE interaction_claims_publications (
+    interaction_claim_id text NOT NULL,
+    publication_id text NOT NULL
+);
+
+
+--
 -- Name: interaction_types_interactions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -382,13 +392,22 @@ CREATE TABLE interactions (
 
 
 --
+-- Name: interactions_publications; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE interactions_publications (
+    interaction_id text NOT NULL,
+    publication_id text NOT NULL
+);
+
+
+--
 -- Name: publications; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE publications (
     pmid character varying(255),
     citation text,
-    link character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -681,6 +700,14 @@ ALTER TABLE ONLY interaction_claims
 
 
 --
+-- Name: interaction_claims_publications interaction_claims_publications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_claims_publications
+    ADD CONSTRAINT interaction_claims_publications_pkey PRIMARY KEY (interaction_claim_id, publication_id);
+
+
+--
 -- Name: interaction_types_interactions interaction_types_interactions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -694,6 +721,14 @@ ALTER TABLE ONLY interaction_types_interactions
 
 ALTER TABLE ONLY interactions
     ADD CONSTRAINT interactions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: interactions_publications interactions_publications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interactions_publications
+    ADD CONSTRAINT interactions_publications_pkey PRIMARY KEY (interaction_id, publication_id);
 
 
 --
@@ -907,6 +942,13 @@ CREATE INDEX index_genes_on_name ON genes USING btree (name);
 --
 
 CREATE INDEX index_interaction_claims_on_known_action_type ON interaction_claims USING btree (known_action_type);
+
+
+--
+-- Name: index_publications_on_pmid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_publications_on_pmid ON publications USING btree (pmid);
 
 
 --
@@ -1235,6 +1277,14 @@ ALTER TABLE ONLY interaction_attributes
 
 
 --
+-- Name: interactions_publications fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interactions_publications
+    ADD CONSTRAINT fk_interaction FOREIGN KEY (interaction_id) REFERENCES interactions(id);
+
+
+--
 -- Name: interaction_attributes_sources fk_interaction_attribute; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1248,6 +1298,14 @@ ALTER TABLE ONLY interaction_attributes_sources
 
 ALTER TABLE ONLY interaction_claim_types_interaction_claims
     ADD CONSTRAINT fk_interaction_claim FOREIGN KEY (interaction_claim_id) REFERENCES interaction_claims(id) MATCH FULL;
+
+
+--
+-- Name: interaction_claims_publications fk_interaction_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_claims_publications
+    ADD CONSTRAINT fk_interaction_claim FOREIGN KEY (interaction_claim_id) REFERENCES interaction_claims(id);
 
 
 --
@@ -1272,6 +1330,22 @@ ALTER TABLE ONLY interaction_claim_types_interaction_claims
 
 ALTER TABLE ONLY interaction_types_interactions
     ADD CONSTRAINT fk_interaction_type FOREIGN KEY (interaction_claim_type_id) REFERENCES interaction_claim_types(id);
+
+
+--
+-- Name: interactions_publications fk_publication; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interactions_publications
+    ADD CONSTRAINT fk_publication FOREIGN KEY (publication_id) REFERENCES publications(pmid);
+
+
+--
+-- Name: interaction_claims_publications fk_publication; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_claims_publications
+    ADD CONSTRAINT fk_publication FOREIGN KEY (publication_id) REFERENCES publications(pmid);
 
 
 --
@@ -1421,3 +1495,9 @@ INSERT INTO schema_migrations (version) VALUES ('20170410204422');
 INSERT INTO schema_migrations (version) VALUES ('20170412204422');
 
 INSERT INTO schema_migrations (version) VALUES ('20170412204423');
+
+INSERT INTO schema_migrations (version) VALUES ('20170414213904');
+
+INSERT INTO schema_migrations (version) VALUES ('20170417192246');
+
+INSERT INTO schema_migrations (version) VALUES ('20170417192258');

@@ -2,21 +2,13 @@
 / displays lists of aliases, drug/gene info, publications
 / figure out how to get "card" aesthetic
 
-- aliases = drug.drug_claims.map{|claim| claim.drug_claim_aliases}.flatten
-- drug_claim_attrs = drug.drug_claims.map{|claim| claim.drug_claim_attributes}.flatten
-- interaction_claims = drug.interactions.map{|interaction| interaction.interaction_claims}.flatten
-- interaction_claim_attrs = interaction_claims.map{|claim| claim.interaction_claim_attributes}.flatten
-- all_attrs = drug_claim_attrs | interaction_claim_attrs
-- info = all_attrs.reject{|attribute| attribute.name == 'PMID'}
-- publications = all_attrs.select{|attribute| attribute.name == 'PMID'}.map{|pub| pub.value}
-
 %div(class="item-content")
 	%div{class: "cell category", style: "float: right; width: 50%"}
 		%div(class="item-panel")
 			%h4
 				Alternate Names:
 			%table{class: "table table-condensed table-striped", style: "display: block; height: 472px; overflow-y: scroll", id: "table_aliases"}
-				-aliases.each do |alt_name| ######
+				-drug.drug_aliases.each do |alt_name| ######
 					%tr
 						%td
 							=alt_name.alias
@@ -26,7 +18,7 @@
 			%h4
 				Drug Info:
 			%table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; width: 650px; height: 200px; overflow-y: scroll", id:"table_info"}
-				-drug_claim_attrs.each do |attribute| #######
+				-drug.drug_attributes.each do |attribute| #######
 					%tr
 						%td{style: "width: 275px"}=attribute.name
 						%td{style: "width: 375px"}=attribute.value
@@ -35,8 +27,8 @@
 			%h4
 				Publications:
 			%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; overflow-y: scroll", id:"table_publications"}
-				-publications.each do |pub| ########
+				-drug.publications.each do |publication| ########
 					%tr
 						%td
-							=pub	
-
+							%a{href: PMID.pubmed_url(publication.pmid)}
+								= publication.citation

@@ -11,6 +11,7 @@ module DataModel
     has_and_belongs_to_many :gene_categories,
       :join_table => 'gene_categories_genes',
       :class_name => 'GeneClaimCategory'
+    has_and_belongs_to_many :publications
 
     cache_query :all_gene_names, :all_gene_names
 
