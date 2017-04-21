@@ -1,7 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/genome/dgi-db.png?branch=master)](https://travis-ci.org/genome/dgi-db)
 [![Code Climate](https://codeclimate.com/github/genome/dgi-db.png)](https://codeclimate.com/github/genome/dgi-db)
 
-### Rails frontend to The Genome Institute's drug gene interaction database.
+### Rails frontend to The McDonnell Genome Institute's drug gene interaction database.
 
 #### Publicly accessible instance
 To use DGIdb please first visit the public instance here: [DGIdb](http://www.dgidb.org/ "DGIdb at WashU")
@@ -28,7 +28,7 @@ Ron Bose, Li Ding, Jason R Walker, David E Larson, David J Dooling, Scott M Smit
 <strong>DGIdb 2.0: mining clinically relevant drug-gene interactions</strong>. Alex H Wagner, Adam C Coffman, Benjamin J Ainscough, Nicholas C Spies, Zachary L Skidmore, Katie M Campbell, Kilannin Krysiak, Deng Pan, Joshua F McMichael, James M Eldred, Jason R Walker, Richard K Wilson, Elaine R Mardis, Malachi Griffith, Obi L Griffith. <i>Nucleic Acids Research</i>. 2016 Jan 4;44(D1):D1036-44. doi: <a href="https://doi.org/10.1093/nar/gkv1165">10.1093/nar/gkv1165</a>. PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26531824">26531824</a>.
 
 #### License
-Copyright (C) 2017 The Genome Institute at Washington University
+Copyright (C) 2017 The McDonnell Genome Institute at Washington University
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

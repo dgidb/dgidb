@@ -3,7 +3,7 @@ contact:
   title_main: Contact Info
   title_small: get in touch with us
   description: >
-    <strong>DGIdb</strong> was developed at The Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us.<br><br>
+    <strong>DGIdb</strong> was developed at The McDonnell Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us.<br><br>
 
     Citation: <strong>DGIdb 2.0: mining clinically relevant drug-gene interactions</strong>. Alex H Wagner, Adam C Coffman, Benjamin J Ainscough, Nicholas C Spies, Zachary L Skidmore, Katie M Campbell, Kilannin Krysiak, Deng Pan, Joshua F McMichael, James M Eldred, Jason R Walker, Richard K Wilson, Elaine R Mardis, Malachi Griffith, Obi L Griffith.
     <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">Nucleic Acids Research</a> (2016) doi:10.1093/nar/gkv1165.<br><br>
@@ -57,7 +57,7 @@ contact:
     - title: Josh McMichael
       description: User experience (UX) developer
       link: "http://genome.wustl.edu/people/individual/joshua-mcmichael"
-      link_title: Genome Institute profile
+      link_title: McDonnell Genome Institute profile
       email: "mailto:jmcmicha@wustl.edu"
       email_title: Email
 
@@ -66,7 +66,7 @@ contact:
       email: "mailto:mcallawa@wustl.edu"
       email_title: Email
 
-    - title: The Genome Institute
+    - title: The McDonnell Genome Institute
       link: "http://genome.wustl.edu/"
 
   additional:
