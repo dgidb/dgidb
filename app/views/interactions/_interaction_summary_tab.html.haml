@@ -24,7 +24,7 @@
 							=interaction.drug.name
 				%tr
 					%td{style: "width: 275px"}="Interaction Types"
-					%td{style: "width: 375px"}=interaction.interaction_types.join(", ")
+					%td{style: "width: 375px"}=interaction.interaction_types.map{|it| it.type}.join(", ")
 		%br
 		%div(class="item-panel")
 			%h4
