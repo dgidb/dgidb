@@ -6,9 +6,9 @@ class CreatePublications < ActiveRecord::Migration
 
       t.timestamps
     end
-
     add_index :publications, [:pmid], unique: true
   end
+  
   def down
   	drop_table :publications
   end

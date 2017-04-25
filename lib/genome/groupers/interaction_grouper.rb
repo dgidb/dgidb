@@ -75,6 +75,11 @@ module Genome
                 end
               end
             end
+            # roll publications up to interaction level
+            interaction_claim.publications.each do |pub|
+              puts(pub.pmid)
+              interaction.publications << pub unless interaction.publications.include? pub
+            end
           end
         end
       end

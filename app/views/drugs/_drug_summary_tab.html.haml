@@ -10,9 +10,10 @@
 			%table{class: "table table-condensed table-striped", style: "display: block; height: 472px; overflow-y: scroll", id: "table_aliases"}
 				-drug.drug_aliases.each do |alt_name| ######
 					%tr
-						%td
+						%td{style: "width: 275px"}
 							=alt_name.alias
-						%td{style: "text-align: right"}=alt_name.nomenclature
+						%td{style: "text-align: right; width: 375px"}
+							=alt_name.nomenclature
 	%div{class: "cell category", style: "float: left; width: 50%" }
 		%div(class="item-panel")
 			%h4
@@ -21,7 +22,7 @@
 				-drug.drug_attributes.each do |attribute| #######
 					%tr
 						%td{style: "width: 275px"}=attribute.name
-						%td{style: "width: 375px"}=attribute.value
+						%td{style: "text-align: right; width: 375px"}=attribute.value
 		%br
 		%div(class="item-panel")
 			%h4

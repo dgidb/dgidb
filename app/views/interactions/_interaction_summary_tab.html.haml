@@ -33,7 +33,6 @@
 				-interaction.publications.each do |publication|
 					%tr
 						%td
-							- publication =  DataModel::Publication.find(pub.value)
 							%a{href: PMID.pubmed_url(publication.pmid)}
 								= publication.citation
 	%div{class: "cell category", style: "float: right; width: 50%"}
@@ -41,7 +40,7 @@
 			%h4
 				Other Info:
 			%table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; width: 650px; height: 472px; overflow-y: scroll", id: "table_aliases"}
-				-interaction.attributes.each do |attribute|
+				-interaction.interaction_attributes.each do |attribute|
 					%tr
 						%td{style: "width: 300px"}=attribute.name
 						%td{style: "width: 350px"}=attribute.value	

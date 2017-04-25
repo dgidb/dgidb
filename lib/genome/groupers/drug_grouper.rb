@@ -7,18 +7,18 @@ module Genome
 
       def self.run
         ActiveRecord::Base.transaction do
-          #puts 'reset groups'
-          #reset
-          #puts 'preload'
-          #preload
-          #puts 'create groups'
-          #create_groups
-          #puts 'add members'
-          #add_members
+          puts 'reset groups'
+          reset
+          puts 'preload'
+          preload
+          puts 'create groups'
+          create_groups
+          puts 'add members'
+          add_members
           puts 'add drug aliases'
           add_aliases
-          #puts 'add drug attributes'
-          #add_attributes
+          puts 'add drug attributes'
+          add_attributes
         end
       end
 

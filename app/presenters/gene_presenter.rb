@@ -25,15 +25,21 @@ class GenePresenter < SimpleDelegator
     @wrapped_claims ||= @gene.gene_claims.map { |gc| GeneClaimPresenter.new(gc) }
   end
 
-  def sorted_gene_claims
-    gene_claims.sort_by(&:sort_value)
-  end
+  # def sorted_gene_claims
+  #   gene_claims.sort_by(&:sort_value)
+  # end
 
   def sorted_claims
-    gene_claims.sort_by{ |g| [(g.gene_claim_attributes.empty? ? 1 : 0), (g.gene_claim_aliases.empty? ? 1 : 0), -g.gene_claim_attributes.length, g.sort_value] }
+    gene_claims.sort_by{ |g| [(g.gene_claim_attributes.empty? ? 1 : 0), (GeneClaimPresenter.new(g).publications.empty? ? 1 : 0), (g.gene_claim_aliases.empty? ? 1 : 0), g.sort_value] }
+    #gene_claims  
   end
 
   def sorted_interactions
+    interactions.sort_by{ |i| [(i.interaction_types.empty? ? 1 : 0), (i.interaction_attributes.length > i.publications.length + i.interaction_types.length ? 0 : 1), (i.publications.empty? ? 1 : 0)] }
+  end
+
+  def publications
+    interactions.map{|i| i.publications}.flatten.uniq
   end
   
   private

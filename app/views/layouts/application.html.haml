@@ -52,14 +52,8 @@
     =render partial: 'shared/tour', locals: { tour: @tour }
     =render partial: 'layouts/disclaimer_modal'
   #push
-  #footer
+  #footer{style: "height: 20px; background: white"}
     .container
-      %ul.span12.muted
-        -to('links','index').each do |l|
-          %p
-            %li.span2
-              =dynamic_link_to(l["title"], l["url"])
-              %small=l["description"]
       .container.muted.span12
         %p.span5.offset3
           ="DGIdb (v#{CURRENT_VERSION.version} - sha1 #{CURRENT_VERSION.sha})"

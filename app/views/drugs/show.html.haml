@@ -48,20 +48,25 @@
 %br
 
 :javascript
-	$('#myTab a').click(function(e) {
-	  e.preventDefault();
-	  $(this).tab('show');
+	$(document).ready(function () {
+		// Handle tab selection
+		var activeTab = $('#' + window.location.hash.substr(2));
+		console.log(window.location.hash.substr(2));
+		console.log(activeTab);
+		console.log(activeTab.length);
+
+		if(activeTab.length) {
+			$('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+		} else {
+			$('a[href="' + "#summary" + '"]').trigger('click');
+		}
 	});
 
-	// store the currently selected tab in the hash value
-	$("ul.nav-tabs > li > a").on("shown.bs.tab", function(e) {
-	  var id = $(e.target).attr("href").substr(1);
-	  window.location.hash = id;
-	});
-
-	// on load of the page: switch to the currently selected tab
-	var hash = window.location.hash;
-	$('#myTab a[href="' + hash + '"]').tab('show');
+	$(".tabbable li a").click(function () {
+		console.log($(this).attr('href').substr(1));
+		window.location.hash = "_" + $(this).attr('href').substr(1);
+		return true;
+	}); 
 
 
 -# I should figure out what this is all doing... I suspect gene_groups and gene-list-tabs are actually for both gene and drug
