@@ -22,7 +22,7 @@
 				- gene.gene_attributes.each do |attribute|
 					%tr
 						%td{style: "width: 275px"}=attribute.name
-						%td{style: "text-align: right; width: 375px"}=attribute.value
+						%td{style: "width: 375px"}=attribute.value
 		%br
 		%div(class="item-panel")
 			%h4
@@ -30,7 +30,7 @@
 			%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; overflow-y: scroll", id:"table_publications"}
 				-gene.publications.each do |publication|
 					%tr
-						%td
+						%td{"data-toggle"=>"tooltip", title: publication.interaction_claims.map{|ic| ic.source.source_db_name}.uniq.join(", ")}
 							%a{href: PMID.pubmed_url(publication.pmid)}
 								= publication.citation
 							

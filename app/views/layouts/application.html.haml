@@ -60,6 +60,12 @@
           ="DGIdb (v#{CURRENT_VERSION.version} - sha1 #{CURRENT_VERSION.sha})"
           •
           ="Last updated #{CURRENT_VERSION.time}"
+
+  :javascript
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
+
   -if(Rails.env.production?)
     :javascript
       var _gaq = _gaq || [];
