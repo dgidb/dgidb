@@ -1,0 +1,118 @@
+drug_name	trade_name	drug_class	entrez_gene_name	primary_gene_name	metadata_fda_approval
+Ado-trastuzumab emtansine 	Kadcyla	Monoclonal antibody	ERBB2	ERBB2	Breast cancer (HER2+)
+Afatinib 	Gilotrif	TKI	EGFR 	EGFR 	Non-small cell lung cancer (with EGFR exon 19 deletions or exon 21 substitution (L858R) mutations)
+Alectinib 	Alecensa	TKI	ALK	ALK	Non-small cell lung cancer (with ALK fusion)
+Alemtuzumab 	Campath	Monoclonal antibody	CD52	CD52	B-cell chronic lymphocytic leukemia
+Atezolizumab 	Tecentriq	Monoclonal antibody	CD274	PD-L1	Non-small cell lung cancer, Urothelial carcinoma
+Avelumab 	Bavencio	Monoclonal antibody	CD274	PD-L1	Merkel cell carcinoma
+Axitinib 	Inlyta	TKI	KIT	KIT	Renal cell carcinoma
+Axitinib 	Inlyta	TKI	PDGFRB	PDGFRB	Renal cell carcinoma
+Axitinib 	Inlyta	TKI	VEGFR1	VEGFR1	Renal cell carcinoma
+Axitinib 	Inlyta	TKI	VEGFR2	VEGFR2	Renal cell carcinoma
+Axitinib 	Inlyta	TKI	VEGFR3	VEGFR3	Renal cell carcinoma
+Belimumab 	Benlysta	Monoclonal antibody	TNFSF13B	BAFF	Lupus erythematosus
+Belinostat 	Beleodaq		HDAC1	HDAC	Peripheral T-cell lymphoma
+Belinostat 	Beleodaq		HDAC4	HDAC	Peripheral T-cell lymphoma
+Belinostat 	Beleodaq		HDAC7	HDAC	Peripheral T-cell lymphoma
+Belinostat 	Beleodaq		HDAC9	HDAC	Peripheral T-cell lymphoma
+Bevacizumab 	Avastin	Monoclonal antibody	VEGFA	VEGF	Cervical cancer, colorectal cancer, fallopian tube cancer, glioblastoma, non-small cell lung cancer, ovarian cancer, peritoneal cancer, renal cell carcinoma
+Bortezomib 	Velcade	Small molecule inhibitor	PSMC5	Proteasome	Multiple myeloma, Mantle cell lymphoma
+Bosutinib 	Bosulif	TKI	ABL1	ABL	Chronic myelogenous leukemia (Philadelphia chromosome positive)
+Brentuximab vedotin 	Adcetris	Chimeric antibody	CD30	CD30	Hodgkin lymphoma, Anaplastic large cell lymphoma
+Cabozantinib 	Cabometyx [tablet], Cometriq [capsule]	TKI	KIT	KIT	Medullary thyroid cancer, Renal cell carcinoma
+Cabozantinib 	Cabometyx [tablet], Cometriq [capsule]	TKI	MET	MET	Medullary thyroid cancer, Renal cell carcinoma
+Cabozantinib 	Cabometyx [tablet], Cometriq [capsule]	TKI	RET	RET	Medullary thyroid cancer, Renal cell carcinoma
+Cabozantinib 	Cabometyx [tablet], Cometriq [capsule]	TKI	VEGFR2	VEGFR2	Medullary thyroid cancer, Renal cell carcinoma
+Cabozantinib 	Cabometyx [tablet], Cometriq [capsule]	TKI	FLT3	FLT3	Medullary thyroid cancer, Renal cell carcinoma
+Canakinumab 	Ilaris	Monoclonal antibody	IL1B	IL1B	Juvenile idiopathic arthritis
+Carfilzomib 	Kyprolis	Small molecule inhibitor	PSMC5	Proteasome	Multiple myeloma
+Ceritinib 	Zykadia	TKI	ALK	ALK	Non-small cell lung cancer (with ALK fusion)
+Cetuximab 	Erbitux	Chimeric antibody	EGFR 	EGFR 	Colorectal cancer (KRAS wild type), Squamous cell carcinoma of the head and neck
+Cobimetinib 	Cotellic	TKI	MEK	MEK	Melanoma (with BRAF V600E or V600K mutation)
+Crizotinib 	Xalkori	TKI	ROS1	ROS1	Non-small cell lung cancer (with ALK fusion or ROS1 gene alteration)
+Crizotinib 	Xalkori	TKI	MET	MET	Non-small cell lung cancer (with ALK fusion or ROS1 gene alteration)
+Crizotinib 	Xalkori	TKI	ALK	ALK	Non-small cell lung cancer (with ALK fusion or ROS1 gene alteration)
+Dabrafenib 	Tafinlar	Small molecule inhibitor	BRAF	BRAF	Melanoma (with BRAF V600 mutation)
+Daratumumab 	Darzalex	Human monoclonal antibody	CD38	CD38	Multiple myeloma
+Dasatinib 	Sprycel	TKI	ABL1	ABL	Chronic myelogenous leukemia (Philadelphia chromosome positive), Acute lymphoblastic leukemia (Ph +)
+Denosumab 	Xgeva	Monoclonal antibody	RANKL	RANKL	Giant cell tumor of the bone
+Dinutuximab 	Unituxin	Chimeric antibody	B4GALNT1 	B4GALNT1 	Pediatric neuroblastoma
+Elotuzumab 	Empliciti	Monoclonal antibody	SLAMF7 	SLAMF7 	Multiple myeloma
+Erlotinib 	Tarceva	TKI	EGFR 	EGFR 	Non-small cell lung cancer (with EGFR exon 19 deletions or exon 21 substitution (L858R) mutations), Pancreatic cancer
+Everolimus 	Afinitor		MTOR	mTOR	Pancreatic, gastrointestinal, or lung origin neuroendocrine tumors; Renal cell carcinoma, Subependymal giant cell astrocytoma associated with tuberous sclerosis, Breast cancer (ER+, HER2-)
+Gefitinib 	Iressa	TKI	EGFR 	EGFR 	Non-small cell lung cancer (with EGFR exon 19 deletions or exon 21 substitution (L858R) mutations)
+Ibritumomab tiuxetan 	Zevalin	Monoclonal antibody	CD20	CD20	Non-Hodgkin's lymphoma
+Ibrutinib 	Imbruvica	TKI	BTK	BTK	Mantle cell lymphoma, Chronic lymphocytic leukemia, Waldenstrom's macroglobulinemia
+Idelalisib 	Zydelig		PIK3CD	PI3Kδ	Chronic lymphocytic leukemia, Follicular B-cell non-Hodgkin lymphoma, Small lymphocytic lymphoma
+Imatinib 	Gleevec	TKI	ABL1	ABL	GI stromal tumor (KIT+), Dermatofibrosarcoma protuberans, Multiple hematologic malignancies including Philadelphia chromosome-positive ALL and CML
+Imatinib 	Gleevec	TKI	PDGFRA	PDGFR	GI stromal tumor (KIT+), Dermatofibrosarcoma protuberans, Multiple hematologic malignancies including Philadelphia chromosome-positive ALL and CML
+Imatinib 	Gleevec	TKI	PDGFRB	PDGFR	GI stromal tumor (KIT+), Dermatofibrosarcoma protuberans, Multiple hematologic malignancies including Philadelphia chromosome-positive ALL and CML
+Imatinib 	Gleevec	TKI	KIT	KIT	GI stromal tumor (KIT+), Dermatofibrosarcoma protuberans, Multiple hematologic malignancies including Philadelphia chromosome-positive ALL and CML
+Ipilimumab 	Yervoy	Human monoclonal antibody	CTLA4	CTLA-4	Melanoma
+Ixazomib 	Ninlaro	Small molecule inhibitor	PSMC5	Proteasome	Multiple Myeloma
+Lapatinib 	Tykerb	TKI	ERBB2	HER2 	Breast cancer (HER2+)
+Lenvatinib 	Lenvima	TKI	VEGFR2	VEGFR2	Renal cell carcinoma, Thyroid cancer
+Necitumumab 	Portrazza	Human monoclonal antibody	EGFR 	EGFR 	Squamous non-small cell lung cancer
+Nilotinib 	Tasigna	TKI	ABL1	ABL	Chronic myelogenous leukemia (Philadelphia chromosome positive)
+Niraparib 	Zejula	Small molecule inhibitor	PARP1	PARP	Ovarian cancer, Fallopian tube cancer, Peritoneal cancer
+Nivolumab 	Opdivo	Monoclonal antibody	PDCD1	PD-1	Head and neck squamous cell carcinoma, Hodgkin lymphoma, Melanoma, Non-small cell lung cancer, Renal cell carcinoma, Urothelial carcinoma
+Obinutuzumab 	Gazyva	Monoclonal antibody	CD20	CD20	Chronic lymphocytic leukemia, Follicular lymphoma
+Ofatumumab 	Arzerra, HuMax-CD20	Human monoclonal antibody	CD20	CD20	Chronic lymphocytic leukemia
+Olaparib 	Lynparza	Small molecule inhibitor	PARP	PARP	Ovarian cancer (with BRCA mutation)
+Olaratumab 	Lartruvo	Monoclonal antibody	PDGFRA	PDGFRA	Soft tissue sarcoma
+Osimertinib 	Tagrisso	TKI	EGFR	EGFR	Non-small cell lung cancer (with EGFR T790M mutation)
+Palbociclib 	Ibrance	Small molecule inhibitor	CDK6	CDK6	Breast cancer (HR+, HER2-)
+Palbociclib 	Ibrance	Small molecule inhibitor	CDK4	CDK4	Breast cancer (HR+, HER2-)
+Panitumumab 	Vectibix	Human monoclonal antibody	EGFR 	EGFR 	Colorectal cancer (KRAS wild type)
+Panobinostat 	Farydak		HDAC1	HDAC	Multiple myeloma
+Panobinostat 	Farydak		HDAC4	HDAC	Multiple myeloma
+Panobinostat 	Farydak		HDAC7	HDAC	Multiple myeloma
+Panobinostat 	Farydak		HDAC9	HDAC	Multiple myeloma
+Pazopanib 	Votrient	Small molecule inhibitor	KIT	KIT	Renal cell carcinoma
+Pazopanib 	Votrient	Small molecule inhibitor	PDGFRA	PDGFR	Renal cell carcinoma
+Pazopanib 	Votrient	Small molecule inhibitor	VEGFR1	VEGFR1	Renal cell carcinoma
+Pembrolizumab 	Keytruda	Monoclonal antibody	PDCD1	PD-1	Classical Hodgkin lymphoma, Melanoma, Non-small cell lung cancer (PD-L1+), Head and neck squamous cell carcinoma
+Pertuzumab 	Perjeta	Monoclonal antibody	ERBB2	HER2 	Breast cancer (HER2+)
+Ponatinib 	Iclusig	TKI	FGFR1	FGFR1	Chronic myelogenous leukemia, Acute lymphoblastic leukemia (Philadelphia chromosome positive)
+Ponatinib 	Iclusig	TKI	FGFR2	FGFR2	Chronic myelogenous leukemia, Acute lymphoblastic leukemia (Philadelphia chromosome positive)
+Ponatinib 	Iclusig	TKI	FGFR3	FGFR3	Chronic myelogenous leukemia, Acute lymphoblastic leukemia (Philadelphia chromosome positive)
+Ponatinib 	Iclusig	TKI	FLT3	FLT3	Chronic myelogenous leukemia, Acute lymphoblastic leukemia (Philadelphia chromosome positive)
+Ponatinib 	Iclusig	TKI	VEGFR2	VEGFR2	Chronic myelogenous leukemia, Acute lymphoblastic leukemia (Philadelphia chromosome positive)
+Ponatinib 	Iclusig	TKI	ABL1	ABL	Chronic myelogenous leukemia, Acute lymphoblastic leukemia (Philadelphia chromosome positive)
+Ramucirumab 	Cyramza	Monoclonal antibody	VEGFR2	VEGFR2	Colorectal cancer, Gastric cancer or Gastroesophageal junction (GEJ) adenocarcinoma, Non-small cell lung cancer
+Regorafenib 	Stivarga	TKI	PDGFRB	PDGFRB	Colorectal cancer, Gastrointestinal stromal tumors
+Regorafenib 	Stivarga	TKI	KIT	KIT	Colorectal cancer, Gastrointestinal stromal tumors
+Ribociclib 	Kisqali		CDK6	CDK6	Breast cancer (HR+, HER2-)
+Ribociclib 	Kisqali		CDK4	CDK4	Breast cancer (HR+, HER2-)
+Rituximab 	Rituxan, Mabthera	Monoclonal antibody	CD20	CD20	Non-Hodgkin’s lymphoma, Chronic lymphocytic leukemia, Rheumatoid arthritis, Granulomatosis with polyangiitis
+Romidepsin 	Istodax		HDAC1	HDAC	Cutaneous T-cell lymphoma, Peripheral T-cell lymphoma
+Romidepsin 	Istodax		HDAC4	HDAC	Cutaneous T-cell lymphoma, Peripheral T-cell lymphoma
+Romidepsin 	Istodax		HDAC7	HDAC	Cutaneous T-cell lymphoma, Peripheral T-cell lymphoma
+Romidepsin 	Istodax		HDAC9	HDAC	Cutaneous T-cell lymphoma, Peripheral T-cell lymphoma
+Rucaparib 	Rubraca		PARP1	PARP	Ovarian cancer (with BRCA mutation)
+Ruxolitinib 	Jakafi	TKI	JAK2	JAK2	​Myelofibrosis
+Ruxolitinib 	Jakafi	TKI	JAK1	JAK1	​Myelofibrosis
+Siltuximab 	Sylvant	Monoclonal antibody	IL6	IL-6	Multicentric Castleman's disease
+Sonidegib 	Odomzo		SMO	SMO	Basal cell carcinoma
+Sorafenib 	Nexavar	TKI	BRAF	RAF	Hepatocellular carcinoma, Renal cell carcinoma, Thyroid carcinoma
+Sorafenib 	Nexavar	TKI	KIT	KIT	Hepatocellular carcinoma, Renal cell carcinoma, Thyroid carcinoma
+Sorafenib 	Nexavar	TKI	PDGFRB	PDGFRB	Hepatocellular carcinoma, Renal cell carcinoma, Thyroid carcinoma
+Sorafenib 	Nexavar	TKI	VEGFR1	VEGFR1	Hepatocellular carcinoma, Renal cell carcinoma, Thyroid carcinoma
+Temsirolimus 	Torisel		MTOR	mTOR	Renal cell carcinoma
+Tocilizumab 	Actemra	Monoclonal antibody	IL6R	IL-6R	Rheumatoid arthritis, Juvenile idiopathic arthritis
+Tofacitinib 	Xeljanz	TKI	JAK3	JAK3	Rheumatoid arthritis
+Tositumomab 	Bexxar	Monoclonal antibody	CD20	CD20	Non-Hodgkin's lymphoma
+Trametinib 	Mekinist	TKI	MEK	MEK	Melanoma (with BRAF V600 mutation)
+Trastuzumab 	Herceptin	Monoclonal antibody	ERBB2	HER2 	Breast cancer (HER2+), Gastric cancer (HER2+)
+Vandetanib 	Caprelsa	TKI	EGFR 	EGFR 	Medullary thyroid cancer
+Vemurafenib 	Zelboraf	TKI	BRAF	BRAF	Melanoma (with BRAF V600 mutation)
+Venetoclax 	Venclexta		BCL2	BCL2	Chronic lymphocytic leukemia (with 17p deletion)
+Vismodegib 	Erivedge		PTCH1	PTCH1	Basal cell carcinoma
+Vismodegib 	Erivedge		SMO	SMO	Basal cell carcinoma
+Vorinostat 	Zolinza		HDAC1	HDAC	Cutaneous T-cell lymphoma
+Vorinostat 	Zolinza		HDAC4	HDAC	Cutaneous T-cell lymphoma
+Vorinostat 	Zolinza		HDAC7	HDAC	Cutaneous T-cell lymphoma
+Vorinostat 	Zolinza		HDAC9	HDAC	Cutaneous T-cell lymphoma
+Ziv-aflibercept 	Zaltrap		PIGF	PIGF	Colorectal cancer
+Ziv-aflibercept 	Zaltrap		VEGFR1	VEGFR1	Colorectal cancer
+Ziv-aflibercept 	Zaltrap		VEGFR2	VEGFR2	Colorectal cancer
