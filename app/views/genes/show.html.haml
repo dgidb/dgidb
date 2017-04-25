@@ -44,12 +44,28 @@
             .span12
               =render partial: 'shared/claims_tab', locals: {gene: @gene}
 
-%br
--# pretty sure I put break here because the body was overlapping with the footer
+:javascript
+  $(document).ready(function () {
+    var activeTab = $('#' + window.location.hash.substr(2));
+    console.log(window.location.hash.substr(2));
+    console.log(activeTab);
+    console.log(activeTab.length);
 
--# I should figure out what this is all doing... I suspect gene_groups and gene-list-tabs are actually for both gene and drug
-  =javascript_include_tag "jquery.masonry.min"
-  =javascript_include_tag "jquery.dataTables.min"
-  =javascript_include_tag "pagination_bootstrap"
-  =javascript_include_tag "gene_groups"
-  =javascript_include_tag "gene-list-tabs"
+    if(activeTab.length) {
+      $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+    } else {
+      $('a[href="' + "#summary" + '"]').trigger('click');
+    }
+  });
+
+  $(".tabbable li a").click(function () {
+    console.log($(this).attr('href').substr(1));
+    window.location.hash = "_" + $(this).attr('href').substr(1);
+    return true;
+  }); 
+
+=javascript_include_tag "jquery.masonry.min"
+=javascript_include_tag "jquery.dataTables.min"
+=javascript_include_tag "pagination_bootstrap"
+=javascript_include_tag "gene_groups"
+=javascript_include_tag "gene-list-tabs"

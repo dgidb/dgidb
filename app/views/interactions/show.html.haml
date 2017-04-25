@@ -28,7 +28,27 @@
 						.span12
 							=render partial: 'shared/claims_tab', locals: {interaction: @interaction}
 
-%br
+:javascript
+	$(document).ready(function () {
+		// Handle tab selection
+		var activeTab = $('#' + window.location.hash.substr(2));
+		console.log(window.location.hash.substr(2));
+		console.log(activeTab);
+		console.log(activeTab.length);
+
+		if(activeTab.length) {
+			$('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+		} else {
+			$('a[href="' + "#summary" + '"]').trigger('click');
+		}
+	});
+
+	$(".tabbable li a").click(function () {
+		console.log($(this).attr('href').substr(1));
+		window.location.hash = "_" + $(this).attr('href').substr(1);
+		return true;
+	}); 
+
 	=javascript_include_tag "jquery.masonry.min"
 	=javascript_include_tag "jquery.dataTables.min"
 	=javascript_include_tag "pagination_bootstrap"

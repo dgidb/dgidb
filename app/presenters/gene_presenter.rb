@@ -31,7 +31,6 @@ class GenePresenter < SimpleDelegator
 
   def sorted_claims
     gene_claims.sort_by{ |g| [(g.gene_claim_attributes.empty? ? 1 : 0), (GeneClaimPresenter.new(g).publications.empty? ? 1 : 0), (g.gene_claim_aliases.empty? ? 1 : 0), g.sort_value] }
-    #gene_claims  
   end
 
   def sorted_interactions
