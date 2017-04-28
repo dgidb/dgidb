@@ -366,7 +366,7 @@ CREATE TABLE interaction_claims (
 
 CREATE TABLE interaction_claims_publications (
     interaction_claim_id text NOT NULL,
-    publication_id integer NOT NULL
+    publication_id text NOT NULL
 );
 
 
@@ -397,7 +397,7 @@ CREATE TABLE interactions (
 
 CREATE TABLE interactions_publications (
     interaction_id text NOT NULL,
-    publication_id integer NOT NULL
+    publication_id text NOT NULL
 );
 
 
@@ -406,31 +406,12 @@ CREATE TABLE interactions_publications (
 --
 
 CREATE TABLE publications (
-    id integer NOT NULL,
-    pmid integer,
+    id text NOT NULL,
+    pmid integer NOT NULL,
     citation text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
-
-
---
--- Name: publications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE publications_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: publications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE publications_id_seq OWNED BY publications.id;
 
 
 --
@@ -485,13 +466,6 @@ CREATE TABLE sources (
     source_trust_level_id character varying(255),
     gene_gene_interaction_claims_count integer DEFAULT 0
 );
-
-
---
--- Name: publications id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY publications ALTER COLUMN id SET DEFAULT nextval('publications_id_seq'::regclass);
 
 
 --
