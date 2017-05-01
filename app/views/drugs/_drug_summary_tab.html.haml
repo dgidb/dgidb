@@ -7,29 +7,29 @@
 		%div(class="item-panel")
 			%h4
 				Alternate Names:
-			%table{class: "table table-condensed table-striped", style: "display: block; height: 472px; overflow-y: scroll", id: "table_aliases"}
+			%table{class: "table table-condensed table-striped", style: "display: block; height: 472px; overflow-y: scroll; table-layout:fixed; width: 100%", id: "table_aliases"}
 				-drug.drug_aliases.each do |alt_name| ######
 					%tr
-						%td{style: "width: 275px"}
+						%td{style: "width: 70%; word-break:break-all"}
 							=alt_name.alias
-						%td{style: "text-align: right; width: 375px"}
+						%td{style: "text-align: right; width: 30%; word-break:break-all"}
 							=alt_name.nomenclature
 	%div{class: "cell category", style: "float: left; width: 50%" }
 		%div(class="item-panel")
 			%h4
 				Drug Info:
-			%table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; width: 650px; height: 200px; overflow-y: scroll", id:"table_info"}
+			%table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; width: 636px; height: 200px; overflow-y: scroll", id:"table_info"}
 				-drug.drug_attributes.each do |attribute| #######
-					%tr{"data-toggle"=>"tooltip", title: attribute.sources.map{|s| s.source_db_name}.join(", ")}
-						%td{style: "width: 275px"}=attribute.name
-						%td{style: "width: 375px"}=attribute.value
+					%tr
+						%td{style: "width: 300px"}=attribute.name
+						%td{style: "width: 336px"}=attribute.value
 		%br
 		%div(class="item-panel")
 			%h4
 				Publications:
-			%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; overflow-y: scroll", id:"table_publications"}
+			%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; width: 100%; overflow-y: scroll", id:"table_publications"}
 				-drug.publications.each do |publication| ########
 					%tr
-						%td{"data-toggle"=>"tooltip", title: publication.interaction_claims.map{|ic| ic.source.source_db_name}.uniq.join(", ")}
+						%td{style: "width: 100%"}
 							%a{href: PMID.pubmed_url(publication.pmid)}
 								= publication.citation

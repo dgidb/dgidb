@@ -18,11 +18,11 @@
 		%div(class="item-panel")
 			%h4
 				Gene Info:
-			%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; overflow-y: scroll", id:"table_info"}
+			%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; width: 636px; overflow-y: scroll", id:"table_info"}
 				- gene.gene_attributes.each do |attribute|
 					%tr
-						%td{style: "width: 275px"}=attribute.name
-						%td{style: "width: 375px"}=attribute.value
+						%td{style: "width: 300px"}=attribute.name
+						%td{style: "width: 336px"}=attribute.value
 		%br
 		%div(class="item-panel")
 			%h4
@@ -30,7 +30,7 @@
 			%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; overflow-y: scroll", id:"table_publications"}
 				-gene.publications.each do |publication|
 					%tr
-						%td{"data-toggle"=>"tooltip", title: publication.interaction_claims.map{|ic| ic.source.source_db_name}.uniq.join(", ")}
+						%td
 							%a{href: PMID.pubmed_url(publication.pmid)}
 								= publication.citation
 							
