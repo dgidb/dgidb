@@ -2,17 +2,17 @@ module Genome
 	module Normalizers
 		class Publications
 			def self.populate_interaction_claims
-				# ActiveRecord::Base.transaction do
-				# 	iclaims = DataModel::InteractionClaimAttribute.all(conditions: {name: "PMID"})
-				# 	iclaims |= DataModel::InteractionClaimAttribute.all(conditions: {name: "PubMed ID for Interaction"})
-				# 	iclaims.map{|pmid|
-				# 		new_pub = DataModel::Publication.where(pmid: pmid.value).first_or_create(pmid: pmid.value)
-				# 		pmid.interaction_claim.publications << new_pub unless pmid.interaction_claim.publications.include? new_pub
-				# 		pmid.delete
-				# 	}
-				# end
+				ActiveRecord::Base.transaction do
+					iclaims = DataModel::InteractionClaimAttribute.all(conditions: {name: "PMID"})
+					iclaims |= DataModel::InteractionClaimAttribute.all(conditions: {name: "PubMed ID for Interaction"})
+					iclaims.map{|pmid|
+						new_pub = DataModel::Publication.where(pmid: pmid.value).first_or_create(pmid: pmid.value)
+						pmid.interaction_claim.publications << new_pub unless pmid.interaction_claim.publications.include? new_pub
+						pmid.delete
+					}
+				end
 				recurrences = 0
-				while pubs_without_citations = DataModel::Publication.where(citation: nil) do
+				while (pubs_without_citations = DataModel::Publication.where(citation: nil)).length > 0 do
 					if recurrences > 0
 						sleep 300
 					end

@@ -2,14 +2,14 @@ module Genome
   module Groupers
     class InteractionGrouper
       def self.run
-        ActiveRecord::Base.transaction do
+        #ActiveRecord::Base.transaction do
           # puts 'reset members'
           # reset_members
           # puts 'add members'
           # add_members
           puts 'add attributes'
           add_attributes
-        end
+        #end
       end
 
       def self.reset_members
@@ -53,35 +53,35 @@ module Genome
       def self.add_attributes
         DataModel::Interaction.all.each do |interaction|
           interaction.interaction_claims.each do |interaction_claim|
-            # interaction_claim.interaction_claim_attributes.each do |ica|
-            #   existing_interaction_attributes = DataModel::InteractionAttribute.where(
-            #     interaction_id: interaction.id,
-            #     name: ica.name,
-            #     value: ica.value
-            #   )
-            #   if existing_interaction_attributes.empty?
-            #     DataModel::InteractionAttribute.new.tap do |a|
-            #       a.interaction = interaction
-            #       a.name = ica.name
-            #       a.value = ica.value
-            #       a.sources << interaction_claim.source
-            #       a.save
-            #     end
-            #   else
-            #     existing_interaction_attributes.each do |interaction_attribute|
-            #       unless interaction_attribute.sources.include? interaction_claim.source
-            #         interaction_attribute.sources << interaction_claim.source
-            #       end
-            #     end
-            #   end
-            # end
-            # roll publications up to interaction level
+            interaction_claim.interaction_claim_attributes.each do |ica|
+              existing_interaction_attributes = DataModel::InteractionAttribute.where(
+                interaction_id: interaction.id,
+                name: ica.name,
+                value: ica.value
+              )
+              if existing_interaction_attributes.empty?
+                DataModel::InteractionAttribute.new.tap do |a|
+                  a.interaction = interaction
+                  a.name = ica.name
+                  a.value = ica.value
+                  a.sources << interaction_claim.source
+                  a.save
+                end
+              else
+                existing_interaction_attributes.each do |interaction_attribute|
+                  unless interaction_attribute.sources.include? interaction_claim.source
+                    interaction_attribute.sources << interaction_claim.source
+                  end
+                end
+              end
+            end
+            roll publications up to interaction level
             interaction_claim.publications.each do |pub|
               interaction.publications << pub unless interaction.publications.include? pub
             end
-            DataModel::InteractionAttribute.where(name: 'PMID').delete_all
-            DataModel::InteractionAttribute.where(name: 'PubMed ID for Interaction').delete_all
-            DataModel::InteractionAttribute.where(name: 'Interaction Type').delete_all
+            DataModel::InteractionAttribute.where(name: 'PMID').destroy_all
+            DataModel::InteractionAttribute.where(name: 'PubMed ID for Interaction').destroy_all
+            DataModel::InteractionAttribute.where(name: 'Interaction Type').destroy_all
           end
         end
       end

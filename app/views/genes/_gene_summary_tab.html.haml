@@ -21,8 +21,10 @@
 			%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; width: 636px; overflow-y: scroll", id:"table_info"}
 				- gene.gene_attributes.each do |attribute|
 					%tr
-						%td{style: "width: 300px"}=attribute.name
-						%td{style: "width: 336px"}=attribute.value
+						%td{style: "width: 300px"}
+							=attribute.name
+						%td{style: "width: 336px"}
+							=attribute.value
 		%br
 		%div(class="item-panel")
 			%h4

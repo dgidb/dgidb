@@ -16,7 +16,7 @@
       %div{class: "item-panel"}
         %h4{style: "display: inline-block;"}
           Interaction Types:
-          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
+          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;"}
             -interaction.interaction_types[0..2].each do |interaction_type|
               %tr
                 %td=interaction_type.type
@@ -25,7 +25,7 @@
       %div{class: "item-panel"}
         %h4
           Interaction Info:
-          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
+          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;"}
             - info = interaction.interaction_attributes.reject{|attribute| attribute.name == 'PMID' || attribute.name == 'Interaction Type'}[0..2]
             - info.each do |attribute|
               %tr
@@ -36,7 +36,7 @@
       %div{class: "item-panel"}
         %h4
           Publications:
-          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
+          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;"}
             - interaction.publications[0..2].each do |publication|
               %tr
                 %td
