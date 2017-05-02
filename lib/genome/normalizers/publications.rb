@@ -11,17 +11,22 @@ module Genome
 				# 		pmid.delete
 				# 	}
 				# end
-				DataModel::Publication.where(citation: nil).each do |pub|
-					
-					puts pub
-					begin
-						retries ||= 0
-						pub.citation = get_citation_from_pubmed_id(pub.pmid)
-					rescue
-						sleep 1
-						retry if (retries += 1) < 4
+				recurrences = 0
+				while pubs_without_citations = DataModel::Publication.where(citation: nil) do
+					if recurrences > 0
+						sleep 300
 					end
-					pub.save
+					pubs_without_citations.each do |pub|
+						begin
+							retries ||= 0
+							pub[:citation] = PMID.get_citation_from_pubmed_id(pub[:pmid])
+							pub.save
+						rescue
+							sleep 1
+							retry if (retries += 1) < 3
+						end
+					end
+					recurrences += 1
 				end
 			end
 		end
