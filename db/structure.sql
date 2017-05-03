@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.1
--- Dumped by pg_dump version 9.6.1
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -286,7 +286,8 @@ CREATE TABLE gene_gene_interaction_claims (
 CREATE TABLE genes (
     id text NOT NULL,
     name text,
-    long_name character varying(255)
+    long_name character varying(255),
+    entrez_id integer
 );
 
 
@@ -987,6 +988,13 @@ CREATE INDEX index_gene_gene_interaction_claims_on_interacting_gene_id ON gene_g
 
 
 --
+-- Name: index_genes_on_entrez_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_genes_on_entrez_id ON genes USING btree (entrez_id);
+
+
+--
 -- Name: index_genes_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1001,6 +1009,7 @@ CREATE INDEX index_interaction_claims_on_known_action_type ON interaction_claims
 
 
 --
+<<<<<<< HEAD
 -- Name: index_interactions_on_drug_id_and_gene_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1015,6 +1024,8 @@ CREATE UNIQUE INDEX index_publications_on_pmid ON publications USING btree (pmid
 
 
 --
+=======
+>>>>>>> e820fc8... add entrez_id column to genes
 -- Name: interaction_claim_attributes_interaction_claim_id_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1617,3 +1628,5 @@ INSERT INTO schema_migrations (version) VALUES ('20170417192258');
 INSERT INTO schema_migrations (version) VALUES ('20170512141234');
 
 INSERT INTO schema_migrations (version) VALUES ('20170512150855');
+
+INSERT INTO schema_migrations (version) VALUES ('20170424175208');
