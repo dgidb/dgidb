@@ -19,7 +19,7 @@ module Genome
 					pubs_without_citations.each do |pub|
 						begin
 							retries ||= 0
-							pub[:citation] = PMID.get_citation_from_pubmed_id(pub[:pmid])
+							pub.citation = PMID.get_citation_from_pubmed_id(pub.pmid)
 							pub.save
 						rescue
 							sleep 1
