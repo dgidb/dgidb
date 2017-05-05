@@ -25,11 +25,11 @@ git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-buil
 exec $SHELL
 
 #install ruby and bundler
-rbenv install 2.0.0-p481
+rbenv install 2.3.0
 rbenv rehash
 
 #set your global ruby
-rbenv global 2.0.0-p481
+rbenv global 2.3.0
 gem install bundler
 rbenv rehash
 
