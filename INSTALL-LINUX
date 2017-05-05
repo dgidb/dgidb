@@ -35,7 +35,7 @@ rbenv rehash
 
 #set up your username as a local postgres superuser
 sudo -u postgres createuser --superuser `logname`
-sudo vi /etc/postgresql/9.1/main/pg_hba.conf
+sudo vi /etc/postgresql/9.3/main/pg_hba.conf
 #in the document you just opened, change this line:
 #host    all             all             127.0.0.1/32            md5
 #to look like this:
