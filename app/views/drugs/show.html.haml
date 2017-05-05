@@ -33,7 +33,7 @@
 						.span12
 							%ul(class="result-list" id="list-results")
 								%li
-									=render partial: 'drugs/drug_summary_tab', locals: { drug: @drug } # partial will check if drug is null to tell if it is in drug or gene mode
+									=render partial: 'drugs/drug_summary_tab', locals: { drug: @drug } 
 
 				.tab-pane.fade#interactions
 					.row-fluid#container
