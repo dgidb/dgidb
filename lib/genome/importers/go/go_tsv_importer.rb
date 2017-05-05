@@ -4,7 +4,7 @@ module Genome
 
       def self.source_info
         {
-          base_url:           'http://amigo.geneontology.org/amigo/gene_product/UniProtKB:',
+          base_url:           'http://amigo.geneontology.org/amigo/search/bioentity?fq=taxon_subset_closure_label:%22Homo%20sapiens%22&sfq=document_category:%22bioentity%22&q=',
           site_url:           'http://www.geneontology.org/',
           citation:           'Gene ontology: tool for the unification of biology. The Gene Ontology Consortium. Ashburner M, Ball CA, ..., Rubin GM, Sherlock G. Nat Genet. 2000 May;25(1):25-9. PMID: 10802651.',
           source_db_version:  @version,
