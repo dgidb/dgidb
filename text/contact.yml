@@ -47,6 +47,13 @@ contact:
       email: "mailto:yan-yang.feng@wustl.edu"
       email_title: Email
 
+    - title: Kelsy Cotto
+      description: Curator
+      link: "https://www.linkedin.com/in/kelsy-cotto-94b9018b/"
+      link_title: LinkedIn profile
+      email: "mailto:kelsy.cotto@wustl.edu"
+      email_title: Email
+
     - title: Adam Coffman
       description: Software developer
       link: "https://github.com/acoffman"
