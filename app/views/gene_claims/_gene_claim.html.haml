@@ -8,12 +8,12 @@
           =ext_link_to gene_claim.name, gene_claim.original_data_source_url
     %div(class="item-corner")
       %ul(class="attribute-list")
-        -# %li
-        -#   %strong
-        -#     ID:
-        -#   =ext_link_to gene_claim.name, gene_claim.original_data_source_url
-        -#   =surround '(', ')' do
-        -#     =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
+        - %li
+        -   %strong
+        -     ID:
+        -   =ext_link_to gene_claim.name, gene_claim.original_data_source_url
+        -   =surround '(', ')' do
+        -     =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
         %li
           %strong
             Version:

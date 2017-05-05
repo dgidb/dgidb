@@ -18,15 +18,12 @@
       %div(class="item-panel")
         %h4{style: "display: inline-block;"}
           Alternate Names
-          %button{class: "btn btn-default", disabled: ("disabled" if all_shown), id:drug_claim.id, style: "display: inline; align: right;"} Show All
         %table{class: "table table-condensed table-striped", id:"table_#{drug_claim.id}"}
           -drug_claim.drug_claim_aliases.each do |alt_name|
             %tr
               %td
                 =alt_name.alias
               %td=alt_name.nomenclature
-        
-        
 
     %div(class="cell category")
       %div(class="item-panel")
