@@ -8,10 +8,10 @@
 
 %div(class="item-content")
 	%div{class: "cell category", style: "float: left; width: 50%" }
-		%div(class="item-panel")
+		%div{class: "item-panel", style:"margin-bottom: 10px"}
 			%h4
 				Main Info:
-			%table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; width: 650px; height: 100px", id: "table_aliases"}
+			%table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; width: 650px; height: 105px", id: "table_aliases"}
 				%tr
 					%td{style: "width: 225px"}="Gene"
 					%td{style: "width: 425px"}
@@ -25,14 +25,13 @@
 				%tr
 					%td{style: "width: 275px"}="Interaction Types"
 					%td{style: "width: 375px"}=interaction.interaction_types.map{|it| it.type}.join(", ")
-		%br
 		%div(class="item-panel")
 			%h4
 				Publications:
-			%table{class: "table table-condensed table-striped", style: "display: block; height: 300px; overflow-y: scroll", id:"table_publications"}
+			%table{class: "table table-condensed table-striped", style: "display: block; height: 305px; overflow-y: scroll", id:"table_publications"}
 				-interaction.publications.each do |publication|
 					%tr
-						%td{"data-toggle"=>"tooltip", title: publication.interaction_claims.map{|ic| ic.source.source_db_name}.join(", ")}
+						%td
 							%a{href: PMID.pubmed_url(publication.pmid)}
 								= publication.citation
 	%div{class: "cell category", style: "float: right; width: 50%"}

@@ -7,7 +7,7 @@
 		%div(class="item-panel")
 			%h4
 				Alternate Names:
-			%table{class: "table table-condensed table-striped", style: "display: block; height: 472px; overflow-y: scroll", id: "table_aliases"}
+			%table{class: "table table-condensed table-striped", style: "display: block; height: 494px; overflow-y: scroll", id: "table_aliases"}
 				- gene.gene_aliases.each do |alt_name|
 					%tr
 						%td{style: "width: 275px"}
@@ -15,7 +15,7 @@
 						%td{style: "text-align: right; width: 375px"}
 							=alt_name.nomenclature
 	%div{class: "cell category", style: "float: left; width: 50%" }
-		%div(class="item-panel")
+		%div{class: "item-panel", style:"margin-bottom: 10px"}
 			%h4
 				Gene Info:
 			%table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; width: 636px; overflow-y: scroll", id:"table_info"}
@@ -25,7 +25,11 @@
 							=attribute.name
 						%td{style: "width: 336px"}
 							=attribute.value
-		%br
+			%div#linkouts
+				- gene.gene_claims.each do |gc|
+					%button{class: "button", type: "button", style:"background-color: #e7e7e7; border: none; margin-bottom: 4px", onclick:"location.href='#{gc.original_data_source_url}';"}
+						= gc.source.source_db_name
+
 		%div(class="item-panel")
 			%h4
 				Publications:
@@ -36,4 +40,17 @@
 							%a{href: PMID.pubmed_url(publication.pmid)}
 								= publication.citation
 							
+:javascript
+	var remaining = 252 - 20 - $('#linkouts')["0"].offsetHeight
+		$('#table_info')["0"].style.height = remaining + "px";
 
+	window.addEventListener('resize', function(){
+		var remaining = 252 - 20 - $('#linkouts')["0"].offsetHeight
+		$('#table_info')["0"].style.height = remaining + "px";
+	})
+	
+:css
+	div button:hover {
+	    background-color: #330066!important;
+	    color: white;
+	}

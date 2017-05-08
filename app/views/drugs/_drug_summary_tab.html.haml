@@ -7,7 +7,7 @@
 		%div(class="item-panel")
 			%h4
 				Alternate Names:
-			%table{class: "table table-condensed table-striped", style: "display: block; height: 487px; overflow-y: scroll; table-layout:fixed; width: 100%", id: "table_aliases"}
+			%table{class: "table table-condensed table-striped", style: "display: block; height: 494px; overflow-y: scroll; table-layout:fixed; width: 100%", id: "table_aliases"}
 				-drug.drug_aliases.each do |alt_name| ######
 					%tr
 						%td{style: "width: 70%; word-break:break-all"}
@@ -23,9 +23,10 @@
 					%tr
 						%td{style: "width: 300px"}=attribute.name
 						%td{style: "width: 336px"}=attribute.value
-			- drug.drug_claims.each do |dc|
-				%button{class: "button", type: "button", style:"background-color: #e7e7e7; border: none; margin-bottom: 4px", onclick:"location.href='#{dc.original_data_source_url}';"}
-					= dc.source.source_db_name
+			%div#linkouts
+				- drug.drug_claims.each do |dc|
+					%button{class: "button", type: "button", style:"background-color: #e7e7e7; border: none; margin-bottom: 4px", onclick:"location.href='#{dc.original_data_source_url}';"}
+						= dc.source.source_db_name
 
 		%div(class="item-panel")
 			%h4
@@ -37,8 +38,17 @@
 							%a{href: PMID.pubmed_url(publication.pmid)}
 								= publication.citation
 
+:javascript
+	var remaining = 252 - 20 - $('#linkouts')["0"].offsetHeight
+		$('#table_info')["0"].style.height = remaining + "px";
+
+	window.addEventListener('resize', function(){
+		var remaining = 252 - 20 - $('#linkouts')["0"].offsetHeight
+		$('#table_info')["0"].style.height = remaining + "px";
+	})
+	
 :css
-	.button:hover {
-		background-color:rgba(20, 220, 220, 1);
-		cursor: pointer;
+	div button:hover {
+	    background-color: #330066!important;
+	    color: white;
 	}
