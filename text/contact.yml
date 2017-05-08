@@ -3,7 +3,7 @@ contact:
   title_main: Contact Info
   title_small: get in touch with us
   description: >
-    DGIdb was developed at The Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us.<br><br>
+    DGIdb was developed at The McDonnell Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us at <a href="mailto:help@dgidb.org">help@dgidb.org</a>.<br><br>
 
     Citation: <strong>DGIdb 2.0: mining clinically relevant drug-gene interactions</strong>. Alex H Wagner, Adam C Coffman, Benjamin J Ainscough, Nicholas C Spies, Zachary L Skidmore, Katie M Campbell, Kilannin Krysiak, Deng Pan, Joshua F McMichael, James M Eldred, Jason R Walker, Richard K Wilson, Elaine R Mardis, Malachi Griffith, Obi L Griffith.
     <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">Nucleic Acids Research</a> (2016) doi:10.1093/nar/gkv1165.<br><br>
@@ -16,71 +16,81 @@ contact:
       description: Creator, developer
       link: "http://www.malachigriffith.org"
       link_title: Faculty profile
-      email: "mailto:mgriffit@genome.wustl.edu"
+      email: "mailto:mgriffit@wustl.edu"
       email_title: Email
 
     - title: Obi Griffith
       description: Creator, developer
       link: "http://www.obigriffith.org"
       link_title: Faculty profile
-      email: "mailto:ogriffit@genome.wustl.edu"
+      email: "mailto:obigriffith@wustl.edu"
       email_title: Email
 
     - title: Alex Wagner
       description: Project lead, developer
       link: "http://www.alexwagner.info"
-      link_title: Academic Profile
-      email: "mailto:awagner@genome.wustl.edu"
+      link_title: Academic profile
+      email: "mailto:awagner24@wustl.edu"
+      email_title: Email
+
+    - title: Susanna Kiwala
+      description: Software developer
+      link: "https://github.com/susannasiebert"
+      link_title: Github profile
+      email: "mailto:ssiebert@wustl.edu"
+      email_title: Email
+
+    - title: Yang-Yang Feng
+      description: User interface (UI) developer
+      link: "https://github.com/yanyangfeng"
+      link_title: Github profile
+      email: "mailto:yan-yang.feng@wustl.edu"
+      email_title: Email
+
+    - title: Kelsy Cotto
+      description: Curator
+      link: "https://www.linkedin.com/in/kelsy-cotto-94b9018b/"
+      link_title: LinkedIn profile
+      email: "mailto:kelsy.cotto@wustl.edu"
       email_title: Email
 
     - title: Adam Coffman
-      description: Lead software developer
+      description: Software developer
       link: "https://github.com/acoffman"
       link_title: Github profile
-      email: "mailto:acoffman@genome.wustl.edu"
+      email: "mailto:acoffman@wustl.edu"
       email_title: Email
 
     - title: Josh McMichael
       description: User experience (UX) developer
-      link: "http://genome.wustl.edu/people/individual/joshua-mcmichael/"
-      link_title: Genome Institute profile
-      email: "mailto:jmcmicha@genome.wustl.edu"
+      link: "http://genome.wustl.edu/people/individual/joshua-mcmichael"
+      link_title: McDonnell Genome Institute profile
+      email: "mailto:jmcmicha@wustl.edu"
       email_title: Email
 
     - title: Matthew B. Callaway
       description: Hardware/systems architect
-      link: "http://genome.wustl.edu/people/individual/matt-callaway/"
-      link_title: Genome Institute profile
-      email: "mailto:mcallaway@genome.wustl.edu"
+      email: "mailto:mcallawa@wustl.edu"
       email_title: Email
 
-    - title: Jim Eldred
-      description: Supervising software developer
-      link: "http://genome.wustl.edu/people/individual/jim-eldred/"
-      link_title: Genome Institute profile
-      email: "mailto:jeldred@genome.wustl.edu"
-      email_title: Email
-
-    - title: Elaine Mardis
-      description: PI/Mentor
-
-    - title: Rick Wilson
-      description: PI/Mentor
-
-    - title: Additional software developers
-      description: Indraniel Das, James Koval, Nicholas Spies, Avinash Ramu
-
-    - title: Beta testers
-      description: David Larson, Jason Walker, Chris Miller, Ron Bose, Runjun Kumar
-
-    - title: Expert curators
-      description: Malachi Griffith, Obi Griffith, Alex Wagner, Janakiraman Subramanian, Nicholas Spies, Jaclyn Boozalis, Deng Pan
-
-    - title: Additional conceptual contributors
-      description: Timothy J. Ley, Li Ding, David J. Dooling, Ramaswamy Govindan
-
-    - title: Miscellaneous support
-      description: Kilannin Krysiak, Zachary Skidmore, Robert Lesurf, Lee Trani
-
-    - title: The Genome Institute
+    - title: The McDonnell Genome Institute
       link: "http://genome.wustl.edu/"
+
+  additional:
+    - category: Conceptual designers / mentors
+      people: Elaine Mardis, Rick Wilson
+
+    - category: Additional software developers
+      people: Indraniel Das, James Koval, Nicholas Spies, Avinash Ramu, Jim Eldred
+
+    - category: Beta testers
+      people: David Larson, Jason Walker, Chris Miller, Ron Bose, Runjun Kumar
+
+    - category: Expert curators
+      people: Malachi Griffith, Obi Griffith, Alex Wagner, Janakiraman Subramanian, Nicholas Spies, Jaclyn Boozalis, Deng Pan
+
+    - category: Additional conceptual contributors
+      people: Timothy J. Ley, Li Ding, David J. Dooling, Ramaswamy Govindan
+
+    - category: Miscellaneous support
+      people: Kilannin Krysiak, Zachary Skidmore, Robert Lesurf, Lee Trani
