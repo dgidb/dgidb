@@ -40,7 +40,11 @@ class ServicesV1Controller < ApplicationController
   end
 
   def interactions
-    combine_input_genes(params)
+    if params.key?(:drugs)
+      combine_input_drugs(params)
+    else
+      combine_input_genes(params)
+    end
     validate_interaction_request(params)
     combine_entries(params)
     search_results = LookupInteractions.find(params)

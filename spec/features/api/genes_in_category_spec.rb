@@ -3,8 +3,8 @@ require 'spec_helper'
 describe 'genes_in_category' do
   def setup_category_with_gene
     category = Fabricate(:gene_claim_category, name: 'TESTCATEGORY')
-    gene_claim = Fabricate(:gene_claim, gene_claim_categories: [category])
-    gene = Fabricate(:gene, gene_claims: [gene_claim])
+    gene = Fabricate(:gene)
+    gene_claim = Fabricate(:gene_claim, gene_claim_categories: [category], gene: gene)
     [gene, category.name]
   end
 

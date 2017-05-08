@@ -68,7 +68,7 @@
 /* LAYOUT
  **************************************************/
 body {
-  padding-top: 58px;
+  padding-top: 106px;
 }
 
 .anchor:before {
@@ -100,14 +100,19 @@ body {
   .clearfix();
 }
 
-/* NAVIGATION
+/* NAVIGATION AND BACKGROUND
  **************************************************/
 .navbar {
   border-bottom: 4px solid #9993a9;
+  height: 106px;
 }
 
 .navbar-inner {
   position: relative;
+  background-color: #190A20 !important;
+  background-image: url('dgidb-header-bg.png') !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
   .brand {
     margin: 0;
     padding: 0;
@@ -117,7 +122,7 @@ body {
 .navbar .nav.main-menu {
   position: absolute;
   bottom: 0;
-  left: 310px;
+  left: 550px;
   .active {
     a {
       background-color: #47444e;
@@ -126,8 +131,9 @@ body {
   }
 }
 
-.navbar .nav.help-menu {
-
+#content {
+  background-image: url('dgidb-content-bg.png');
+  background-repeat: no-repeat;
 }
 
 /* GENE/DRUG/INTERACTION DETAILED RESULT LISTS
