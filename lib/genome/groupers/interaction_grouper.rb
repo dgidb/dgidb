@@ -2,14 +2,14 @@ module Genome
   module Groupers
     class InteractionGrouper
       def self.run
-        #ActiveRecord::Base.transaction do
-          # puts 'reset members'
-          # reset_members
-          # puts 'add members'
-          # add_members
+        ActiveRecord::Base.transaction do
+          puts 'reset members'
+          reset_members
+          puts 'add members'
+          add_members
           puts 'add attributes'
           add_attributes
-        #end
+        end
       end
 
       def self.reset_members
