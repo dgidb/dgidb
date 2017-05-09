@@ -28,10 +28,7 @@
           -gene_claim.gene_claim_aliases.each do |alt_name|
             %tr
               %td
-                -if(gene_claim.source.source_db_name == 'GO')
-                  =ext_link_to alt_name.alias, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alias
-                -else
-                  =alt_name.alias
+                =alt_name.alias
               %td=alt_name.nomenclature
 
     %div(class="cell category")

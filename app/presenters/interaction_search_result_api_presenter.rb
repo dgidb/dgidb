@@ -11,8 +11,16 @@ class InteractionSearchResultApiPresenter
     gene.name
   end
 
+  def drug_name
+    drug.name
+  end
+
   def gene_long_name
     gene.long_name
+  end
+
+  def type
+    @result.type
   end
 
   def potentially_druggable_categories
@@ -35,9 +43,15 @@ class InteractionSearchResultApiPresenter
   def gene
     @result.interaction_claims
       .first
-      .gene_claim
-      .genes
+      .interaction
+      .gene
+  end
+
+  def drug
+    @result.interaction_claims
       .first
+      .interaction
+      .drug
   end
 
   InteractionWrapper = Struct.new(:interaction_claim) do
@@ -60,5 +74,14 @@ class InteractionSearchResultApiPresenter
       interaction_claim.drug_claim.primary_name ||
         interaction_claim.drug_claim.name
     end
+
+    def gene_name
+      interaction_claim.gene_claim.gene.name
+    end
+
+    def gene_long_name
+      interaction_claim.gene_claim.gene.long_name
+    end
+
   end
 end
