@@ -4,7 +4,6 @@ class CreatePublications < ActiveRecord::Migration
       t.text :id, null: false
       t.integer :pmid, null: false
       t.text :citation
-
       t.timestamps
     end
     execute 'ALTER TABLE publications ADD PRIMARY KEY (id)'

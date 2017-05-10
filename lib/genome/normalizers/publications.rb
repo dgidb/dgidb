@@ -2,6 +2,8 @@ module Genome
 	module Normalizers
 		class Publications
 			def self.populate_interaction_claims
+				# create publication objects without citations from interaction claim attributes
+				# might be unnecessary if we're creating publications straight from import
 				ActiveRecord::Base.transaction do
 					iclaims = DataModel::InteractionClaimAttribute.all(conditions: {name: "PMID"})
 					iclaims |= DataModel::InteractionClaimAttribute.all(conditions: {name: "PubMed ID for Interaction"})
@@ -12,6 +14,7 @@ module Genome
 					}
 				end
 				recurrences = 0
+				# scrape pubmed
 				while (pubs_without_citations = DataModel::Publication.where(citation: nil)).length > 0 do
 					if recurrences > 0
 						sleep 300

@@ -3,7 +3,6 @@ class InteractionClaimsController < ApplicationController
   def show
     @interaction_claim = InteractionClaimPresenter.new(
       DataModel::InteractionClaim.for_show.find(params[:id]))
-    puts("YOOOOOO", @interaction_claim.inspect)
   end
 
   def interaction_search_results

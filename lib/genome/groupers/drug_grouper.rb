@@ -114,7 +114,6 @@ module Genome
         DataModel::Drug.all.each do |drug|
           drug.drug_claims.each do |drug_claim|
             drug_claim.drug_claim_aliases.each do |dca|
-              puts(dca.inspect)
               existing_drug_aliases = DataModel::DrugAlias.where(
                 drug_id: drug.id,
                 alias: dca.alias,
@@ -142,10 +141,8 @@ module Genome
 
       def self.add_attributes
         DataModel::Drug.all.each do |drug|
-          #puts(drug.inspect)
           drug.drug_claims.each do |drug_claim|
             drug_claim.drug_claim_attributes.each do |dca|
-              puts(dca.inspect)
               existing_drug_attributes = DataModel::DrugAttribute.where(
                 drug_id: drug.id,
                 name: dca.name,

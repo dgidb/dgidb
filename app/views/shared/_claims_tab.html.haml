@@ -1,17 +1,7 @@
--#takes in variable for type of claim (drug/gene/interaction)
+/takes in variable for type of claim (drug/gene/interaction)
+/lists all claims in summary form (so renders list of claim summary partial)
+/similar to _drug.html.haml or _gene.html.haml but has variable claim type
 
--#lists all claims in summary form (so renders list of claim summary partial)
-
--#similar to _drug.html.haml or _gene.html.haml but has variable claim type
-
-/ - entity = gene || drug 
-
-/ %ul(class="result-list" id="list-results")
-/ 	-# can we make drug claims and gene claims just have claims instead of interaction_claims and drug claims
-/   -entity.claims.sort_by{ |d| d.sort_value }.each do |claim| # sort by what?
-/   -# are these classes necessary? doing what one expects? could run into some issues since it used to be drug_claim instead of interaction
-/     %li(class="#{claim.source.source_type.type}" data-category="#{claim.source.source_type.type}" data-name="#{claim.source.source_type.display_name}")
-/       =render partial: 'shared/claim_summary_tab', locals: { claim: claim }
 
 - if defined? drug
 	%ul(class="result-list" id="list-results")
