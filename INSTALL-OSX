@@ -1,15 +1,15 @@
 #These instructions are for OSX 10.7 (Lion) and above
 
 #Install RVM with Ruby and Rails: https://rvm.io/rvm/install
-#You want to install Ruby 1.9.x or 2.0.x (we have tested 1.9.x and 2.0.x). Ruby 2.2 causes failures.
+#You want to install Ruby 2.3.3
     \curl -L https://get.rvm.io | bash -s stable --rails
 
 #To check your version of Ruby:
 ruby -v
 
-#To install and use Ruby 2.0.0:
-rvm install 2.0.0
-rvm use 2.0.0
+#To install and use Ruby 2.3.3:
+rvm install 2.3.3
+rvm use 2.3.3
 
 #If you have trouble installing Ruby on Mac OSX 10.8 (Mountain Lion), the issue may be your Xcode install
 #In that case, this post might be informative
