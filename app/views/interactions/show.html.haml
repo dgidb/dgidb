@@ -1,56 +1,56 @@
 =content_for :title, "DGIdb - #@title Interaction Record"
 =content_for :header do
-	%h2
-		%span{id: "interaction_name"}
-			=@title
-		%small
-			Interaction Record
-			%a(href="/faq#defined")
-				=icon('question-sign') # this is not going to the right spot
+  %h2
+    %span{id: "interaction_name"}
+      =@title
+    %small
+      Interaction Record
+      %a(href="/faq#defined")
+        =icon('question-sign') # this is not going to the right spot
 
 - cache @interaction do
-	.container-fluid
-		.tabbable
-			%ul.nav.nav-tabs
-				%li.active
-					%a(href="#summary" data-toggle="tab") Summary
-				%li
-					%a(href="#claims" data-toggle="tab") Claims
-			.tab-content
-				.tab-pane.active#summary
-					.row-fluid#container
-						.span12
-							%ul(class="result-list" id="list-results")
-								%li
-									=render partial: 'interactions/interaction_summary_tab', locals: { interaction: @interaction } 
-				.tab-pane.fade#claims
-					.row-fluid
-						.span12
-							=render partial: 'shared/claims_tab', locals: {interaction: @interaction}
+  .container-fluid
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a(href="#summary" data-toggle="tab") Summary
+        %li
+          %a(href="#claims" data-toggle="tab") Claims
+      .tab-content
+        .tab-pane.active#summary
+          .row-fluid#container
+            .span12
+              %ul(class="result-list" id="list-results")
+                %li
+                  =render partial: 'interactions/interaction_summary_tab', locals: { interaction: @interaction } 
+        .tab-pane.fade#claims
+          .row-fluid
+            .span12
+              =render partial: 'shared/claims_tab', locals: {interaction: @interaction}
 
 :javascript
-	$(document).ready(function () {
-		var activeTab = $('#' + window.location.hash.substr(2));
-		console.log(window.location.hash.substr(2));
-		console.log(activeTab);
-		console.log(activeTab.length);
+  $(document).ready(function () {
+    var activeTab = $('#' + window.location.hash.substr(2));
+    console.log(window.location.hash.substr(2));
+    console.log(activeTab);
+    console.log(activeTab.length);
 
-		if(activeTab.length) {
-			$('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
-		} else {
-			$('a[href="' + "#summary" + '"]').trigger('click');
-		}
-	});
+    if(activeTab.length) {
+      $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+    } else {
+      $('a[href="' + "#summary" + '"]').trigger('click');
+    }
+  });
 
-	$(".tabbable li a").click(function () {
-		console.log($(this).attr('href').substr(1));
-		window.location.hash = "_" + $(this).attr('href').substr(1);
-		return true;
-	}); 
+  $(".tabbable li a").click(function () {
+    console.log($(this).attr('href').substr(1));
+    window.location.hash = "_" + $(this).attr('href').substr(1);
+    return true;
+  }); 
 
 =javascript_include_tag "jquery.masonry.min"
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"
 =javascript_include_tag "gene_groups"
 =javascript_include_tag "gene-list-tabs"
-	
+  

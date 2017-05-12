@@ -1,5 +1,6 @@
 class GenePresenter < SimpleDelegator
   attr_accessor :gene
+  
   def initialize(gene)
     @gene = gene
     super

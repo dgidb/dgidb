@@ -4,23 +4,23 @@
 
 
 - if defined? drug
-	%ul(class="result-list" id="list-results")
-		-drug.sorted_claims.each do |drug_claim|
-			%li(class="#{drug_claim.source.source_type.type} claim-panel" data-category="#{drug_claim.source.source_type.type}" data-name="#{drug_claim.source.source_type.display_name}" onclick="location.href='/drug_claims/#{drug_claim.source.source_db_name}/#{drug_claim.name}';")
-				=render partial: 'drug_claims/drug_claim_summary', locals: { drug_claim: DrugClaimPresenter.new(drug_claim) }
+  %ul(class="result-list" id="list-results")
+    -drug.sorted_claims.each do |drug_claim|
+      %li(class="#{drug_claim.source.source_type.type} claim-panel" data-category="#{drug_claim.source.source_type.type}" data-name="#{drug_claim.source.source_type.display_name}" onclick="location.href='/drug_claims/#{drug_claim.source.source_db_name}/#{drug_claim.name}';")
+        =render partial: 'drug_claims/drug_claim_summary', locals: { drug_claim: DrugClaimPresenter.new(drug_claim) }
 - elsif defined? gene
-	%ul(class="result-list" id="list-results")
-		-gene.sorted_claims.each do |gene_claim|
-			%li(class="#{gene_claim.source.source_type.type} claim-panel" data-category="#{gene_claim.source.source_type.type}" data-name="#{gene_claim.source.source_type.display_name}" onclick="location.href='/gene_claims/#{gene_claim.source.source_db_name}/#{gene_claim.name}';")
-				=render partial: 'gene_claims/gene_claim_summary', locals: { gene_claim: GeneClaimPresenter.new(gene_claim) }
+  %ul(class="result-list" id="list-results")
+    -gene.sorted_claims.each do |gene_claim|
+      %li(class="#{gene_claim.source.source_type.type} claim-panel" data-category="#{gene_claim.source.source_type.type}" data-name="#{gene_claim.source.source_type.display_name}" onclick="location.href='/gene_claims/#{gene_claim.source.source_db_name}/#{gene_claim.name}';")
+        =render partial: 'gene_claims/gene_claim_summary', locals: { gene_claim: GeneClaimPresenter.new(gene_claim) }
 - else
-	%ul(class="result-list" id="list-results")
-		-interaction.interaction_claims.sort_by{ |i| [-i.interaction_claim_attributes.length] }.each do |interaction_claim|
-			%li(class="#{interaction_claim.source.source_type.type} claim-panel" data-category="#{interaction_claim.source.source_type.type}" data-name="#{interaction_claim.source.source_type.display_name}" onclick="location.href='/interaction_claims/#{interaction_claim.id}';")
-				=render partial: 'interaction_claims/interaction_claim_summary', locals: { interaction_claim: interaction_claim }
+  %ul(class="result-list" id="list-results")
+    -interaction.interaction_claims.sort_by{ |i| [-i.interaction_claim_attributes.length] }.each do |interaction_claim|
+      %li(class="#{interaction_claim.source.source_type.type} claim-panel" data-category="#{interaction_claim.source.source_type.type}" data-name="#{interaction_claim.source.source_type.display_name}" onclick="location.href='/interaction_claims/#{interaction_claim.id}';")
+        =render partial: 'interaction_claims/interaction_claim_summary', locals: { interaction_claim: interaction_claim }
 
 :css
-	li.claim-panel:hover {
-		background-color:rgba(220, 220, 220, 1);
-		cursor: pointer;
-	}
+  li.claim-panel:hover {
+    background-color:rgba(220, 220, 220, 1);
+    cursor: pointer;
+  }

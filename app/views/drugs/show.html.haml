@@ -8,61 +8,61 @@
 
 =content_for :title, "DGIdb - #@title Drug Record"
 =content_for :header do
-	%h2
-		%span{id: "drug_name"}
-			=@title
-		%small
-			Drug Record
-			%a(href="/faq#defined")
-				=icon('question-sign') # this is not going to the right spot
+  %h2
+    %span{id: "drug_name"}
+      =@title
+    %small
+      Drug Record
+      %a(href="/faq#defined")
+        =icon('question-sign') # this is not going to the right spot
 
 - cache @drug do
-	.container-fluid
-		.tabbable
-			%ul.nav.nav-tabs
-				%li.active
-					%a(href="#summary" data-toggle="tab") Summary
-				%li
-					%a(href="#interactions" data-toggle="tab") Interactions
-				%li
-					%a(href="#claims" data-toggle="tab") Claims
-			.tab-content
-				.tab-pane.active#summary
-					.row-fluid#container 
-						.span12
-							%ul(class="result-list" id="list-results")
-								%li
-									=render partial: 'drugs/drug_summary_tab', locals: { drug: @drug } 
+  .container-fluid
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a(href="#summary" data-toggle="tab") Summary
+        %li
+          %a(href="#interactions" data-toggle="tab") Interactions
+        %li
+          %a(href="#claims" data-toggle="tab") Claims
+      .tab-content
+        .tab-pane.active#summary
+          .row-fluid#container 
+            .span12
+              %ul(class="result-list" id="list-results")
+                %li
+                  =render partial: 'drugs/drug_summary_tab', locals: { drug: @drug } 
 
-				.tab-pane.fade#interactions
-					.row-fluid#container
-						.span12
-							=render partial: 'shared/interactions_tab', locals: { drug: @drug }
+        .tab-pane.fade#interactions
+          .row-fluid#container
+            .span12
+              =render partial: 'shared/interactions_tab', locals: { drug: @drug }
 
-				.tab-pane.fade#claims
-					.row-fluid#container
-						.span12
-							=render partial: 'shared/claims_tab', locals: { drug: @drug }
+        .tab-pane.fade#claims
+          .row-fluid#container
+            .span12
+              =render partial: 'shared/claims_tab', locals: { drug: @drug }
 
 :javascript
-	$(document).ready(function () {
-		var activeTab = $('#' + window.location.hash.substr(2));
-		console.log(window.location.hash.substr(2));
-		console.log(activeTab);
-		console.log(activeTab.length);
+  $(document).ready(function () {
+    var activeTab = $('#' + window.location.hash.substr(2));
+    console.log(window.location.hash.substr(2));
+    console.log(activeTab);
+    console.log(activeTab.length);
 
-		if(activeTab.length) {
-			$('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
-		} else {
-			$('a[href="' + "#summary" + '"]').trigger('click');
-		}
-	});
+    if(activeTab.length) {
+      $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+    } else {
+      $('a[href="' + "#summary" + '"]').trigger('click');
+    }
+  });
 
-	$(".tabbable li a").click(function () {
-		console.log($(this).attr('href').substr(1));
-		window.location.hash = "_" + $(this).attr('href').substr(1);
-		return true;
-	}); 
+  $(".tabbable li a").click(function () {
+    console.log($(this).attr('href').substr(1));
+    window.location.hash = "_" + $(this).attr('href').substr(1);
+    return true;
+  }); 
 
 =javascript_include_tag "jquery.masonry.min"
 =javascript_include_tag "jquery.dataTables.min"
