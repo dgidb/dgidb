@@ -75,6 +75,14 @@ module Genome
                 end
               end
             end
+            #roll publications up to interaction level
+            interaction_claim.publications.each do |pub|
+              interaction.publications << pub unless interaction.publications.include? pub
+            end
+            # these actions might be unnecessary if we create interaction types and publications directly
+            DataModel::InteractionAttribute.where(name: 'PMID').destroy_all
+            DataModel::InteractionAttribute.where(name: 'PubMed ID for Interaction').destroy_all
+            DataModel::InteractionAttribute.where(name: 'Interaction Type').destroy_all
           end
         end
       end

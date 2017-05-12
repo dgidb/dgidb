@@ -1,11 +1,11 @@
 #notice= notice
-=content_for :title, "DGIdb - #{@interaction.title}"
+=content_for :title, "DGIdb - #{@interaction_claim.title}"
 =content_for :header do
   %h2
-    =@interaction.title
+    =@interaction_claim.title
     %small 
       ="drug-gene interaction data from #{@interaction.source.source_db_name}" 
-- cache @interaction do
+- cache @interaction_claim do
   .container-fluid
     .row-fluid
       .span12

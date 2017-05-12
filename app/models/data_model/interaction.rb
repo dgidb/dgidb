@@ -9,5 +9,6 @@ module DataModel
       :join_table => "interaction_types_interactions",
       :class_name => "InteractionClaimType"
     has_many :interaction_attributes
+    has_and_belongs_to_many :publications
   end
 end
