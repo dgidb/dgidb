@@ -1,6 +1,6 @@
 class InteractionClaimsController < ApplicationController
   def show
-    @interaction = InteractionClaimPresenter.new(
+    @interaction_claim = InteractionClaimPresenter.new(
       DataModel::InteractionClaim.for_show.find(params[:id]))
   end
 

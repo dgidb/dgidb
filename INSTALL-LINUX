@@ -25,17 +25,17 @@ git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-buil
 exec $SHELL
 
 #install ruby and bundler
-rbenv install 2.0.0-p481
+rbenv install 2.3.3
 rbenv rehash
 
 #set your global ruby
-rbenv global 2.0.0-p481
+rbenv global 2.3.3
 gem install bundler
 rbenv rehash
 
 #set up your username as a local postgres superuser
 sudo -u postgres createuser --superuser `logname`
-sudo vi /etc/postgresql/9.1/main/pg_hba.conf
+sudo vi /etc/postgresql/9.3/main/pg_hba.conf
 #in the document you just opened, change this line:
 #host    all             all             127.0.0.1/32            md5
 #to look like this:

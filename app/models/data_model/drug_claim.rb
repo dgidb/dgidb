@@ -2,7 +2,7 @@ module DataModel
   class DrugClaim < ::ActiveRecord::Base
     include Genome::Extensions::UUIDPrimaryKey
 
-    has_and_belongs_to_many :drugs
+    belongs_to :drug
     has_many :drug_claim_aliases, inverse_of: :drug_claim, dependent: :delete_all
     has_many :interaction_claims, inverse_of: :drug_claim
     has_many :gene_claims, through: :interaction_claims
@@ -11,7 +11,7 @@ module DataModel
     has_and_belongs_to_many :drug_claim_types
 
     def self.for_search
-      eager_load(drugs: [drug_claims: {interaction_claims: { source: [], gene_claim: [:source, :gene_claim_categories], interaction_claim_types: [], drug_claim: [drugs: [drug_claims: [:drug_claim_types]]]}}])
+      eager_load(drug: [drug_claims: {interaction_claims: { source: [], gene_claim: [:source, :gene_claim_categories], interaction_claim_types: [], drug_claim: [drug: [drug_claims: [:drug_claim_types]]]}}])
     end
 
     def self.for_show
