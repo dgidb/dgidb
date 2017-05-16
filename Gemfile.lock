@@ -65,7 +65,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
-    concurrent-ruby (1.0.4)
+    concurrent-ruby (1.0.5)
     coveralls (0.8.19)
       json (>= 1.8, < 3)
       simplecov (~> 0.12.0)
@@ -89,7 +89,7 @@ GEM
     haml (4.0.7)
       tilt
     highline (1.7.8)
-    i18n (0.8.0)
+    i18n (0.8.1)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -100,13 +100,15 @@ GEM
     json (2.0.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    less (2.3.3)
-      commonjs (~> 0.2.6)
-    less-rails (2.3.3)
-      actionpack (>= 3.1)
-      less (~> 2.3.1)
-    less-rails-bootstrap (2.3.3)
-      less-rails (~> 2.3.1)
+    less (2.6.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.8.0)
+      actionpack (>= 4.0)
+      less (~> 2.6.0)
+      sprockets (> 2, < 4)
+      tilt
+    less-rails-bootstrap (3.3.5.0)
+      less-rails (>= 2.6, <= 2.8)
     libv8 (3.16.14.17)
     lograge (0.4.1)
       actionpack (>= 4, < 5.1)
@@ -126,7 +128,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     pg (0.19.0)
     power_assert (1.0.1)
@@ -140,7 +142,7 @@ GEM
       pry (~> 0.9)
       slop (~> 3.0)
     public_suffix (2.0.5)
-    rack (1.6.5)
+    rack (1.6.6)
     rack-mini-profiler (0.10.2)
       rack (>= 1.2.0)
     rack-test (0.6.3)
@@ -231,10 +233,10 @@ GEM
       libv8 (~> 3.16.14.15)
       ref
     thor (0.19.4)
-    thread_safe (0.3.5)
-    tilt (2.0.6)
+    thread_safe (0.3.6)
+    tilt (2.0.7)
     tins (1.13.2)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
@@ -259,7 +261,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   launchy
-  less-rails-bootstrap (= 2.3.3)
+  less-rails-bootstrap
   libv8
   lograge
   nokogiri

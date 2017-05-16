@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.8'
 
 gem 'pg'
-gem 'less-rails-bootstrap', '2.3.3'
+gem 'less-rails-bootstrap'
 gem 'nokogiri'
 gem 'haml'
 gem 'textacular', require: 'textacular/rails'
