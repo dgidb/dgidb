@@ -17,6 +17,7 @@ module Genome
           interaction_claim.interaction = nil
           interaction_claim.save
         end
+        DataModel::InteractionAttribute.destroy_all
         DataModel::Interaction.destroy_all
       end
 
@@ -54,25 +55,13 @@ module Genome
         DataModel::Interaction.all.each do |interaction|
           interaction.interaction_claims.each do |interaction_claim|
             interaction_claim.interaction_claim_attributes.each do |ica|
-              existing_interaction_attributes = DataModel::InteractionAttribute.where(
+              interaction_attribute = DataModel::InteractionAttribute.where(
                 interaction_id: interaction.id,
                 name: ica.name,
                 value: ica.value
-              )
-              if existing_interaction_attributes.empty?
-                DataModel::InteractionAttribute.new.tap do |a|
-                  a.interaction = interaction
-                  a.name = ica.name
-                  a.value = ica.value
-                  a.sources << interaction_claim.source
-                  a.save
-                end
-              else
-                existing_interaction_attributes.each do |interaction_attribute|
-                  unless interaction_attribute.sources.include? interaction_claim.source
-                    interaction_attribute.sources << interaction_claim.source
-                  end
-                end
+              ).first_or_create
+              unless interaction_attribute.sources.include? interaction_claim.source
+                interaction_attribute.sources << interaction_claim.source
               end
             end
             #roll publications up to interaction level

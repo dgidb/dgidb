@@ -134,26 +134,15 @@ module Genome
         DataModel::Gene.all.each do |gene|
           gene.gene_claims.each do |gene_claim|
             gene_claim.gene_claim_attributes.each do |gca|
-              existing_gene_attributes = DataModel::GeneAttribute.where(
+              gene_attribute = DataModel::GeneAttribute.where(
                 gene_id: gene.id,
                 name: gca.name,
                 value: gca.value
-              )
-              if existing_gene_attributes.empty?
-                DataModel::GeneAttribute.new.tap do |a|
-                  a.gene = gene
-                  a.name = gca.name
-                  a.value = gca.value
-                  a.sources << gene_claim.source
-                  a.save
-                end
-              else
-                existing_gene_attributes.each do |gene_attribute|
-                  unless gene_attribute.sources.include? gene_claim.source
-                    gene_attribute.sources << gene_claim.source
-                  end
-                end
+              ).first_or_create
+              unless gene_attribute.sources.include? gene_claim.source
+                gene_attribute.sources << gene_claim.source
               end
+              gene_attribute.save
             end
           end
         end

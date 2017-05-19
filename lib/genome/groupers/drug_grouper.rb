@@ -137,26 +137,15 @@ module Genome
         DataModel::Drug.all.each do |drug|
           drug.drug_claims.each do |drug_claim|
             drug_claim.drug_claim_attributes.each do |dca|
-              existing_drug_attributes = DataModel::DrugAttribute.where(
+              drug_attribute = DataModel::DrugAttribute.where(
                 drug_id: drug.id,
                 name: dca.name,
                 value: dca.value
-              )
-              if existing_drug_attributes.empty?
-                DataModel::DrugAttribute.new.tap do |a|
-                  a.drug = drug
-                  a.name = dca.name
-                  a.value = dca.value
-                  a.sources << drug_claim.source
-                  a.save
-                end
-              else
-                existing_drug_attributes.each do |drug_attribute|
-                  unless drug_attribute.sources.include? drug_claim.source
-                    drug_attribute.sources << drug_claim.source
-                  end
-                end
+              ).first_or_create
+              unless drug_attribute.sources.include? drug_claim.source
+                drug_attribute.sources << drug_claim.source
               end
+              drug_attribute.save
             end
           end
         end
