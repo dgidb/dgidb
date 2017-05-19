@@ -28,26 +28,15 @@ module Genome
           next if drug.nil?
           gene = interaction_claim.gene_claim.gene
           next if gene.nil?
-          existing_interactions = DataModel::Interaction.joins(:drug, :gene).where(drugs: {id: drug.id}, genes: {id: gene.id})
-          if existing_interactions.first.nil?
-            DataModel::Interaction.new.tap do |i|
-              i.gene = gene
-              i.drug = drug
-              i.interaction_types << interaction_claim.interaction_claim_types
-              interaction_claim.interaction = i
-              i.save
-              interaction_claim.save
-            end
-          else
-            existing_interaction = existing_interactions.first
-            interaction_claim.interaction = existing_interaction
-            interaction_claim.save
-            interaction_claim.interaction_claim_types.each do |t|
-              unless existing_interaction.interaction_types.include? t
-                existing_interaction.interaction_types << t
-              end
+          interaction = DataModel::Interaction.where(drug_id: drug.id, gene_id: gene.id).first_or_create
+          interaction_claim.interaction = interaction
+          interaction_claim.interaction_claim_types.each do |t|
+            unless interaction.interaction_types.include? t
+              interaction.interaction_types << t
             end
           end
+          interaction_claim.save
+          interaction.save
         end
       end
 
