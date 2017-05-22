@@ -1,7 +1,5 @@
 DruggableGene::Application.routes.draw do
-  get 'drug_claims/:source_db_name/:name' => 'drug_claims#show',
-  get 'interactions/:id' => 'interactions#show'
-    constraints: { name: /[^\/]+/ }
+  get 'interactions/:id' => 'interactions#show', constraints: { name: /[^\/]+/ }
   get 'gene_claims/:source_db_name/:name' => 'gene_claims#show'
   get 'gene_names' => 'genes#names'
   # add a drug_names thing here, so that they can be pulled via json?
