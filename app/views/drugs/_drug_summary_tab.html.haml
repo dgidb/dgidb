@@ -23,9 +23,11 @@
             %td{style: "width: 300px"}=attribute.name
             %td{style: "width: 336px"}=attribute.value
       %div#linkouts
-        - drug.drug_claims.each do |dc|
+        - drug.drug_claims[0..3].each do |dc|
           %button{class: "button", type: "button", style:"background-color: #e7e7e7; border: none; margin-bottom: 4px", onclick:"location.href='#{dc.original_data_source_url}';"}
             = dc.source.source_db_name
+        %a#more{style: "display: inline-block; margin-left: 5px; cursor: pointer"}
+          = "(#{drug.drug_claims.count - 4} More Sources)"
 
     %div(class="item-panel")
       %h4
@@ -46,6 +48,11 @@
     $('#table_info')["0"].style.height = remaining + "px";
   })
   
+  $("a#more").click(function () {
+    $('a[href="' + "#" + "claims" + '"]').trigger('click');
+    return true;
+  }); 
+
 :css
   div button:hover {
       background-color: #330066!important;

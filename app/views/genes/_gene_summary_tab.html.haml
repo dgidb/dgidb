@@ -14,6 +14,7 @@
               =alt_name.alias
             %td{style: "text-align: right; width: 375px"}
               =alt_name.nomenclature
+
   %div{class: "cell category", style: "float: left; width: 50%" }
     %div{class: "item-panel", style:"margin-bottom: 10px"}
       %h4
@@ -26,9 +27,12 @@
             %td{style: "width: 336px"}
               =attribute.value
       %div#linkouts
-        - gene.gene_claims.each do |gc|
+        - gene.gene_claims[0..3].each do |gc|
           %button{class: "button", type: "button", style:"background-color: #e7e7e7; border: none; margin-bottom: 4px", onclick:"location.href='#{gc.original_data_source_url}';"}
             = gc.source.source_db_name
+        %a#more{style: "display: inline-block; margin-left: 5px; cursor: pointer"}
+          = "(#{gene.gene_claims.count - 4} More Sources)"
+
     %div(class="item-panel")
       %h4
         Publications:
@@ -48,6 +52,10 @@
     $('#table_info')["0"].style.height = remaining + "px";
   })
   
+  $("a#more").click(function () {
+    $('a[href="' + "#" + "claims" + '"]').trigger('click');
+    return true;
+  }); 
 :css
   div button:hover {
       background-color: #330066!important;
