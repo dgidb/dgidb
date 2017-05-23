@@ -1,0 +1,47 @@
+- cache gene do
+  %div(class="item-title")
+    %div(class="item-name")
+      %h3(class="item-source")
+        %a{href: "/drugs/#{gene}"}
+          = gene
+        %i{class: "fa fa-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
+        &nbsp
+        %a
+          = "matched " + gene
+
+
+  %div(class="item-content")
+    %div(class="cell category")
+      %div{class: "item-panel"}
+        %h4{style: "display: inline-block;"}
+          %table{class: "search_panel table table-condensed table-striped", style: "table-layout:fixed;"}
+            %tr
+              %th
+                Drug
+              %th
+                Interaction Type
+              %th
+                Source Count
+              %th
+                PMID Count
+              %th
+                Score
+            %tbody
+            - DataModel::Gene.find_by(name: gene).interactions.each do |interaction|
+              %tr
+                %td
+                  %a{href: "/drugs/#{interaction.drug.name}"}
+                    = interaction.drug.name
+                %td
+                  = interaction.interaction_types.map{|t| t.type}.join(", ")
+                %td
+                  = (source_count = interaction.interaction_claims.count)
+                %td
+                  = (pub_count = interaction.publications.count)
+                %td
+                  = source_count + pub_count
+          %button{class: "show-more"}
+            Show More
+          %button{class: "show-less"}
+            Show Less
+

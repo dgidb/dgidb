@@ -126,9 +126,11 @@ class InteractionSearchResultsPresenter
   end
 
   def interactions_by_gene
+    puts Time.now.strftime("%d/%m/%Y %H:%M")
     @interactions_by_gene ||= definite_interactions.group_by(&:gene_name).map do |gene_name, interactions|
       InteractionByGene.new(gene_name, interactions)
     end
+    puts Time.now.strftime("%d/%m/%Y %H:%M")
   end
 
   def interactions_by_drug

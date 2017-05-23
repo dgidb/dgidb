@@ -1,0 +1,110 @@
+#notice= notice
+=content_for :title do
+  =tx "title"
+  - if @search_mode.nil?
+    - @search_mode = @search_results.get_context
+=content_for :header do
+  %h2
+    =tx "title_main"
+    %small
+      - if @search_mode == 'genes'
+        =tx "title_small"
+      - else
+        =tx "title_small_drugs"
+      - if @related_source_gene
+        = @related_source_gene
+      %a(href="/faq#difference")
+        =icon('question-sign')
+
+.container-fluid
+  .tabbable
+    %ul#myTab.nav.nav-tabs
+      %li.active
+        %a(href="#by_source" data-toggle="tab") Results Summary
+      %li
+        %a(href="#details" data-toggle="tab") Detailed Results
+      - if @search_mode == 'genes'
+        %li
+          %a(href="#by_gene" data-toggle="tab") By Gene
+      - else
+        %li
+          %a(href="#by_drug" data-toggle="tab") By Drug
+      %li
+        %a(href="#terms" data-toggle="tab") Search Term Summary
+      %li
+        %a(href="#statistics" data-toggle="tab") Statistics
+    .tab-content
+      .tab-pane.fade#statistics
+        =render partial: 'interaction_claims/results_summary', locals: {results: @search_results, search_mode: @search_mode}
+      .tab-pane.fade#terms
+        =render partial: 'shared/search_term_summary_table', locals: {results: @search_results, search_mode: @search_mode}
+      .tab-pane.active#by_source
+        =render partial: 'interaction_claims/results_by_source_table', locals: {results: @search_results}
+      - if @search_mode == 'genes'
+        .tab-pane.fade#by_gene
+          =render partial: 'interaction_claims/results_by_gene_table', locals: {results: @search_results}
+      - else
+        .tab-pane.fade#by_drug
+          =render partial: 'interaction_claims/results_by_drug_table', locals: {results: @search_results}
+      .tab-pane.fade#details
+        - if @search_mode == 'genes'
+          .row-fluid
+            .span12
+              -if @search_results.show_definite?
+                =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Primary Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_filter_flag"), subtitle: "Search terms matching exactly one gene that has one or more drug interactions.", export_id: 'definite_results_table', search_mode: @search_mode}
+              -if @search_results.show_ambiguous?
+                =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Ambiguous Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_filter_flag"), subtitle: "Search terms matching multiple genes, where some of those genes have drug interactions.", export_id: 'ambiguous_results_table', search_mode: @search_mode}
+          .row-fluid
+            -if @search_results.show_ambiguous_no_interactions?
+              =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Ambiguous Search Terms With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: tx("ambiguous_results_no_interactions_flag"), subtitle: 'Search terms matching multiple genes, but none have interactions.'}
+            -if @search_results.show_definite_no_interactions?
+              =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions, tooltip_text: tx("definite_results_no_interactions_flag"), subtitle: 'Search terms matching one gene, but no interactions are present. Click any gene to visit its summary page and search for interactions of related genes.'}
+            -if @search_results.show_no_results_results?
+              .span6
+                .well
+                  %h3
+                    Search Terms With No Matches
+                    %small
+                      %strong
+                        %i.icon-flag.tip{title: tx("terms_with_no_matches_flag")}
+                  %small
+                    %strong
+                      %em Search terms that could not be matched to a gene
+                  %p
+                  %ul
+                    -@search_results.no_results_results.each do |result|
+                      %li=result.search_term
+        - else
+          .row-fluid
+            .span12
+              -if @search_results.show_definite?
+                =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Primary Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_drug_filter_flag"), subtitle: "Search terms matching exactly one drug that has one or more gene interactions.", export_id: 'definite_results_table', search_mode: @search_mode}
+              -if @search_results.show_ambiguous?
+                =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Ambiguous Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_drug_filter_flag"), subtitle: "Search terms matching multiple drugs, where some of those drugs have gene interactions.", export_id: 'ambiguous_results_table', search_mode: @search_mode}
+          .row-fluid
+            -if @search_results.show_ambiguous_no_interactions?
+              =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Ambiguous Search Terms With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: tx("ambiguous_results_no_drug_interactions_flag"), subtitle: 'Search terms matching multiple drugs, but none have interactions.'}
+            -if @search_results.show_definite_no_interactions?
+              =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Matched Drugs With No Interactions', results: @search_results.definite_no_interactions, tooltip_text: tx("definite_results_no_drug_interactions_flag"), subtitle: 'Search terms matching one drug, but no interactions are present.'}
+            -if @search_results.show_no_results_results?
+              .span6
+                .well
+                  %h3
+                    Search Terms With No Matches
+                    %small
+                      %strong
+                        %i.icon-flag.tip{title: tx("terms_with_no_matches_flag")}
+                  %small
+                    %strong
+                      %em Search terms that could not be matched to a drug
+                  %p
+                  %ul
+                    -@search_results.no_results_results.each do |result|
+                      %li=result.search_term
+
+=javascript_include_tag "jquery.dataTables.min"
+=javascript_include_tag "pagination_bootstrap"
+=javascript_include_tag "interaction_search_results"
+=javascript_include_tag "table-export"
+=javascript_include_tag "jquery.smartresize"
+=javascript_include_tag "trunk8"

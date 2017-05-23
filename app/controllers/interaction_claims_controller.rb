@@ -44,11 +44,16 @@ class InteractionClaimsController < ApplicationController
   end
 
   private
+  # def perform_interaction_search
+  #   start_time = Time.now
+  #   validate_interaction_request(params)
+  #   search_results = LookupInteractions.find(params)
+  #   @search_results = InteractionSearchResultsPresenter.new(search_results, start_time, view_context)
+  #   puts(@search_results.inspect)
+  # end
   def perform_interaction_search
-    start_time = Time.now
     validate_interaction_request(params)
-    search_results = LookupInteractions.find(params)
-    @search_results = InteractionSearchResultsPresenter.new(search_results, start_time, view_context)
+    @search_results = params[:gene_names]
   end
 
 end
