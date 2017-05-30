@@ -24,27 +24,21 @@
           %a(href="#successful" data-toggle="tab") Unique Matches
         %li
           %a(href="#failed" data-toggle="tab") Ambiguous or Unmatched
-        %li
-          %a(href="#none" data-toggle="tab") No Results
 
       .tab-content
         .tab-pane.active#successful
           .row-fluid#container 
             .span12
-              / =render partial: 'interactions/interaction_search_successful' #use @search_mode to determine type of view, just use one set of templates
-              = @search_results.definite_results.select{|result| result.identifiers[0]}.map{|result| result.identifiers[0].name}.flatten
+              - definite_results = @search_results.definite_results.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers}}
+              =render partial: 'interactions/interaction_search_successful', locals: {definite_results: definite_results} #use @search_mode to determine type of view, just use one set of templates
 
         .tab-pane.fade#failed
           .row-fluid#container
             .span12
-              / =render partial: 'interactions/interaction_search_failed'
-              = @search_results.ambiguous_results.select{|result| result.identifiers[0]}.map{|result| result.identifiers[0].name}.flatten
-
-        .tab-pane.fade#none
-          .row-fluid#container
-            .span12
-              / =render partial: 'interactions/interaction_search_failed'
-              = @search_results.no_results_results.select{|result| result.identifiers[0]}.map{|result| result.identifiers[0].name}.flatten
+              - ambiguous_results = @search_results.ambiguous_results.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers}}
+              - failed_result = @search_results.no_results_results[0]
+              - failed_terms = @search_results.no_results_results[0].search_term
+              =render partial: 'interactions/interaction_search_failed', locals: {ambiguous_results: ambiguous_results, failed_terms: failed_terms}
 
 :javascript
   $('table').each(function(index){

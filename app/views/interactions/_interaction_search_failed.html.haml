@@ -1,4 +1,31 @@
+%div.alert.alert-error
+  %h3 
+    Unmatched Terms
+  = failed_terms
+
+%div.well
+  %h3
+    Multiple Matches
+  - ambiguous_results.each do |result|
+    %div
+      = "Search Term: " + result[:term]
+    - result[:identifiers].each do |entity|
+      %input{class: "ambiguous", type: "checkbox", name: "#{entity.name}", checked: 1}
+        = entity.name
+
 %ul(class="result-list" id="list-results")
-  -@search_results.each do |gene| # sort by what?
-    %li(class="interaction interaction-panel" data-category="interaction" data-name="Interaction")
-      = render partial: 'interaction_claims/interactions_search_panel', locals: { gene: gene }
+  - ambiguous_results.each do |result|
+    - result[:identifiers].each do |entity|
+      %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name}
+        = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity }
+
+:javascript
+  $(".ambiguous").on("click", function() {
+    name = "#" + $(this)[0].name;
+    if($(this)[0].checked){
+      $(name).show();
+    }  
+    else{
+      $(name).hide();
+    }
+  });

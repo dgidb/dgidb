@@ -1,4 +1,5 @@
 %ul(class="result-list" id="list-results")
-  -@search_results.each do |gene| # sort by what?
-    %li(class="interaction interaction-panel" data-category="interaction" data-name="Interaction")
-      = render partial: 'interaction_claims/interactions_search_panel', locals: { gene: gene }
+  -definite_results.each do |result|
+    -result[:identifiers].each do |entity|
+      %li(class="interaction interaction-panel" data-category="interaction" data-name="Interaction")
+        = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity }

@@ -1,14 +1,17 @@
-- cache gene do
+- cache entity do
   %div(class="item-title")
     %div(class="item-name")
       %h3(class="item-source")
         %span
-          = "Search Term: " + "\"" + gene + "\""
+          = "Search Term: " + "\"" + term + "\""
         %i{class: "fa fa-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
         &nbsp
-        %a{href: "/genes/#{gene}#_interactions"}
-          = gene
-
+        - if @search_mode == "genes"
+          %a{href: "/genes/#{entity.name}#_interactions"}
+            = entity.name
+        - else 
+          %a{href: "/drugs/#{entity.name}#_interactions"}
+            = entity.name
 
   %div(class="item-content")
     %div(class="cell category")
@@ -17,7 +20,10 @@
           %table{class: "search_panel table table-condensed table-striped", style: "table-layout:fixed;"}
             %tr
               %th
-                Drug
+                - if @search_mode == "genes"
+                  Drug
+                - else 
+                  Gene
               %th
                 Interaction Type
               %th
@@ -27,12 +33,16 @@
               %th
                 Score
             %tbody
-            - interactions = DataModel::Gene.find_by(name: gene).interactions
+            - interactions = entity.interactions
             - interactions.each do |interaction|
               %tr
                 %td
-                  %a{href: "/drugs/#{interaction.drug.name}"}
-                    = interaction.drug.name
+                  - if @search_mode == "genes" 
+                    %a{href: "/drugs/#{interaction.drug.name}"}
+                      = interaction.drug.name
+                  - else
+                    %a{href: "/genes/#{interaction.gene.name}"}
+                      = interaction.gene.name
                 %td
                   = interaction.interaction_types.map{|t| t.type}.join(", ")
                 %td

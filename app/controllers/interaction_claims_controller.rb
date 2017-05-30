@@ -49,12 +49,5 @@ class InteractionClaimsController < ApplicationController
     validate_interaction_request(params)
     search_results = LookupInteractions.find(params)
     @search_results = InteractionSearchResultsPresenter.new(search_results, start_time, view_context)
-    puts("YOOOOOOOOOOOO")
-    puts(@search_results.inspect)
-    puts("YOOOOOOOOOOOO")
   end
-  # def perform_interaction_search
-  #   validate_interaction_request(params)
-  #   @search_results = params[:gene_names]
-  # end
 end
