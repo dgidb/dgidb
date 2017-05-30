@@ -1,0 +1,4 @@
+%ul(class="result-list" id="list-results")
+  -@search_results.each do |gene| # sort by what?
+    %li(class="interaction interaction-panel" data-category="interaction" data-name="Interaction")
+      = render partial: 'interaction_claims/interactions_search_panel', locals: { gene: gene }

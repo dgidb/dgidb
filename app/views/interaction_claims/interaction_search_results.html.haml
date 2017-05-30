@@ -16,25 +16,37 @@
       %a(href="/faq#difference")
         =icon('question-sign')
 
-%ul(class="result-list" id="list-results")
-  -@search_results.each do |gene| # sort by what?
-    %li(class="interaction interaction-panel" data-category="interaction" data-name="Interaction")
-      = render partial: 'interaction_claims/interactions_search_panel', locals: { gene: gene }
+- cache @gene do
+  .container-fluid
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a(href="#successful" data-toggle="tab") Unique Matches
+        %li
+          %a(href="#failed" data-toggle="tab") Ambiguous or Unmatched
+
+      .tab-content
+        .tab-pane.active#successful
+          .row-fluid#container 
+            .span12
+              =render partial: 'interactions/interaction_search_successful' #use @search_mode to determine type of view, just use one set of templates
+
+        .tab-pane.fade#failed
+          .row-fluid#container
+            .span12
+              =render partial: 'interactions/interaction_search_failed'
 
 :javascript
   $('table').each(function(index){
-    $(this).find('> tbody > tr').hide().slice(0, 10).show();
+    $(this).find('> tbody > tr').hide().slice(0, 11).show();
   });
   $(".show-more").on("click", function() {
     var tbl = $(this).prev();
     $("tbody > tr", tbl).slice(0, tbl.find('tr:visible').length + 10).show();
+    $("#nrows", $(this).next().next()).html(tbl.find('tr:visible').length - 1);
   });
   $(".show-less").on("click", function() {
     var tbl = $(this).prev().prev();
     tbl.find('> tbody > tr').hide().slice(0, 10).show();
+    $("#nrows", $(this).next()).html(tbl.find('tr:visible').length - 1);
   });
-/ :css
-/   li.interaction-panel:hover {
-/     background-color:rgba(220, 220, 220, 1);
-/     cursor: pointer;
-/   }

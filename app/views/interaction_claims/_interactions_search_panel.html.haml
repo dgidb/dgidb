@@ -2,12 +2,12 @@
   %div(class="item-title")
     %div(class="item-name")
       %h3(class="item-source")
-        %a{href: "/drugs/#{gene}"}
-          = gene
+        %span
+          = "Search Term: " + "\"" + gene + "\""
         %i{class: "fa fa-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
         &nbsp
-        %a
-          = "matched " + gene
+        %a{href: "/genes/#{gene}#_interactions"}
+          = gene
 
 
   %div(class="item-content")
@@ -27,7 +27,8 @@
               %th
                 Score
             %tbody
-            - DataModel::Gene.find_by(name: gene).interactions.each do |interaction|
+            - interactions = DataModel::Gene.find_by(name: gene).interactions
+            - interactions.each do |interaction|
               %tr
                 %td
                   %a{href: "/drugs/#{interaction.drug.name}"}
@@ -40,8 +41,14 @@
                   = (pub_count = interaction.publications.count)
                 %td
                   = source_count + pub_count
-          %button{class: "show-more"}
+          %button{class: "show-more", style: "margin-top: 5px"}
             Show More
-          %button{class: "show-less"}
+          %button{class: "show-less", style: "margin-top: 5px"}
             Show Less
+          %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
+            Showing 
+            %span#nrows
+              = [10, interactions.length].min
+            %span 
+              = "out of #{interactions.length} Interactions"
 
