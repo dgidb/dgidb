@@ -33,6 +33,7 @@ module Genome
           interaction_claim.interaction = nil
           interaction_claim.save
         end
+        DataModel::InteractionAttribute.destroy_all
         DataModel::Interaction.destroy_all
         DataModel::Drug.destroy_all
       end
