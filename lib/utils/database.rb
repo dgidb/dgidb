@@ -165,5 +165,15 @@ module Utils
 
       ActiveRecord::Base.connection.execute(sql)
     end
+
+    def self.model_to_tsv model
+      CSV.generate(col_sep: "\t") do |tsv|
+        tsv << model.column_names
+        model.all.each do |m|
+          values = model.column_names.map{ |f| m.send f.to_sym}
+          tsv << values
+        end
+      end
+    end
   end
 end
