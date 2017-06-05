@@ -3,57 +3,58 @@ require "set"
 module Genome
   module Groupers
     class GeneGrouper
-      attr_reader :newly_grouped_gene_claims
-      def initialize
-        @newly_grouped_gene_claims = Set.new()
-      end
-
       def run
-        ActiveRecord::Base.transaction do
-          add_members
-          add_attributes
-          add_categories
-        end
-      end
-
-      def add_members
         begin
           newly_added_claims_count = 0
-          gene_claims_not_in_groups.each do |gene_claim|
-
-            if (gene = DataModel::Gene.where('lower(name) = ?', gene_claim.name.downcase)).any?
-              add_gene_claim_to_gene(gene_claim, gene.first)
-              newly_added_claims_count += 1
-              next
-            elsif (gene_alias = DataModel::GeneAlias.where('lower(alias) = ?', gene_claim.name.downcase)).any?
-              add_gene_claim_to_gene(gene_claim, gene_alias.first.gene)
-              newly_added_claims_count += 1
-              next
-            end
-
-            gene_claim.gene_claim_aliases.each do |gene_claim_alias|
-              if (gene = DataModel::Gene.where('lower(name) = ?', gene_claim_alias.alias.downcase)).any?
-                add_gene_claim_to_gene(gene_claim, gene.first)
-                newly_added_claims_count += 1
-                break
-              elsif (gene_alias = DataModel::GeneAlias.where('lower(alias) = ?', gene_claim_alias.alias.downcase)).any?
-                add_gene_claim_to_gene(gene_claim, gene_alias.first.gene)
-                newly_added_claims_count += 1
-                break
+          gene_claims_not_in_groups.find_in_batches do |claims|
+            ActiveRecord::Base.transaction do
+              grouped_claims = add_members(claims)
+              newly_added_claims_count += grouped_claims.length
+              if grouped_claims.length > 0
+                add_attributes(grouped_claims)
+                add_categories(grouped_claims)
               end
             end
           end
         end until newly_added_claims_count == 0
       end
 
+      def add_members(claims)
+        grouped_claims = Set.new()
+        claims.each do |gene_claim|
+
+          if (gene = DataModel::Gene.where('upper(name) = ? or upper(long_name) = ?', gene_claim.name.upcase, gene_claim.name.upcase)).any?
+            add_gene_claim_to_gene(gene_claim, gene.first)
+            grouped_claims << gene_claim
+            next
+          elsif (gene_alias = DataModel::GeneAlias.where('upper(alias) = ?', gene_claim.name.upcase)).any?
+            add_gene_claim_to_gene(gene_claim, gene_alias.first.gene)
+            grouped_claims << gene_claim
+            next
+          end
+
+          gene_claim.gene_claim_aliases.each do |gene_claim_alias|
+            if (gene = DataModel::Gene.where('upper(name) = ? or upper(long_name) = ?', gene_claim_alias.alias.upcase, gene_claim_alias.alias.upcase)).any?
+              add_gene_claim_to_gene(gene_claim, gene.first)
+              grouped_claims << gene_claim
+              break
+            elsif (gene_alias = DataModel::GeneAlias.where('upper(alias) = ?', gene_claim_alias.alias.upcase)).any?
+              add_gene_claim_to_gene(gene_claim, gene_alias.first.gene)
+              grouped_claims << gene_claim
+              break
+            end
+          end
+        end
+        return grouped_claims
+      end
+
       def add_gene_claim_to_gene(gene_claim, gene)
-        newly_grouped_gene_claims << gene_claim.id
         gene_claim.gene = gene
         gene_claim.save
 
         gene_claim.gene_claim_aliases.each do |gca|
           if (existing_gene_alias = DataModel::GeneAlias.where(
-            'gene_id = ? and lower(alias) = ?', gene.id, gca.alias.downcase
+            'gene_id = ? and upper(alias) = ?', gene.id, gca.alias.upcase
           )).any?
             gene_alias = existing_gene_alias.first
           else
@@ -73,8 +74,8 @@ module Genome
           .where('gene_claims.gene_id IS NULL')
       end
 
-      def add_attributes
-        DataModel::GeneClaim.where(id: newly_grouped_gene_claims.to_a).each do |gene_claim|
+      def add_attributes(claims)
+        claims.each do |gene_claim|
           gene_claim.gene_claim_attributes.each do |gca|
             gene_attribute = DataModel::GeneAttribute.where(
               gene_id: gene_claim.gene_id,
@@ -89,8 +90,8 @@ module Genome
         end
       end
 
-      def add_categories
-        DataModel::GeneClaim.where(id: newly_grouped_gene_claims.to_a).each do |gene_claim|
+      def add_categories(claims)
+        claims.each do |gene_claim|
           gene = gene_claim.gene
           gene_claim.gene_claim_categories.each do |category|
             unless gene.gene_categories.include? category
