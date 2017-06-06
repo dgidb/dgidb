@@ -48,23 +48,33 @@ module Genome
         return grouped_claims
       end
 
-      def add_gene_claim_to_gene(gene_claim, gene)
-        gene_claim.gene = gene
-        gene_claim.save
-
-        gene_claim.gene_claim_aliases.each do |gca|
+      def create_gene_alias(gene_id, name, source)
           if (existing_gene_alias = DataModel::GeneAlias.where(
-            'gene_id = ? and upper(alias) = ?', gene.id, gca.alias.upcase
+            'gene_id = ? and upper(alias) = ?', gene_id, name.upcase
           )).any?
             gene_alias = existing_gene_alias.first
           else
             gene_alias = DataModel::GeneAlias.where(
-              gene_id: gene.id,
-              alias: gca.alias
+              gene_id: gene_id,
+              alias: name
             ).first_or_create
           end
-          unless gene_alias.sources.include? gene_claim.source
-            gene_alias.sources << gene_claim.source
+          unless gene_alias.sources.include? source
+            gene_alias.sources << source
+          end
+      end
+
+      def add_gene_claim_to_gene(gene_claim, gene)
+        gene_claim.gene = gene
+        gene_claim.save
+
+        if (gene.name.upcase != gene_claim.name.upcase)
+          create_gene_alias(gene.id, gene_claim.name, gene_claim.source)
+        end
+
+        gene_claim.gene_claim_aliases.each do |gca|
+          if (gene.name.upcase != gca.alias.upcase)
+            create_gene_alias(gene.id, gca.alias, gene_claim.source)
           end
         end
       end
