@@ -5,6 +5,7 @@ module Utils
         source_db_name.downcase).pluck(:id).first
 
       sql = <<-SQL
+        delete from interaction_claims_publications where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
         delete from interaction_claim_attributes where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
         delete from interaction_claim_types_interaction_claims where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
         delete from interaction_claims where source_id =  '#{source_id}';
@@ -22,6 +23,11 @@ module Utils
         delete from gene_claim_categories_gene_claims where gene_claim_id in (select id from gene_claims where source_id = '#{source_id}');
         delete from gene_claims where source_id = '#{source_id}';
 
+        delete from drug_aliases_sources where source_id = '#{source_id}';
+        delete from drug_attributes_sources where source_id = '#{source_id}';
+        delete from gene_aliases_sources where source_id = '#{source_id}';
+        delete from gene_attributes_sources where source_id = '#{source_id}';
+        delete from interaction_attributes_sources where source_id = '#{source_id}';
         delete from sources where id = '#{source_id}';
       SQL
 
