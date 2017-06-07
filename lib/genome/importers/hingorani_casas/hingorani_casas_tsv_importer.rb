@@ -19,7 +19,7 @@ module Genome
             name :gene_symbol, nomenclature: 'Gene Symbol', transform: ->(x) { x.upcase }
             name :ensembl_id, nomenclature: 'Ensembl Id', transform: ->(x) { x.upcase }
           end
-        end
+        end.save!
       end
     end
   end
