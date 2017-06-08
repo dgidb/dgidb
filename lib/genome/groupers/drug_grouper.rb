@@ -1,9 +1,8 @@
 module Genome
   module Groupers
     class DrugGrouper
-      @alt_to_pubchem = Hash.new() {|hash, key| hash[key] = []}
+      @alt_to_chembl = Hash.new() {|hash, key| hash[key] = []}
       @alt_to_other = Hash.new() {|hash, key| hash[key] = []}
-      @alt_to_pubchem_cid = Hash.new() {|hash, key| hash[key] = []}
 
       def self.run
         ActiveRecord::Base.transaction do
@@ -40,17 +39,8 @@ module Genome
 
       def self.preload
         DataModel::DrugClaimAlias.includes(drug_claim: [:drug, :source]).all.each do |dca|
-          drug_claim_alias = dca.alias
-          if drug_claim_alias =~ /^\d+$/
-            if dca.nomenclature =~ /pubchem.*(compound)|(cid)/i
-              @alt_to_pubchem_cid[drug_claim_alias] << dca
-            else
-              next
-            end
-          elsif drug_claim_alias.length == 1
-            next
-          elsif dca.nomenclature == 'pubchem_primary_name'
-            @alt_to_pubchem[drug_claim_alias] << dca
+          if dca.nomenclature == 'ChEMBL Drug Name'
+            @alt_to_chembl[drug_claim_alias] << dca
           else
             @alt_to_other[drug_claim_alias] << dca
           end
@@ -58,8 +48,8 @@ module Genome
       end
 
       def self.create_groups
-        @alt_to_pubchem.each_key do |key|
-          drug_claims = @alt_to_pubchem[key].map(&:drug_claim)
+        @alt_to_chembl.each_key do |key|
+          drug_claims = @alt_to_chembl[key].map(&:drug_claim)
           drug = DataModel::Drug.where(name: key).first
           if drug 
             drug_claims.each do |drug_claim|
@@ -88,14 +78,6 @@ module Genome
             alt_drugs.each do |alt_drug|
               indirect_drug = alt_drug.drug
               indirect_groups[indirect_drug.name] += 1 if indirect_drug
-            end
-            nomenclature = drug_claim_alias.nomenclature
-            if nomenclature =~ /pubchem.*(compound)|(cid)/i
-              alt_drugs = @alt_to_pubchem_cid[drug_claim_alias.alias].map(&:drug_claim)
-              alt_drugs.each do |alt_drug|
-                indirect_drug = alt_drug.drug
-                indirect_groups[indirect_drug.name] += 1 if indirect_drug
-              end
             end
           end
 
