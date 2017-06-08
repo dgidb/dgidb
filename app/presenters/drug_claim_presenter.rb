@@ -12,4 +12,8 @@ class DrugClaimPresenter < SimpleDelegator
     end
   end
 
+  def publications
+    interaction_claims.map{|ic| ic.publications}.flatten.uniq
+  end
+
 end

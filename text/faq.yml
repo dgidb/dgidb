@@ -4,7 +4,7 @@ faq:
   title_small: frequently asked questions
   description: > 
     This page provides answers to a wide array of general questions. For detailed tutorials on how to use DGIdb, 
-    see the tutorials under the "Getting started" section of the help menu.
+    see the tutorials under the "<a href=getting_started>Getting started</a>" section of the help menu.
   questions:
     - question: What is the goal of DGIdb?
       anchor: goal
@@ -35,8 +35,7 @@ faq:
       answer: > 
         You can try reading: the 'Getting Started' section under the help menu, the manuscript, the tutorial, and this FAQ. 
         Some sections also contain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
-        If all else fails please email us with your questions.  
-        Refer to the 'Contact' section under the help menu for details on how to get in touch with us.
+        If all else fails please <a href="mailto:help@dgidb.org">email us</a> with your questions.
 
     - question: What types of gene names/symbols should I use as input?
       anchor: types
@@ -64,7 +63,7 @@ faq:
       anchor: add
       answer: >
         This is an open source project and you could therefore create your own instance with your own data ... but if you want that source
-        we probably do also. <a href="/contact">Contact us</a> and we will be happy to consider adding your source for you.
+        we probably do also. <a href="mailto:help@dgidb.org">Contact us</a> and we will be happy to consider adding your source for you.
 
     - question: What does 'Source Trust Level' mean?
       anchor: trust
@@ -166,8 +165,9 @@ faq:
     - question: I think I have identified a bug in the DGIdb code. What should I do?
       anchor: bugs
       answer: >
-        Please let us know. For minor issues, use the feedback form in the bottom right of views at dgidb.org.
+        Please let us know. You may contact us <a href="mailto:help@dgidb.org">by email</a>.
         If you question is more complicated, please ask it publicly on <a href="http://www.biostars.org/">BioStars</a>. 
-        Finally, the <a href="https://github.com/genome/dgi-db">code for DGIdb</a> is open-source, 
-        if you are the curious/ambitious type, feel free to investigate a solution and let us know what you find.
+        The <a href="https://github.com/griffithlab/dgi-db">code for DGIdb</a> is open-source, and if you have a GitHub account
+        you may post your question directly to the GitHub <a href="https://github.com/genome/dgi-db/issues">issue tracker</a> for our developers to review.
+        If you are the curious/ambitious type, feel free to investigate a solution and let us know what you find.
 

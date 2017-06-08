@@ -1,44 +1,71 @@
+/ view for show action in drug controller
+/ rendered in application layout by drug show action
+
+/ similar to show.html.haml, as in it provides the scaffold for the tabs
+/ - shared summary tab partial
+/ - shared interactions tab partial
+/ - shared claims tab partial
+
 =content_for :title, "DGIdb - #@title Drug Record"
 =content_for :header do
   %h2
     %span{id: "drug_name"}
       =@title
     %small
-      data sources and alternate names 
+      Drug Record
       %a(href="/faq#defined")
-        =icon('question-sign')
+        =icon('question-sign') # this is not going to the right spot
 
 - cache @drug do
   .container-fluid
     .tabbable
       %ul.nav.nav-tabs
         %li.active
-          %a(href="#detailed_view" data-toggle="tab") Detailed View
+          %a(href="#summary" data-toggle="tab") Summary
         %li
-          %a(href="#by_source" data-toggle="tab") By Source
+          %a(href="#interactions" data-toggle="tab") Interactions
+        %li
+          %a(href="#claims" data-toggle="tab") Claims
       .tab-content
-        .tab-pane.active#detailed_view
-          .row-fluid#container
-            %div(class="span2")
-              %div(id="list-filter-tabs")
-
-                %ul(class="nav nav-tabs nav-stacked")
-                  %li(class="active")
-                    %a(href="#" data-category="all")
-                      %i(class="icon-chevron-right")
-                      All
-
-            %div(class="span10")
-              =render partial: 'drugs/drug', locals: { drug: @drug }
-
-        .tab-pane.fade#by_source
-          .row-fluid
+        .tab-pane.active#summary
+          .row-fluid#container 
             .span12
-              =render partial: 'drugs/by_source_table', locals: {drug: @drug}
+              %ul(class="result-list" id="list-results")
+                %li
+                  =render partial: 'drugs/drug_summary_tab', locals: { drug: @drug } 
 
-  =javascript_include_tag "jquery.masonry.min"
-  =javascript_include_tag "jquery.dataTables.min"
-  =javascript_include_tag "pagination_bootstrap"
-  =javascript_include_tag "gene_groups"
-  =javascript_include_tag "gene-list-tabs"
+        .tab-pane.fade#interactions
+          .row-fluid#container
+            .span12
+              =render partial: 'shared/interactions_tab', locals: { drug: @drug }
 
+        .tab-pane.fade#claims
+          .row-fluid#container
+            .span12
+              =render partial: 'shared/claims_tab', locals: { drug: @drug }
+
+:javascript
+  $(document).ready(function () {
+    var activeTab = $('#' + window.location.hash.substr(2));
+    console.log(window.location.hash.substr(2));
+    console.log(activeTab);
+    console.log(activeTab.length);
+
+    if(activeTab.length) {
+      $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+    } else {
+      $('a[href="' + "#summary" + '"]').trigger('click');
+    }
+  });
+
+  $(".tabbable li a").click(function () {
+    console.log($(this).attr('href').substr(1));
+    window.location.hash = "_" + $(this).attr('href').substr(1);
+    return true;
+  }); 
+
+=javascript_include_tag "jquery.masonry.min"
+=javascript_include_tag "jquery.dataTables.min"
+=javascript_include_tag "pagination_bootstrap"
+=javascript_include_tag "gene_groups"
+=javascript_include_tag "gene-list-tabs"

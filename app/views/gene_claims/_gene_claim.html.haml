@@ -8,12 +8,12 @@
           =ext_link_to gene_claim.name, gene_claim.original_data_source_url
     %div(class="item-corner")
       %ul(class="attribute-list")
-        -# %li
-        -#   %strong
-        -#     ID:
-        -#   =ext_link_to gene_claim.name, gene_claim.original_data_source_url
-        -#   =surround '(', ')' do
-        -#     =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
+        %li
+          %strong
+            ID:
+            =ext_link_to gene_claim.name, gene_claim.original_data_source_url
+            =surround '(', ')' do
+              =link_to(gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name))
         %li
           %strong
             Version:
@@ -28,10 +28,7 @@
           -gene_claim.gene_claim_aliases.each do |alt_name|
             %tr
               %td
-                -if(gene_claim.source.source_db_name == 'GO')
-                  =ext_link_to alt_name.alias, 'http://amigo.geneontology.org/cgi-bin/amigo/gp-details.cgi?gp=UniProtKB:' << alt_name.alias
-                -else
-                  =alt_name.alias
+                =alt_name.alias
               %td=alt_name.nomenclature
 
     %div(class="cell category")

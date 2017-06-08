@@ -1,4 +1,4 @@
 %ul(class="result-list" id="list-results")
   -drug.drug_claims.sort_by{ |d| d.sort_value }.each do |drug_claim|
     %li(class="#{drug_claim.source.source_type.type}" data-category="#{drug_claim.source.source_type.type}" data-name="#{drug_claim.source.source_type.display_name}")
-      =render partial: 'drug_claims/drug_claim', locals: { drug_claim: drug_claim }
+      =render partial: 'drug_claims/drug_claim', locals: { drug_claim: drug_claim, all_shown: drug_claim.drug_claim_aliases.count < 6 }

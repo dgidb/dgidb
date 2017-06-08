@@ -28,4 +28,16 @@ class DrugPresenter < SimpleDelegator
       end
     end
   end
+
+  def sorted_claims
+    drug_claims.sort_by{ |d| [(d.drug_claim_attributes.empty? ? 1 : 0), (DrugClaimPresenter.new(d).publications.empty? ? 1 : 0), (d.drug_claim_aliases.empty? ? 1 : 0), d.sort_value] }
+  end
+
+  def sorted_interactions
+    interactions.sort_by{ |i| [(i.interaction_types.empty? ? 1 : 0), (i.interaction_attributes.length > i.publications.length + i.interaction_types.length ? 0 : 1), (i.publications.empty? ? 1 : 0)] }
+  end
+
+  def publications
+    interactions.map{|i| i.publications}.flatten.uniq
+  end
 end
