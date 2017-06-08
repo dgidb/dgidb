@@ -1,7 +1,7 @@
 module DataModel
   class GeneClaim < ::ActiveRecord::Base
     include Genome::Extensions::UUIDPrimaryKey
-    has_and_belongs_to_many :genes
+    belongs_to :gene
     has_and_belongs_to_many :gene_claim_categories
     has_many :gene_claim_aliases, inverse_of: :gene_claim, dependent: :delete_all
     has_many :gene_claim_attributes, inverse_of: :gene_claim, dependent: :delete_all
@@ -10,19 +10,19 @@ module DataModel
     has_many :drug_claims, through: :interaction_claims
 
     def self.for_search
-      eager_load(genes: [gene_claims: {interaction_claims: { source: [], drug_claim: [:source], interaction_claim_types: [], gene_claim: [genes: [gene_claims: [:gene_claim_categories]]]}}])
+      eager_load(gene: [gene_claims: {interaction_claims: { source: [], drug_claim: [:source], interaction_claim_types: [], gene_claim: [gene: [gene_claims: [:gene_claim_categories]]]}}])
     end
 
     def self.for_gene_categories
-      eager_load(genes: [gene_claims: [:source, :gene_claim_categories]])
+      eager_load(gene: [gene_claims: [:source, :gene_claim_categories]])
     end
 
     def self.for_show
-      eager_load(:genes, :source, :gene_claim_aliases, :gene_claim_attributes)
+      eager_load(:gene, :source, :gene_claim_aliases, :gene_claim_attributes)
     end
 
     def self.for_gene_id_mapping
-      eager_load(genes: [gene_claims: [:source]])
+      eager_load(gene: [gene_claims: [:source]])
     end
 
     def source_db_name
@@ -46,7 +46,7 @@ module DataModel
       when 'TTD'
         base_url + 'Detail.asp?ID=' + name
       when 'GO'
-        base_url.gsub(/XXXXXXXX/, name)
+        base_url + name
       when 'GuideToPharmacologyInteractions', 'GuideToPharmacologyGenes'
         'http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=' + name
         when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial',

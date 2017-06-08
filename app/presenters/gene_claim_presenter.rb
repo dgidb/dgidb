@@ -19,8 +19,8 @@ class GeneClaimPresenter < SimpleDelegator
     end
   end
 
-  def gene
-    genes.first
+  def publications
+    interaction_claims.map{|ic| ic.publications}.flatten.uniq
   end
 
 end

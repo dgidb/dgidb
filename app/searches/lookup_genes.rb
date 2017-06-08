@@ -5,7 +5,7 @@ class LookupGenes
     results = match_search_terms_to_objects(search_terms, scope)
     results_to_genes = match_objects_to_genes(results, search_terms)
     de_dup_results(results_to_genes).map do |terms, matched_genes|
-      wrapper_class.new(terms, matched_genes)
+      wrapper_class.new(terms, matched_genes.compact)
     end
   end
 
@@ -17,9 +17,9 @@ class LookupGenes
         when DataModel::Gene
           results_to_gene_groups[result.name] << result
         when DataModel::GeneClaimAlias
-          results_to_gene_groups[result.alias] += result.gene_claim.genes
+          results_to_gene_groups[result.alias] << result.gene_claim.gene
         when DataModel::GeneClaim
-          results_to_gene_groups[result.name] += result.genes
+          results_to_gene_groups[result.name] << result.gene
       end
     end
     results_to_gene_groups

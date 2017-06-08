@@ -26,7 +26,7 @@ describe LookupRelatedDrugs do
   it 'should find drugs that have drug claims with matching names' do
     Fabricate(:drug, name: 'turkey')
     drug = Fabricate(:drug, name: 'sandwich meats')
-    Fabricate(:drug_claim, drugs: [drug], name: 'turkey')
+    Fabricate(:drug_claim, drug: drug, name: 'turkey')
 
     results = LookupRelatedDrugs.find('turkey')
     expect(results.size).to eq(1)
@@ -36,7 +36,7 @@ describe LookupRelatedDrugs do
   it 'should find drugs that have drug claim aliases with matching names' do
     Fabricate(:drug, name: 'turkey')
     drug = Fabricate(:drug, name: 'sandwich meats')
-    drug_claim = Fabricate(:drug_claim, drugs: [drug], name: 'lunchable')
+    drug_claim = Fabricate(:drug_claim, drug: drug, name: 'lunchable')
     Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: 'turkey sandwich')
     results = LookupRelatedDrugs.find('turkey')
     expect(results.size).to eq(1)
@@ -45,8 +45,8 @@ describe LookupRelatedDrugs do
 
   it 'should only return unique drugs' do
     drug = Fabricate(:drug, name: 'sandwich')
-    Fabricate(:drug_claim, name: 'turkey', drugs: [drug])
-    Fabricate(:drug_claim, name: 'turkey sandwich', drugs: [drug])
+    Fabricate(:drug_claim, name: 'turkey', drug: drug)
+    Fabricate(:drug_claim, name: 'turkey sandwich', drug: drug)
     results = LookupRelatedDrugs.find('turkey')
     expect(results.size).to eq(1)
   end

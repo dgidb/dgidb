@@ -14,7 +14,7 @@ class LookupCategories
 
   def self.gene_names_in_category(category_name)
     DataModel::GeneClaimCategory
-      .joins(gene_claims: [:genes])
+      .joins(gene_claims: [:gene])
       .where(name: category_name.upcase)
       .order('genes.name').uniq
       .pluck('genes.name')
@@ -31,11 +31,11 @@ class LookupCategories
   def self.get_category_names_with_counts_in_sources(sources)
     sources = Array(sources)
     Rails.cache.fetch("unique_category_names_with_counts_#{sources}") do
-      DataModel::GeneClaimCategory.joins(gene_claims: [:genes, :source])
+      DataModel::GeneClaimCategory.joins(gene_claims: [:gene, :source])
         .where('sources.source_db_name' => sources)
         .group('gene_claim_categories.name')
         .order('gene_claim_categories.name ASC')
-        .select('COUNT(DISTINCT(genes.id)) as gene_count, gene_claim_categories.name')
+        .select('COUNT(DISTINCT(gene_claims.gene_id)) as gene_count, gene_claim_categories.name')
         .map { |x| CategoryResultWithCount.new(x.name, x.gene_count) }
     end
   end

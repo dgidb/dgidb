@@ -16,9 +16,9 @@
   %div(class="item-content")
     %div(class="cell category")
       %div(class="item-panel")
-        %h4
+        %h4{style: "display: inline-block;"}
           Alternate Names
-        %table(class="table table-condensed table-striped")
+        %table{class: "table table-condensed table-striped", id:"table_#{drug_claim.id}"}
           -drug_claim.drug_claim_aliases.each do |alt_name|
             %tr
               %td

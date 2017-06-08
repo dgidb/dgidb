@@ -8,6 +8,9 @@ module Genome
           create_groups
           @alt_to_other = preload_non_entrez_gene_aliases
           add_members
+          add_aliases
+          add_attributes
+          add_categories
         end
       end
 
@@ -34,7 +37,7 @@ module Genome
       end
 
       def self.gene_claim_alias_scope
-        DataModel::GeneClaimAlias.includes(gene_claim: [:genes, :source])
+        DataModel::GeneClaimAlias.includes(gene_claim: [:gene, :source])
       end
 
       def self.preload_aliases(query)
@@ -56,7 +59,8 @@ module Genome
 
           if gene
             gene_claims.each do |gene_claim|
-              gene_claim.genes << gene unless gene_claim.genes.include?(gene)
+              gene_claim.gene = gene if gene_claim.gene.nil?
+              gene_claim.save
             end
           else
             @gene_names_to_genes[gene_name] = [DataModel::Gene.new.tap do |g|
@@ -79,7 +83,7 @@ module Genome
             direct_groups << gene_claim_alias if @gene_names_to_genes[gene_claim_alias]
             alt_genes = @alt_to_other[gene_claim_alias].map(&:gene_claim)
             alt_genes.each do |alt_gene|
-              indirect_gene = alt_gene.genes.first
+              indirect_gene = alt_gene.gene
               indirect_groups << indirect_gene.name if indirect_gene
             end
           end
@@ -94,13 +98,68 @@ module Genome
 
       def self.add_gene_claim_to_gene(gene_name, gene_claim)
         gene = @gene_names_to_genes[gene_name].first
-        gene.gene_claims << gene_claim unless gene.gene_claims.include?(gene_claim)
+        gene_claim.gene = gene
+        gene_claim.save
       end
 
       def self.gene_claims_not_in_groups
-        DataModel::GeneClaim.eager_load(:genes, :gene_claim_aliases)
-          .where('gene_claims_genes.gene_id IS NULL')
+        DataModel::GeneClaim.eager_load(:gene, :gene_claim_aliases)
+          .where('gene_claims.gene_id IS NULL')
       end
+
+      def self.add_aliases
+        DataModel::Gene.all.each do |gene|
+          grouped_gene_claim_aliases = gene.gene_claims.flat_map(&:gene_claim_aliases).group_by { |gca| gca.alias.upcase }
+          grouped_gene_claim_aliases.each do |name, gene_claim_aliases_for_name|
+            groups = gene_claim_aliases_for_name.group_by{ |gca| gca.alias }
+            counts_for_name = groups.each_with_object(Hash.new) do |(n, gcas), counts|
+              counts[n] = gcas.length
+            end
+            best_name = Hash[counts_for_name.sort_by{ |n, count| count }.reverse].keys.first
+            gene_alias = DataModel::GeneAlias.where(
+              gene_id: gene.id,
+              alias: best_name,
+            ).first_or_create
+            gene_claim_aliases_for_name.each do |gca|
+              unless gene_alias.sources.include? gca.gene_claim.source
+                gene_alias.sources << gca.gene_claim.source
+              end
+            end
+            gene_alias.save
+          end
+        end
+      end
+
+      def self.add_attributes
+        DataModel::Gene.all.each do |gene|
+          gene.gene_claims.each do |gene_claim|
+            gene_claim.gene_claim_attributes.each do |gca|
+              gene_attribute = DataModel::GeneAttribute.where(
+                gene_id: gene.id,
+                name: gca.name,
+                value: gca.value
+              ).first_or_create
+              unless gene_attribute.sources.include? gene_claim.source
+                gene_attribute.sources << gene_claim.source
+              end
+              gene_attribute.save
+            end
+          end
+        end
+      end
+
+      def self.add_categories
+        DataModel::Gene.all.each do |gene|
+          gene.gene_claims.each do |gene_claim|
+            gene_claim.gene_claim_categories.each do |category|
+              unless gene.gene_categories.include? category
+                gene.gene_categories << category
+              end
+            end
+          end
+        end
+      end
+
     end
   end
 end

@@ -12,14 +12,14 @@ class InteractionSearchResult
         .flat_map{ |gc| gc.interaction_claims }
         .uniq
       @interaction_claims = results.reject do |ic|
-        ic.drug_claim.drugs.first.nil?
+        ic.drug_claim.drug.nil?
       end
     else
       results = identifiers.flat_map { |d| d.drug_claims }
         .flat_map{ |dc| dc.interaction_claims }
         .uniq
       @interaction_claims = results.reject do |ic|
-        ic.gene_claim.genes.first.nil?
+        ic.gene_claim.gene.nil?
       end
     end
   end

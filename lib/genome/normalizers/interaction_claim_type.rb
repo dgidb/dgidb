@@ -10,13 +10,14 @@ module Genome
         end
       end
 
-      private
+      
       def self.fill_in_new_types
         existing_types = all_interaction_claim_types
         claim_type_attributes.each do |ica|
           if type = existing_types[name_normalizer(ica.value)]
             add_unless_exists(type, ica.interaction_claim)
           end
+          ica.delete
         end
       end
 

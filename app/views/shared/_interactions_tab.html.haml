@@ -1,0 +1,18 @@
+/view for interactions tab for gene/drug
+/lists interaction summary panels
+
+- if defined? drug
+  - entity = drug 
+- else
+  - entity = gene 
+
+%ul(class="result-list" id="list-results")
+  -entity.sorted_interactions.each do |interaction| # sort by what?
+    %li(class="interaction interaction-panel" onclick="location.href='/interactions/#{interaction.id}';" data-category="interaction" data-name="Interaction")
+      =render partial: 'interactions/interaction_summary', locals: { interaction: interaction }
+
+:css
+  li.interaction-panel:hover {
+    background-color:rgba(220, 220, 220, 1);
+    cursor: pointer;
+  }
