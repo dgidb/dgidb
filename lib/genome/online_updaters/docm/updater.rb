@@ -1,4 +1,3 @@
-require 'net/http'
 module Genome; module OnlineUpdaters; module Docm
   class Updater
     attr_reader :new_version
@@ -35,38 +34,30 @@ module Genome; module OnlineUpdaters; module Docm
     end
 
     def parse_interaction_information(variant)
-      if !variant.key?('meta')
-        return []
-      end
-      fields = variant['meta'].first['Drug Interaction Data']['fields']
-      rows = variant['meta'].first['Drug Interaction Data']['rows']
-      interaction_information = Set.new()
-      rows.each do |row|
-        row_hash = {}
-        fields.zip(row).each do |name, value|
-          row_hash[name] = value
-        end
-        row_hash['Therapeutic Context'].split(/,|\+|plus/).each do |drug|
-          info = row_hash
-          info['Therapeutic Context'] = drug
-          if valid_drug?(drug)
-            interaction_information.add(info)
+      return [] unless variant.include?('meta')
+      drug_data = variant['meta'].find { |table| table.include?('Drug Interaction Data') }
+      return [] unless drug_data.present?
+      fields = drug_data['Drug Interaction Data']['fields']
+      rows = drug_data['Drug Interaction Data']['rows']
+      Set.new.tap do |interaction_information|
+        rows.each do |row|
+          row_hash = {}
+          fields.zip(row).each do |name, value|
+            row_hash[name] = value
+          end
+          row_hash['Therapeutic Context'].split(/,|\+|plus/).each do |drug|
+            info = row_hash.dup
+            info['Therapeutic Context'] = drug
+            if valid_drug?(drug)
+              interaction_information.add(info)
+            end
           end
         end
       end
-      return interaction_information
     end
 
     def valid_drug?(drug_name)
-      [
-        !drug_name.include?('inhib'),
-        !drug_name.include?('HER3'),
-        !drug_name.include?('TKI'),
-        !drug_name.include?('anti'),
-        !drug_name.include?('BRAF'),
-        !drug_name.include?('radio'),
-        !drug_name.include?('BH3'),
-      ].all?
+      ['inhib', 'HER3', 'TKI', 'anti', 'BRAF', 'radio', 'BH3'].none? { |name| drug_name.include?(name) }
     end
 
     def get_or_create_drug_claim(interaction_info, source)
