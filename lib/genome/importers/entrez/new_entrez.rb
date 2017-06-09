@@ -51,9 +51,15 @@ module Genome; module Importers; module Entrez;
       name = line['Symbol_from_nomenclature_authority'].upcase
       long_name = line['description'].upcase
 
-      gene = DataModel::Gene.where(entrez_id: entrez_id ).first_or_initialize
-      gene.name = name
-      gene.long_name = long_name
+      gene = DataModel::Gene.where(name: name).first
+      if gene and gene.entrez_id != entrez_id
+        create_alias(gene, gene.entrez_id.to_s)
+        gene.entrez_id = entrez_id
+      else
+        gene = DataModel::Gene.where(entrez_id: entrez_id ).first_or_initialize
+        gene.name = name
+        gene.long_name = long_name
+      end
       gene.save
 
       #if the name or long name has changed, we want to preserve the old name as an alias
