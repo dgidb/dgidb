@@ -1,5 +1,30 @@
 module Utils
   module Database
+
+    def self.delete_genes
+      sql = <<-SQL
+        update interaction_claims set interaction_id = NULL;
+        
+        delete from interaction_attributes_sources;
+        delete from interaction_attributes;
+        delete from interactions_publications;
+        delete from interaction_types_interactions;
+        delete from interactions_publications;
+        delete from interactions;
+        
+        update gene_claims set gene_id = NULL;
+        
+        delete from gene_aliases_sources;
+        delete from gene_aliases;
+        delete from gene_attributes_sources;
+        delete from gene_attributes;
+        delete from gene_categories_genes;
+        delete from genes;
+      SQL
+
+      ActiveRecord::Base.connection.execute(sql)
+    end
+
     def self.delete_source(source_db_name)
       source_id = DataModel::Source.where('lower(sources.source_db_name) = ?',
         source_db_name.downcase).pluck(:id).first
