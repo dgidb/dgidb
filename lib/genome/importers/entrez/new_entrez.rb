@@ -64,19 +64,24 @@ module Genome; module Importers; module Entrez;
         #create_alias(gene, gene.long_name)
       #end
 
-      create_alias(gene, entrez_id, 'Gene Entrez Id')
-      create_alias(gene, long_name, 'Gene Description')
-      create_alias(gene, name, 'Gene Symbol')
+      create_alias(gene, entrez_id)
+      create_alias(gene, long_name)
+      create_alias(gene, name)
       process_synonyms(gene, line['Synonyms'])
       process_ensembl(gene, line['dbXrefs'])
     end
 
-    def create_alias(gene, name, nomenclature = 'Gene Synonym')
-      gene_alias = DataModel::GeneAlias.where(
-        alias: name.upcase,
-        gene_id: gene.id,
-        nomenclature: nomenclature
-      ).first_or_create
+    def create_alias(gene, name)
+      if (existing_gene_alias = DataModel::GeneAlias.where(
+        'gene_id = ? and upper(alias) = ?', gene.id, name.upcase
+      )).any?
+        gene_alias = existing_gene_alias.first
+      else
+        gene_alias = DataModel::GeneAlias.where(
+          gene_id: gene.id,
+          alias: name
+        ).first_or_create
+      end
       gene_alias.sources << source unless gene_alias.sources.include?(source)
     end
 
@@ -97,7 +102,7 @@ module Genome; module Importers; module Entrez;
         xrefs.split('|')
           .select { |x| x =~ /^Ensembl/ }
           .map { |x| x.split(':').last }
-          .each { |ensembl_id| create_alias(gene, ensembl_id, 'Ensembl Gene Id') }
+          .each { |ensembl_id| create_alias(gene, ensembl_id) }
       end
     end
   end
