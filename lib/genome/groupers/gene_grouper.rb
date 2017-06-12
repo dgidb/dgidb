@@ -1,5 +1,3 @@
-require "set"
-
 module Genome
   module Groupers
     class GeneGrouper
@@ -20,32 +18,39 @@ module Genome
       end
 
       def add_members(claims)
-        grouped_claims = Set.new()
+        grouped_claims = []
         claims.each do |gene_claim|
+          grouped_claims << group_gene_claim(gene_claim)
+        end
+        return grouped_claims.compact
+      end
 
-          if (gene = DataModel::Gene.where('upper(name) = ? or upper(long_name) = ?', gene_claim.name.upcase, gene_claim.name.upcase)).any?
+      def group_gene_claim(gene_claim)
+        if (gene = DataModel::Gene.where('upper(name) = ? or upper(long_name) = ?', gene_claim.name.upcase, gene_claim.name.upcase)).one?
+          add_gene_claim_to_gene(gene_claim, gene.first)
+          return gene_claim
+        end
+
+        gene_claim.gene_claim_aliases.each do |gene_claim_alias|
+          if (gene = DataModel::Gene.where('upper(name) = ? or upper(long_name) = ?', gene_claim_alias.alias.upcase, gene_claim_alias.alias.upcase)).one?
             add_gene_claim_to_gene(gene_claim, gene.first)
-            grouped_claims << gene_claim
-            next
-          elsif (gene_alias = DataModel::GeneAlias.where('upper(alias) = ?', gene_claim.name.upcase)).any?
-            add_gene_claim_to_gene(gene_claim, gene_alias.first.gene)
-            grouped_claims << gene_claim
-            next
-          end
-
-          gene_claim.gene_claim_aliases.each do |gene_claim_alias|
-            if (gene = DataModel::Gene.where('upper(name) = ? or upper(long_name) = ?', gene_claim_alias.alias.upcase, gene_claim_alias.alias.upcase)).any?
-              add_gene_claim_to_gene(gene_claim, gene.first)
-              grouped_claims << gene_claim
-              break
-            elsif (gene_alias = DataModel::GeneAlias.where('upper(alias) = ?', gene_claim_alias.alias.upcase)).any?
-              add_gene_claim_to_gene(gene_claim, gene_alias.first.gene)
-              grouped_claims << gene_claim
-              break
-            end
+            return gene_claim
           end
         end
-        return grouped_claims
+
+        if (gene_alias = DataModel::GeneAlias.where('upper(alias) = ?', gene_claim.name.upcase)).one?
+          add_gene_claim_to_gene(gene_claim, gene_alias.first.gene)
+          return gene_claim
+        end
+
+        gene_claim.gene_claim_aliases.each do |gene_claim_alias|
+          if (gene_alias = DataModel::GeneAlias.where('upper(alias) = ?', gene_claim_alias.alias.upcase)).one?
+            add_gene_claim_to_gene(gene_claim, gene_alias.first.gene)
+            return gene_claim
+          end
+        end
+
+        return nil
       end
 
       def create_gene_alias(gene_id, name, source)
