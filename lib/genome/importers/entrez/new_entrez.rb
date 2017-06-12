@@ -106,7 +106,6 @@ module Genome; module Importers; module Entrez;
     def process_ensembl(gene, xrefs)
       if xrefs.present?
         xrefs.split('|')
-          .select { |x| x =~ /^Ensembl/ }
           .map { |x| x.split(':').last }
           .each { |ensembl_id| create_alias(gene, ensembl_id) }
       end
