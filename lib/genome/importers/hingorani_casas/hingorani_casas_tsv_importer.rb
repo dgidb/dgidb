@@ -19,6 +19,7 @@ module Genome
           gene :gene_symbol, nomenclature: 'HingoraniCasas Gene Symbol' do
             name :gene_symbol, nomenclature: 'Gene Symbol', transform: ->(x) { x.upcase }
             name :ensembl_id, nomenclature: 'Ensembl Id', transform: ->(x) { x.upcase }
+            category 'DRUGGABLE GENOME'
           end
         end.save!
       end
