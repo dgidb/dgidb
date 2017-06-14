@@ -95,29 +95,23 @@ module Genome
 
       def self.add_aliases
         DataModel::Drug.all.each do |drug|
-          drug.drug_claims.each do |drug_claim|
-            drug_claim.drug_claim_aliases.each do |dca|
-              existing_drug_aliases = DataModel::DrugAlias.where(
-                drug_id: drug.id,
-                alias: dca.alias,
-                nomenclature: dca.nomenclature,
-              )
-              if existing_drug_aliases.empty?
-                DataModel::DrugAlias.new.tap do |a|
-                  a.drug = drug
-                  a.alias = dca.alias
-                  a.nomenclature = dca.nomenclature
-                  a.sources << drug_claim.source
-                  a.save
-                end
-              else
-                existing_drug_aliases.each do |drug_alias|
-                  unless drug_alias.sources.include? drug_claim.source
-                    drug_alias.sources << drug_claim.source
-                  end
-                end
+          grouped_drug_claim_aliases = drug.drug_claims.flat_map(&:drug_claim_aliases).group_by { |dca| dca.alias.upcase }
+          grouped_drug_claim_aliases.each do |name, drug_claim_aliases_for_name|
+            groups = drug_claim_aliases_for_name.group_by{ |dca| dca.alias }
+            counts_for_name = groups.each_with_object(Hash.new) do |(n, dcas), counts|
+              counts[n] = dcas.length
+            end
+            best_name = Hash[counts_for_name.sort_by{ |n, count| count }.reverse].keys.first
+            drug_alias = DataModel::DrugAlias.where(
+              drug_id: drug.id,
+              alias: best_name,
+            ).first_or_create
+            drug_claim_aliases_for_name.each do |dca|
+              unless drug_alias.sources.include? dca.drug_claim.source
+                drug_alias.sources << dca.drug_claim.source
               end
             end
+            drug_alias.save
           end
         end
       end
@@ -126,26 +120,15 @@ module Genome
         DataModel::Drug.all.each do |drug|
           drug.drug_claims.each do |drug_claim|
             drug_claim.drug_claim_attributes.each do |dca|
-              existing_drug_attributes = DataModel::DrugAttribute.where(
+              drug_attribute = DataModel::DrugAttribute.where(
                 drug_id: drug.id,
                 name: dca.name,
                 value: dca.value
-              )
-              if existing_drug_attributes.empty?
-                DataModel::DrugAttribute.new.tap do |a|
-                  a.drug = drug
-                  a.name = dca.name
-                  a.value = dca.value
-                  a.sources << drug_claim.source
-                  a.save
-                end
-              else
-                existing_drug_attributes.each do |drug_attribute|
-                  unless drug_attribute.sources.include? drug_claim.source
-                    drug_attribute.sources << drug_claim.source
-                  end
-                end
+              ).first_or_create
+              unless drug_attribute.sources.include? drug_claim.source
+                drug_attribute.sources << drug_claim.source
               end
+              drug_attribute.save
             end
           end
         end

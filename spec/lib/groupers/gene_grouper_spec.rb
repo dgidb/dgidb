@@ -135,7 +135,7 @@ describe Genome::Groupers::GeneGrouper do
 
     Genome::Groupers::GeneGrouper.run
 
-    expect(DataModel::GeneAlias.count).to eq 2
+    expect(DataModel::GeneAlias.count).to eq 1
   end
 
   it 'it should add gene attributes' do
