@@ -286,7 +286,8 @@ CREATE TABLE gene_gene_interaction_claims (
 CREATE TABLE genes (
     id text NOT NULL,
     name text,
-    long_name character varying(255)
+    long_name character varying(255),
+    entrez_id integer
 );
 
 
@@ -924,6 +925,13 @@ CREATE UNIQUE INDEX index_drugs_on_name ON drugs USING btree (name);
 
 
 --
+-- Name: index_gene_aliases_on_alias; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_gene_aliases_on_alias ON gene_aliases USING btree (alias);
+
+
+--
 -- Name: index_gene_attributes_on_gene_id_and_name_and_value; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -984,6 +992,13 @@ CREATE INDEX index_gene_gene_interaction_claims_on_gene_id ON gene_gene_interact
 --
 
 CREATE INDEX index_gene_gene_interaction_claims_on_interacting_gene_id ON gene_gene_interaction_claims USING btree (interacting_gene_id);
+
+
+--
+-- Name: index_genes_on_entrez_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_genes_on_entrez_id ON genes USING btree (entrez_id);
 
 
 --
@@ -1613,6 +1628,10 @@ INSERT INTO schema_migrations (version) VALUES ('20170414213904');
 INSERT INTO schema_migrations (version) VALUES ('20170417192246');
 
 INSERT INTO schema_migrations (version) VALUES ('20170417192258');
+
+INSERT INTO schema_migrations (version) VALUES ('20170424175208');
+
+INSERT INTO schema_migrations (version) VALUES ('20170503192632');
 
 INSERT INTO schema_migrations (version) VALUES ('20170512141234');
 
