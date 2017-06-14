@@ -109,29 +109,23 @@ module Genome
 
       def self.add_aliases
         DataModel::Gene.all.each do |gene|
-          gene.gene_claims.each do |gene_claim|
-            gene_claim.gene_claim_aliases.each do |gca|
-              existing_gene_aliases = DataModel::GeneAlias.where(
-                gene_id: gene.id,
-                alias: gca.alias,
-                nomenclature: gca.nomenclature
-              )
-              if existing_gene_aliases.empty?
-                DataModel::GeneAlias.new.tap do |a|
-                  a.gene = gene
-                  a.alias = gca.alias
-                  a.nomenclature = gca.nomenclature
-                  a.sources << gene_claim.source
-                  a.save
-                end
-              else
-                existing_gene_aliases.each do |gene_alias|
-                  unless gene_alias.sources.include? gene_claim.source
-                    gene_alias.sources << gene_claim.source
-                  end
-                end
+          grouped_gene_claim_aliases = gene.gene_claims.flat_map(&:gene_claim_aliases).group_by { |gca| gca.alias.upcase }
+          grouped_gene_claim_aliases.each do |name, gene_claim_aliases_for_name|
+            groups = gene_claim_aliases_for_name.group_by{ |gca| gca.alias }
+            counts_for_name = groups.each_with_object(Hash.new) do |(n, gcas), counts|
+              counts[n] = gcas.length
+            end
+            best_name = Hash[counts_for_name.sort_by{ |n, count| count }.reverse].keys.first
+            gene_alias = DataModel::GeneAlias.where(
+              gene_id: gene.id,
+              alias: best_name,
+            ).first_or_create
+            gene_claim_aliases_for_name.each do |gca|
+              unless gene_alias.sources.include? gca.gene_claim.source
+                gene_alias.sources << gca.gene_claim.source
               end
             end
+            gene_alias.save
           end
         end
       end
@@ -140,26 +134,15 @@ module Genome
         DataModel::Gene.all.each do |gene|
           gene.gene_claims.each do |gene_claim|
             gene_claim.gene_claim_attributes.each do |gca|
-              existing_gene_attributes = DataModel::GeneAttribute.where(
+              gene_attribute = DataModel::GeneAttribute.where(
                 gene_id: gene.id,
                 name: gca.name,
                 value: gca.value
-              )
-              if existing_gene_attributes.empty?
-                DataModel::GeneAttribute.new.tap do |a|
-                  a.gene = gene
-                  a.name = gca.name
-                  a.value = gca.value
-                  a.sources << gene_claim.source
-                  a.save
-                end
-              else
-                existing_gene_attributes.each do |gene_attribute|
-                  unless gene_attribute.sources.include? gene_claim.source
-                    gene_attribute.sources << gene_claim.source
-                  end
-                end
+              ).first_or_create
+              unless gene_attribute.sources.include? gene_claim.source
+                gene_attribute.sources << gene_claim.source
               end
+              gene_attribute.save
             end
           end
         end
