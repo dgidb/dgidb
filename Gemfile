@@ -17,6 +17,7 @@ gem 'jbuilder'
 gem 'lograge'
 gem 'syslog-logger'
 gem 'rye'
+gem 'delayed_job'
 
 group :production do
   gem 'dalli'
