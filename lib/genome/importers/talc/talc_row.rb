@@ -1,7 +1,7 @@
 require 'genome/importers/delimited_row'
 module Genome
 	module Importers
-		module TALC
+		module Talc
 			class TALCRow < Genome::Importers::DelimitedRow
 				attribute :drug_name
 				attribute :gene_target
@@ -13,8 +13,8 @@ module Genome
 
 				def valid?(opts = {})
 			        true
-			    end
-		    end
+				end
+			end
 		end
 	end
 end
