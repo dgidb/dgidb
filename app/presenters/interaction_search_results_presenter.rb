@@ -63,7 +63,7 @@ class InteractionSearchResultsPresenter
   end
 
   def time_elapsed
-   @view_context.distance_of_time_in_words(@start_time, Time.now, true)
+   @view_context.distance_of_time_in_words(@start_time, Time.now, include_seconds: true)
   end
 
   def definite_interactions
