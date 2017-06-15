@@ -1,6 +1,6 @@
 module Genome
     module Importers
-        module Talc
+        module TALC
             def self.source_info
       		    {
                 	base_url: 'http://www.ncbi.nlm.nih.gov/gene?term=',
