@@ -39,3 +39,5 @@
 /db/schema.rb
 
 /coverage
+
+.DS_Store
