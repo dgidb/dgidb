@@ -16,7 +16,8 @@ module Genome
 
       def self.run(tsv_path)
         na_filter = ->(x) { x.upcase == 'N/A' || x.upcase == 'NA' }
-        TSVImporter.import tsv_path, TALCRow, source_info do
+
+        TSVImporter.import tsv_path, TalcRow, source_info do
           interaction known_action_type: 'unknown' do
             attribute :interaction_type, name: 'Interaction Type'
 
@@ -28,7 +29,6 @@ module Genome
               name :drug_name, nomenclature: 'Primary Drug Name'
               name :drug_generic_name, nomenclature: 'Drug Generic Name', unless: na_filter
               names :drug_trade_name, nomenclature: 'Drug Trade Name', unless: na_filter
-              names :drug_synonym, nomenclature: 'Drug Synonym', unless: na_filter
             end
           end
         end.save!
