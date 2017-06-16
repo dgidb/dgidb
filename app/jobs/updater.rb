@@ -1,13 +1,10 @@
 #class Updater  < ActiveJob::Base
 class Updater
   def reschedule
-    self.class.set(wait_until: next_month).perform_later
+    self.class.set(wait_until: next_update_time).perform_later
   end
 
-  def next_month
-    Date.today
-      .beginning_of_week
-      .next_month
-      .midnight
+  def next_update_time
+    raise StandardError.new('Must implement #next_update_time in subclass')
   end
 end
