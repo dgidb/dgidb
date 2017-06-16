@@ -1,4 +1,4 @@
-class UpdateEntrez < Updater
+class UpdateEntrez < TsvUpdater
   def tempfile_name
     return ['entrez_download', '.gz']
   end
