@@ -1,5 +1,4 @@
 class InteractionClaimsController < ApplicationController
-  caches_page :show
   def show
     @interaction_claim = InteractionClaimPresenter.new(
       DataModel::InteractionClaim.for_show.find(params[:id]))
@@ -28,6 +27,8 @@ class InteractionClaimsController < ApplicationController
         combine_input_drugs(params)
       end
     end
+    puts "YOOOOOOOOO"
+    puts params.inspect
     perform_interaction_search
   end
 
@@ -51,5 +52,4 @@ class InteractionClaimsController < ApplicationController
     search_results = LookupInteractions.find(params)
     @search_results = InteractionSearchResultsPresenter.new(search_results, start_time, view_context)
   end
-
 end

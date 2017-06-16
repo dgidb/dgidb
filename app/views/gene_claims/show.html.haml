@@ -7,9 +7,4 @@
     %small 
       ="gene data from #{@gene_claim.source.source_db_name}" 
 - cache @gene_claim do
-  .container-fluid
-    .row-fluid
-      .span12
-        .well
-          %h3 Gene Record
-          =render partial: 'gene_claims/gene_claim', locals: {gene_claim: @gene_claim}
+  =render partial: 'gene_claims/gene_claim', locals: {gene_claim: @gene_claim}

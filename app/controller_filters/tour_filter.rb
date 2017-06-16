@@ -1,5 +1,5 @@
 class TourFilter
-  def self.filter(controller)
+  def self.before(controller)
    if tour_data = TOURS[controller.params[:action]]
      controller.instance_variable_set('@tour', Tour.new(tour_data))
    end

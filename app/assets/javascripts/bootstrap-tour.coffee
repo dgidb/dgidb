@@ -104,13 +104,13 @@ $.fn.extend {}=
         $target.popover('show') if idx == (first_step - 1)
 
       # handle the close button
-      $('a.tour-tip-close').live 'click', ->
+      $('a.tour-tip-close').on 'click', ->
         current_step = $(@).data('touridx')
         $(settings.tipContent).first().find("li:nth-child(#{current_step})").data('target').popover('hide')
         setCookieStep($tips.length + 1)
 
       # handle the next and done buttons
-      $('a.tour-tip-next').live 'click', ->
+      $('a.tour-tip-next').on 'click', ->
         current_step = $(@).data('touridx')
         log "current step: #{current_step}"
         $(settings.tipContent).first().find("li:nth-child(#{current_step})").data('target').popover('hide')

@@ -49,7 +49,7 @@ module Genome
       end
 
       def create_entity_from_hash(klass, hash)
-        klass.new.tap { |o| o.assign_attributes(hash, without_protection: true) }
+        klass.new.tap { |o| o.assign_attributes(hash) }
       end
 
       def entity_names

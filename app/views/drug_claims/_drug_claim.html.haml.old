@@ -1,0 +1,50 @@
+- cache drug_claim do
+  %div(class="item-title")
+    %div(class="item-name")
+      %h3(class="item-source")
+        =succeed ':' do
+          =link_to drug_claim.source.source_db_name, source_path(drug_claim.source.source_db_name)
+        %span(class="item-id")
+          =ext_link_to drug_claim.name, drug_claim.original_data_source_url
+    %div(class="item-corner")
+      %ul(class="attribute-list")
+        %li
+          %strong
+            Version:
+          =drug_claim.source.source_db_version
+
+  %div(class="item-content")
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4{style: "display: inline-block;"}
+          Alternate Names
+        %table{class: "table table-condensed table-striped", id:"table_#{drug_claim.id}"}
+          -drug_claim.drug_claim_aliases.each do |alt_name|
+            %tr
+              %td
+                =alt_name.alias
+              %td=alt_name.nomenclature
+
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Metadata
+        %table.table.table-condensed.table-striped
+          -if (drug_claim.drug_claim_attributes.length > 0)
+            -drug_claim.drug_claim_attributes.each do |category|
+              %tr
+                %td=category.name
+                %td=category.value
+          -else
+            %tr
+              %td
+                None found.
+
+    %div(class="cell category")
+      %div(class="item-panel")
+        %h4
+          Citations
+        -if drug_claim.source.citation =~ /PMID: (\d+)\.?$/
+          %p=[$`, 'PMID: ', ext_link_to($1, ['http://www.ncbi.nlm.nih.gov/pubmed', $1].join('/')), $'].join('').html_safe
+        -else
+          %p=drug_claim.source.citation
