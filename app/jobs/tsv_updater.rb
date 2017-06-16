@@ -14,7 +14,7 @@ class TsvUpdater < Updater
       importer.import
     ensure
       remove_download
-      #reschedule if recurring
+      reschedule if recurring
     end
   end
 

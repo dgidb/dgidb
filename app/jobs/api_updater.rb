@@ -4,7 +4,7 @@ class ApiUpdater < Updater
   def perform(recurring = true)
     begin
       updater.update
-      #reschedule if recurring
+      reschedule if recurring
     end
   end
 end
