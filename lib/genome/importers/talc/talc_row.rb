@@ -2,7 +2,7 @@ require 'genome/importers/delimited_row'
 module Genome
 	module Importers
 		module Talc
-			class TALCRow < Genome::Importers::DelimitedRow
+			class TalcRow < Genome::Importers::DelimitedRow
 				attribute :drug_name
 				attribute :gene_target
 				attribute :interaction_type
