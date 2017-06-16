@@ -37,7 +37,7 @@ module Genome
       end
 
       def self.gene_claim_alias_scope
-        DataModel::GeneClaimAlias.includes(gene_claim: [:gene, :source])
+        DataModel::GeneClaimAlias.eager_load(gene_claim: [:gene, :source])
       end
 
       def self.preload_aliases(query)
