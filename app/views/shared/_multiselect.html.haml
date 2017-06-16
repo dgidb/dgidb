@@ -6,5 +6,5 @@
       %a(href="/getting_started#interaction_definitions")
         =icon('question-sign')
   .controls
-    =#select_tag select_tag_name, options_from_collection_for_select(collection, name_meth, value_meth), multiple: true, class: :multiselect
+    =select_tag select_tag_name, options_from_collection_for_select(collection, name_meth, value_meth), multiple: true, class: :multiselect
     %div{style:'width:60px;', id: tour_id}
