@@ -15,11 +15,11 @@ class CreateChemblMolecules < ActiveRecord::Migration
       t.boolean :parenteral
       t.boolean :topical
       t.boolean :black_box_warning
-      t.integer :natural_product
-      t.integer :first_in_class
+      t.boolean :natural_product
+      t.boolean :first_in_class
       t.integer :chirality
-      t.integer :prodrug
-      t.integer :inorganic_flag
+      t.boolean :prodrug
+      t.boolean :inorganic_flag
       t.integer :usan_year
       t.integer :availability_type
       t.string :usan_stem, :limit => 50
