@@ -29,6 +29,7 @@ module Genome
               name :drug_name, nomenclature: 'Primary Drug Name'
               name :drug_generic_name, nomenclature: 'Drug Generic Name', unless: na_filter
               names :drug_trade_name, nomenclature: 'Drug Trade Name', unless: na_filter
+              names :drug_synonym, nomenclature: 'Drug Synonym', unless: na_filter
             end
           end
         end.save!
