@@ -46,20 +46,14 @@
           %label.btn.btn-primary Preset Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
             %div
-              %input.active{type: "radio", value: "Show All"} 
-                = "  Show All"
-            %div
-              %input{type: "radio", value: "FDA Approved"} 
+              %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "search_form"} 
                 = "  FDA Approved"
             %div
-              %input{type: "radio", value: "Cancer Drugs"} 
+              %input{type: "checkbox", value: "Cancer Drugs"} 
                 = "  Cancer Drugs"
             %div
-              %input{type: "radio", value: "Immunotherapies"} 
+              %input{type: "checkbox", value: "Immunotherapies"} 
                 = "  Immunotherapies"
-            %div
-              %input{type: "radio", value: "Popular"} 
-                = "  Popular"
         %div{style: "height: 187px; width: 360px", class: "well"} 
           %label.btn.btn-primary Advanced Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 

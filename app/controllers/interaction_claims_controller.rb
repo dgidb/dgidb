@@ -27,6 +27,8 @@ class InteractionClaimsController < ApplicationController
         combine_input_drugs(params)
       end
     end
+    puts "YOOOOOOOOO"
+    puts params.inspect
     perform_interaction_search
   end
 
