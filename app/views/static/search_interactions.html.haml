@@ -15,10 +15,8 @@
         %form.form-horizontal(id="search_form" action="interaction_search_results" method="post" enctype="multipart/form-data")
           %fieldset
             .control-group{style: "margin-bottom: -15px"}
-              / need to change position of his control group
               .controls
-                .btn-group#toggleIdentifiers(data-toggle='buttons-radio')
-                  / change width of buttons and get them to lay right over top of textarea
+                .btn-group#toggleIdentifiers(data-toggle='buttons')
                   %label.btn.btn-primary.active(for='geneSearch' style="width: 150px; font-weight: bold")
                     %input#geneSearch(type='radio' name='search_mode' value='genes' style='display:none;' checked='checked')
                       Genes
