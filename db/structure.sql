@@ -30,6 +30,37 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: chembl_molecule_synonyms; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE chembl_molecule_synonyms (
+    id integer NOT NULL,
+    molregno integer,
+    synonym character varying(200),
+    molsyn_id integer
+);
+
+
+--
+-- Name: chembl_molecule_synonyms_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE chembl_molecule_synonyms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: chembl_molecule_synonyms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE chembl_molecule_synonyms_id_seq OWNED BY chembl_molecule_synonyms.id;
+
+
+--
 -- Name: chembl_molecules; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -65,9 +96,7 @@ CREATE TABLE chembl_molecules (
     withdrawn_year integer,
     withdrawn_country text,
     withdrawn_reason text,
-    drug_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    drug_id integer
 );
 
 
@@ -531,7 +560,22 @@ CREATE TABLE sources (
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY chembl_molecule_synonyms ALTER COLUMN id SET DEFAULT nextval('chembl_molecule_synonyms_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY chembl_molecules ALTER COLUMN id SET DEFAULT nextval('chembl_molecules_id_seq'::regclass);
+
+
+--
+-- Name: chembl_molecule_synonyms_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY chembl_molecule_synonyms
+    ADD CONSTRAINT chembl_molecule_synonyms_pkey PRIMARY KEY (id);
 
 
 --
@@ -1718,3 +1762,7 @@ INSERT INTO schema_migrations (version) VALUES ('20170605204001');
 INSERT INTO schema_migrations (version) VALUES ('20170619164047');
 
 INSERT INTO schema_migrations (version) VALUES ('20170619191811');
+
+INSERT INTO schema_migrations (version) VALUES ('20170619204652');
+
+INSERT INTO schema_migrations (version) VALUES ('20170619205542');

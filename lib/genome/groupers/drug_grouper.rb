@@ -30,11 +30,17 @@ module Genome
       def group_drug_claim(drug_claim)
         # check drug names
         #   - against claim name
-        #   - against claim alias
+        #   - against claim aliases
+        # check molecule names
+        #   - against claim name
+        #   - against claim aliases
         # check drug aliases
         #   - against claim name
-        #   - against claim alias
-        # check molecule
+        #   - against claim aliases
+        # check molecule aliases
+        #   - against claim name
+        #   - against claim aliases
+
       end
     end
   end
