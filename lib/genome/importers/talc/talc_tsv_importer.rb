@@ -31,6 +31,9 @@ module Genome
               names :drug_trade_name, nomenclature: 'Drug Trade Name', unless: na_filter
               names :drug_synonym, nomenclature: 'Drug Synonym', unless: na_filter
             end
+
+            attribute :notes, name: 'Notes', unless: na_filter
+
           end
         end.save!
       end

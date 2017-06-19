@@ -9,7 +9,7 @@ module Genome
 				attribute :drug_generic_name
 				attribute :drug_trade_name, Array, delimiter: ','
 				attribute :drug_synonym, Array, delimiter: ','
-				attribute :metadata
+				attribute :notes
 
 				def valid?(opts = {})
 			        true
