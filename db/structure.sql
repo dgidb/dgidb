@@ -37,7 +37,8 @@ CREATE TABLE chembl_molecule_synonyms (
     id integer NOT NULL,
     molregno integer,
     synonym character varying(200),
-    molsyn_id integer
+    molsyn_id integer,
+    chembl_molecule_id integer
 );
 
 
