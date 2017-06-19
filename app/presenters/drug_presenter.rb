@@ -38,6 +38,6 @@ class DrugPresenter < SimpleDelegator
   end
 
   def publications
-    interactions.map{|i| i.publications}.flatten
+    interactions.map{|i| i.publications}.flatten.uniq
   end
 end

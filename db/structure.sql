@@ -30,14 +30,74 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: chembl_molecules; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE chembl_molecules (
+    id integer NOT NULL,
+    molregno integer,
+    pref_name character varying(255),
+    chembl_id character varying(20),
+    max_phase integer,
+    therapeutic_flag boolean,
+    dosed_ingredient boolean,
+    structure_type character varying(10),
+    chebi_par_id integer,
+    molecule_type character varying(30),
+    first_approval integer,
+    oral boolean,
+    parenteral boolean,
+    topical boolean,
+    black_box_warning boolean,
+    natural_product boolean,
+    first_in_class boolean,
+    chirality integer,
+    prodrug boolean,
+    inorganic_flag boolean,
+    usan_year integer,
+    availability_type integer,
+    usan_stem character varying(50),
+    polymer_flag boolean,
+    usan_substem character varying(50),
+    usan_stem_definition text,
+    indication_class text,
+    withdrawn_flag boolean,
+    withdrawn_year integer,
+    withdrawn_country text,
+    withdrawn_reason text,
+    drug_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: chembl_molecules_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE chembl_molecules_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: chembl_molecules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE chembl_molecules_id_seq OWNED BY chembl_molecules.id;
+
+
+--
 -- Name: drug_aliases; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE drug_aliases (
     id text NOT NULL,
     drug_id text NOT NULL,
-    alias text NOT NULL,
-    nomenclature text NOT NULL
+    alias text NOT NULL
 );
 
 
@@ -137,7 +197,10 @@ CREATE TABLE drug_claims (
 
 CREATE TABLE drugs (
     id text NOT NULL,
-    name text
+    name text,
+    fda_approved boolean,
+    immunotherapy boolean,
+    anti_neoplastic boolean
 );
 
 
@@ -148,8 +211,7 @@ CREATE TABLE drugs (
 CREATE TABLE gene_aliases (
     id text NOT NULL,
     gene_id text NOT NULL,
-    alias text NOT NULL,
-    nomenclature text NOT NULL
+    alias text NOT NULL
 );
 
 
@@ -283,7 +345,8 @@ CREATE TABLE gene_gene_interaction_claims (
 CREATE TABLE genes (
     id text NOT NULL,
     name text,
-    long_name character varying(255)
+    long_name character varying(255),
+    entrez_id integer
 );
 
 
@@ -356,7 +419,7 @@ CREATE TABLE interaction_claims (
 
 
 --
--- Name: interaction_claims_publications; Type: TABLE; Schema: public; Owner: -
+-- Name: interaction_claims_publications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE interaction_claims_publications (
@@ -366,7 +429,7 @@ CREATE TABLE interaction_claims_publications (
 
 
 --
--- Name: interaction_types_interactions; Type: TABLE; Schema: public; Owner: -
+-- Name: interaction_types_interactions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE interaction_types_interactions (
@@ -387,7 +450,7 @@ CREATE TABLE interactions (
 
 
 --
--- Name: interactions_publications; Type: TABLE; Schema: public; Owner: -
+-- Name: interactions_publications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE interactions_publications (
@@ -397,7 +460,7 @@ CREATE TABLE interactions_publications (
 
 
 --
--- Name: publications; Type: TABLE; Schema: public; Owner: -
+-- Name: publications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE publications (
@@ -410,7 +473,7 @@ CREATE TABLE publications (
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE schema_migrations (
@@ -461,6 +524,21 @@ CREATE TABLE sources (
     source_trust_level_id character varying(255),
     gene_gene_interaction_claims_count integer DEFAULT 0
 );
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY chembl_molecules ALTER COLUMN id SET DEFAULT nextval('chembl_molecules_id_seq'::regclass);
+
+
+--
+-- Name: chembl_molecules_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY chembl_molecules
+    ADD CONSTRAINT chembl_molecules_pkey PRIMARY KEY (id);
 
 
 --
@@ -696,7 +774,7 @@ ALTER TABLE ONLY interaction_claims
 
 
 --
--- Name: interaction_claims_publications interaction_claims_publications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: interaction_claims_publications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY interaction_claims_publications
@@ -704,7 +782,7 @@ ALTER TABLE ONLY interaction_claims_publications
 
 
 --
--- Name: interaction_types_interactions interaction_types_interactions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: interaction_types_interactions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY interaction_types_interactions
@@ -720,7 +798,7 @@ ALTER TABLE ONLY interactions
 
 
 --
--- Name: interactions_publications interactions_publications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: interactions_publications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY interactions_publications
@@ -728,7 +806,7 @@ ALTER TABLE ONLY interactions_publications
 
 
 --
--- Name: publications publications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: publications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY publications
@@ -736,7 +814,7 @@ ALTER TABLE ONLY publications
 
 
 --
--- Name: source_trust_levels source_trust_levels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: source_trust_levels_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY source_trust_levels
@@ -879,6 +957,27 @@ CREATE INDEX genes_lower_name_idx ON genes USING btree (lower(name));
 
 
 --
+-- Name: index_chembl_molecules_on_drug_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_chembl_molecules_on_drug_id ON chembl_molecules USING btree (drug_id);
+
+
+--
+-- Name: index_drug_attributes_on_drug_id_and_name_and_value; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_drug_attributes_on_drug_id_and_name_and_value ON drug_attributes USING btree (drug_id, name, value);
+
+
+--
+-- Name: index_drug_claim_attributes_on_drug_claim_id_and_name_and_value; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_drug_claim_attributes_on_drug_claim_id_and_name_and_value ON drug_claim_attributes USING btree (drug_claim_id, name, value);
+
+
+--
 -- Name: index_drug_claim_attributes_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -893,10 +992,45 @@ CREATE INDEX index_drug_claim_attributes_on_value ON drug_claim_attributes USING
 
 
 --
+-- Name: index_drug_claims_on_name_and_nomenclature_and_source_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_drug_claims_on_name_and_nomenclature_and_source_id ON drug_claims USING btree (name, nomenclature, source_id);
+
+
+--
+-- Name: index_drugs_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_drugs_on_name ON drugs USING btree (name);
+
+
+--
+-- Name: index_gene_aliases_on_alias; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_gene_aliases_on_alias ON gene_aliases USING btree (alias);
+
+
+--
+-- Name: index_gene_attributes_on_gene_id_and_name_and_value; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_gene_attributes_on_gene_id_and_name_and_value ON gene_attributes USING btree (gene_id, name, value);
+
+
+--
 -- Name: index_gene_claim_aliases_on_alias; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_gene_claim_aliases_on_alias ON gene_claim_aliases USING btree (alias);
+
+
+--
+-- Name: index_gene_claim_attributes_on_gene_claim_id_and_name_and_value; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_gene_claim_attributes_on_gene_claim_id_and_name_and_value ON gene_claim_attributes USING btree (gene_claim_id, name, value);
 
 
 --
@@ -921,6 +1055,13 @@ CREATE INDEX index_gene_claims_on_name ON gene_claims USING btree (name);
 
 
 --
+-- Name: index_gene_claims_on_name_and_nomenclature_and_source_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_gene_claims_on_name_and_nomenclature_and_source_id ON gene_claims USING btree (name, nomenclature, source_id);
+
+
+--
 -- Name: index_gene_gene_interaction_claims_on_gene_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -935,10 +1076,17 @@ CREATE INDEX index_gene_gene_interaction_claims_on_interacting_gene_id ON gene_g
 
 
 --
+-- Name: index_genes_on_entrez_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_genes_on_entrez_id ON genes USING btree (entrez_id);
+
+
+--
 -- Name: index_genes_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_genes_on_name ON genes USING btree (name);
+CREATE UNIQUE INDEX index_genes_on_name ON genes USING btree (name);
 
 
 --
@@ -949,14 +1097,21 @@ CREATE INDEX index_interaction_claims_on_known_action_type ON interaction_claims
 
 
 --
--- Name: index_publications_on_pmid; Type: INDEX; Schema: public; Owner: -
+-- Name: index_interactions_on_drug_id_and_gene_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_interactions_on_drug_id_and_gene_id ON interactions USING btree (drug_id, gene_id);
+
+
+--
+-- Name: index_publications_on_pmid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_publications_on_pmid ON publications USING btree (pmid);
 
 
 --
--- Name: interaction_claim_attributes_interaction_claim_id_idx; Type: INDEX; Schema: public; Owner: -
+-- Name: interaction_claim_attributes_interaction_claim_id_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX interaction_claim_attributes_interaction_claim_id_idx ON interaction_claim_attributes USING btree (interaction_claim_id);
@@ -1023,6 +1178,55 @@ CREATE INDEX sources_source_trust_level_id_idx ON sources USING btree (source_tr
 --
 
 CREATE INDEX sources_source_type_id_idx ON sources USING btree (source_type_id);
+
+
+--
+-- Name: unique_drug_claim_aliases; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_drug_claim_aliases ON drug_claim_aliases USING btree (drug_claim_id, alias, nomenclature);
+
+
+--
+-- Name: unique_drug_id_alias; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_drug_id_alias ON drug_aliases USING btree (drug_id, upper(alias));
+
+
+--
+-- Name: unique_gene_claim_aliases; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_gene_claim_aliases ON gene_claim_aliases USING btree (gene_claim_id, alias, nomenclature);
+
+
+--
+-- Name: unique_gene_id_alias; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_gene_id_alias ON gene_aliases USING btree (gene_id, upper(alias));
+
+
+--
+-- Name: unique_interaction_attributes; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_interaction_attributes ON interaction_attributes USING btree (interaction_id, name, value);
+
+
+--
+-- Name: unique_interaction_claim_attributes; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_interaction_claim_attributes ON interaction_claim_attributes USING btree (interaction_claim_id, name, value);
+
+
+--
+-- Name: unique_interaction_claims; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_interaction_claims ON interaction_claims USING btree (drug_claim_id, gene_claim_id, source_id);
 
 
 --
@@ -1281,7 +1485,7 @@ ALTER TABLE ONLY interaction_attributes
 
 
 --
--- Name: interactions_publications fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interactions_publications
@@ -1289,7 +1493,7 @@ ALTER TABLE ONLY interactions_publications
 
 
 --
--- Name: interaction_attributes_sources fk_interaction_attribute; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_interaction_attribute; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interaction_attributes_sources
@@ -1305,7 +1509,7 @@ ALTER TABLE ONLY interaction_claim_types_interaction_claims
 
 
 --
--- Name: interaction_claims_publications fk_interaction_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_interaction_claim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interaction_claims_publications
@@ -1313,7 +1517,7 @@ ALTER TABLE ONLY interaction_claims_publications
 
 
 --
--- Name: interaction_claim_attributes fk_interaction_claim_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_interaction_claim_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interaction_claim_attributes
@@ -1337,7 +1541,7 @@ ALTER TABLE ONLY interaction_types_interactions
 
 
 --
--- Name: interactions_publications fk_publication; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_publication; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interactions_publications
@@ -1345,7 +1549,7 @@ ALTER TABLE ONLY interactions_publications
 
 
 --
--- Name: interaction_claims_publications fk_publication; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_publication; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY interaction_claims_publications
@@ -1353,7 +1557,7 @@ ALTER TABLE ONLY interaction_claims_publications
 
 
 --
--- Name: drug_aliases_sources fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY drug_aliases_sources
@@ -1494,14 +1698,20 @@ INSERT INTO schema_migrations (version) VALUES ('20170317143034');
 
 INSERT INTO schema_migrations (version) VALUES ('20170317175150');
 
-INSERT INTO schema_migrations (version) VALUES ('20170410204422');
-
-INSERT INTO schema_migrations (version) VALUES ('20170412204422');
-
-INSERT INTO schema_migrations (version) VALUES ('20170412204423');
-
 INSERT INTO schema_migrations (version) VALUES ('20170414213904');
 
 INSERT INTO schema_migrations (version) VALUES ('20170417192246');
 
 INSERT INTO schema_migrations (version) VALUES ('20170417192258');
+
+INSERT INTO schema_migrations (version) VALUES ('20170424175208');
+
+INSERT INTO schema_migrations (version) VALUES ('20170503192632');
+
+INSERT INTO schema_migrations (version) VALUES ('20170512141234');
+
+INSERT INTO schema_migrations (version) VALUES ('20170512150855');
+
+INSERT INTO schema_migrations (version) VALUES ('20170605204001');
+
+INSERT INTO schema_migrations (version) VALUES ('20170619164047');

@@ -1,9 +1,8 @@
 module Genome
   module Groupers
     class DrugGrouper
-      @alt_to_pubchem = Hash.new() {|hash, key| hash[key] = []}
+      @alt_to_chembl = Hash.new() {|hash, key| hash[key] = []}
       @alt_to_other = Hash.new() {|hash, key| hash[key] = []}
-      @alt_to_pubchem_cid = Hash.new() {|hash, key| hash[key] = []}
 
       def self.run
         ActiveRecord::Base.transaction do
@@ -33,23 +32,15 @@ module Genome
           interaction_claim.interaction = nil
           interaction_claim.save
         end
+        DataModel::InteractionAttribute.destroy_all
         DataModel::Interaction.destroy_all
         DataModel::Drug.destroy_all
       end
 
       def self.preload
         DataModel::DrugClaimAlias.includes(drug_claim: [:drug, :source]).all.each do |dca|
-          drug_claim_alias = dca.alias
-          if drug_claim_alias =~ /^\d+$/
-            if dca.nomenclature =~ /pubchem.*(compound)|(cid)/i
-              @alt_to_pubchem_cid[drug_claim_alias] << dca
-            else
-              next
-            end
-          elsif drug_claim_alias.length == 1
-            next
-          elsif dca.nomenclature == 'pubchem_primary_name'
-            @alt_to_pubchem[drug_claim_alias] << dca
+          if dca.nomenclature == 'ChEMBL Drug Name'
+            @alt_to_chembl[drug_claim_alias] << dca
           else
             @alt_to_other[drug_claim_alias] << dca
           end
@@ -57,8 +48,8 @@ module Genome
       end
 
       def self.create_groups
-        @alt_to_pubchem.each_key do |key|
-          drug_claims = @alt_to_pubchem[key].map(&:drug_claim)
+        @alt_to_chembl.each_key do |key|
+          drug_claims = @alt_to_chembl[key].map(&:drug_claim)
           drug = DataModel::Drug.where(name: key).first
           if drug 
             drug_claims.each do |drug_claim|
@@ -88,14 +79,6 @@ module Genome
               indirect_drug = alt_drug.drug
               indirect_groups[indirect_drug.name] += 1 if indirect_drug
             end
-            nomenclature = drug_claim_alias.nomenclature
-            if nomenclature =~ /pubchem.*(compound)|(cid)/i
-              alt_drugs = @alt_to_pubchem_cid[drug_claim_alias.alias].map(&:drug_claim)
-              alt_drugs.each do |alt_drug|
-                indirect_drug = alt_drug.drug
-                indirect_groups[indirect_drug.name] += 1 if indirect_drug
-              end
-            end
           end
 
           if direct_groups.keys.length == 1
@@ -112,29 +95,23 @@ module Genome
 
       def self.add_aliases
         DataModel::Drug.all.each do |drug|
-          drug.drug_claims.each do |drug_claim|
-            drug_claim.drug_claim_aliases.each do |dca|
-              existing_drug_aliases = DataModel::DrugAlias.where(
-                drug_id: drug.id,
-                alias: dca.alias,
-                nomenclature: dca.nomenclature,
-              )
-              if existing_drug_aliases.empty?
-                DataModel::DrugAlias.new.tap do |a|
-                  a.drug = drug
-                  a.alias = dca.alias
-                  a.nomenclature = dca.nomenclature
-                  a.sources << drug_claim.source
-                  a.save
-                end
-              else
-                existing_drug_aliases.each do |drug_alias|
-                  unless drug_alias.sources.include? drug_claim.source
-                    drug_alias.sources << drug_claim.source
-                  end
-                end
+          grouped_drug_claim_aliases = drug.drug_claims.flat_map(&:drug_claim_aliases).group_by { |dca| dca.alias.upcase }
+          grouped_drug_claim_aliases.each do |name, drug_claim_aliases_for_name|
+            groups = drug_claim_aliases_for_name.group_by{ |dca| dca.alias }
+            counts_for_name = groups.each_with_object(Hash.new) do |(n, dcas), counts|
+              counts[n] = dcas.length
+            end
+            best_name = Hash[counts_for_name.sort_by{ |n, count| count }.reverse].keys.first
+            drug_alias = DataModel::DrugAlias.where(
+              drug_id: drug.id,
+              alias: best_name,
+            ).first_or_create
+            drug_claim_aliases_for_name.each do |dca|
+              unless drug_alias.sources.include? dca.drug_claim.source
+                drug_alias.sources << dca.drug_claim.source
               end
             end
+            drug_alias.save
           end
         end
       end
@@ -143,26 +120,15 @@ module Genome
         DataModel::Drug.all.each do |drug|
           drug.drug_claims.each do |drug_claim|
             drug_claim.drug_claim_attributes.each do |dca|
-              existing_drug_attributes = DataModel::DrugAttribute.where(
+              drug_attribute = DataModel::DrugAttribute.where(
                 drug_id: drug.id,
                 name: dca.name,
                 value: dca.value
-              )
-              if existing_drug_attributes.empty?
-                DataModel::DrugAttribute.new.tap do |a|
-                  a.drug = drug
-                  a.name = dca.name
-                  a.value = dca.value
-                  a.sources << drug_claim.source
-                  a.save
-                end
-              else
-                existing_drug_attributes.each do |drug_attribute|
-                  unless drug_attribute.sources.include? drug_claim.source
-                    drug_attribute.sources << drug_claim.source
-                  end
-                end
+              ).first_or_create
+              unless drug_attribute.sources.include? drug_claim.source
+                drug_attribute.sources << drug_claim.source
               end
+              drug_attribute.save
             end
           end
         end
