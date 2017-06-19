@@ -17,11 +17,11 @@
             .control-group{style: "margin-bottom: -15px"}
               .controls
                 .btn-group#toggleIdentifiers(data-toggle='buttons')
-                  %label.btn.btn-primary.active(for='geneSearch' style="width: 150px; font-weight: bold")
-                    %input#geneSearch(type='radio' name='search_mode' value='genes' style='display:none;' checked='checked')
+                  %label.btn.btn-primary.active#geneSearch(for='geneSearch' style="width: 150px; font-weight: bold")
+                    %input(type='radio' name='search_mode' value='genes' style='display:none;' checked='checked')
                       Genes
-                  %label.btn.btn-primary(for='drugSearch'style="width: 150px; font-weight: bold")
-                    %input#drugSearch(type='radio' name='search_mode' value='drugs' style='display:none;') 
+                  %label.btn.btn-primary#drugSearch(for='drugSearch'style="width: 150px; font-weight: bold")
+                    %input(type='radio' name='search_mode' value='drugs' style='display:none;') 
                       Drugs             
             .control-group
               / need to change position of this control group
@@ -40,18 +40,30 @@
                 %button.btn.btn-small.btn-danger#clear(type='button') Clear Identifiers
                 %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace with Demo List
       .span8{style: "float: left; margin-left: 20px"}
-        %div{style: "height: 187px; width: 360px", class: "well"}
+        %div#gene_search_filters{style: "height: 187px; width: 360px", class: "well"}
           %label.btn.btn-primary Preset Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
             %div
               %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "search_form"} 
                 = "  FDA Approved"
             %div
-              %input{type: "checkbox", value: "Cancer Drugs"} 
-                = "  Cancer Drugs"
+              %input{type: "checkbox", value: "checked", name: "anti-neoplastics"} 
+                = "  Anti-neoplastics"
             %div
-              %input{type: "checkbox", value: "Immunotherapies"} 
+              %input{type: "checkbox", value: "checked", name: "immunotherapies"} 
                 = "  Immunotherapies"
+        %div#drug_search_filters{style: "height: 187px; width: 360px; display: none", class: "well"}
+          %label.btn.btn-primary Preset Filters
+          %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
+            %div
+              %input{type: "checkbox", value: "checked", name: "clinically_actionable", form: "search_form"} 
+                = "  Clinically Actionable"
+            %div
+              %input{type: "checkbox", value: "checked", name: "druggable_genome"} 
+                = "  Druggable Genome"
+            %div
+              %input{type: "checkbox", value: "checked", name: "drug_resistance"} 
+                = "  Drug Resistance"
         %div{style: "height: 187px; width: 360px", class: "well"} 
           %label.btn.btn-primary Advanced Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
@@ -71,6 +83,21 @@
           Find Drug-Gene Interactions
 
   =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
+
+  :javascript
+    $(document).ready(function() {
+      console.log("yo");
+      $('#geneSearch').on("click", function() {
+        console.log("bruh");
+        $('#gene_search_filters').show();
+        $('#drug_search_filters').hide(); 
+      });
+      $('#drugSearch').on("click", function() {
+        console.log("brah");
+        $('#drug_search_filters').show();
+        $('#gene_search_filters').hide(); 
+      });
+    });
 
   =javascript_include_tag 'jquery-ui-1.8.21.custom.min'
   =javascript_include_tag 'jquery.multiselect.min'
