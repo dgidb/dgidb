@@ -9,10 +9,8 @@
       %table{class: "table table-condensed table-striped", style: "display: block; height: 494px; overflow-y: scroll; table-layout:fixed; width: 100%", id: "table_aliases"}
         -drug.drug_aliases.each do |alt_name| ######
           %tr
-            %td{style: "width: 70%; word-break:break-all"}
+            %td{style: "width: 800px; word-break:break-all"}
               =alt_name.alias
-            %td{style: "text-align: right; width: 30%; word-break:break-all"}
-              =alt_name.nomenclature
   %div{class: "cell category", style: "float: left; width: 50%" }
     %div{class: "item-panel", style:"margin-bottom: 10px"}
       %h4
