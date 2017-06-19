@@ -23,6 +23,8 @@ module DruggableGene
       event.payload[:genes] ? { genes: event.payload[:genes] } : {}
     end
 
+    config.active_job.queue_adapter = :delayed_job
+
     #don't try to hit the db when compiling assets
     config.assets.initialize_on_precompile = false
 

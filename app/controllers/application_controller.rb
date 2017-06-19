@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   rescue_from HTTPStatus::BadRequest, with: :render_400
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
-  before_filter TourFilter
-  before_filter NewsFilter
+  before_action TourFilter
+  before_action NewsFilter
 
   def append_info_to_payload(payload)
     super

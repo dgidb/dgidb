@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.8'
+gem 'rails', '5.1.1'
 
 gem 'pg'
 gem 'less-rails-bootstrap'
@@ -17,6 +17,7 @@ gem 'jbuilder'
 gem 'lograge'
 gem 'syslog-logger'
 gem 'rye'
+gem 'delayed_job_active_record'
 
 group :production do
   gem 'dalli'
@@ -29,9 +30,8 @@ group :assets do
 end
 
 group :development do
-  gem 'pry'
-  gem 'pry-remote'
-  gem 'pry-nav'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rack-mini-profiler'
 end
 
