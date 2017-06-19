@@ -200,7 +200,8 @@ CREATE TABLE drugs (
     name text,
     fda_approved boolean,
     immunotherapy boolean,
-    anti_neoplastic boolean
+    anti_neoplastic boolean,
+    chembl_id character varying(255)
 );
 
 
@@ -1715,3 +1716,5 @@ INSERT INTO schema_migrations (version) VALUES ('20170512150855');
 INSERT INTO schema_migrations (version) VALUES ('20170605204001');
 
 INSERT INTO schema_migrations (version) VALUES ('20170619164047');
+
+INSERT INTO schema_migrations (version) VALUES ('20170619191811');
