@@ -3,15 +3,6 @@ module Utils
 
     def self.delete_genes
       sql = <<-SQL
-        update interaction_claims set interaction_id = NULL;
-        
-        delete from interaction_attributes_sources;
-        delete from interaction_attributes;
-        delete from interactions_publications;
-        delete from interaction_types_interactions;
-        delete from interactions_publications;
-        delete from interactions;
-        
         update gene_claims set gene_id = NULL;
         
         delete from gene_aliases_sources;
@@ -22,7 +13,42 @@ module Utils
         delete from genes;
       SQL
 
+      ActiveRecord::Base.transaction do
+        delete_interactions
+        ActiveRecord::Base.connection.execute(sql)
+      end
+    end
+
+    def self.delete_interactions
+      sql = <<-SQL
+        update interaction_claims set interaction_id = NULL;
+        
+        delete from interaction_attributes_sources;
+        delete from interaction_attributes;
+        delete from interactions_publications;
+        delete from interaction_types_interactions;
+        delete from interactions_publications;
+        delete from interactions;
+      SQL
+
       ActiveRecord::Base.connection.execute(sql)
+    end
+
+    def self.delete_drugs
+      sql = <<-SQL
+        update drug_claims set drug_id = NULL;
+        
+        delete from drug_aliases_sources;
+        delete from drug_aliases;
+        delete from drug_attributes_sources;
+        delete from drug_attributes;
+        delete from drugs;
+      SQL
+
+      ActiveRecord::Base.transaction do
+        delete_interactions
+        ActiveRecord::Base.connection.execute(sql)
+      end
     end
 
     def self.delete_source(source_db_name)

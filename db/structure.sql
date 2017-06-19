@@ -197,7 +197,10 @@ CREATE TABLE drug_claims (
 
 CREATE TABLE drugs (
     id text NOT NULL,
-    name text
+    name text,
+    fda_approved boolean,
+    immunotherapy boolean,
+    anti_neoplastic boolean
 );
 
 
@@ -1710,3 +1713,5 @@ INSERT INTO schema_migrations (version) VALUES ('20170512141234');
 INSERT INTO schema_migrations (version) VALUES ('20170512150855');
 
 INSERT INTO schema_migrations (version) VALUES ('20170605204001');
+
+INSERT INTO schema_migrations (version) VALUES ('20170619164047');
