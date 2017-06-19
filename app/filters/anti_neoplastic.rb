@@ -13,8 +13,8 @@ class AntiNeoplastic
   end
 
   def resolve
-    Set.new DataModel::DrugAttribute
-      .where(name: ['FDA Approval', 'Year of Approval'])
+    Set.new DataModel::Drug
+      .where(anti_neoplastic: true)
       .joins(drug: {interactions: :interaction_claims})
       .pluck("interaction_claims.id")
   end
