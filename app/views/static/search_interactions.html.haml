@@ -32,7 +32,7 @@
                 /%a(href="/faq#types")
                 /=icon('question-sign')
               .controls
-                %textarea#identifiers{name: 'identifiers', rows: "13", style: "width: 300px; font-size: 20px"}
+                %textarea#identifiers{name: 'identifiers', rows: "14", style: "width: 300px; font-size: 20px"}
                   =# need to change width of this textarea
             .control-group
               / need to change position of this control group, consider changing width of buttons to match textarea
@@ -40,7 +40,7 @@
                 %button.btn.btn-small.btn-danger#clear(type='button') Clear Identifiers
                 %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace with Demo List
       .span8{style: "float: left; margin-left: 20px"}
-        %div#gene_search_filters{style: "height: 187px; width: 360px", class: "well"}
+        %div#gene_search_filters{style: "height: 172px; width: 360px", class: "well"}
           %label.btn.btn-primary Preset Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
             %div
@@ -52,7 +52,7 @@
             %div
               %input{type: "checkbox", value: "checked", name: "immunotherapy", form: "search_form"} 
                 = "  Immunotherapies"
-        %div#drug_search_filters{style: "height: 187px; width: 360px; display: none", class: "well"}
+        %div#drug_search_filters{style: "height: 172px; width: 360px; display: none", class: "well"}
           %label.btn.btn-primary Preset Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
             %div
@@ -64,7 +64,7 @@
             %div
               %input{type: "checkbox", value: "checked", name: "drug_resistance", form: "search_form"} 
                 = "  Drug Resistance"
-        %div{style: "height: 187px; width: 360px", class: "well"} 
+        %div{style: "height: 220px; width: 360px", class: "well"} 
           %label.btn.btn-primary Advanced Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
             =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',

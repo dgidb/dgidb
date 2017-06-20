@@ -59,3 +59,26 @@
     tbl.find('> tbody > tr').hide().slice(0, 11).show();
     $("#nrows", $(this).next()).html(tbl.find('tr:visible').length - 1);
   });
+  $(document).ready(function () {
+    var activeTab = $('#' + window.location.hash.substr(2));
+
+    if(activeTab.length) {
+      $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+    } else {
+      $('a[href="' + "#summary" + '"]').trigger('click');
+    }
+  });
+
+  window.addEventListener("popstate", function() {
+    var activeTab = $('#' + window.location.hash.substr(2));
+    if (activeTab.length) {
+      $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+    } else {
+      $('a[href="' + "#summary" + '"]').trigger('click');
+    }
+  });
+
+  $(".tabbable li a").click(function () {
+    window.location.hash = "_" + $(this).attr('href').substr(1);
+    return true;
+  }); 
