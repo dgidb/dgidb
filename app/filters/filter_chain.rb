@@ -35,11 +35,9 @@ class FilterChain
   end
 
   def evaluate_all_filters
-    #@computed_include ||= evaluate_filter(@all_include)
-    #@computed_exclude ||= evaluate_filter(@all_exclude)
-    #@computed_final ||= @computed_include - @computed_exclude
-    @computed_final ||= evaluate_filter(@all_include)
-    @computed_final
+    @computed_include ||= evaluate_filter(@all_include)
+    @computed_exclude ||= evaluate_filter(@all_exclude)
+    @computed_final ||= @computed_include - @computed_exclude
   end
 
   def evaluate_filter(filter)
