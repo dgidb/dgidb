@@ -30,6 +30,18 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
 -- Name: chembl_molecule_synonyms; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -572,6 +584,14 @@ ALTER TABLE ONLY chembl_molecules ALTER COLUMN id SET DEFAULT nextval('chembl_mo
 
 
 --
+-- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
 -- Name: chembl_molecule_synonyms_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -881,6 +901,41 @@ ALTER TABLE ONLY source_types
 
 ALTER TABLE ONLY sources
     ADD CONSTRAINT sources_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: chembl_molecule_synonyms_molregno_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX chembl_molecule_synonyms_molregno_idx ON chembl_molecule_synonyms USING btree (molregno);
+
+
+--
+-- Name: chembl_molecule_synonyms_upper_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX chembl_molecule_synonyms_upper_idx ON chembl_molecule_synonyms USING btree (upper((synonym)::text));
+
+
+--
+-- Name: chembl_molecules_molregno_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX chembl_molecules_molregno_idx ON chembl_molecules USING btree (molregno);
+
+
+--
+-- Name: chembl_molecules_upper_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX chembl_molecules_upper_idx ON chembl_molecules USING btree (upper((pref_name)::text));
+
+
+--
+-- Name: chembl_molecules_upper_idx1; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX chembl_molecules_upper_idx1 ON chembl_molecules USING btree (upper((chembl_id)::text));
 
 
 --
