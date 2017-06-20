@@ -18,17 +18,17 @@ module Genome
         blank_filter = ->(x) { x.blank? }
         TSVImporter.import tsv_path, MyCancerGenomeRow, source_info do
           interaction known_action_type: 'unknown' do
-            drug :drug_name, nomenclature: 'MyCancerGenome Drug Name', primary_name: :drug_name do
+            drug :drug_name, nomenclature: 'MyCancerGenome Drug Name', primary_name: :drug_name, transform: ->(x) { x.upcase } do
               attribute :drug_class, name: 'Drug Class', unless: blank_filter
               attribute :notes, name: 'Notes', unless: blank_filter
               attribute :metadata_fda_approval, name: 'FDA Approval', unless: blank_filter
-              names :drug_development_name, nomenclature: 'Development Name', unless: blank_filter
-              names :drug_generic_name, nomenclature: 'Generic Name', unless: blank_filter
-              names :drug_trade_name, nomenclature: 'Trade Name', unless: blank_filter
+              names :drug_development_name, nomenclature: 'Development Name', transform: ->(x) { x.upcase }, unless: blank_filter
+              names :drug_generic_name, nomenclature: 'Generic Name', transform: ->(x) { x.upcase }, unless: blank_filter
+              names :drug_trade_name, nomenclature: 'Trade Name', transform: ->(x) { x.upcase }, unless: blank_filter
             end
             gene :gene_symbol, nomenclature: 'MyCancerGenome Gene Symbol' do
               name :entrez_gene_id, nomenclature: 'Entrez Gene Id', unless: blank_filter
-              name :gene_symbol, nomenclature: 'MyCancerGenome Gene Symbol'
+              name :gene_symbol, nomenclature: 'MyCancerGenome Gene Symbol', unless: blank_filter
               name :reported_gene_name, nomenclature: 'MyCancerGenome Reported Gene Name', unless: blank_filter
             end
 
