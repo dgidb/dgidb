@@ -13,9 +13,7 @@ class FilterChain
   # this is what defines the "include_" methods
 
   Filter.all_filters.each do |filter|
-    puts "INCLUDE EXCLUDE"
     ['include', 'exclude'].each do |filter_type|
-      puts "#{filter_type}_#{filter}"
       define_method "#{filter_type}_#{filter}" do |*filter_criteria|
         instance_variable_get("@all_#{filter_type}") << filter.classify.constantize.new(*filter_criteria)
         instance_variable_set("@computed_#{filter_type}", nil)
@@ -41,8 +39,6 @@ class FilterChain
     #@computed_exclude ||= evaluate_filter(@all_exclude)
     #@computed_final ||= @computed_include - @computed_exclude
     @computed_final ||= evaluate_filter(@all_include)
-    puts "NOOOOOOOO"
-    puts @computed_final.inspect
     @computed_final
   end
 
