@@ -1,6 +1,6 @@
 language: ruby
 script:
-  - bundle exec rake db:structure:load
+  - bundle exec rake db:structure:load ON_ERROR_STOP=0
   - bundle exec rake db:test:prepare
   - bundle exec rake spec
 before_script:
