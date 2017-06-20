@@ -1,3 +1,4 @@
+dist: xenial
 language: ruby
 script:
   - bundle exec rake db:structure:load
