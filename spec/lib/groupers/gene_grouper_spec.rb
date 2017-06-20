@@ -11,165 +11,81 @@ describe Genome::Groupers::GeneGrouper do
     gene_claims
   end
 
-  it 'should create a gene entity for each Entrez gene symbol' do
-    create_entrez_gene_aliases
+  it 'should add the gene claim if the gene claim name matches the gene name (case insensitive)' do
+    gene = Fabricate(:gene, name: 'Test Gene')
+    gene_claims = Set.new()
+    source = Fabricate(:source, source_db_name: 'Test Source')
+    gene_claims << Fabricate(:gene_claim, name: 'Test Gene', source: source)
+    gene_claims << Fabricate(:gene_claim, name: 'TEST GENE', source: source)
 
-    Genome::Groupers::GeneGrouper.run
-
-    expect(DataModel::Gene.all.count).to eq DataModel::GeneClaimAlias.all.count
-    gene_names = DataModel::Gene.pluck(:name).sort
-    gene_claim_aliases = DataModel::GeneClaimAlias.pluck(:alias).sort
-    expect(gene_names).to eq gene_claim_aliases
-  end
-
-  it 'should not create gene entities for non-Entrez gene symbols' do
-    create_entrez_gene_aliases
-    non_entrez_source = Fabricate(:source, source_db_name: 'NotEntrez')
-    non_entrez_gene_claim = Fabricate(:gene_claim, source: non_entrez_source)
-    gene_claim_alias = Fabricate(:gene_claim_alias, gene_claim: non_entrez_gene_claim)
-
-    Genome::Groupers::GeneGrouper.run
-
-    expect(DataModel::Gene.all.count).to eq DataModel::GeneClaimAlias.all.count - 1
-    expect(DataModel::Gene.where(name: gene_claim_alias.alias).count).to eq 0
-  end
-
-  it 'should add the gene claims used to create the gene entities to their genes' do
-    gene_claims = create_entrez_gene_aliases
-    gene_claims.each { |gc| expect(gc.gene).to be_nil }
-    Genome::Groupers::GeneGrouper.run
+    grouper = Genome::Groupers::GeneGrouper.new
+    grouper.run
     gene_claims.each { |gc| gc.reload; expect(gc.gene).not_to be_nil }
+    expect(gene.gene_claims.count).to eq 2
+    expect(gene.gene_aliases.count).to eq 0
   end
 
-  it 'should add gene claims to the gene if there was only one direct match' do
-    (grouped_gene_claim,_) = create_entrez_gene_aliases
-    gene_claim_to_group = Fabricate(:gene_claim,
-                                    name: grouped_gene_claim.gene_claim_aliases.first.alias)
-    Genome::Groupers::GeneGrouper.run
+  it 'should add the gene claim if a gene claim alias matches the gene name (case insensitive)' do
+    name = 'Test Gene'
+    gene = Fabricate(:gene, name: name)
+    source = Fabricate(:source, source_db_name: 'Test Source')
+    gene_claim = Fabricate(:gene_claim, name: 'Nonmatching Gene Name', source: source)
+    Fabricate(:gene_claim_alias, alias: name, gene_claim: gene_claim)
 
-    expect(grouped_gene_claim.gene).to eq gene_claim_to_group.gene
+    grouper = Genome::Groupers::GeneGrouper.new
+    grouper.run
+    gene_claim.reload
+    expect(gene_claim.gene).not_to be_nil
+    expect(gene.gene_claims.count).to eq 1
+    expect(gene.gene_aliases.count).to eq 1
   end
 
-  it 'should add gene claims if there were no direct matches and one indirect match' do
-    grouped_gene_claims = create_entrez_gene_aliases
-    test_name = 'test gene name'
-    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: grouped_gene_claims.first)
+  it 'should add the gene claim if its name matches another grouped gene claim' do
+    name = 'Test Gene'
+    gene = Fabricate(:gene, name: name)
+    source1 = Fabricate(:source, source_db_name: 'Source 1')
+    gene_claim1 = Fabricate(:gene_claim, name: 'Nonmatching Gene Name', source: source1)
+    Fabricate(:gene_claim_alias, alias: name, gene_claim: gene_claim1)
+    source2 = Fabricate(:source, source_db_name: 'Source 2')
+    gene_claim2 = Fabricate(:gene_claim, name: 'Nonmatching Gene Name', source: source2)
+    gene_claims = [gene_claim1, gene_claim2]
 
-    entrez_source = Fabricate(:source, source_db_name: 'Entrez')
-    ungrouped_gene_claim = Fabricate(:gene_claim, source: entrez_source)
-    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: ungrouped_gene_claim)
-
-    Genome::Groupers::GeneGrouper.run
-
-    entrez_gene = grouped_gene_claims.first.gene
-    grouped_gene = ungrouped_gene_claim.gene
-
-    expect(entrez_gene).to eq grouped_gene
+    grouper = Genome::Groupers::GeneGrouper.new
+    grouper.run
+    gene_claims.each { |gc| gc.reload; expect(gc.gene).not_to be_nil }
+    expect(gene.gene_claims.count).to eq 2
+    expect(gene.gene_aliases.count).to eq 1
+    expect(gene.gene_aliases.first.sources.count).to eq 2
   end
 
-  it 'should add the gene claim to the gene if there is 1 direct match even if there are indirect matches' do
-    grouped_gene_claims = create_entrez_gene_aliases
-    test_name = 'test gene name'
-    Fabricate(:gene_claim_alias, alias: test_name,
-              gene_claim: grouped_gene_claims.first)
-
-    entrez_source = Fabricate(:source, source_db_name: 'Entrez')
-    ungrouped_gene_claim = Fabricate(:gene_claim,
-              name: grouped_gene_claims.last.gene_claim_aliases.first.alias,
-              source: entrez_source)
-
-    Fabricate(:gene_claim_alias,
-              alias: test_name, gene_claim: ungrouped_gene_claim)
-
-    Genome::Groupers::GeneGrouper.run
-    ungrouped_gene_claim.reload
-    expect(ungrouped_gene_claim.gene).not_to be_nil
-  end
-
-  describe 'it should not add gene claims if there was any ambiguity' do
-    it 'has > 1 direct match' do
-      (grouped_gene_claim, other_grouped_gene_claim) = create_entrez_gene_aliases
-      gene_claim_to_group = Fabricate(:gene_claim,
-                                      name: grouped_gene_claim.gene_claim_aliases.first.alias)
-      Fabricate(:gene_claim_alias, gene_claim: gene_claim_to_group,
-                alias: other_grouped_gene_claim.gene_claim_aliases.first.alias)
-
-      Genome::Groupers::GeneGrouper.run
-
-      expect(gene_claim_to_group.gene).to be_nil
-    end
-
-    it 'has > 1 indirect' do
-      grouped_gene_claims = create_entrez_gene_aliases
-      test_name = 'test gene name'
-      Fabricate(:gene_claim_alias, alias: test_name, gene_claim: grouped_gene_claims.first)
-      test_name2 = 'test gene name 2'
-      Fabricate(:gene_claim_alias, alias: test_name2, gene_claim: grouped_gene_claims.last)
-
-      ungrouped_gene_claim = Fabricate(:gene_claim)
-      Fabricate(:gene_claim_alias, alias: test_name, gene_claim: ungrouped_gene_claim)
-      Fabricate(:gene_claim_alias, alias: test_name2, gene_claim: ungrouped_gene_claim)
-
-      Genome::Groupers::GeneGrouper.run
-
-      expect(ungrouped_gene_claim.gene).to be_nil
-    end
-
-  end
-
-  it 'it should add gene aliase' do
+  it 'should add gene attributes' do
+    name = 'Test Gene'
+    gene = Fabricate(:gene, name: name)
     entrez_source = Fabricate(:source, source_db_name: 'Entrez')
     other_source = Fabricate(:source, source_db_name: 'Other')
-    entrez_gene_claim = Fabricate(:gene_claim, source: entrez_source)
-    other_gene_claim = Fabricate(:gene_claim, source: other_source)
-    test_name = 'test gene name'
-    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: entrez_gene_claim, nomenclature: 'Gene Symbol')
-    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: other_gene_claim, nomenclature: 'Gene Symbol')
-
-    Genome::Groupers::GeneGrouper.run
-
-    expect(DataModel::GeneAlias.count).to eq 1
-    expect(DataModel::GeneAlias.first.sources.count).to eq 2
-
-    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: other_gene_claim, nomenclature: 'test nomenclature')
-
-    Genome::Groupers::GeneGrouper.run
-
-    expect(DataModel::GeneAlias.count).to eq 1
-  end
-
-  it 'it should add gene attributes' do
-    entrez_source = Fabricate(:source, source_db_name: 'Entrez')
-    other_source = Fabricate(:source, source_db_name: 'Other')
-    entrez_gene_claim = Fabricate(:gene_claim, source: entrez_source)
-    other_gene_claim = Fabricate(:gene_claim, source: other_source)
-    test_name = 'test gene name'
-    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: entrez_gene_claim, nomenclature: 'Gene Symbol')
-    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: other_gene_claim, nomenclature: 'Gene Symbol')
+    entrez_gene_claim = Fabricate(:gene_claim, name: name, source: entrez_source)
+    other_gene_claim = Fabricate(:gene_claim, name: name, source: other_source)
 
     Fabricate(:gene_claim_attribute, gene_claim: entrez_gene_claim, name: 'test attribute', value: 'test value')
     Fabricate(:gene_claim_attribute, gene_claim: other_gene_claim, name: 'test attribute', value: 'test value')
-
-    Genome::Groupers::GeneGrouper.run
-
-    expect(DataModel::GeneAttribute.count).to eq 1
-    expect(DataModel::GeneAttribute.first.sources.count).to eq 2
-
     Fabricate(:gene_claim_attribute, gene_claim: other_gene_claim, name: 'other test attribute', value: 'test value')
 
-    Genome::Groupers::GeneGrouper.run
+    grouper = Genome::Groupers::GeneGrouper.new
+    grouper.run
 
     expect(DataModel::GeneAttribute.count).to eq 2
+    expect(DataModel::GeneAttribute.first.sources.count).to eq 2
   end
 
-  it 'it should add gene categories' do
+  it 'should add gene categories' do
+    name = 'Test Gene'
+    gene = Fabricate(:gene, name: name)
     source = Fabricate(:source, source_db_name: 'Entrez')
-    gene_claim = Fabricate(:gene_claim, source: source)
+    gene_claim = Fabricate(:gene_claim, name: name, source: source)
     Fabricate(:gene_claim_category, gene_claims: [gene_claim])
-    test_name = 'test gene name'
-    Fabricate(:gene_claim_alias, alias: test_name, gene_claim: gene_claim, nomenclature: 'Gene Symbol')
 
-    Genome::Groupers::GeneGrouper.run
+    grouper = Genome::Groupers::GeneGrouper.new
+    grouper.run
 
     expect(DataModel::Gene.first.gene_categories.first).to eq DataModel::GeneClaim.first.gene_claim_categories.first
   end
