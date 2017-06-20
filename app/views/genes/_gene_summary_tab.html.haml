@@ -29,7 +29,7 @@
           %button{class: "button", type: "button", style:"background-color: #e7e7e7; border: none; margin-bottom: 4px", onclick:"location.href='#{gc.original_data_source_url}';"}
             = gc.source.source_db_name
         %a#more{style: "display: inline-block; margin-left: 5px; cursor: pointer"}
-          - num_left = (drug.drug_claims.count - 4 > 0 ? drug.drug_claims.count - 4 : 0)
+          - num_left = (gene.gene_claims.count - 4 > 0 ? gene.gene_claims.count - 4 : 0)
           = "(#{num_left} More Sources)"
 
     %div(class="item-panel")

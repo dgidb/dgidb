@@ -7,20 +7,29 @@
   %div.well
     %h3
       Multiple Matches
-    - ambiguous_results.each do |result|
-      %div
-        = "Search Term: " + result[:term]
-      - result[:identifiers].each do |entity|
-        %input{class: "ambiguous", type: "checkbox", name: "#{entity.name}", checked: 1}
-          = entity.name
+    %div{style: "width: 200px; padding: 0", class: "container demo"}
+      %div(class="panel-group" id="accordion" role="tablist" aria-multiselectable="true")
+        %div(class="panel panel-default")
+        - ambiguous_results.each do |result|
+          %div{class: "panel-heading", role: "tab", id: "#{'heading' + result[:term]}"}
+            %h4(class="panel-title")
+              %a{role: "button", "data-toggle" => "collapse", "data-parent" => "#accordion", href: "#{'#collapse' + result[:term]}", "aria-expanded" => "true", "aria-controls" => "#{'collapse' + result[:term]}"}
+                %i(class="more-less glyphicon glyphicon-plus")
+                = "Search Term: " + result[:term]
+
+          %div{id: "#{'collapse' + result[:term]}", class: "panel-collapse collapse", role: "tabpanel", "aria-labelledby" => "#{'heading' + result[:term]}"}
+            %div{class: "panel-body"}
+            - result[:identifiers].each do |entity|
+              %div
+                %input{class: "ambiguous", type: "checkbox", name: "#{entity.name}", checked: 1}
+                  = entity.name
+
 %div{style: "float: left; width: 1100px"}
   %ul(class="result-list" id="list-results")
     - ambiguous_results.each do |result|
       - result[:identifiers].each do |entity|
         %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name}
           = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity }
-
-
 
 
 :javascript
@@ -33,3 +42,11 @@
       $(name).hide();
     }
   });
+  function toggleIcon(e) {
+    $(e.target)
+      .prev('.panel-heading')
+      .find(".more-less")
+      .toggleClass('glyphicon-plus glyphicon-minus');
+  }
+  $('.panel-group').on('hidden.bs.collapse', toggleIcon);
+  $('.panel-group').on('shown.bs.collapse', toggleIcon);

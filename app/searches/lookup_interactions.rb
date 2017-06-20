@@ -55,6 +55,11 @@ class LookupInteractions
     gene_categories: :include_gene_claim_category_interaction,
     interaction_types:  :include_interaction_claim_type,
     source_trust_levels: :include_source_trust_level,
-    fda_approved_drug: :include_fda_approved_drug
+    fda_approved_drug: :include_fda_approved_drug,
+    immunotherapy: :include_immunotherapy,
+    anti_neoplastic: :include_antineoplastic,
+    clinically_actionable: :include_clinically_actionable,
+    drug_resistance: :include_drug_resistance,
+    druggable_genome: :include_druggable_genome
   }
 end

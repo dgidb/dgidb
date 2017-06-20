@@ -19,37 +19,37 @@
         %h4{style: "display: inline-block;"}
           %table{class: "search_panel table table-condensed table-striped", style: "table-layout:fixed;"}
             %tr
-              %th
+              %th{style: "width: 300px;"}
                 - if @search_mode == "genes"
                   Drug
                 - else 
                   Gene
-              %th
+              %th{style: "width: 200px;"}
                 Interaction Type
-              %th
+              %th{style: "width: 200px;"}
                 Source Count
-              %th
+              %th{style: "width: 200px;"}
                 PMID Count
-              %th
+              %th{style: "width: 150px;"}
                 Score
             %tbody
             - interactions = entity.interactions
             - interactions.each do |interaction|
               %tr
-                %td
+                %td{style: "width: 300px; word-break:break-all"}
                   - if @search_mode == "genes" 
                     %a{href: "/drugs/#{interaction.drug.name}"}
                       = interaction.drug.name
                   - else
                     %a{href: "/genes/#{interaction.gene.name}"}
                       = interaction.gene.name
-                %td
+                %td{style: "width: 200px;"}
                   = interaction.interaction_types.map{|t| t.type}.join(", ")
-                %td
+                %td{style: "width: 200px;"}
                   = (source_count = interaction.interaction_claims.count)
-                %td
+                %td{style: "width: 200px;"}
                   = (pub_count = interaction.publications.count)
-                %td
+                %td{style: "width: 200px;"}
                   = source_count + pub_count
           %button{class: "show-all", style: "margin-top: 5px"}
             Show All

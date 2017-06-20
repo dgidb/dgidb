@@ -47,10 +47,10 @@
               %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "search_form"} 
                 = "  FDA Approved"
             %div
-              %input{type: "checkbox", value: "checked", name: "anti-neoplastics"} 
+              %input{type: "checkbox", value: "checked", name: "anti_neoplastic", form: "search_form"} 
                 = "  Anti-neoplastics"
             %div
-              %input{type: "checkbox", value: "checked", name: "immunotherapies"} 
+              %input{type: "checkbox", value: "checked", name: "immunotherapy", form: "search_form"} 
                 = "  Immunotherapies"
         %div#drug_search_filters{style: "height: 187px; width: 360px; display: none", class: "well"}
           %label.btn.btn-primary Preset Filters
@@ -59,10 +59,10 @@
               %input{type: "checkbox", value: "checked", name: "clinically_actionable", form: "search_form"} 
                 = "  Clinically Actionable"
             %div
-              %input{type: "checkbox", value: "checked", name: "druggable_genome"} 
+              %input{type: "checkbox", value: "checked", name: "druggable_genome", form: "search_form"} 
                 = "  Druggable Genome"
             %div
-              %input{type: "checkbox", value: "checked", name: "drug_resistance"} 
+              %input{type: "checkbox", value: "checked", name: "drug_resistance", form: "search_form"} 
                 = "  Drug Resistance"
         %div{style: "height: 187px; width: 360px", class: "well"} 
           %label.btn.btn-primary Advanced Filters

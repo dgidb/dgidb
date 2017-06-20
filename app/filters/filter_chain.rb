@@ -41,8 +41,6 @@ class FilterChain
     #@computed_exclude ||= evaluate_filter(@all_exclude)
     #@computed_final ||= @computed_include - @computed_exclude
     @computed_final ||= evaluate_filter(@all_include)
-    puts "NOOOOOOOO"
-    puts @computed_final.inspect
     @computed_final
   end
 
