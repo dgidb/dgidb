@@ -9,6 +9,10 @@ class TsvUpdater < Updater
       create_tempfile
       download_file
       importer.import
+      grouper = Grouper.new()
+      grouper.perform(group_genes = should_group_genes?, group_drugs = should_group_drugs?)
+      post_grouper = PostGrouper.new()
+      post_grouper.perform(cleanup_gene_claims = should_cleanup_gene_claims?)
     ensure
       remove_download
       reschedule if recurring

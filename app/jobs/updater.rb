@@ -7,4 +7,16 @@ class Updater
   def next_update_time
     raise StandardError.new('Must implement #next_update_time in subclass')
   end
+
+  def should_group_genes?
+    raise StandardError.new('Must implement #should_group_genes? in subclass')
+  end
+
+  def should_group_drugs?
+    raise StandardError.new('Must implement #should_group_drugs? in subclass')
+  end
+
+  def should_cleanup_gene_claims?
+    raise StandardError.new('Must implement #should_cleanup_gene_claims? in subclass')
+  end
 end
