@@ -23,7 +23,7 @@ module Genome
         @syn_col_hash ||= DataModel::ChemblMoleculeSynonym.columns_hash
       end
 
-      def self.add_records_from_db
+      def self.init_records_from_db # This is for an initial, non-incremental load into the chembl_molecule table
         new_records = []
         @connection = PG.connect(dbname: chembl_db_name)
         i = 0
@@ -54,16 +54,12 @@ module Genome
         return params
       end
 
-      def self.add_synonyms_from_db
-        new_synonyms = []
-        i = 0
+      def self.init_synonyms_from_db # This is for an initial, non-incremental load into chembl_molecule_synonym table
         connection.exec("SELECT * FROM molecule_synonyms").each do |record|
-          new_synonyms << get_params(record, syn_col_hash)
-          unless i % 50000
-            DataModel::ChemblMoleculeSynonym.create(new_synonyms)
-            new_synonyms = []
-          end
-          i += 1
+          params = get_params(record, syn_col_hash)
+          params[:synonym] = params[:synonyms]
+          synonym = DataModel::ChemblMoleculeSynonym.create(params)
+          DataModel::ChemblMolecule.where(molregno: params[:molregno]).first << synonym
         end
       end
     end

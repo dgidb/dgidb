@@ -8,6 +8,8 @@ module DataModel
     has_many :drug_aliases
     has_many :drug_attributes
 
+    before_save :populate_flags
+
     cache_query :all_drug_names, :all_drug_names
 
 
@@ -21,6 +23,11 @@ module DataModel
 
     def self.all_drug_names
       pluck(:name).sort
+    end
+
+    private
+    def populate_flags
+      nil # TODO: Populate the Drug table flags
     end
 
   end
