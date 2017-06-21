@@ -42,6 +42,18 @@ module Genome
         DataModel::ChemblMolecule.create(new_records)
       end
 
+      def self.init_synonyms_from_db # This is for an initial, non-incremental load into chembl_molecule_synonym table
+        ActiveRecord::Base.transaction do
+          connection.exec("SELECT * FROM molecule_synonyms").each do |record|
+            params = get_params(record, syn_col_hash)
+            params[:synonym] = record['synonyms']
+            synonym = DataModel::ChemblMoleculeSynonym.create(params)
+            DataModel::ChemblMolecule.where(molregno: params[:molregno]).first.chembl_molecule_synonyms << synonym
+          end
+        end
+      end
+
+      private
       def self.get_params(record, col_hash)
         params = {}
 
@@ -57,17 +69,6 @@ module Genome
         end
 
         return params
-      end
-
-      def self.init_synonyms_from_db # This is for an initial, non-incremental load into chembl_molecule_synonym table
-        ActiveRecord::Base.transaction do
-          connection.exec("SELECT * FROM molecule_synonyms").each do |record|
-            params = get_params(record, syn_col_hash)
-            params[:synonym] = params[:synonyms]
-            synonym = DataModel::ChemblMoleculeSynonym.create(params)
-            DataModel::ChemblMolecule.where(molregno: params[:molregno]).first.chembl_molecule_synonyms << synonym
-          end
-        end
       end
     end
   end
