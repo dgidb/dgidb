@@ -35,6 +35,7 @@ module Utils
         File.open(filename, 'w') do |file|
           self.send("print_#{type}_header".to_sym, file)
           query.find_each do |gene|
+            # TODO: Filter PharmGKB and DrugBank here
             self.send("print_#{type}_row".to_sym, file, gene)
           end
         end

@@ -32,8 +32,13 @@ downloads:
     - title: PharmGKB data
       link: "http://www.pharmgkb.org/downloads.jsp"
       description: >
-        Note that PharmGKB is not included in the TSV archive above. This data must be requested directly from 
+        Note that PharmGKB is not included in the TSV archive above. These data must be requested directly from
         <a href="https://www.pharmgkb.org/downloads/">PharmGKB</a>.
+    - title: DrugBank data
+      link: "https://www.drugbank.ca/releases/latest"
+      description: >
+        Note that DrugBank is not included in the TSV archive above. These data must be requested directly from
+        <a href="https://www.drugbank.ca/releases/latest">DrugBank</a>.
     - title: dGene data (04-16-2013)
       link: "http://dgidb.genome.wustl.edu/downloads/dGene_04-16-2013_2257.tsv"
       description: >
