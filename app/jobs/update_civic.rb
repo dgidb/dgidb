@@ -1,6 +1,6 @@
 class UpdateCivic < ApiUpdater
   def updater
-    return Genome::OnlineUpdaters::Civic::Updater.new()
+    Genome::OnlineUpdaters::Civic::Updater.new()
   end
 
   def next_update_time
@@ -11,14 +11,14 @@ class UpdateCivic < ApiUpdater
   end
 
   def should_group_genes?
-    return true
+    true
   end
 
   def should_group_drugs?
-    return true
+    true
   end
 
   def should_cleanup_gene_claims?
-    return false
+    false
   end
 end

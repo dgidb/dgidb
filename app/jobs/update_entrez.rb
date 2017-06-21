@@ -1,10 +1,10 @@
 class UpdateEntrez < TsvUpdater
   def tempfile_name
-    return ['entrez_download', '.gz']
+    ['entrez_download', '.gz']
   end
 
   def importer
-    return Genome::Importers::Entrez::NewEntrez.new(tempfile)
+    Genome::Importers::Entrez::NewEntrez.new(tempfile)
   end
 
   def latest_url
@@ -19,14 +19,14 @@ class UpdateEntrez < TsvUpdater
   end
 
   def should_group_genes?
-    return true
+    true
   end
 
   def should_group_drugs?
-    return false
+    false
   end
 
   def should_cleanup_gene_claims?
-    return true
+    true
   end
 end
