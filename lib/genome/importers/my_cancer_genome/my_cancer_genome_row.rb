@@ -15,8 +15,7 @@ module Genome
         attribute :notes
         attribute :interaction_type
 
-        def
-          valid?(opts = {})
+        def valid?(opts = {})
           true
         end
       end
