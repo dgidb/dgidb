@@ -1,7 +1,7 @@
 /* Import Bootstrap Resources
  **************************************************/
-@import "twitter/bootstrap/variables";
-@import "twitter/bootstrap/mixins";
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
 
 /* Import Application LESS
@@ -49,6 +49,30 @@
 @navbarInverseSearchPlaceholderColor:    #ccc;
 
 @navbarInverseBrandColor:                @navbarInverseLinkColor;
+
+// Old Bootstrap LESS color definitions
+@blue:    #049cdb;
+@green:   #46a546;
+@red:     #9d261d;
+@yellow:  #ffc40d;
+@orange:  #f89406;
+@pink:    #c3325f;
+@purple:  #7a43b6;
+@black:  #000;
+@grayDarker:  #222;
+@grayDark:  #333;
+@gray:  #555;
+@grayLight:  #999;
+@grayLighter:  #eee;
+@white:  #fff;
+
+// Bootstrap 2 border-radius mixin
+.border-radius(@radius){
+  .border-top-radius(@radius);
+  .border-right-radius(@radius);
+  .border-bottom-radius(@radius);
+  .border-left-radius(@radius);
+}
 
 /* BASE COLORS
  **************************************************/
@@ -192,7 +216,6 @@ body {
       display: table;
       width: 100%;
       margin: 3px 5px;
-      
       .item-name {
         display: table-cell;
         h3 {
@@ -204,13 +227,13 @@ body {
           padding-left: 40px;
 
           a {
-            color: @textColor !important;
+            color: @text-color !important;
             border-bottom: 2px solid #CCC !important;
           }
 
           a:hover {
             text-decoration: none;
-            border-bottom: 2px solid @textColor !important;            
+            border-bottom: 2px solid @text-color !important;
           }
         }
       }

@@ -40,6 +40,7 @@ class InteractionSearchResult
     interaction_claims.length > 0
   end
 
+  # yield passes interaction to each block in filter_results from lookup_interactions.rb
   def filter_interactions
     @interaction_claims = @interaction_claims.select{ |interaction| yield interaction }
   end
