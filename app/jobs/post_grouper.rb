@@ -10,7 +10,7 @@ class PostGrouper
   def delete_orphaned_gene_claims
       DataModel::GeneClaim.joins(:gene, :gene_claim_aliases, :source)
           .where("gene_claims.gene_id IS NULL and sources.source_db_name = 'Ensembl'")
-          .each {|c| c.detroy}
+          .destroy_all
   end
 
   def update_counts
