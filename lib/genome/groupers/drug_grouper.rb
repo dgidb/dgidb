@@ -85,7 +85,6 @@ module Genome
       end
 
       def drug_claims_not_in_groups
-        nil # Find all drug claims not in groups and not in direct_multimatch, molecule_multimatch or indirect_multimatch
         DataModel::DrugClaim.where(drug_id: nil).keep_if do |drug_claim|
           !(
             direct_multimatch.member? drug_claim or
@@ -93,6 +92,28 @@ module Genome
             indirect_multimatch.member? drug_claim
           )
         end
+      end
+
+      def add_drug_claim_to_drug(drug_claim, drug)
+        drug.drug_claims << drug_claim
+        drug_aliases = drug.drug_aliases.pluck(:alias).map(&:upcase).to_set
+        drug_claim.drug_claim_aliases.each do |drug_claim_alias|
+          unless drug_aliases.member? drug_claim_alias.alias.upcase
+            drug_alias = DataModel::DrugAlias.create(alias: drug_claim_alias.alias)
+            drug_alias.sources << drug_claim.source
+            drug << drug_alias
+          else
+            drug_alias = DataModel::DrugAlias.where('upper(alias) = ? and drug_id = ?',
+                                                    drug_claim_alias.alias.upcase,
+                                                    drug.id
+            ).first
+            unless drug_alias.sources.member? drug_claim.source
+              drug_alias.sources << drug_claim.source
+            end
+          end
+        end
+        drug_attributes = drug.drug_attributes.pluck(:name, :value) # This requires Rails 4. Merging in Rails 5 upgrade before finishing.gi
+        # TODO: make drug_attributes uppercase, test if drug_claim_attributes are in drug_attributes, resolve.
       end
     end
   end
