@@ -33,7 +33,7 @@ class LookupGenes
     search_terms = search_terms - gene_alias_results.map(&:alias)
     gene_claim_results = DataModel::GeneClaim.send(scope).where(name: search_terms)
 
-    gene_results.concat(gene_alias_results).concat(gene_claim_results)
+    gene_results + gene_alias_results + gene_claim_results
   end
 
   def self.de_dup_results(results)

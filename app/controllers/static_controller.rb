@@ -1,5 +1,5 @@
 class StaticController < ApplicationController
-  before_filter :set_active
+  before_action :set_active
 
   def search_categories
     @current_sources = DataModel::Source.all_sources

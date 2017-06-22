@@ -16,95 +16,46 @@
       %a(href="/faq#difference")
         =icon('question-sign')
 
-.container-fluid
-  .tabbable
-    %ul#myTab.nav.nav-tabs
-      %li.active
-        %a(href="#by_source" data-toggle="tab") Results Summary
-      %li
-        %a(href="#details" data-toggle="tab") Detailed Results
-      - if @search_mode == 'genes'
+- cache @gene do
+  .container-fluid
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a(href="#successful" data-toggle="tab") Unique Matches
         %li
-          %a(href="#by_gene" data-toggle="tab") By Gene
-      - else
-        %li
-          %a(href="#by_drug" data-toggle="tab") By Drug
-      %li
-        %a(href="#terms" data-toggle="tab") Search Term Summary
-      %li
-        %a(href="#statistics" data-toggle="tab") Statistics
-    .tab-content
-      .tab-pane.fade#statistics
-        =render partial: 'interaction_claims/results_summary', locals: {results: @search_results, search_mode: @search_mode}
-      .tab-pane.fade#terms
-        =render partial: 'shared/search_term_summary_table', locals: {results: @search_results, search_mode: @search_mode}
-      .tab-pane.active#by_source
-        =render partial: 'interaction_claims/results_by_source_table', locals: {results: @search_results}
-      - if @search_mode == 'genes'
-        .tab-pane.fade#by_gene
-          =render partial: 'interaction_claims/results_by_gene_table', locals: {results: @search_results}
-      - else
-        .tab-pane.fade#by_drug
-          =render partial: 'interaction_claims/results_by_drug_table', locals: {results: @search_results}
-      .tab-pane.fade#details
-        - if @search_mode == 'genes'
-          .row-fluid
-            .span12
-              -if @search_results.show_definite?
-                =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Primary Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_filter_flag"), subtitle: "Search terms matching exactly one gene that has one or more drug interactions.", export_id: 'definite_results_table', search_mode: @search_mode}
-              -if @search_results.show_ambiguous?
-                =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Ambiguous Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_filter_flag"), subtitle: "Search terms matching multiple genes, where some of those genes have drug interactions.", export_id: 'ambiguous_results_table', search_mode: @search_mode}
-          .row-fluid
-            -if @search_results.show_ambiguous_no_interactions?
-              =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Ambiguous Search Terms With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: tx("ambiguous_results_no_interactions_flag"), subtitle: 'Search terms matching multiple genes, but none have interactions.'}
-            -if @search_results.show_definite_no_interactions?
-              =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Matched Genes With No Interactions', results: @search_results.definite_no_interactions, tooltip_text: tx("definite_results_no_interactions_flag"), subtitle: 'Search terms matching one gene, but no interactions are present. Click any gene to visit its summary page and search for interactions of related genes.'}
-            -if @search_results.show_no_results_results?
-              .span6
-                .well
-                  %h3
-                    Search Terms With No Matches
-                    %small
-                      %strong
-                        %i.icon-flag.tip{title: tx("terms_with_no_matches_flag")}
-                  %small
-                    %strong
-                      %em Search terms that could not be matched to a gene
-                  %p
-                  %ul
-                    -@search_results.no_results_results.each do |result|
-                      %li=result.search_term
-        - else
-          .row-fluid
-            .span12
-              -if @search_results.show_definite?
-                =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Primary Results", interactions: @search_results.definite_interactions, tooltip_text: tx("definite_results_passed_drug_filter_flag"), subtitle: "Search terms matching exactly one drug that has one or more gene interactions.", export_id: 'definite_results_table', search_mode: @search_mode}
-              -if @search_results.show_ambiguous?
-                =render partial: 'interaction_claims/interaction_results_table', locals: {title: "Ambiguous Results", interactions: @search_results.ambiguous_interactions, tooltip_text: tx("ambiguous_results_passed_drug_filter_flag"), subtitle: "Search terms matching multiple drugs, where some of those drugs have gene interactions.", export_id: 'ambiguous_results_table', search_mode: @search_mode}
-          .row-fluid
-            -if @search_results.show_ambiguous_no_interactions?
-              =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Ambiguous Search Terms With No Interactions', results: @search_results.ambiguous_no_interactions, tooltip_text: tx("ambiguous_results_no_drug_interactions_flag"), subtitle: 'Search terms matching multiple drugs, but none have interactions.'}
-            -if @search_results.show_definite_no_interactions?
-              =render partial: 'interaction_claims/no_interaction_result', locals: {title: 'Matched Drugs With No Interactions', results: @search_results.definite_no_interactions, tooltip_text: tx("definite_results_no_drug_interactions_flag"), subtitle: 'Search terms matching one drug, but no interactions are present.'}
-            -if @search_results.show_no_results_results?
-              .span6
-                .well
-                  %h3
-                    Search Terms With No Matches
-                    %small
-                      %strong
-                        %i.icon-flag.tip{title: tx("terms_with_no_matches_flag")}
-                  %small
-                    %strong
-                      %em Search terms that could not be matched to a drug
-                  %p
-                  %ul
-                    -@search_results.no_results_results.each do |result|
-                      %li=result.search_term
+          %a(href="#failed" data-toggle="tab") Ambiguous or Unmatched
 
-=javascript_include_tag "jquery.dataTables.min"
-=javascript_include_tag "pagination_bootstrap"
-=javascript_include_tag "interaction_search_results"
-=javascript_include_tag "table-export"
-=javascript_include_tag "jquery.smartresize"
-=javascript_include_tag "trunk8"
+      .tab-content
+        .tab-pane.active#successful
+          .row-fluid#container 
+            .span12
+              - definite_results = @search_results.definite_results.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers}}
+              =render partial: 'interactions/interaction_search_successful', locals: {definite_results: definite_results} #use @search_mode to determine type of view, just use one set of templates
+
+        .tab-pane.fade#failed
+          .row-fluid#container
+            .span12
+              - ambiguous_results = @search_results.ambiguous_results.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers}}
+              - failed_result = @search_results.no_results_results[0]
+              - failed_terms = @search_results.no_results_results[0].search_term
+              =render partial: 'interactions/interaction_search_failed', locals: {ambiguous_results: ambiguous_results, failed_terms: failed_terms}
+
+:javascript
+  $('table').each(function(index){
+    $(this).find('> tbody > tr').hide().slice(0, 11).show();
+  });
+  $(".show-all").on("click", function() {
+    var tbl = $(this).prev();
+    $("tbody > tr", tbl).show();
+    $("#nrows", $(this).next().next().next()).html(tbl.find('tr:visible').length - 1);
+  });
+  $(".show-more").on("click", function() {
+    var tbl = $(this).prev().prev();
+    $("tbody > tr", tbl).slice(0, tbl.find('tr:visible').length + 10).show();
+    $("#nrows", $(this).next().next()).html(tbl.find('tr:visible').length - 1);
+  });
+  $(".show-less").on("click", function() {
+    var tbl = $(this).prev().prev().prev();
+    tbl.find('> tbody > tr').hide().slice(0, 11).show();
+    $("#nrows", $(this).next()).html(tbl.find('tr:visible').length - 1);
+  });
