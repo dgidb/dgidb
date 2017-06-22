@@ -1,3 +1,4 @@
+dist: trusty
 language: ruby
 script:
   - bundle exec rake db:structure:load
@@ -13,3 +14,7 @@ notifications:
   email: false
 git:
     submodules: false
+services:
+  - postgresql
+addons:
+  postgresql: "9.6"

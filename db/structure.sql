@@ -1,12 +1,4 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 9.6.1
--- Dumped by pg_dump version 9.6.1
-
 SET statement_timeout = 0;
-SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
@@ -33,6 +25,57 @@ SET search_path = public, pg_catalog;
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: delayed_jobs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE delayed_jobs (
+    id bigint NOT NULL,
+    priority integer DEFAULT 0 NOT NULL,
+    attempts integer DEFAULT 0 NOT NULL,
+    handler text NOT NULL,
+    last_error text,
+    run_at timestamp without time zone,
+    locked_at timestamp without time zone,
+    failed_at timestamp without time zone,
+    locked_by character varying,
+    queue character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: delayed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE delayed_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: delayed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
+
 
 --
 -- Name: drug_aliases; Type: TABLE; Schema: public; Owner: -
@@ -286,7 +329,8 @@ CREATE TABLE gene_gene_interaction_claims (
 CREATE TABLE genes (
     id text NOT NULL,
     name text,
-    long_name character varying(255)
+    long_name character varying(255),
+    entrez_id integer
 );
 
 
@@ -464,6 +508,29 @@ CREATE TABLE sources (
     source_trust_level_id character varying(255),
     gene_gene_interaction_claims_count integer DEFAULT 0
 );
+
+
+--
+-- Name: delayed_jobs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_seq'::regclass);
+
+
+--
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: delayed_jobs delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY delayed_jobs
+    ADD CONSTRAINT delayed_jobs_pkey PRIMARY KEY (id);
 
 
 --
@@ -763,6 +830,13 @@ ALTER TABLE ONLY sources
 
 
 --
+-- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
+
+
+--
 -- Name: drug_claim_aliases_drug_claim_id_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -924,6 +998,13 @@ CREATE UNIQUE INDEX index_drugs_on_name ON drugs USING btree (name);
 
 
 --
+-- Name: index_gene_aliases_on_alias; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_gene_aliases_on_alias ON gene_aliases USING btree (alias);
+
+
+--
 -- Name: index_gene_attributes_on_gene_id_and_name_and_value; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -984,6 +1065,13 @@ CREATE INDEX index_gene_gene_interaction_claims_on_gene_id ON gene_gene_interact
 --
 
 CREATE INDEX index_gene_gene_interaction_claims_on_interacting_gene_id ON gene_gene_interaction_claims USING btree (interacting_gene_id);
+
+
+--
+-- Name: index_genes_on_entrez_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_genes_on_entrez_id ON genes USING btree (entrez_id);
 
 
 --
@@ -1546,74 +1634,45 @@ ALTER TABLE ONLY sources
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('0');
+INSERT INTO "schema_migrations" (version) VALUES
+('0'),
+('20121212223401'),
+('20121213151709'),
+('20121214160809'),
+('20121214161439'),
+('20121214191000'),
+('20121218184952'),
+('20121218224238'),
+('20130103214307'),
+('20130214204650'),
+('20130305165700'),
+('20130307160126'),
+('20130424183200'),
+('20130712222803'),
+('20130712225648'),
+('20130906013631'),
+('20170216144343'),
+('20170216165933'),
+('20170217172327'),
+('20170217184303'),
+('20170222165433'),
+('20170302155212'),
+('20170303162418'),
+('20170314140736'),
+('20170314161924'),
+('20170315152806'),
+('20170317143034'),
+('20170317175150'),
+('20170410204422'),
+('20170412204422'),
+('20170412204423'),
+('20170414213904'),
+('20170417192246'),
+('20170417192258'),
+('20170424175208'),
+('20170503192632'),
+('20170512141234'),
+('20170512150855'),
+('20170616211809');
 
-INSERT INTO schema_migrations (version) VALUES ('20121212223401');
 
-INSERT INTO schema_migrations (version) VALUES ('20121213151709');
-
-INSERT INTO schema_migrations (version) VALUES ('20121214160809');
-
-INSERT INTO schema_migrations (version) VALUES ('20121214161439');
-
-INSERT INTO schema_migrations (version) VALUES ('20121214191000');
-
-INSERT INTO schema_migrations (version) VALUES ('20121218184952');
-
-INSERT INTO schema_migrations (version) VALUES ('20121218224238');
-
-INSERT INTO schema_migrations (version) VALUES ('20130103214307');
-
-INSERT INTO schema_migrations (version) VALUES ('20130214204650');
-
-INSERT INTO schema_migrations (version) VALUES ('20130305165700');
-
-INSERT INTO schema_migrations (version) VALUES ('20130307160126');
-
-INSERT INTO schema_migrations (version) VALUES ('20130424183200');
-
-INSERT INTO schema_migrations (version) VALUES ('20130712222803');
-
-INSERT INTO schema_migrations (version) VALUES ('20130712225648');
-
-INSERT INTO schema_migrations (version) VALUES ('20130906013631');
-
-INSERT INTO schema_migrations (version) VALUES ('20170216144343');
-
-INSERT INTO schema_migrations (version) VALUES ('20170216165933');
-
-INSERT INTO schema_migrations (version) VALUES ('20170217172327');
-
-INSERT INTO schema_migrations (version) VALUES ('20170217184303');
-
-INSERT INTO schema_migrations (version) VALUES ('20170222165433');
-
-INSERT INTO schema_migrations (version) VALUES ('20170302155212');
-
-INSERT INTO schema_migrations (version) VALUES ('20170303162418');
-
-INSERT INTO schema_migrations (version) VALUES ('20170314140736');
-
-INSERT INTO schema_migrations (version) VALUES ('20170314161924');
-
-INSERT INTO schema_migrations (version) VALUES ('20170315152806');
-
-INSERT INTO schema_migrations (version) VALUES ('20170317143034');
-
-INSERT INTO schema_migrations (version) VALUES ('20170317175150');
-
-INSERT INTO schema_migrations (version) VALUES ('20170410204422');
-
-INSERT INTO schema_migrations (version) VALUES ('20170412204422');
-
-INSERT INTO schema_migrations (version) VALUES ('20170412204423');
-
-INSERT INTO schema_migrations (version) VALUES ('20170414213904');
-
-INSERT INTO schema_migrations (version) VALUES ('20170417192246');
-
-INSERT INTO schema_migrations (version) VALUES ('20170417192258');
-
-INSERT INTO schema_migrations (version) VALUES ('20170512141234');
-
-INSERT INTO schema_migrations (version) VALUES ('20170512150855');

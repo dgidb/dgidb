@@ -21,7 +21,7 @@ module Genome
         drug_claims_from_sources = DataModel::DrugClaim.includes(:source)
           .where('sources.source_db_name' => antineoplastic_source_names)
 
-        (drug_claims_from_sources + drug_claims_with_attributes).uniq_by { |dc| dc.id }
+        (drug_claims_from_sources + drug_claims_with_attributes).uniq { |dc| dc.id }
       end
 
       def self.antineoplastic_type_names

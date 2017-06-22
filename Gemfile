@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.21'
+gem 'rails', '5.1.1'
 
 gem 'pg'
-gem 'less-rails-bootstrap', '2.3.3'
+gem 'less-rails-bootstrap'
 gem 'nokogiri'
 gem 'haml'
 gem 'textacular', require: 'textacular/rails'
-gem 'jquery-rails', '2.1.4'
-gem 'therubyracer', '~> 0.12.1'
-gem 'libv8', '~> 3.16.14.7', :platform => :ruby
+gem 'jquery-rails'
+gem 'therubyracer'
+gem 'libv8'
 gem 'exception_notification'
 gem 'rake'
 gem 'xpath'
@@ -17,21 +17,21 @@ gem 'jbuilder'
 gem 'lograge'
 gem 'syslog-logger'
 gem 'rye'
+gem 'delayed_job_active_record'
 
 group :production do
   gem 'dalli'
 end
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 
 group :development do
-  gem 'pry'
-  gem 'pry-remote'
-  gem 'pry-nav'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rack-mini-profiler'
 end
 
@@ -41,7 +41,7 @@ group :test, :development  do
   gem "capybara"
   gem "launchy"
   gem 'better_errors'
-  gem 'binding_of_caller', '~> 0.7.0'
+  gem 'binding_of_caller'
   gem 'activerecord-import'
   gem 'stamp'
   gem 'database_cleaner'

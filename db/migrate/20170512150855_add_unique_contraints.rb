@@ -1,4 +1,4 @@
-class AddUniqueContraints < ActiveRecord::Migration
+class AddUniqueContraints < ActiveRecord::Migration[4.2]
   def up
     execute 'CREATE UNIQUE INDEX unique_drug_id_alias on drug_aliases (drug_id, UPPER(alias))'
     add_index :drug_attributes, [:drug_id, :name, :value], :unique => true
