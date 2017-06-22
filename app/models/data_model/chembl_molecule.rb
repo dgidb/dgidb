@@ -7,6 +7,10 @@ module DataModel
                     :molregno, :natural_product, :oral, :parenteral, :polymer_flag, :pref_name, :prodrug,
                     :structure_type, :therapeutic_flag, :topical, :usan_stem, :usan_stem_definition, :usan_substem,
                     :usan_year, :withdrawn_country, :withdrawn_flag, :withdrawn_reason, :withdrawn_year
+
+    def names
+      @names ||= ([self.pref_name, self.chembl_id] + self.chembl_molecule_synonyms.pluck(:synonym)).to_set
+    end
   end
 end
 

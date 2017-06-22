@@ -22,6 +22,10 @@ module DataModel
       DrugClaimSortOrder.sort_value(self.nomenclature)
     end
 
+    def names
+      @names ||= (self.drug_claim_aliases.pluck(:alias) + [self.name, self.primary_name]).map(&:upcase).to_set
+    end
+
     def original_data_source_url
       base_url = self.source.base_url
       name = self.name

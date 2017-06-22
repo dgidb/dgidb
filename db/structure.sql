@@ -50,7 +50,8 @@ CREATE TABLE chembl_molecule_synonyms (
     molregno integer,
     synonym character varying(200),
     molsyn_id integer,
-    chembl_molecule_id integer
+    chembl_molecule_id integer,
+    syn_type character varying(50)
 );
 
 
@@ -914,7 +915,14 @@ CREATE INDEX chembl_molecule_synonyms_molregno_idx ON chembl_molecule_synonyms U
 -- Name: chembl_molecule_synonyms_upper_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX chembl_molecule_synonyms_upper_idx ON chembl_molecule_synonyms USING btree (upper((synonym)::text));
+CREATE INDEX chembl_molecule_synonyms_upper_idx ON chembl_molecule_synonyms USING btree (upper((synonym)::text));
+
+
+--
+-- Name: chembl_molecules_chembl_id_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX chembl_molecules_chembl_id_idx ON chembl_molecules USING btree (chembl_id);
 
 
 --
@@ -936,6 +944,13 @@ CREATE INDEX chembl_molecules_upper_idx ON chembl_molecules USING btree (upper((
 --
 
 CREATE UNIQUE INDEX chembl_molecules_upper_idx1 ON chembl_molecules USING btree (upper((chembl_id)::text));
+
+
+--
+-- Name: drug_aliases_upper_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX drug_aliases_upper_idx ON drug_aliases USING btree (upper(alias));
 
 
 --
@@ -981,6 +996,13 @@ CREATE INDEX drug_claims_source_id_idx ON drug_claims USING btree (source_id);
 
 
 --
+-- Name: drugs_chembl_id_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX drugs_chembl_id_idx ON drugs USING btree (chembl_id);
+
+
+--
 -- Name: drugs_full_text; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -992,6 +1014,13 @@ CREATE INDEX drugs_full_text ON drugs USING gin (to_tsvector('english'::regconfi
 --
 
 CREATE INDEX drugs_lower_name_idx ON drugs USING btree (lower(name));
+
+
+--
+-- Name: drugs_upper_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX drugs_upper_idx ON drugs USING btree (upper(name));
 
 
 --
@@ -1822,3 +1851,5 @@ INSERT INTO schema_migrations (version) VALUES ('20170619191811');
 INSERT INTO schema_migrations (version) VALUES ('20170619204652');
 
 INSERT INTO schema_migrations (version) VALUES ('20170619205542');
+
+INSERT INTO schema_migrations (version) VALUES ('20170622142108');
