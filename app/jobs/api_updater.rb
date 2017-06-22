@@ -4,9 +4,9 @@ class ApiUpdater < Updater
       updater.update
       reschedule if recurring
       grouper = Grouper.new()
-      grouper.perform(group_genes = should_group_genes?, group_drugs = should_group_drugs?)
+      grouper.perform(should_group_genes?, should_group_drugs?)
       post_grouper = PostGrouper.new()
-      post_grouper.perform(cleanup_gene_claims = should_cleanup_gene_claims?)
+      post_grouper.perform(should_cleanup_gene_claims?)
     end
   end
 
