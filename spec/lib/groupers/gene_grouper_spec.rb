@@ -74,7 +74,7 @@ describe Genome::Groupers::GeneGrouper do
     grouper.run
 
     expect(DataModel::GeneAttribute.count).to eq 2
-    expect(DataModel::GeneAttribute.first.sources.count).to eq 2
+    expect(DataModel::GeneAttribute.where(name: 'test attribute').first.sources.count).to eq 2
   end
 
   it 'should add gene categories' do

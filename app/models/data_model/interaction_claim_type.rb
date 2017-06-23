@@ -4,7 +4,7 @@ module DataModel
     include Genome::Extensions::EnumerableType
     include Genome::Extensions::HasCacheableQuery
 
-    has_and_belongs_to_many :interaction_claims
+    has_and_belongs_to_many :interaction_claims, :join_table => 'interaction_claim_types_interaction_claims'
 
     cache_query :all_type_names, :all_interaction_type_names
 

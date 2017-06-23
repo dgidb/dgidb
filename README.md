@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/genome/dgi-db.png?branch=master)](https://travis-ci.org/genome/dgi-db)
+[![Build Status](https://secure.travis-ci.org/griffithlab/dgi-db.png?branch=master)](https://travis-ci.org/griffithlab/dgi-db)
 [![Code Climate](https://codeclimate.com/github/genome/dgi-db.png)](https://codeclimate.com/github/genome/dgi-db)
 
 ### Rails frontend to The McDonnell Genome Institute's drug gene interaction database.
