@@ -112,8 +112,26 @@ module Genome
             end
           end
         end
-        drug_attributes = drug.drug_attributes.pluck(:name, :value) # This requires Rails 4. Merging in Rails 5 upgrade before finishing.gi
-        # TODO: make drug_attributes uppercase, test if drug_claim_attributes are in drug_attributes, resolve.
+        drug_attributes = drug.drug_attributes.pluck(:name, :value)
+                              .map { |drug_attribute| drug_attribute.map(&:upcase) }
+                              .to_set
+        drug_claim.drug_claim_attributes.each do |drug_claim_attribute|
+          unless drug_attributes.member? [drug_claim_attribute.name.upcase, drug_claim_attribute.value.upcase]
+            drug_attribute = DataModel::DrugAttribute.create(name: drug_claim_attribute.name,
+                                                             value: drug_claim_attribute.value
+            )
+            drug_attribute.sources << drug_claim.source
+            drug << drug_attribute
+          else
+            drug_attribute = DataModel::DrugAttribute.where('upper(name) = ? and upper(value) = ?',
+                                                            drug_claim_attribute.name.upcase,
+                                                            drug_claim_attribute.value.upcase
+            ).first
+            unless drug_attribute.sources.member? drug_claim.source
+              drug_attribute.source << drug_claim.source
+            end
+          end
+        end
       end
     end
   end
