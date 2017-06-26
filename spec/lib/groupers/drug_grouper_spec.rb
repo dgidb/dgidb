@@ -59,4 +59,8 @@ describe Genome::Groupers::DrugGrouper do
   it 'should add a drug if the drug claim matches a molecule alias, and add the drug claim to the drug' do
     nil
   end
+
+  it 'should properly update drug flags after grouping' do
+    nil
+  end
 end
