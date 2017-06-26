@@ -17,7 +17,7 @@
             .controls
               .btn-group#toggleIdentifiers(data-toggle='buttons')
                 %label.btn.btn-primary.active#geneSearch(for='geneSearch' style="width: 150px; font-weight: bold")
-                  %input(type='radio' name='search_mode' value='genes' style='display:none;' checked='checked')
+                  %input(type='radio' name='search_mode' value='genes' style='display:none;')
                     Genes
                 %label.btn.btn-primary#drugSearch(for='drugSearch'style="width: 150px; font-weight: bold")
                   %input(type='radio' name='search_mode' value='drugs' style='display:none;') 
@@ -41,7 +41,7 @@
     .span8{style: "float: left; margin-left: 20px"}
       %div#gene_search_filters{style: "height: 172px; width: 360px", class: "well"}
         %label.btn.btn-primary Preset Filters
-        %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
+        %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
           %div
             %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "search_form"} 
               = "  FDA Approved"
@@ -53,7 +53,7 @@
               = "  Immunotherapies"
       %div#drug_search_filters{style: "height: 172px; width: 360px; display: none", class: "well"}
         %label.btn.btn-primary Preset Filters
-        %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
+        %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
           %div
             %input{type: "checkbox", value: "checked", name: "clinically_actionable", form: "search_form"} 
               = "  Clinically Actionable"
@@ -83,18 +83,22 @@
 
   =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
 
+
   :javascript
     $(document).ready(function() {
-      console.log("yo");
+      $('#geneSearch > input').prop("checked", true);
       $('#geneSearch').on("click", function() {
-        console.log("bruh");
+        console.log
+        $('#drugSearch > input').prop("checked", false);
+        $('#drug_search_filters').hide();
+        $('#geneSearch > input').prop("checked", true);
         $('#gene_search_filters').show();
-        $('#drug_search_filters').hide(); 
       });
       $('#drugSearch').on("click", function() {
-        console.log("brah");
+        $('#geneSearch > input').prop("checked", false);
+        $('#gene_search_filters').hide();
+        $('#drugSearch > input').prop("checked", true);
         $('#drug_search_filters').show();
-        $('#gene_search_filters').hide(); 
       });
     });
 
