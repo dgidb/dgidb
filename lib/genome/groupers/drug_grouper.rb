@@ -5,17 +5,13 @@ module Genome
       def run
         begin
           newly_added_claims_count = 0
-          # drug_claims_not_in_groups.find_in_batches do |claims|
-          drug_claims_not_in_groups[0..100].all do |claims|
+          drug_claims_not_in_groups.in_groups_of(1000, fill_with=false) do |claims|
             ActiveRecord::Base.transaction do
               grouped_claims = add_members(claims)
               newly_added_claims_count += grouped_claims.length
-              if grouped_claims.length > 0
-                add_attributes(grouped_claims)
-              end
             end
           end
-        end # until newly_added_claims_count == 0
+        end until newly_added_claims_count == 0
       end
 
       def add_members(claims)
@@ -85,7 +81,7 @@ module Genome
       end
 
       def drug_claims_not_in_groups
-        DataModel::DrugClaim.where(drug_id: nil).keep_if do |drug_claim|
+        DataModel::DrugClaim.where(drug_id: nil).to_a.keep_if do |drug_claim|
           !(
             direct_multimatch.member? drug_claim or
             molecule_multimatch.member? drug_claim or
@@ -99,9 +95,8 @@ module Genome
         drug_aliases = drug.drug_aliases.pluck(:alias).map(&:upcase).to_set
         drug_claim.drug_claim_aliases.each do |drug_claim_alias|
           unless drug_aliases.member? drug_claim_alias.alias.upcase
-            drug_alias = DataModel::DrugAlias.create(alias: drug_claim_alias.alias)
+            drug_alias = DataModel::DrugAlias.create(alias: drug_claim_alias.alias, drug: drug)
             drug_alias.sources << drug_claim.source
-            drug << drug_alias
           else
             drug_alias = DataModel::DrugAlias.where('upper(alias) = ? and drug_id = ?',
                                                     drug_claim_alias.alias.upcase,
@@ -118,10 +113,10 @@ module Genome
         drug_claim.drug_claim_attributes.each do |drug_claim_attribute|
           unless drug_attributes.member? [drug_claim_attribute.name.upcase, drug_claim_attribute.value.upcase]
             drug_attribute = DataModel::DrugAttribute.create(name: drug_claim_attribute.name,
-                                                             value: drug_claim_attribute.value
+                                                             value: drug_claim_attribute.value,
+                                                             drug: drug
             )
             drug_attribute.sources << drug_claim.source
-            drug << drug_attribute
           else
             drug_attribute = DataModel::DrugAttribute.where('upper(name) = ? and upper(value) = ?',
                                                             drug_claim_attribute.name.upcase,
