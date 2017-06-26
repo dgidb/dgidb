@@ -2,6 +2,10 @@ Fabricator(:drug, class_name: 'DataModel::Drug') do
   name { sequence(:name) { |i| "Drug ##{i}" } }
 end
 
+Fabricator(:drug_alias, class_name: 'DataModel::DrugAlias') do |f|
+  f.alias { sequence(:alias) { |i| "Drug Alias ##{i}" } }
+end
+
 Fabricator(:drug_claim, class_name: 'DataModel::DrugClaim') do
   name { sequence(:name) { |i| "Drug Claim ##{i}" } }
   source

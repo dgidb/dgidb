@@ -33,11 +33,10 @@ describe LookupRelatedDrugs do
     expect(results.first.instance_variable_get("@drug")).to eq(drug)
   end
 
-  it 'should find drugs that have drug claim aliases with matching names' do
+  it 'should find drugs that have drug aliases with matching names' do
     Fabricate(:drug, name: 'turkey')
     drug = Fabricate(:drug, name: 'sandwich meats')
-    drug_claim = Fabricate(:drug_claim, drug: drug, name: 'lunchable')
-    Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: 'turkey sandwich')
+    Fabricate(:drug_alias, drug: drug, alias: 'turkey sandwich')
     results = LookupRelatedDrugs.find('turkey')
     expect(results.size).to eq(1)
     expect(results.first.instance_variable_get("@drug")).to eq(drug)
