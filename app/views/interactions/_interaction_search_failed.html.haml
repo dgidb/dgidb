@@ -35,6 +35,8 @@
 :javascript
   $(".ambiguous").on("click", function() {
     name = "#" + $(this)[0].name;
+    console.log(name);
+    console.log("WHY");
     if($(this)[0].checked){
       $(name).show();
     }  
@@ -42,6 +44,7 @@
       $(name).hide();
     }
   });
+
   function toggleIcon(e) {
     $(e.target)
       .prev('.panel-heading')

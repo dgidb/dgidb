@@ -52,11 +52,10 @@
     =#render partial: 'shared/tour', locals: { tour: @tour }
     =render partial: 'layouts/disclaimer_modal'
   #push
-  %br
-  #footer{style: "height: 20px; background: white"}
-    .container
-      .container.muted.span12
-        %p.span5.offset3
+  #footer{style: "height: 20px; background: white; margin-top: 60px; text-align: center; width: 100%;"}
+    .container{style: "width: 100%;"}
+      .container.muted.span12{style: "width: 100%;"}
+        %p.span5{style: "width: 100%;"}
           ="DGIdb (v#{CURRENT_VERSION.version} - sha1 #{CURRENT_VERSION.sha})"
           •
           ="Last updated #{CURRENT_VERSION.time}"
