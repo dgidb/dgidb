@@ -1,3 +1,4 @@
+- definite_matches = definite_results + definite_no_interactions
 %div{style: "float: right"}
   %div.alert.alert-error
     %h3 
@@ -11,7 +12,7 @@
     %h3
       Unique Matches
     %div
-    - definite_results.each do |result|
+    - definite_matches.each do |result|
       %div
       - result[:identifiers].each do |entity|
         %input{class: "unique", type: "checkbox", name: "#{entity.name}", checked: 1}
@@ -19,8 +20,8 @@
 
 %div{style: "float: left; width: 1100px"}
   %ul(class="result-list" id="list-results")
-    -definite_results.each do |result|
-      -result[:identifiers].each do |entity|
+    - definite_matches.each do |result|
+      - result[:identifiers].each do |entity|
         %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name}
           = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity }
 

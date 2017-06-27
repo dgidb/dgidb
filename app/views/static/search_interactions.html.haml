@@ -31,7 +31,7 @@
               %button.btn.btn-small.btn-danger#clear(type='button') Clear Identifiers
               %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace with Demo List
     .span8{style: "float: left; margin-left: 20px"}
-      %div#gene_search_filters{style: "height: 172px; width: 360px", class: "well"}
+      %div.search_filters#gene_search_filters{style: "height: 172px; width: 360px", class: "well"}
         %label.btn.btn-primary Preset Filters
         %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
           %div
@@ -45,7 +45,8 @@
               = "  Immunotherapies"
         %div.filters
           / Looking for drugs <that are [FDA approved] [and/, Anti-neoplastic] [and/, and Immunotherapies]
-      %div#drug_search_filters{style: "height: 172px; width: 360px; display: none", class: "well"}
+
+      %div.search_filters#drug_search_filters{style: "height: 172px; width: 360px; display: none", class: "well"}
         %label.btn.btn-primary Preset Filters
         %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
           %div
@@ -81,9 +82,10 @@
 
   :javascript
     $(document).ready(function() {
+      //$('.search_filters > div.filters').
+
       $('#geneSearch > input').prop("checked", true);
       $('#geneSearch').on("click", function() {
-        console.log
         $('#drugSearch > input').prop("checked", false);
         $('#drug_search_filters').hide();
         $('#geneSearch > input').prop("checked", true);

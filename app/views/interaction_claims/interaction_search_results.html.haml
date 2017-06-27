@@ -29,16 +29,18 @@
         .tab-pane.active#successful
           .row-fluid#container 
             .span12
-              - definite_results = @search_results.definite_results.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers}}
-              =render partial: 'interactions/interaction_search_successful', locals: {definite_results: definite_results} #use @search_mode to determine type of view, just use one set of templates
+              - definite_results = @search_results.definite_results.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers}}
+              - definite_no_interactions = @search_results.definite_no_interactions.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers}}
+              = render partial: 'interaction_claims/interaction_search_successful', locals: {definite_results: definite_results, definite_no_interactions: definite_no_interactions} #use @search_mode to determine type of view, just use one set of templates
 
         .tab-pane.fade#failed
           .row-fluid#container
             .span12
-              - ambiguous_results = @search_results.ambiguous_results.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers}}
-              - failed_result = @search_results.no_results_results[0]
-              - failed_terms = @search_results.no_results_results[0].search_term
-              =render partial: 'interactions/interaction_search_failed', locals: {ambiguous_results: ambiguous_results, failed_terms: failed_terms}
+              - ambiguous_results = @search_results.ambiguous_results.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers}}
+              - ambiguous_no_interactions = @search_results.ambiguous_no_interactions.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers}}
+              - failed_results = @search_results.no_results_results.to_a
+              - failed_terms = failed_results.map{|result| result.search_term}
+              = render partial: 'interaction_claims/interaction_search_failed', locals: {ambiguous_results: ambiguous_results, ambiguous_no_interactions: ambiguous_no_interactions, failed_terms: failed_terms}
 
 :javascript
   $('table').each(function(index){
@@ -65,7 +67,7 @@
     if(activeTab.length) {
       $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
     } else {
-      $('a[href="' + "#summary" + '"]').trigger('click');
+      $('a[href="' + "#successful" + '"]').trigger('click');
     }
   });
 
@@ -74,7 +76,7 @@
     if (activeTab.length) {
       $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
     } else {
-      $('a[href="' + "#summary" + '"]').trigger('click');
+      $('a[href="' + "#successful" + '"]').trigger('click');
     }
   });
 
