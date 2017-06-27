@@ -29,7 +29,7 @@ describe Genome::Groupers::DrugGrouper do
     source = Fabricate(:source, source_db_name: 'Test Source')
     drug_claim = Fabricate(:drug_claim, name: 'Nonmatching Drug Name', source: source)
     Fabricate(:drug_claim_alias, alias: name, drug_claim: drug_claim)
-    Fabricate(:drug_claim_attribute, drug_claim: drug_claim)
+    Fabricate(:drug_claim_attribute, drug_claim: drug_claim, name: 'adverse reaction', value: 'true')
 
     grouper = Genome::Groupers::DrugGrouper.new
     grouper.run
@@ -41,11 +41,46 @@ describe Genome::Groupers::DrugGrouper do
   end
 
   it 'should add the drug claim if its name matches another grouped drug claim' do
-    nil
+    drug_name = 'Test Drug'
+    drug = Fabricate(:drug, name: drug_name)
+
+    source = Fabricate(:source, source_db_name: 'Test Source')
+    drug_claim = Fabricate(:drug_claim, name: 'Test Drug Trade Name', source: source)
+    Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: 'Test Drug')
+    Fabricate(:drug_claim_attribute, drug_claim: drug_claim, name: 'adverse reaction', value: 'true')
+
+    another_source = Fabricate(:source, source_db_name: 'Test Clinical Source')
+    another_drug_claim = Fabricate(:drug_claim, name: 'Test Drug Trade Name', source: another_source)
+    Fabricate(:drug_claim_alias, drug_claim: another_drug_claim, alias: 'Bogus Drug Name')
+    Fabricate(:drug_claim_attribute, drug_claim: another_drug_claim, name: 'kerbanol groups', value: 3)
+
+    grouper = Genome::Groupers::DrugGrouper.new
+    grouper.run
+    drug.reload
+    expect(drug.drug_claims.count).to eq 2
+    expect(drug.drug_aliases.count).to eq 2
+    expect(drug.drug_attributes.count).to eq 2
   end
 
   it 'should add the drug claim if its alias matches another grouped drug claim alias' do
-    nil
+    drug_name = 'Test Drug'
+    drug = Fabricate(:drug, name: drug_name)
+    source = Fabricate(:source, source_db_name: 'Test Source')
+    drug_claim = Fabricate(:drug_claim, name: 'Test Drug', source: source)
+    Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: 'Test Drug Trade Name')
+    Fabricate(:drug_claim_attribute, drug_claim: drug_claim, name: 'adverse reaction', value: 'true')
+
+    another_source = Fabricate(:source, source_db_name: 'Test Clinical Source')
+    another_drug_claim = Fabricate(:drug_claim, name: 'Bogus Drug Name', source: another_source)
+    Fabricate(:drug_claim_alias, drug_claim: another_drug_claim, alias: 'Test Drug Trade Name')
+    Fabricate(:drug_claim_attribute, drug_claim: another_drug_claim, name: 'kerbanol groups', value: 3)
+
+    grouper = Genome::Groupers::DrugGrouper.new
+    grouper.run
+    drug.reload
+    expect(drug.drug_claims.count).to eq 2
+    expect(drug.drug_aliases.count).to eq 1
+    expect(drug.drug_attributes.count).to eq 2
   end
 
   it 'should not add the drug claim if its alias matches multiple drugs' do
