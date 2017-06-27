@@ -8,7 +8,6 @@ module DataModel
     has_many :drug_aliases
     has_many :drug_attributes
 
-    before_save :claims_to_aliases
     before_save :populate_flags
 
     cache_query :all_drug_names, :all_drug_names
@@ -29,10 +28,6 @@ module DataModel
     private
     def populate_flags
       nil # TODO: Populate the Drug table flags
-    end
-
-    def claims_to_aliases
-      nil
     end
 
   end

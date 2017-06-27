@@ -92,14 +92,20 @@ module Genome
 
       def add_drug_claim_to_drug(drug_claim, drug)
         drug.drug_claims << drug_claim
+        drug_names = Set.new([drug.name, drug.chembl_id].compact.map(&:upcase))
         drug_aliases = drug.drug_aliases.pluck(:alias).map(&:upcase).to_set
-        drug_claim.drug_claim_aliases.each do |drug_claim_alias|
-          unless drug_aliases.member? drug_claim_alias.alias.upcase
-            drug_alias = DataModel::DrugAlias.create(alias: drug_claim_alias.alias, drug: drug)
+        drug_claim_names = drug_claim.drug_claim_aliases.map{|dca| dca.alias}.to_set
+        drug_claim_names += Set.new([drug_claim.name, drug_claim.primary_name].compact)
+        drug_claim_names.each do |drug_claim_name|
+          if drug_names.member? drug_claim_name.upcase
+            next
+          end
+          unless drug_aliases.member? drug_claim_name.upcase
+            drug_alias = DataModel::DrugAlias.create(alias: drug_claim_name, drug: drug)
             drug_alias.sources << drug_claim.source
           else
             drug_alias = DataModel::DrugAlias.where('upper(alias) = ? and drug_id = ?',
-                                                    drug_claim_alias.alias.upcase,
+                                                    drug_claim_name.upcase,
                                                     drug.id
             ).first
             unless drug_alias.sources.member? drug_claim.source

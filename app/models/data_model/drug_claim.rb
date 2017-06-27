@@ -23,7 +23,7 @@ module DataModel
     end
 
     def names
-      @names ||= (self.drug_claim_aliases.pluck(:alias) + [self.name, self.primary_name]).map(&:upcase).to_set
+      @names ||= (self.drug_claim_aliases.pluck(:alias) + [self.name, self.primary_name]).compact.map(&:upcase).to_set
     end
 
     def original_data_source_url
