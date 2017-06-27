@@ -1,5 +1,4 @@
 SET statement_timeout = 0;
-SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
@@ -1726,8 +1725,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170512141234'),
 ('20170512150855'),
 ('20170605204001'),
-('20170616211809'),
 ('20170619164047'),
-('20170619174047');
-
-
+('20170619174047'),
+('20170616211809');

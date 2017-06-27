@@ -3,19 +3,19 @@ module Genome
   module Importers
     module MyCancerGenome
       class MyCancerGenomeRow < Genome::Importers::DelimitedRow
+        attribute :drug_name
+        attribute :drug_trade_name, Array
+        attribute :drug_class
         attribute :gene_symbol
-        attribute :entrez_gene_id
         attribute :reported_gene_name
-        attribute :primary_drug_name
+        attribute :metadata_fda_approval
+        attribute :entrez_gene_id
         attribute :drug_development_name, Array
         attribute :drug_generic_name, Array
-        attribute :drug_trade_name, Array
         attribute :notes
-        attribute :drug_class
         attribute :interaction_type
 
-        def
-          valid?(opts = {})
+        def valid?(opts = {})
           true
         end
       end
