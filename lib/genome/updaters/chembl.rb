@@ -32,7 +32,7 @@ module Genome
         i = 0
         connection.exec( "SELECT * FROM molecule_dictionary").each do |record|
           new_records << get_params(record, mol_col_hash)
-          unless i % 50000
+          if (i % 50000) == 0
             DataModel::ChemblMolecule.create(new_records)
             new_records = []
           end

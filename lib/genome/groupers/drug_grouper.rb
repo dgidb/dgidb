@@ -5,7 +5,7 @@ module Genome
       def run
         begin
           newly_added_claims_count = 0
-          drug_claims_not_in_groups.in_groups_of(1000, fill_with=false) do |claims|
+          drug_claims_not_in_groups.in_groups_of(1000, false) do |claims|
             ActiveRecord::Base.transaction do
               grouped_claims = add_members(claims)
               newly_added_claims_count += grouped_claims.length
@@ -86,9 +86,9 @@ module Genome
       def drug_claims_not_in_groups
         DataModel::DrugClaim.where(drug_id: nil).to_a.keep_if do |drug_claim|
           !(
-            direct_multimatch.member? drug_claim or
-            molecule_multimatch.member? drug_claim or
-            indirect_multimatch.member? drug_claim
+            direct_multimatch.member? (drug_claim) ||
+            molecule_multimatch.member? (drug_claim) ||
+            indirect_multimatch.member? (drug_claim)
           )
         end
       end
