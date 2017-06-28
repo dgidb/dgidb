@@ -106,6 +106,7 @@ module Genome
           unless drug_aliases.member? drug_claim_name.upcase
             drug_alias = DataModel::DrugAlias.create(alias: drug_claim_name, drug: drug)
             drug_alias.sources << drug_claim.source
+            drug_aliases << drug_claim_name.upcase
           else
             drug_alias = DataModel::DrugAlias.where('upper(alias) = ? and drug_id = ?',
                                                     drug_claim_name.upcase,
@@ -126,6 +127,7 @@ module Genome
                                                              drug: drug
             )
             drug_attribute.sources << drug_claim.source
+            drug_attributes << [drug_claim_attribute.name.upcase, drug_claim_attribute.value.upcase]
           else
             drug_attribute = DataModel::DrugAttribute.where('upper(name) = ? and upper(value) = ?',
                                                             drug_claim_attribute.name.upcase,
