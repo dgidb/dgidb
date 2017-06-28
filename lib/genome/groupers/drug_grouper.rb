@@ -86,9 +86,9 @@ module Genome
       def drug_claims_not_in_groups
         DataModel::DrugClaim.where(drug_id: nil).to_a.keep_if do |drug_claim|
           !(
-            direct_multimatch.member? (drug_claim) ||
-            molecule_multimatch.member? (drug_claim) ||
-            indirect_multimatch.member? (drug_claim)
+            (direct_multimatch.member? drug_claim) ||
+            (molecule_multimatch.member? drug_claim) ||
+            (indirect_multimatch.member? drug_claim)
           )
         end
       end
