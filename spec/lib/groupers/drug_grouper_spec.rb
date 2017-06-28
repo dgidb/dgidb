@@ -158,6 +158,20 @@ describe Genome::Groupers::DrugGrouper do
 
   end
 
+  it 'should not add more than one copy of an alias from a single drug claim' do
+    drug = Fabricate(:drug)
+    drug_claim = Fabricate(:drug_claim, primary_name: drug.name, name: drug.chembl_id)
+    Fabricate(:drug_claim_alias, alias: 'My not-so-unique alias', drug_claim: drug_claim)
+    Fabricate(:drug_claim_alias, alias: 'My Not-So-Unique Alias', drug_claim: drug_claim)
+
+    grouper = Genome::Groupers::DrugGrouper.new
+    grouper.run
+
+    drug.reload
+    expect(drug.drug_aliases.count).to eq 1
+    expect(drug.drug_claims.first.drug_claim_aliases.count).to eq 2
+
+  end
 
   it 'should add a drug if the drug claim matches a molecule, and add the drug claim to the drug' do
     drug_name = 'Test Drug'
