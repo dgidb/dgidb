@@ -22,3 +22,8 @@ end
 Fabricator(:drug_claim_type, class_name: 'DataModel::DrugClaimType') do
   type { ['antineoplastic', ''].sample }
 end
+
+Fabricator(:drug_alias, class_name: 'DataModel::DrugAlias') do |f|
+  f.alias { sequence(:alias) { |i| "Drug Alias Name ##{i}" } }
+  drug
+end
