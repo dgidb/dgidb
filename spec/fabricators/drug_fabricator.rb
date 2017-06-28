@@ -41,5 +41,6 @@ end
 Fabricator( :chembl_molecule_synonym, class_name: 'DataModel::ChemblMoleculeSynonym') do
   chembl_molecule
   molregno { |attrs| attrs[:chembl_molecule].molregno }
+  synonym { sequence(:synonym) { |i| "Molecule Synonym Name ##{i}" } }
 end
 
