@@ -84,7 +84,6 @@ describe Genome::Groupers::DrugGrouper do
   end
 
   it 'should not add the drug claim if its alias matches multiple drugs' do
-    drug_name = 'Test Drug'
     drug = Fabricate(:drug, name: 'Test Drug')
     drug_alias = Fabricate(:drug_alias, drug: drug)
 
@@ -100,10 +99,39 @@ describe Genome::Groupers::DrugGrouper do
     grouper.run
     drug_claim.reload
     expect(drug_claim.drug).to be_nil
+    expect(grouper.indirect_multimatch.count).to eq 1
+  end
+
+  it 'should not add the drug claim if its name matches multiple drugs' do
+    nil
+  end
+
+  it 'should not add the drug claim if its name or aliases match multiple molecules' do
+    nil
+  end
+
+  it 'should not add the drug claim if its name or aliases match multiple molecule synonyms' do
+    nil
   end
 
   it 'should add a drug if the drug claim matches a molecule, and add the drug claim to the drug' do
-    nil
+    drug_name = 'Test Drug'
+    molecule = Fabricate(:chembl_molecule, pref_name: drug_name)
+    molecule_synonym = Fabricate(:chembl_molecule_synonym, chembl_molecule: molecule, synonym: 'Generic Trade Name')
+
+    source = Fabricate(:source, source_db_name: 'Test Source')
+    drug_claim = Fabricate(:drug_claim, name: 'Test Drug', source: source, primary_name: nil)
+    Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: 'Test Drug Trade Name')
+    Fabricate(:drug_claim_attribute, drug_claim: drug_claim, name: 'adverse reaction', value: 'true')
+
+    grouper = Genome::Groupers::DrugGrouper.new
+    grouper.run
+    drug_claim.reload
+    drug = drug_claim.drug
+    expect(drug).not_to be_nil
+    expect(drug.name).to eq drug_name
+    expect(drug.chembl_molecule).to eq molecule
+
   end
 
   it 'should add a drug if the drug claim matches a molecule alias, and add the drug claim to the drug' do

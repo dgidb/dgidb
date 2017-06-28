@@ -281,7 +281,7 @@ CREATE TABLE drugs (
     fda_approved boolean,
     immunotherapy boolean,
     anti_neoplastic boolean,
-    chembl_id character varying(255)
+    chembl_id character varying(255) NOT NULL
 );
 
 
@@ -1873,6 +1873,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170619191811'),
 ('20170619204652'),
 ('20170619205542'),
-('20170622142108');
+('20170622142108'),
+('20170628044755');
 
 

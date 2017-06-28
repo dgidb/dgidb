@@ -42,7 +42,7 @@ module Genome
           add_drug_claim_to_drug(drug_claim, drug)
           return drug_claim
         elsif molecule.many?
-          @molecule_multimatch << drug_claim
+          molecule_multimatch << drug_claim
           return nil
         end
 
@@ -52,7 +52,7 @@ module Genome
           add_drug_claim_to_drug(drug_claim, drug)
           return drug_claim
         elsif molecule_id.many?
-          @molecule_multimatch << drug_claim
+          molecule_multimatch << drug_claim
           return nil
         end
 
@@ -64,6 +64,9 @@ module Genome
           drug = DataModel::Drug.where(id: drug_id.first).first
           add_drug_claim_to_drug(drug_claim, drug)
           return drug_claim
+        elsif drug_id.many?
+          indirect_multimatch << drug_claim
+          return nil
         end
 
       end
@@ -133,6 +136,14 @@ module Genome
             end
           end
         end
+      end
+
+      def create_drug_from_molecule(molecule)
+        drug = molecule.create_drug(name: molecule.pref_name, chembl_id: molecule.chembl_id)
+        molecule.chembl_molecule_synonyms.each do |synonym|
+          DataModel::DrugAlias.create(alias: synonym, drug: drug)
+        end
+        drug
       end
     end
   end
