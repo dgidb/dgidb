@@ -239,4 +239,26 @@ describe Genome::Groupers::DrugGrouper do
     chembl_drug.send(:update_anti_neoplastic_add, chembl_drug.drug_claims.first)
     expect(chembl_drug.anti_neoplastic).to be_falsey
   end
+
+  it 'should rename drug name from molecule pref_name if pref_name is not unique' do
+    molecule = Fabricate(:chembl_molecule)
+    another_molecule = Fabricate(:chembl_molecule, pref_name: molecule.pref_name)
+
+    drug_claim = Fabricate(:drug_claim, name: molecule.pref_name, primary_name: nil)
+
+    grouper = Genome::Groupers::DrugGrouper.new
+    grouper.run
+    drug_claim.reload
+
+    expect(grouper.molecule_multimatch.count).to eq 0
+    expect(grouper.indirect_multimatch.count).to eq 1
+    expect(drug_claim.drug).to be_nil
+    expect(molecule.drug).not_to be_nil
+    expect(another_molecule.drug).not_to be_nil
+    expect(another_molecule.drug).not_to eq molecule.drug
+    expect(molecule.drug.drug_aliases.where(alias: molecule.pref_name).count).to eq 1
+    expect(another_molecule.drug.drug_aliases.where(alias: molecule.pref_name).count).to eq 1
+    expect(molecule.drug.primary_name).to eq "#{molecule.pref_name} (#{molecule.chembl_id})"
+    expect(another_molecule.drug.primary_name).to eq "#{molecule.pref_name} (#{another_molecule.chembl_id})"
+  end
 end
