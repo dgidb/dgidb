@@ -30,10 +30,15 @@
 :javascript
   $(".unique").on("click", function() {
     name = "#" + $(this)[0].name;
+    console.log(name);
     if($(this)[0].checked){
+      console.log($(name));
+      console.log("show");
       $(name).show();
     }  
     else{
+      console.log($(name));
+      console.log("hide");
       $(name).hide();
     }
   });

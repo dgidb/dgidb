@@ -15,7 +15,7 @@ class DrugResistance
   def resolve
     Set.new DataModel::Gene
       .joins(:gene_categories)
-      .where("gene_categories_genes.gene_claim_category_id = ?", '655bedfa9d71482796a5a34b87dfb297')
+      .where("gene_categories_genes.gene_claim_category_name = ?", 'DRUG RESISTANCE')
       .joins(:interactions)
       .pluck("interactions.id")
   end

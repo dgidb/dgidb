@@ -29,17 +29,22 @@
   %ul(class="result-list" id="list-results")
     - ambiguous_matches.each do |result|
       - result[:identifiers].each do |entity|
-        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name}
+        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name, style: "display: list-item;"}
           = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions] }
 
 
 :javascript
   $(".ambiguous").on("click", function() {
     name = "#" + $(this)[0].name;
+    console.log(name);
     if($(this)[0].checked){
+      console.log($(name));
+      console.log("show");
       $(name).show();
     }  
     else{
+      console.log($(name));
+      console.log("hide");
       $(name).hide();
     }
   });

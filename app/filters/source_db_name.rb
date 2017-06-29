@@ -17,6 +17,7 @@ class SourceDbName
     Set.new DataModel::Source
       .where('lower(source_db_name) = ?', @source_db_name)
       .joins(:interaction_claims)
-      .pluck('interaction_claims.id')
+      .joins(:interactions)
+      .pluck('interactions.id')
   end
 end

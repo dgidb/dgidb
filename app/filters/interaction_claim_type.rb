@@ -15,9 +15,8 @@ class InteractionClaimType
   def resolve
     Set.new DataModel::InteractionClaimType
       .where('lower(type) = ?', @type)
-      .includes(:interaction_claims)
-      .select("interaction_claims.id")
-      .first.interaction_claims
-      .pluck(:id)
+      .joins(:interaction_claims)
+      .joins(:interactions)
+      .pluck("interactions.id")
   end
 end

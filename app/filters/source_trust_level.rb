@@ -18,6 +18,7 @@ class SourceTrustLevel
       .where('lower(source_trust_levels.level) = ?', @source_trust_level)
       .joins(:source_trust_level)
       .joins(:interaction_claims)
-      .pluck('interaction_claims.id')
+      .joins(:interactions)
+      .pluck('interactions.id')
   end
 end
