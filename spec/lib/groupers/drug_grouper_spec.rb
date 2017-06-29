@@ -244,6 +244,8 @@ describe Genome::Groupers::DrugGrouper do
     molecule = Fabricate(:chembl_molecule)
     another_molecule = Fabricate(:chembl_molecule, pref_name: molecule.pref_name)
 
+    DataModel::ChemblMolecule.duplicate_pref_names true
+
     drug_claim = Fabricate(:drug_claim, name: molecule.pref_name, primary_name: nil)
 
     grouper = Genome::Groupers::DrugGrouper.new

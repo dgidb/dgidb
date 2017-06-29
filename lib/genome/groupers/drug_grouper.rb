@@ -55,11 +55,6 @@ module Genome
               next
             end
             drug = create_drug_from_molecule(molecule)
-            drug.name = "#{molecule.pref_name} (#{molecule.chembl_id})"
-            if DataModel::DrugAlias.where("drug_id = ? and upper(alias) = ?", drug.id, molecule.pref_name.upcase).none?
-              DataModel::DrugAlias.create(drug: drug, alias: molecule.pref_name)
-            end
-            drug.save!
             new_drugs << drug
           end
           if new_drugs.any?
@@ -135,7 +130,11 @@ module Genome
             drug_alias = DataModel::DrugAlias.where('upper(alias) = ? and drug_id = ?',
                                                     drug_claim_name.upcase,
                                                     drug.id
-            ).first
+            )
+            if drug_alias.empty? # This happened with a lookup for (upper(alias) = '(S)-α')
+              next
+            end
+            drug_alias = drug_alias.first
             unless drug_alias.sources.member? drug_claim.source
               drug_alias.sources << drug_claim.source
             end
@@ -158,7 +157,7 @@ module Genome
                                                             drug_claim_attribute.value.upcase
             ).first
             unless drug_attribute.sources.member? drug_claim.source
-              drug_attribute.source << drug_claim.source
+              drug_attribute.sources << drug_claim.source
             end
           end
         end
@@ -166,7 +165,11 @@ module Genome
 
       def create_drug_from_molecule(molecule)
         if molecule.drug.nil?
-          drug = molecule.create_drug(name: molecule.pref_name, chembl_id: molecule.chembl_id)
+          if molecule.duplicate_pref_name?
+            drug = molecule.create_and_uniquify_drug
+          else
+            drug = molecule.create_drug(name: molecule.pref_name, chembl_id: molecule.chembl_id)
+          end
           molecule.chembl_molecule_synonyms.each do |synonym|
             DataModel::DrugAlias.create(alias: synonym, drug: drug)
           end
