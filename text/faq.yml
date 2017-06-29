@@ -56,7 +56,8 @@ faq:
     - question: How are drugs defined in DGIdb?
       anchor: defined
       answer: >
-        The drug summary page shows the primary drug name, alternates names, and metadata for each gene as provided by each source of the data imported into DGIdb. In Version 3.0, drugs are first defined by ChEMBL but mapped together with drug records from other sources.
+        The drug summary page shows the primary drug name, alternates names, and metadata for each gene as provided by each source of the
+        data imported into DGIdb. In Version 3.0, drugs are first defined by ChEMBL but mapped together with drug records from other sources.
 
     - question: Where can I find the source code for DGIdb?
       anchor: source
