@@ -1153,6 +1153,13 @@ CREATE INDEX genes_lower_name_idx ON genes USING btree (lower(name));
 
 
 --
+-- Name: genes_upper_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX genes_upper_idx ON genes USING btree (upper(name));
+
+
+--
 -- Name: index_drug_attributes_on_drug_id_and_name_and_value; Type: INDEX; Schema: public; Owner: -
 --
 
