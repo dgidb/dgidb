@@ -17,7 +17,7 @@
     %div(class="cell category")
       %div{class: "item-panel"}
         %h4{style: "display: inline-block;"}
-          - interactions = entity.interactions
+          - interactions = entity.interactions & filtered_interactions
           - if interactions.count > 0
             %table{class: "search_panel table table-condensed table-striped", style: "table-layout:fixed;"}
               %tr

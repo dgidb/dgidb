@@ -23,7 +23,9 @@
     - definite_matches.each do |result|
       - result[:identifiers].each do |entity|
         %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name}
-          = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity }
+          - puts "interactions, come on"
+          - puts result[:interactions].inspect
+          = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions] }
 
 :javascript
   $(".unique").on("click", function() {

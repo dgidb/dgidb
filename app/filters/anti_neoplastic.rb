@@ -15,7 +15,7 @@ class AntiNeoplastic
   def resolve
     Set.new DataModel::Drug
       .where(anti_neoplastic: true)
-      .joins(interactions: :interaction_claims)
-      .pluck("interaction_claims.id")
+      .joins(:interactions)
+      .pluck("interactions.id")
   end
 end

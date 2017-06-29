@@ -1,6 +1,6 @@
 class InteractionSearchResult
 
-  attr_accessor :search_term, :identifiers, :interaction_claims, :type
+  attr_accessor :search_term, :identifiers, :interactions, :type
 
   def initialize(search_terms, identifiers, type = 'genes')
     @search_term = search_terms.join(', ')
@@ -8,18 +8,16 @@ class InteractionSearchResult
     @type = type
     @identifiers = identifiers.uniq
     if type == 'genes'
-      results = identifiers.flat_map { |g| g.gene_claims }
-        .flat_map{ |gc| gc.interaction_claims }
+      results = identifiers.flat_map { |g| g.interactions}
         .uniq
-      @interaction_claims = results.reject do |ic|
-        ic.drug_claim.drug.nil?
+      @interactions = results.reject do |interaction|
+        interaction.drug.nil?
       end
     else
-      results = identifiers.flat_map { |d| d.drug_claims }
-        .flat_map{ |dc| dc.interaction_claims }
+      results = identifiers.flat_map { |d| d.interactions }
         .uniq
-      @interaction_claims = results.reject do |ic|
-        ic.gene_claim.gene.nil?
+      @interactions = results.reject do |interaction|
+        interaction.gene.nil?
       end
     end
   end
@@ -37,12 +35,12 @@ class InteractionSearchResult
   end
 
   def has_interactions?
-    interaction_claims.length > 0
+    @interactions.length > 0
   end
 
   # yield passes interaction to each block in filter_results from lookup_interactions.rb
   def filter_interactions
-    @interaction_claims = @interaction_claims.select{ |interaction| yield interaction }
+    @interactions = @interactions.select{ |interaction| yield interaction }
   end
 
   def match_type_label

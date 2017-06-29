@@ -15,7 +15,7 @@ class FdaApprovedDrug
   def resolve
     Set.new DataModel::Drug
       .where(fda_approved: true)
-      .joins(interactions: :interaction_claims)
-      .pluck("interaction_claims.id")
+      .joins(:interactions)
+      .pluck("interactions.id")
   end
 end
