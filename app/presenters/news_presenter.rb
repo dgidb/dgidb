@@ -15,10 +15,10 @@ class NewsPresenter < SimpleDelegator
      headline = link_to(@unread_item['headline'], '/news')
 
      content_tag(:p) do
-       concat content_tag(:hr)
+       concat content_tag(:hr, "", style: "margin-top: 0px; margin-bottom: 5px;")
        concat content_tag(:strong, 'Unread News: ')
        concat content_tag(:strong, headline)
-       concat content_tag(:hr)
+       concat content_tag(:hr, "", style: "margin-top: 5px; margin-botom: 0px")
      end
    else
      ''

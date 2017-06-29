@@ -11,7 +11,7 @@
   %body
     #wrap
       .container-fluid{ :id => "content"}
-        .navbar.navbar-fixed-top.navbar-inverse{style: "margin-bottom: -5px"}
+        .navbar.navbar-fixed-top.navbar-inverse{style: "margin-bottom: 0px"}
           .navbar-inner
             %a.brand(href="/")
               %img{:src => "/assets/dgidb-header-branding_128c.png", :class => "logo", :width => "500"}
@@ -42,7 +42,7 @@
                     %a(href="/contact") Contact
                     %a{href: "#", data: {toggle: 'modal', target:'#disclaimer-modal'}} View Disclaimer
         .container-fluid
-          .page-header{style: "margin-top: -20px"}
+          .page-header{style: "margin-top: -10px; padding: 0"}
             =@news.news_ticker
             =h yield(:header)
         .container-fluid

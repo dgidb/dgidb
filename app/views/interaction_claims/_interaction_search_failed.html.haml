@@ -3,7 +3,9 @@
   %div.well{style: "margin-top: 15px;"}
     %h3{style: "margin-top: -5px;"}
       Unmatched Terms
-    = failed_terms.join(", ")
+    - failed_terms.each do |term|
+      %li
+        = term
 
   %div.well{style: "margin-top: -5px;"}
     %h3{style: "margin-top: -5px;"}
