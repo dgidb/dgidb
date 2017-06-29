@@ -18,9 +18,6 @@ class LookupDrugs
           results_to_drug_groups[result.name] << result
         when DataModel::DrugAlias
           results_to_drug_groups[result.alias] << result.drug
-        #Can we get rid of this case?
-        when DataModel::DrugClaim
-          results_to_drug_groups[result.name] << result.drug
       end
     end
     results_to_drug_groups
@@ -32,8 +29,6 @@ class LookupDrugs
     search_terms = search_terms - drug_results.map(&:name)
     drug_alias_results = DataModel::DrugAlias.send(scope).where(alias: search_terms)
     search_terms = search_terms - drug_alias_results.map(&:alias)
-    #Can we get rid of this case
-    drug_claim_results = DataModel::DrugClaim.send(scope).where(name: search_terms)
 
     drug_results.concat(drug_alias_results).concat(drug_claim_results)
   end
