@@ -23,10 +23,7 @@ class LookupInteractions
     filter = create_filter_from_params(params)
     # actually filter down the results we want
     filter_results(interaction_results, filter)
-
     # return filtered set of interactions
-    puts "interaction results"
-    puts interaction_results.inspect
     interaction_results
   end
 
@@ -35,12 +32,10 @@ class LookupInteractions
   #for that result if it doesn't meet the filter
   def self.filter_results(interaction_results, filter)
     # if no filters were actually applied, then this does nothing
-    if filter != 0
-      interaction_results.each do |result|
-        # underlying select operation in filter_interactions from interaction_search_result.rb
-        result.filter_interactions do |interaction|
-          filter.include?(interaction.id)
-        end
+    interaction_results.each do |result|
+      # underlying select operation in filter_interactions from interaction_search_result.rb
+      result.filter_interactions do |interaction|
+        filter.include?(interaction.id)
       end
     end
   end

@@ -1,18 +1,10 @@
 module FilterHelper
   def construct_filter(params_to_filters_map, params, filter = FilterChain.new)
-    # n keeps track of number of filters applied
-    n = 0
     params_to_filters_map.each do |param_key, filter_name|
      if should_filter?(param_key, params)
       add_filter(filter, params[param_key], filter_name)
-      n += 1
      end
     end
-    # if the number of filters applied is greater than 0, then we create a filter
-    # otherwise, we basically just return a 0 which signifies that we should not run any further filtering steps
-    puts "n:"
-    puts n.inspect
-    n > 0 ? filter : 0
   end
 
   private
