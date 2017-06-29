@@ -43,6 +43,11 @@
               = render partial: 'interaction_claims/interaction_search_failed', locals: {ambiguous_results: ambiguous_results, ambiguous_no_interactions: ambiguous_no_interactions, failed_terms: failed_terms}
 
 :javascript
+  $(".sidebar-toggle").on("click", function() {
+    name = "#" + this.name;
+    $(name).toggle();
+  });
+
   $('table').each(function(index){
     $(this).find('> tbody > tr').hide().slice(0, 11).show();
   });

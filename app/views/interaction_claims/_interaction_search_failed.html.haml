@@ -1,12 +1,12 @@
 - ambiguous_matches = ambiguous_results + ambiguous_no_interactions
 %div{style: "float: right"}
-  %div.alert.alert-error
-    %h3 
+  %div.well{style: "margin-top: 15px;"}
+    %h3{style: "margin-top: -5px;"}
       Unmatched Terms
     = failed_terms.join(", ")
 
-  %div.well
-    %h3
+  %div.well{style: "margin-top: -5px;"}
+    %h3{style: "margin-top: -5px;"}
       Multiple Matches
     %div{style: "width: 200px; padding: 0", class: "container demo"}
       %div(class="panel-group" id="accordion" role="tablist" aria-multiselectable="true")
@@ -22,33 +22,16 @@
             %div{class: "panel-body"}
             - result[:identifiers].each do |entity|
               %div
-                %input{class: "ambiguous", type: "checkbox", name: "#{entity.name}", checked: 1}
+                %input{class: "ambiguous sidebar-toggle", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
                   = entity.name
 
 %div{style: "float: left; width: 1100px"}
   %ul(class="result-list" id="list-results")
     - ambiguous_matches.each do |result|
       - result[:identifiers].each do |entity|
-        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name, style: "display: list-item;"}
+        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-ambiguous", style: "display: list-item;"}
           = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions] }
-
-
 :javascript
-  $(".ambiguous").on("click", function() {
-    name = "#" + $(this)[0].name;
-    console.log(name);
-    if($(this)[0].checked){
-      console.log($(name));
-      console.log("show");
-      $(name).show();
-    }  
-    else{
-      console.log($(name));
-      console.log("hide");
-      $(name).hide();
-    }
-  });
-
   function toggleIcon(e) {
     $(e.target)
       .prev('.panel-heading')

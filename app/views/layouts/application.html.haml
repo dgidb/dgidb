@@ -1,5 +1,5 @@
 !!! 5
-%html
+%html.wrap
   %head
     %title=h yield(:title)
     =stylesheet_link_tag    "application",   media: 'all'
@@ -61,6 +61,9 @@
           ="Last updated #{CURRENT_VERSION.time}"
 
   :css
+    .wrap{ 
+      width:100%; min-width:1400px; max-width:1375px; 
+    }
     .dropdown-menu {
       margin-top: 1em;
     }
