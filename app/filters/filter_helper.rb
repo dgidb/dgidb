@@ -1,5 +1,6 @@
 module FilterHelper
   def construct_filter(params_to_filters_map, params, filter = FilterChain.new)
+    
     params_to_filters_map.each do |param_key, filter_name|
      if should_filter?(param_key, params)
       add_filter(filter, params[param_key], filter_name)
@@ -21,6 +22,7 @@ module FilterHelper
 
   # is it going to be problematic if I don't have a param_to_count_mapping for FDA drugs since it's not really like I'm turning off or on certain types, it's just binary
   def should_filter?(param_value, params)
+    
     if params[param_value] == "checked"
       true
     else 

@@ -16,7 +16,7 @@ class GeneClaimCategoryInteraction
   def resolve
     Set.new DataModel::GeneClaimCategory
       .where('lower(gene_claim_categories.name) = ?', @category)
-      .joins(gene_claims: [genes: [gene_claims: [interaction_claims: [:interactions]]]])
+      .joins(gene_claims: [gene: [:interactions]])
       .select("interactions.id")
       .pluck('interactions.id')
   end
