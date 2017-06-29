@@ -29,7 +29,7 @@
                   Info
                   =@news.unread_news_badge
                   %b.caret
-                %ul.dropdown-menu
+                %ul.dropdown-menu{style: "position: absolute; top: 100%; z-index: 1000; float: left; min-width: 150px; padding: 5px 0; margin: 2px 0 0; list-style: none; background-clip: padding-box; left: auto; right: 0;"}
                   %li
                     %a(href="/getting_started") Getting Started
                     %a(href="/api") API Documentation
@@ -59,6 +59,32 @@
           ="DGIdb (v#{CURRENT_VERSION.version} - sha1 #{CURRENT_VERSION.sha})"
           •
           ="Last updated #{CURRENT_VERSION.time}"
+
+  :css
+    .dropdown-menu {
+      margin-top: 1em;
+    }
+
+    .dropdown-menu:before,
+    .dropdown-menu:after{
+      content: ' ';
+      display: block;
+      border-style: solid;
+      border-width: 0 .5em .8em .5em;
+      border-color: transparent;
+      position: absolute;
+      right: 0.8em;
+    }
+
+    .dropdown-menu:before {
+      top: -.8em;
+      border-bottom-color: rgba(0,0,0,0.5);
+    }
+
+    .dropdown-menu:after {
+      top: -.7em;
+        border-bottom-color: #fff;
+    }
 
   :javascript
     $(document).ready(function(){
