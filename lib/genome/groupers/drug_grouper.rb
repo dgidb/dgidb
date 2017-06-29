@@ -165,9 +165,13 @@ module Genome
       end
 
       def create_drug_from_molecule(molecule)
-        drug = molecule.create_drug(name: molecule.pref_name, chembl_id: molecule.chembl_id)
-        molecule.chembl_molecule_synonyms.each do |synonym|
-          DataModel::DrugAlias.create(alias: synonym, drug: drug)
+        if molecule.drug.nil?
+          drug = molecule.create_drug(name: molecule.pref_name, chembl_id: molecule.chembl_id)
+          molecule.chembl_molecule_synonyms.each do |synonym|
+            DataModel::DrugAlias.create(alias: synonym, drug: drug)
+          end
+        else
+          return molecule.drug
         end
         drug
       end
