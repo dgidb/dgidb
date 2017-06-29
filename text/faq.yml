@@ -49,9 +49,14 @@ faq:
     - question: How are genes defined in DGIdb?
       anchor: defined
       answer: >
-        The gene summary page shows the primary name, alternate names and meta-data for each gene locus as provided by each source of data
+        The gene summary page shows the primary name, alternate names and metadata for each gene locus as provided by each source of data
         imported into DGIdb. Genes in DGIdb are first defined by Entrez but mapped together with gene records from other sources by Entrez ID,
         Ensembl ID, UniProt ID or alternate names/synonyms in that order of preference.
+
+    - question: How are drugs defined in DGIdb?
+      anchor: defined
+      answer: >
+        The drug summary page shows the primary drug name, alternates names, and metadata for each gene as provided by each source of the data imported into DGIdb. In Version 3.0, drugs are first defined by ChEMBL but mapped together with drug records from other sources.
 
     - question: Where can I find the source code for DGIdb?
       anchor: source
