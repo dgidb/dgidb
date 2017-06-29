@@ -1,4 +1,4 @@
-class CreateChemblMoleculeSynonyms < ActiveRecord::Migration
+class CreateChemblMoleculeSynonyms < ActiveRecord::Migration[4.2]
   def change
     create_table :chembl_molecule_synonyms do |t|
       t.integer :molregno
