@@ -9,7 +9,7 @@ faq:
     - question: What is the goal of DGIdb?
       anchor: goal
       answer: >
-        To help you annotate your genes of interest with respect to known drug-gene interactions and potential druggability.
+        The goal of DGIdb is to help you annotate your genes of interest with respect to known drug-gene interactions and potential druggability.
 
     - question: How do I cite DGIdb?
       anchor: cite
@@ -57,7 +57,7 @@ faq:
       anchor: source
       answer: >
         The code for DGIdb is available at <a href="https://github.com/genome/dgi-db">github</a><i class="icon-share"></i>.
-        Refer to the Downloads section for more details.
+        Please refer to the Downloads section for more details.
 
     - question: I have a source of druggable genes or drug-gene interactions that I would like to add to DGIdb. How do I do that?
       anchor: add
