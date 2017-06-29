@@ -14,7 +14,7 @@ class LookupCategories
 
   def self.gene_names_in_category(category_name)
     DataModel::GeneClaimCategory
-      .joins(gene_claims: [:gene])
+      .joins(:genes)
       .where(name: category_name.upcase)
       .order('genes.name')
       .pluck('genes.name')

@@ -7,19 +7,7 @@ class InteractionSearchResult
     @search_terms = search_terms
     @type = type
     @identifiers = identifiers.uniq
-    if type == 'genes'
-      results = identifiers.flat_map { |g| g.interactions}
-        .uniq
-      @interactions = results.reject do |interaction|
-        interaction.drug.nil?
-      end
-    else
-      results = identifiers.flat_map { |d| d.interactions }
-        .uniq
-      @interactions = results.reject do |interaction|
-        interaction.gene.nil?
-      end
-    end
+    @interactions = identifiers.flat_map(&:interactions).uniq
   end
 
   def is_ambiguous?
@@ -35,7 +23,7 @@ class InteractionSearchResult
   end
 
   def has_interactions?
-    @interactions.length > 0
+    interactions.length > 0
   end
 
   # yield passes interaction to each block in filter_results from lookup_interactions.rb
