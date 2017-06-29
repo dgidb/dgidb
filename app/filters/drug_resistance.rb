@@ -13,9 +13,11 @@ class DrugResistance
   end
 
   def resolve
+    category_id = DataModel::GeneClaimCategory.where(name: 'DRUG RESISTANCE').first.id
+
     Set.new DataModel::Gene
       .joins(:gene_categories)
-      .where("gene_categories_genes.gene_claim_category_name = ?", 'DRUG RESISTANCE')
+      .where("gene_categories_genes.gene_claim_category_id = ?", category_id)
       .joins(:interactions)
       .pluck("interactions.id")
   end

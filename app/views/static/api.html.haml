@@ -7,9 +7,9 @@
     %small=tx 'title_small'
 -cache do
   .row
-    .span3#navbar
-      #api-sidebar.well.affix
-        %ul.nav.nav-list
+    .span3#navbar{style: "float: left; display: block; font-size: 14px; box-sizing: border-box;"}
+      #api-sidebar.well.affix{style: "min-height: 20px; padding: 19px; margin-bottom: 20px; display: block;"}
+        %ul.nav.nav-list{style: "padding-left: 15px; padding-right: 15px; margin-bottom: 0px; margin-left: 0px; display: block; line-height: 20px;"}
           %li.nav-header Introduction
           %li.nav-header Endpoints
           %li
@@ -45,7 +45,7 @@
           %li
             %a{href: '#shell-sample'}Shell
           %li.divider
-    .span9
+    .span9{style: "float: left; width: 700px; margin-left: 20px; display: block;"}
       %h2 Introduction
       %p
         The DGIdb API can be used to query for drug-gene interactions in your own applications
@@ -555,6 +555,67 @@
           %pre
             curl http://dgidb.genome.wustl.edu/api/v1/interactions.json<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank\&interaction_type=inhibitor | python -mjson.tool<br>
       %hr
+
+  :css
+    .nav > li {
+      position: relative;
+      display: block;
+    }
+    .nav-list>li>a {
+      padding: 3px 15px;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+    .nav>li>a {
+      display: block;
+    }
+
+    h2 {
+      font-size: 31.5px;
+      line-height: 40px;
+      margin: 10px 0;
+      font-family: inherit;
+      font-weight: bold;
+      color-inherit;
+    }
+    .label, .badge {
+      background-color: #999999;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+    .label-info {
+      background-color: #5bc0de;
+      display: inline;
+    }
+    list .nav-header {
+      margin-left: -15px;
+      margin-right: -15px;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    }
+    .nav-header {
+      display: block;
+      padding: 3px 15px;
+      font-size: 11px;
+      font-weight: bold;
+      line-height: 20px;
+      color: #999999;
+      text-transform: uppercase;
+    }
+    .nav-list .divider {
+      height: 1px;
+      margin: 9px 1px;
+      overflow: hidden;
+      background-color: #e5e5e5;
+      border-botom: 1px solid #ffffff;
+    }
+    li {
+      line-height: 20px;
+    }
+    li {
+      display: list-item;
+      text-align: -webkit-match-parent;
+    }
+
   :javascript
     $(document).ready(function() {
       $('body').attr('data-spy', 'scroll');

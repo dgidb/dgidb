@@ -13,9 +13,11 @@ class ClinicallyActionable
   end
 
   def resolve
+    category_id = DataModel::GeneClaimCategory.where(name: 'CLINICALLY ACTIONABLE').first.id
+
     Set.new DataModel::Gene
       .joins(:gene_categories)
-      .where("gene_categories_genes.gene_claim_category_name = ?", 'CLINICALLY ACTIONABLE')
+      .where("gene_categories_genes.gene_claim_category_id = ?", category_id)
       .joins(:interactions)
       .pluck("interactions.id")
   end
