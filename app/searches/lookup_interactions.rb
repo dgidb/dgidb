@@ -31,9 +31,7 @@ class LookupInteractions
   #for each interaction in each result, remove it from the list of interactions
   #for that result if it doesn't meet the filter
   def self.filter_results(interaction_results, filter)
-    # if no filters were actually applied, then this does nothing
     interaction_results.each do |result|
-      # underlying select operation in filter_interactions from interaction_search_result.rb
       result.filter_interactions do |interaction|
         filter.include?(interaction.id)
       end

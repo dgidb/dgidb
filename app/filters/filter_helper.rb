@@ -5,6 +5,7 @@ module FilterHelper
       add_filter(filter, params[param_key], filter_name)
      end
     end
+    filter
   end
 
   private
