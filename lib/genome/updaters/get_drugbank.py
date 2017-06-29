@@ -1,11 +1,14 @@
-__author__ = 'Alex H Wagner'
+__author__ = 'Kelsy C Cotto'
 
-import wget
 import zipfile
 import os
+import sys
 import xml.etree.ElementTree as ET
 import csv
 import re
+import ssl
+import requests
+from requests.auth import HTTPBasicAuth
 from version_logger import Version
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -14,12 +17,14 @@ from get_entrez import Entrez
 
 class DrugBank():
 
-    def __init__(self):
+    def __init__(self, username, password):
         self.online_version = None
         self.get_online_version()
         self.version = Version('DrugBank', version=self.online_version)
         self.logged_version = self.version.last_logged_version()
         self.interactions = self.drug_info = None
+        self.username = username
+        self.password = password
 
     def is_current(self):
         """Returns True if local versions of Entrez files are up-to-date."""
@@ -27,7 +32,8 @@ class DrugBank():
 
     def get_online_version(self):
         print('Checking DrugBank Version...')
-        html = urlopen('http://www.drugbank.ca/downloads')
+        context = ssl._create_unverified_context()
+        html = urlopen('http://www.drugbank.ca/downloads', context=context)
         bsObj = BeautifulSoup(html.read(), "html.parser")
         r = re.compile(r'Version ([\d\.]+)')
         match = r.search(bsObj.h1.text)
@@ -36,14 +42,22 @@ class DrugBank():
         else:
             raise ValueError('Error loading online version.')
 
-    @staticmethod
-    def download_files():
+    def download_file(self, url, local_filename):
+        # NOTE the stream=True parameter
+        r = requests.get(url, stream=True, allow_redirects=True, auth=HTTPBasicAuth(self.username, self.password))
+        with open(local_filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk:  # filter out keep-alive new chunks
+                    f.write(chunk)
+
+    def download_files(self):
         print('Downloading DrugBank XML...')
-        filename = wget.download("http://www.drugbank.ca/system/downloads/current/drugbank.xml.zip")
+        filename = 'data/drugbank.zip'
+        self.download_file('https://www.drugbank.ca/releases/5-0-6/downloads/all-full-database', filename)
 
         print('\nExtracting DrugBank XML...')
         zfile = zipfile.ZipFile(filename)
-        zfile.extract('drugbank.xml', 'data')
+        zfile.extract('full database.xml', 'data')
         os.remove(filename)
         e = Entrez()
         e.update()
@@ -86,7 +100,7 @@ class DrugBank():
                     continue
                 if line[0] != '9606':
                     continue
-                uniprot_id = line[5].split('.',1)[0]
+                uniprot_id = line[5].split('.', 1)[0]
                 if not r.match(uniprot_id):
                     continue
                 entrez_id = line[1]
@@ -95,7 +109,7 @@ class DrugBank():
         print('Parsing DrugBank XML...')
         ns = {'entry': 'http://www.drugbank.ca'}
 
-        tree = ET.parse('data/drugbank.xml')
+        tree = ET.parse('data/full database.xml')
         drugbank = tree.getroot()
         drugs = drugbank.findall('entry:drug', ns)
 
@@ -138,7 +152,7 @@ class DrugBank():
                 organism = target.find('entry:organism', ns).text
                 if organism != 'Human':
                     continue
-                gene_id = target.find('entry:id',ns).text
+                gene_id = target.find('entry:id', ns).text
                 known_action = target.find('entry:known-action', ns).text
                 target_actions = set()
                 for action in target.find('entry:actions', ns):
@@ -179,7 +193,7 @@ class DrugBank():
                                 except KeyError:
                                     no_ensembl += 1
                                 hgnc_success += 1
-                        elif identifier.find('entry:resource',ns).text == 'UniProtKB':
+                        elif identifier.find('entry:resource', ns).text == 'UniProtKB':
                             uniprot_id = identifier.find('entry:identifier', ns).text
                             if not synonyms:
                                 try:
@@ -246,6 +260,11 @@ class DrugBank():
 
 
 if __name__ == '__main__':
-    db = DrugBank()
+    if 'DRUGBANK_USERNAME' not in os.environ or 'DRUGBANK_PASSWORD' not in os.environ:
+        print('Missing DRUGBANK_USERNAME and/or DRUGBANK_PASSWORD environment variables.  Please set these and try again')
+        sys.exit(-1)
+    username = os.environ['DRUGBANK_USERNAME']
+    password = os.environ['DRUGBANK_PASSWORD']
+    db = DrugBank(username, password)
     db.update()
     print('Done.')
