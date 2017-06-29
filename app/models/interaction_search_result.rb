@@ -28,8 +28,7 @@ class InteractionSearchResult
 
   # yield passes interaction to each block in filter_results from lookup_interactions.rb
   def filter_interactions
-    @interactions
-    #@interactions = @interactions.select{ |interaction| yield interaction }
+    @interactions = interactions.select{ |interaction| yield interaction }
   end
 
   def match_type_label
