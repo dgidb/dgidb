@@ -10,7 +10,8 @@ module Genome
           source_db_version: '20-Jun-2017',
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'MyCancerGenome',
-          full_name: 'My Cancer Genome'
+          full_name: 'My Cancer Genome',
+          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
         }
       end
 
