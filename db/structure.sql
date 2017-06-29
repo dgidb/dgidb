@@ -108,7 +108,7 @@ CREATE TABLE chembl_molecules (
     withdrawn_year integer,
     withdrawn_country text,
     withdrawn_reason text,
-    drug_id integer
+    drug_id text
 );
 
 
@@ -978,6 +978,13 @@ CREATE UNIQUE INDEX chembl_molecules_chembl_id_idx ON chembl_molecules USING btr
 
 
 --
+-- Name: chembl_molecules_drug_id_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX chembl_molecules_drug_id_idx ON chembl_molecules USING btree (drug_id);
+
+
+--
 -- Name: chembl_molecules_molregno_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1143,13 +1150,6 @@ CREATE INDEX genes_full_text ON genes USING gin (to_tsvector('english'::regconfi
 --
 
 CREATE INDEX genes_lower_name_idx ON genes USING btree (lower(name));
-
-
---
--- Name: index_chembl_molecules_on_drug_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_chembl_molecules_on_drug_id ON chembl_molecules USING btree (drug_id);
 
 
 --
@@ -1874,6 +1874,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170619204652'),
 ('20170619205542'),
 ('20170622142108'),
-('20170628044755');
+('20170628044755'),
+('20170629024912');
 
 
