@@ -5,6 +5,7 @@ class PostGrouper
       delete_orphaned_gene_claims()
     end
     update_counts()
+    update_trust_levels()
   end
 
   def delete_orphaned_gene_claims
@@ -15,5 +16,9 @@ class PostGrouper
 
   def update_counts
     Genome::Normalizers::PopulateCounters.populate_source_counters()
+  end
+
+  def update_trust_levels
+    Genome::Normalizers::SourceTrustLevel.populate_trust_levels()
   end
 end

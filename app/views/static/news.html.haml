@@ -8,9 +8,13 @@
 - cache do
   .container-fluid
     .row-fluid
-      .span10
+      .span12
         -to("posts").reverse_each do |q|
-          %p.lead=q['headline']
-          %em.small=q['date']
-          %p=q['article'].html_safe
-          %hr
+          .panel.panel-default
+            .panel-heading
+              %h3.panel-title
+                =q['headline']
+                %em.pull-right.small
+                  =q['date']
+            .panel-body
+              =q['article'].html_safe
