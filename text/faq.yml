@@ -128,7 +128,7 @@ faq:
         be able to see if multiple independent sources report the same findings. Using this as a filter may help you disqualify some spurious
         entries and have increased confidence in others.
 
-    - question: Some druggable gene categories seem very inclusive ... for example are there really >800 human kinases?
+    - question: Some druggable gene categories seem very inclusive. For example, are there really >800 human kinases?
       anchor: inclusive
       answer: >
         This is by design. Druggable gene categories are aggregated from multiple sources, some of which are predictive in nature. Predictions based on
