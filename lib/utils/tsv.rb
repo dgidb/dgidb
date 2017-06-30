@@ -35,7 +35,6 @@ module Utils
         File.open(filename, 'w') do |file|
           self.send("print_#{type}_header".to_sym, file)
           query.find_each do |gene|
-            # TODO: Filter PharmGKB and DrugBank here
             self.send("print_#{type}_row".to_sym, file, gene)
           end
         end
@@ -68,7 +67,10 @@ module Utils
             gene.name,
             gene.long_name,
             gene.gene_claims
-              .select { |gc| gc.gene_claim_categories.map(&:name).include?(category_name) }
+              .select do |gc|
+                gc.gene_claim_categories.map(&:name).include?(category_name) &&
+                !(license_restricted? gc.source.source_db_name)
+              end
               .map { |gc| gc.source.source_db_name }.join(','),
             category_name,
           ].join("\t")
@@ -84,6 +86,7 @@ module Utils
 
     def self.print_interaction_row(file_handle, gene)
       gene.gene_claims.flat_map(&:interaction_claims).each do |interaction|
+        next if license_restricted? interaction.source.source_db_name
         row = [
            gene.name,
            gene.long_name,
@@ -95,6 +98,15 @@ module Utils
 
         file_handle.puts(row)
       end
+    end
+
+    private
+    def self.license_restricted
+      @@license_restricted ||= %w[PharmGKB DrugBank]
+    end
+
+    def self.license_restricted? (source_name)
+      return license_restricted.member? source_name
     end
   end
 end
