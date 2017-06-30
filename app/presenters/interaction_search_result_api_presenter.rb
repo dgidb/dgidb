@@ -64,8 +64,8 @@ class InteractionSearchResultApiPresenter
       interaction.id
     end
 
-    def source_db_name
-      interaction.interaction_claims.map{|i| i.source.source_db_name}.join(',')
+    def source_db_names
+      interaction.interaction_claims.map{|i| i.source.source_db_name}
     end
 
     def drug_name
