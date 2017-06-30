@@ -34,7 +34,7 @@ class InteractionSearchResultApiPresenter
   end
 
   def interactions
-    @interactions ||= @result.interactions.map do |i|
+    @interactions ||= @result.interactions.flat_map(&:interaction_claims).map do |i|
       InteractionWrapper.new(i)
     end
   end
@@ -47,37 +47,38 @@ class InteractionSearchResultApiPresenter
   end
 
   def drug
-    @result.interaction
+    @result.interactions
       .first
       .drug
   end
 
-  InteractionWrapper = Struct.new(:interaction) do
+  InteractionWrapper = Struct.new(:interaction_claim) do
     def types_string
-      interaction
-        .interaction_types
+      interaction_claim
+        .interaction_claim_types
         .map(&:type)
         .join(',')
     end
 
     def interaction_id
-      interaction.id
+      interaction_claim.id
     end
 
-    def source_db_names
-      interaction.interaction_claims.map{|i| i.source.source_db_name}
+    def source_db_name
+      interaction_claim.source.source_db_name
     end
 
     def drug_name
-      interaction.drug.name
+      interaction_claim.drug_claim.primary_name ||
+        interaction_claim.drug_claim.name
     end
 
     def gene_name
-      interaction.gene.name
+      interaction_claim.gene_claim.gene.name
     end
 
     def gene_long_name
-      interaction.gene.long_name
+      interaction_claim.gene_claim.gene.long_name
     end
 
   end
