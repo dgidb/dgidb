@@ -62,7 +62,7 @@
         %h3 Search Interactions
         %p.lead
           The interactions endpoint can be used to return
-          interactions for a given set of gene names or symbols.
+          interactions for a given set of gene or drug names/symbols.
           It also allows you to filter returned interactions.
         %span.label GET
         %pre
@@ -85,11 +85,13 @@
           %tbody
             %tr
               %td
-                genes
+                genes / drugs
                 %small (required)
-              %td A comma delimited list of gene names or symbols
+              %td A comma delimited list of gene or drug names/symbols.
               %td
                 %code genes=FLT1,STK1,FAKE1
+                %em or
+                %code drugs=FICLATUZUMAB,ETOPOSIDE,NOTREAL
             %tr
               %td
                 interaction_sources
