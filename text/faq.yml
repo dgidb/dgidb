@@ -26,7 +26,7 @@ faq:
       anchor: source
       answer: >
         The source code for DGIdb is open-source and made available under the GNU General Public License version 3. The license is 
-        distributed with the source code (<a href="https://github.com/genome/dgi-db/blob/master/LICENSE">DBIdb license</a>).
+        distributed with the source code (<a href="https://github.com/genome/dgi-db/blob/master/LICENSE">DGIdb license</a>).
         The data used in DGIdb is all open access and where possible made available as raw data dumps in the 
         <a href="http://dgidb.genome.wustl.edu/downloads">downloads</a> section.
 
