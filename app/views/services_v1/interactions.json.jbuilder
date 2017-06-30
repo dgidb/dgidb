@@ -18,7 +18,7 @@ json.matchedTerms @search_results.matched_results do |result|
       json.interactionId interaction.interaction_id
       json.interactionType interaction.types_string
       json.drugName interaction.drug_name
-      json.sources interaction.source_db_names
+      json.source interaction.source_db_name
     end
   end
 end
