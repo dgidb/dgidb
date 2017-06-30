@@ -85,20 +85,31 @@
 
   :javascript
     $(document).ready(function() {
-      //$('.search_filters > div.filters').
 
       $('#geneSearch > input').prop("checked", true);
+
       $('#geneSearch').on("click", function() {
+
         $('#drugSearch > input').prop("checked", false);
         $('#drug_search_filters').hide();
+        $('#drug_search_filters > div > div > input').prop("disabled", true);
+
         $('#geneSearch > input').prop("checked", true);
         $('#gene_search_filters').show();
+        $('#gene_search_filters > div > div > input').prop("disabled", false);
+
       });
+
       $('#drugSearch').on("click", function() {
+
         $('#geneSearch > input').prop("checked", false);
         $('#gene_search_filters').hide();
+        $('#gene_search_filters > div > div > input').prop("disabled", true);
+
         $('#drugSearch > input').prop("checked", true);
         $('#drug_search_filters').show();
+        $('#drug_search_filters > div > div > input').prop("disabled", false);
+
       });
     });
 
