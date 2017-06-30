@@ -20,8 +20,8 @@ module Genome
           source_db_version: get_version,
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'DrugBank',
-          full_name: 'DrugBank - Open Data Drug & Drug Target Database'
-          #source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
+          full_name: 'DrugBank - Open Data Drug & Drug Target Database',
+          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
         }
       end
 
