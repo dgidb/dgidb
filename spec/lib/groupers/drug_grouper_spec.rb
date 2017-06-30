@@ -267,4 +267,33 @@ describe Genome::Groupers::DrugGrouper do
     expect(drug.name).to eq "#{molecule.pref_name} (#{molecule.chembl_id})"
     expect(another_drug.name).to eq "#{molecule.pref_name} (#{another_molecule.chembl_id})"
   end
+
+  it 'should have the proper alias name loaded from molecule after grouping' do
+    cool = 'my cool synonym'
+    molecule = Fabricate(:chembl_molecule)
+    molecule_synonym = Fabricate(:chembl_molecule_synonym, synonym: cool, chembl_molecule: molecule)
+    drug_claim = Fabricate(:drug_claim, primary_name: molecule.pref_name)
+
+    grouper = Genome::Groupers::DrugGrouper.new
+    grouper.run
+
+    drug_claim.reload
+    drug = drug_claim.drug
+    drug_alias = drug.drug_aliases.where(alias: cool).first
+
+    expect(drug.chembl_molecule).to eq molecule
+    expect(drug_alias).not_to be_nil
+  end
+
+  it 'should not attempt to create existing aliases from chembl molecule synonyms' do
+    cool = 'my cool synonym'
+    molecule = Fabricate(:chembl_molecule)
+    molecule_synonym = Fabricate(:chembl_molecule_synonym, synonym: cool, chembl_molecule: molecule)
+    another_molecule_synonym = Fabricate(:chembl_molecule_synonym, synonym: cool, chembl_molecule: molecule)
+    drug_claim = Fabricate(:drug_claim, primary_name: molecule.pref_name)
+
+    grouper = Genome::Groupers::DrugGrouper.new
+    expect{grouper.run}.not_to raise_error
+  end
+
 end
