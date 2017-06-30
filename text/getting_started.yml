@@ -24,10 +24,7 @@ getting_started:
     Identifying clinically relevant genes using DGIdb has a number of limitations that should be acknowledged. DGIdb provides links between genes and their known or potential drug associations. It does not currently provide any information regarding the druggability of specific mutations, nor does it guarantee that any given drug-gene association represents an appropriate therapeutic intervention. DGIdb’s concept of a drug-gene interaction or membership in a potentially druggable category is inclusive and largely driven by the underlying data sources and publications. It includes 39 potentially druggable categories and least 35 interaction types as defined by source datasets. These include inhibitors, activators, cofactors, ligands, vaccines, and in many cases, interactions of unknown type.  Wherever possible we provide filtering by source, trust level, interaction type, and drug type to allow the user to quickly disregard possibly spurious candidates.<br><br>
 
     This page provides tutorials and other resources on how to use DGIdb.<br>
-  links: 
-    - url: http://dgidb.genome.wustl.edu/downloads/walkthroughUpdated.pdf
-      title: Basic Walkthrough (pdf)
-      description: Illustrated user guide in .pdf format
+  links:
     - url: http://genome.wustl.edu/
       title: The McDonnell Genome Institute
       description: Visit our institution homepage
