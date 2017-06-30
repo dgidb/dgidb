@@ -171,7 +171,7 @@ module Genome
             drug = molecule.create_drug(name: molecule.pref_name, chembl_id: molecule.chembl_id)
           end
           molecule.chembl_molecule_synonyms.each do |synonym|
-            DataModel::DrugAlias.create(alias: synonym.synonym, drug: drug)
+            DataModel::DrugAlias.first_or_create(alias: synonym.synonym, drug: drug)
           end
         else
           return molecule.drug
