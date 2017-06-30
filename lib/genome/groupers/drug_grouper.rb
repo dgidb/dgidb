@@ -168,7 +168,7 @@ module Genome
           if molecule.duplicate_pref_name?
             drug = molecule.create_and_uniquify_drug
           else
-            drug = molecule.create_drug(name: molecule.pref_name, chembl_id: molecule.chembl_id)
+            drug = molecule.create_drug(name: (molecule.pref_name || molecule.chembl_id), chembl_id: molecule.chembl_id)
           end
           molecule.chembl_molecule_synonyms.each do |synonym|
             DataModel::DrugAlias.first_or_create(alias: synonym.synonym, drug: drug)
