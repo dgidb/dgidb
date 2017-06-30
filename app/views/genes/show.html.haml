@@ -6,15 +6,15 @@
       Gene Record
       %a(href="/faq#defined")
         =icon('question-sign')
-  %a{class: ['btn', 'btn-success'], href: "/interaction_search_results?genes=#{@title}"}
-    =icon('search', class: 'icon-white')
-    =" interactions for #{@title}"
+  -#%a{class: ['btn', 'btn-success'], href: "/interaction_search_results?genes=#{@title}"}
+  -#  =icon('search', class: 'icon-white')
+  -#  =" interactions for #{@title}"
   %a{class: ['btn', 'btn-success'], href: "/categories_search_results?genes=#{@title}"}
     =icon('search', class: 'icon-white')
     =" categories for #{@title}"
-  %a{class: ['btn', 'btn-success'], href: "/interactions_for_related_genes?genes=#{@title}"}
-    =icon('search', class: 'icon-white')
-    =" interactions for genes related to #{@title}"
+  -#%a{class: ['btn', 'btn-success'], href: "/interactions_for_related_genes?genes=#{@title}"}
+  -#  =icon('search', class: 'icon-white')
+  -#  =" interactions for genes related to #{@title}"
 
 
 
