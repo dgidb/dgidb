@@ -1,6 +1,6 @@
 !!! 5
 %html.wrap
-  %head
+  %head.wrap
     %title=h yield(:title)
     =stylesheet_link_tag    "application",   media: 'all'
     =javascript_include_tag "application"
@@ -8,14 +8,14 @@
     %meta(name="description" content="DGIdb, The Drug Gene Interaction Database, is a research resource that can be used to search candidate genes or drugs against the known and potentially druggable genome.")
     %meta(name="keywords" content="genomics,genome,drug,gene,interactions,druggable,druggability,drugability,druggable-genome,drugable,dgidb,dgi-db,precision,medicine,precision-medicine,McDonnell,genome,institute,washington,university")
     %link{:href => "/assets/favicon.png", :rel => "shortcut icon"}/
-  %body
+  %body.wrap
     #wrap
       .container-fluid{ :id => "content"}
         .navbar.navbar-fixed-top.navbar-inverse{style: "margin-bottom: 0px"}
           .navbar-inner
             %a.brand(href="/")
               %img{:src => "/assets/dgidb-header-branding_128c.png", :class => "logo", :width => "500"}
-            %ul.nav.nav-tabs.main-menu
+            %ul.nav.nav-tabs.main-menu.wrap
               %li{class: @search_interactions_active}
                 %a(href="/search_interactions") Search Interactions
               %li{class: @search_categories_active}
@@ -41,8 +41,8 @@
                     %a(href="/downloads") Downloads
                     %a(href="/contact") Contact
                     %a{href: "#", data: {toggle: 'modal', target:'#disclaimer-modal'}} View Disclaimer
-        .container-fluid
-          .page-header{style: "margin-top: -10px; padding: 0"}
+        .container-fluid{style: "margin-bottom: 35px;"}
+          .page-header{style: "margin-top: 0px; margin-bottom: 0px; padding: 0; padding-bottom: 15px;"}
             =@news.news_ticker
             =h yield(:header)
         .container-fluid

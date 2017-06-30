@@ -44,8 +44,8 @@
           %div
             %input{type: "checkbox", value: "checked", name: "immunotherapy", form: "search_form"} 
               = "  Immunotherapies"
-        %div.filters
-          / Looking for drugs <that are [FDA approved] [and/, Anti-neoplastic] [and/, and Immunotherapies]
+        %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
+          Find GENES that interact with your DRUGS
 
       %div.search_filters#drug_search_filters{style: "height: 172px; width: 360px; display: none", class: "well"}
         %label 
@@ -60,8 +60,8 @@
           %div
             %input{type: "checkbox", value: "checked", name: "drug_resistance", form: "search_form"} 
               = "  Drug Resistance"
-          %div.filters
-          / Looking for genes <that are [Clinically Actionable] [and/, Druggable] [and/, and Drug Resistant]
+        %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
+          Find DRUGS that interact with your GENES
       %div{style: "height: 220px; width: 360px", class: "well"} 
         %label
           Advanced Filters
