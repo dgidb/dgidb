@@ -6,15 +6,17 @@
       Gene Record
       %a(href="/faq#defined")
         =icon('question-sign')
-  %a{class: ['btn', 'btn-success'], href: "/interaction_search_results?genes=#{@title}"}
-    =icon('search', class: 'icon-white')
-    =" interactions for #{@title}"
+  -#%a{class: ['btn', 'btn-success'], href: "/interaction_search_results?genes=#{@title}"}
+  -#  =icon('search', class: 'icon-white')
+  -#  =" interactions for #{@title}"
   %a{class: ['btn', 'btn-success'], href: "/categories_search_results?genes=#{@title}"}
     =icon('search', class: 'icon-white')
     =" categories for #{@title}"
-  %a{class: ['btn', 'btn-success'], href: "/interactions_for_related_genes?genes=#{@title}"}
-    =icon('search', class: 'icon-white')
-    =" interactions for genes related to #{@title}"
+  -#%a{class: ['btn', 'btn-success'], href: "/interactions_for_related_genes?genes=#{@title}"}
+  -#  =icon('search', class: 'icon-white')
+  -#  =" interactions for genes related to #{@title}"
+
+
 
 - cache @gene do
   .container-fluid
@@ -26,7 +28,7 @@
           %a(href="#interactions" data-toggle="tab") Interactions
         %li
           %a(href="#claims" data-toggle="tab") Claims
-      .tab-content
+      .tab-content{style: "margin-top: 12px;"}
         .tab-pane.active#summary
           .row-fluid#container 
             .span12
@@ -47,9 +49,6 @@
 :javascript
   $(document).ready(function () {
     var activeTab = $('#' + window.location.hash.substr(2));
-    console.log(window.location.hash.substr(2));
-    console.log(activeTab);
-    console.log(activeTab.length);
 
     if(activeTab.length) {
       $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
@@ -58,8 +57,16 @@
     }
   });
 
+  window.addEventListener("popstate", function() {
+    var activeTab = $('#' + window.location.hash.substr(2));
+    if (activeTab.length) {
+      $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+    } else {
+      $('a[href="' + "#summary" + '"]').trigger('click');
+    }
+  });
+
   $(".tabbable li a").click(function () {
-    console.log($(this).attr('href').substr(1));
     window.location.hash = "_" + $(this).attr('href').substr(1);
     return true;
   }); 

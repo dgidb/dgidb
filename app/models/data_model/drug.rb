@@ -23,7 +23,7 @@ module DataModel
     end
 
     def self.all_drug_names
-      pluck(:name).sort
+      order('name ASC').pluck(:name)
     end
 
     def update_anti_neoplastic

@@ -1,20 +1,20 @@
-class FdaApprovedDrug
+class Immunotherapy
   include Filter
   
   def initialize(checked)
   end
 
   def cache_key
-    "fda_approved_drugs"
+    "immunotherapies"
   end
 
   def axis
-    :fda_approved_drugs
+    :immunotherapies
   end
 
   def resolve
     Set.new DataModel::Drug
-      .where(fda_approved: true)
+      .where(anti_neoplastic: true)
       .joins(:interactions)
       .pluck("interactions.id")
   end

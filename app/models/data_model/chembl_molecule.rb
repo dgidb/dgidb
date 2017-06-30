@@ -30,7 +30,7 @@ module DataModel
     end
 
     def create_and_uniquify_drug
-      drug = self.create_drug(name: self.pref_name, chembl_id: self.chembl_id)
+      drug = self.create_drug(name: (self.pref_name || self.chembl_id), chembl_id: self.chembl_id)
       drug.name = "#{self.pref_name} (#{self.chembl_id})"
       if DataModel::DrugAlias.where("drug_id = ? and upper(alias) = ?", drug.id, self.pref_name.upcase).none?
         DataModel::DrugAlias.create(drug: drug, alias: self.pref_name)

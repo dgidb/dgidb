@@ -14,6 +14,10 @@ module Genome
         0
       end
 
+      def to_a
+        []
+      end
+
       def nil?
         true
       end

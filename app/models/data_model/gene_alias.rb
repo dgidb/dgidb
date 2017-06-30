@@ -8,5 +8,9 @@ module DataModel
     def self.for_search
       eager_load(:gene)
     end
+
+    def self.for_gene_categories
+      eager_load(gene: [:gene_categories])
+    end
   end
 end

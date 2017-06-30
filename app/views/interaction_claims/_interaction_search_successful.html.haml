@@ -1,0 +1,27 @@
+- definite_matches = definite_results + definite_no_interactions
+%div{style: "float: right; margin-top: -15px; width: 17%"}
+  %div.alert.alert-error.well{style: "margin-top: 15px; padding-right: 20px; width: 240px;"}
+    %h3{style: "margin-top: -5px;"}
+      Preset Filters
+    %ul
+    - [@preset_fda, @preset_neo, @preset_immuno, @preset_clin, @preset_resist, @preset_druggable].reject { |c| c.empty? }.each do |preset|
+      %li
+        = preset
+
+  %div.well{style: "margin-top: -5px; padding-right: 20px; width: 240px;"}
+    %h3{style: "margin-top: -5px;"}
+      Unique Matches
+    %div
+    - definite_matches.each do |result|
+      %div
+      - result[:identifiers].each do |entity|
+        %input{class: "unique sidebar-toggle", type: "checkbox", name: "#{entity.name + "-unique"}", checked: 1}
+          = "Search Term: " + result[:term]
+
+%div{style: "float: left; width: 81%;"}
+  %ul(class="result-list" id="list-results")
+    - definite_matches.each do |result|
+      - result[:identifiers].each do |entity|
+        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-unique"}
+          = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions] }
+

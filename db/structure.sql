@@ -277,11 +277,11 @@ CREATE TABLE drug_claims (
 
 CREATE TABLE drugs (
     id text NOT NULL,
-    name text,
+    name text NOT NULL,
     fda_approved boolean,
     immunotherapy boolean,
     anti_neoplastic boolean,
-    chembl_id character varying(255) NOT NULL
+    chembl_id character varying NOT NULL
 );
 
 
@@ -548,8 +548,8 @@ CREATE TABLE publications (
     id text NOT NULL,
     pmid integer NOT NULL,
     citation text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -957,66 +957,10 @@ ALTER TABLE ONLY sources
 
 
 --
--- Name: chembl_molecule_synonyms_molregno_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecule_synonyms_molregno_idx ON chembl_molecule_synonyms USING btree (molregno);
-
-
---
--- Name: chembl_molecule_synonyms_upper_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecule_synonyms_upper_idx ON chembl_molecule_synonyms USING btree (upper((synonym)::text));
-
-
---
--- Name: chembl_molecules_chembl_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX chembl_molecules_chembl_id_idx ON chembl_molecules USING btree (chembl_id);
-
-
---
--- Name: chembl_molecules_drug_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecules_drug_id_idx ON chembl_molecules USING btree (drug_id);
-
-
---
--- Name: chembl_molecules_molregno_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX chembl_molecules_molregno_idx ON chembl_molecules USING btree (molregno);
-
-
---
--- Name: chembl_molecules_upper_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecules_upper_idx ON chembl_molecules USING btree (upper((pref_name)::text));
-
-
---
--- Name: chembl_molecules_upper_idx1; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX chembl_molecules_upper_idx1 ON chembl_molecules USING btree (upper((chembl_id)::text));
-
-
---
 -- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
-
-
---
--- Name: drug_aliases_upper_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX drug_aliases_upper_idx ON drug_aliases USING btree (upper(alias));
 
 
 --
@@ -1062,13 +1006,6 @@ CREATE INDEX drug_claims_source_id_idx ON drug_claims USING btree (source_id);
 
 
 --
--- Name: drugs_chembl_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX drugs_chembl_id_idx ON drugs USING btree (chembl_id);
-
-
---
 -- Name: drugs_full_text; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1080,13 +1017,6 @@ CREATE INDEX drugs_full_text ON drugs USING gin (to_tsvector('english'::regconfi
 --
 
 CREATE INDEX drugs_lower_name_idx ON drugs USING btree (lower(name));
-
-
---
--- Name: drugs_upper_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX drugs_upper_idx ON drugs USING btree (upper(name));
 
 
 --
@@ -1153,10 +1083,10 @@ CREATE INDEX genes_lower_name_idx ON genes USING btree (lower(name));
 
 
 --
--- Name: genes_upper_idx; Type: INDEX; Schema: public; Owner: -
+-- Name: index_chembl_molecules_on_drug_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX genes_upper_idx ON genes USING btree (upper(name));
+CREATE INDEX index_chembl_molecules_on_drug_id ON chembl_molecules USING btree (drug_id);
 
 
 --
@@ -1876,12 +1806,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170512150855'),
 ('20170605204001'),
 ('20170616211809'),
-('20170619164047'),
+('20170619174047'),
 ('20170619191811'),
 ('20170619204652'),
 ('20170619205542'),
 ('20170622142108'),
 ('20170628044755'),
-('20170629024912');
+('20170629024912'),
+('20170630203634');
 
 

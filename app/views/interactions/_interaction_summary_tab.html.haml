@@ -29,7 +29,7 @@
       %table{class: "table table-condensed table-striped", style: "display: block; height: 305px; overflow-y: scroll", id:"table_publications"}
         -interaction.publications.each do |publication|
           %tr
-            %td
+            %td{style: "width: 700px"}
               %a{href: PMID.pubmed_url(publication.pmid)}
                 = publication.citation
   %div{class: "cell category", style: "float: right; width: 50%"}
