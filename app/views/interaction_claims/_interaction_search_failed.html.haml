@@ -8,24 +8,23 @@
         = term
 
   %div.well{style: "margin-top: -5px;"}
-    %h3{style: "margin-top: -5px;"}
+    %h3{style: "margin-top: -5px; margin-bottom: -5px;"}
       Multiple Matches
     %div{style: "width: 200px; padding: 0", class: "container demo"}
       %div(class="panel-group" id="accordion" role="tablist" aria-multiselectable="true")
-        %div(class="panel panel-default")
-        - ambiguous_matches.each do |result|
-          %div{class: "panel-heading", role: "tab", id: "#{'heading' + result[:term]}"}
-            %h4(class="panel-title")
-              %a{role: "button", "data-toggle" => "collapse", "data-parent" => "#accordion", href: "#{'#collapse' + result[:term]}", "aria-expanded" => "true", "aria-controls" => "#{'collapse' + result[:term]}"}
-                %i(class="more-less glyphicon glyphicon-plus")
-                = "Search Term: " + result[:term]
+      - ambiguous_matches.each do |result|
+        %div{class: "panel-heading", role: "tab", id: "#{'heading' + result[:term]}"}
+          %h4(class="panel-title" style="margin-left: -20px;")
+            %a{role: "button", "data-toggle" => "collapse", "data-parent" => "#accordion", href: "#{'#collapse' + result[:term]}", "aria-expanded" => "true", "aria-controls" => "#{'collapse' + result[:term]}", style: "word-wrap: break-word; display: inline-block;"}
+              %i(class="more-less glyphicon glyphicon-plus")
+              = "Search Term: " + result[:term]
 
-          %div{id: "#{'collapse' + result[:term]}", class: "panel-collapse collapse", role: "tabpanel", "aria-labelledby" => "#{'heading' + result[:term]}"}
-            %div{class: "panel-body"}
-            - result[:identifiers].each do |entity|
-              %div
-                %input{class: "ambiguous sidebar-toggle", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
-                  = entity.name
+        %div{id: "#{'collapse' + result[:term]}", class: "panel-collapse collapse", role: "tabpanel", "aria-labelledby" => "#{'heading' + result[:term]}"}
+          %div{class: "panel-body", style: "padding: 0px;"}
+          - result[:identifiers].each do |entity|
+            %div
+              %input{class: "ambiguous sidebar-toggle", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
+                = entity.name
 
 %div{style: "float: left; width: 81%;"}
   %ul(class="result-list" id="list-results")

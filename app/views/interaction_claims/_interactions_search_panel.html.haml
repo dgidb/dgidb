@@ -26,36 +26,36 @@
           - if interactions.count > 0
             %table{class: "search_panel table table-condensed table-striped", style: "table-layout:fixed;"}
               %tr
-                %th{style: "width: 300px;"}
+                %th{style: "width: 24%;"}
                   - if @search_mode == "genes"
                     Drug
                   - else 
                     Gene
-                %th{style: "width: 200px;"}
+                %th{style: "width: 19%;"}
                   Interaction Type
-                %th{style: "width: 200px;"}
+                %th{style: "width: 19%;"}
                   Source Count
-                %th{style: "width: 200px;"}
+                %th{style: "width: 19%;"}
                   PMID Count
-                %th{style: "width: 150px;"}
+                %th{style: "width: 19%;"}
                   Score
               %tbody
               - interactions.each do |interaction|
                 %tr
-                  %td{style: "width: 300px; word-break:break-all"}
+                  %td{style: "width: 24%; word-break:break-all"}
                     - if @search_mode == "genes" 
                       %a{href: "/drugs/#{interaction.drug.name}"}
                         = interaction.drug.name
                     - else
                       %a{href: "/genes/#{interaction.gene.name}"}
                         = interaction.gene.name
-                  %td{style: "width: 200px;"}
+                  %td{style: "width: 19%;"}
                     = interaction.interaction_types.map{|t| t.type}.join(", ")
-                  %td{style: "width: 200px;"}
+                  %td{style: "width: 19%;"}
                     = (source_count = interaction.interaction_claims.count)
-                  %td{style: "width: 200px;"}
+                  %td{style: "width: 19%;"}
                     = (pub_count = interaction.publications.count)
-                  %td{style: "width: 200px;"}
+                  %td{style: "width: 19%;"}
                     = source_count + pub_count
             %button{class: "show-all", style: "margin-top: 5px"}
               Show All
