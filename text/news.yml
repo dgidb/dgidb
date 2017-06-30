@@ -142,10 +142,7 @@ news:
             <ul>
               <li>CIViC - drug-gene interactions</li>
               <li>DoCM - drug-gene interactions</li>
-              <li>DrugBank - drug-gene interactions</li>
-              <li>Gene Ontology - druggable gene categories</li>
               <li>Entrez Gene - genes</li>
-              <li>PubChem - drugs</li>
             </ul>
           </li>
           <li>Search drug-gene interactions by drug identifiers
@@ -169,3 +166,55 @@ news:
         DGIdb 2.0 was presented as a software demonstration at the 17th annual Advances in Genome Biology and Technology
         (AGBT) meeting in Orlando, Florida from February 10th - 13th, 2016.
       date: February 15, 2016
+
+    - headline: DGIdb 3.0 released
+      article : >
+        DGIdb 3.0 is here, and brings with it several major improvements:
+        <ul>
+          <li>New and updated sources
+            <ul>
+              <li>An <a href="http://stm.sciencemag.org/content/9/383/eaag1166">expanded definition of the Druggable Genome</a> predicted from GWAS data from AD Hingorani and JP Casas.</li>
+              <li>Updated interactions curated from <a href="https://www.mycancergenome.org">MyCancerGenome</a></li>
+              <li>Update to DrugBank 4.3</li>
+              <li>ChEMBL molecules datastore</li>
+            </ul>
+          </li>
+          <li>New Preset Interaction Search Filters Now Available
+            <ul>
+              <li>FDA Approved Drugs</li>
+              <li>Anti-neoplastic Drugs</li>
+              <li>Immunotherapy Drugs</li>
+              <li>Clinically Actionable Genes</li>
+              <li>Druggable Genome Genes</li>
+              <li>Drug Resistance Genes</li>
+            </ul>
+          </li>
+          <li>Improved grouping of gene and drug claims
+            <ul>
+              <li>Iterative updating of Entrez genes</li>
+              <li>Transition to ChEMBL for primary drug concepts</li>
+              <li>Interaction groups added</li>
+            </ul>
+          </li>
+          <li>Redesigned Search
+            <ul>
+              <li>Improved Search Interface With Preset Filter Panel</li>
+              <li>Improved Search Results Interface Presents Grouped Interaction Data</li>
+            </ul>
+          </li>
+          <li>Redesigned Gene, Drug, and Interaction Views</li>
+          <li>Faster Interaction Searches</li>
+          <li>Expanded API
+            <ul>
+              <li>Go to the <a href="/api">API Documentation</a> page to learn about the DGIdb endpoints.</li>
+            </ul>
+          </li>
+          <li>Framework upgrade
+            <ul>
+              <li>Upgraded from Rails 3 to Rails 5</li>
+              <li>Upgraded from Postgres 9.4 to 9.6</li>
+              <li>Added functional indexes to db</li>
+            </ul>
+          </li>
+        </ul>
+      date: June 30, 2017
