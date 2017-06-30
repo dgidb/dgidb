@@ -5,8 +5,6 @@ $(".multiselect").multiselect
 .multiselectfilter()
 $(".multiselect").multiselect("checkAll")
 
-
-
 # testing this from http://goo.gl/69VtL2  perhaps updating $ta will serve purpose?
 ta = $('#identifiers').typeahead
   items: 20
