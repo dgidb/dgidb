@@ -1,3 +1,0 @@
-[submodule "data"]
-	path = data
-	url = ssh://git/srv/git/dgidb-data.git
