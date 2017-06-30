@@ -20,7 +20,7 @@
         %a(href="#by_categories" data-toggle="tab") By Category
       %li
         %a(href="#by_source" data-toggle="tab") By Source
-    .tab-content
+    .tab-content{style: "margin-left: -30px; margin-top: 20px;"}
       .tab-pane.active#by_genes
         -if @search_results.show_result_categories?
           .row-fluid
@@ -55,6 +55,85 @@
         =render partial: 'genes/results_summary', locals: {title: "Results Grouped by Gene Category", results: @search_results}
       .tab-pane.fade#by_source
         =render partial: 'genes/results_by_source_table', locals: {title: "Results Enumerated by Source", results: @search_results, tooltip_text: tx('title_search_results_by_source'), subtitle: "Number of search terms matching genes in each druggable gene category broken down by source."}
+
+:css
+  .dataTables_wrapper > div.row {
+    margin: 0;
+  }
+  .row-fluid {
+    width: 100%;
+    display: block;
+  }
+  .row-fluid [class*="span"] {
+    display: block;
+    box-sizing: border-box;
+    float: left;
+    margin-left: 2.128%;
+    width: 100%;
+  }
+  .row-fluid > .span12 > .well .span6 {
+    width: 40%;
+  }
+  .row-fluid > .span6 {
+    box-sizing: border-box;
+    width: 48.93617021276595%;
+    margin-right: 0;
+    float: left;
+    display: block;
+  }
+  .pagination {
+    display: block;
+  }
+  .pagination ul {
+    display: inline-block;
+    margin: 0 0 10px 25px;
+    padding: 0;
+    list-style-type: disc;
+    border-radius: 4px;
+    border-collapse: separate; 
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .pagination ul > li {
+    display: inline;
+    line-height: 20px;
+  }
+  .pagination ul>li>a, .pagination ul>li>span {
+    float: left;
+    padding: 4px 12px;
+    line-height: 20px;
+    border: 1px solid #dddddd;
+  }
+  .table-bordered {
+    border-radius: 4px;
+    border-collapse: separate; 
+    border-spacing: 0;
+    border-left: 0;
+  }
+  .table td {
+    padding: 8px;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: top;
+    display: table-cell;
+    border-top: 10px solid #dddddd;
+    margin:10px;
+  }
+  .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: top;
+    display: table-cell;
+    border: 0;
+    margin:10px;
+  }
+  .table > tbody > tr > td {
+    border-left: 1px solid #dddddd;
+    border-top: 1px solid #dddddd
+  }
+  .table > thead > tr > th {
+    border-left: 1px solid #dddddd;
+  }
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"
