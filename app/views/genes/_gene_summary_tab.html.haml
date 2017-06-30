@@ -10,19 +10,19 @@
       %table{class: "table table-condensed table-striped", style: "display: block; height: 494px; overflow-y: scroll", id: "table_aliases"}
         - gene.gene_aliases.each do |alt_name|
           %tr
-            %td{style: "width: 800px"}
+            %td{style: "width: 100%"}
               =alt_name.alias
 
   %div{class: "cell category", style: "float: left; width: 50%" }
     %div{class: "item-panel", style:"margin-bottom: 10px"}
       %h4
         Gene Info:
-      %table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; width: 636px; overflow-y: scroll", id:"table_info"}
+      %table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; overflow-y: scroll", id:"table_info"}
         - gene.gene_attributes.each do |attribute|
           %tr
-            %td{style: "width: 300px"}
+            %td{style: "width: 50%"}
               =attribute.name
-            %td{style: "width: 336px"}
+            %td{style: "width: 50%"}
               =attribute.value
       %div#linkouts
         - gene.gene_claims[0..3].each do |gc|
@@ -38,7 +38,7 @@
       %table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; overflow-y: scroll", id:"table_publications"}
         -gene.publications.each do |publication|
           %tr
-            %td{style: "width: 700px"}
+            %td{style: "width: 100%"}
               %a{href: PMID.pubmed_url(publication.pmid)}
                 = publication.citation
               

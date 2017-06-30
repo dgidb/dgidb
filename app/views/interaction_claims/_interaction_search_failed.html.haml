@@ -1,5 +1,5 @@
 - ambiguous_matches = ambiguous_results + ambiguous_no_interactions
-%div{style: "float: right"}
+%div{style: "float: right; margin-top: -15px; width: 17%"}
   %div.well{style: "margin-top: 15px;"}
     %h3{style: "margin-top: -5px;"}
       Unmatched Terms
@@ -27,7 +27,7 @@
                 %input{class: "ambiguous sidebar-toggle", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
                   = entity.name
 
-%div{style: "float: left; width: 1100px"}
+%div{style: "float: left; width: 81%;"}
   %ul(class="result-list" id="list-results")
     - ambiguous_matches.each do |result|
       - result[:identifiers].each do |entity|

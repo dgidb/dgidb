@@ -63,21 +63,22 @@
   .row-fluid {
     width: 100%;
     display: block;
+    margin-left: 30px;
+    float: left;
   }
   .row-fluid [class*="span"] {
     display: block;
     box-sizing: border-box;
     float: left;
-    margin-left: 2.128%;
-    width: 100%;
+    margin-left: 10px;
+    width: 98%;
   }
   .row-fluid > .span12 > .well .span6 {
-    width: 40%;
+    width: 48%;
   }
   .row-fluid > .span6 {
     box-sizing: border-box;
-    width: 48.93617021276595%;
-    margin-right: 0;
+    width: 48.7%;
     float: left;
     display: block;
   }
@@ -86,7 +87,7 @@
   }
   .pagination ul {
     display: inline-block;
-    margin: 0 0 10px 25px;
+    margin: 5px 0 10px 25px;
     padding: 0;
     list-style-type: disc;
     border-radius: 4px;
@@ -116,7 +117,7 @@
     vertical-align: top;
     display: table-cell;
     border-top: 10px solid #dddddd;
-    margin:10px;
+    margin: 10px;
   }
   .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     padding: 8px;
@@ -125,7 +126,7 @@
     vertical-align: top;
     display: table-cell;
     border: 0;
-    margin:10px;
+    margin: 10px;
   }
   .table > tbody > tr > td {
     border-left: 1px solid #dddddd;
@@ -133,6 +134,16 @@
   }
   .table > thead > tr > th {
     border-left: 1px solid #dddddd;
+  }
+  .row-fluid [class*="span"]:first-child {
+    margin-left: 0;
+  }
+  .row-fluid > .span12 > .well .span6:first-child {
+    float: left;
+    margin-left: -20px;
+  }
+  .row-fluid > .span12 > .well .span6:nth-child(2) {
+    float: right;
   }
 
 =javascript_include_tag "jquery.dataTables.min"
