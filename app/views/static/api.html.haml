@@ -24,8 +24,9 @@
             %a{href: '#gene-categories'} Gene Categories
           %li
             %a{href: '#source-trust-levels'} Source Trust Levels
-          %li
-            %a{href: '#related-genes'} Related Genes
+          /
+            %li
+              %a{href: '#related-genes'} Related Genes
           %li
             %a{href: '#genes-in-category'} Genes in Category
           %li.divider
@@ -294,108 +295,109 @@
         %pre
           ["Expert curated", "Non-curated"]
       %hr
-      %section#related-genes
-        %h3 Related Genes
-        %p.lead
-          The related genes endpoint can be used to return Entrez gene symbols for other
-          genes that are known to interact in pathways with your gene list
-        %span.label GET
-        %pre
-          \/api/v1/related_genes.json
-        %h5 Accepted Parameters:
-        %table.table.table-bordered.table-striped
-          %thead
-            %tr
-              %td Parameter
-              %td Description
-              %td Example
-          %tbody
-            %tr
-              %td
-                genes
-                %small (required)
-              %td A comma delimited list of Entrez gene symbols
-              %td
-                %code genes=FLT1,STK1,FAKE1
-        %h5
-          Example Call:
-        %p
-          %span.label.label-info Note:
-          %small
-            The following example would query DGIdb for a list of genes known to interact with
-            FLT1 or FLT3
-        %pre
-          \http://dgidb.genome.wustl.edu/api/v1/related_genes.json?genes=FLT1,FLT3
-        %h5 Example Response:
-        %p
-          The response will come back containing a list of hashes each with two keys:
-        %p
-          %code geneSymbol
-          will be the gene symbol you passed in to DGIdb
-        %p
-          %code relatedGenes
-          will be a list of gene symbols for genes known to interact with the entered gene
-        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-related-genes-response'}}
-          Show/Hide Response
-        %pre#example-related-genes-response.collapse
-          :preserve
-            {
-              "genes":[
-                {
-                  "gene_name":"FLT1",
-                  "related_genes":[
-                    "ATR",
-                    "CRK",
-                    "CTNNB1",
-                    "PTK2B",
-                    "PLCG1",
-                    "PGF",
-                    "VEGFB",
-                    "SHC2",
-                    "SHC1",
-                    "KDR",
-                    "UBC",
-                    "NEDD4",
-                    "PTPN11",
-                    "VEGFA",
-                    "NCK1",
-                    "PIK3R1",
-                    "NRP1",
-                    "NRP2",
-                    "FYN",
-                    "YES1",
-                    "PLCG2",
-                    "GRB2",
-                    "PTK2"
-                  ]
-                },
-                {
-                  "gene_name":"FLT3",
-                  "related_genes":[
-                    "CBLB",
-                    "SOCS1",
-                    "GRB2",
-                    "UBC",
-                    "PIK3R1",
-                    "HSP90AA1",
-                    "IKBKG",
-                    "SIAH1",
-                    "UBE2L6",
-                    "SIRT2",
-                    "SLA",
-                    "SOCS2",
-                    "INPP5D",
-                    "NCK1",
-                    "PTPN6",
-                    "FLT3LG",
-                    "SH3BP2",
-                    "PTPN12",
-                    "FIZ1"
-                  ]
-                }
-              ]
-            }
-      %hr
+      /
+        %section#related-genes
+          %h3 Related Genes
+          %p.lead
+            The related genes endpoint can be used to return Entrez gene symbols for other
+            genes that are known to interact in pathways with your gene list
+          %span.label GET
+          %pre
+            \/api/v1/related_genes.json
+          %h5 Accepted Parameters:
+          %table.table.table-bordered.table-striped
+            %thead
+              %tr
+                %td Parameter
+                %td Description
+                %td Example
+            %tbody
+              %tr
+                %td
+                  genes
+                  %small (required)
+                %td A comma delimited list of Entrez gene symbols
+                %td
+                  %code genes=FLT1,STK1,FAKE1
+          %h5
+            Example Call:
+          %p
+            %span.label.label-info Note:
+            %small
+              The following example would query DGIdb for a list of genes known to interact with
+              FLT1 or FLT3
+          %pre
+            \http://dgidb.genome.wustl.edu/api/v1/related_genes.json?genes=FLT1,FLT3
+          %h5 Example Response:
+          %p
+            The response will come back containing a list of hashes each with two keys:
+          %p
+            %code geneSymbol
+            will be the gene symbol you passed in to DGIdb
+          %p
+            %code relatedGenes
+            will be a list of gene symbols for genes known to interact with the entered gene
+          %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-related-genes-response'}}
+            Show/Hide Response
+          %pre#example-related-genes-response.collapse
+            :preserve
+              {
+                "genes":[
+                  {
+                    "gene_name":"FLT1",
+                    "related_genes":[
+                      "ATR",
+                      "CRK",
+                      "CTNNB1",
+                      "PTK2B",
+                      "PLCG1",
+                      "PGF",
+                      "VEGFB",
+                      "SHC2",
+                      "SHC1",
+                      "KDR",
+                      "UBC",
+                      "NEDD4",
+                      "PTPN11",
+                      "VEGFA",
+                      "NCK1",
+                      "PIK3R1",
+                      "NRP1",
+                      "NRP2",
+                      "FYN",
+                      "YES1",
+                      "PLCG2",
+                      "GRB2",
+                      "PTK2"
+                    ]
+                  },
+                  {
+                    "gene_name":"FLT3",
+                    "related_genes":[
+                      "CBLB",
+                      "SOCS1",
+                      "GRB2",
+                      "UBC",
+                      "PIK3R1",
+                      "HSP90AA1",
+                      "IKBKG",
+                      "SIAH1",
+                      "UBE2L6",
+                      "SIRT2",
+                      "SLA",
+                      "SOCS2",
+                      "INPP5D",
+                      "NCK1",
+                      "PTPN6",
+                      "FLT3LG",
+                      "SH3BP2",
+                      "PTPN12",
+                      "FIZ1"
+                    ]
+                  }
+                ]
+              }
+        %hr
       %section#genes-in-category
         %h3 Genes in Category
         %p.lead
