@@ -27,12 +27,13 @@ faq:
         The source code for DGIdb is open-source and made available under the GNU General Public License version 3. The license is 
         distributed with the source code (<a href="https://github.com/genome/dgi-db/blob/master/LICENSE">DGIdb license</a>).
         The data used in DGIdb is all open access and where possible made available as raw data dumps in the 
-        <a href="http://dgidb.genome.wustl.edu/downloads">downloads</a> section.
+        <a href="/downloads">downloads</a> section.
 
     - question: How can I learn more about how to use DGIdb?
       anchor: learn
       answer: > 
-        You can try reading: the 'Getting Started' section under the help menu, the manuscript, the tutorial, and this FAQ. 
+        You can try reading: the <a href="/getting_started">'Getting Started'</a> section under the help menu,
+         the <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">manuscript</a>, and this FAQ.
         Some sections also contain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
         If all else fails, please <a href="mailto:help@dgidb.org">email us</a> with your questions.
 
@@ -56,7 +57,7 @@ faq:
       anchor: defined
       answer: >
         The drug summary page shows the primary drug name, alternates names, and metadata for each gene as provided by each source of the
-        data imported into DGIdb. In the current version, drugs are first defined by ChEMBL but mapped together with drug records from other sources.
+        data imported into DGIdb. Drugs are first defined by ChEMBL but mapped together with drug records from other sources.
 
     - question: Where can I find the source code for DGIdb?
       anchor: source
@@ -148,7 +149,7 @@ faq:
       anchor: implementation
       answer: >
         The web interface uses Ruby on Rails and Twitter bootstrap. The backend is a Postgres database. The importers that process data
-        from each source and populate this database are written in Ruby.
+        from each source and populate this database are written in Ruby with occasional forays into Python.
 
     - question: How is versioning handled in DGIdb?
       anchor: versioning
@@ -158,7 +159,7 @@ faq:
         The source stamp contains a SHA-1 tag that corresponds to the version of code being run.
         Each input source of data we import may have its own version number associated with it. If so, we maintain this info and display it on the <a href="http://dgidb.genome.wustl.edu/sources">source summary view</a>.
         If an input source does not have concept of versioning, we note the date of import instead.
-        Source version are included in TSV export results for each drug-gene interaction found.
+        Source versions are included in TSV export results for each drug-gene interaction found.
 
     - question: What does the version stamp at the foot of each view mean?
       anchor: stamp
