@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.1.1'
+gem 'rails', '4.2.9'
 
 gem 'pg'
 gem 'less-rails-bootstrap'
