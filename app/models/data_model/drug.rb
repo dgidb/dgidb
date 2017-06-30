@@ -26,6 +26,12 @@ module DataModel
       pluck(:name).sort
     end
 
+    def update_anti_neoplastic
+      # self.update_anti_neoplastic_remove nil
+      self.anti_neoplastic = (self.class.anti_neoplastic_source_names & self.drug_claims.map { |dc| dc.source.source_db_name }.to_set).any?
+      self.save!
+    end
+
     private
     def populate_flags
       if self.fda_approved.nil?  # This assumes that the flag will get updated elsewhere if the molecule record changes
@@ -38,15 +44,17 @@ module DataModel
     end
 
     def update_anti_neoplastic_add(drug_claim)
-      self.anti_neoplastic ||= anti_neoplastic_source_names.member? drug_claim.source.source_db_name
+      self.anti_neoplastic ||= self.class.anti_neoplastic_source_names.member? drug_claim.source.source_db_name
+      self.save!
     end
 
     def update_anti_neoplastic_remove(drug_claim)
-      self.anti_neoplastic = (anti_neoplastic_source_names & self.drug_claims.map { |dc| dc.source.source_db_name }.to_set).any?
+      self.anti_neoplastic = (self.class.anti_neoplastic_source_names & self.drug_claims.map { |dc| dc.source.source_db_name }.to_set).any?
+      self.save!
     end
 
-    def anti_neoplastic_source_names
-      @anti_neoplastic_sources ||= %w[TALC ClearityFoundationClinicalTrial ClearityFoundationBiomarkers CancerCommons
+    def self.anti_neoplastic_source_names
+      @@anti_neoplastic_source_names ||= %w[TALC ClearityFoundationClinicalTrial ClearityFoundationBiomarkers CancerCommons
                                       MyCancerGenome CIViC MyCancerGenomeClinicalTrial].to_set
     end
 

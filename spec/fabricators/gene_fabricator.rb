@@ -3,6 +3,10 @@ Fabricator(:gene, class_name: 'DataModel::Gene') do
   long_name { sequence(:long_name) { |i| "Gene ##{i} long name" } }
 end
 
+Fabricator(:gene_alias, class_name: 'DataModel::GeneAlias') do |f|
+  f.alias { sequence(:alias) { |i| "Gene Alias ##{i}" } }
+end
+
 Fabricator(:gene_claim, class_name: 'DataModel::GeneClaim') do
   name { sequence(:name) { |i| "Gene Claim ##{i}" } }
   nomenclature { |attrs| "#{attrs[:source].source_db_name} gene claim name" }
