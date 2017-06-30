@@ -55,7 +55,7 @@ class LookupInteractions
     source_trust_levels: :include_source_trust_level,
     fda_approved_drug: :include_fda_approved_drug,
     immunotherapy: :include_immunotherapy,
-    anti_neoplastic: :include_antineoplastic,
+    anti_neoplastic: :include_anti_neoplastic,
     clinically_actionable: :include_clinically_actionable,
     drug_resistance: :include_drug_resistance,
     druggable_genome: :include_druggable_genome

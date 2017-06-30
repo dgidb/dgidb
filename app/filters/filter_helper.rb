@@ -1,6 +1,5 @@
 module FilterHelper
   def construct_filter(params_to_filters_map, params, filter = FilterChain.new)
-    
     params_to_filters_map.each do |param_key, filter_name|
      if should_filter?(param_key, params)
       add_filter(filter, params[param_key], filter_name)
