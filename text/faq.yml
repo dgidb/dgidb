@@ -67,8 +67,8 @@ faq:
     - question: I have a source of druggable genes or drug-gene interactions that I would like to add to DGIdb. How do I do that?
       anchor: add
       answer: >
-        This is an open source project and you could therefore create your own instance with your own data ... but if you want that source,
-        we probably do also. <a href="mailto:help@dgidb.org">Contact us</a> and we will be happy to consider adding your source for you.
+        This is an open source project and you could therefore create your own instance with your own data. However, if you want that
+        source, chances are that we do too. <a href="mailto:help@dgidb.org">Contact us</a> and we will be happy to consider adding your source for you.
 
     - question: What does 'Source Trust Level' mean?
       anchor: trust
@@ -93,7 +93,7 @@ faq:
       anchor: interaction
       answer: >
         An interaction type describes the nature of the association between a particular gene and drug. 
-        For example, TTD reports the drug-gene interaction, SUNITINIB-FLT3. The interaction type is reported as, 'inhibitor'.
+        For example, TTD reports the drug-gene interaction, SUNITINIB-FLT3. The interaction type is reported as 'inhibitor'.
         Interaction type, as used in DGIdb, is very broad. Dozens of interaction types are currently defined.
         Many interaction types describe the mechanism of action between a small molecule and a protein.
         However, other broader types of 'interaction' might also be used. e.g. Gene X mediates 'resistance' or 'sensitivity' to drug Y.
