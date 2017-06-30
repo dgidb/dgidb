@@ -21,7 +21,6 @@ faq:
         <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">Nucleic Acids Research.</a>
         2016 Jan 4;44(D1):D1036-44. doi:10.1093/nar/gkv1165.
 
-
     - question: Is DGIdb open source and open access?
       anchor: source
       answer: >
@@ -97,7 +96,7 @@ faq:
         For example, TTD reports the drug-gene interaction, SUNITINIB-FLT3. The interaction type is reported as, 'inhibitor'.
         Interaction type, as used in DGIdb, is very broad. Dozens of interaction types are currently defined.
         Many interaction types describe the mechanism of action between a small molecule and a protein.
-        Other broader types of 'interaction' might be used. e.g. Gene X mediates 'resistance' or 'sensitivity' to drug Y.
+        However, other broader types of 'interaction' might also be used. e.g. Gene X mediates 'resistance' or 'sensitivity' to drug Y.
 
     - question: What is the difference between a drug-gene interaction and druggable gene category?
       anchor: difference
