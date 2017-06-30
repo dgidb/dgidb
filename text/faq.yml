@@ -9,33 +9,33 @@ faq:
     - question: What is the goal of DGIdb?
       anchor: goal
       answer: >
-        To help you annotate your genes of interest with respect to known drug-gene interactions and potential druggability.
+        The goal of DGIdb is to help you annotate your genes of interest with respect to known drug-gene interactions and potential druggability.
 
     - question: How do I cite DGIdb?
       anchor: cite
       answer: >
-        Please cite: Wagner AH, Coffman AC, Ainscough BJ, Spies NC, Skidmore ZL,
+        Please cite our most recent paper on DGIdb: Wagner AH, Coffman AC, Ainscough BJ, Spies NC, Skidmore ZL,
         Campbell KM, Krysiak K, Pan D, McMichael JF, Eldred JM, Walker JR,
         Wilson RK, Mardis ER, Griffith M, Griffith OL.
         DGIdb 2.0: mining clinically relevant drug-gene interactions.
         <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">Nucleic Acids Research.</a>
         2016 Jan 4;44(D1):D1036-44. doi:10.1093/nar/gkv1165.
 
-
     - question: Is DGIdb open source and open access?
       anchor: source
       answer: >
         The source code for DGIdb is open-source and made available under the GNU General Public License version 3. The license is 
-        distributed with the source code (<a href="https://github.com/genome/dgi-db/blob/master/LICENSE">DBIdb license</a>).
+        distributed with the source code (<a href="https://github.com/genome/dgi-db/blob/master/LICENSE">DGIdb license</a>).
         The data used in DGIdb is all open access and where possible made available as raw data dumps in the 
-        <a href="http://dgidb.genome.wustl.edu/downloads">downloads</a> section.
+        <a href="/downloads">downloads</a> section.
 
     - question: How can I learn more about how to use DGIdb?
       anchor: learn
       answer: > 
-        You can try reading: the 'Getting Started' section under the help menu, the manuscript, the tutorial, and this FAQ. 
+        You can try reading: the <a href="/getting_started">'Getting Started'</a> section under the help menu,
+         the <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">manuscript</a>, and this FAQ.
         Some sections also contain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
-        If all else fails please <a href="mailto:help@dgidb.org">email us</a> with your questions.
+        If all else fails, please <a href="mailto:help@dgidb.org">email us</a> with your questions.
 
     - question: What types of gene names/symbols should I use as input?
       anchor: types
@@ -49,21 +49,27 @@ faq:
     - question: How are genes defined in DGIdb?
       anchor: defined
       answer: >
-        The gene summary page shows the primary name, alternate names and meta-data for each gene locus as provided by each source of data
+        The gene summary page shows the primary name, alternate names and metadata for each gene locus as provided by each source of data
         imported into DGIdb. Genes in DGIdb are first defined by Entrez but mapped together with gene records from other sources by Entrez ID,
         Ensembl ID, UniProt ID or alternate names/synonyms in that order of preference.
+
+    - question: How are drugs defined in DGIdb?
+      anchor: defined
+      answer: >
+        The drug summary page shows the primary drug name, alternates names, and metadata for each gene as provided by each source of the
+        data imported into DGIdb. Drugs are first defined by ChEMBL but mapped together with drug records from other sources.
 
     - question: Where can I find the source code for DGIdb?
       anchor: source
       answer: >
         The code for DGIdb is available at <a href="https://github.com/genome/dgi-db">github</a><i class="icon-share"></i>.
-        Refer to the Downloads section for more details.
+        Please refer to the Downloads section for more details.
 
     - question: I have a source of druggable genes or drug-gene interactions that I would like to add to DGIdb. How do I do that?
       anchor: add
       answer: >
-        This is an open source project and you could therefore create your own instance with your own data ... but if you want that source
-        we probably do also. <a href="mailto:help@dgidb.org">Contact us</a> and we will be happy to consider adding your source for you.
+        This is an open source project and you could therefore create your own instance with your own data. However, if you want that
+        source, chances are that we do too. <a href="mailto:help@dgidb.org">Contact us</a> and we will be happy to consider adding your source for you.
 
     - question: What does 'Source Trust Level' mean?
       anchor: trust
@@ -72,7 +78,7 @@ faq:
         This status is internal to DGIdb. 'Expert curated' sources were examined manually by domain experts during the process of importing to DGIdb.
         'Non-curated' sources were imported in an automatic fashion from the primary source using an importer module (i.e. a script).
         'Non-curated' sources may still have involved some manual curation at the original source.
-        Within each of the two trust levels we further rank each source according to our own assessment of quality.
+        Within each of the two trust levels, we further rank each source according to our own assessment of quality.
         Results will be sorted to favor 'Expert curated' data and by quality rank within those sources.
 
     - question: What is the meaning of 'Gene Categories' in DGIdb?
@@ -88,10 +94,10 @@ faq:
       anchor: interaction
       answer: >
         An interaction type describes the nature of the association between a particular gene and drug. 
-        For example, TTD reports the drug-gene interaction, SUNITINIB-FLT3. The interaction type is reported as, 'inhibitor'.
-        Interaction type, as used in DGIdb is very broad. Dozens of interaction types are currently defined.
+        For example, TTD reports the drug-gene interaction, SUNITINIB-FLT3. The interaction type is reported as 'inhibitor'.
+        Interaction type, as used in DGIdb, is very broad. Dozens of interaction types are currently defined.
         Many interaction types describe the mechanism of action between a small molecule and a protein.
-        Other broader types of 'interaction' might be used. e.g. Gene X mediates 'resistance' or 'sensitivity' to drug Y.
+        However, other broader types of 'interaction' might also be used. e.g. Gene X mediates 'resistance' or 'sensitivity' to drug Y.
 
     - question: What is the difference between a drug-gene interaction and druggable gene category?
       anchor: difference
@@ -120,14 +126,14 @@ faq:
       answer: >  
         We are working on updates to the interface that would allows us to readily capture this kind of information directly from users. In the meantime 
         please feel free to report it to us. The quality of our data is only as good as the sources of raw data. Throughout the results you will
-        be able to see if multiple independant sources report the same findings. Using this as a filter may help you disqualify some spurious 
+        be able to see if multiple independent sources report the same findings. Using this as a filter may help you disqualify some spurious
         entries and have increased confidence in others.
 
-    - question: Some druggable gene categories seem very inclusive ... for example are there really >800 human kinases?
+    - question: Some druggable gene categories seem very inclusive. For example, are there really >800 human kinases?
       anchor: inclusive
       answer: >
         This is by design. Druggable gene categories are aggregated from multiple sources, some of which are predictive in nature. Predictions based on
-        sequence similarity etc. may result in some false positives. More stringent lists can be obtained by limiting to a particular source(s) (e.g. dGene only)
+        sequence similarity may result in some false positives. More stringent lists can be obtained by limiting to a particular source(s) (e.g. dGene only)
         or by requiring that multiple sources agree.
 
     - question: What does the 'interactions for genes related to $GENE' button on the genes pages do?
@@ -143,7 +149,7 @@ faq:
       anchor: implementation
       answer: >
         The web interface uses Ruby on Rails and Twitter bootstrap. The backend is a Postgres database. The importers that process data
-        from each source and populate this database are written in object oriented Perl.
+        from each source and populate this database are written in Ruby with occasional forays into Python.
 
     - question: How is versioning handled in DGIdb?
       anchor: versioning
@@ -151,22 +157,22 @@ faq:
         This question has several answers.  The footer of every page in the web interface contains a version stamp that describes versions for various components.
         The interface code itself is meticulously tracked in <a href="https://github.com/genome/dgi-db">dgi-db at github</a>. 
         The source stamp contains a SHA-1 tag that corresponds to the version of code being run.
-        Each input source of data we import may itself have a version. If so, we maintain this info and display it on the <a href="http://dgidb.genome.wustl.edu/sources">source summary view</a>.
-        If an input source does not have concept of versioning we note the date of import instead.
-        Source version are included in TSV export results for each drug-gene interaction found.
+        Each input source of data we import may have its own version number associated with it. If so, we maintain this info and display it on the <a href="http://dgidb.genome.wustl.edu/sources">source summary view</a>.
+        If an input source does not have concept of versioning, we note the date of import instead.
+        Source versions are included in TSV export results for each drug-gene interaction found.
 
     - question: What does the version stamp at the foot of each view mean?
       anchor: stamp
       answer: >
-        Its currently generated whenever we perform a rake task to create a new data snapshot for DGIdb.
-        The version number corresponds to a tag in git and eventually the debian package we use to push a development version of DGIdb to the publicly facing server.. 
+        It's currently generated whenever we perform a rake task to create a new data snapshot for DGIdb.
+        The version number corresponds to a tag in git and eventually the debian package we use to push a development version of DGIdb to the publicly facing server.
         The SHA-1 is the commit id from when the snapshot was generated, as is the datestamp.
 
     - question: I think I have identified a bug in the DGIdb code. What should I do?
       anchor: bugs
       answer: >
         Please let us know. You may contact us <a href="mailto:help@dgidb.org">by email</a>.
-        If you question is more complicated, please ask it publicly on <a href="http://www.biostars.org/">BioStars</a>. 
+        If your question is more complicated, please ask it publicly on <a href="http://www.biostars.org/">BioStars</a>.
         The <a href="https://github.com/griffithlab/dgi-db">code for DGIdb</a> is open-source, and if you have a GitHub account
         you may post your question directly to the GitHub <a href="https://github.com/genome/dgi-db/issues">issue tracker</a> for our developers to review.
         If you are the curious/ambitious type, feel free to investigate a solution and let us know what you find.

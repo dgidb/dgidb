@@ -9,53 +9,63 @@
         =icon('question-sign')
 
 - cache do
-  .container.search-container
-    .row-fluid{style: "margin-top: 20px"}
-      .span8{style: "float: left; margin-left: 230px; margin-bottom: 20px; padding:35px", class: "well"}
+  .container.search-container{style: "width: 100%; margin: auto"}
+    %div{style: "clear: both; display: flex; justify-content: center;"}
+      .span8{style: "float: left; margin-bottom: 20px; margin-left: -20px; padding:35px", class: "well"}
         %form.form-horizontal(id="search_form" action="interaction_search_results" method="post" enctype="multipart/form-data")
           %fieldset
             .control-group{style: "margin-bottom: -15px"}
-              / need to change position of his control group
               .controls
-                .btn-group#toggleIdentifiers(data-toggle='buttons-radio')
-                  / change width of buttons and get them to lay right over top of textarea
-                  %label.btn.btn-primary.active(for='geneSearch' style="width: 150px; font-weight: bold")
-                    %input#geneSearch(type='radio' name='search_mode' value='genes' style='display:none;' checked='checked')
+                .btn-group#toggleIdentifiers(data-toggle='buttons')
+                  %label.btn.btn-primary.active#geneSearch(for='geneSearch' style="width: 150px; font-weight: bold")
+                    %input(type='radio' name='search_mode' value='genes' style='display:none;')
                       Genes
-                  %label.btn.btn-primary(for='drugSearch'style="width: 150px; font-weight: bold")
-                    %input#drugSearch(type='radio' name='search_mode' value='drugs' style='display:none;') 
+                  %label.btn.btn-primary#drugSearch(for='drugSearch'style="width: 150px; font-weight: bold")
+                    %input(type='radio' name='search_mode' value='drugs' style='display:none;') 
                       Drugs             
             .control-group
-              / need to change position of this control group
               %label.control-label(id='ids_flag')
-                /#ids_text Genes
-                /=icon(:flag, title: tx("ids_flag"), class: 'tip')
-                / need to get this icon to appear and move "Genes" over to the left
-                /%a(href="/faq#types")
-                /=icon('question-sign')
               .controls
-                %textarea#identifiers{name: 'identifiers', rows: "13", style: "width: 300px; font-size: 20px"}
-                  =# need to change width of this textarea
+                %textarea#identifiers{name: 'identifiers', rows: "14", style: "width: 300px; font-size: 20px"}
             .control-group
-              / need to change position of this control group, consider changing width of buttons to match textarea
               .controls
                 %button.btn.btn-small.btn-danger#clear(type='button') Clear Identifiers
                 %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace with Demo List
       .span8{style: "float: left; margin-left: 20px"}
-        %div{style: "height: 187px; width: 360px", class: "well"}
-          %label.btn.btn-primary Preset Filters
-          %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
+        %div.search_filters#gene_search_filters{style: "height: 172px; width: 360px", class: "well"}
+          %label
+            Preset Filters
+          %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
             %div
               %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "search_form"} 
                 = "  FDA Approved"
             %div
-              %input{type: "checkbox", value: "Cancer Drugs"} 
-                = "  Cancer Drugs"
+              %input{type: "checkbox", value: "checked", name: "anti_neoplastic", form: "search_form"} 
+                = "  Anti-neoplastic"
             %div
-              %input{type: "checkbox", value: "Immunotherapies"} 
+              %input{type: "checkbox", value: "checked", name: "immunotherapy", form: "search_form"} 
                 = "  Immunotherapies"
-        %div{style: "height: 187px; width: 360px", class: "well"} 
-          %label.btn.btn-primary Advanced Filters
+          %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
+            Filter the DRUGS that interact with your GENES
+
+        %div.search_filters#drug_search_filters{style: "height: 172px; width: 360px; display: none", class: "well"}
+          %label 
+            Preset Filters
+          %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
+            %div
+              %input{type: "checkbox", value: "checked", name: "clinically_actionable", form: "search_form"} 
+                = "  Clinically Actionable"
+            %div
+              %input{type: "checkbox", value: "checked", name: "druggable_genome", form: "search_form"} 
+                = "  Druggable Genome"
+            %div
+              %input{type: "checkbox", value: "checked", name: "drug_resistance", form: "search_form"} 
+                = "  Drug Resistance"
+          %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
+            Filter the GENES that interact with your DRUGS
+        %div{style: "height: 220px; width: 360px", class: "well"} 
+          %label
+            Advanced Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
             =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
               flag_text_key: 'source_database_flag', select_tag_name: 'interaction_sources', collection: @sources,
@@ -66,13 +76,43 @@
             =render partial: 'shared/multiselect', locals: { control_group_name: 'Interaction Types',
               flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types,
               name_meth: 'to_s', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
-      .form-actions{style: "clear: both; float: left; margin-left: 450px"}
-        %button.btn.btn-success(type="submit" id='search-btn' style='font-size: 20px' form='search_form')
-          /change position to center, consider changing size, consider gray background
-          %i(class="fa fa-search" aria-hidden="true")
-          Find Drug-Gene Interactions
+    .form-actions{style: "clear: both; display: flex; justify-content: center;"}
+      %button.btn.btn-success(type="submit" id='search-btn' style='font-size: 20px' form='search_form')
+        %i(class="fa fa-search" aria-hidden="true")
+        Find Drug-Gene Interactions
 
   =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
+
+
+  :javascript
+    $(document).ready(function() {
+
+      $('#geneSearch > input').prop("checked", true);
+
+      $('#geneSearch').on("click", function() {
+
+        $('#drugSearch > input').prop("checked", false);
+        $('#drug_search_filters').hide();
+        $('#drug_search_filters > div > div > input').prop("disabled", true);
+
+        $('#geneSearch > input').prop("checked", true);
+        $('#gene_search_filters').show();
+        $('#gene_search_filters > div > div > input').prop("disabled", false);
+
+      });
+
+      $('#drugSearch').on("click", function() {
+
+        $('#geneSearch > input').prop("checked", false);
+        $('#gene_search_filters').hide();
+        $('#gene_search_filters > div > div > input').prop("disabled", true);
+
+        $('#drugSearch > input').prop("checked", true);
+        $('#drug_search_filters').show();
+        $('#drug_search_filters > div > div > input').prop("disabled", false);
+
+      });
+    });
 
   =javascript_include_tag 'jquery-ui-1.8.21.custom.min'
   =javascript_include_tag 'jquery.multiselect.min'

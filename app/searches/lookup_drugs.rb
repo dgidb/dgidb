@@ -30,7 +30,7 @@ class LookupDrugs
     drug_alias_results = DataModel::DrugAlias.send(scope).where(alias: search_terms)
     search_terms = search_terms - drug_alias_results.map(&:alias)
 
-    drug_results.concat(drug_alias_results).concat(drug_claim_results)
+    drug_results.to_a.concat(drug_alias_results.to_a).concat(drug_results.to_a)
   end
 
   def self.de_dup_results(results)

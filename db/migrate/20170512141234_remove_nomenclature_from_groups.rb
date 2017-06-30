@@ -1,4 +1,4 @@
-class RemoveNomenclatureFromGroups < ActiveRecord::Migration
+class RemoveNomenclatureFromGroups < ActiveRecord::Migration[4.2]
   def up
     remove_column :gene_aliases, :nomenclature
     remove_column :drug_aliases, :nomenclature

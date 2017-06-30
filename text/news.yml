@@ -142,10 +142,7 @@ news:
             <ul>
               <li>CIViC - drug-gene interactions</li>
               <li>DoCM - drug-gene interactions</li>
-              <li>DrugBank - drug-gene interactions</li>
-              <li>Gene Ontology - druggable gene categories</li>
               <li>Entrez Gene - genes</li>
-              <li>PubChem - drugs</li>
             </ul>
           </li>
           <li>Search drug-gene interactions by drug identifiers
@@ -169,3 +166,62 @@ news:
         DGIdb 2.0 was presented as a software demonstration at the 17th annual Advances in Genome Biology and Technology
         (AGBT) meeting in Orlando, Florida from February 10th - 13th, 2016.
       date: February 15, 2016
+
+    - headline: DGIdb Amazon Machine Image released
+      article : >
+        DGIdb is now available on Amazon's Elastic Compute Cloud (EC2) as an Amazon Machine Image.
+        <a href="https://github.com/griffithlab/dgi-db/wiki/Using-the-Amazon-AMI">See the wiki for details</a>
+        on how to get started!
+      date: May 6, 2017
+
+    - headline: DGIdb 3.0 released
+      article : >
+        DGIdb 3.0 is here, and brings with it several major improvements:
+        <ul>
+          <li>New and updated sources
+            <ul>
+              <li>An <a href="http://stm.sciencemag.org/content/9/383/eaag1166">expanded definition of the Druggable Genome</a> predicted from GWAS data from AD Hingorani and JP Casas</li>
+              <li>Updated interactions curated from <a href="https://www.mycancergenome.org">MyCancerGenome</a></li>
+              <li>Update to DrugBank 5.0</li>
+              <li>ChEMBL molecules datastore</li>
+            </ul>
+          </li>
+          <li>New Preset interaction search filters now available
+            <ul>
+              <li>FDA-approved drugs</li>
+              <li>Anti-neoplastic drugs</li>
+              <li>Immunotherapy drugs</li>
+              <li>Clinically actionable genes</li>
+              <li>Druggable genome genes</li>
+              <li>Drug resistance genes</li>
+            </ul>
+          </li>
+          <li>Improved grouping of gene and drug claims
+            <ul>
+              <li>Iterative updating of Entrez genes</li>
+              <li>Transition to ChEMBL for primary drug concepts</li>
+              <li>Interaction groups added</li>
+            </ul>
+          </li>
+          <li>Redesigned search
+            <ul>
+              <li>Improved search interface with preset filter panel</li>
+              <li>Improved search results interface presents grouped interactions</li>
+            </ul>
+          </li>
+          <li>Redesigned gene, drug, and interaction views</li>
+          <li>Faster Interaction Searches</li>
+          <li>Expanded API
+            <ul>
+              <li>Go to the <a href="/api">API Documentation</a> page to learn about the DGIdb endpoints.</li>
+            </ul>
+          </li>
+          <li>Framework upgrade
+            <ul>
+              <li>Upgraded from Rails 3 to Rails 5</li>
+              <li>Upgraded from Postgres 9.4 to 9.6</li>
+              <li>Added functional indexes to db</li>
+            </ul>
+          </li>
+        </ul>
+      date: June 30, 2017

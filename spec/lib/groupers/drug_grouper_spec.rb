@@ -296,4 +296,22 @@ describe Genome::Groupers::DrugGrouper do
     expect{grouper.run}.not_to raise_error
   end
 
+  it 'should not allow drugs to have null names' do
+    bond = 'CHEMBL007'
+    molecule = Fabricate(:chembl_molecule, pref_name: nil, chembl_id: bond)
+
+    drug_claim = Fabricate(:drug_claim, name: bond)
+
+    grouper = Genome::Groupers::DrugGrouper.new
+    grouper.run
+
+    drug_claim.reload
+    drug = drug_claim.drug
+
+    expect(drug.name).to eq bond
+    expect(drug.chembl_id).to eq bond
+
+    expect{Fabricate(:drug, molecule: molecule)}.to raise_error
+  end
+
 end

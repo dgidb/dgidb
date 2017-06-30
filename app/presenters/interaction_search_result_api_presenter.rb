@@ -34,23 +34,21 @@ class InteractionSearchResultApiPresenter
   end
 
   def interactions
-    @interactions ||= @result.interaction_claims.map do |i|
+    @interactions ||= @result.interactions.flat_map(&:interaction_claims).map do |i|
       InteractionWrapper.new(i)
     end
   end
 
   private
   def gene
-    @result.interaction_claims
+    @result.interactions
       .first
-      .interaction
       .gene
   end
 
   def drug
-    @result.interaction_claims
+    @result.interactions
       .first
-      .interaction
       .drug
   end
 

@@ -24,30 +24,23 @@ getting_started:
     Identifying clinically relevant genes using DGIdb has a number of limitations that should be acknowledged. DGIdb provides links between genes and their known or potential drug associations. It does not currently provide any information regarding the druggability of specific mutations, nor does it guarantee that any given drug-gene association represents an appropriate therapeutic intervention. DGIdb’s concept of a drug-gene interaction or membership in a potentially druggable category is inclusive and largely driven by the underlying data sources and publications. It includes 39 potentially druggable categories and least 35 interaction types as defined by source datasets. These include inhibitors, activators, cofactors, ligands, vaccines, and in many cases, interactions of unknown type.  Wherever possible we provide filtering by source, trust level, interaction type, and drug type to allow the user to quickly disregard possibly spurious candidates.<br><br>
 
     This page provides tutorials and other resources on how to use DGIdb.<br>
-  links: 
-    - url: http://dgidb.genome.wustl.edu/downloads/walkthroughUpdated.pdf
-      title: Basic Walkthrough (pdf)
-      description: Illustrated user guide in .pdf format
-    - url: http://genome.wustl.edu/
-      title: The McDonnell Genome Institute
-      description: Visit our institution homepage
-  papers:
+  links:
     - url: http://www.ncbi.nlm.nih.gov/pubmed/12209152
       title: Hopkins and Groom, 2002
-      description: The druggable genome
+      description: "The druggable genome"
     - url: http://www.ncbi.nlm.nih.gov/pubmed/16376820
       title: Russ and Lampel, 2005
       description: "The druggable genome: an update"
     - url: http://www.ncbi.nlm.nih.gov/pubmed/21804595
       title: Rask-Andersen, et al. 2011
-      description: Trends in the exploitation of novel drug targets
-    - url: http://www.ncbi.nlm.nih.gov/pubmed/22005529/
-      title: Somaiah and Simon, 2011
-      description: Molecular targeted agents and biologic therapies for lung cancer
-    - url: http://www.ncbi.nlm.nih.gov/pubmed/21059682/
-      title: Knox et al., 2011
-      description: "DrugBank 3.0: a comprehensive resource for 'omics' research on drugs"
-    - url: http://www.ncbi.nlm.nih.gov/pubmed/21948793
-      title: Zhu et al. 2012
-      description: "Therapeutic target database update 2012: a resource for facilitating target-oriented drug discovery"
+      description: "Trends in the exploitation of novel drug targets"
+    - url: https://www.ncbi.nlm.nih.gov/pubmed/24377743
+      title: Somaiah and Simon, 2014
+      description: "A tabulated summary of targeted and biologic therapies for non-small-cell lung cancer."
+    - url: https://www.ncbi.nlm.nih.gov/pubmed/24203711
+      title: Law et al., 2014
+      description: "DrugBank 4.0: shedding new light on drug metabolism."
+    - url: https://www.ncbi.nlm.nih.gov/pubmed/?term=28356508
+      title: Finan et al., 2017
+      description: "The druggable genome and support for target identification and validation in drug development."
 

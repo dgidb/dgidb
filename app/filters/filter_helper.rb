@@ -1,6 +1,5 @@
 module FilterHelper
   def construct_filter(params_to_filters_map, params, filter = FilterChain.new)
-    # need to figure out what the param object actually looks like, probably need to set something in a form
     params_to_filters_map.each do |param_key, filter_name|
      if should_filter?(param_key, params)
       add_filter(filter, params[param_key], filter_name)
@@ -22,6 +21,7 @@ module FilterHelper
 
   # is it going to be problematic if I don't have a param_to_count_mapping for FDA drugs since it's not really like I'm turning off or on certain types, it's just binary
   def should_filter?(param_value, params)
+    
     if params[param_value] == "checked"
       true
     else 
@@ -38,7 +38,12 @@ module FilterHelper
       interaction_types: DataModel::InteractionClaimType.all_type_names.count,
       source_trust_levels: DataModel::SourceTrustLevel.all_trust_levels.count,
       category_sources: DataModel::Source.potentially_druggable_source_names.count,
-      fda_approved_drug: -1
+      fda_approved_drug: -1,
+      anti_neoplastic: -1,
+      immunotherapy: -1,
+      druggable_genome: -1,
+      drug_resistance: -1,
+      clinically_actionable: -1
     }
   end
 end
