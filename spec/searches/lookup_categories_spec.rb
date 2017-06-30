@@ -94,8 +94,7 @@ describe LookupCategories do
   describe '::gene_names_in_category' do
     def setup_category
       category = Fabricate(:gene_claim_category, name: 'TESTCATEGORY')
-      gene_claim = Fabricate(:gene_claim, gene_claim_categories: [category])
-      gene = Fabricate(:gene, gene_claims: [gene_claim])
+      gene = Fabricate(:gene, gene_categories: [category])
       [gene, category.name]
     end
 

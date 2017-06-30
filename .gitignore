@@ -34,4 +34,10 @@
 
 .agignore
 
+# Ignore ds_store and schema
+/db/migrate/.DS_Store
+/db/schema.rb
+
 /coverage
+
+.DS_Store

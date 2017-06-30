@@ -27,28 +27,19 @@ describe LookupGenes do
       check_matched_gene_against_results(matched_gene)
     end
 
-    it 'should check gene claim aliases after genes' do
-      gene_claim = Fabricate(:gene_claim, name: search_string)
-      gene_claim_with_alias = Fabricate(:gene_claim)
-      Fabricate(:gene_claim_alias, gene_claim: gene_claim_with_alias, alias: search_string)
-      matched_gene = Fabricate(:gene, gene_claims: [gene_claim_with_alias])
-      Fabricate(:gene, gene_claims: [gene_claim])
-      check_matched_gene_against_results(matched_gene)
-    end
-
-    it 'should check gene claim names last' do
-      gene_claim = Fabricate(:gene_claim, name: search_string)
-      matched_gene = Fabricate(:gene, gene_claims: [gene_claim])
-      check_matched_gene_against_results(matched_gene)
+    it 'should check gene aliases last' do
+      gene_with_alias = Fabricate(:gene)
+      Fabricate(:gene_alias, gene: gene_with_alias, alias: search_string)
+      check_matched_gene_against_results(gene_with_alias)
     end
 
     it 'should de-duplicate search terms that map to the same values' do
       gene_claim = Fabricate(:gene_claim)
       gene = Fabricate(:gene, gene_claims: [gene_claim])
-      gene_claim_aliases = (1..2).map { Fabricate(:gene_claim_alias, gene_claim: gene_claim) }
-      results = LookupGenes.find(gene_claim_aliases.map(&:alias), :for_search, DummyWrapper)
+      gene_aliases = (1..2).map { Fabricate(:gene_alias, gene: gene) }
+      results = LookupGenes.find(gene_aliases.map(&:alias), :for_search, DummyWrapper)
       expect(results.size).to eq(1)
-      expect(results.first.search_terms).to eq(gene_claim_aliases.map(&:alias))
+      expect(results.first.search_terms).to eq(gene_aliases.map(&:alias))
       expect(results.first.matched_genes).to eq(Array(gene))
     end
 
@@ -73,7 +64,7 @@ describe LookupGenes do
 
     it 'should send the correct eager loading scope to the underlying model' do
       genes = (1..3).map { Fabricate(:gene) }
-      [DataModel::Gene, DataModel::GeneClaimAlias, DataModel::GeneClaim].each do |klass|
+      [DataModel::Gene, DataModel::GeneAlias].each do |klass|
         expect(klass).to receive(:for_search).once.and_return(klass)
       end
       LookupGenes.find(genes.map(&:name), :for_search, DummyWrapper)

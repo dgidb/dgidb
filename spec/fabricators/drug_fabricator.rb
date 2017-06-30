@@ -1,5 +1,7 @@
 Fabricator(:drug, class_name: 'DataModel::Drug') do
-  name { sequence(:name) { |i| "Drug ##{i}" } }
+  chembl_molecule
+  chembl_id { |attrs| attrs[:chembl_molecule].chembl_id }
+  name { |attrs| attrs[:chembl_molecule].pref_name }
 end
 
 Fabricator(:drug_claim, class_name: 'DataModel::DrugClaim') do
@@ -22,3 +24,23 @@ end
 Fabricator(:drug_claim_type, class_name: 'DataModel::DrugClaimType') do
   type { ['antineoplastic', ''].sample }
 end
+
+Fabricator(:drug_alias, class_name: 'DataModel::DrugAlias') do |f|
+  f.alias { sequence(:alias) { |i| "Drug Alias Name ##{i}" } }
+  drug
+end
+
+Fabricator( :chembl_molecule, class_name: 'DataModel::ChemblMolecule') do
+  pref_name { sequence(:pref_name) { |i| "Drug Name ##{i}" } }
+  chembl_id { sequence(:chembl_id) { |i| "CHEMBL#{i}" } }
+  max_phase { [0..4].sample }
+  withdrawn_flag { [true, false].sample }
+  molregno { sequence(:molregno) { |i| "#{i}"}}
+end
+
+Fabricator( :chembl_molecule_synonym, class_name: 'DataModel::ChemblMoleculeSynonym') do
+  chembl_molecule
+  molregno { |attrs| attrs[:chembl_molecule].molregno }
+  synonym { sequence(:synonym) { |i| "Molecule Synonym Name ##{i}" } }
+end
+

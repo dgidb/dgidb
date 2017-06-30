@@ -25,8 +25,12 @@ module Genome
             next
           end
           next if line.blank?
-          row = @rowtype.new(line, row_delimiter)
-          yield row if row.valid?
+          begin
+            row = @rowtype.new(line, row_delimiter)
+            yield row if row.valid?
+          rescue
+            print "Row " + index.to_s + " in file " + @tsv_path + " does not match specified attributes" + "\n"
+          end
         end
       end
     end

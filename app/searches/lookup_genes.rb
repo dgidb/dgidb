@@ -2,38 +2,29 @@ class LookupGenes
 
   def self.find(search_terms, scope, wrapper_class)
     raise 'You must specify at least one search term!' unless search_terms.any?
-    results = match_search_terms_to_objects(search_terms, scope)
-    results_to_genes = match_objects_to_genes(results, search_terms)
+    results_to_genes = match_search_terms_to_objects(search_terms, scope)
     de_dup_results(results_to_genes).map do |terms, matched_genes|
       wrapper_class.new(terms, matched_genes.compact)
     end
   end
 
   private
-  def self.match_objects_to_genes(results, search_terms)
-    results_to_gene_groups = search_terms.each_with_object({}) { |term, h| h[term] = [] }
-    results.each do |result|
-      case result
-        when DataModel::Gene
-          results_to_gene_groups[result.name] << result
-        when DataModel::GeneClaimAlias
-          results_to_gene_groups[result.alias] << result.gene_claim.gene
-        when DataModel::GeneClaim
-          results_to_gene_groups[result.name] << result.gene
-      end
-    end
-    results_to_gene_groups
-  end
-
   def self.match_search_terms_to_objects(search_terms, scope)
     search_terms = search_terms.dup
-    gene_results = DataModel::Gene.send(scope).where(name: search_terms)
-    search_terms = search_terms - gene_results.map(&:name)
-    gene_alias_results = DataModel::GeneClaimAlias.send(scope).where(alias: search_terms)
-    search_terms = search_terms - gene_alias_results.map(&:alias)
-    gene_claim_results = DataModel::GeneClaim.send(scope).where(name: search_terms)
+    results_to_gene_groups = search_terms.each_with_object({}) { |term, h| h[term] = [] }
 
-    gene_results.concat(gene_alias_results).concat(gene_claim_results)
+    gene_results = DataModel::Gene.send(scope).where(name: search_terms)
+    gene_results.each do |result|
+      results_to_gene_groups[result.name] << result
+    end
+    search_terms = search_terms - gene_results.map(&:name)
+
+    gene_alias_results = DataModel::GeneAlias.send(scope).where(alias: search_terms)
+    gene_alias_results.each do |result|
+      results_to_gene_groups[result.alias] << result.gene
+    end
+
+    results_to_gene_groups
   end
 
   def self.de_dup_results(results)

@@ -9,6 +9,9 @@ class FilterChain
   #TODO it will now recalculate if you modify the filter after calcuating it
   #but once something is excluded, it can't be added back in
   #is that an acceptable limitation?
+
+  # this is what defines the "include_" methods
+
   Filter.all_filters.each do |filter|
     ['include', 'exclude'].each do |filter_type|
       define_method "#{filter_type}_#{filter}" do |*filter_criteria|
@@ -20,6 +23,8 @@ class FilterChain
     end
   end
 
+  # this gets called in the filter_results method in lookup_interactions.rb
+  # checks the filtered set of interaction ids to see whether each interaction should be included 
   def include?(id)
     empty? || evaluate_all_filters.include?(id)
   end
