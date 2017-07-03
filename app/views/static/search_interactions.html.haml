@@ -41,8 +41,8 @@
               .controls
                 %button.btn.btn-small.btn-danger#clear(type='button') Clear Identifiers
                 %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace with Demo List
-      .span8{style: "float: left; margin-left: 20px"}
-        %div{style: "height: 187px; width: 360px", class: "well"}
+      .span8{style: "float: left; margin-left: 0px; margin-top: -20px; padding: 20px"}
+        %div{style: "height: 234px; width: 180px; margin-bottom: 10px", class: "well"}
           %label.btn.btn-primary Preset Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
             %div
@@ -54,7 +54,21 @@
             %div
               %input{type: "checkbox", value: "Immunotherapies"} 
                 = "  Immunotherapies"
-        %div{style: "height: 187px; width: 360px", class: "well"} 
+        %div{style: "height: 150px; width: 370px; margin-top: 10px", class: "well"} 
+          %form.form-horizontal(id="adv_search_form" action="interaction_search_results" method="post" enctype="multipart/form-data")
+            %fieldset
+              .control-group{style: "margin-bottom: -10px"}
+                %label.btn.btn-primary Advanced Search
+              .control-group
+                %label.control-label(id='ids_flag')
+                .controls
+                  %textarea#identifiers{name: 'identifiers', rows: "1", style: "width: 334px; font-size: 20px"}
+          %button.btn.btn-success(name='search_mode' value='genes' type="submit" id='search-btn' style='font-size: 14px;' form='adv_search_form')
+            %i(class="fa fa-search" aria-hidden="true")
+            /+^(action="advanced_search_results")(name='search_mode' value='genes')
+            /Search
+      .span8{style: "float: left; margin-left: -200px"}
+        %div{style: "height: 234px; width: 180px", class: "well"} 
           %label.btn.btn-primary Advanced Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
             =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',

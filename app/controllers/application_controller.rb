@@ -48,6 +48,13 @@ class ApplicationController < ActionController::Base
     params[:drug_names] = drug_names.map{ |name| name.strip.upcase }.uniq
   end
 
+  def interpret_search_logic(params)
+    bad_request("You must enter at least one term to search!") unless (params[:genes] || params[:drugs])
+    #hash terms by parenthesis first; set key as logical function
+
+    #...
+  end
+
   private
   def validate_interaction_request(params)
     if params[:search_mode].nil?

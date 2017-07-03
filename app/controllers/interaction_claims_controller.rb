@@ -30,6 +30,11 @@ class InteractionClaimsController < ApplicationController
     perform_interaction_search
   end
 
+  def advanced_search_results #logical function filtered search
+    interpret_search_logic(params)
+    #...
+  end
+
   def interactions_for_related_genes
     @related_source_gene = params[:genes]
     combine_input_genes(params)
