@@ -27,6 +27,8 @@ class LookupInteractions
     interaction_results
   end
 
+  def self.
+
   private
   #for each interaction in each result, remove it from the list of interactions
   #for that result if it doesn't meet the filter

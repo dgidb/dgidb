@@ -37,7 +37,9 @@ class InteractionClaimsController < ApplicationController
   end
 
   def advanced_search_results #logical function filtered search
-    interpret_search_logic(params)
+    @search_command = interpret_search_logic(params)  #turns search input into readable command of type String
+    #(search_command).uniq
+    #@search_results = InteractionSearchResultsPresenter.new(search_results, view_context)
     #...
   end
 
@@ -59,5 +61,10 @@ class InteractionClaimsController < ApplicationController
     validate_interaction_request(params)
     search_results = LookupInteractions.find(params)
     @search_results = InteractionSearchResultsPresenter.new(search_results, view_context)
+  end
+
+  def filter_interaction_search #^
+    validate_interaction_request(params)
+    search_results = LookupInteractions.find(params)
   end
 end

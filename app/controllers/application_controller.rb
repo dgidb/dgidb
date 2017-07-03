@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
   def interpret_search_logic(params)
     bad_request("You must enter at least one term to search!") unless (params[:genes] || params[:drugs])
-    #hash terms by parenthesis first; set key as logical function
+    #set String[] to filter_interaction_search(String) and return "..." for eval
 
     #...
   end
