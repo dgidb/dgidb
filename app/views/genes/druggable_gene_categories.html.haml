@@ -11,16 +11,16 @@
         =icon('question-sign')
 
 #container.container-fluid
-  #source-list.well.span12{data: {sources: @sources.to_json}}
+  #source-list.well.span12{data: {sources: @sources.to_json}, style: "width: 940px; float: left; margin-left: 20px"}
     %label.checkbox.inline Limit categories to specific sources:
     -@sources.each do |source|
-      %label.checkbox.inline
+      %label.checkbox.inline{style: "margin-left: 10px; display: inline-block; padding-top: 5px; margin-bottom: 0px vertical-align: middle; margin-left: 10px; min-height: 20px; padding-left: 20px; font-size: 14px; font-weight: normal; line-height: 20px;"}
         %input{type: 'checkbox', value: source, data: {bind: 'checked: sources'}}
         =source
 
 #container.container-fluid
   .category-listing{data: {bind: 'foreach: categories'}}
-    .item.well.span3
+    .item.well.span3{style: "float:left;"}
       %a{data: {bind: "attr: { href: link }"}}
         %h4{data: {bind: 'text: text'}}
 %p

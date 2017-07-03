@@ -16,7 +16,7 @@ class SourceDbName
   def resolve
     Set.new DataModel::Source
       .where('lower(source_db_name) = ?', @source_db_name)
-      .joins(:interaction_claims)
-      .pluck('interaction_claims.id')
+      .joins(interaction_claims: :interaction)
+      .pluck('interactions.id')
   end
 end

@@ -64,7 +64,6 @@ module Genome
           end
         end
       end
-
     end
   end
 end

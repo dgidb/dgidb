@@ -17,7 +17,7 @@ class SourceTrustLevel
     Set.new DataModel::Source
       .where('lower(source_trust_levels.level) = ?', @source_trust_level)
       .joins(:source_trust_level)
-      .joins(:interaction_claims)
-      .pluck('interaction_claims.id')
+      .joins(interaction_claims: :interaction)
+      .pluck('interactions.id')
   end
 end

@@ -26,6 +26,7 @@ class FilterChain
   # this gets called in the filter_results method in lookup_interactions.rb
   # checks the filtered set of interaction ids to see whether each interaction should be included 
   def include?(id)
+    
     empty? || evaluate_all_filters.include?(id)
   end
 
@@ -38,6 +39,8 @@ class FilterChain
     @computed_include ||= evaluate_filter(@all_include)
     @computed_exclude ||= evaluate_filter(@all_exclude)
     @computed_final ||= @computed_include - @computed_exclude
+    @computed_final
+    
   end
 
   def evaluate_filter(filter)

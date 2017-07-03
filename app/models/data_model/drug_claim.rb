@@ -8,7 +8,8 @@ module DataModel
     has_many :gene_claims, through: :interaction_claims
     belongs_to :source, inverse_of: :drug_claims, counter_cache: true
     has_many :drug_claim_attributes, inverse_of: :drug_claim, dependent: :delete_all
-    has_and_belongs_to_many :drug_claim_types
+    has_and_belongs_to_many :drug_claim_types, :join_table => 'drug_claim_types_drug_claims'
+
 
     def self.for_search
       eager_load(drug: [drug_claims: {interaction_claims: { source: [], gene_claim: [:source, :gene_claim_categories], interaction_claim_types: [], drug_claim: [drug: [drug_claims: [:drug_claim_types]]]}}])
@@ -20,6 +21,10 @@ module DataModel
 
     def sort_value
       DrugClaimSortOrder.sort_value(self.nomenclature)
+    end
+
+    def names
+      @names ||= (self.drug_claim_aliases.pluck(:alias) + [self.name, self.primary_name]).compact.map(&:upcase).to_set
     end
 
     def original_data_source_url

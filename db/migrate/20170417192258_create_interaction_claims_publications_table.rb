@@ -1,4 +1,4 @@
-class CreateInteractionClaimsPublicationsTable < ActiveRecord::Migration
+class CreateInteractionClaimsPublicationsTable < ActiveRecord::Migration[4.2]
   def up
     create_table :interaction_claims_publications, id: false do |t|
       t.text :interaction_claim_id, null: false

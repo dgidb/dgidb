@@ -1,11 +1,11 @@
-__author__ = 'Alex H Wagner'
-import wget
+__author__ = 'Kelsy C Cotto'
+
 import os
 import gzip
 import csv
+import requests
 from version_logger import Version
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
 import datetime
 
 
@@ -16,6 +16,7 @@ class Entrez:
         self.get_online_version()
         self.version = Version('Entrez', version=self.online_version)
         self.logged_version = self.version.last_logged_version()
+        # self.http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED', ca_certs=certifi.where())
 
     def is_current(self):
         """Returns True if local versions of Entrez files are up-to-date."""
@@ -23,10 +24,21 @@ class Entrez:
 
     def get_online_version(self):
         # This assumes that if gene2accession needs updating, so will other Entrez files.
-        html = urlopen('http://ftp.ncbi.nlm.nih.gov/gene/DATA/')
-        bsObj = BeautifulSoup(html.read(), "html.parser")
-        a = bsObj.hr.find('a', {"href": "gene2accession.gz"})
-        self.online_version = datetime.datetime.strptime(a.next.next.split()[0], '%d-%b-%Y').strftime('%d-%B-%Y')
+        r = requests.get('http://ftp.ncbi.nlm.nih.gov/gene/DATA/', stream=True, allow_redirects=True)
+        bsObj = BeautifulSoup(r.text, "html.parser")
+        for link in bsObj.find_all('a'):
+            if link.get('href') == 'gene2accession.gz':
+                self.online_version = datetime.datetime.strptime(link.next.next.split()[0], '%d-%b-%Y').strftime(
+                    '%d-%B-%Y')
+                break
+
+    def download_file(self, url, local_filename):
+        # NOTE the stream=True parameter
+        r = requests.get(url, stream=True, allow_redirects=True, auth=HTTPBasicAuth(self.username, self.password))
+        with open(local_filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk:  # filter out keep-alive new chunks
+                    f.write(chunk)
 
     @staticmethod
     def extract(file):
@@ -41,16 +53,26 @@ class Entrez:
                         if species == '9606':  # Grab human only
                             wf.write(line_ascii)
 
-    @staticmethod
-    def download_files():
+    def download_file(self, url, local_filename):
+        # NOTE the stream=True parameter
+        r = requests.get(url, stream=True, allow_redirects=True)
+        with open(local_filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=1024):
+                if chunk:  # filter out keep-alive new chunks
+                    f.write(chunk)
+
+    def download_files(self):
         """Download and extract the gene2accession and gene_info files"""
         print('Downloading Entrez Accessions...')
-        print('gene_info:')
-        g2a_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2accession.gz")
-        print('\ngene2accession:')
-        gi_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene_info.gz")
+        print('gene2accession:')
+        g2a_filename = 'gene2accession.gz'
+        self.download_file("http://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2accession.gz", g2a_filename)
+        print('\ngene_info:')
+        gi_filename = 'gene_info.gz'
+        self.download_file("http://ftp.ncbi.nlm.nih.gov/gene/DATA/gene_info.gz", gi_filename)
         print('\ninteractions:')
-        ia_filename = wget.download("ftp://ftp.ncbi.nlm.nih.gov/gene/GeneRIF/interactions.gz")
+        ia_filename = 'interactions.gz'
+        self.download_file("http://ftp.ncbi.nlm.nih.gov/gene/GeneRIF/interactions.gz", ia_filename)
         print('\nExtracting Entrez Accessions...')
         print('gene_info...')
         Entrez.extract("gene_info.gz")
@@ -88,7 +110,7 @@ class Entrez:
                 self.rows.append(row)
 
     def write(self):
-        with open('data/entrez_genes.tsv', 'w') as f:
+        with open('entrez_genes.tsv', 'w') as f:
             fieldnames = ['entrez_id', 'entrez_gene_symbol', 'entrez_gene_synonyms',
                           'ensembl_ids', 'description']
             writer = csv.DictWriter(f, delimiter='\t', fieldnames=fieldnames, extrasaction='ignore')

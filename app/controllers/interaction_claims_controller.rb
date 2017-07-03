@@ -27,6 +27,12 @@ class InteractionClaimsController < ApplicationController
         combine_input_drugs(params)
       end
     end
+    @preset_fda = (params[:fda_approved_drug] == "checked" ? "FDA Approved" : "")
+    @preset_neo = (params[:anti_neoplastic] == "checked" ? "Anti-neoplastics" : "")
+    @preset_immuno = (params[:immunotherapy] == "checked" ? "Immunotherapies" : "")
+    @preset_clin = (params[:clinically_actionable] == "checked" ? "Clinically Actionable" : "")
+    @preset_druggable = (params[:druggable_genome] == "checked" ? "Druggable Genome" : "")
+    @preset_resist = (params[:drug_resistance] == "checked" ? "Drug Resistance" : "")
     perform_interaction_search
   end
 
@@ -50,9 +56,8 @@ class InteractionClaimsController < ApplicationController
 
   private
   def perform_interaction_search
-    start_time = Time.now
     validate_interaction_request(params)
     search_results = LookupInteractions.find(params)
-    @search_results = InteractionSearchResultsPresenter.new(search_results, start_time, view_context)
+    @search_results = InteractionSearchResultsPresenter.new(search_results, view_context)
   end
 end

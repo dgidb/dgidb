@@ -23,7 +23,6 @@ class LookupInteractions
     filter = create_filter_from_params(params)
     # actually filter down the results we want
     filter_results(interaction_results, filter)
-
     # return filtered set of interactions
     interaction_results
   end
@@ -33,7 +32,6 @@ class LookupInteractions
   #for that result if it doesn't meet the filter
   def self.filter_results(interaction_results, filter)
     interaction_results.each do |result|
-      # underlying select operation in filter_interactions from interaction_search_result.rb
       result.filter_interactions do |interaction|
         filter.include?(interaction.id)
       end
@@ -55,6 +53,11 @@ class LookupInteractions
     gene_categories: :include_gene_claim_category_interaction,
     interaction_types:  :include_interaction_claim_type,
     source_trust_levels: :include_source_trust_level,
-    fda_approved_drug: :include_fda_approved_drug
+    fda_approved_drug: :include_fda_approved_drug,
+    immunotherapy: :include_immunotherapy,
+    anti_neoplastic: :include_anti_neoplastic,
+    clinically_actionable: :include_clinically_actionable,
+    drug_resistance: :include_drug_resistance,
+    druggable_genome: :include_druggable_genome
   }
 end

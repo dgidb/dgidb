@@ -3,7 +3,7 @@ module DataModel
     include Genome::Extensions::UUIDPrimaryKey
     include Genome::Extensions::EnumerableType
     include Genome::Extensions::HasCacheableQuery
-    has_and_belongs_to_many :drug_claims
+    has_and_belongs_to_many :drug_claims, :join_table => 'drug_claim_types_drug_claims'
 
     cache_query :all_type_names, :all_drug_claim_type_names
 

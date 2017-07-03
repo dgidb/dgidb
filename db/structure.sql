@@ -1,4 +1,5 @@
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
@@ -36,6 +37,98 @@ CREATE TABLE ar_internal_metadata (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
+
+
+--
+-- Name: chembl_molecule_synonyms; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE chembl_molecule_synonyms (
+    id integer NOT NULL,
+    molregno integer,
+    synonym character varying(200),
+    molsyn_id integer,
+    chembl_molecule_id integer,
+    syn_type character varying(50)
+);
+
+
+--
+-- Name: chembl_molecule_synonyms_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE chembl_molecule_synonyms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: chembl_molecule_synonyms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE chembl_molecule_synonyms_id_seq OWNED BY chembl_molecule_synonyms.id;
+
+
+--
+-- Name: chembl_molecules; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE chembl_molecules (
+    id integer NOT NULL,
+    molregno integer,
+    pref_name character varying(255),
+    chembl_id character varying(20),
+    max_phase integer,
+    therapeutic_flag boolean,
+    dosed_ingredient boolean,
+    structure_type character varying(10),
+    chebi_par_id integer,
+    molecule_type character varying(30),
+    first_approval integer,
+    oral boolean,
+    parenteral boolean,
+    topical boolean,
+    black_box_warning boolean,
+    natural_product boolean,
+    first_in_class boolean,
+    chirality integer,
+    prodrug boolean,
+    inorganic_flag boolean,
+    usan_year integer,
+    availability_type integer,
+    usan_stem character varying(50),
+    polymer_flag boolean,
+    usan_substem character varying(50),
+    usan_stem_definition text,
+    indication_class text,
+    withdrawn_flag boolean,
+    withdrawn_year integer,
+    withdrawn_country text,
+    withdrawn_reason text,
+    drug_id text
+);
+
+
+--
+-- Name: chembl_molecules_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE chembl_molecules_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: chembl_molecules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE chembl_molecules_id_seq OWNED BY chembl_molecules.id;
 
 
 --
@@ -184,7 +277,11 @@ CREATE TABLE drug_claims (
 
 CREATE TABLE drugs (
     id text NOT NULL,
-    name text
+    name text NOT NULL,
+    fda_approved boolean,
+    immunotherapy boolean,
+    anti_neoplastic boolean,
+    chembl_id character varying NOT NULL
 );
 
 
@@ -451,8 +548,8 @@ CREATE TABLE publications (
     id text NOT NULL,
     pmid integer NOT NULL,
     citation text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -511,6 +608,20 @@ CREATE TABLE sources (
 
 
 --
+-- Name: chembl_molecule_synonyms id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY chembl_molecule_synonyms ALTER COLUMN id SET DEFAULT nextval('chembl_molecule_synonyms_id_seq'::regclass);
+
+
+--
+-- Name: chembl_molecules id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY chembl_molecules ALTER COLUMN id SET DEFAULT nextval('chembl_molecules_id_seq'::regclass);
+
+
+--
 -- Name: delayed_jobs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -523,6 +634,22 @@ ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_
 
 ALTER TABLE ONLY ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: chembl_molecule_synonyms chembl_molecule_synonyms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY chembl_molecule_synonyms
+    ADD CONSTRAINT chembl_molecule_synonyms_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: chembl_molecules chembl_molecules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY chembl_molecules
+    ADD CONSTRAINT chembl_molecules_pkey PRIMARY KEY (id);
 
 
 --
@@ -953,6 +1080,13 @@ CREATE INDEX genes_full_text ON genes USING gin (to_tsvector('english'::regconfi
 --
 
 CREATE INDEX genes_lower_name_idx ON genes USING btree (lower(name));
+
+
+--
+-- Name: index_chembl_molecules_on_drug_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_chembl_molecules_on_drug_id ON chembl_molecules USING btree (drug_id);
 
 
 --
@@ -1663,9 +1797,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170315152806'),
 ('20170317143034'),
 ('20170317175150'),
-('20170410204422'),
-('20170412204422'),
-('20170412204423'),
 ('20170414213904'),
 ('20170417192246'),
 ('20170417192258'),
@@ -1673,6 +1804,15 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170503192632'),
 ('20170512141234'),
 ('20170512150855'),
-('20170616211809');
+('20170605204001'),
+('20170616211809'),
+('20170619174047'),
+('20170619191811'),
+('20170619204652'),
+('20170619205542'),
+('20170622142108'),
+('20170628044755'),
+('20170629024912'),
+('20170630203634');
 
 

@@ -16,10 +16,8 @@ class LookupDrugs
       case result
         when DataModel::Drug
           results_to_drug_groups[result.name] << result
-        when DataModel::DrugClaimAlias
-          results_to_drug_groups[result.alias] << result.drug_claim.drug # Come back to this
-        when DataModel::DrugClaim
-          results_to_drug_groups[result.name] << result.drug
+        when DataModel::DrugAlias
+          results_to_drug_groups[result.alias] << result.drug
       end
     end
     results_to_drug_groups
@@ -29,11 +27,10 @@ class LookupDrugs
     search_terms = search_terms.dup
     drug_results = DataModel::Drug.send(scope).where(name: search_terms)
     search_terms = search_terms - drug_results.map(&:name)
-    drug_alias_results = DataModel::DrugClaimAlias.send(scope).where(alias: search_terms)
+    drug_alias_results = DataModel::DrugAlias.send(scope).where(alias: search_terms)
     search_terms = search_terms - drug_alias_results.map(&:alias)
-    drug_claim_results = DataModel::DrugClaim.send(scope).where(name: search_terms)
 
-    drug_results.concat(drug_alias_results).concat(drug_claim_results)
+    drug_results.to_a.concat(drug_alias_results.to_a).concat(drug_results.to_a)
   end
 
   def self.de_dup_results(results)

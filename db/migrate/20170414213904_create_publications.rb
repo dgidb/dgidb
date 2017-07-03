@@ -1,4 +1,4 @@
-class CreatePublications < ActiveRecord::Migration
+class CreatePublications < ActiveRecord::Migration[4.2]
   def up
     create_table :publications, id: false do |t|
       t.text :id, null: false
