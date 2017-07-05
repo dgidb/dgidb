@@ -37,9 +37,7 @@ module DataModel
       if self.fda_approved.nil?  # This assumes that the flag will get updated elsewhere if the molecule record changes
         self.fda_approved = (self.chembl_molecule.max_phase == 4 && !self.chembl_molecule.withdrawn_flag)
       end
-      if self.immunotherapy.nil? # This assumes that the flag will get updated elsewhere if the molecule record changes
-        self.immunotherapy = (self.chembl_molecule.molecule_type == 'Antibody')
-      end
+      self.immunotherapy = false
       self.anti_neoplastic = false
     end
 
