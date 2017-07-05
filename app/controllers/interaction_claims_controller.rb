@@ -71,17 +71,18 @@ class InteractionClaimsController < ApplicationController
             'match_type' => result.match_type_label,
             'search_term' => result.instance_variable_get(:@search_term)
         }
-        result.instance_variable_get(:@identifiers).each do |id|
-          row_hash['match_term'] = id.name
-          result.instance_variable_get(:@interactions).each do |interaction|
-            next unless id.id == interaction[match_field]
-            row_hash['gene'] = interaction.gene.name
-            row_hash['drug'] = interaction.drug.name
-            row_hash['interaction_types'] = interaction.interaction_types.pluck(:type).uniq.join(compound_field_separator)
-            row_hash['pmids'] = interaction.publications.pluck(:pmid).uniq.join(compound_field_separator)
-            row_hash['sources'] = interaction.interaction_claims.map{ |ic| ic.source.source_db_name }.uniq.join(compound_field_separator)
-            tsv << headers.map{ |field| row_hash[field] }
-          end
+        identifiers = result.instance_variable_get(:@identifiers)
+        # result.instance_variable_get(:@identifiers).each do |id|
+        #   row_hash['match_term'] = id.name
+        result.instance_variable_get(:@interactions).each do |interaction|
+          id = interaction[match_field]
+          row_hash['match_term'] = identifiers.select { |i| i.id == id}.first.name
+          row_hash['gene'] = interaction.gene.name
+          row_hash['drug'] = interaction.drug.name
+          row_hash['interaction_types'] = interaction.interaction_types.pluck(:type).uniq.join(compound_field_separator)
+          row_hash['pmids'] = interaction.publications.pluck(:pmid).uniq.join(compound_field_separator)
+          row_hash['sources'] = interaction.interaction_claims.map{ |ic| ic.source.source_db_name }.uniq.join(compound_field_separator)
+          tsv << headers.map{ |field| row_hash[field] }
         end
       end
     end
