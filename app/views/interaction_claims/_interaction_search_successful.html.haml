@@ -1,9 +1,6 @@
 - definite_matches = definite_results + definite_no_interactions
 %div{style: "float: right; margin-top: -15px; width: 17%"}
-  = button_to 'interaction_search_results/download', {method: :post, class: 'button btn btn-mini export-button'} do
-  %i(class="fa fa-download" aria-hidden="true")
-    %span{style: "font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif"}
-      Download as TSV
+  = render partial: 'shared/page_export'
   %div.alert.alert-error.well{style: "margin-top: 15px; padding-right: 20px; width: 240px;"}
     %h3{style: "margin-top: -5px;"}
       Preset Filters
