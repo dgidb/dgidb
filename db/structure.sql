@@ -494,7 +494,6 @@ CREATE TABLE interaction_claims (
     drug_claim_id text NOT NULL,
     gene_claim_id text NOT NULL,
     source_id text,
-    known_action_type character varying(255),
     interaction_id text
 );
 
@@ -1234,13 +1233,6 @@ CREATE UNIQUE INDEX index_genes_on_name ON genes USING btree (name);
 
 
 --
--- Name: index_interaction_claims_on_known_action_type; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_interaction_claims_on_known_action_type ON interaction_claims USING btree (known_action_type);
-
-
---
 -- Name: index_interactions_on_drug_id_and_gene_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1848,6 +1840,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170628044755'),
 ('20170629024912'),
 ('20170630203634'),
-('20170705222429');
+('20170705222429'),
+('20170706215825');
 
 
