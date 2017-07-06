@@ -1,5 +1,6 @@
 - ambiguous_matches = ambiguous_results + ambiguous_no_interactions
 %div{style: "float: right; margin-top: -15px; width: 17%"}
+  = render partial: 'shared/page_export'
   %div.well{style: "margin-top: 15px;"}
     %h3{style: "margin-top: -5px;"}
       Unmatched Terms
@@ -32,6 +33,7 @@
       - result[:identifiers].each do |entity|
         %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-ambiguous", style: "display: list-item;"}
           = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions] }
+
 :javascript
   function toggleIcon(e) {
     $(e.target)

@@ -43,6 +43,10 @@ module Genome
       def self.add_attributes
         DataModel::Interaction.all.each do |interaction|
           interaction.interaction_claims.each do |interaction_claim|
+            # roll sources up to interaction level
+            unless interaction.sources.include? interaction_claim.source
+              interaction.sources << interaction_claim.source
+            end
             interaction_claim.interaction_claim_attributes.each do |ica|
               interaction_attribute = DataModel::InteractionAttribute.where(
                 interaction_id: interaction.id,
