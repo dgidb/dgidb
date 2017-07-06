@@ -52,7 +52,7 @@ class InteractionClaimsController < ApplicationController
     @search_results = InteractionSearchResultsPresenter.new(search_results, view_context)
   end
 
-  def unpack_locals params
+  def unpack_locals(params)
     @preset_fda = (params[:fda_approved_drug] == "checked" ? "FDA Approved" : "")
     @preset_neo = (params[:anti_neoplastic] == "checked" ? "Anti-neoplastics" : "")
     @preset_immuno = (params[:immunotherapy] == "checked" ? "Immunotherapies" : "")
@@ -65,16 +65,14 @@ class InteractionClaimsController < ApplicationController
     headers = %w[search_term match_term match_type gene drug interaction_types sources pmids]
     @tsv = CSV.generate(col_sep: "\t") do |tsv|
       tsv << headers
-      @search_results.instance_variable_get(:@search_results).each do |result|
-        match_field = result.instance_variable_get(:@type).singularize + '_id'
+      @search_results.search_results.each do |result|
+        match_field = result.type.singularize + '_id'
         row_hash = {
             'match_type' => result.match_type_label,
-            'search_term' => result.instance_variable_get(:@search_term)
+            'search_term' => result.search_term
         }
-        identifiers = result.instance_variable_get(:@identifiers)
-        # result.instance_variable_get(:@identifiers).each do |id|
-        #   row_hash['match_term'] = id.name
-        result.instance_variable_get(:@interactions).each do |interaction|
+        identifiers = result.identifiers
+        result.interactions.each do |interaction|
           id = interaction[match_field]
           row_hash['match_term'] = identifiers.select { |i| i.id == id}.first.name
           row_hash['gene'] = interaction.gene.name
