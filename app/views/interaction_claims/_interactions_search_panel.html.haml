@@ -33,11 +33,11 @@
                     Gene
                 %th{style: "width: 19%;"}
                   Interaction Type
-                %th{style: "width: 19%;"}
-                  Source Count
-                %th{style: "width: 19%;"}
-                  PMID Count
-                %th{style: "width: 19%;"}
+                %th{style: "width: 24%;"}
+                  Sources
+                %th{style: "width: 24%;"}
+                  PMIDs
+                %th{style: "width: 9%;"}
                   Score
               %tbody
               - interactions.each do |interaction|
@@ -51,11 +51,14 @@
                         = interaction.gene.name
                   %td{style: "width: 19%;"}
                     = interaction.interaction_types.map{|t| t.type}.join(", ")
-                  %td{style: "width: 19%;"}
-                    = (source_count = interaction.interaction_claims.count)
-                  %td{style: "width: 19%;"}
-                    = (pub_count = interaction.publications.count)
-                  %td{style: "width: 19%;"}
+                  %td{style: "width: 24%;"}
+                    
+                    %a
+                      = (source_count = interaction.interaction_claims.count) - 2 > -1 ? "(#{source_count - 2} More)" : "(0 More)"
+                  %td{style: "width: 24%;"}
+                    %a
+                      = (pub_count = interaction.publications.count) - 2 > -1 ? "(#{pub_count - 2} More)" : "(0 More)"
+                  %td{style: "width: 9%;"}
                     = source_count + pub_count
             %button{class: "show-all", style: "margin-top: 5px"}
               Show All
