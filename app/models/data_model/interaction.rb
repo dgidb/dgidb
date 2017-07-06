@@ -11,5 +11,17 @@ module DataModel
     has_many :interaction_attributes
     has_and_belongs_to_many :publications
     has_and_belongs_to_many :sources
+
+    def source_names
+      self.sources.pluck(:source_db_name).uniq
+    end
+
+    def type_names
+      self.interaction_types.pluck(:type).uniq
+    end
+
+    def pmids
+      self.publications.pluck(:pmid).uniq
+    end
   end
 end

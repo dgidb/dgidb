@@ -79,9 +79,9 @@ class InteractionClaimsController < ApplicationController
           row_hash['match_term'] = identifiers.select { |i| i.id == id}.first.name
           row_hash['gene'] = interaction.gene.name
           row_hash['drug'] = interaction.drug.name
-          row_hash['interaction_types'] = interaction.interaction_types.pluck(:type).uniq.join(compound_field_separator)
-          row_hash['pmids'] = interaction.publications.pluck(:pmid).uniq.join(compound_field_separator)
-          row_hash['sources'] = interaction.sources.pluck(:source_db_name).uniq.join(compound_field_separator)
+          row_hash['interaction_types'] = interaction.type_names.join(compound_field_separator)
+          row_hash['pmids'] = interaction.pmids.join(compound_field_separator)
+          row_hash['sources'] = interaction.source_names.join(compound_field_separator)
           tsv << headers.map{ |field| row_hash[field] }
         end
       end
