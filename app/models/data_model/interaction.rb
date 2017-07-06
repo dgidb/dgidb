@@ -10,5 +10,6 @@ module DataModel
       :class_name => "InteractionClaimType"
     has_many :interaction_attributes
     has_and_belongs_to_many :publications
+    has_and_belongs_to_many :sources
   end
 end
