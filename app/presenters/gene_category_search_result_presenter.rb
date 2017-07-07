@@ -13,7 +13,6 @@ class GeneCategorySearchResultPresenter < SimpleDelegator
   end
 
   def sources
-    binding.pry
     sources_with_category.map { |s| TrustLevelPresenter.source_link_with_trust_flag(@view_context, s) }
       .join(' ')
       .html_safe
