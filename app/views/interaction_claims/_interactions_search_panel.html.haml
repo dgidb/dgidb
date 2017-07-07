@@ -52,13 +52,8 @@
                 %td
                   = interaction.interaction_types.map{|t| t.type}.join(", ")
                 %td
-                  - if interaction.interaction_claims.count > 0 
-                    = interaction.interaction_claims[0..3].map{|ic| ic.source.source_db_name}.join(", ") 
-                  - else
-                    %i
-                      None found
-                  %a{style: "white-space: nowrap; font-size: 10px;"}
-                    = (source_count = interaction.interaction_claims.count) - 4 > 0 ? "(#{source_count - 4} More)" : ""
+                  - source_count = interaction.interaction_claims.count
+                  = interaction.interaction_claims.map{|ic| ic.source.source_db_name}.join(", ") 
                 %td
                   - if (pub_count = interaction.publications.count) > 0 
                     = interaction.publications.map{|pub| pub.pmid}.join(", ")
