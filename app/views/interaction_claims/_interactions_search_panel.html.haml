@@ -22,58 +22,65 @@
     %div(class="cell category")
       %div{class: "item-panel"}
         %h4{style: "display: inline-block;"}
-          - interactions = entity.sorted_interactions_by_score & filtered_interactions
-          - if interactions.count > 0
-            %table{class: "search_panel table table-condensed table-striped", style: "table-layout:fixed;"}
+        - interactions = entity.sorted_interactions_by_score & filtered_interactions
+        - if interactions.count > 0
+          %table{class: "search_panel table table-condensed table-striped", style: "width: 100%; margin-top: -20px;"}
+            %tr
+              %th
+                - if @search_mode == "genes"
+                  Drug
+                - else 
+                  Gene
+              %th
+                Interaction Type
+              %th
+                Sources
+              %th
+                PMIDs
+              %th
+                Score
+            %tbody
+            - interactions.each do |interaction|
               %tr
-                %th{style: "width: 24%;"}
-                  - if @search_mode == "genes"
-                    Drug
-                  - else 
-                    Gene
-                %th{style: "width: 19%;"}
-                  Interaction Type
-                %th{style: "width: 24%;"}
-                  Sources
-                %th{style: "width: 24%;"}
-                  PMIDs
-                %th{style: "width: 9%;"}
-                  Score
-              %tbody
-              - interactions.each do |interaction|
-                %tr
-                  %td{style: "width: 24%; word-break:break-all"}
-                    - if @search_mode == "genes" 
-                      %a{href: "/drugs/#{interaction.drug.name}"}
-                        = interaction.drug.name
-                    - else
-                      %a{href: "/genes/#{interaction.gene.name}"}
-                        = interaction.gene.name
-                  %td{style: "width: 19%;"}
-                    = interaction.interaction_types.map{|t| t.type}.join(", ")
-                  %td{style: "width: 24%;"}
-                    
-                    %a
-                      = (source_count = interaction.interaction_claims.count) - 2 > -1 ? "(#{source_count - 2} More)" : "(0 More)"
-                  %td{style: "width: 24%;"}
-                    %a
-                      = (pub_count = interaction.publications.count) - 2 > -1 ? "(#{pub_count - 2} More)" : "(0 More)"
-                  %td{style: "width: 9%;"}
-                    = source_count + pub_count
-            %button{class: "show-all", style: "margin-top: 5px"}
-              Show All
-            %button{class: "show-more", style: "margin-top: 5px"}
-              Show More
-            %button{class: "show-less", style: "margin-top: 5px"}
-              Show Less
-            %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
-              Showing 
-              %span#nrows
-                = [10, interactions.length].min
-              %span 
-                = "out of #{interactions.length} Interactions"
-          - else
-            No interactions found.
+                %td
+                  - if @search_mode == "genes" 
+                    %a{href: "/drugs/#{interaction.drug.name}"}
+                      = interaction.drug.name
+                  - else
+                    %a{href: "/genes/#{interaction.gene.name}"}
+                      = interaction.gene.name
+                %td
+                  = interaction.interaction_types.map{|t| t.type}.join(", ")
+                %td
+                  - if interaction.interaction_claims.count > 0 
+                    = interaction.interaction_claims[0..3].map{|ic| ic.source.source_db_name}.join(", ") 
+                  - else
+                    %i
+                      None found
+                  %a{style: "white-space: nowrap; font-size: 10px;"}
+                    = (source_count = interaction.interaction_claims.count) - 4 > 0 ? "(#{source_count - 4} More)" : ""
+                %td
+                  - if (pub_count = interaction.publications.count) > 0 
+                    = interaction.publications.map{|pub| pub.pmid}.join(", ")
+                  - else
+                    %i
+                      None found
+                %td
+                  = source_count + pub_count
+          %button{class: "show-all", style: "margin-top: 5px"}
+            Show All
+          %button{class: "show-more", style: "margin-top: 5px"}
+            Show More
+          %button{class: "show-less", style: "margin-top: 5px"}
+            Show Less
+          %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
+            Showing 
+            %span#nrows
+              = [10, interactions.length].min
+            %span 
+              = "out of #{interactions.length} Interactions"
+        - else
+          No interactions found.
 
 
 
