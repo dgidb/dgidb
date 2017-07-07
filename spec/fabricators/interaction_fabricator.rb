@@ -2,7 +2,6 @@ Fabricator(:interaction_claim, class_name: 'DataModel::InteractionClaim') do
   source
   drug_claim { |attrs| Fabricate(:drug_claim, source: attrs[:source]) }
   gene_claim { |attrs| Fabricate(:gene_claim, source: attrs[:source]) }
-  known_action_type { ['known', 'unknown', 'n/a'].sample }
 end
 
 Fabricator(:interaction_claim_attribute, class_name: 'DataModel::InteractionClaimAttribute') do |f|
