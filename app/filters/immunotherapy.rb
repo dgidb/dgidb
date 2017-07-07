@@ -14,7 +14,7 @@ class Immunotherapy
 
   def resolve
     Set.new DataModel::Drug
-      .where(anti_neoplastic: true)
+      .where(immunotherapy: true)
       .joins(:interactions)
       .pluck("interactions.id")
   end

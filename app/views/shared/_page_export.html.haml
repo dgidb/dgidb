@@ -1,0 +1,5 @@
+= button_to '/download_table', {method: :post, class: 'button btn btn-mini export-button',
+                                params: {'file_contents' => @tsv}} do
+  %i(class="fa fa-download" aria-hidden="true")
+    %span{style: "font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif"}
+      Download as TSV

@@ -8,9 +8,6 @@ contact:
     Citation: <strong>DGIdb 2.0: mining clinically relevant drug-gene interactions</strong>. Alex H Wagner, Adam C Coffman, Benjamin J Ainscough, Nicholas C Spies, Zachary L Skidmore, Katie M Campbell, Kilannin Krysiak, Deng Pan, Joshua F McMichael, James M Eldred, Jason R Walker, Richard K Wilson, Elaine R Mardis, Malachi Griffith, Obi L Griffith.
     <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">Nucleic Acids Research</a> (2016) doi:10.1093/nar/gkv1165.<br><br>
 
-    Citation: <strong>DGIdb - mining the druggable genome</strong>. Malachi Griffith*, Obi L Griffith*, Adam C Coffman, James V Weible, Josh F McMichael, Nicholas C Spies, James Koval, Indraniel Das, Matthew B Callaway, James M Eldred, Christopher A Miller, Janakiraman Subramanian, Ramaswamy Govindan,
-    Runjun D Kumar, Ron Bose, Li Ding, Jason R Walker, David E Larson, David J Dooling, Scott M Smith, Timothy J Ley, Elaine R Mardis, Richard K Wilson. <a href="http://www.nature.com/nmeth/journal/vaop/ncurrent/full/nmeth.2689.html">Nature Methods</a> (2013) doi:10.1038/nmeth.2689. *These authors contributed equally to this work.<br><br>
-
   people:
     - title: Malachi Griffith
       description: Creator, developer
