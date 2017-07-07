@@ -27,6 +27,7 @@ class InteractionClaimsController < ApplicationController
         combine_input_drugs(params)
       end
     end
+    @view_context = view_context
     unpack_locals(params)
     perform_interaction_search
     prepare_export

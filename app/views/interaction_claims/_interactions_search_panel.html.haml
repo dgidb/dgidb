@@ -53,10 +53,10 @@
                   = interaction.interaction_types.map{|t| t.type}.join(", ")
                 %td
                   - source_count = interaction.interaction_claims.count
-                  = interaction.interaction_claims.map{|ic| ic.source.source_db_name}.join(", ") 
+                  = interaction.interaction_claims.map{|ic| TrustLevelPresenter.source_link_with_trust_flag(@view_context, ic.source)}.join(' ').html_safe
                 %td
                   - if (pub_count = interaction.publications.count) > 0 
-                    = interaction.publications.map{|pub| pub.pmid}.join(", ")
+                    = interaction.publications.map{|pub| pubmed_link_to(pub.pmid)}.join(" ").html_safe
                   - else
                     %i
                       None found
