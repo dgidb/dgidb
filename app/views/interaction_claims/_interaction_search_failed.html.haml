@@ -31,7 +31,7 @@
   %ul(class="result-list" id="list-results")
     - ambiguous_matches.each do |result|
       - result[:identifiers].each do |entity|
-        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-ambiguous", style: "display: list-item;"}
+        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-ambiguous", style: "display: list-item; width: 100%;"}
           = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions] }
 
 :javascript
