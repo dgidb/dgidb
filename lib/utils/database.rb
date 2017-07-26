@@ -55,6 +55,7 @@ module Utils
       source_id = DataModel::Source.where('lower(sources.source_db_name) = ?',
         source_db_name.downcase).pluck(:id).first
 
+      #TODO: Remove source (and associated interaction claims) from interactions. May necessitate dropping all interactions.
       sql = <<-SQL
         delete from interaction_claims_publications where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
         delete from interaction_claim_attributes where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
