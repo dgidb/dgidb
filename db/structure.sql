@@ -1397,14 +1397,6 @@ ALTER TABLE ONLY interactions
 
 
 --
--- Name: drug_aliases fk_drug; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY drug_aliases
-    ADD CONSTRAINT fk_drug FOREIGN KEY (drug_id) REFERENCES drugs(id);
-
-
---
 -- Name: drug_attributes fk_drug; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1613,14 +1605,6 @@ ALTER TABLE ONLY interaction_types_interactions
 
 
 --
--- Name: interaction_attributes fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY interaction_attributes
-    ADD CONSTRAINT fk_interaction FOREIGN KEY (interaction_id) REFERENCES interactions(id);
-
-
---
 -- Name: interactions_publications fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1698,6 +1682,22 @@ ALTER TABLE ONLY interactions_publications
 
 ALTER TABLE ONLY interaction_claims_publications
     ADD CONSTRAINT fk_publication FOREIGN KEY (publication_id) REFERENCES publications(id);
+
+
+--
+-- Name: interaction_attributes fk_rails_01f96ac9ee; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_attributes
+    ADD CONSTRAINT fk_rails_01f96ac9ee FOREIGN KEY (interaction_id) REFERENCES interactions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: drug_aliases fk_rails_4d255ac147; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_aliases
+    ADD CONSTRAINT fk_rails_4d255ac147 FOREIGN KEY (drug_id) REFERENCES drugs(id) ON DELETE CASCADE;
 
 
 --
@@ -1841,6 +1841,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170629024912'),
 ('20170630203634'),
 ('20170705222429'),
-('20170706215825');
+('20170706215825'),
+('20170727025111');
 
 
