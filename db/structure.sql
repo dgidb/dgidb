@@ -1107,6 +1107,13 @@ CREATE INDEX index_chembl_molecules_on_drug_id ON chembl_molecules USING btree (
 
 
 --
+-- Name: index_chembl_molecules_on_molregno; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_chembl_molecules_on_molregno ON chembl_molecules USING btree (molregno);
+
+
+--
 -- Name: index_drug_attributes_on_drug_id_and_name_and_value; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1842,6 +1849,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170630203634'),
 ('20170705222429'),
 ('20170706215825'),
-('20170727025111');
+('20170727025111'),
+('20170727192237');
 
 

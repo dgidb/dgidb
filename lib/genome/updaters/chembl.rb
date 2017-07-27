@@ -97,7 +97,7 @@ module Genome
         @@connection ||= PG.connect(dbname: chembl_db_name)
       end
 
-      def add_ica(name, value, ic, to_yn=false)
+      def self.add_ica(name, value, ic, to_yn=false)
         if to_yn
           value = ActiveRecord::Type::Boolean.new.cast(value) ? 'yes' : 'no'
         end
@@ -108,7 +108,7 @@ module Genome
         r = connection.exec('SELECT * FROM drug_mechanism')
         r.each do |interaction|
           molecule = DataModel::ChemblMolecule.find_by(molregno: interaction["molregno"])
-          target = chembl.connection.exec('SELECT * FROM target_dictionary WHERE tid = $1 AND tax_id = 9606 LIMIT 1', [i['tid']]).first
+          target = connection.exec('SELECT * FROM target_dictionary WHERE tid = $1 AND tax_id = 9606 LIMIT 1', [interaction['tid']]).first
           next if target.nil?
 
           sql = <<-SQL
@@ -120,29 +120,34 @@ module Genome
               tc.tid = $1 and
               tc.component_id = cs.component_id
           SQL
-          components = chembl.connection.exec(sql, [target['tid']]).group_by{|s| s['component_id']}
+          components = connection.exec(sql, [target['tid']]).group_by{|s| s['component_id']}
           components.each do |component, synonyms|
-            gene_syn = synonyms.select{|s| s['syn_type'] == 'GENE_SYMBOL'}.first ||
-                       synonyms.select{|s| s['syn_type'] == 'UNIPROT'}.first
+            gene_syn = synonyms.select{|s| s['syn_type'] == 'GENE_SYMBOL' && !s['component_synonym'].blank?}.first ||
+                       synonyms.select{|s| s['syn_type'] == 'UNIPROT' && !s['component_synonym'].blank?}.first
             next if gene_syn.nil?
             gene_name = gene_syn['component_synonym']
             gene_nomenclature = gene_syn['syn_type']
-            ActiveRecord::Base.transaction do
-              drug_claim = DataModel::DrugClaim.first_or_create(name: molecule.chembl_id, nomenclature: 'ChEMBL ID',
-                                                  primary_name: molecule.pref_name, source: self.source)
-              gene_claim = DataModel::GeneClaim.first_or_create(name: gene_name, nomenclature: gene_nomenclature, source: self.source) do |gene_claim|
-                synonyms.each do |synonym|
-                  next unless synonym['syn_type'].in? %w(GENE_SYMBOL UNIPROT)
-                  DataModel::GeneClaimAlias.create(gene_claim: gene_claim, alias: synonym['component_synonym'],
-                                                   nomenclature: synonym['syn_type'])
-                end
+            drug_claim = DataModel::DrugClaim.where(name: molecule.chembl_id, nomenclature: 'ChEMBL ID',
+                                                primary_name: molecule.pref_name, source: source).first_or_create
+            gene_claim = DataModel::GeneClaim.where(name: gene_name, nomenclature: gene_nomenclature, source: source)
+                          .first_or_create do |gc|
+              synonyms.each do |synonym|
+                next unless synonym['syn_type'].in? %w(GENE_SYMBOL UNIPROT)
+                next if synonym['component_synonym'].blank?
+                DataModel::GeneClaimAlias.create(gene_claim: gc, alias: synonym['component_synonym'],
+                                                 nomenclature: synonym['syn_type'])
               end
-              interaction_claim = DataModel::InteractionClaim.create(drug_claim: drug_claim,
-                                                                     gene_claim: gene_claim, source: self.source)
-              add_ica('Mechanism of Interaction', interaction['mechanism_of_action'], interaction_claim)
-              add_ica('Direct Interaction', interaction['direct_interaction'], interaction_claim, true)
-              type = DataModel::InteractionClaimType.find_by(type: interaction['action_type'].downcase)
-              interaction_claim << type unless type.nil?
+            end
+            interaction_claim = DataModel::InteractionClaim.where(drug_claim: drug_claim,
+                                  gene_claim: gene_claim, source: source).first_or_create do |ic|
+              add_ica('Mechanism of Interaction', interaction['mechanism_of_action'], ic)
+              add_ica('Direct Interaction', interaction['direct_interaction'], ic, true)
+              begin
+                type = DataModel::InteractionClaimType.find_by(type: interaction['action_type'].downcase)
+              rescue NoMethodError
+                type = nil
+              end
+              ic.interaction_claim_types << type unless type.nil?
             end
           end
         end
