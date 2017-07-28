@@ -17,7 +17,7 @@ from get_entrez import Entrez
 
 class DrugBank():
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, tsv_file):
         self.online_version = None
         self.get_online_version()
         self.version = Version('DrugBank', version=self.online_version)
@@ -25,6 +25,7 @@ class DrugBank():
         self.interactions = self.drug_info = None
         self.username = username
         self.password = password
+        self.tsv_file = tsv_file
 
     def is_current(self):
         """Returns True if local versions of Entrez files are up-to-date."""
@@ -229,7 +230,7 @@ class DrugBank():
         header = ('count', 'drug_id', 'drug_name', 'drug_synonyms', 'drug_cas_number', 'drug_brands',
                   'drug_type', 'drug_groups', 'drug_categories', 'gene_id', 'known_action', 'target_actions',
                   'gene_symbol', 'uniprot_id', 'entrez_id', 'ensembl_id', 'pmid')
-        with open('data/DrugBankInteractions.tsv', 'w') as f:
+        with open(self.tsv_file, 'w') as f:
             writer = csv.writer(f, delimiter='\t')
             writer.writerow(header)
             for drug in sorted(self.interactions):
@@ -265,6 +266,10 @@ if __name__ == '__main__':
         sys.exit(-1)
     username = os.environ['DRUGBANK_USERNAME']
     password = os.environ['DRUGBANK_PASSWORD']
-    db = DrugBank(username, password)
+    if len(sys.argv) == 2:
+        tsv_file = sys.argv[1]
+    else:
+        tsv_file = 'data/DrugBankInteractions.tsv'
+    db = DrugBank(username, password, tsv_file)
     db.update()
     print('Done.')
