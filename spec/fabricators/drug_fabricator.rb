@@ -44,3 +44,9 @@ Fabricator( :chembl_molecule_synonym, class_name: 'DataModel::ChemblMoleculeSyno
   synonym { sequence(:synonym) { |i| "Molecule Synonym Name ##{i}" } }
 end
 
+Fabricator( :drug_attribute, class_name: 'DataModel::DrugAttribute') do
+  drug
+  name { sequence(:name) {|i| "Drug attribute name ##{i}"}}
+  value { sequence(:value) { |i| "Drug attribute value ##{i}"}}
+end
+
