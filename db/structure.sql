@@ -974,10 +974,31 @@ ALTER TABLE ONLY sources
 
 
 --
+-- Name: chembl_molecule_synonyms_index_on_upper_synonym; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX chembl_molecule_synonyms_index_on_upper_synonym ON chembl_molecule_synonyms USING btree (upper((synonym)::text));
+
+
+--
+-- Name: chembl_molecules_index_on_upper_pref_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX chembl_molecules_index_on_upper_pref_name ON chembl_molecules USING btree (upper((pref_name)::text));
+
+
+--
 -- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
+
+
+--
+-- Name: drug_aliases_index_on_upper_alias; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX drug_aliases_index_on_upper_alias ON drug_aliases USING btree (upper(alias));
 
 
 --
@@ -1030,10 +1051,24 @@ CREATE INDEX drugs_full_text ON drugs USING gin (to_tsvector('english'::regconfi
 
 
 --
+-- Name: drugs_index_on_upper_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX drugs_index_on_upper_name ON drugs USING btree (upper(name));
+
+
+--
 -- Name: drugs_lower_name_idx; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX drugs_lower_name_idx ON drugs USING btree (lower(name));
+
+
+--
+-- Name: gene_aliases_index_on_upper_alias; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX gene_aliases_index_on_upper_alias ON gene_aliases USING btree (upper(alias));
 
 
 --
@@ -1093,10 +1128,17 @@ CREATE INDEX genes_full_text ON genes USING gin (to_tsvector('english'::regconfi
 
 
 --
--- Name: genes_lower_name_idx; Type: INDEX; Schema: public; Owner: -
+-- Name: genes_index_on_upper_long_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX genes_lower_name_idx ON genes USING btree (lower(name));
+CREATE INDEX genes_index_on_upper_long_name ON genes USING btree (upper((long_name)::text));
+
+
+--
+-- Name: genes_index_on_upper_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX genes_index_on_upper_name ON genes USING btree (upper(name));
 
 
 --
@@ -1177,13 +1219,6 @@ CREATE UNIQUE INDEX index_drugs_on_name ON drugs USING btree (name);
 
 
 --
--- Name: index_gene_aliases_on_alias; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_gene_aliases_on_alias ON gene_aliases USING btree (alias);
-
-
---
 -- Name: index_gene_attributes_on_gene_id_and_name_and_value; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1254,45 +1289,10 @@ CREATE INDEX index_genes_on_entrez_id ON genes USING btree (entrez_id);
 
 
 --
--- Name: index_genes_on_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_genes_on_name ON genes USING btree (name);
-
-
---
 -- Name: index_interactions_on_drug_id_and_gene_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_interactions_on_drug_id_and_gene_id ON interactions USING btree (drug_id, gene_id);
-
-
---
--- Name: index_on_upper_alias; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_on_upper_alias ON drug_aliases USING btree (upper(alias));
-
-
---
--- Name: index_on_upper_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_on_upper_name ON drugs USING btree (upper(name));
-
-
---
--- Name: index_on_upper_pref_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_on_upper_pref_name ON chembl_molecules USING btree (upper((pref_name)::text));
-
-
---
--- Name: index_on_upper_synonym; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_on_upper_synonym ON chembl_molecule_synonyms USING btree (upper((synonym)::text));
 
 
 --
@@ -1900,6 +1900,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170706215825'),
 ('20170727025111'),
 ('20170727192237'),
-('20170728015708');
+('20170728015708'),
+('20170728023124');
 
 
