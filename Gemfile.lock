@@ -201,6 +201,7 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
+    rubyzip (1.2.1)
     rye (0.9.13)
       annoy
       docile (>= 1.0.1)
@@ -288,6 +289,7 @@ DEPENDENCIES
   rails (= 5.1.1)
   rake
   rspec-rails
+  rubyzip
   rye
   sass-rails
   stamp
@@ -299,4 +301,4 @@ DEPENDENCIES
   xpath
 
 BUNDLED WITH
-   1.13.7
+   1.15.1
