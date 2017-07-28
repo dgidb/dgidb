@@ -1100,6 +1100,20 @@ CREATE INDEX genes_lower_name_idx ON genes USING btree (lower(name));
 
 
 --
+-- Name: index_chembl_molecule_synonyms_on_chembl_molecule_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_chembl_molecule_synonyms_on_chembl_molecule_id ON chembl_molecule_synonyms USING btree (chembl_molecule_id);
+
+
+--
+-- Name: index_chembl_molecules_on_chembl_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_chembl_molecules_on_chembl_id ON chembl_molecules USING btree (chembl_id);
+
+
+--
 -- Name: index_chembl_molecules_on_drug_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1111,6 +1125,13 @@ CREATE INDEX index_chembl_molecules_on_drug_id ON chembl_molecules USING btree (
 --
 
 CREATE INDEX index_chembl_molecules_on_molregno ON chembl_molecules USING btree (molregno);
+
+
+--
+-- Name: index_drug_aliases_on_drug_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_drug_aliases_on_drug_id ON drug_aliases USING btree (drug_id);
 
 
 --
@@ -1244,6 +1265,34 @@ CREATE UNIQUE INDEX index_genes_on_name ON genes USING btree (name);
 --
 
 CREATE UNIQUE INDEX index_interactions_on_drug_id_and_gene_id ON interactions USING btree (drug_id, gene_id);
+
+
+--
+-- Name: index_on_upper_alias; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_on_upper_alias ON drug_aliases USING btree (upper(alias));
+
+
+--
+-- Name: index_on_upper_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_on_upper_name ON drugs USING btree (upper(name));
+
+
+--
+-- Name: index_on_upper_pref_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_on_upper_pref_name ON chembl_molecules USING btree (upper((pref_name)::text));
+
+
+--
+-- Name: index_on_upper_synonym; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_on_upper_synonym ON chembl_molecule_synonyms USING btree (upper((synonym)::text));
 
 
 --
@@ -1850,6 +1899,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170705222429'),
 ('20170706215825'),
 ('20170727025111'),
-('20170727192237');
+('20170727192237'),
+('20170728015708');
 
 
