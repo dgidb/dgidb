@@ -156,6 +156,12 @@ module Genome
                                                             drug_claim_attribute.name.upcase,
                                                             drug_claim_attribute.value.upcase
             ).first
+            if drug_attribute.nil? # this can occur when a character (e.g. α) is treated differently by upper and upcase
+              drug_attribute = DataModel::DrugAttribute.where('lower(name) = ? and lower(value) = ?',
+                                                              drug_claim_attribute.name.downcase,
+                                                              drug_claim_attribute.value.downcase
+              ).first
+            end
             unless drug_attribute.sources.member? drug_claim.source
               drug_attribute.sources << drug_claim.source
             end
@@ -171,7 +177,7 @@ module Genome
             drug = molecule.create_drug(name: (molecule.pref_name || molecule.chembl_id), chembl_id: molecule.chembl_id)
           end
           molecule.chembl_molecule_synonyms.each do |synonym|
-            DataModel::DrugAlias.first_or_create(alias: synonym.synonym, drug: drug)
+            DataModel::DrugAlias.where(alias: synonym.synonym, drug: drug).first_or_create
           end
         else
           return molecule.drug
