@@ -2,14 +2,16 @@ module Genome
   module Groupers
     class DrugGrouper
 
+      def alias_failures
+        @alias_failures ||= []
+      end
+
       def run
         begin
           newly_added_claims_count = 0
           drug_claims_not_in_groups.in_groups_of(1000, false) do |claims|
-            ActiveRecord::Base.transaction do
-              grouped_claims = add_members(claims)
-              newly_added_claims_count += grouped_claims.length
-            end
+            grouped_claims = add_members(claims)
+            newly_added_claims_count += grouped_claims.length
           end
         end until newly_added_claims_count == 0
       end
@@ -123,14 +125,18 @@ module Genome
             next
           end
           unless drug_aliases.member? drug_claim_name.upcase
-            drug_alias = DataModel::DrugAlias.create(alias: drug_claim_name, drug: drug)
+            begin
+              drug_alias = DataModel::DrugAlias.create(alias: drug_claim_name, drug: drug)
+            rescue
+              alias_failures << [drug_claim_name, drug, drug_claim]
+            end
             drug_alias.sources << drug_claim.source
             drug_aliases << drug_claim_name.upcase
           else
-            drug_alias = DataModel::DrugAlias.where('upper(alias) = ? and drug_id = ?',
+            drug_alias = (DataModel::DrugAlias.where('upper(alias) = ? and drug_id = ?',
                                                     drug_claim_name.upcase,
                                                     drug.id
-            )
+            )) || (DataModel::DrugAlias.where('lower(alias) = ? and drug_id = ?', drug_claim_name.downcase, drug.id))
             if drug_alias.empty? # This happened with a lookup for (upper(alias) = '(S)-α')
               next
             end
@@ -177,7 +183,11 @@ module Genome
             drug = molecule.create_drug(name: (molecule.pref_name || molecule.chembl_id), chembl_id: molecule.chembl_id)
           end
           molecule.chembl_molecule_synonyms.each do |synonym|
-            DataModel::DrugAlias.where(alias: synonym.synonym, drug: drug).first_or_create
+            begin
+              DataModel::DrugAlias.where(alias: synonym.synonym, drug: drug).first_or_create
+            rescue
+              alias_failures << [synonym, drug, molecule]
+            end
           end
         else
           return molecule.drug
