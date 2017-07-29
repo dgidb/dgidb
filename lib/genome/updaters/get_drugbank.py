@@ -15,16 +15,17 @@ from bs4 import BeautifulSoup
 from get_entrez import Entrez
 
 
-class DrugBank():
+class DrugBank(object):
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, download_path):
         self.online_version = None
         self.get_online_version()
-        self.version = Version('DrugBank', version=self.online_version)
+        self.version = Version('DrugBank', version=self.online_version, download_path=download_path)
         self.logged_version = self.version.last_logged_version()
         self.interactions = self.drug_info = None
         self.username = username
         self.password = password
+        self.download_path = download_path
 
     def is_current(self):
         """Returns True if local versions of Entrez files are up-to-date."""
@@ -52,14 +53,14 @@ class DrugBank():
 
     def download_files(self):
         print('Downloading DrugBank XML...')
-        filename = 'data/drugbank.zip'
+        filename = self.download_path + 'drugbank.zip'
         self.download_file('https://www.drugbank.ca/releases/5-0-6/downloads/all-full-database', filename)
 
         print('\nExtracting DrugBank XML...')
         zfile = zipfile.ZipFile(filename)
-        zfile.extract('full database.xml', 'data')
+        zfile.extract('full database.xml', self.download_path)
         os.remove(filename)
-        e = Entrez()
+        e = Entrez(self.download_path)
         e.update()
 
     def parse(self):
@@ -68,7 +69,7 @@ class DrugBank():
         hgnc_id_to_info = dict()
         entrez_to_info = dict()
         sources = set()
-        with open('data/gene_info.human') as f:
+        with open(self.download_path + 'gene_info.human') as f:
             c = csv.reader(f, delimiter='\t')
             for i, line in enumerate(c):
                 if i == 0:
@@ -93,7 +94,7 @@ class DrugBank():
         uniprot_to_entrez = dict()
         r = re.compile(r'[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}')
         # regex from: http://www.uniprot.org/help/accession_numbers
-        with open('data/gene2accession.human') as f:
+        with open(self.download_path + 'gene2accession.human') as f:
             c = csv.reader(f, delimiter='\t')
             for i, line in enumerate(c):
                 if i == 0:
@@ -109,7 +110,7 @@ class DrugBank():
         print('Parsing DrugBank XML...')
         ns = {'entry': 'http://www.drugbank.ca'}
 
-        tree = ET.parse('data/full database.xml')
+        tree = ET.parse(self.download_path + 'full database.xml')
         drugbank = tree.getroot()
         drugs = drugbank.findall('entry:drug', ns)
 
@@ -229,7 +230,7 @@ class DrugBank():
         header = ('count', 'drug_id', 'drug_name', 'drug_synonyms', 'drug_cas_number', 'drug_brands',
                   'drug_type', 'drug_groups', 'drug_categories', 'gene_id', 'known_action', 'target_actions',
                   'gene_symbol', 'uniprot_id', 'entrez_id', 'ensembl_id', 'pmid')
-        with open('data/DrugBankInteractions.tsv', 'w') as f:
+        with open(self.download_path + 'DrugBankInteractions.tsv', 'w') as f:
             writer = csv.writer(f, delimiter='\t')
             writer.writerow(header)
             for drug in sorted(self.interactions):
@@ -265,6 +266,7 @@ if __name__ == '__main__':
         sys.exit(-1)
     username = os.environ['DRUGBANK_USERNAME']
     password = os.environ['DRUGBANK_PASSWORD']
-    db = DrugBank(username, password)
+    download_path = os.path.split(os.path.realpath(__file__))[0] + '/data/'
+    db = DrugBank(username, password, download_path)
     db.update()
     print('Done.')
