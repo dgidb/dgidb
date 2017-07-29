@@ -40,9 +40,6 @@ module Genome; module Importers; module DrugBank;
     end
 
     def import_claims
-      blank_filter = ->(x) { x.blank? || x == "''" || x == '""' || x.downcase.tr('/','') == 'na'}
-      upcase = ->(x) {x.upcase}
-      downcase = ->(x) {x.downcase}
       CSV.foreach(file_path, :col_sep => "\t", :headers => true) do |row|
         drug_claim = DataModel::DrugClaim.where(
           name: row['drug_id'].upcase,
