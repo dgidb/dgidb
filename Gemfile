@@ -33,6 +33,7 @@ group :development do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rack-mini-profiler'
+  gem 'rails-erd'
 end
 
 group :test, :development  do
