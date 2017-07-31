@@ -43,7 +43,7 @@ class Entrez:
 
     def extract(self, file):
         with gzip.open(file, 'rb') as rf:
-            with open(self.download_path + file.rsplit('.', 1)[0] + '.human', 'w') as wf:
+            with open(os.path.join(self.download_path, file.rsplit('.', 1)[0] + '.human'), 'w') as wf:
                 for i, line in enumerate(rf):
                     line_ascii = line.decode('utf-8')
                     if i == 0:
@@ -86,7 +86,7 @@ class Entrez:
 
     def parse(self):
         self.rows = []
-        with open(self.download_path + 'gene_info.human') as f:
+        with open(os.path.join(self.download_path, 'gene_info.human')) as f:
             fieldnames = ['tax_id', 'entrez_id', 'entrez_gene_symbol', 'locus_tag',
                          'entrez_gene_synonyms', 'dbXrefs', 'chromosome', 'map_loc',
                          'description', 'type', 'sym_from_auth', 'full_from_auth',

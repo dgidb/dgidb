@@ -54,7 +54,7 @@ class DrugBank(object):
 
     def download_files(self):
         print('Downloading DrugBank XML...')
-        filename = self.download_path + 'drugbank.zip'
+        filename = os.path.join(self.download_path, 'drugbank.zip')
         self.download_file('https://www.drugbank.ca/releases/5-0-6/downloads/all-full-database', filename)
 
         print('\nExtracting DrugBank XML...')
@@ -70,7 +70,7 @@ class DrugBank(object):
         hgnc_id_to_info = dict()
         entrez_to_info = dict()
         sources = set()
-        with open(self.download_path + 'gene_info.human') as f:
+        with open(os.path.join(self.download_path, 'gene_info.human')) as f:
             c = csv.reader(f, delimiter='\t')
             for i, line in enumerate(c):
                 if i == 0:
@@ -95,7 +95,7 @@ class DrugBank(object):
         uniprot_to_entrez = dict()
         r = re.compile(r'[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}')
         # regex from: http://www.uniprot.org/help/accession_numbers
-        with open(self.download_path + 'gene2accession.human') as f:
+        with open(os.path.join(self.download_path, 'gene2accession.human')) as f:
             c = csv.reader(f, delimiter='\t')
             for i, line in enumerate(c):
                 if i == 0:
@@ -111,7 +111,7 @@ class DrugBank(object):
         print('Parsing DrugBank XML...')
         ns = {'entry': 'http://www.drugbank.ca'}
 
-        tree = ET.parse(self.download_path + 'full database.xml')
+        tree = ET.parse(os.path.join(self.download_path, 'full database.xml'))
         drugbank = tree.getroot()
         drugs = drugbank.findall('entry:drug', ns)
 
@@ -271,8 +271,8 @@ if __name__ == '__main__':
         download_path = sys.argv[1]
         tsv_file = sys.argv[2]
     else:
-        download_path = os.path.split(os.path.realpath(__file__))[0] + '/data/'
-        tsv_file = File.join(download_path, 'DrugBankInteractions.tsv')
+        download_path = os.path.join(os.path.split(os.path.realpath(__file__))[0], 'data')
+        tsv_file = os.path.join(download_path, 'DrugBankInteractions.tsv')
     db = DrugBank(username, password, download_path, tsv_file)
     db.update()
     print('Done.')
