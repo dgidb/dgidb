@@ -12,30 +12,33 @@
                       %div{class: "item-panel", style: "width: 100%;"}
                         %h4
                           Alternate Names:
-                        %table{class: "table table-condensed table-striped", style: "display: block; height: 461px; overflow-y: scroll; table-layout:fixed; width: 100%;", id: "table_aliases"}
-                          %tbody{style: "display: block; width: 100%;"}
-                            -drug_claim.drug_claim_aliases.each do |alt_name| ######
-                              %tr{style: "display: block; width: 100%;"}
-                                %td{style: "display: inline-block; width: 49.7%; margin: 0;"}
-                                  =alt_name.alias
-                                %td{style: "display: inline-block; text-align: right; width: 49.65%; margin: 0;"}
-                                  =alt_name.nomenclature
+                        %div{style: "height: 461px; overflow-y: scroll; margin-bottom: 5px;"}
+                          %table{class: "table table-condensed table-striped", id: "table_aliases"}
+                            %tbody
+                              -drug_claim.drug_claim_aliases.each do |alt_name| ######
+                                %tr
+                                  %td
+                                    =alt_name.alias
+                                  %td{style: "text-align: right;"}
+                                    =alt_name.nomenclature
                     %div{class: "cell category", style: "float: left; width: 50%" }
-                      %div{class: "item-panel", style:"margin-bottom: 10px"}
+                      %div{class: "item-panel", style: "margin-bottom: 11px;"}
                         %h4
                           Drug Info:
-                        %table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; width: 100%; height: 200px; overflow-y: scroll", id:"table_info"}
-                          %tbody{style: "display: block; width: 100%;"}
-                            -drug_claim.drug_claim_attributes.each do |attribute| #######
-                              %tr{style: "display: block; width: 100%;"}
-                                %td{style: "display: inline-block; width: 39.6%"}=attribute.name
-                                %td{style: "display: inline-block; width: 59.6%"}=attribute.value
-                      %div(class="item-panel")
+                        %div{style: "height: 200px; overflow-y: scroll; margin-bottom: 5px;"}  
+                          %table{class: "table table-condensed table-striped", id:"table_info"}
+                            %tbody
+                              -drug_claim.drug_claim_attributes.each do |attribute| #######
+                                %tr
+                                  %td=attribute.name
+                                  %td=attribute.value
+                      %div{class: "item-panel"}
                         %h4
                           Publications:
-                        %table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; width: 100%; overflow-y: scroll", id:"table_publications"}
-                          -drug_claim.publications.each do |publication| ########
-                            %tr
-                              %td{style: "width: 100%"}
-                                %a{href: PMID.pubmed_url(publication.pmid)}
-                                  = publication.citation
+                        %div{style: "height: 200px; overflow-y: scroll; margin-bottom: 5px;"}
+                          %table{class: "table table-condensed table-striped", id:"table_publications"}
+                            -drug_claim.publications.each do |publication| ########
+                              %tr
+                                %td
+                                  %a{href: PMID.pubmed_url(publication.pmid)}
+                                    = publication.citation
