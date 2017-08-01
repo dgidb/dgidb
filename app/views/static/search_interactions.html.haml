@@ -11,31 +11,33 @@
 - cache do
   .container.search-container{style: "width: 100%; margin: auto"}
     %div{style: "clear: both; display: flex; justify-content: center;"}
-      .span8{style: "float: left; margin-bottom: 20px; margin-left: -20px; padding:35px", class: "well"}
+      .span8{style: "float: left; margin-bottom: 20px; margin-left: -20px; width: 250px; height: 300px; text-align: center; padding: 10px 8px 10px; 8px;", class: "well"}
         %form.form-horizontal(id="search_form" action="interaction_search_results" method="post" enctype="multipart/form-data")
           %fieldset
             .control-group{style: "margin-bottom: -15px"}
               .controls
                 .btn-group#toggleIdentifiers(data-toggle='buttons')
-                  %label.btn.btn-primary.active#geneSearch(for='geneSearch' style="width: 150px; font-weight: bold")
+                  %label.btn.btn-primary.active#geneSearch(for='geneSearch' style="width: 110px; font-weight: bold; font-size: 12px;")
                     %input(type='radio' name='search_mode' value='genes' style='display:none;')
                       Genes
-                  %label.btn.btn-primary#drugSearch(for='drugSearch'style="width: 150px; font-weight: bold")
+                  %label.btn.btn-primary#drugSearch(for='drugSearch' style="width: 110px; font-weight: bold; font-size: 12px;")
                     %input(type='radio' name='search_mode' value='drugs' style='display:none;') 
                       Drugs             
             .control-group
               %label.control-label(id='ids_flag')
               .controls
-                %textarea#identifiers{name: 'identifiers', rows: "14", style: "width: 300px; font-size: 20px"}
+                %textarea#identifiers{name: 'identifiers', rows: "11", style: "width: 220px; font-size: 15px"}
             .control-group
               .controls
-                %button.btn.btn-small.btn-danger#clear(type='button') Clear Identifiers
-                %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace with Demo List
-      .span8{style: "float: left; margin-left: 20px"}
-        %div.search_filters#gene_search_filters{style: "height: 172px; width: 360px", class: "well"}
-          %label
+                %button.btn.btn-small.btn-danger#clear(type='button' style="width: 70px; font-size: 12px; padding: 5px 0;") 
+                  Clear List
+                %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button' style="width: 145px; font-size: 12px; padding: 5px 0;") 
+                  Replace with Demo List
+      .span8{style: "float: left; margin-left: 10px;"}
+        %div.search_filters#gene_search_filters{style: "height: 110px; width: 250px; padding: 8px 12px; margin-bottom: 10px;", class: "well"}
+          %label{style: "font-size: 12px;"}
             Preset Filters
-          %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
+          %div{style: "background-color: white; padding: 5px; border-radius: 5px; font-size: 12px;"} 
             %div
               %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "search_form"} 
                 = "  FDA Approved"
@@ -45,13 +47,11 @@
             %div
               %input{type: "checkbox", value: "checked", name: "immunotherapy", form: "search_form"} 
                 = "  Immunotherapies"
-          %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
-            Filter the DRUGS that interact with your GENES
 
-        %div.search_filters#drug_search_filters{style: "height: 172px; width: 360px; display: none", class: "well"}
-          %label 
+        %div.search_filters#drug_search_filters{style: "height: 110px; width: 250px; display: none; padding: 8px 12px; margin-bottom: 10px;", class: "well"}
+          %label{style: "font-size: 12px;"}
             Preset Filters
-          %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
+          %div{style: "background-color: white; padding: 5px; border-radius: 5px; font-size: 12px;"} 
             %div
               %input{type: "checkbox", value: "checked", name: "clinically_actionable", form: "search_form"} 
                 = "  Clinically Actionable"
@@ -61,12 +61,10 @@
             %div
               %input{type: "checkbox", value: "checked", name: "drug_resistance", form: "search_form"} 
                 = "  Drug Resistance"
-          %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
-            Filter the GENES that interact with your DRUGS
-        %div{style: "height: 220px; width: 360px", class: "well"} 
-          %label
+        %div{style: "height: 180px; width: 250px; padding: 8px 12px;", class: "well"} 
+          %label{style: "font-size: 12px;"}
             Advanced Filters
-          %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
+          %div{style: "background-color: white; padding: 5px; border-radius: 5px; font-size: 12px;"} 
             =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
               flag_text_key: 'source_database_flag', select_tag_name: 'interaction_sources', collection: @sources,
               name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
@@ -76,12 +74,19 @@
             =render partial: 'shared/multiselect', locals: { control_group_name: 'Interaction Types',
               flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types,
               name_meth: 'to_s', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
-    .form-actions{style: "clear: both; display: flex; justify-content: center;"}
-      %button.btn.btn-success(type="submit" id='search-btn' style='font-size: 20px' form='search_form')
+    .form-actions{style: "clear: both; display: flex; justify-content: center; margin-top: -10px;"}
+      %button.btn.btn-success(type="submit" id='search-btn' style='font-size: 15px;' form='search_form')
         %i(class="fa fa-search" aria-hidden="true")
         Find Drug-Gene Interactions
 
   =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
+
+  :css
+    .ui-multiselect.ui-widget.ui-state-default.ui-corner-all {
+      font-size: 10px;
+      height: 20px;
+      margin-bottom: 5px;
+    }
 
 
   :javascript
