@@ -64,14 +64,14 @@ class GO:
              "human_readable": "Protease", "go_id": "GO0008233"}]
 
         #TODO: Use http://www.ebi.ac.uk/QuickGO/GHistory#info=2 for versioning.
-        self.version = Version('GO', append_date=True)
-        self.logged_version = self.version.last_logged_version()
+        #self.version = Version('GO', append_date=True)
+        #self.logged_version = self.version.last_logged_version()
 
         self.rows = []
 
-    def is_current(self):
-        """Returns True if local versions of Entrez files are up-to-date."""
-        return self.version.is_current()
+    # def is_current(self):
+        # """Returns True if local versions of Entrez files are up-to-date."""
+        # return self.version.is_current()
 
     def download_files(self):
         """Download and extract the gene2accession and gene_info files"""
@@ -115,13 +115,13 @@ class GO:
             writer.writeheader()
             for row in self.rows:
                 writer.writerow(row)
-        self.version.write_log()
+        # self.version.write_log()
 
     def update(self):
-        if not self.is_current():
-            #self.download_files()
-            self.parse()
-            self.write()
+        # if not self.is_current():
+        self.download_files()
+        self.parse()
+        self.write()
 
 
 if __name__ == '__main__':
