@@ -65,21 +65,21 @@ class Entrez:
         """Download and extract the gene2accession and gene_info files"""
         print('Downloading Entrez Accessions...')
         print('gene2accession:')
-        g2a_filename = 'gene2accession.gz'
+        g2a_filename = os.path.join(self.download_path,'gene2accession.gz')
         self.download_file("http://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2accession.gz", g2a_filename)
         print('\ngene_info:')
-        gi_filename = 'gene_info.gz'
+        gi_filename = os.path.join(self.download_path,'gene_info.gz')
         self.download_file("http://ftp.ncbi.nlm.nih.gov/gene/DATA/gene_info.gz", gi_filename)
         print('\ninteractions:')
-        ia_filename = 'interactions.gz'
+        ia_filename = os.path.join(self.download_path,'interactions.gz')
         self.download_file("http://ftp.ncbi.nlm.nih.gov/gene/GeneRIF/interactions.gz", ia_filename)
         print('\nExtracting Entrez Accessions...')
         print('gene_info...')
-        self.extract("gene_info.gz")
+        self.extract(gi_filename)
         print('gene2accession...')
-        self.extract("gene2accession.gz")
+        self.extract(g2a_filename)
         print('interactions...')
-        self.extract("interactions.gz")
+        self.extract(ia_filename)
         os.remove(g2a_filename)
         os.remove(gi_filename)
         os.remove(ia_filename)
@@ -110,7 +110,8 @@ class Entrez:
                 self.rows.append(row)
 
     def write(self):
-        with open('entrez_genes.tsv', 'w') as f:
+        filename = os.path.join(self.download_path, 'entrez_genes.tsv')
+        with open(filename, 'w') as f:
             fieldnames = ['entrez_id', 'entrez_gene_symbol', 'entrez_gene_synonyms',
                           'ensembl_ids', 'description']
             writer = csv.DictWriter(f, delimiter='\t', fieldnames=fieldnames, extrasaction='ignore')

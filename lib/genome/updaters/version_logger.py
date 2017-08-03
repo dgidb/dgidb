@@ -43,7 +43,8 @@ class Version:
         else:
             version = str(self.version)
         self.versions[self.source] = version
-        with open(self.download_path + 'version', 'w') as f:
+        version_file = os.path.join(self.download_path, 'version')
+        with open(version_file, 'w') as f:
             writer = csv.writer(f, delimiter='\t')
             for source in sorted(self.versions):
                 writer.writerow((source, self.versions[source]))
