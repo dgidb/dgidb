@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.9'
+gem 'rails', '5.1.1'
 
 gem 'pg'
 gem 'less-rails-bootstrap'
@@ -33,6 +33,7 @@ group :development do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rack-mini-profiler'
+  gem 'rails-erd'
 end
 
 group :test, :development  do

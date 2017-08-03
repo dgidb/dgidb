@@ -494,7 +494,6 @@ CREATE TABLE interaction_claims (
     drug_claim_id text NOT NULL,
     gene_claim_id text NOT NULL,
     source_id text,
-    known_action_type character varying(255),
     interaction_id text
 );
 
@@ -537,6 +536,16 @@ CREATE TABLE interactions (
 CREATE TABLE interactions_publications (
     interaction_id text NOT NULL,
     publication_id text NOT NULL
+);
+
+
+--
+-- Name: interactions_sources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE interactions_sources (
+    interaction_id text NOT NULL,
+    source_id text NOT NULL
 );
 
 
@@ -925,6 +934,14 @@ ALTER TABLE ONLY interactions_publications
 
 
 --
+-- Name: interactions_sources interactions_sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interactions_sources
+    ADD CONSTRAINT interactions_sources_pkey PRIMARY KEY (interaction_id, source_id);
+
+
+--
 -- Name: publications publications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1213,13 +1230,6 @@ CREATE INDEX index_genes_on_entrez_id ON genes USING btree (entrez_id);
 --
 
 CREATE UNIQUE INDEX index_genes_on_name ON genes USING btree (name);
-
-
---
--- Name: index_interaction_claims_on_known_action_type; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_interaction_claims_on_known_action_type ON interaction_claims USING btree (known_action_type);
 
 
 --
@@ -1619,6 +1629,14 @@ ALTER TABLE ONLY interactions_publications
 
 
 --
+-- Name: interactions_sources fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interactions_sources
+    ADD CONSTRAINT fk_interaction FOREIGN KEY (interaction_id) REFERENCES interactions(id);
+
+
+--
 -- Name: interaction_attributes_sources fk_interaction_attribute; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1723,6 +1741,14 @@ ALTER TABLE ONLY interaction_attributes_sources
 
 
 --
+-- Name: interactions_sources fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interactions_sources
+    ADD CONSTRAINT fk_source FOREIGN KEY (source_id) REFERENCES sources(id);
+
+
+--
 -- Name: drug_claims fk_source_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1813,6 +1839,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170622142108'),
 ('20170628044755'),
 ('20170629024912'),
-('20170630203634');
+('20170630203634'),
+('20170705222429'),
+('20170706215825');
 
 

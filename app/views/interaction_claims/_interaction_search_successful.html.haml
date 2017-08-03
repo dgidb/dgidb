@@ -1,5 +1,6 @@
 - definite_matches = definite_results + definite_no_interactions
 %div{style: "float: right; margin-top: -15px; width: 17%"}
+  = render partial: 'shared/page_export'
   %div.alert.alert-error.well{style: "margin-top: 15px; padding-right: 20px; width: 240px;"}
     %h3{style: "margin-top: -5px;"}
       Preset Filters
@@ -22,6 +23,6 @@
   %ul(class="result-list" id="list-results")
     - definite_matches.each do |result|
       - result[:identifiers].each do |entity|
-        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-unique"}
+        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-unique", style: "width: 100%;"}
           = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], type: result[:type], entity: entity, filtered_interactions: result[:interactions] }
 

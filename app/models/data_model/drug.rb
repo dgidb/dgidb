@@ -15,7 +15,7 @@ module DataModel
 
 
     def self.for_search
-      eager_load(drug_claims: {interaction_claims: { source: [], gene_claim: [:source, :gene_claim_categories], interaction_claim_types: [], drug_claim: [drug: [drug_claims: [:drug_claim_types]]]}})
+      includes(interactions: [:gene, :interaction_types, :publications, :sources])
     end
 
     def self.for_show
@@ -37,9 +37,7 @@ module DataModel
       if self.fda_approved.nil?  # This assumes that the flag will get updated elsewhere if the molecule record changes
         self.fda_approved = (self.chembl_molecule.max_phase == 4 && !self.chembl_molecule.withdrawn_flag)
       end
-      if self.immunotherapy.nil? # This assumes that the flag will get updated elsewhere if the molecule record changes
-        self.immunotherapy = (self.chembl_molecule.molecule_type == 'Antibody')
-      end
+      self.immunotherapy = false
       self.anti_neoplastic = false
     end
 

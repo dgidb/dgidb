@@ -22,55 +22,60 @@
     %div(class="cell category")
       %div{class: "item-panel"}
         %h4{style: "display: inline-block;"}
-          - interactions = entity.sorted_interactions_by_score & filtered_interactions
-          - if interactions.count > 0
-            %table{class: "search_panel table table-condensed table-striped", style: "table-layout:fixed;"}
+        - interactions = entity.sorted_interactions_by_score & filtered_interactions
+        - if interactions.count > 0
+          %table{class: "search_panel table table-condensed table-striped", style: "width: 100%; margin-top: -20px;"}
+            %tr
+              %th
+                - if type == "genes"
+                  Drug
+                - else 
+                  Gene
+              %th
+                Interaction Type
+              %th
+                Sources
+              %th
+                PMIDs
+              %th
+                Score
+            %tbody
+            - interactions.each do |interaction|
               %tr
-                %th{style: "width: 24%;"}
-                  - if type == "genes"
-                    Drug
-                  - else 
-                    Gene
-                %th{style: "width: 19%;"}
-                  Interaction Type
-                %th{style: "width: 19%;"}
-                  Source Count
-                %th{style: "width: 19%;"}
-                  PMID Count
-                %th{style: "width: 19%;"}
-                  Score
-              %tbody
-              - interactions.each do |interaction|
-                %tr
-                  %td{style: "width: 24%; word-break:break-all"}
-                    - if type == "genes" 
-                      %a{href: "/drugs/#{interaction.drug.name}"}
-                        = interaction.drug.name
-                    - else
-                      %a{href: "/genes/#{interaction.gene.name}"}
-                        = interaction.gene.name
-                  %td{style: "width: 19%;"}
-                    = interaction.interaction_types.map{|t| t.type}.join(", ")
-                  %td{style: "width: 19%;"}
-                    = (source_count = interaction.interaction_claims.count)
-                  %td{style: "width: 19%;"}
-                    = (pub_count = interaction.publications.count)
-                  %td{style: "width: 19%;"}
-                    = source_count + pub_count
-            %button{class: "show-all", style: "margin-top: 5px"}
-              Show All
-            %button{class: "show-more", style: "margin-top: 5px"}
-              Show More
-            %button{class: "show-less", style: "margin-top: 5px"}
-              Show Less
-            %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
-              Showing 
-              %span#nrows
-                = [10, interactions.length].min
-              %span 
-                = "out of #{interactions.length} Interactions"
-          - else
-            No interactions found.
+                %td
+                  - if type == "genes" 
+                    %a{href: "/drugs/#{interaction.drug.name}"}
+                      = interaction.drug.name
+                  - else
+                    %a{href: "/genes/#{interaction.gene.name}"}
+                      = interaction.gene.name
+                %td
+                  = interaction.interaction_types.map{|t| t.type}.join(", ")
+                %td
+                  - source_count = interaction.interaction_claims.count
+                  = interaction.interaction_claims.map{|ic| TrustLevelPresenter.source_link_with_trust_flag(@view_context, ic.source)}.join(' ').html_safe
+                %td
+                  - if (pub_count = interaction.publications.count) > 0 
+                    = interaction.publications.map{|pub| pubmed_link_to(pub.pmid)}.join(" ").html_safe
+                  - else
+                    %i
+                      None found
+                %td
+                  = source_count + pub_count
+          %button{class: "show-all", style: "margin-top: 5px"}
+            Show All
+          %button{class: "show-more", style: "margin-top: 5px"}
+            Show More
+          %button{class: "show-less", style: "margin-top: 5px"}
+            Show Less
+          %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
+            Showing 
+            %span#nrows
+              = [10, interactions.length].min
+            %span 
+              = "out of #{interactions.length} Interactions"
+        - else
+          No interactions found.
 
 
 

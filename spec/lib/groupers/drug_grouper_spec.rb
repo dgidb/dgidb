@@ -206,14 +206,8 @@ describe Genome::Groupers::DrugGrouper do
     expect(withdrawn_drug.fda_approved).to be_falsey
     expect(unapproved_drug.fda_approved).to be_falsey
 
-    immunotherapy_molecule = Fabricate(:chembl_molecule, molecule_type: 'Antibody')
-    small_molecule = Fabricate(:chembl_molecule, molecule_type: 'Small molecule')
-
-    immunotherapy_drug = Fabricate(:drug, chembl_molecule: immunotherapy_molecule)
-    non_immunotherapy_drug = Fabricate(:drug, chembl_molecule: small_molecule)
-
-    expect(immunotherapy_drug.immunotherapy).to be_truthy
-    expect(non_immunotherapy_drug.immunotherapy).to be_falsey
+    immunotherapy_drug = Fabricate(:drug)
+    non_immunotherapy_drug = Fabricate(:drug)
 
     anti_neoplastic_drugs =
       %w[TALC ClearityFoundationClinicalTrial ClearityFoundationBiomarkers CancerCommons
@@ -226,9 +220,15 @@ describe Genome::Groupers::DrugGrouper do
     source = Fabricate(:source, source_db_name: 'ChEMBL')
     chembl_drug_claim = Fabricate(:drug_claim, source: source)
     chembl_drug = Fabricate(:drug, name: chembl_drug_claim.primary_name)
+    immunotherapy_drug_claim = Fabricate(:drug_claim, name: immunotherapy_drug.name)
+    Fabricate(:drug_claim_attribute, value: 'immunomodulatory agent',
+              drug_claim: immunotherapy_drug_claim)
 
     grouper = Genome::Groupers::DrugGrouper.new
     grouper.run
+
+    Genome::Normalizers::DrugTypeNormalizers.normalize_types
+
     anti_neoplastic_drugs.each do |drug|
       drug.reload
       expect(drug.drug_claims.count).to eq 1
@@ -238,6 +238,12 @@ describe Genome::Groupers::DrugGrouper do
     end
     chembl_drug.send(:update_anti_neoplastic_add, chembl_drug.drug_claims.first)
     expect(chembl_drug.anti_neoplastic).to be_falsey
+
+    immunotherapy_drug.reload
+    non_immunotherapy_drug.reload
+    expect(immunotherapy_drug.immunotherapy).to be_truthy
+    expect(non_immunotherapy_drug.immunotherapy).to be_falsey
+
   end
 
   it 'should rename drug name from molecule pref_name if pref_name is not unique' do

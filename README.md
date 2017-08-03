@@ -7,7 +7,7 @@
 To use DGIdb please first visit the public instance here: [DGIdb](http://www.dgidb.org/ "DGIdb at WashU")
 
 #### Installation
-If you would like to install a local instance of DGIdb to work on the code or maintain a private database, refer to the [INSTALL-OSX](https://github.com/genome/dgi-db/blob/master/INSTALL-OSX "INSTALL-OSX") or [INSTALL-LINUX](https://github.com/genome/dgi-db/blob/master/INSTALL-LINUX "INSTALL-OSX") files for installation instructions. If the public version of DGIdb is missing a datasource that you would like to see added, please [Contact Us](http://dgidb.genome.wustl.edu/contact "Contact Us").
+If you would like to install a local instance of DGIdb to work on the code or maintain a private database, refer to the [INSTALL-OSX](https://github.com/genome/dgi-db/blob/master/INSTALL-OSX "INSTALL-OSX") or [INSTALL-LINUX](https://github.com/genome/dgi-db/blob/master/INSTALL-LINUX "INSTALL-OSX") files for installation instructions. Additional installation and developer documentation can be found in the [dgi-db wiki](https://github.com/griffithlab/dgi-db/wiki "dgi-db wiki"). If the public version of DGIdb is missing a datasource that you would like to see added, please [Contact Us](http://dgidb.genome.wustl.edu/contact "Contact Us").
 
 #### Implementation
 DGIdb is built in Ruby on Rails with PostgreSQL as the primary data store. Memcached is utilized heavily for caching, as the data is largely static between new source imports. The site is served with Apache and Phusion Passenger on a server running Ubuntu 12.04 LTS (Precise Pangolin). The code itself is divided into two primary components – the web application itself and the libraries that handle the importing and normalization of new sources.
@@ -20,25 +20,31 @@ Two of the web application’s primary pieces of functionality are its gene name
 The DGIdb API can be used to query for drug-gene interactions in your own applications through a simple JSON based interface.  Extensive documentation of the API including functioning code example is maintained at: http://dgidb.genome.wustl.edu/api
 
 #### Citations
+<strong>DGIdb 2.0: mining clinically relevant drug-gene interactions</strong>. Alex H Wagner, Adam C Coffman, Benjamin J Ainscough, Nicholas C Spies, Zachary L Skidmore, Katie M Campbell, Kilannin Krysiak, Deng Pan, Joshua F McMichael, James M Eldred, Jason R Walker, Richard K Wilson, Elaine R Mardis, Malachi Griffith, Obi L Griffith. <i>Nucleic Acids Research</i>. 2016 Jan 4;44(D1):D1036-44. doi: <a href="https://doi.org/10.1093/nar/gkv1165">10.1093/nar/gkv1165</a>. PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26531824">26531824</a>.
+
 <strong>DGIdb - mining the druggable genome</strong>. Malachi Griffith\*, Obi L Griffith\*, Adam C Coffman, James V Weible, Josh F McMichael, Nicholas C Spies, 
 James Koval, Indraniel Das, Matthew B Callaway, James M Eldred, Christopher A Miller, Janakiraman Subramanian, Ramaswamy Govindan, Runjun D Kumar, 
 Ron Bose, Li Ding, Jason R Walker, David E Larson, David J Dooling, Scott M Smith, Timothy J Ley, Elaine R Mardis, Richard K Wilson. <i>Nature Methods</i>. 2013 Dec;10(12):1209-10. doi: <a href="https://doi.org/10.1038/nmeth.2689">10.1038/nmeth.2689</a>. PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/24122041">24122041</a>.
 \*These authors contributed equally to this work.
 
-<strong>DGIdb 2.0: mining clinically relevant drug-gene interactions</strong>. Alex H Wagner, Adam C Coffman, Benjamin J Ainscough, Nicholas C Spies, Zachary L Skidmore, Katie M Campbell, Kilannin Krysiak, Deng Pan, Joshua F McMichael, James M Eldred, Jason R Walker, Richard K Wilson, Elaine R Mardis, Malachi Griffith, Obi L Griffith. <i>Nucleic Acids Research</i>. 2016 Jan 4;44(D1):D1036-44. doi: <a href="https://doi.org/10.1093/nar/gkv1165">10.1093/nar/gkv1165</a>. PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26531824">26531824</a>.
-
 #### License
-Copyright (C) 2017 The McDonnell Genome Institute at Washington University
+Copyright (c) 2017 The Griffith Lab [www.griffithlab.com]
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see [http://www.gnu.org/licenses/].
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
