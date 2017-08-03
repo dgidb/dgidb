@@ -11,11 +11,12 @@ import datetime
 
 class Entrez:
 
-    def __init__(self):
+    def __init__(self, download_path):
         self.online_version = None
         self.get_online_version()
-        self.version = Version('Entrez', version=self.online_version)
+        self.version = Version('Entrez', version=self.online_version, download_path=download_path)
         self.logged_version = self.version.last_logged_version()
+        self.download_path = download_path
         # self.http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED', ca_certs=certifi.where())
 
     def is_current(self):
@@ -40,10 +41,9 @@ class Entrez:
                 if chunk:  # filter out keep-alive new chunks
                     f.write(chunk)
 
-    @staticmethod
-    def extract(file):
+    def extract(self, file):
         with gzip.open(file, 'rb') as rf:
-            with open('data/' + file.rsplit('.', 1)[0] + '.human', 'w') as wf:
+            with open(os.path.join(self.download_path, file.rsplit('.', 1)[0] + '.human'), 'w') as wf:
                 for i, line in enumerate(rf):
                     line_ascii = line.decode('utf-8')
                     if i == 0:
@@ -75,18 +75,18 @@ class Entrez:
         self.download_file("http://ftp.ncbi.nlm.nih.gov/gene/GeneRIF/interactions.gz", ia_filename)
         print('\nExtracting Entrez Accessions...')
         print('gene_info...')
-        Entrez.extract("gene_info.gz")
+        self.extract("gene_info.gz")
         print('gene2accession...')
-        Entrez.extract("gene2accession.gz")
+        self.extract("gene2accession.gz")
         print('interactions...')
-        Entrez.extract("interactions.gz")
+        self.extract("interactions.gz")
         os.remove(g2a_filename)
         os.remove(gi_filename)
         os.remove(ia_filename)
 
     def parse(self):
         self.rows = []
-        with open('data/gene_info.human') as f:
+        with open(os.path.join(self.download_path, 'gene_info.human')) as f:
             fieldnames = ['tax_id', 'entrez_id', 'entrez_gene_symbol', 'locus_tag',
                          'entrez_gene_synonyms', 'dbXrefs', 'chromosome', 'map_loc',
                          'description', 'type', 'sym_from_auth', 'full_from_auth',

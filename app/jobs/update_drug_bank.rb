@@ -10,7 +10,7 @@ class UpdateDrugBank < TsvUpdater
   end
 
   def download_file
-    system("python", "lib/genome/updaters/get_drugbank.py", tempfile.path)
+    system("python", "lib/genome/updaters/get_drugbank.py", temp_path, tempfile.path)
   end
 
   def should_group_genes?
