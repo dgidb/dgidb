@@ -1,4 +1,4 @@
-- if @search_mode == "genes" 
+- if type == "genes" 
   - entity = GenePresenter.new(entity)
 - else
   - entity = DrugPresenter.new(entity)
@@ -11,7 +11,7 @@
           = "Search Term: " + "\"" + term + "\""
         %i{class: "fa fa-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
         &nbsp
-        - if @search_mode == "genes"
+        - if type == "genes"
           %a{href: "/genes/#{entity.name}#_interactions"}
             = entity.name
         - else 
@@ -27,7 +27,7 @@
             %table{class: "search_panel table table-condensed table-striped", style: "table-layout:fixed;"}
               %tr
                 %th{style: "width: 24%;"}
-                  - if @search_mode == "genes"
+                  - if type == "genes"
                     Drug
                   - else 
                     Gene
@@ -43,7 +43,7 @@
               - interactions.each do |interaction|
                 %tr
                   %td{style: "width: 24%; word-break:break-all"}
-                    - if @search_mode == "genes" 
+                    - if type == "genes" 
                       %a{href: "/drugs/#{interaction.drug.name}"}
                         = interaction.drug.name
                     - else

@@ -48,11 +48,47 @@ class ApplicationController < ActionController::Base
     params[:drug_names] = drug_names.map{ |name| name.strip.upcase }.uniq
   end
 
-  def interpret_search_logic(params)
-    bad_request("You must enter at least one term to search!") unless (params[:genes] || params[:drugs])
-    #set String[] to filter_interaction_search(String) and return "..." for eval
+  def interpret_search_logic(params, run=1)
+    bad_request("You must enter at least one term to search!") unless params[:identifiers]
+    #set String[...] to logical_interaction_search(term[type]) and return "..." for eval
+    return_search = params[:identifiers].dup
+    if run == 1
+      return_search.gsub!(/\(/i, '"("+')
+      return_search.gsub!(/\)/i, '+")"')
+      return_search.gsub!(/\band\b|&/i, '"&"')
+      return_search.gsub!(/\bor\b|\|/i, '"|"')
+      return_search.gsub!(/\bnot\b|-/i, '"-"')
+      return_search.gsub!(/\w+\K\"\(\"\+/i, '(') #OR \w+\K\\\"\(\+\\\"
+      return_search.gsub!(/\w+\({1}\w+\K[\\\"\+]+\)\"/i, ')')  #irb \w+\({1}\w+\K[\\\"\+]+\)\\\"
+      return_search.gsub!(/\w+[\w\[\]\(\)]*/i) { "logical_interaction_search(\"#{$&}\").to_s" }
+      return_search.gsub!(/\s/i, '+')
+    else
+      return_search.gsub!(/\band\b|&/i, '&')
+      return_search.gsub!(/\bor\b|\|/i, '|')
+      return_search.gsub!(/\bnot\b|-/i, '-')
+      return_search.gsub!(/\w+[\[\(]\w+[\]\)]|\w+/i) { "logical_interaction_search(\"#{$&}\")" }
+      return_search.gsub!(/\b\S+\"+\K\)?/i, ', matches, 2)')
+      return_search.gsub!(/[\&]/i, '|')
+    end
+    return_search
+  end
 
-    #...
+  def determine_search_mode(term, params)
+    if term =~ /\w+\[*(\gene*)/i
+      params[:search_mode] = 'genes'
+      params[:genes] = term.scan(/(\w+)+\[*\w*/i).join(", ")
+      combine_input_genes(params)
+    elsif term =~ /\w+\[*(\drug*)/i
+      params[:search_mode] = 'drugs'
+      params[:drugs] = term.scan(/(\w+)+\[*\w*/i).join(", ")
+      combine_input_drugs(params)
+    else
+      params[:search_mode] = 'mixed'
+      params[:genes] = term.scan(/(\w+)+\[*\w*/i).join(", ")
+      params[:drugs] = params[:genes]
+      combine_input_genes(params)
+      combine_input_drugs(params)
+    end
   end
 
   private
@@ -69,8 +105,12 @@ class ApplicationController < ActionController::Base
     elsif params[:search_mode] == 'drugs'
       bad_request('You must enter at least one drug name to search!') if params[:drug_names].size == 0
     else
-      bad_request('You must enter at least one gene or drug name to search!')
+      bad_request('You must enter at least one gene or drug name to search!') if params[:drug_names].size == 0 && params[:gene_names].size == 0
     end
+  end
+
+  def validate_logical_interaction_request(term)
+    bad_request('You must enter at least one gene or drug name to search!') if term.length == 0
   end
 
 end

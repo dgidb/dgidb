@@ -32,7 +32,21 @@
                 %button.btn.btn-small.btn-danger#clear(type='button') Clear Identifiers
                 %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace with Demo List
       .span8{style: "float: left; margin-left: 20px"}
-        %div.search_filters#gene_search_filters{style: "height: 254px; width: 180px; margin-bottom: 10px", class: "well"}
+        %div{style: "height: 160px; width: 370px; margin-top: 264px; padding: 20px", class: "well"} 
+          %form.form-horizontal(id="adv_search_form" action="interaction_search_results" method="post" enctype="multipart/form-data")
+            %fieldset
+              .control-group{style: "margin-bottom: -10px"}
+                %label
+                  Advanced Search
+              .control-group
+                %label.control-label(id='ids_flag')
+                .controls
+                  %textarea#identifiers{name: 'identifiers', rows: "1", style: "width: 334px; font-size: 20px"}
+          %button.btn.btn-success(name='search_mode' value='mixed' type="submit" id='search-btn' style='font-size: 14px;' form='adv_search_form')
+            %i(class="fa fa-search" aria-hidden="true")
+            /+^(action="advanced_search_results")(name='search_mode' value='genes')
+            /Search
+        %div.search_filters#gene_search_filters{style: "height: 254px; width: 180px; margin-top: -444px; margin-bottom: 10px", class: "well"}
           %label
             Preset Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
@@ -47,7 +61,7 @@
                 = "  Immunotherapies"
           %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
             Filter the DRUGS that interact with your GENES
-        %div.search_filters#drug_search_filters{style: "height: 254px; width: 180px; display: none; margin-bottom: 10px", class: "well"}
+        %div.search_filters#drug_search_filters{style: "height: 254px; width: 180px; display: none; margin-top: -444px; margin-bottom: 10px", class: "well"}
           %label 
             Preset Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
@@ -62,22 +76,7 @@
                 = "  Drug Resistance"
           %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
             Filter the GENES that interact with your DRUGS
-        %div{style: "height: 150px; width: 370px; margin-top: 10px", class: "well"} 
-          %form.form-horizontal(id="adv_search_form" action="advanced_search_results" method="post" enctype="multipart/form-data")
-            %fieldset
-              .control-group{style: "margin-bottom: -10px"}
-                %label
-                  Advanced Search
-              .control-group
-                %label.control-label(id='ids_flag')
-                .controls
-                  %textarea#identifiers{name: 'identifiers', rows: "1", style: "width: 334px; font-size: 20px"}
-          %button.btn.btn-success(name='search_mode' value='genes' type="submit" id='search-btn' style='font-size: 14px;' form='adv_search_form')
-            %i(class="fa fa-search" aria-hidden="true")
-            /+^(action="advanced_search_results")(name='search_mode' value='genes')
-            /Search
-      .span8{style: "float: left; margin-left: -180px"}
-        %div{style: "height: 254px; width: 180px", class: "well"}
+        %div{style: "height: 254px; width: 180px; margin-top: -264px; margin-left: 190px", class: "well"}
           %label
             Advanced Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 

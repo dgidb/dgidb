@@ -25,9 +25,21 @@ class FilterChain
 
   # this gets called in the filter_results method in lookup_interactions.rb
   # checks the filtered set of interaction ids to see whether each interaction should be included 
-  def include?(id)
-    
-    empty? || evaluate_all_filters.include?(id)
+  def include?(id, matches=[])  #still need to make filters filter matches
+    #byebug
+    if matches.any?
+      if matches[0] && matches[1] &&
+        id.gene_id.in?(matches[0]) && id.drug_id.in?(matches[1])
+        if !@computed_include
+          @computed_include = Set.new << id.id
+        else
+          @computed_include << id.id
+        end
+      end
+      evaluate_matches_and_filters.include?(id.id)
+    else
+      empty? || evaluate_all_filters.include?(id.id)
+    end
   end
 
   private
@@ -40,7 +52,13 @@ class FilterChain
     @computed_exclude ||= evaluate_filter(@all_exclude)
     @computed_final ||= @computed_include - @computed_exclude
     @computed_final
-    
+  end
+
+  def evaluate_matches_and_filters  #eventually filter @computed_exclude to be specific to what's in @computed_include and not in filter
+    @computed_include ||= Set.new #evaluate_filter(@all_include)
+    @computed_exclude ||= Set.new #evaluate_filter(@all_exclude)
+    @computed_final = @computed_include - @computed_exclude
+    @computed_final
   end
 
   def evaluate_filter(filter)

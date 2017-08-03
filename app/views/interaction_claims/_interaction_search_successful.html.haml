@@ -23,5 +23,5 @@
     - definite_matches.each do |result|
       - result[:identifiers].each do |entity|
         %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-unique"}
-          = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions] }
+          = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], type: result[:type], entity: entity, filtered_interactions: result[:interactions] }
 
