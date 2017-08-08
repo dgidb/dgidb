@@ -107,7 +107,7 @@ module Genome; module OnlineUpdaters; module Civic
           source_type_id: DataModel::SourceType.INTERACTION,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           full_name: 'CIViC: Clinical Interpretations of Variants in Cancer'
-        }, without_protection: true
+        }
       )
     end
   end
