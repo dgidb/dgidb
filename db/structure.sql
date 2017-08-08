@@ -1152,7 +1152,7 @@ CREATE INDEX index_chembl_molecule_synonyms_on_chembl_molecule_id ON chembl_mole
 -- Name: index_chembl_molecules_on_chembl_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_chembl_molecules_on_chembl_id ON chembl_molecules USING btree (chembl_id);
+CREATE UNIQUE INDEX index_chembl_molecules_on_chembl_id ON chembl_molecules USING btree (chembl_id);
 
 
 --
@@ -1166,7 +1166,7 @@ CREATE INDEX index_chembl_molecules_on_drug_id ON chembl_molecules USING btree (
 -- Name: index_chembl_molecules_on_molregno; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_chembl_molecules_on_molregno ON chembl_molecules USING btree (molregno);
+CREATE UNIQUE INDEX index_chembl_molecules_on_molregno ON chembl_molecules USING btree (molregno);
 
 
 --
@@ -1757,6 +1757,14 @@ ALTER TABLE ONLY drug_aliases
 
 
 --
+-- Name: chembl_molecules fk_rails_4d99531977; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY chembl_molecules
+    ADD CONSTRAINT fk_rails_4d99531977 FOREIGN KEY (drug_id) REFERENCES drugs(id);
+
+
+--
 -- Name: drug_aliases_sources fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1901,6 +1909,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170727025111'),
 ('20170727192237'),
 ('20170728015708'),
-('20170728023124');
+('20170728023124'),
+('20170808210937');
 
 
