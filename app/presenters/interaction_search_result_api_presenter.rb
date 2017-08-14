@@ -81,5 +81,9 @@ class InteractionSearchResultApiPresenter
       interaction_claim.gene_claim.gene.long_name
     end
 
+    def publications
+      interaction_claim.publications.map{|p| p.pmid}
+    end
+
   end
 end

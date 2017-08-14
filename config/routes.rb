@@ -15,9 +15,21 @@ DruggableGene::Application.routes.draw do
   get 'search_results' => 'search#search_results'
   get 'cache/invalidate' => 'utilities#invalidate_cache'
   post  'download_table' => 'utilities#download_request_content'
-  post  'api/v1/interactions' => 'services_v1#interactions'
-  post  'api/v1/related_genes' => 'services_v1#related_genes'
-  get   'api/v1/:action' => 'services_v1#:action'
+  scope 'api' do
+    scope 'v1' do
+      post  'interactions' => 'services_v1#interactions'
+      post  'related_genes' => 'services_v1#related_genes'
+      get   ':action' => 'services_v1#:action'
+    end
+    scope 'v2' do
+      post  'interactions' => 'services_v2#interactions'
+      post  'related_genes' => 'services_v2#related_genes'
+      get   ':action' => 'services_v2#:action'
+      get   'genes/:name' => 'services_v2#gene_details'
+      get   'drugs/:name' => 'services_v2#drug_details'
+      get   'interactions/:id' => 'services_v2#interaction_details'
+    end
+  end
   match 'interaction_search_results/:name' => 'interaction_claims#interaction_search_results', name: /.*[^#]/, via: [:get, :post]
   match 'interaction_search_results' => 'interaction_claims#interaction_search_results', via: [:get, :post]
   match 'interactions_for_related_genes' => 'interaction_claims#interactions_for_related_genes', via: [:get, :post]
