@@ -61,7 +61,9 @@ module Utils
         delete from interaction_claim_attributes where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
         delete from interaction_claim_types_interaction_claims where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
         update interaction_claims set interaction_id = NULL where source_id = '#{source_id}';
-        delete from interaction_claims where source_id =  '#{source_id}';
+        delete from interaction_claims where source_id = '#{source_id}';
+
+        delete from interactions_sources where source_id = '#{source_id}';
 
         delete from drug_claim_attributes where drug_claim_id in (select id from drug_claims where source_id = '#{source_id}');
         delete from drug_claim_aliases where drug_claim_id in (select id from drug_claims where source_id = '#{source_id}');
@@ -105,8 +107,18 @@ module Utils
           ) t
         )
       SQL
+      ActiveRecord::Base.transaction do
+        ActiveRecord::Base.connection.execute(sql)
+        destroy_empty_groups
+      end
+    end
 
-      ActiveRecord::Base.connection.execute(sql)
+    def self.destroy_empty_groups
+      DataModel::Interaction.includes(:interaction_claims).where(interaction_claims: {id: nil}).destroy_all
+      # Empty genes are expected
+      # empty_genes = DataModel::Gene.includes(:gene_claims).where(gene_claims: {id: nil}).destroy_all
+      # Empty drugs are okay to delete
+      DataModel::Drug.includes(:drug_claims).where(drug_claims: {id: nil}).destroy_all
     end
 
     def self.destroy_na
