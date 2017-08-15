@@ -41,6 +41,7 @@
                 Score
             %tbody
             - interactions.each do |interaction|
+              - interaction = InteractionPresenter.new(interaction)
               %tr
                 %td
                   - if @search_mode == "genes" 
@@ -50,7 +51,7 @@
                     %a{href: "/genes/#{interaction.gene.name}"}
                       = interaction.gene.name
                 %td
-                  = interaction.interaction_types.map{|t| t.type}.join(", ")
+                  = interaction.na_or_types
                 %td
                   - source_count = interaction.interaction_claims.count
                   = interaction.interaction_claims.map{|ic| TrustLevelPresenter.source_link_with_trust_flag(@view_context, ic.source)}.join(' ').html_safe
