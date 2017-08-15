@@ -19,7 +19,9 @@ class InteractionPresenter < SimpleDelegator
     {
       id: interaction.id,
       gene_name: interaction.gene.name,
+      entrez_id: interaction.gene.entrez_id,
       drug_name: interaction.drug.name,
+      chembl_id: interaction.drug.chembl_id,
       publications: interaction.publications.map(&:pmid),
       interaction_types: interaction.interaction_types.map(&:type),
       sources: interaction.sources.map(&:source_db_name),
