@@ -51,6 +51,11 @@
     $(name).toggle();
   });
 
+  $(".ambiguous.search-term").on("click", function() {
+    name = "." + this.name;
+    $(name).click();
+  });
+
   $('table').each(function(index){
     $(this).find('> tbody > tr').hide().slice(0, 11).show();
   });

@@ -17,12 +17,14 @@
         %li
           %input{type: "checkbox", checked: "checked", id: "#{'heading' + result[:term]}"}
           %label{for: "#{'heading' + result[:term]}", class: "tree_label"}
-            = "Search Term: " + result[:term]
+            %span
+              %input{class: "ambiguous search-term", type: "checkbox", name: result[:term], checked: 1}
+                = result[:term]
           %ul
             - result[:identifiers].each do |entity|
               %li
                 %span{class: "tree_label"}
-                  %input{class: "ambiguous sidebar-toggle", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
+                  %input{class: "ambiguous sidebar-toggle #{result[:term]}", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
                     = entity.name 
 
 %div{style: "float: left; width: 81%;"}
@@ -152,6 +154,6 @@
     list-style-type:none
   }
 
-  input.ambiguous.sidebar-toggle {
+  input.ambiguous {
     position: relative;
   }
