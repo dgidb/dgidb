@@ -22,21 +22,8 @@
             - result[:identifiers].each do |entity|
               %li
                 %span{class: "tree_label"}
-                  = entity.name
-    %ul(class="tree")
-      %li
-        %input(type="checkbox" checked="checked" id="c1")
-        %label(class="tree_label" for="c1") Level 0
-        %ul
-          %li
-            %input(type="checkbox" checked="checked" id="c2")
-            %label(for="c2" class="tree_label") Level 1
-            %ul
-              %li
-                %span(class="tree_label") Level 2
-              %li
-                %span(class="tree_label") Level 2
-
+                  %input{class: "ambiguous sidebar-toggle", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
+                    = entity.name 
 
 %div{style: "float: left; width: 81%;"}
   %ul(class="result-list" id="list-results")
@@ -165,12 +152,6 @@
     list-style-type:none
   }
 
-:javascript
-  function toggleIcon(e) {
-    $(e.target)
-      .prev('.panel-heading')
-      .find(".more-less")
-      .toggleClass('glyphicon-plus glyphicon-minus');
+  input.ambiguous.sidebar-toggle {
+    position: relative;
   }
-  $('.panel-group').on('hidden.bs.collapse', toggleIcon);
-  $('.panel-group').on('shown.bs.collapse', toggleIcon);
