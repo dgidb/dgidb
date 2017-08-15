@@ -28,6 +28,7 @@ module Utils
         delete from interactions_publications;
         delete from interaction_types_interactions;
         delete from interactions_publications;
+        delete from interactions_sources;
         delete from interactions;
       SQL
 
@@ -84,6 +85,7 @@ module Utils
         delete from gene_aliases_sources where source_id = '#{source_id}';
         delete from gene_attributes_sources where source_id = '#{source_id}';
         delete from interaction_attributes_sources where source_id = '#{source_id}';
+        delete from interactions_sources where source_id = '#{source_id}';
         delete from sources where id = '#{source_id}';
       SQL
 

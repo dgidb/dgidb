@@ -6,7 +6,8 @@ class Grouper
         gene_grouper.run()
       end
       if group_drugs
-        Genome::Groupers::DrugGrouper.run()
+        drug_grouper = Genome::Groupers::DrugGrouper.new()
+        drug_grouper.run()
       end
       Genome::Groupers::InteractionGrouper.run()
   end

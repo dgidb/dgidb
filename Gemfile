@@ -18,6 +18,7 @@ gem 'lograge'
 gem 'syslog-logger'
 gem 'rye'
 gem 'delayed_job_active_record'
+gem 'rubyzip'
 
 group :production do
   gem 'dalli'

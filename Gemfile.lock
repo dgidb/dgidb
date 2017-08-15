@@ -208,6 +208,7 @@ GEM
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
     ruby-graphviz (1.2.3)
+    rubyzip (1.2.1)
     rye (0.9.13)
       annoy
       docile (>= 1.0.1)
@@ -296,6 +297,7 @@ DEPENDENCIES
   rails-erd
   rake
   rspec-rails
+  rubyzip
   rye
   sass-rails
   stamp
