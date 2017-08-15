@@ -5,7 +5,6 @@ class InteractionClaimsController < ApplicationController
   end
 
   def interaction_search_results
-    #byebug
     if params[:search_mode] == 'mixed'
       if !params[:name].nil?
       params[:search_mode] = 'drugs'
@@ -19,18 +18,13 @@ class InteractionClaimsController < ApplicationController
       @view_context = view_context
       unpack_locals(params)
 
-      #interpret_search_logic(params)  #turns search input into readable command of type String (located at params[:identifiers]) - matching
-      #byebug
-      matches = [[],[]]
-      match_string = eval(interpret_search_logic(params))  #need to make global? add to params..
-      matches[0] += eval(match_string.gsub!(/\](?![\],])/i, '][0]'))
-      matches[1] += eval(match_string.gsub!(/\[0]/i, '[1]'))
-      term_string = match_string.gsub(/[\&]/i, '|')
-      matches[0] += eval(term_string.gsub!(/\[1]/i, '[2]'))
-      matches[1] += eval(term_string.gsub!(/\[2]/i, '[3]'))
-      #byebug
-      search_results = eval(interpret_search_logic(params, 2)).uniq ###*  still needs to give matches
-      #byebug
+      matches = match_results
+      
+      begin
+        search_results = eval(interpret_search_logic(params, 2)).uniq { |result| result.inspect.partition(' ').last }
+      rescue
+        bad_request('There is an error in your search query!')
+      end
       @search_results = InteractionSearchResultsPresenter.new(search_results, view_context)
       prepare_export
     else
@@ -83,15 +77,27 @@ class InteractionClaimsController < ApplicationController
     @search_results = InteractionSearchResultsPresenter.new(search_results, view_context)
   end
 
+  def match_results
+    validate_search_request(params)
+    matches = [[],[]]
+    match_string = eval(interpret_search_logic(params))
+    matches[0] += eval(match_string.gsub!(/\](?![\],])/i, '][0]'))
+    matches[1] += eval(match_string.gsub!(/\[0]/i, '[1]'))
+    term_string = match_string.gsub(/[\&]/i, '|')
+    matches[0] += eval(term_string.gsub!(/\[1]/i, '[2]'))
+    matches[1] += eval(term_string.gsub!(/\[2]/i, '[3]'))
+    matches
+    rescue SyntaxError, NameError
+      bad_request('There is an error in your search query!')
+  end
 
-  def logical_interaction_search(term, matches=[], run=1) ###^
-    #byebug
+  def logical_interaction_search(term, matches=[], run=1)
     validate_logical_interaction_request(term)
-    determine_search_mode(term, params)
-    if run == 1  #initial matching run
-      LookupInteractions.logical_find(term, params) #should return array of matching drugs to term=gene
-    else  #resulting runs
-      LookupInteractions.logical_find(term, params, matches, run) #should return full interaction_results; same code as find ?
+    term = determine_search_mode(term, params)
+    if run == 1
+      LookupInteractions.logical_find(term, params)
+    else
+      LookupInteractions.logical_find(term, params, matches, run)
     end
   end
 

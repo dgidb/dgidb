@@ -6,6 +6,7 @@ module ApplicationHelper
     else
       ""
     end
+    #byebug
   end
 
   def to( fragment_id, action = params['action'] )
