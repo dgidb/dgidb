@@ -15,7 +15,7 @@ class ServicesV2Controller < ApplicationController
   end
 
   def drug_details
-    drug_details = DrugDetailPresenter.new(DataModel::Drug.find_by!(name: params[:name])).data
+    drug_details = DrugDetailPresenter.new(DataModel::Drug.find_by!(chembl_id: params[:chembl_id])).data
     render_format(drug_details)
   end
 
