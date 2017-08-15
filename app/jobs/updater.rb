@@ -17,6 +17,6 @@ class Updater
   end
 
   def should_cleanup_gene_claims?
-    raise StandardError.new('Must implement #should_cleanup_gene_claims? in subclass')
+    false
   end
 end
