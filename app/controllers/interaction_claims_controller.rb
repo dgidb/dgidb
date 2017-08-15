@@ -7,24 +7,23 @@ class InteractionClaimsController < ApplicationController
   def interaction_search_results
     if params[:search_mode] == 'mixed'
       if !params[:name].nil?
-      params[:search_mode] = 'drugs'
-      params[:identifiers] = params[:name]
-      params[:gene_categories] = DataModel::GeneClaimCategory.all_category_names unless params[:gene_categories]
-      params[:sources] = DataModel::Source.potentially_druggable_source_names unless params[:sources]
-      params[:source_trust_levels] = DataModel::SourceTrustLevel.all_trust_levels unless params[:source_trust_levels]
+        params[:search_mode] = 'drugs'
+        params[:identifiers] = params[:name]
+        params[:gene_categories] = DataModel::GeneClaimCategory.all_category_names unless params[:gene_categories]
+        params[:sources] = DataModel::Source.potentially_druggable_source_names unless params[:sources]
+        params[:source_trust_levels] = DataModel::SourceTrustLevel.all_trust_levels unless params[:source_trust_levels]
       end
       @search_interactions_active = 'active'
-
       @view_context = view_context
       unpack_locals(params)
 
       matches = match_results
-      
       begin
         search_results = eval(interpret_search_logic(params, 2)).uniq { |result| result.inspect.partition(' ').last }
       rescue
         bad_request('There is an error in your search query!')
       end
+      
       @search_results = InteractionSearchResultsPresenter.new(search_results, view_context)
       prepare_export
     else
