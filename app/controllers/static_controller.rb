@@ -13,6 +13,10 @@ class StaticController < ApplicationController
     @current_sources = DataModel::Source.all_sources
   end
 
+  def advanced_interaction_search
+    search_interactions
+  end
+
   def news
     cookies[:most_recent_post_date] = NewsFilter.most_recent_post_date.to_s
     @news.mark_read!

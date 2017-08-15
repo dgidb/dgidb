@@ -50,45 +50,49 @@ class ApplicationController < ActionController::Base
 
   def interpret_search_logic(params, run=1)
     bad_request("You must enter at least one term to search!") unless params[:identifiers]
-    #set String[...] to logical_interaction_search(term[type]) and return "..." for eval
     return_search = params[:identifiers].dup
     if run == 1
+      return_search.gsub!(/(?:\A|\s*)\K(?:\".*?\")(?=\s*|\z)/i) { "#{$&}".gsub(/\(/, '^').gsub(/\)/, '$').gsub(/\s/, '#') }
+      return_search.gsub!(/(?:\A|\s*)\K(?:\".*?\")(?=\s*|\z)/i) { "logical_interaction_search^#{$&}$.to_s" } 
       return_search.gsub!(/\(/i, '"("+')
       return_search.gsub!(/\)/i, '+")"')
-      return_search.gsub!(/\band\b|&/i, '"&"')
-      return_search.gsub!(/\bor\b|\|/i, '"|"')
-      return_search.gsub!(/\bnot\b|-/i, '"-"')
-      return_search.gsub!(/\w+\K\"\(\"\+/i, '(') #OR \w+\K\\\"\(\+\\\"
-      return_search.gsub!(/\w+\({1}\w+\K[\\\"\+]+\)\"/i, ')')  #irb \w+\({1}\w+\K[\\\"\+]+\)\\\"
-      return_search.gsub!(/\w+[\w\[\]\(\)]*/i) { "logical_interaction_search(\"#{$&}\").to_s" }
-      return_search.gsub!(/\s/i, '+')
+      return_search.gsub!(/\sand\s/i, ' "&" ')
+      return_search.gsub!(/\sor\s/i, ' "|" ')
+      return_search.gsub!(/\snot\s/i, ' "-" ')
+      return_search.gsub!(/\s/, '+')
+      return_search.gsub!(/\^/, '(')
+      return_search.gsub!(/\$/, ')')
+      return_search.gsub!(/\#/, ' ')
     else
-      return_search.gsub!(/\band\b|&/i, '&')
-      return_search.gsub!(/\bor\b|\|/i, '|')
-      return_search.gsub!(/\bnot\b|-/i, '-')
-      return_search.gsub!(/\w+[\[\(]\w+[\]\)]|\w+/i) { "logical_interaction_search(\"#{$&}\")" }
-      return_search.gsub!(/\b\S+\"+\K\)?/i, ', matches, 2)')
-      return_search.gsub!(/[\&]/i, '|')
+      return_search.gsub!(/\sand\s/i, ' & ')
+      return_search.gsub!(/\sor\s/i, ' | ')
+      return_search.gsub!(/\snot\s/i, ' - ')
+      return_search.gsub!(/(?:\A|\s*)\K(?:\".*?\")(?=\s*|\z)/i) { "logical_interaction_search(#{$&}, matches, 2)" }
+      return_search.gsub!(/\&/i, '|')
     end
     return_search
   end
 
   def determine_search_mode(term, params)
-    if term =~ /\w+\[*(\gene*)/i
+    if term =~ /\S+[\[\(](?:gene)/i
+      term.gsub!(/[\[\(]gene.*/, '')
       params[:search_mode] = 'genes'
-      params[:genes] = term.scan(/(\w+)+\[*\w*/i).join(", ")
+      params[:genes] = term
       combine_input_genes(params)
-    elsif term =~ /\w+\[*(\drug*)/i
+    elsif term =~ /\S+[\[\(](?:drug)/i
+      term.gsub!(/[\[\(]drug.*/, '')
       params[:search_mode] = 'drugs'
-      params[:drugs] = term.scan(/(\w+)+\[*\w*/i).join(", ")
+      params[:drugs] = term
       combine_input_drugs(params)
     else
+      term.gsub!(/[\[\(](?:gene|drug).*/, '')
       params[:search_mode] = 'mixed'
-      params[:genes] = term.scan(/(\w+)+\[*\w*/i).join(", ")
+      params[:genes] = term
       params[:drugs] = params[:genes]
       combine_input_genes(params)
       combine_input_drugs(params)
     end
+    term
   end
 
   private
@@ -111,6 +115,16 @@ class ApplicationController < ActionController::Base
 
   def validate_logical_interaction_request(term)
     bad_request('You must enter at least one gene or drug name to search!') if term.length == 0
+  end
+
+  def validate_search_request(params)
+    params[:identifiers] = params[:identifiers].scan(/./).select { |b| b.match(/[\w\s\-\[\]\(\)\@\_\'\,\.\/\+\"]/) }.join.strip
+    bad_request('You must enter at least one gene or drug name to search!') if params[:identifiers].length == 0
+    params[:identifiers].gsub(/(?:\A|\s*)\(*\".*?\"\)*(?=\s*|\z)/, '').split(' ').each do |term|
+      if term.match(/\b(?!and|or|not)\S+/)
+        bad_request('There is a syntax error in your search!')
+      end
+    end
   end
 
 end
