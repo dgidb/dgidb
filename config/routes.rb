@@ -25,7 +25,7 @@ DruggableGene::Application.routes.draw do
       post  'interactions' => 'services_v2#interactions'
       post  'related_genes' => 'services_v2#related_genes'
       get   ':action' => 'services_v2#:action'
-      get   'genes/:name' => 'services_v2#gene_details'
+      get   'genes/:entrez_id' => 'services_v2#gene_details'
       get   'drugs/:name' => 'services_v2#drug_details'
       get   'interactions/:id' => 'services_v2#interaction_details'
     end

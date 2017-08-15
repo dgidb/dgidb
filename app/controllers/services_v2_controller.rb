@@ -5,7 +5,7 @@ class ServicesV2Controller < ApplicationController
   end
 
   def gene_details
-    gene_details = GeneDetailPresenter.new(DataModel::Gene.find_by!(name: params[:name])).data
+    gene_details = GeneDetailPresenter.new(DataModel::Gene.find_by!(entrez_id: params[:entrez_id])).data
     render_format(gene_details)
   end
 
