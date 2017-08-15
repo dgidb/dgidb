@@ -974,10 +974,45 @@ ALTER TABLE ONLY sources
 
 
 --
+-- Name: chembl_molecule_synonyms_index_on_upper_synonym; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX chembl_molecule_synonyms_index_on_upper_synonym ON chembl_molecule_synonyms USING btree (upper((synonym)::text));
+
+
+--
+-- Name: chembl_molecules_index_on_upper_pref_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX chembl_molecules_index_on_upper_pref_name ON chembl_molecules USING btree (upper((pref_name)::text));
+
+
+--
 -- Name: delayed_jobs_priority; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
+
+
+--
+-- Name: drug_aliases_index_on_upper_alias; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX drug_aliases_index_on_upper_alias ON drug_aliases USING btree (upper(alias));
+
+
+--
+-- Name: drug_attributes_index_on_upper_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX drug_attributes_index_on_upper_name ON drug_attributes USING btree (upper(name));
+
+
+--
+-- Name: drug_attributes_index_on_upper_value; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX drug_attributes_index_on_upper_value ON drug_attributes USING btree (upper(value));
 
 
 --
@@ -1030,10 +1065,24 @@ CREATE INDEX drugs_full_text ON drugs USING gin (to_tsvector('english'::regconfi
 
 
 --
+-- Name: drugs_index_on_upper_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX drugs_index_on_upper_name ON drugs USING btree (upper(name));
+
+
+--
 -- Name: drugs_lower_name_idx; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX drugs_lower_name_idx ON drugs USING btree (lower(name));
+
+
+--
+-- Name: gene_aliases_index_on_upper_alias; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX gene_aliases_index_on_upper_alias ON gene_aliases USING btree (upper(alias));
 
 
 --
@@ -1093,10 +1142,31 @@ CREATE INDEX genes_full_text ON genes USING gin (to_tsvector('english'::regconfi
 
 
 --
--- Name: genes_lower_name_idx; Type: INDEX; Schema: public; Owner: -
+-- Name: genes_index_on_upper_long_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX genes_lower_name_idx ON genes USING btree (lower(name));
+CREATE INDEX genes_index_on_upper_long_name ON genes USING btree (upper((long_name)::text));
+
+
+--
+-- Name: genes_index_on_upper_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX genes_index_on_upper_name ON genes USING btree (upper(name));
+
+
+--
+-- Name: index_chembl_molecule_synonyms_on_chembl_molecule_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_chembl_molecule_synonyms_on_chembl_molecule_id ON chembl_molecule_synonyms USING btree (chembl_molecule_id);
+
+
+--
+-- Name: index_chembl_molecules_on_chembl_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_chembl_molecules_on_chembl_id ON chembl_molecules USING btree (chembl_id);
 
 
 --
@@ -1104,6 +1174,20 @@ CREATE INDEX genes_lower_name_idx ON genes USING btree (lower(name));
 --
 
 CREATE INDEX index_chembl_molecules_on_drug_id ON chembl_molecules USING btree (drug_id);
+
+
+--
+-- Name: index_chembl_molecules_on_molregno; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_chembl_molecules_on_molregno ON chembl_molecules USING btree (molregno);
+
+
+--
+-- Name: index_drug_aliases_on_drug_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_drug_aliases_on_drug_id ON drug_aliases USING btree (drug_id);
 
 
 --
@@ -1146,13 +1230,6 @@ CREATE UNIQUE INDEX index_drug_claims_on_name_and_nomenclature_and_source_id ON 
 --
 
 CREATE UNIQUE INDEX index_drugs_on_name ON drugs USING btree (name);
-
-
---
--- Name: index_gene_aliases_on_alias; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_gene_aliases_on_alias ON gene_aliases USING btree (alias);
 
 
 --
@@ -1223,13 +1300,6 @@ CREATE INDEX index_gene_gene_interaction_claims_on_interacting_gene_id ON gene_g
 --
 
 CREATE INDEX index_genes_on_entrez_id ON genes USING btree (entrez_id);
-
-
---
--- Name: index_genes_on_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_genes_on_name ON genes USING btree (name);
 
 
 --
@@ -1393,14 +1463,6 @@ ALTER TABLE ONLY drug_claims
 --
 
 ALTER TABLE ONLY interactions
-    ADD CONSTRAINT fk_drug FOREIGN KEY (drug_id) REFERENCES drugs(id);
-
-
---
--- Name: drug_aliases fk_drug; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY drug_aliases
     ADD CONSTRAINT fk_drug FOREIGN KEY (drug_id) REFERENCES drugs(id);
 
 
@@ -1613,14 +1675,6 @@ ALTER TABLE ONLY interaction_types_interactions
 
 
 --
--- Name: interaction_attributes fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY interaction_attributes
-    ADD CONSTRAINT fk_interaction FOREIGN KEY (interaction_id) REFERENCES interactions(id);
-
-
---
 -- Name: interactions_publications fk_interaction; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1698,6 +1752,30 @@ ALTER TABLE ONLY interactions_publications
 
 ALTER TABLE ONLY interaction_claims_publications
     ADD CONSTRAINT fk_publication FOREIGN KEY (publication_id) REFERENCES publications(id);
+
+
+--
+-- Name: interaction_attributes fk_rails_01f96ac9ee; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY interaction_attributes
+    ADD CONSTRAINT fk_rails_01f96ac9ee FOREIGN KEY (interaction_id) REFERENCES interactions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: drug_aliases fk_rails_4d255ac147; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_aliases
+    ADD CONSTRAINT fk_rails_4d255ac147 FOREIGN KEY (drug_id) REFERENCES drugs(id) ON DELETE CASCADE;
+
+
+--
+-- Name: chembl_molecules fk_rails_4d99531977; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY chembl_molecules
+    ADD CONSTRAINT fk_rails_4d99531977 FOREIGN KEY (drug_id) REFERENCES drugs(id);
 
 
 --
@@ -1841,6 +1919,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170629024912'),
 ('20170630203634'),
 ('20170705222429'),
-('20170706215825');
-
+('20170706215825'),
+('20170727025111'),
+('20170727192237'),
+('20170728015708'),
+('20170728023124'),
+('20170729004221'),
+('20170808210937');
 

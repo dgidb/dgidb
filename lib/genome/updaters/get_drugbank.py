@@ -17,7 +17,7 @@ from get_entrez import Entrez
 
 class DrugBank(object):
 
-    def __init__(self, username, password, download_path):
+    def __init__(self, username, password, download_path, tsv_file):
         self.online_version = None
         self.get_online_version()
         self.version = Version('DrugBank', version=self.online_version, download_path=download_path)
@@ -26,6 +26,7 @@ class DrugBank(object):
         self.username = username
         self.password = password
         self.download_path = download_path
+        self.tsv_file = tsv_file
 
     def is_current(self):
         """Returns True if local versions of Entrez files are up-to-date."""
@@ -53,7 +54,7 @@ class DrugBank(object):
 
     def download_files(self):
         print('Downloading DrugBank XML...')
-        filename = self.download_path + 'drugbank.zip'
+        filename = os.path.join(self.download_path, 'drugbank.zip')
         self.download_file('https://www.drugbank.ca/releases/5-0-6/downloads/all-full-database', filename)
 
         print('\nExtracting DrugBank XML...')
@@ -69,7 +70,7 @@ class DrugBank(object):
         hgnc_id_to_info = dict()
         entrez_to_info = dict()
         sources = set()
-        with open(self.download_path + 'gene_info.human') as f:
+        with open(os.path.join(self.download_path, 'gene_info.human')) as f:
             c = csv.reader(f, delimiter='\t')
             for i, line in enumerate(c):
                 if i == 0:
@@ -94,7 +95,7 @@ class DrugBank(object):
         uniprot_to_entrez = dict()
         r = re.compile(r'[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}')
         # regex from: http://www.uniprot.org/help/accession_numbers
-        with open(self.download_path + 'gene2accession.human') as f:
+        with open(os.path.join(self.download_path, 'gene2accession.human')) as f:
             c = csv.reader(f, delimiter='\t')
             for i, line in enumerate(c):
                 if i == 0:
@@ -110,7 +111,7 @@ class DrugBank(object):
         print('Parsing DrugBank XML...')
         ns = {'entry': 'http://www.drugbank.ca'}
 
-        tree = ET.parse(self.download_path + 'full database.xml')
+        tree = ET.parse(os.path.join(self.download_path, 'full database.xml'))
         drugbank = tree.getroot()
         drugs = drugbank.findall('entry:drug', ns)
 
@@ -230,7 +231,7 @@ class DrugBank(object):
         header = ('count', 'drug_id', 'drug_name', 'drug_synonyms', 'drug_cas_number', 'drug_brands',
                   'drug_type', 'drug_groups', 'drug_categories', 'gene_id', 'known_action', 'target_actions',
                   'gene_symbol', 'uniprot_id', 'entrez_id', 'ensembl_id', 'pmid')
-        with open(self.download_path + 'DrugBankInteractions.tsv', 'w') as f:
+        with open(self.tsv_file, 'w') as f:
             writer = csv.writer(f, delimiter='\t')
             writer.writerow(header)
             for drug in sorted(self.interactions):
@@ -266,7 +267,12 @@ if __name__ == '__main__':
         sys.exit(-1)
     username = os.environ['DRUGBANK_USERNAME']
     password = os.environ['DRUGBANK_PASSWORD']
-    download_path = os.path.split(os.path.realpath(__file__))[0] + '/data/'
-    db = DrugBank(username, password, download_path)
+    if len(sys.argv) == 3:
+        download_path = sys.argv[1]
+        tsv_file = sys.argv[2]
+    else:
+        download_path = os.path.join(os.path.split(os.path.realpath(__file__))[0], 'data')
+        tsv_file = os.path.join(download_path, 'DrugBankInteractions.tsv')
+    db = DrugBank(username, password, download_path, tsv_file)
     db.update()
     print('Done.')
