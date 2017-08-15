@@ -1,4 +1,4 @@
-class InteractionSearchResultApiPresenter
+class InteractionSearchResultApiV2Presenter
   def initialize(search_result)
     @result = search_result
   end
@@ -34,7 +34,7 @@ class InteractionSearchResultApiPresenter
   end
 
   def interactions
-    @interactions ||= @result.interactions.flat_map(&:interaction_claims).map do |i|
+    @interactions ||= @result.interactions.map do |i|
       InteractionWrapper.new(i)
     end
   end
@@ -52,37 +52,36 @@ class InteractionSearchResultApiPresenter
       .drug
   end
 
-  InteractionWrapper = Struct.new(:interaction_claim) do
+  InteractionWrapper = Struct.new(:interaction) do
     def types_string
-      interaction_claim
-        .interaction_claim_types
+      interaction
+        .interaction_types
         .map(&:type)
         .join(',')
     end
 
     def interaction_id
-      interaction_claim.id
+      interaction.id
     end
 
-    def source_db_name
-      interaction_claim.source.source_db_name
+    def source_db_names
+      interaction.sources.map(&:source_db_name)
     end
 
     def drug_name
-      interaction_claim.drug_claim.primary_name ||
-        interaction_claim.drug_claim.name
+      interaction.drug.name
     end
 
     def gene_name
-      interaction_claim.gene_claim.gene.name
+      interaction.gene.name
     end
 
     def gene_long_name
-      interaction_claim.gene_claim.gene.long_name
+      interaction.gene.long_name
     end
 
     def publications
-      interaction_claim.publications.map{|p| p.pmid}
+      interaction.publications.map(&:pmid)
     end
 
   end

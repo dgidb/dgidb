@@ -1,4 +1,4 @@
-class InteractionSearchResultsApiPresenter
+class InteractionSearchResultsApiV2Presenter
   def initialize(search_results)
     @search_results = search_results
   end
@@ -6,7 +6,7 @@ class InteractionSearchResultsApiPresenter
   def matched_results
     @matched_results ||= @search_results
       .select { |r| r.is_definite? && r.has_interactions? }
-      .map { |r| InteractionSearchResultApiPresenter.new(r) }
+      .map { |r| InteractionSearchResultApiV2Presenter.new(r) }
   end
 
   def unmatched_results

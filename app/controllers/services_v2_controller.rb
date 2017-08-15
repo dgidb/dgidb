@@ -83,7 +83,7 @@ class ServicesV2Controller < ApplicationController
     validate_interaction_request(params)
     combine_entries(params)
     search_results = LookupInteractions.find(params)
-    @search_results = InteractionSearchResultsApiPresenter.new(search_results)
+    @search_results = InteractionSearchResultsApiV2Presenter.new(search_results)
   end
 
   def gene_id_mapping
