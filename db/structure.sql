@@ -1002,6 +1002,20 @@ CREATE INDEX drug_aliases_index_on_upper_alias ON drug_aliases USING btree (uppe
 
 
 --
+-- Name: drug_attributes_index_on_upper_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX drug_attributes_index_on_upper_name ON drug_attributes USING btree (upper(name));
+
+
+--
+-- Name: drug_attributes_index_on_upper_value; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX drug_attributes_index_on_upper_value ON drug_attributes USING btree (upper(value));
+
+
+--
 -- Name: drug_claim_aliases_drug_claim_id_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1910,6 +1924,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170727192237'),
 ('20170728015708'),
 ('20170728023124'),
+('20170729004221'),
 ('20170808210937');
-
 

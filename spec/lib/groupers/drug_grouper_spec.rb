@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Genome::Groupers::DrugGrouper do
-  def create_chembl_drug_aliases
-    nil
-  end
-  def create_chembl_drug_attributes
-    nil
+
+  def group
+    grouper = Genome::Groupers::DrugGrouper.new
+    grouper.run
+    grouper
   end
 
   it 'should add the drug claim if the drug claim name matches the drug name (case insensitive)' do
@@ -15,8 +15,7 @@ describe Genome::Groupers::DrugGrouper do
     drug_claims << Fabricate(:drug_claim, name: 'Test Drug', source: source, primary_name: 'Test Drug')
     drug_claims << Fabricate(:drug_claim, name: 'TEST DRUG', source: source, primary_name: 'TEST DRUG')
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    group
     drug_claims.each { |dc| dc.reload; expect(dc.drug).not_to be_nil }
     expect(drug.drug_claims.count).to eq 2
     expect(drug.drug_aliases.count).to eq 0
@@ -31,8 +30,7 @@ describe Genome::Groupers::DrugGrouper do
     Fabricate(:drug_claim_alias, alias: name, drug_claim: drug_claim)
     Fabricate(:drug_claim_attribute, drug_claim: drug_claim, name: 'adverse reaction', value: 'true')
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    group
     drug_claim.reload
     expect(drug_claim.drug).not_to be_nil
     expect(drug.drug_claims.count).to eq 1
@@ -54,8 +52,7 @@ describe Genome::Groupers::DrugGrouper do
     Fabricate(:drug_claim_alias, drug_claim: another_drug_claim, alias: 'Bogus Drug Name')
     Fabricate(:drug_claim_attribute, drug_claim: another_drug_claim, name: 'kerbanol groups', value: 3)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    group
     drug.reload
     expect(drug.drug_claims.count).to eq 2
     expect(drug.drug_aliases.count).to eq 2
@@ -75,8 +72,7 @@ describe Genome::Groupers::DrugGrouper do
     Fabricate(:drug_claim_alias, drug_claim: another_drug_claim, alias: 'Test Drug Trade Name')
     Fabricate(:drug_claim_attribute, drug_claim: another_drug_claim, name: 'kerbanol groups', value: 3)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    group
     drug.reload
     expect(drug.drug_claims.count).to eq 2
     expect(drug.drug_aliases.count).to eq 2
@@ -95,8 +91,7 @@ describe Genome::Groupers::DrugGrouper do
     Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: another_drug_alias.alias)
     Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: drug_alias.alias)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    grouper = group
     drug_claim.reload
     expect(drug_claim.drug).to be_nil
     expect(grouper.indirect_multimatch.count).to eq 1
@@ -112,8 +107,7 @@ describe Genome::Groupers::DrugGrouper do
     Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: drug.name)
     Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: another_drug.name)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    grouper = group
     drug_claim.reload
     expect(drug_claim.drug).to be_nil
     expect(grouper.direct_multimatch.count).to eq 1
@@ -128,8 +122,7 @@ describe Genome::Groupers::DrugGrouper do
     Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: molecule.pref_name)
     Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: another_molecule.pref_name)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    grouper = group
     drug_claim.reload
     expect(drug_claim.drug).to be_nil
     expect(grouper.molecule_multimatch.count).to eq 1
@@ -147,8 +140,7 @@ describe Genome::Groupers::DrugGrouper do
     another_drug_claim = Fabricate(:drug_claim, primary_name: molecule_synonym.synonym)
     another_drug_claim_alias = Fabricate(:drug_claim_alias, drug_claim: another_drug_claim, alias: molecule_synonym_2.synonym)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    grouper = group
 
     drug_claim.reload
     another_drug_claim.reload
@@ -164,8 +156,7 @@ describe Genome::Groupers::DrugGrouper do
     Fabricate(:drug_claim_alias, alias: 'My not-so-unique alias', drug_claim: drug_claim)
     Fabricate(:drug_claim_alias, alias: 'My Not-So-Unique Alias', drug_claim: drug_claim)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    group
 
     drug.reload
     expect(drug.drug_aliases.count).to eq 1
@@ -183,8 +174,7 @@ describe Genome::Groupers::DrugGrouper do
     Fabricate(:drug_claim_alias, drug_claim: drug_claim, alias: 'Test Drug Trade Name')
     Fabricate(:drug_claim_attribute, drug_claim: drug_claim, name: 'adverse reaction', value: 'true')
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    group
     drug_claim.reload
     drug = drug_claim.drug
     expect(drug).not_to be_nil
@@ -224,8 +214,7 @@ describe Genome::Groupers::DrugGrouper do
     Fabricate(:drug_claim_attribute, value: 'immunomodulatory agent',
               drug_claim: immunotherapy_drug_claim)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    group
 
     Genome::Normalizers::DrugTypeNormalizers.normalize_types
 
@@ -254,8 +243,7 @@ describe Genome::Groupers::DrugGrouper do
 
     drug_claim = Fabricate(:drug_claim, name: molecule.pref_name, primary_name: nil)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    grouper = group
     drug_claim.reload
 
     expect(grouper.molecule_multimatch.count).to eq 0
@@ -280,8 +268,7 @@ describe Genome::Groupers::DrugGrouper do
     molecule_synonym = Fabricate(:chembl_molecule_synonym, synonym: cool, chembl_molecule: molecule)
     drug_claim = Fabricate(:drug_claim, primary_name: molecule.pref_name)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    group
 
     drug_claim.reload
     drug = drug_claim.drug
@@ -308,8 +295,7 @@ describe Genome::Groupers::DrugGrouper do
 
     drug_claim = Fabricate(:drug_claim, name: bond)
 
-    grouper = Genome::Groupers::DrugGrouper.new
-    grouper.run
+    group
 
     drug_claim.reload
     drug = drug_claim.drug
