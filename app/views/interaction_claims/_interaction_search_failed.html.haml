@@ -12,20 +12,31 @@
     %h3{style: "margin-top: -5px; margin-bottom: -5px;"}
       Multiple Matches
     %div{style: "width: 200px; padding: 0", class: "container demo"}
-      %div(class="panel-group" id="accordion" role="tablist" aria-multiselectable="true")
-      - ambiguous_matches.each do |result|
-        %div{class: "panel-heading", role: "tab", id: "#{'heading' + result[:term]}"}
-          %h4(class="panel-title" style="margin-left: -20px;")
-            %a{role: "button", "data-toggle" => "collapse", "data-parent" => "#accordion", href: "#{'#collapse' + result[:term]}", "aria-expanded" => "true", "aria-controls" => "#{'collapse' + result[:term]}", style: "word-wrap: break-word; display: inline-block;"}
-              %i(class="more-less glyphicon glyphicon-plus")
-              = "Search Term: " + result[:term]
+    - ambiguous_matches.each do |result|
+      %ul{class: "tree"}
+        %li
+          %input{type: "checkbox", checked: "checked", id: "#{'heading' + result[:term]}"}
+          %label{for: "#{'heading' + result[:term]}", class: "tree_label"}
+            = "Search Term: " + result[:term]
+          %ul
+            - result[:identifiers].each do |entity|
+              %li
+                %span{class: "tree_label"}
+                  = entity.name
+    %ul(class="tree")
+      %li
+        %input(type="checkbox" checked="checked" id="c1")
+        %label(class="tree_label" for="c1") Level 0
+        %ul
+          %li
+            %input(type="checkbox" checked="checked" id="c2")
+            %label(for="c2" class="tree_label") Level 1
+            %ul
+              %li
+                %span(class="tree_label") Level 2
+              %li
+                %span(class="tree_label") Level 2
 
-        %div{id: "#{'collapse' + result[:term]}", class: "panel-collapse collapse", role: "tabpanel", "aria-labelledby" => "#{'heading' + result[:term]}"}
-          %div{class: "panel-body tree", style: "padding: 0px;"}
-          - result[:identifiers].each do |entity|
-            %div{class: "tree_label"}
-              %input{class: "ambiguous sidebar-toggle", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
-                = entity.name
 
 %div{style: "float: left; width: 81%;"}
   %ul(class="result-list" id="list-results")
@@ -60,6 +71,8 @@
 
   .tree ul li { padding: 1em 0 0 1em; }
 
+  .tree ul { padding-left: 0; margin: -5px 0 0 -1px }
+
   .tree > li:last-child { padding-bottom: 0; }
 
   /* ————————————————————–
@@ -68,7 +81,6 @@
   .tree_label {
     position: relative;
     display: inline-block;
-    background: #fff;
     }
 
   label.tree_label { cursor: pointer; }
@@ -147,6 +159,10 @@
     background: #eee;
     padding: 1em;
     border-radius: 0.3em;
+  }
+
+  ul {
+    list-style-type:none
   }
 
 :javascript
