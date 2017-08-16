@@ -19,6 +19,14 @@ class InteractionSearchResultApiV2Presenter
     gene.long_name
   end
 
+  def entrez_id
+    gene.entrez_id
+  end
+
+  def chembl_id
+    drug.chembl_id
+  end
+
   def type
     @result.type
   end
@@ -72,12 +80,20 @@ class InteractionSearchResultApiV2Presenter
       interaction.drug.name
     end
 
+    def drug_chembl_id
+      interaction.drug.chembl_id
+    end
+
     def gene_name
       interaction.gene.name
     end
 
     def gene_long_name
       interaction.gene.long_name
+    end
+
+    def gene_entrez_id
+      interaction.gene.entrez_id
     end
 
     def publications
