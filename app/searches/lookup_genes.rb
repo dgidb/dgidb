@@ -19,6 +19,12 @@ class LookupGenes
     end
     search_terms = search_terms - gene_results.map(&:name)
 
+    gene_entrez_id_results = DataModel::Gene.send(scope).where(entrez_id: search_terms)
+    gene_entrez_id_results.each do |result|
+      results_to_gene_groups[result.entrez_id.to_s] << result
+    end
+    search_terms = search_terms - gene_entrez_id_results.map(&:entrez_id)
+
     gene_alias_results = DataModel::GeneAlias.send(scope).where(alias: search_terms)
     gene_alias_results.each do |result|
       results_to_gene_groups[result.alias] << result.gene
