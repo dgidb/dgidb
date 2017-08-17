@@ -22,7 +22,7 @@ module FilterHelper
   # is it going to be problematic if I don't have a param_to_count_mapping for FDA drugs since it's not really like I'm turning off or on certain types, it's just binary
   def should_filter?(param_value, params)
     
-    if params[param_value] == "checked"
+    if ["checked", "true"].include? params[param_value]
       true
     else 
       !params[param_value].blank? &&
