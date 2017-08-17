@@ -67,7 +67,7 @@
           It also allows you to filter returned interactions.
         %span.label GET
         %pre
-          \/api/v1/interactions.json
+          \/api/v2/interactions.json
         %p
           %small
             %span.label.label-info Note:
@@ -113,13 +113,31 @@
                 %code interaction_types=inhibitor,activator
             %tr
               %td
-                drug_types
+                fda_approved_drug
                 %small (optional)
               %td
-                A comma delimited list of drug types to include in the result set.
-                If this field is omitted, all drug types will be included.
+                A flag denoting whether or not to limit interactions to only the ones involving fda-approved drugs.
+                If this field is omitted, interactions for all types of drugs will be included.
               %td
-                %code drug_types=antineoplastic
+                %code fda_approved_drug=true
+            %tr
+              %td
+                immunotherapy
+                %small (optional)
+              %td
+                A flag denoting whether or not to limit interactions to only the ones involving immunotherapeutic drugs.
+                If this field is omitted, interactions for all types of drugs will be included.
+              %td
+                %code immunotherapy=true
+            %tr
+              %td
+                anti_neoplastic
+                %small (optional)
+              %td
+                A flag denoting whether or not to limit interactions to only the ones involving anti-neoplastic drugs.
+                If this field is omitted, interactions for all types of drugs will be included.
+              %td
+                %code anti_neoplastic=true
             %tr
               %td
                 gene_categories
@@ -144,11 +162,11 @@
           %span.label.label-info Note:
           %small
             The following example would query DGIdb for interactions involving the genes
-            FLT1, STK1, and FAKE. It will only show interactions with antineoplastic drugs reported
+            FLT1, STK1, and FAKE. It will only show interactions reported
             by the source.
             =link_to('TALC', source_path('TALC')) + '.'
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT1,MM1,FAKE&drug_types=antineoplastic&interaction_sources=TALC
+          \http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT1,MM1,FAKE&interaction_sources=TALC
         %h5 Example Response:
         %p
           The response will come back with two top level items:
@@ -244,7 +262,7 @@
           interaction types for use in the interactions endpoint.
         %span.label GET
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/interaction_types.json
+          \http://dgidb.genome.wustl.edu/api/v2/interaction_types.json
         %h5 Example Response:
         %pre
           ["activator", "inhibitor", "unknown"]
@@ -256,22 +274,10 @@
           interaction sources for use in calls to the interactions endpoint.
         %span.label GET
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/interaction_sources.json
+          \http://dgidb.genome.wustl.edu/api/v2/interaction_sources.json
         %h5 Example Response:
         %pre
           ["DrugBank","PharmGKB","TALC","TEND","TTD"]
-      %hr
-      %section#drug-types
-        %h3 Drug Types
-        %p.lead
-          The drug types endpoint can be used to retrieve a current list of supported
-          drug types for use in calls to the interactions endpoint.
-        %span.label GET
-        %pre
-          \http://dgidb.genome.wustl.edu/api/v1/drug_types.json
-        %h5 Example Response:
-        %pre
-          ["antineoplastic"]
       %hr
       %section#gene-categories
         %h3 Gene Categories
@@ -280,7 +286,7 @@
           gene categories for use in calls to the interactions endpoint.
         %span.label GET
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/gene_categories.json
+          \http://dgidb.genome.wustl.edu/api/v2/gene_categories.json
         %h5 Example Response:
         %pre
           ["KINASE", "DNA REPAIR", "TUMOR SUPPRESSOR"]
@@ -292,7 +298,7 @@
           source trust levels for use in calls to the interactions endpoint.
         %span.label GET
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/source_trust_levels.json
+          \http://dgidb.genome.wustl.edu/api/v2/source_trust_levels.json
         %h5 Example Response:
         %pre
           ["Expert curated", "Non-curated"]
@@ -305,7 +311,7 @@
             genes that are known to interact in pathways with your gene list
           %span.label GET
           %pre
-            \/api/v1/related_genes.json
+            \/api/v2/related_genes.json
           %h5 Accepted Parameters:
           %table.table.table-bordered.table-striped
             %thead
@@ -329,7 +335,7 @@
               The following example would query DGIdb for a list of genes known to interact with
               FLT1 or FLT3
           %pre
-            \http://dgidb.genome.wustl.edu/api/v1/related_genes.json?genes=FLT1,FLT3
+            \http://dgidb.genome.wustl.edu/api/v2/related_genes.json?genes=FLT1,FLT3
           %h5 Example Response:
           %p
             The response will come back containing a list of hashes each with two keys:
@@ -407,7 +413,7 @@
           that are known to be in a specific category.
         %span.label GET
         %pre
-          \/api/v1/genes_in_category.json
+          \/api/v2/genes_in_category.json
         %h5 Accepted Parameters:
         %table.table.table-bordered.table-striped
           %thead
@@ -430,7 +436,7 @@
           %small
             The following example would query DGIdb for a list of genes known to be Kinases
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/genes_in_category.json?category=kinase
+          \http://dgidb.genome.wustl.edu/api/v2/genes_in_category.json?category=kinase
         %h5 Example Response:
         %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-genes-in-category-response'}}
           Show/Hide Response
@@ -557,7 +563,7 @@
           <br><br>Try the following examples from the command line to view and format output from the API:<br>
           %span.label SAMPLE CODE
           %pre
-            curl http://dgidb.genome.wustl.edu/api/v1/interactions.json<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank\&interaction_type=inhibitor | python -mjson.tool<br>
+            curl http://dgidb.genome.wustl.edu/api/v2/interactions.json<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank\&interaction_type=inhibitor | python -mjson.tool<br>
       %hr
 
   :css
