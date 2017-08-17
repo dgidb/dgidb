@@ -27,3 +27,5 @@ json.unmatchedTerms @search_results.unmatched_results do |result|
   json.searchTerm result.search_term
   json.suggestions result.identifiers.map { |i| i.name }
 end
+
+json._warning "This API call is deprecated. Please use /v2/interactions.json"
