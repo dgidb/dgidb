@@ -1,8 +1,7 @@
 set :application, "dgidb"
 set :repo_url, "https://github.com/griffithlab/dgi-db.git"
 
-set :stages, ["staging", "production"]
-set :default_stage, "staging"
+set :rails_env, "production"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/dgidb"
