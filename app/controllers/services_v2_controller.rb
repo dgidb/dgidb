@@ -97,7 +97,7 @@ class ServicesV2Controller < ApplicationController
   end
 
   def combine_entries(params)
-    [:interaction_sources, :gene_categories, :interaction_types, :drug_types, :source_trust_levels]
+    [:interaction_sources, :gene_categories, :interaction_types, :source_trust_levels]
     .reject{|arg| params[arg].class == Array}.each do |arg|
       params[arg] = params[arg].split(',').map(&:strip) if params[arg]
     end
