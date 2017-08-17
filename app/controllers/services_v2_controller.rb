@@ -35,10 +35,6 @@ class ServicesV2Controller < ApplicationController
     render_format DataModel::GeneClaimCategory.all_category_names
   end
 
-  def drug_types
-   render_format DataModel::DrugClaimType.all_type_names
-  end
-
   def interaction_types
     render_format DataModel::InteractionClaimType.all_type_names
   end
