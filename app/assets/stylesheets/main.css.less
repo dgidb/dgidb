@@ -4,6 +4,22 @@
 @import "twitter/bootstrap/mixins.less";
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
 
+/* BASE COLORS
+ **************************************************/
+@dgidb-green:  #69b53e;
+@dgidb-brown:  #5f604b;
+@dgidb-purple: #502066;
+@dgidb-red:    #a40014;
+@dgidb-blue:   #4ea1b9;
+@dgidb-yellow: #f3b128;
+@dgidb-orange: #c54b16;
+
+// entity colors
+@entity-category:     @dgidb-orange;
+@entity-gene:         @dgidb-green;
+@entity-drug:         @dgidb-red;
+@entity-interaction:  @dgidb-blue;
+
 /* Import Application LESS
  **************************************************/
 @import "color_genes.css.less";
@@ -74,21 +90,6 @@
   .border-left-radius(@radius);
 }
 
-/* BASE COLORS
- **************************************************/
-@dgidb-green:  #69b53e;
-@dgidb-brown:  #5f604b;
-@dgidb-purple: #502066;
-@dgidb-red:    #a40014;
-@dgidb-blue:   #4ea1b9;
-@dgidb-yellow: #f3b128;
-@dgidb-orange: #c54b16;
-
-// entity colors
-@entity-category:     @dgidb-orange;
-@entity-gene:         @dgidb-green;
-@entity-drug:         @dgidb-red;
-@entity-interaction:  @dgidb-blue;
 
 /* LAYOUT
  **************************************************/
