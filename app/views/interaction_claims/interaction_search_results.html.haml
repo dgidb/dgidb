@@ -88,7 +88,7 @@
     }
   });
 
-  $(".tabbable li a").click(function () {
+  $(".tabbable > ul > li > a").click(function () {
     window.location.hash = "_" + $(this).attr('href').substr(1);
     return true;
   }); 
