@@ -61,11 +61,12 @@ class InteractionSearchResultApiV2Presenter
   end
 
   InteractionWrapper = Struct.new(:interaction) do
+    def types
+      interaction.interaction_types.map(&:type)
+    end
+
     def types_string
-      interaction
-        .interaction_types
-        .map(&:type)
-        .join(',')
+      type.map(&:type)
     end
 
     def interaction_id
