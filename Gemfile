@@ -18,6 +18,7 @@ gem 'lograge'
 gem 'syslog-logger'
 gem 'rye'
 gem 'delayed_job_active_record'
+gem 'rubyzip'
 
 group :production do
   gem 'dalli'
@@ -33,6 +34,7 @@ group :development do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rack-mini-profiler'
+  gem 'rails-erd'
 end
 
 group :test, :development  do

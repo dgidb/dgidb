@@ -7,7 +7,7 @@
 To use DGIdb please first visit the public instance here: [DGIdb](http://www.dgidb.org/ "DGIdb at WashU")
 
 #### Installation
-If you would like to install a local instance of DGIdb to work on the code or maintain a private database, refer to the [INSTALL-OSX](https://github.com/genome/dgi-db/blob/master/INSTALL-OSX "INSTALL-OSX") or [INSTALL-LINUX](https://github.com/genome/dgi-db/blob/master/INSTALL-LINUX "INSTALL-OSX") files for installation instructions. If the public version of DGIdb is missing a datasource that you would like to see added, please [Contact Us](http://dgidb.genome.wustl.edu/contact "Contact Us").
+If you would like to install a local instance of DGIdb to work on the code or maintain a private database, refer to the [INSTALL-OSX](https://github.com/genome/dgi-db/blob/master/INSTALL-OSX "INSTALL-OSX") or [INSTALL-LINUX](https://github.com/genome/dgi-db/blob/master/INSTALL-LINUX "INSTALL-OSX") files for installation instructions. Additional installation and developer documentation can be found in the [dgi-db wiki](https://github.com/griffithlab/dgi-db/wiki "dgi-db wiki"). If the public version of DGIdb is missing a datasource that you would like to see added, please [Contact Us](http://dgidb.genome.wustl.edu/contact "Contact Us").
 
 #### Implementation
 DGIdb is built in Ruby on Rails with PostgreSQL as the primary data store. Memcached is utilized heavily for caching, as the data is largely static between new source imports. The site is served with Apache and Phusion Passenger on a server running Ubuntu 12.04 LTS (Precise Pangolin). The code itself is divided into two primary components – the web application itself and the libraries that handle the importing and normalization of new sources.

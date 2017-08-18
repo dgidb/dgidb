@@ -9,19 +9,20 @@ import os
 # TODO: Currently uses a text file as a simple database. Consider using sqlite instead.
 class Version:
 
-    def __init__(self, source, version=None, append_date=False):
+    def __init__(self, source, version=None, append_date=False, download_path=None):
         self.version = version
         self.append = append_date
         self.source = source
         self.versions = dict()
-        os.makedirs('data', exist_ok=True)
+        self.download_path = download_path
+        os.makedirs(self.download_path, exist_ok=True)
         if self.version is None and not self.append:
             self.append = True
             warnings.warn("No version specified, setting logger to use date instead.")
 
     def load_versions(self):
         try:
-            with open('data/version', 'r') as f:
+            with open(self.download_path + 'version', 'r') as f:
                 for line in f:
                     key, value = line.strip().split('\t')
                     self.versions[key] = value
@@ -42,7 +43,8 @@ class Version:
         else:
             version = str(self.version)
         self.versions[self.source] = version
-        with open('data/version', 'w') as f:
+        version_file = os.path.join(self.download_path, 'version')
+        with open(version_file, 'w') as f:
             writer = csv.writer(f, delimiter='\t')
             for source in sorted(self.versions):
                 writer.writerow((source, self.versions[source]))
