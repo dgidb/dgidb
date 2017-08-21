@@ -26,14 +26,12 @@ class LookupDrugs
 
   def self.match_search_terms_to_objects(search_terms, scope)
     search_terms = search_terms.dup
-    drug_results = DataModel::Drug.send(scope).where(name: search_terms)
-    search_terms = search_terms - drug_results.map(&:name)
-    drug_chembl_id_results = DataModel::Drug.send(scope).where(chembl_id: search_terms)
-    search_terms = search_terms - drug_chembl_id_results.map(&:chembl_id)
+    drug_results = DataModel::Drug.send(scope).where(["name in (?) or chembl_id in (?)", search_terms, search_terms])
+    search_terms = search_terms - drug_results.map(&:name) - drug_results.map(&:chembl_id)
     drug_alias_results = DataModel::DrugAlias.send(scope).where(alias: search_terms)
     search_terms = search_terms - drug_alias_results.map(&:alias)
 
-    drug_results.to_a.concat(drug_chembl_id_results.to_a).concat(drug_alias_results.to_a)
+    drug_results.to_a.concat(drug_alias_results.to_a)
   end
 
   def self.de_dup_results(results)
