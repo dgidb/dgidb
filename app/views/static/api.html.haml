@@ -164,6 +164,33 @@
                 %code anti_neoplastic=true
             %tr
               %td
+                clinically_actionable
+                %small (optional)
+              %td
+                A flag denoting whether or not to limit interactions to only the ones involving clinically actionable genes.
+                If this field is omitted, interactions for all types of genes will be included.
+              %td
+                %code clinically_actionable=true
+            %tr
+              %td
+                druggable_genome
+                %small (optional)
+              %td
+                A flag denoting whether or not to limit interactions to only the ones involving the durggable genome.
+                If this field is omitted, interactions for all types of genes will be included.
+              %td
+                %code druggable_genome=true
+            %tr
+              %td
+                drug_resistance
+                %small (optional)
+              %td
+                A flag denoting whether or not to limit interactions to only the ones involving drug-resistant genes.
+                If this field is omitted, interactions for all types of genes will be included.
+              %td
+                %code drug_resistance=true
+            %tr
+              %td
                 gene_categories
                 %small (optional)
               %td
