@@ -1,25 +1,25 @@
 class LookupGenes
 
-  def self.find(search_terms, scope, wrapper_class)
+  def self.find(search_terms, scope, wrapper_class, filter)
     raise 'You must specify at least one search term!' unless search_terms.any?
-    results_to_genes = match_search_terms_to_objects(search_terms, scope)
+    results_to_genes = match_search_terms_to_objects(search_terms, scope, filter)
     de_dup_results(results_to_genes).map do |terms, matched_genes|
       wrapper_class.new(terms, matched_genes.compact)
     end
   end
 
   private
-  def self.match_search_terms_to_objects(search_terms, scope)
+  def self.match_search_terms_to_objects(search_terms, scope, filter)
     search_terms = search_terms.dup
     results_to_gene_groups = search_terms.each_with_object({}) { |term, h| h[term] = [] }
 
-    gene_results = DataModel::Gene.send(scope).where(name: search_terms)
+    gene_results = filter.filter_rel(DataModel::Gene.send(scope).where(name: search_terms))
     gene_results.each do |result|
       results_to_gene_groups[result.name] << result
     end
     search_terms = search_terms - gene_results.map(&:name)
 
-    gene_alias_results = DataModel::GeneAlias.send(scope).where(alias: search_terms)
+    gene_alias_results = filter.filter_rel(DataModel::GeneAlias.send(scope).where(alias: search_terms))
     gene_alias_results.each do |result|
       results_to_gene_groups[result.alias] << result.gene
     end

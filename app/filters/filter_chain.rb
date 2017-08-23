@@ -23,11 +23,12 @@ class FilterChain
     end
   end
 
-  # this gets called in the filter_results method in lookup_interactions.rb
-  # checks the filtered set of interaction ids to see whether each interaction should be included 
-  def include?(id)
-    
-    empty? || evaluate_all_filters.include?(id)
+  def filter_rel(rel)
+    if empty?
+      rel
+    else
+      rel.where(interactions: { id: evaluate_all_filters.to_a })
+    end
   end
 
   private
@@ -40,7 +41,6 @@ class FilterChain
     @computed_exclude ||= evaluate_filter(@all_exclude)
     @computed_final ||= @computed_include - @computed_exclude
     @computed_final
-    
   end
 
   def evaluate_filter(filter)

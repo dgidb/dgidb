@@ -16,7 +16,8 @@ module DataModel
 
 
     def self.for_search
-      includes(interactions: [:gene, :interaction_types, :publications, :sources])
+      eager_load(:interactions)
+        .includes(interactions: [:gene, :interaction_types, :publications, :sources])
     end
 
     def self.for_show
