@@ -7,8 +7,8 @@ module Genome; module OnlineUpdaters; module Oncokb;
 
     def update
       remove_existing_source
-      source = create_new_source
-      create_interaction_claims(source)
+      create_new_source
+      create_interaction_claims
     end
 
     private
@@ -30,13 +30,13 @@ module Genome; module OnlineUpdaters; module Oncokb;
       )
     end
 
-    def create_interaction_claims(source)
+    def create_interaction_claims
       api_client = ApiClient.new
       genes = get_genes(api_client)
       drugs = get_drugs(api_client)
       api_client.variants.each do |variant|
         gene = genes[variant['gene']]
-        gene_claim = create_gene_claim(gene, source)
+        gene_claim = create_gene_claim(gene)
 
         variant['drugs'].split(', ').each do |drug_name|
           if drug_name.include? '+'
@@ -44,8 +44,8 @@ module Genome; module OnlineUpdaters; module Oncokb;
             combination_drug_name.split(' + ').each do |individual_drug_name|
               if valid_drug?(individual_drug_name)
                 drug = drugs[individual_drug_name]
-                drug_claim = create_drug_claim(drug['drugName'], 'OncoKB Drug Name', source)
-                interaction_claim = create_interaction_claim(gene_claim.id, drug_claim.id, source)
+                drug_claim = create_drug_claim(drug['drugName'], 'OncoKB Drug Name')
+                interaction_claim = create_interaction_claim(gene_claim.id, drug_claim.id)
                 DataModel::InteractionClaimAttribute.where(
                   name: 'combination therapy',
                   value: combination_drug_name,
@@ -57,8 +57,8 @@ module Genome; module OnlineUpdaters; module Oncokb;
           else
             if valid_drug?(drug_name)
               drug = drugs[drug_name]
-              drug_claim = create_drug_claim(drug['drugName'], 'OncoKB Drug Name', source)
-              interaction_claim = create_interaction_claim(gene_claim.id, drug_claim.id, source)
+              drug_claim = create_drug_claim(drug['drugName'], 'OncoKB Drug Name')
+              interaction_claim = create_interaction_claim(gene_claim.id, drug_claim.id)
               add_interaction_claim_publications(interaction_claim, variant['pmids'])
             end
           end
@@ -78,11 +78,11 @@ module Genome; module OnlineUpdaters; module Oncokb;
       end
     end
 
-    def create_gene_claim(gene, source)
+    def create_gene_claim(gene)
       gene_claim =  DataModel::GeneClaim.where(
         name: gene['hugoSymbol'],
         nomenclature: 'OncoKB Gene Name',
-        source_id: source.id,
+        source_id: @source.id,
       ).first_or_create
       create_gene_claim_alias(gene_claim.id, gene['entrezGeneId'], 'OncoKB Entrez Id')
       gene['geneAliases'].each do |synonym|
@@ -103,19 +103,19 @@ module Genome; module OnlineUpdaters; module Oncokb;
       ['Radiation'].none? { |name| drug_name.include?(name)  }
     end
 
-    def create_drug_claim(name, nomenclature, source)
+    def create_drug_claim(name, nomenclature)
       DataModel::DrugClaim.where(
         name: name,
         nomenclature: nomenclature,
-        source_id: source.id,
+        source_id: @source.id,
       ).first_or_create
     end
 
-    def create_interaction_claim(gene_claim_id, drug_claim_id, source)
+    def create_interaction_claim(gene_claim_id, drug_claim_id)
       DataModel::InteractionClaim.where(
         gene_claim_id: gene_claim_id,
         drug_claim_id: drug_claim_id,
-        source_id: source.id,
+        source_id: @source.id,
       ).first_or_create
     end
 
