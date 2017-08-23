@@ -1,7 +1,7 @@
 module Utils
   module TSV
     def self.generate_interactions_tsv(filename = File.join(Rails.root, 'data/interactions.tsv'))
-      write_tsv_file_for_query(filename, DataModel::Gene.for_search, 'interaction')
+      write_tsv_file_for_query(filename, DataModel::InteractionClaim.for_tsv, 'interaction')
     end
 
     def self.generate_categories_tsv(filename = File.join(Rails.root, 'data/categories.tsv'))
@@ -34,8 +34,8 @@ module Utils
       Logging.without_sql do
         File.open(filename, 'w') do |file|
           self.send("print_#{type}_header".to_sym, file)
-          query.find_each do |gene|
-            self.send("print_#{type}_row".to_sym, file, gene)
+          query.find_each do |obj|
+            self.send("print_#{type}_row".to_sym, file, obj)
           end
         end
       end
@@ -79,25 +79,27 @@ module Utils
     end
 
     def self.print_interaction_header(file_handle)
-      header = ['entrez_gene_symbol','gene_long_name','interaction_claim_source',
-        'interaction_types','drug_name','drug_primary_name'].join("\t")
+      header = ['gene_name','gene_claim_name','entrez_id','interaction_claim_source',
+        'interaction_types','drug_claim_name','drug_claim_primary_name','drug_name','drug_chembl_id'].join("\t")
       file_handle.puts(header)
     end
 
-    def self.print_interaction_row(file_handle, gene)
-      gene.gene_claims.flat_map(&:interaction_claims).each do |interaction|
-        next if license_restricted? interaction.source.source_db_name
-        row = [
-           gene.name,
-           gene.long_name,
-           interaction.source.source_db_name,
-           interaction.interaction_claim_types.map(&:type).join(','),
-           interaction.drug_claim.name,
-           interaction.drug_claim.primary_name
-        ].join("\t")
+    def self.print_interaction_row(file_handle, interaction_claim)
+      return if license_restricted? interaction_claim.source.source_db_name
+      return unless interaction_claim.interaction_id
+      row = [
+        interaction_claim.gene.name,
+        interaction_claim.gene_claim.name,
+        interaction_claim.gene.entrez_id,
+        interaction_claim.source.source_db_name,
+        interaction_claim.interaction_claim_types.map(&:type).join(','),
+        interaction_claim.drug_claim.name,
+        interaction_claim.drug_claim.primary_name,
+        interaction_claim.drug.name,
+        interaction_claim.drug.chembl_id,
+      ].join("\t")
 
-        file_handle.puts(row)
-      end
+      file_handle.puts(row)
     end
 
     private
