@@ -43,7 +43,6 @@ module Genome; module OnlineUpdaters; module Oncokb;
             combination_drug_name = drug_name
             combination_drug_name.split(' + ').each do |individual_drug_name|
               if valid_drug?(individual_drug_name)
-                puts(individual_drug_name)
                 drug = drugs[individual_drug_name]
                 drug_claim = create_drug_claim(drug['drugName'], 'OncoKB Drug Name', source)
                 interaction_claim = create_interaction_claim(gene_claim.id, drug_claim.id, source)
@@ -57,7 +56,6 @@ module Genome; module OnlineUpdaters; module Oncokb;
             end
           else
             if valid_drug?(drug_name)
-              puts(drug_name)
               drug = drugs[drug_name]
               drug_claim = create_drug_claim(drug['drugName'], 'OncoKB Drug Name', source)
               interaction_claim = create_interaction_claim(gene_claim.id, drug_claim.id, source)
