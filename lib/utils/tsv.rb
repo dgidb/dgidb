@@ -4,6 +4,14 @@ module Utils
       write_tsv_file_for_query(filename, DataModel::InteractionClaim.for_tsv, 'interaction')
     end
 
+    def self.generate_genes_tsv(filename = File.join(Rails.root, 'data', 'genes.tsv'))
+      write_tsv_file_for_query(filename, DataModel::GeneClaim.for_tsv, 'gene')
+    end
+
+    def self.generate_drugs_tsv(filename = File.join(Rails.root, 'data', 'drugs.tsv'))
+      write_tsv_file_for_query(filename, DataModel::DrugClaim.for_tsv, 'drug')
+    end
+
     def self.generate_categories_tsv(filename = File.join(Rails.root, 'data/categories.tsv'))
       write_tsv_file_for_query(filename, DataModel::Gene.for_gene_categories, 'category')
     end
@@ -97,6 +105,44 @@ module Utils
         interaction_claim.drug_claim.primary_name,
         interaction_claim.drug.name,
         interaction_claim.drug.chembl_id,
+      ].join("\t")
+
+      file_handle.puts(row)
+    end
+
+    def self.print_gene_header(file_handle)
+      header = ['gene_claim_name','gene_name','entrez_id','gene_claim_source'].join("\t")
+      file_handle.puts(header)
+    end
+
+    def self.print_gene_row(file_handle, gene_claim)
+      gene_name = gene_claim.gene ? gene_claim.gene.name : ""
+      entrez_id = gene_claim.gene ? gene_claim.gene.entrez_id : ""
+      return if license_restricted? gene_claim.source.source_db_name
+      row = [
+        gene_claim.name,
+        gene_name,
+        entrez_id,
+        gene_claim.source.source_db_name,
+      ].join("\t")
+
+      file_handle.puts(row)
+    end
+
+    def self.print_drug_header(file_handle)
+      header = ['drug_claim_name','drug_name','chembl_id','drug_claim_source'].join("\t")
+      file_handle.puts(header)
+    end
+
+    def self.print_drug_row(file_handle, drug_claim)
+      drug_name = drug_claim.drug ? drug_claim.drug.name : ""
+      chembl_id = drug_claim.drug ? drug_claim.drug.chembl_id : ""
+      return if license_restricted? drug_claim.source.source_db_name
+      row = [
+        drug_claim.name,
+        drug_name,
+        chembl_id,
+        drug_claim.source.source_db_name,
       ].join("\t")
 
       file_handle.puts(row)
