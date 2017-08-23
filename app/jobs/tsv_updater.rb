@@ -20,7 +20,11 @@ class TsvUpdater < Updater
   end
 
   def create_tempfile
-    @tempfile = Tempfile.new(tempfile_name, File.join(Rails.root, 'tmp'))
+    @tempfile = Tempfile.new(tempfile_name, temp_path)
+  end
+
+  def temp_path
+    File.join(Rails.root, 'tmp')
   end
 
   def tempfile_name

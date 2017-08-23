@@ -10,6 +10,7 @@ module DataModel
     has_one :chembl_molecule
 
     before_create :populate_flags
+    after_destroy :clean_molecule
 
     cache_query :all_drug_names, :all_drug_names
 
@@ -39,6 +40,10 @@ module DataModel
       end
       self.immunotherapy = false
       self.anti_neoplastic = false
+    end
+
+    def clean_molecule
+      self.chembl_molecule.drug_id = nil
     end
 
     def update_anti_neoplastic_add(drug_claim)
