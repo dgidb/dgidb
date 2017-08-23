@@ -26,11 +26,6 @@ class InteractionSearchResult
     interactions.length > 0
   end
 
-  # yield passes interaction to each block in filter_results from lookup_interactions.rb
-  def filter_interactions
-    @interactions = @interactions.select{ |interaction| yield interaction }
-  end
-
   def match_type_label
     if is_ambiguous?
       "Ambiguous"

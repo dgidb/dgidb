@@ -1,6 +1,6 @@
 class LookupDrugs
 
-  def self.find(search_terms, scope, wrapper_class)
+  def self.find(search_terms, scope, wrapper_class, filter)
     raise 'You must specify at least one search term!' unless search_terms.any?
     results = match_search_terms_to_objects(search_terms, scope, filter)
     results_to_drugs = match_objects_to_drugs(results, search_terms)

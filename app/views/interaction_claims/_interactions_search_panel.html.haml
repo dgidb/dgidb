@@ -21,7 +21,7 @@
   %div(class="cell category")
     %div{class: "item-panel"}
       %h4{style: "display: inline-block;"}
-      - interactions = entity.sorted_interactions_by_score & filtered_interactions
+      - interactions = filtered_interactions
       - if interactions.count > 0
         %table{class: "search_panel table table-condensed table-striped", style: "width: 100%; margin-top: -20px;"}
           %tr
@@ -52,10 +52,10 @@
               %td
                 = interaction.na_or_types
               %td
-                - source_count = interaction.interaction_claims.count
-                = interaction.interaction_claims.map{|ic| TrustLevelPresenter.source_link_with_trust_flag(@view_context, ic.source)}.join(' ').html_safe
+                - source_count = interaction.sources.size
+                = interaction.sources.map{|source| TrustLevelPresenter.source_link_with_trust_flag(@view_context, source)}.join(' ').html_safe
               %td
-                - if (pub_count = interaction.publications.count) > 0 
+                - if (pub_count = interaction.publications.size) > 0
                   = interaction.publications.map{|pub| pubmed_link_to(pub.pmid)}.join(" ").html_safe
                 - else
                   %i

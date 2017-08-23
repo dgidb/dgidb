@@ -1,6 +1,6 @@
 class GenePresenter < SimpleDelegator
   attr_accessor :gene
-  
+
   def initialize(gene)
     @gene = gene
     super
@@ -41,7 +41,7 @@ class GenePresenter < SimpleDelegator
   def publications
     interactions.map{|i| i.publications}.flatten.uniq
   end
-  
+
   private
   def group_map(gene)
     hash = gene_claims.each_with_object({}) do |gene_claim, h|
