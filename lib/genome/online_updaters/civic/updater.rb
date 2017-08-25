@@ -1,6 +1,6 @@
 require 'net/http'
 module Genome; module OnlineUpdaters; module Civic
-  class Updater < OnlineUpdater
+  class Updater < Genome::OnlineUpdater
     attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
