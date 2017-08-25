@@ -1,6 +1,6 @@
 require 'net/http'
 module Genome; module OnlineUpdaters; module Civic
-  class Updater
+  class Updater < OnlineUpdater
     attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
@@ -34,9 +34,12 @@ module Genome; module OnlineUpdaters; module Civic
 
     def create_entries_for_evidence_item(variant, ei, source)
       ei['drugs'].select { |d| valid_drug?(d) }.each do |drug|
-        gc = get_or_create_gene_claim(variant, source)
-        dc = get_or_create_drug_claim(drug, source)
-        get_or_create_interaction_claim(gc, dc, source, ei)
+        gc = create_gene_claim(variant['entrez_name'], 'Entrez Gene Symbol')
+        create_gene_claim_aliases(gc, variant)
+        dc = create_drug_claim(drug['name'].upcase, drug['name'].upcase, 'CIViC Drug Name')
+        ic = create_interaction_claim(gc, dc)
+        create_interaction_claim_publication(ic, ei['source']['pubmed_id'])
+        create_interaction_claim_attribute(ic, 'Interaction Type', 'N/A')
       end
     end
 
@@ -47,49 +50,9 @@ module Genome; module OnlineUpdaters; module Civic
       ].all?
     end
 
-    def get_or_create_gene_claim(variant, source)
-      DataModel::GeneClaim.where(
-        source_id: source.id,
-        nomenclature: 'Entrez Gene Symbol',
-        name: variant['entrez_name']
-      ).first_or_create.tap do |gc|
-        DataModel::GeneClaimAlias.where(
-          nomenclature: 'Entrez Gene ID',
-          alias: variant['entrez_id'].to_s,
-          gene_claim_id: gc.id
-        ).first_or_create
-        DataModel::GeneClaimAlias.where(
-          nomenclature: 'CIViC Gene ID',
-          alias: variant['gene_id'].to_s,
-          gene_claim_id: gc.id
-        ).first_or_create
-      end
-    end
-
-    def get_or_create_drug_claim(drug, source)
-      DataModel::DrugClaim.where(
-        source_id: source.id,
-        primary_name: drug['name'].upcase,
-        name: drug['name'].upcase,
-        nomenclature: 'CIViC Drug Name',
-      ).first_or_create
-    end
-
-    def get_or_create_interaction_claim(gc, dc, source, ei)
-      DataModel::InteractionClaim.where(
-        gene_claim_id: gc.id,
-        drug_claim_id: dc.id,
-        source_id: source.id,
-        known_action_type: 'n/a'
-      ).first_or_create.tap do |ic|
-        publication = DataModel::Publication.where(pmid: ei['source']['pubmed_id']).first_or_create
-        ic.publications << publication unless ic.publications.include?(publication)
-        DataModel::InteractionClaimAttribute.where(
-          name: 'Interaction Type',
-          value: 'N/A',
-          interaction_claim_id: ic.id
-        ).first_or_create
-      end
+    def create_gene_claim_aliases(gc, variant)
+      create_gene_claim_alias(gc, variant['entrez_id'].to_s, 'Entrez Gene ID')
+      create_gene_claim_alias(gc, variant['gene_id'].to_s, 'CIViC Gene ID')
     end
 
     def remove_existing_source

@@ -1,5 +1,5 @@
 module Genome; module OnlineUpdaters; module Docm
-  class Updater
+  class Updater < OnlineUpdater
     attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
@@ -7,30 +7,25 @@ module Genome; module OnlineUpdaters; module Docm
 
     def update
       remove_existing_source
-      source = create_new_source
-      create_interaction_claims(source)
+      create_new_source
+      create_interaction_claims
     end
 
     private
-    def create_interaction_claims(source)
+    def create_interaction_claims
       api_client = ApiClient.new
       api_client.variants.each do |variant|
         interaction_information = parse_interaction_information(variant)
         interaction_information.each do |interaction_info|
-          gc = get_or_create_gene_claim(variant, source)
-          dc = get_or_create_drug_claim(interaction_info, source)
-          get_or_create_interaction_claim(gc, dc, interaction_info, variant['diseases'], source)
+          gc = create_gene_claim(variant['gene'], 'DoCM Entrez Gene Symbol')
+          dc = create_drug_claim(interaction_info['Therapeutic Context'].upcase,
+                                 interaction_info['Therapeutic Context'].upcase,
+                                 'DoCM Drug Name')
+          ic = create_interaction_claim(gc, dc)
+          create_interaction_claim_attributes(ic, interaction_info)
+          create_interaction_claim_publications(ic, variant['diseases'])
         end
       end
-    end
-
-    def get_or_create_gene_claim(variant, source)
-      DataModel::GeneClaim.where(
-        source_id: source.id,
-        nomenclature: 'DoCM Entrez Gene Symbol',
-        name: variant['gene']
-      ).first_or_create
-      #Entrez Gene Id
     end
 
     def parse_interaction_information(variant)
@@ -60,45 +55,19 @@ module Genome; module OnlineUpdaters; module Docm
       ['inhib', 'HER3', 'TKI', 'anti', 'BRAF', 'radio', 'BH3'].none? { |name| drug_name.include?(name) }
     end
 
-    def get_or_create_drug_claim(interaction_info, source)
-      DataModel::DrugClaim.where(
-        source_id: source.id,
-        primary_name: interaction_info['Therapeutic Context'].upcase,
-        name: interaction_info['Therapeutic Context'].upcase,
-        nomenclature: 'DoCM Drug Name'
-      ).first_or_create
+    def create_interaction_claim_attributes(interaction_claim, interaction_info)
+      {
+        'Clinical Status' => 'Status',
+        'Pathway' => 'Pathway',
+        'Variant Effect' => 'Effect',
+      }.each do |name, interaction_info_key|
+        create_interaction_claim_attribute(interaction_claim, name, interaction_info[interaction_info_key])
+      end
     end
 
-    def get_or_create_interaction_claim(gene_claim, drug_claim, interaction_info, diseases, source)
-      DataModel::InteractionClaim.where(
-        gene_claim_id: gene_claim.id,
-        drug_claim_id: drug_claim.id,
-        source_id: source.id,
-        known_action_type: 'n/a',
-      ).first_or_create.tap do |interaction_claim|
-        DataModel::InteractionClaimAttribute.where(
-          interaction_claim_id: interaction_claim.id,
-          name: 'Clinical Status',
-          value: interaction_info['Status']
-        ).first_or_create
-        DataModel::InteractionClaimAttribute.where(
-          interaction_claim_id: interaction_claim.id,
-          name: 'Pathway',
-          value: interaction_info['Pathway']
-        ).first_or_create
-        DataModel::InteractionClaimAttribute.where(
-          interaction_claim_id: interaction_claim.id,
-          name: 'Variant Effect',
-          value: interaction_info['Effect']
-        ).first_or_create
-        diseases.each do |disease|
-          DataModel::Publication.where(
-            pmid: disease['source_pubmed_id']
-          ).first_or_create do |publication|
-            interaction_claim.publications << publication
-            interaction_claim.save
-          end
-        end
+    def create_interaction_claim_publications(interaction_claim, diseases)
+      diseases.each do |disease|
+        create_interaction_claim_publication(interaction_claim, disease['source_pubmed_id'])
       end
     end
 
@@ -116,7 +85,7 @@ module Genome; module OnlineUpdaters; module Docm
             source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
             source_db_name: 'DoCM',
             full_name: 'Database of Curated Mutations'
-        }, without_protection: true
+        }
       )
     end
   end
