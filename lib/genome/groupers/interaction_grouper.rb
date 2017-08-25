@@ -13,10 +13,7 @@ module Genome
       end
 
       def self.reset_members
-        DataModel::InteractionClaim.all.each do |interaction_claim|
-          interaction_claim.interaction = nil
-          interaction_claim.save
-        end
+        DataModel::InteractionClaim.update_all(interaction: nil)
         DataModel::InteractionAttribute.destroy_all
         DataModel::Interaction.destroy_all
       end
