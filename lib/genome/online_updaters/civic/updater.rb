@@ -1,4 +1,6 @@
 require 'net/http'
+require 'genome/online_updater'
+
 module Genome; module OnlineUpdaters; module Civic
   class Updater < Genome::OnlineUpdater
     attr_reader :new_version

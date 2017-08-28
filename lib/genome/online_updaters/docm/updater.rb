@@ -1,3 +1,5 @@
+require 'genome/online_updater'
+
 module Genome; module OnlineUpdaters; module Docm
   class Updater < Genome::OnlineUpdater
     attr_reader :new_version
