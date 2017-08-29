@@ -94,17 +94,16 @@ module Utils
 
     def self.print_interaction_row(file_handle, interaction_claim)
       return if license_restricted? interaction_claim.source.source_db_name
-      return unless interaction_claim.interaction_id
       row = [
-        interaction_claim.gene.name,
+        interaction_claim.gene ? interaction_claim.gene.name : "",
         interaction_claim.gene_claim.name,
-        interaction_claim.gene.entrez_id,
+        interaction_claim.gene ? interaction_claim.gene.entrez_id : "",
         interaction_claim.source.source_db_name,
         interaction_claim.interaction_claim_types.map(&:type).join(','),
         interaction_claim.drug_claim.name,
         interaction_claim.drug_claim.primary_name,
-        interaction_claim.drug.name,
-        interaction_claim.drug.chembl_id,
+        interaction_claim.drug ? interaction_claim.drug.name : "",
+        interaction_claim.drug ? interaction_claim.drug.chembl_id : "",
       ].join("\t")
 
       file_handle.puts(row)
