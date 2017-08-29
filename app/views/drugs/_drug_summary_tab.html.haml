@@ -9,18 +9,18 @@
       %table{class: "table table-condensed table-striped", style: "display: block; height: 494px; overflow-y: scroll; table-layout:fixed;", id: "table_aliases"}
         -drug.drug_aliases.each do |alt_name| ######
           %tr
-            %td{style: "width: 100%; word-break:break-all"}
+            %td{style: "word-break:break-all"}
               =alt_name.alias
 
   %div{class: "cell category", style: "float: left; width: 50%" }
     %div{class: "item-panel", style:"margin-bottom: 10px"}
       %h4
         Drug Info:
-      %table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; height: 200px; overflow-y: scroll", id:"table_info"}
+      %table{class: "table table-condensed table-striped", style: "height: 50%; width: 100%; overflow-y: scroll", id:"table_info"}
         -drug.drug_attributes.each do |attribute| #######
           %tr
-            %td{style: "width: 50%"}=attribute.name
-            %td{style: "width: 50%"}=attribute.value
+            %td=attribute.name
+            %td=attribute.value
       %div#linkouts
         - drug.drug_claims[0..3].each do |dc|
           %button{class: "button", type: "button", style:"background-color: #e7e7e7; border: none; margin-bottom: 4px", onclick:"location.href='#{dc.original_data_source_url}';"}
