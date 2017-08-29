@@ -65,7 +65,9 @@ module Genome
           'MyCancerGenomeClinicalTrial',
           'CancerCommons',
           'ClearityFoundationBiomarkers',
-          'ClearityFoundationClinicalTrial'
+          'ClearityFoundationClinicalTrial',
+          'CKB',
+          'OncoKB',
         ]
       end
     end
