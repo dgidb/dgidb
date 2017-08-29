@@ -2,6 +2,12 @@
 / displays lists of aliases, gene/gene info, publications
 / figure out how to get "card" aesthetic
 
+%div(class="item-title")
+  %div(class="item-name")
+    %h3(class="item-source")
+      %span
+        = gene.name
+
 %div(class="item-content")
   %div{class: "cell category", style: "float: right; width: 50%"}
     %div(class="item-panel")
@@ -17,7 +23,7 @@
     %div{class: "item-panel", style:"margin-bottom: 10px"}
       %h4
         Gene Info:
-      %table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; overflow-y: scroll", id:"table_info"}
+      %table{class: "table table-condensed table-striped", style: "display: block; height: 200px; overflow-y: scroll", id:"table_info"}
         - gene.gene_attributes.each do |attribute|
           %tr
             %td{style: "width: 50%"}

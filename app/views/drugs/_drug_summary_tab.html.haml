@@ -1,6 +1,12 @@
 / takes in variable for type of summary (drug or gene)
 / displays lists of aliases, drug/gene info, publications
 
+%div(class="item-title")
+  %div(class="item-name")
+    %h3(class="item-source")
+      %span
+        = drug.name
+
 %div(class="item-content")
   %div{class: "cell category", style: "float: right; width: 50%"}
     %div(class="item-panel")
@@ -19,8 +25,10 @@
       %table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; height: 200px; overflow-y: scroll", id:"table_info"}
         -drug.drug_attributes.each do |attribute| #######
           %tr
-            %td{style: "width: 50%"}=attribute.name
-            %td{style: "width: 50%"}=attribute.value
+            %td{style: "width: 50%"}
+              = attribute.name
+            %td{style: "width: 50%"}
+              = attribute.value
       %div#linkouts
         - drug.drug_claims[0..3].each do |dc|
           %button{class: "button", type: "button", style:"background-color: #e7e7e7; border: none; margin-bottom: 4px", onclick:"location.href='#{dc.original_data_source_url}';"}

@@ -3,6 +3,15 @@
 / - card layout, just like gene drug summary tab
 / - main info in one column? then same 2nd column as gene drug summary tab? so main info replaces aliases?
 
+%div(class="item-title")
+  %div(class="item-name")
+    %h3(class="item-source")
+      %a{href: "/drugs/#{interaction.drug.name}"} 
+        =interaction.drug.name
+      %i{class: "fa fa-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
+      &nbsp
+      %a{href: "/genes/#{interaction.gene.name}"} 
+        =interaction.gene.name 
 
 %div(class="item-content")
   %div{class: "cell category", style: "float: left; width: 50%" }
@@ -39,5 +48,5 @@
       %table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; width: 650px; height: 472px; overflow-y: scroll", id: "table_aliases"}
         -interaction.interaction_attributes.each do |attribute|
           %tr
-            %td{style: "width: 300px"}=attribute.name
-            %td{style: "width: 350px"}=attribute.value
+            %td{style: "width: 50%"}=attribute.name
+            %td{style: "width: 50%"}=attribute.value

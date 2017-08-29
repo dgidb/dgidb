@@ -31,7 +31,7 @@
           .row-fluid#container 
             .span12
               %ul(class="result-list" id="list-results")
-                %li
+                %li.drug
                   =render partial: 'drugs/drug_summary_tab', locals: { drug: @drug } 
 
         .tab-pane.fade#interactions
