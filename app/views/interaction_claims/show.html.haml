@@ -6,36 +6,4 @@
     %small 
       ="drug-gene interaction data from #{@interaction_claim.source.source_db_name}" 
 - cache @interaction_claim do
-  .container-fluid
-    .row-fluid
-      .span12
-        .well
-          %h3 Drug-Gene Interaction Record
-          %p
-            %b Drug:
-            =link_to(@interaction_claim.drug_claim.title, drug_claim_path(@interaction_claim.drug_claim))
-          %p
-            %b Gene:
-            =link_to(@interaction_claim.gene_claim.title, gene_claim_path(@interaction_claim.gene_claim))
-          %p
-            %b Source Database Name:
-            =link_to @interaction_claim.source.source_db_name, source_path(@interaction_claim.source.source_db_name)
-          %p
-            %b Source Database Version:
-            =@interaction_claim.source.source_db_version
-          %p
-            %b Types:
-            %table.table.table-striped
-              -@interaction_claim.interaction_claim_types.each do |type|
-                %tr
-                  %td=type.type
-          %p
-            %b Attributes:
-            %table.table.table-striped
-              -@interaction_claim.interaction_claim_attributes.each do |attribute|
-                %tr
-                  %td=attribute.name
-                  %td=attribute.value
-          %p
-            %b Citation:
-            %p=@interaction_claim.source.citation
+  =render partial: 'interaction_claims/interaction_claim', locals: {interaction_claim: @interaction_claim}

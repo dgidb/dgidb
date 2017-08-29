@@ -10,7 +10,7 @@
       %h4
         Main Info:
       %div{style: "height: 90px; overflow-y: scroll; margin-bottom: 5px;"}
-        %table{class: "table table-condensed table-striped", id: "table_aliases"}
+        %table{class: "table table-condensed table-striped", id: "table_main"}
           %tbody
             %tr
               %td{style: "width: 30%"}="Gene"
@@ -40,7 +40,7 @@
       %h4
         Other Info:
       %div{style: "height: 456px; overflow-y: scroll; "}
-        %table{class: "table table-condensed table-striped", id: "table_aliases"}
+        %table{class: "table table-condensed table-striped", id: "table_info"}
           -interaction.interaction_attributes.each do |attribute|
             %tr
               %td=attribute.name
