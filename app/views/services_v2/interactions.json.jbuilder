@@ -1,37 +1,9 @@
 json.matchedTerms @search_results.matched_results do |result|
-  if result.type == 'drugs'
-    json.searchTerm result.search_term
-    json.drugName result.identifier.name
-    json.chemblId result.identifier.chembl_id
-    json.interactions result.interactions do |interaction|
-      json.interactionId interaction.interaction_id
-      json.interactionTypes interaction.types
-      json.geneName interaction.gene_name
-      json.geneLongName interaction.gene_long_name
-      json.geneEntrezId interaction.gene_entrez_id
-      json.sources interaction.source_db_names
-      json.pmids interaction.publications
-    end
-  else
-    json.searchTerm result.search_term
-    json.geneName result.identifier.name
-    json.geneLongName result.identifier.long_name
-    json.entrezId result.identifier.entrez_id
-    json.geneCategories result.identifier.gene_categories
-    json.interactions result.interactions do |interaction|
-      json.interactionId interaction.interaction_id
-      json.interactionTypes interaction.types
-      json.drugName interaction.drug_name
-      json.drugChemblId interaction.drug_chembl_id
-      json.sources interaction.source_db_names
-      json.pmids interaction.publications
-    end
-  end
+  json.partial! 'services_v2/interactions/details', result: result
 end
 
 json.ambiguousTerms @search_results.ambiguous_results do |result|
-  json.searchTerm result.search_term
-  json.suggestions result.identifiers.map { |i| i.name }
+  json.partial! 'services_v2/interactions/details', result: result
 end
 
 json.unmatchedTerms @search_results.unmatched_results.map(&:search_term)

@@ -1,14 +1,15 @@
 class InteractionSearchResultApiV2Presenter
-  def initialize(search_result)
+  def initialize(search_result, identifier)
     @result = search_result
+    @identifier = identifier
+  end
+
+  def identifier
+    @identifier
   end
 
   def search_term
     @result.search_term
-  end
-
-  def identifier
-    @result.identifiers[0]
   end
 
   def type

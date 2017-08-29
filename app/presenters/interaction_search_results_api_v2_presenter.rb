@@ -6,7 +6,7 @@ class InteractionSearchResultsApiV2Presenter
   def matched_results
     @matched_results ||= @search_results
       .select { |r| r.is_definite? }
-      .map { |r| InteractionSearchResultApiV2Presenter.new(r) }
+      .map { |r| InteractionSearchResultApiV2Presenter.new(r, r.identifiers[0]) }
   end
 
   def unmatched_results
@@ -17,5 +17,6 @@ class InteractionSearchResultsApiV2Presenter
   def ambiguous_results
     @ambiguous_results ||= @search_results
       .select { |r| r.is_ambiguous? }
+      .flat_map { |r| r.identifiers.map { |i| InteractionSearchResultApiV2Presenter.new(r, i) } }
   end
 end

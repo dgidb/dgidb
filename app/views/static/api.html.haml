@@ -233,7 +233,12 @@
         %p
           %code ambiguousTerms
           will be a list containing a hash of search terms that you provided that mapped to multiple Entrez
-          genes. Each hash will contain both the original search term and a list of possible suggestions.
+          genes.
+          Each hash will contain your original search term, the Entrez long and full names
+          of the potential math as well as a list of categories that the given gene is in.
+          Additionally, the hash will contain a list of drug interactions for the gene. This list
+          includes interaction type information as well as the drug name and source that reported
+          the interaction.
         %p
           %code unmatchedTerms
           will be a list of search terms you provided that we were unable to map any Entrez gene.
@@ -441,10 +446,24 @@
               "ambiguousTerms": [
                 {
                   "searchTerm": "MM1",
-                  "suggestions": [
-                    "PFDN5",
-                    "PLXNB2"
-                  ]
+                  "geneName": "PFDN5",
+                  "geneLongName": "prefoldin subunit 5",
+                  "entrezId": 5204,
+                  "geneCategories": [],
+                  "interactions": []
+                },
+                {
+                  "searchTerm": "MM1",
+                  "geneName": "PLXNB2",
+                  "geneLongName": "plexin B2",
+                  "entrezId": 23654,
+                  "geneCategories": [
+                    {
+                      "id": "26f6a4ea7779433ea2cbf524683accf7",
+                      "name": "CELL SURFACE"
+                    }
+                  ],
+                  "interactions": []
                 }
               ],
               "unmatchedTerms": [
