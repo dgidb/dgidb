@@ -1,5 +1,7 @@
+require 'genome/online_updater'
+
 module Genome; module OnlineUpdaters; module Oncokb;
-  class Updater
+  class Updater < Genome::OnlineUpdater
     attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
@@ -36,7 +38,8 @@ module Genome; module OnlineUpdaters; module Oncokb;
       drugs = get_drugs(api_client)
       api_client.variants.each do |variant|
         gene = genes[variant['gene']]
-        gene_claim = create_gene_claim(gene)
+        gene_claim = create_gene_claim(gene['hugoSymbol'], 'OncoKB Gene Name')
+        create_gene_claim_aliases(gene_claim, gene)
 
         variant['drugs'].split(', ').each do |drug_name|
           if drug_name.include? '+'
@@ -44,21 +47,17 @@ module Genome; module OnlineUpdaters; module Oncokb;
             combination_drug_name.split(' + ').each do |individual_drug_name|
               if valid_drug?(individual_drug_name)
                 drug = drugs[individual_drug_name]
-                drug_claim = create_drug_claim(drug['drugName'], 'OncoKB Drug Name')
-                interaction_claim = create_interaction_claim(gene_claim.id, drug_claim.id)
-                DataModel::InteractionClaimAttribute.where(
-                  name: 'combination therapy',
-                  value: combination_drug_name,
-                  interaction_claim_id: interaction_claim.id,
-                ).first_or_create
+                drug_claim = create_drug_claim(drug['drugName'], drug['drugName'], 'OncoKB Drug Name')
+                interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+                create_interaction_claim_attribute(interaction_claim, 'combination therapy', combination_drug_name)
                 add_interaction_claim_publications(interaction_claim, variant['pmids'])
               end
             end
           else
             if valid_drug?(drug_name)
               drug = drugs[drug_name]
-              drug_claim = create_drug_claim(drug['drugName'], 'OncoKB Drug Name')
-              interaction_claim = create_interaction_claim(gene_claim.id, drug_claim.id)
+              drug_claim = create_drug_claim(drug['drugName'], drug['drugName'], 'OncoKB Drug Name')
+              interaction_claim = create_interaction_claim(gene_claim, drug_claim)
               add_interaction_claim_publications(interaction_claim, variant['pmids'])
             end
           end
@@ -78,53 +77,20 @@ module Genome; module OnlineUpdaters; module Oncokb;
       end
     end
 
-    def create_gene_claim(gene)
-      gene_claim =  DataModel::GeneClaim.where(
-        name: gene['hugoSymbol'],
-        nomenclature: 'OncoKB Gene Name',
-        source_id: @source.id,
-      ).first_or_create
-      create_gene_claim_alias(gene_claim.id, gene['entrezGeneId'], 'OncoKB Entrez Id')
+    def create_gene_claim_aliases(gene_claim, gene)
+      create_gene_claim_alias(gene_claim, gene['entrezGeneId'], 'OncoKB Entrez Id')
       gene['geneAliases'].each do |synonym|
-        create_gene_claim_alias(gene_claim.id, synonym, 'OncoKB Gene Synonym')
+        create_gene_claim_alias(gene_claim, synonym, 'OncoKB Gene Synonym')
       end
-      gene_claim
-    end
-
-    def create_gene_claim_alias(gene_claim_id, synonym, nomenclature)
-      DataModel::GeneClaimAlias.where(
-        alias: synonym,
-        nomenclature: nomenclature,
-        gene_claim_id: gene_claim_id,
-      ).first_or_create
     end
 
     def valid_drug?(drug_name)
       ['Radiation'].none? { |name| drug_name.include?(name)  }
     end
 
-    def create_drug_claim(name, nomenclature)
-      DataModel::DrugClaim.where(
-        name: name,
-        nomenclature: nomenclature,
-        source_id: @source.id,
-      ).first_or_create
-    end
-
-    def create_interaction_claim(gene_claim_id, drug_claim_id)
-      DataModel::InteractionClaim.where(
-        gene_claim_id: gene_claim_id,
-        drug_claim_id: drug_claim_id,
-        source_id: @source.id,
-      ).first_or_create
-    end
-
     def add_interaction_claim_publications(interaction_claim, pmids)
       pmids.split(', ').each do |pmid|
-        publication = DataModel::Publication.where(
-          pmid: pmid
-        ).first_or_create
-        interaction_claim.publications << publication unless interaction_claim.publications.include? publication
+        create_interaction_claim_publication(interaction_claim, pmid)
       end
     end
   end
