@@ -1,8 +1,8 @@
 json.matchedTerms @search_results.matched_results do |result|
   if result.type == 'drugs'
     json.searchTerm result.search_term
-    json.drugName result.drug_name
-    json.chemblId result.chembl_id
+    json.drugName result.identifier.name
+    json.chemblId result.identifier.chembl_id
     json.interactions result.interactions do |interaction|
       json.interactionId interaction.interaction_id
       json.interactionTypes interaction.types
@@ -14,10 +14,10 @@ json.matchedTerms @search_results.matched_results do |result|
     end
   else
     json.searchTerm result.search_term
-    json.geneName result.gene_name
-    json.geneLongName result.gene_long_name
-    json.entrezId result.entrez_id
-    json.geneCategories result.potentially_druggable_categories
+    json.geneName result.identifier.name
+    json.geneLongName result.identifier.long_name
+    json.entrezId result.identifier.entrez_id
+    json.geneCategories result.identifier.gene_categories
     json.interactions result.interactions do |interaction|
       json.interactionId interaction.interaction_id
       json.interactionTypes interaction.types
@@ -29,7 +29,9 @@ json.matchedTerms @search_results.matched_results do |result|
   end
 end
 
-json.unmatchedTerms @search_results.unmatched_results do |result|
+json.ambiguousTerms @search_results.ambiguous_results do |result|
   json.searchTerm result.search_term
   json.suggestions result.identifiers.map { |i| i.name }
 end
+
+json.unmatchedTerms @search_results.unmatched_results.map(&:search_term)

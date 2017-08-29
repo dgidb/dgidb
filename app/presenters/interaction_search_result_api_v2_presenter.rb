@@ -7,34 +7,12 @@ class InteractionSearchResultApiV2Presenter
     @result.search_term
   end
 
-  def gene_name
-    gene.name
-  end
-
-  def drug_name
-    drug.name
-  end
-
-  def gene_long_name
-    gene.long_name
-  end
-
-  def entrez_id
-    gene.entrez_id
-  end
-
-  def chembl_id
-    drug.chembl_id
+  def identifier
+    @result.identifiers[0]
   end
 
   def type
     @result.type
-  end
-
-  def potentially_druggable_categories
-    gene.gene_claims.flat_map { |gc| gc.gene_claim_categories }
-    .map { |c| c.name }
-    .uniq
   end
 
   def has_interactions?
