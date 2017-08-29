@@ -6,38 +6,42 @@
 
 %div(class="item-content")
   %div{class: "cell category", style: "float: left; width: 50%" }
-    %div{class: "item-panel", style:"margin-bottom: 10px"}
+    %div{class: "item-panel", style:"margin-bottom: 11px"}
       %h4
         Main Info:
-      %table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; width: 650px; height: 105px", id: "table_aliases"}
-        %tr
-          %td{style: "width: 225px"}="Gene"
-          %td{style: "width: 425px"}
-            %a{href: "/genes/#{interaction.gene.name}"} 
-              =interaction.gene.name
-        %tr
-          %td{style: "width: 275px"}="Drug"
-          %td{style: "width: 375px"}
-            %a{href: "/drugs/#{interaction.drug.name}"} 
-              =interaction.drug.name
-        %tr
-          %td{style: "width: 275px"}="Interaction Types"
-          %td{style: "width: 375px"}=interaction.interaction_types.map{|it| it.type}.join(", ")
+      %div{style: "height: 90px; overflow-y: scroll; margin-bottom: 5px;"}
+        %table{class: "table table-condensed table-striped", id: "table_aliases"}
+          %tbody
+            %tr
+              %td{style: "width: 30%"}="Gene"
+              %td{style: "width: 70%"}
+                %a{href: "/genes/#{interaction.gene.name}"} 
+                  =interaction.gene.name
+            %tr
+              %td="Drug"
+              %td
+                %a{href: "/drugs/#{interaction.drug.name}"} 
+                  =interaction.drug.name
+            %tr
+              %td="Interaction Types"
+              %td=interaction.interaction_types.map{|it| it.type}.join(", ")
     %div(class="item-panel")
       %h4
         Publications:
-      %table{class: "table table-condensed table-striped", style: "display: block; height: 305px; overflow-y: scroll", id:"table_publications"}
-        -interaction.publications.each do |publication|
-          %tr
-            %td{style: "width: 700px"}
-              %a{href: PMID.pubmed_url(publication.pmid)}
-                = publication.citation
+      %div{style: "height: 305px; overflow-y: scroll; "}
+        %table{class: "table table-condensed table-striped", id:"table_publications"}
+          -interaction.publications.each do |publication|
+            %tr
+              %td
+                %a{href: PMID.pubmed_url(publication.pmid)}
+                  = publication.citation
   %div{class: "cell category", style: "float: right; width: 50%"}
     %div(class="item-panel")
       %h4
         Other Info:
-      %table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; width: 650px; height: 472px; overflow-y: scroll", id: "table_aliases"}
-        -interaction.interaction_attributes.each do |attribute|
-          %tr
-            %td{style: "width: 300px"}=attribute.name
-            %td{style: "width: 350px"}=attribute.value
+      %div{style: "height: 456px; overflow-y: scroll; "}
+        %table{class: "table table-condensed table-striped", id: "table_aliases"}
+          -interaction.interaction_attributes.each do |attribute|
+            %tr
+              %td=attribute.name
+              %td=attribute.value
