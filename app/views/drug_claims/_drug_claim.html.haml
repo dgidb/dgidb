@@ -6,7 +6,21 @@
           .row-fluid#container 
             .span12
               %ul(class="result-list" id="list-results")
-                %li
+                %li.drug
+                  %div(class="item-title")
+                    %div(class="item-name")
+                      %h3(class="item-source")
+                        =succeed ':' do
+                          =link_to drug_claim.source.source_db_name, source_path(drug_claim.source.source_db_name)
+                        %span(class="item-id")
+                          =ext_link_to drug_claim.name, drug_claim.original_data_source_url
+
+                    %div(class="item-corner")
+                      %ul(class="attribute-list")
+                        %li
+                          %strong
+                            Version:
+                          =drug_claim.source.source_db_version
                   %div(class="item-content")
                     %div{class: "cell category", style: "float: right; width: 50%"}
                       %div{class: "item-panel", style: "width: 100%;"}

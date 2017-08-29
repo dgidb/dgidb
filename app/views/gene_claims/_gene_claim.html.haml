@@ -6,7 +6,20 @@
           .row-fluid#container 
             .span12
               %ul(class="result-list" id="list-results")
-                %li
+                %li.gene
+                  %div(class="item-title")
+                    %div(class="item-name")
+                      %h3(class="item-source")
+                        =succeed ':' do
+                          =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
+                        %span(class="item-id")
+                          =ext_link_to gene_claim.name, gene_claim.original_data_source_url
+                    %div(class="item-corner")
+                      %ul(class="attribute-list")
+                        %li
+                          %strong
+                            Version:
+                          =gene_claim.source.source_db_version
                   %div(class="item-content")
                     %div{class: "cell category", style: "float: right; width: 50%;"}
                       %div{class: "item-panel"}
