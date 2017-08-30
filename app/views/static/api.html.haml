@@ -217,7 +217,7 @@
             by the source.
             =link_to('TALC', source_path('TALC')) + '.'
         %pre
-          \http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT1,MM1,FAKE&interaction_sources=TALC
+          \http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT1,MM1,FAKE&amp;nteraction_sources=TALC
         %h5 Example Response:
         %p
           The response will come back with three top level items:
@@ -1544,7 +1544,7 @@
           <br><br>Try the following examples from the command line to view and format output from the API:<br>
           %span.label SAMPLE CODE
           %pre
-            curl http://dgidb.genome.wustl.edu/api/v2/interactions.json<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank\&interaction_type=inhibitor | python -mjson.tool<br>
+            curl http://dgidb.genome.wustl.edu/api/v2/interactions.json<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1&amp;interaction_sources=TTD,DrugBank | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1&amp;interaction_sources=TTD,DrugBank&amp;interaction_type=inhibitor | python -mjson.tool<br>
       %hr
 
   :css
