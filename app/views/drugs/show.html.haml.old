@@ -8,33 +8,32 @@
       %a(href="/faq#defined")
         =icon('question-sign')
 
-- cache @drug do
-  .container-fluid
-    .tabbable
-      %ul.nav.nav-tabs
-        %li.active
-          %a(href="#detailed_view" data-toggle="tab") Detailed View
-        %li
-          %a(href="#by_source" data-toggle="tab") By Source
-      .tab-content
-        .tab-pane.active#detailed_view
-          .row-fluid#container
-            %div(class="span2")
-              %div(id="list-filter-tabs")
+.container-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active
+        %a(href="#detailed_view" data-toggle="tab") Detailed View
+      %li
+        %a(href="#by_source" data-toggle="tab") By Source
+    .tab-content
+      .tab-pane.active#detailed_view
+        .row-fluid#container
+          %div(class="span2")
+            %div(id="list-filter-tabs")
 
-                %ul(class="nav nav-tabs nav-stacked")
-                  %li(class="active")
-                    %a(href="#" data-category="all")
-                      %i(class="icon-chevron-right")
-                      All
+              %ul(class="nav nav-tabs nav-stacked")
+                %li(class="active")
+                  %a(href="#" data-category="all")
+                    %i(class="icon-chevron-right")
+                    All
 
-            %div(class="span10")
-              =render partial: 'drugs/drug', locals: { drug: @drug }
+          %div(class="span10")
+            =render partial: 'drugs/drug', locals: { drug: @drug }
 
-        .tab-pane.fade#by_source
-          .row-fluid
-            .span12
-              =render partial: 'drugs/by_source_table', locals: {drug: @drug}
+      .tab-pane.fade#by_source
+        .row-fluid
+          .span12
+            =render partial: 'drugs/by_source_table', locals: {drug: @drug}
 
 %br
 

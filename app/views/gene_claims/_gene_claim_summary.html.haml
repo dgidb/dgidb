@@ -1,52 +1,51 @@
 /summary panel for claim to be used in lists
 
-- cache gene_claim do
-  %div(class="item-title")
-    %div(class="item-name")
-      %h3(class="item-source")
-        =succeed ':' do
-          =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
-        %span(class="item-id")
-          =ext_link_to gene_claim.name, gene_claim.original_data_source_url
-    %div(class="item-corner")
-      %ul(class="attribute-list")
-        %li
-          %strong
-            Version:
-          =gene_claim.source.source_db_version
+%div(class="item-title")
+  %div(class="item-name")
+    %h3(class="item-source")
+      =succeed ':' do
+        =link_to gene_claim.source.source_db_name, source_path(gene_claim.source.source_db_name)
+      %span(class="item-id")
+        =ext_link_to gene_claim.name, gene_claim.original_data_source_url
+  %div(class="item-corner")
+    %ul(class="attribute-list")
+      %li
+        %strong
+          Version:
+        =gene_claim.source.source_db_version
 
-  %div(class="item-content")
-    %div(class="cell category")
-      %div(class="item-panel")
-        %h4{style: "display: inline-block;"}
-          Alternate Names: 
-          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
-            -gene_claim.gene_claim_aliases[0..2].each do |alt_name|
-              %tr
-                %td{style: "word-wrap: break-word;"} 
-                  =alt_name.alias
-                %td{style: "word-wrap: break-word;"}  
-                  =alt_name.nomenclature
+%div(class="item-content")
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4{style: "display: inline-block;"}
+        Alternate Names: 
+        %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
+          -gene_claim.gene_claim_aliases[0..2].each do |alt_name|
+            %tr
+              %td{style: "word-wrap: break-word;"} 
+                =alt_name.alias
+              %td{style: "word-wrap: break-word;"}  
+                =alt_name.nomenclature
 
-    %div(class="cell category")
-      %div(class="item-panel")
-        %h4
-          Gene Info:
-          %table{class: "table table-condensed table-striped"}
-            -gene_claim.gene_claim_attributes[0..2].each do |attribute|
-              %tr
-                %td 
-                  =attribute.name
-                %td 
-                  =attribute.value
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Gene Info:
+        %table{class: "table table-condensed table-striped"}
+          -gene_claim.gene_claim_attributes[0..2].each do |attribute|
+            %tr
+              %td 
+                =attribute.name
+              %td 
+                =attribute.value
 
-    %div(class="cell category")
-      %div(class="item-panel")
-        %h4
-          Publications:
-          %table{class: "table table-condensed table-striped"}
-            -gene_claim.publications[0..2].each do |publication|
-              %tr
-                %td
-                  %a{href: PMID.pubmed_url(publication.pmid)}
-                    = publication.citation
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Publications:
+        %table{class: "table table-condensed table-striped"}
+          -gene_claim.publications[0..2].each do |publication|
+            %tr
+              %td
+                %a{href: PMID.pubmed_url(publication.pmid)}
+                  = publication.citation
