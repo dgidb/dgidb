@@ -42,6 +42,15 @@ class GenePresenter < SimpleDelegator
     interactions.map{|i| i.publications}.flatten.uniq
   end
 
+  def data
+    {
+      name: self.display_name,
+      long_name: gene.long_name,
+      entrez_id: gene.entrez_id,
+      aliases: gene.gene_aliases.map(&:alias)
+    }
+  end
+
   private
   def group_map(gene)
     hash = gene_claims.each_with_object({}) do |gene_claim, h|

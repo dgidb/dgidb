@@ -28,6 +28,7 @@ class LookupInteractions
   private
   def self.create_filter_from_params(params)
     #TODO this is currently a hack since we're only supporting one drug type on our form
+    #This needs to stick around for v1 of the API to still work
     if params[:limit_drugs] == 'true' || params[:drug_types]
       params[:drug_types] ||= ['antineoplastic']
     end

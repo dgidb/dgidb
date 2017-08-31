@@ -1,11 +1,38 @@
-class ServicesV1Controller < ApplicationController
+class ServicesV2Controller < ApplicationController
+  def genes
+    genes = DataModel::Gene.eager_load(:gene_aliases).all.map{|g| GenePresenter.new(g).data}
+    render_format(genes)
+  end
+
+  def gene_details
+    gene_details = GeneDetailPresenter.new(DataModel::Gene.find_by!(entrez_id: params[:entrez_id])).data
+    render_format(gene_details)
+  end
+
+  def drugs
+    drugs = DataModel::Drug.eager_load(:drug_aliases).all.map{|d| DrugPresenter.new(d).data}
+    render_format(drugs)
+  end
+
+  def drug_details
+    drug_details = DrugDetailPresenter.new(DataModel::Drug.find_by!(chembl_id: params[:chembl_id])).data
+    render_format(drug_details)
+  end
+
+  def render_all_interactions
+    interactions = DataModel::Interaction.eager_load(:gene, :drug, :publications, :interaction_types, :sources)
+      .all
+      .map{|i| InteractionPresenter.new(i).data}
+    render_format(interactions)
+  end
+
+  def interaction_details
+    interaction_details = InteractionDetailPresenter.new(DataModel::Interaction.find_by!(id: params[:id])).data
+    render_format(interaction_details)
+  end
 
   def gene_categories
     render_format DataModel::GeneClaimCategory.all_category_names
-  end
-
-  def drug_types
-   render_format DataModel::DrugClaimType.all_type_names
   end
 
   def interaction_types
@@ -42,13 +69,17 @@ class ServicesV1Controller < ApplicationController
   def interactions
     if params.key?(:drugs)
       combine_input_drugs(params)
-    else
+    elsif params.key?(:genes)
       combine_input_genes(params)
+    elsif params.keys.sort == ['action', 'controller', 'format'] or
+          params.keys.sort == ['action', 'controller']
+      render_all_interactions()
+      return
     end
     validate_interaction_request(params)
     combine_entries(params)
     search_results = LookupInteractions.find(params)
-    @search_results = InteractionSearchResultsApiV1Presenter.new(search_results)
+    @search_results = InteractionSearchResultsApiV2Presenter.new(search_results)
   end
 
   def gene_id_mapping
@@ -66,7 +97,7 @@ class ServicesV1Controller < ApplicationController
   end
 
   def combine_entries(params)
-    [:interaction_sources, :gene_categories, :interaction_types, :drug_types, :source_trust_levels]
+    [:interaction_sources, :gene_categories, :interaction_types, :source_trust_levels]
     .reject{|arg| params[arg].class == Array}.each do |arg|
       params[arg] = params[arg].split(',').map(&:strip) if params[arg]
     end
