@@ -1,5 +1,5 @@
 require 'rbconfig'
-require_relative '../utils/snapshot_helpers.rb'
+require 'lib/utils/snapshot_helpers.rb'
 
 include Utils::SnapshotHelpers
 
