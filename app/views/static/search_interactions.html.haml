@@ -12,58 +12,109 @@
   .container.search-container{style: "width: 100%; margin: auto"}
     %div{style: "clear: both; display: flex; justify-content: center;"}
       .span8{style: "float: left; margin-bottom: 20px; margin-left: -20px; padding:35px", class: "well"}
-        %form.form-horizontal(id="search_form" action="interaction_search_results" method="post" enctype="multipart/form-data")
-          %fieldset
-            .control-group{style: "margin-bottom: -15px"}
-              .controls
-                .btn-group#toggleIdentifiers(data-toggle='buttons')
-                  %label.btn.btn-primary.active#geneSearch(for='geneSearch' style="width: 150px; font-weight: bold")
-                    %input(type='radio' name='search_mode' value='genes' style='display:none;')
-                      Genes
-                  %label.btn.btn-primary#drugSearch(for='drugSearch'style="width: 150px; font-weight: bold")
-                    %input(type='radio' name='search_mode' value='drugs' style='display:none;') 
-                      Drugs             
-            .control-group
-              %label.control-label(id='ids_flag')
-              .controls
-                %textarea#identifiers{name: 'identifiers', rows: "14", style: "width: 300px; font-size: 20px"}
-            .control-group
-              .controls
-                %button.btn.btn-small.btn-danger#clear(type='button') Clear Identifiers
-                %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace with Demo List
+        %div#default
+          %form.form-horizontal(id="search_form" action="interaction_search_results" method="post" enctype="multipart/form-data")
+            %fieldset
+              .control-group{style: "margin-bottom: -15px"}
+                .controls
+                  .btn-group#toggleIdentifiers(data-toggle='buttons')
+                    %label.btn.btn-primary.active#geneSearch(for='geneSearch' style="width: 150px; font-weight: bold")
+                      %input(type='radio' name='search_mode' value='genes' style='display:none;')
+                        Genes
+                    %label.btn.btn-primary#drugSearch(for='drugSearch'style="width: 150px; font-weight: bold")
+                      %input(type='radio' name='search_mode' value='drugs' style='display:none;') 
+                        Drugs             
+              .control-group
+                %label.control-label(id='ids_flag')
+                .controls
+                  %textarea#identifiers{name: 'identifiers', rows: "14", style: "width: 300px; font-size: 20px"}
+              .control-group
+                .controls
+                  %button.btn.btn-small.btn-danger#clear(type='button') Clear Identifiers
+                  %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace with Demo List
+            %label#advancedSearch{for: 'advancedSearch', style: "font-size: 12px; margin-bottom: -12px"}
+              %input(type='radio' style='display: none;')
+                Advanced Interaction Search
+        %div#advanced{style: "display: none"}
+          %form.form-horizontal(id="adv_search_form" action="interaction_search_results" method="post" enctype="multipart/form-data")
+            %fieldset
+              .control-group{style: "margin-bottom: -15px"}
+                %label{style: "font-size: 20px"}
+                  Advanced Interaction Search           
+              .control-group
+                %label.control-label(id='ids_flag')
+                .controls
+                  %textarea#advidentifiers{name: 'identifiers', rows: "14", style: "width: 300px; font-size: 20px"}
+              .control-group
+                .controls
+                  %button.btn.btn-small.btn-danger#advclear(type='button') Clear Identifiers
+                  %button.btn.btn-small.btn-primary#advdefaultIdentifiers(type='button') Replace with Demo List
+            %label.active#defaultSearch{for: 'advancedSearch', style: "font-size: 12px; margin-bottom: -12px"}
+              %input(type='radio' style='display: none;')
+                Default Interaction Search
       .span8{style: "float: left; margin-left: 20px"}
-        %div.search_filters#gene_search_filters{style: "height: 172px; width: 360px", class: "well"}
+        %div#defaultPre
+          %div.search_filters#gene_search_filters{style: "float: top; height: 213px; width: 370px", class: "well"}
+            %label
+              Preset Filters
+            %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
+              %div
+                %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "search_form"} 
+                  = "  FDA Approved"
+              %div
+                %input{type: "checkbox", value: "checked", name: "anti_neoplastic", form: "search_form"} 
+                  = "  Anti-neoplastic"
+              %div
+                %input{type: "checkbox", value: "checked", name: "immunotherapy", form: "search_form"} 
+                  = "  Immunotherapies"
+            %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
+              Filter the DRUGS that interact with your GENES
+          %div.search_filters#drug_search_filters{style: "float: top; height: 213px; width: 370px; display: none", class: "well"}
+            %label 
+              Preset Filters
+            %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
+              %div
+                %input{type: "checkbox", value: "checked", name: "clinically_actionable", form: "search_form"} 
+                  = "  Clinically Actionable"
+              %div
+                %input{type: "checkbox", value: "checked", name: "druggable_genome", form: "search_form"} 
+                  = "  Druggable Genome"
+              %div
+                %input{type: "checkbox", value: "checked", name: "drug_resistance", form: "search_form"} 
+                  = "  Drug Resistance"
+            %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
+              Filter the GENES that interact with your DRUGS
+        %div#advancedPre{style: "float: top; height: 213px; width: 370px; display: none", class: "well"}
           %label
             Preset Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
+            %label
+            Gene Presets:
             %div
-              %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "search_form"} 
+              %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "adv_search_form"} 
                 = "  FDA Approved"
             %div
-              %input{type: "checkbox", value: "checked", name: "anti_neoplastic", form: "search_form"} 
+              %input{type: "checkbox", value: "checked", name: "anti_neoplastic", form: "adv_search_form"} 
                 = "  Anti-neoplastic"
             %div
-              %input{type: "checkbox", value: "checked", name: "immunotherapy", form: "search_form"} 
+              %input{type: "checkbox", value: "checked", name: "immunotherapy", form: "adv_search_form"} 
                 = "  Immunotherapies"
-          %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
-            Filter the DRUGS that interact with your GENES
-
-        %div.search_filters#drug_search_filters{style: "height: 172px; width: 360px; display: none", class: "well"}
-          %label 
-            Preset Filters
-          %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
+          %div{style: "background-color: white; margin-top: -90px; margin-left: 165px; padding: 5px; border-radius: 5px;"} 
+            %label
+            Drug Presets:
             %div
-              %input{type: "checkbox", value: "checked", name: "clinically_actionable", form: "search_form"} 
+              %input{type: "checkbox", value: "checked", name: "clinically_actionable", form: "adv_search_form"} 
                 = "  Clinically Actionable"
             %div
-              %input{type: "checkbox", value: "checked", name: "druggable_genome", form: "search_form"} 
+              %input{type: "checkbox", value: "checked", name: "druggable_genome", form: "adv_search_form"} 
                 = "  Druggable Genome"
             %div
-              %input{type: "checkbox", value: "checked", name: "drug_resistance", form: "search_form"} 
+              %input{type: "checkbox", value: "checked", name: "drug_resistance", form: "adv_search_form"} 
                 = "  Drug Resistance"
           %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
-            Filter the GENES that interact with your DRUGS
-        %div{style: "height: 220px; width: 360px", class: "well"} 
+            Filter your GENES and DRUGS
+      .span8{style: "float: left; margin-top: 233px; margin-left: -370px"}
+        %div{style: "height: 213px; width: 370px;", class: "well"}
           %label
             Advanced Filters
           %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
@@ -77,9 +128,14 @@
               flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types,
               name_meth: 'to_s', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
     .form-actions{style: "clear: both; display: flex; justify-content: center;"}
-      %button.btn.btn-success(type="submit" id='search-btn' style='font-size: 20px' form='search_form')
-        %i(class="fa fa-search" aria-hidden="true")
-        Find Drug-Gene Interactions
+      %div#defaultGo
+        %button.btn.btn-success(type="submit" id='search-btn' style='font-size: 20px' form='search_form')
+          %i(class="fa fa-search" aria-hidden="true")
+          Find Drug-Gene Interactions
+      %div#advancedGo{style: 'display: none;'}
+        %button.btn.btn-success(name='search_mode' value='mixed' type="submit" id='search-btn' style='font-size: 20px' form='adv_search_form')
+          %i(class="fa fa-search" aria-hidden="true")
+          Find Drug-Gene Interactions adv
 
   =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
 
@@ -110,6 +166,48 @@
         $('#drugSearch > input').prop("checked", true);
         $('#drug_search_filters').show();
         $('#drug_search_filters > div > div > input').prop("disabled", false);
+
+      });
+
+      $('#defaultSearch > input').prop("checked", true);
+
+      $('#advancedSearch').on("click", function() {
+
+        $('#defaultSearch > input').prop("checked", false);
+        $('#default').hide();
+        $('#default > div > div > input').prop("disabled", true);
+        $('#defaultGo').hide();
+        $('#defaultGo > div > div > input').prop("disabled", true);
+        $('#defaultPre').hide();
+        $('#defaultPre > div > div > input').prop("disabled", true);
+
+        $('#advancedSearch > input').prop("checked", true);
+        $('#advanced').show();
+        $('#advanced > div > div > input').prop("disabled", false);
+        $('#advancedGo').show();
+        $('#advancedGo > div > div > input').prop("disabled", false);
+        $('#advancedPre').show();
+        $('#advancedPre > div > div > input').prop("disabled", false);
+
+      });
+
+      $('#defaultSearch').on("click", function() {
+
+        $('#advancedSearch > input').prop("checked", false);
+        $('#advanced').hide();
+        $('#advanced > div > div > input').prop("disabled", true);
+        $('#advancedGo').hide();
+        $('#advancedGo > div > div > input').prop("disabled", true);
+        $('#advancedPre').hide();
+        $('#advancedPre > div > div > input').prop("disabled", true);
+
+        $('#defaultSearch > input').prop("checked", true);
+        $('#default').show();
+        $('#default > div > div > input').prop("disabled", false);
+        $('#defaultGo').show();
+        $('#defaultGo > div > div > input').prop("disabled", false);
+        $('#defaultPre').show();
+        $('#defaultPre > div > div > input').prop("disabled", false);
 
       });
     });

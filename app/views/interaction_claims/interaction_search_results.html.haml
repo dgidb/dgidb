@@ -1,7 +1,7 @@
 #notice= notice
 =content_for :title do
   =tx "title"
-  - if @search_mode.nil?
+  - if @search_mode.nil? || @search_mode == 'mixed'
     - @search_mode = @search_results.get_context
 =content_for :header do
   %h2
@@ -29,15 +29,15 @@
         .tab-pane.active#successful
           .row-fluid#container 
             .span12
-              - definite_results = @search_results.definite_results.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers, interactions: result.interactions}}
-              - definite_no_interactions = @search_results.definite_no_interactions.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers, interactions: result.interactions}}
+              - definite_results = @search_results.definite_results.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, type: result.type, identifiers: result.identifiers, interactions: result.interactions}}
+              - definite_no_interactions = @search_results.definite_no_interactions.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, type: result.type, identifiers: result.identifiers, interactions: result.interactions}}
               = render partial: 'interaction_claims/interaction_search_successful', locals: {definite_results: definite_results, definite_no_interactions: definite_no_interactions} #use @search_mode to determine type of view, just use one set of templates
 
         .tab-pane.fade#failed
           .row-fluid#container
             .span12
-              - ambiguous_results = @search_results.ambiguous_results.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers, interactions: result.interactions}}
-              - ambiguous_no_interactions = @search_results.ambiguous_no_interactions.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, identifiers: result.identifiers, interactions: result.interactions}}
+              - ambiguous_results = @search_results.ambiguous_results.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, type: result.type, identifiers: result.identifiers, interactions: result.interactions}}
+              - ambiguous_no_interactions = @search_results.ambiguous_no_interactions.to_a.select{|result| !result.identifiers.empty?}.map{|result| {term: result.search_term, type: result.type, identifiers: result.identifiers, interactions: result.interactions}}
               - failed_results = @search_results.no_results_results.to_a
               - if failed_results.any?
                 - failed_terms = failed_results.map{|result| result.search_term}.first.split(", ")

@@ -2,9 +2,6 @@ class LookupInteractions
   extend FilterHelper
 
   def self.find(params)
-    #find identifier results for given search terms. end up with
-    #an object of type "InteractionSearchResult" for each
-    #search result
     if params[:search_mode] == 'genes'
       interaction_results = LookupGenes.find(
         params[:gene_names],
@@ -19,21 +16,116 @@ class LookupInteractions
       )
     end
 
-    #get a filter chain encompassing all the given filters from the search form
     filter = create_filter_from_params(params)
-    # actually filter down the results we want
     filter_results(interaction_results, filter)
-    # return filtered set of interactions
     interaction_results
   end
 
+  def self.logical_find(term, params, matches=[], run=1)
+    if run == 1
+      if params[:search_mode] == 'genes'
+        interaction_results = LookupGenes.find(
+          params[:gene_names],
+          :for_search,
+          InteractionSearchResult
+        )
+      elsif params[:search_mode] == 'drugs'
+        interaction_results = LookupDrugs.find(
+          params[:drug_names],
+          :for_search,
+          InteractionSearchResult
+        )
+      else
+        interaction_results = LookupGenes.find(
+          params[:gene_names],
+          :for_search,
+          InteractionSearchResult
+        )
+        interaction_results.concat(
+          LookupDrugs.find(
+            params[:drug_names],
+            :for_search,
+            InteractionSearchResult
+          )
+        ).uniq
+      end
+
+      filter = create_filter_from_params(params)
+      filter_results(interaction_results, filter)
+
+      dg_res = [[], [], [], []]
+      interaction_results.each do |result|
+        if result.interactions.any? && params[:search_mode] == 'mixed'
+          params[:search_mode] = result.type
+        end
+        result.filter_interactions do |interaction|
+          dg_res[0] << interaction.gene_id
+          dg_res[1] << interaction.drug_id
+        end
+      end
+      dg_res[0] = dg_res[0].uniq
+      dg_res[1] = dg_res[1].uniq
+
+      if params[:search_mode] == 'genes'
+        dg_res[2] << dg_res[0][0]
+      elsif params[:search_mode] == 'drugs'
+        dg_res[3] << dg_res[1][0]
+      end
+      dg_res
+    else
+      if params[:search_mode] == 'genes'
+        interaction_results = LookupGenes.find(
+          params[:gene_names],
+          :for_search,
+          InteractionSearchResult
+        )
+      elsif params[:search_mode] == 'drugs'
+        interaction_results = LookupDrugs.find(
+          params[:drug_names],
+          :for_search,
+          InteractionSearchResult
+        )
+      else
+        interaction_results = LookupGenes.find(
+          params[:gene_names],
+          :for_search,
+          InteractionSearchResult
+        )
+        interaction_results.concat(
+          LookupDrugs.find(
+            params[:drug_names],
+            :for_search,
+            InteractionSearchResult
+          )
+        ).uniq
+
+        interaction_results.each do |result|
+          if result.interactions.any? && params[:search_mode] == 'mixed'
+            params[:search_mode] = result.type
+            if params[:search_mode] == 'genes'
+              params.delete(:drugs)
+              params.delete(:drug_names)
+              interaction_results.delete_at(1)
+            elsif params[:search_mode] == 'drugs'
+              params.delete(:genes)
+              params.delete(:gene_names)
+              interaction_results.delete_at(0)
+            end
+          end
+        end
+      end
+
+      filter = create_filter_from_params(params)
+      filter_results(interaction_results, filter, matches)
+      interaction_results
+    end
+  end
+
   private
-  #for each interaction in each result, remove it from the list of interactions
-  #for that result if it doesn't meet the filter
-  def self.filter_results(interaction_results, filter)
+  def self.filter_results(interaction_results, filter, matches = [])
     interaction_results.each do |result|
       result.filter_interactions do |interaction|
-        filter.include?(interaction.id)
+        filter.include?(interaction, matches)
       end
     end
   end

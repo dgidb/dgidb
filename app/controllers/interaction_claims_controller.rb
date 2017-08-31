@@ -5,32 +5,55 @@ class InteractionClaimsController < ApplicationController
   end
 
   def interaction_search_results
-    if !params[:name].nil?
-      params[:search_mode] = 'drugs'
-      params[:identifiers] = params[:name]
-      params[:gene_categories] = DataModel::GeneClaimCategory.all_category_names unless params[:gene_categories]
-      params[:sources] = DataModel::Source.potentially_druggable_source_names unless params[:sources]
-      params[:source_trust_levels] = DataModel::SourceTrustLevel.all_trust_levels unless params[:source_trust_levels]
-    end
-    @search_interactions_active = 'active'
-    @search_mode = params[:search_mode]
-    if @search_mode == 'drugs'
-      params[:drugs] = params[:identifiers]
-      combine_input_drugs(params)
-    elsif @search_mode == 'genes'
-      params[:genes] = params[:identifiers]
-      combine_input_genes(params)
-    else
-      if params[:genes]
-        combine_input_genes(params)
-      elsif params[:drugs]
-        combine_input_drugs(params)
+    if params[:search_mode] == 'mixed'
+      if !params[:name].nil?
+        params[:search_mode] = 'drugs'
+        params[:identifiers] = params[:name]
+        params[:gene_categories] = DataModel::GeneClaimCategory.all_category_names unless params[:gene_categories]
+        params[:sources] = DataModel::Source.potentially_druggable_source_names unless params[:sources]
+        params[:source_trust_levels] = DataModel::SourceTrustLevel.all_trust_levels unless params[:source_trust_levels]
       end
+      @search_interactions_active = 'active'
+      @view_context = view_context
+      unpack_locals(params)
+
+      matches = match_results
+      begin
+        search_results = eval(interpret_search_logic(params, 2)).uniq { |result| result.inspect.partition(' ').last }
+      rescue
+        bad_request('There is an error in your search query!')
+      end
+      
+      @search_results = InteractionSearchResultsPresenter.new(search_results, view_context)
+      prepare_export
+    else
+      if !params[:name].nil?
+        params[:search_mode] = 'drugs'
+        params[:identifiers] = params[:name]
+        params[:gene_categories] = DataModel::GeneClaimCategory.all_category_names unless params[:gene_categories]
+        params[:sources] = DataModel::Source.potentially_druggable_source_names unless params[:sources]
+        params[:source_trust_levels] = DataModel::SourceTrustLevel.all_trust_levels unless params[:source_trust_levels]
+      end
+      @search_interactions_active = 'active'
+      @search_mode = params[:search_mode]
+      if @search_mode == 'drugs'
+        params[:drugs] = params[:identifiers]
+        combine_input_drugs(params)
+      elsif @search_mode == 'genes'
+        params[:genes] = params[:identifiers]
+        combine_input_genes(params)
+      else
+        if params[:genes]
+          combine_input_genes(params)
+        elsif params[:drugs]
+          combine_input_drugs(params)
+        end
+      end
+      @view_context = view_context
+      unpack_locals(params)
+      perform_interaction_search
+      prepare_export
     end
-    @view_context = view_context
-    unpack_locals(params)
-    perform_interaction_search
-    prepare_export
   end
 
   def interactions_for_related_genes
@@ -51,6 +74,30 @@ class InteractionClaimsController < ApplicationController
     validate_interaction_request(params)
     search_results = LookupInteractions.find(params)
     @search_results = InteractionSearchResultsPresenter.new(search_results, view_context)
+  end
+
+  def match_results
+    validate_search_request(params)
+    matches = [[],[]]
+    match_string = eval(interpret_search_logic(params))
+    matches[0] += eval(match_string.gsub!(/\](?![\],])/i, '][0]'))
+    matches[1] += eval(match_string.gsub!(/\[0]/i, '[1]'))
+    term_string = match_string.gsub(/[\&]/i, '|')
+    matches[0] += eval(term_string.gsub!(/\[1]/i, '[2]'))
+    matches[1] += eval(term_string.gsub!(/\[2]/i, '[3]'))
+    matches
+    rescue SyntaxError, NameError
+      bad_request('There is an error in your search query!')
+  end
+
+  def logical_interaction_search(term, matches=[], run=1)
+    validate_logical_interaction_request(term)
+    term = determine_search_mode(term, params)
+    if run == 1
+      LookupInteractions.logical_find(term, params)
+    else
+      LookupInteractions.logical_find(term, params, matches, run)
+    end
   end
 
   def unpack_locals(params)

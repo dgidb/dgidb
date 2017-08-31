@@ -33,8 +33,14 @@ $('#defaultIdentifiers').click ->
     $('#identifiers')[0].value = example_ids
     $('#identifiers')[0].value += "\n"
 
+$('#advdefaultIdentifiers').click ->
+    $('#advidentifiers')[0].value = '("FLT1" or "sorafenib[drug]" not "Flt2") and "flt3[gene]"'
+
 $('#clear').click ->
     $('#identifiers')[0].value = []
+
+$('#advclear').click ->
+    $('#advidentifiers')[0].value = []
 
 $(".btn-success").click ->
   $("#loading").modal("show")
