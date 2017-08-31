@@ -5,7 +5,7 @@ set :rbenv_ruby, '2.4.1'
 set :branch, 'staging'
 
 set :ssh_options, {
-    keys: [ENV['DGIDB_PROD_KEY']],
+    keys: [ENV['DGIDB_STAGING_KEY']],
     forward_agent: false,
     auth_methods: %w(publickey)
 }
