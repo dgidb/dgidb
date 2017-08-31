@@ -21,7 +21,7 @@
   %div(class="cell category")
     %div{class: "item-panel"}
       %h4{style: "display: inline-block;"}
-      - interactions = filtered_interactions
+      - interactions = filtered_interactions.sort_by { |i| -i.sources.size - i.publications.size }
       - if interactions.count > 0
         %table{class: "search_panel table table-condensed table-striped", style: "width: 100%; margin-top: -20px;"}
           %tr
