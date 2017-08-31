@@ -13,13 +13,32 @@
           %li.nav-header Introduction
           %li.nav-header Endpoints
           %li
-            %a{href: '#search-interactions'} Search Interactions
+            %a{href: '#interactions'} Interactions
+            %ul
+              %li
+                %a{href: '#search-interactions'} Search Interactions
+              %li
+                %a{href: '#all-interactions'} All Interactions
+              %li
+                %a{href: '#one-interaction'} Interaction Details
+          %li
+            %a{href: '#drugs'} Drugs
+            %ul
+              %li
+                %a{href: '#all-drugs'} All Drugs
+              %li
+                %a{href: '#one-drug'} Drug Details
+          %li
+            %a{href: '#genes'} Genes
+            %ul
+              %li
+                %a{href: '#all-genes'} All Genes
+              %li
+                %a{href: '#one-gene'} Gene Details
           %li
             %a{href: '#interaction-types'} Interaction Types
           %li
             %a{href: '#interaction-sources'} Interaction Sources
-          %li
-            %a{href: '#drug-types'} Drug Types
           %li
             %a{href: '#gene-categories'} Gene Categories
           %li
@@ -54,20 +73,25 @@
       %p
         All endpoints can be reached at:
         %code http://dgidb.genome.wustl.edu
+      %p
+        Documentation for v1 of the API (deprecated) can be found
+        =link_to 'here.', 'api_v1'
       .page-header
         %section
           %h2
             Endpoints
             %small available API method calls
+      %section#interactions
+        %h3 Interactions
       %section#search-interactions
-        %h3 Search Interactions
+        %h4 Search Interactions
         %p.lead
           The interactions endpoint can be used to return
           interactions for a given set of gene or drug names/symbols.
           It also allows you to filter returned interactions.
         %span.label GET
         %pre
-          \/api/v1/interactions.json
+          \/api/v2/interactions.json?
         %p
           %small
             %span.label.label-info Note:
@@ -113,13 +137,58 @@
                 %code interaction_types=inhibitor,activator
             %tr
               %td
-                drug_types
+                fda_approved_drug
                 %small (optional)
               %td
-                A comma delimited list of drug types to include in the result set.
-                If this field is omitted, all drug types will be included.
+                A flag denoting whether or not to limit interactions to only the ones involving fda-approved drugs.
+                If this field is omitted, interactions for all types of drugs will be included.
               %td
-                %code drug_types=antineoplastic
+                %code fda_approved_drug=true
+            %tr
+              %td
+                immunotherapy
+                %small (optional)
+              %td
+                A flag denoting whether or not to limit interactions to only the ones involving immunotherapeutic drugs.
+                If this field is omitted, interactions for all types of drugs will be included.
+              %td
+                %code immunotherapy=true
+            %tr
+              %td
+                anti_neoplastic
+                %small (optional)
+              %td
+                A flag denoting whether or not to limit interactions to only the ones involving anti-neoplastic drugs.
+                If this field is omitted, interactions for all types of drugs will be included.
+              %td
+                %code anti_neoplastic=true
+            %tr
+              %td
+                clinically_actionable
+                %small (optional)
+              %td
+                A flag denoting whether or not to limit interactions to only the ones involving clinically actionable genes.
+                If this field is omitted, interactions for all types of genes will be included.
+              %td
+                %code clinically_actionable=true
+            %tr
+              %td
+                druggable_genome
+                %small (optional)
+              %td
+                A flag denoting whether or not to limit interactions to only the ones involving the durggable genome.
+                If this field is omitted, interactions for all types of genes will be included.
+              %td
+                %code druggable_genome=true
+            %tr
+              %td
+                drug_resistance
+                %small (optional)
+              %td
+                A flag denoting whether or not to limit interactions to only the ones involving drug-resistant genes.
+                If this field is omitted, interactions for all types of genes will be included.
+              %td
+                %code drug_resistance=true
             %tr
               %td
                 gene_categories
@@ -144,14 +213,14 @@
           %span.label.label-info Note:
           %small
             The following example would query DGIdb for interactions involving the genes
-            FLT1, STK1, and FAKE. It will only show interactions with antineoplastic drugs reported
+            FLT1, STK1, and FAKE. It will only show interactions reported
             by the source.
             =link_to('TALC', source_path('TALC')) + '.'
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT1,MM1,FAKE&drug_types=antineoplastic&interaction_sources=TALC
+          \http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT1,MM1,FAKE&amp;nteraction_sources=TALC
         %h5 Example Response:
         %p
-          The response will come back with two top level items:
+          The response will come back with three top level items:
         %p
           %code matchedTerms
           will be a list containing a hash for each search term that you provided that we were able
@@ -162,80 +231,1010 @@
           includes interaction type information as well as the drug name and source that reported
           the interaction.
         %p
+          %code ambiguousTerms
+          will be a list containing a hash of search terms that you provided that mapped to multiple Entrez
+          genes.
+          Each hash will contain your original search term, the Entrez long and full names
+          of the potential math as well as a list of categories that the given gene is in.
+          Additionally, the hash will contain a list of drug interactions for the gene. This list
+          includes interaction type information as well as the drug name and source that reported
+          the interaction.
+        %p
           %code unmatchedTerms
-          will be a list containing a hash for each search term that you provided that we were unable
-          to map definitiely to a single Entrez gene. Each hash will contain both the orignal search
-          term and a list of possible suggestions if the search term was ambiguous.
+          will be a list of search terms you provided that we were unable to map any Entrez gene.
         %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-interaction-response'}}
           Show/Hide Response
         %pre#example-interaction-response.collapse
           :preserve
-            "matchedTerms":[
+            "matchedTerms": [
+                {
+                  "searchTerm": "FLT1",
+                  "geneName": "FLT1",
+                  "geneLongName": "fms related tyrosine kinase 1",
+                  "entrezId": 2321,
+                  "geneCategories": [
+                    {
+                      "id": "4c14ec3171544bd2b18b2f1a45e6c8f2",
+                      "name": "KINASE"
+                    },
+                    {
+                      "id": "6c528ef943614261afc5e4f52a3c60ee",
+                      "name": "TYROSINE KINASE"
+                    },
+                    {
+                      "id": "d3ec2631e0b2434b9dcc008e793d3fa5",
+                      "name": "DRUGGABLE GENOME"
+                    },
+                    {
+                      "id": "0d157beb-fd17-404d-8755-3a81aa5ed704",
+                      "name": "CLINICALLY ACTIONABLE"
+                    }
+                  ],
+                  "interactions": [
+                    {
+                      "interactionId": "841ed1ba-816f-4d62-9c7b-b6c81d79ad14",
+                      "interactionTypes": [
+                        "inhibitor",
+                        "n/a"
+                      ],
+                      "drugName": "CEDIRANIB",
+                      "drugChemblId": "CHEMBL491473",
+                      "sources": [
+                        "ChEMBL",
+                        "TdgClinicalTrial",
+                        "TALC"
+                      ],
+                      "pmids": []
+                    },
+                    {
+                      "interactionId": "4a5005da-4a38-414c-93a8-f6a8d471f801",
+                      "interactionTypes": [
+                        "inhibitor",
+                        "n/a"
+                      ],
+                      "drugName": "TIVOZANIB",
+                      "drugChemblId": "CHEMBL1289494",
+                      "sources": [
+                        "ChEMBL",
+                        "CancerCommons",
+                        "TALC",
+                        "MyCancerGenome",
+                        "TdgClinicalTrial",
+                        "ClearityFoundationClinicalTrial"
+                      ],
+                      "pmids": []
+                    },
+                    {
+                      "interactionId": "fcce486a-92d6-4740-bf56-d5c3ca43f85e",
+                      "interactionTypes": [
+                        "inhibitor",
+                        "n/a"
+                      ],
+                      "drugName": "VATALANIB",
+                      "drugChemblId": "CHEMBL101253",
+                      "sources": [
+                        "ChEMBL",
+                        "DrugBank",
+                        "TALC",
+                        "MyCancerGenome",
+                        "TdgClinicalTrial"
+                      ],
+                      "pmids": []
+                    },
+                    {
+                      "interactionId": "6919fc44-75fa-41d0-bd11-fa2a2fba0f85",
+                      "interactionTypes": [
+                        "inhibitor",
+                        "n/a"
+                      ],
+                      "drugName": "MOTESANIB",
+                      "drugChemblId": "CHEMBL572881",
+                      "sources": [
+                        "ChEMBL",
+                        "MyCancerGenome",
+                        "TdgClinicalTrial",
+                        "TALC"
+                      ],
+                      "pmids": []
+                    },
+                    {
+                      "interactionId": "127a6d88-9bf9-4175-9552-e025e1deba48",
+                      "interactionTypes": [
+                        "inhibitor",
+                        "n/a"
+                      ],
+                      "drugName": "SUNITINIB",
+                      "drugChemblId": "CHEMBL535",
+                      "sources": [
+                        "DrugBank",
+                        "TEND",
+                        "MyCancerGenomeClinicalTrial",
+                        "TdgClinicalTrial",
+                        "TALC"
+                      ],
+                      "pmids": []
+                    },
+                    {
+                      "interactionId": "8c36e43e-a411-45e0-af46-89195e5dd856",
+                      "interactionTypes": [
+                        "inhibitor",
+                        "n/a"
+                      ],
+                      "drugName": "AXITINIB",
+                      "drugChemblId": "CHEMBL1289926",
+                      "sources": [
+                        "ChEMBL",
+                        "TALC",
+                        "MyCancerGenome",
+                        "MyCancerGenomeClinicalTrial",
+                        "TdgClinicalTrial",
+                        "PharmGKB",
+                        "DrugBank",
+                        "CancerCommons"
+                      ],
+                      "pmids": []
+                    },
+                    {
+                      "interactionId": "2ab8d600-b787-407e-a4f8-88db0d22a9bf",
+                      "interactionTypes": [
+                        "inhibitor"
+                      ],
+                      "drugName": "REGORAFENIB",
+                      "drugChemblId": "CHEMBL1946170",
+                      "sources": [
+                        "ChEMBL",
+                        "DrugBank",
+                        "MyCancerGenome",
+                        "MyCancerGenomeClinicalTrial",
+                        "TALC"
+                      ],
+                      "pmids": []
+                    },
+                    {
+                      "interactionId": "731d0ad8-7909-474a-a67f-e7f0e94ba42d",
+                      "interactionTypes": [
+                        "inhibitor",
+                        "n/a"
+                      ],
+                      "drugName": "LENVATINIB",
+                      "drugChemblId": "CHEMBL1289601",
+                      "sources": [
+                        "DrugBank",
+                        "TdgClinicalTrial",
+                        "TALC"
+                      ],
+                      "pmids": []
+                    },
+                    {
+                      "interactionId": "9cd02ac8-61ee-4266-8c54-f115288e709a",
+                      "interactionTypes": [
+                        "inhibitor",
+                        "n/a"
+                      ],
+                      "drugName": "NINTEDANIB",
+                      "drugChemblId": "CHEMBL502835",
+                      "sources": [
+                        "DrugBank",
+                        "TALC",
+                        "MyCancerGenome",
+                        "TdgClinicalTrial",
+                        "ClearityFoundationClinicalTrial"
+                      ],
+                      "pmids": []
+                    },
+                    {
+                      "interactionId": "5f704ee0-153d-4b8d-b203-b41b04cbe256",
+                      "interactionTypes": [
+                        "inhibitor",
+                        "n/a"
+                      ],
+                      "drugName": "PAZOPANIB",
+                      "drugChemblId": "CHEMBL477772",
+                      "sources": [
+                        "MyCancerGenome",
+                        "MyCancerGenomeClinicalTrial",
+                        "TdgClinicalTrial",
+                        "DrugBank",
+                        "ClearityFoundationClinicalTrial",
+                        "TALC"
+                      ],
+                      "pmids": []
+                    }
+                  ]
+                }
+              ],
+              "ambiguousTerms": [
+                {
+                  "searchTerm": "MM1",
+                  "geneName": "PFDN5",
+                  "geneLongName": "prefoldin subunit 5",
+                  "entrezId": 5204,
+                  "geneCategories": [],
+                  "interactions": []
+                },
+                {
+                  "searchTerm": "MM1",
+                  "geneName": "PLXNB2",
+                  "geneLongName": "plexin B2",
+                  "entrezId": 23654,
+                  "geneCategories": [
+                    {
+                      "id": "26f6a4ea7779433ea2cbf524683accf7",
+                      "name": "CELL SURFACE"
+                    }
+                  ],
+                  "interactions": []
+                }
+              ],
+              "unmatchedTerms": [
+                "FAKE"
+              ]
+      %hr
+      %section#all-interactions
+        %h4 All Interactions
+        %p.lead
+          When used without any parameters, the interactions endpoint returns a list of all interactions in the DGIdb database.
+        %span.label GET
+        %pre
+          \http://dgidb.genome.wustl.edu/api/v2/interactions.json
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-all-interactions-response'}}
+          Show/Hide Response
+        %pre#example-all-interactions-response.collapse
+          :preserve
+            [
               {
-                "searchTerm":"FLT3",
-                "geneName":"FLT3",
-                "geneLongName":"fms-related tyrosine kinase 3",
-                "geneCategories":[
-                  "TYROSINE KINASE",
-                  "DRUGGABLE GENOME",
-                  "KINASE",
-                  "CELL SURFACE"
+                "id":"d7f26f83-681f-4546-a71e-4651c8c88c7c",
+                "gene_name":"AKT1",
+                "entrez_id":207,
+                "drug_name":"GSK-690693",
+                "chembl_id":"CHEMBL494089",
+                "publications":[18800763],
+                "interaction_types":[
+                  "n/a",
+                  "inhibitor"
                 ],
-                "interactions":[
-                  {
-                    "interactionId":"61577575-b8ec-4916-a25f-edb362047b97",
-                    "interactionType":"inhibitor",
-                    "drugName":"SORAFENIB",
-                    "source":"TALC"
-                  },
-                  {
-                    "interactionId":"318383b3-3cd5-478d-ada2-f26977caf8eb",
-                    "interactionType":"inhibitor",
-                    "drugName":"AMUVATINIB",
-                    "source":"TALC"
-                  },
-                  {
-                    "interactionId":"a961d382-4b52-435f-a610-f27673184b09",
-                    "interactionType":"inhibitor",
-                    "drugName":"SUNITINIB",
-                    "source":"TALC"
-                  },
-                  {
-                    "interactionId":"e3b974f9-cfce-4fa7-9dec-80643c84a571",
-                    "interactionType":"inhibitor",
-                    "drugName":"AS703569",
-                    "source":"TALC"
-                  },
-                  {
-                    "interactionId":"a211e2dc-7e76-45f9-a031-0ad7b24a5ea0",
-                    "interactionType":"inhibitor",
-                    "drugName":"XL999",
-                    "source":"TALC"
-                  },
-                  {
-                    "interactionId":"8732ec65-58bb-4dfa-a82d-a335f67bc051",
-                    "interactionType":"inhibitor",
-                    "drugName":"ENMD-0276",
-                    "source":"TALC"
-                  }
+                "sources":[
+                  "ChEMBL",
+                  "GuideToPharmacologyInteractions"
                 ]
-              }
+              },
+              ...
+            ]
+      %hr
+      %section#one-interaction
+        %h4 Interaction Details
+        %p.lead
+          The interaction details endpoint can be used to retrieve detailed information about one particular interaction.
+        %span.label GET
+        %pre
+          \http://dgidb.genome.wustl.edu/api/v2/interactions/&#60;interaction_id&#62;
+        %h5
+          Example Call:
+        %p
+          %span.label.label-info Note:
+          %small
+            The following example would query DGIdb for the interaction with
+            ID
+            %code d7f26f83-681f-4546-a71e-4651c8c88c7c
+        %pre
+          \http://dgidb.genome.wustl.edu/api/v2/interactions/d7f26f83-681f-4546-a71e-4651c8c88c7c
+        %h5
+          Example Response:
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-one-interaction-response'}}
+          Show/Hide Response
+        %pre#example-one-interaction-response.collapse
+          :preserve
+            "id": "d7f26f83-681f-4546-a71e-4651c8c88c7c",
+            "gene_name": "AKT1",
+            "entrez_id": 207,
+            "drug_name": "GSK-690693",
+            "chembl_id": "CHEMBL494089",
+            "publications": [
+              18800763
             ],
-            "unmatchedTerms":[
+            "interaction_types": [
+              "n/a",
+              "inhibitor"
+            ],
+            "sources": [
+              "ChEMBL",
+              "GuideToPharmacologyInteractions"
+            ],
+            "attributes": [
               {
-                "searchTerm":"MM1",
-                "suggestions":[
-                  "PFDN5",
-                  "PLXNB2"
+                "name": "Mechanism of Interaction",
+                "value": "Serine/threonine-protein kinase AKT inhibitor",
+                "sources": [
+                  "ChEMBL"
                 ]
               },
               {
-                "searchTerm":"FAKE",
-                "suggestions":[
-
+                "name": "Direct Interaction",
+                "value": "yes",
+                "sources": [
+                  "ChEMBL"
+                ]
+              },
+              {
+                "name": "Specific Action of the Ligand",
+                "value": "Inhibition",
+                "sources": [
+                  "GuideToPharmacologyInteractions"
+                ]
+              },
+              {
+                "name": "Endogenous Drug?",
+                "value": "False",
+                "sources": [
+                  "GuideToPharmacologyInteractions"
+                ]
+              },
+              {
+                "name": "Direct Interaction?",
+                "value": "True",
+                "sources": [
+                  "GuideToPharmacologyInteractions"
                 ]
               }
-            ]}
+            ],
+            "interaction_claims": [
+              {
+                "source": "ChEMBL",
+                "drug": "GSK-690693",
+                "gene": "PKB ",
+                "interaction_types": [
+                  "inhibitor"
+                ],
+                "attributes": [
+                  {
+                    "name": "Mechanism of Interaction",
+                    "value": "Serine/threonine-protein kinase AKT inhibitor"
+                  },
+                  {
+                    "name": "Direct Interaction",
+                    "value": "yes"
+                  }
+                ],
+                "publications": []
+              },
+              {
+                "source": "GuideToPharmacologyInteractions",
+                "drug": "GSK690693",
+                "gene": "1479",
+                "interaction_types": [
+                  "n/a"
+                ],
+                "attributes": [
+                  {
+                    "name": "Specific Action of the Ligand",
+                    "value": "Inhibition"
+                  },
+                  {
+                    "name": "Endogenous Drug?",
+                    "value": "False"
+                  },
+                  {
+                    "name": "Direct Interaction?",
+                    "value": "True"
+                  }
+                ],
+                "publications": [
+                  18800763
+                ]
+              }
+            ]
+      %hr
+      %section#all-drugs
+        %h3 All Drugs
+        %p.lead
+          The drugs endpoint can be used to retrieve a list of all drugs in the DGIdb database.
+        %span.label GET
+        %pre
+          \http://dgidb.genome.wustl.edu/api/v2/drugs.json
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-all-drugs-response'}}
+          Show/Hide Response
+        %pre#example-all-drugs-response.collapse
+          :preserve
+            [
+              {
+                "name":"TESAMORELIN",
+                "chembl_id":"CHEMBL1237026",
+                "fda_approved":true,
+                "immunotherapy":false,
+                "anti_neoplastic":false,
+                "alias":[
+                  "178103540",
+                  "6959",
+                  "DAP001556",
+                  "GHRH(1-44)",
+                  "N-[(3E)-1-oxo-3-hexenyl]Somatoliberin (human pancreatic islet)",
+                  "218949-48-5",
+                  "Egrifta",
+                  "DB08869"
+                ]
+              },
+              ...
+            ]
+      %hr
+      %section#one-drug
+        %h4 Drug Details
+        %p.lead
+          The drug details endpoint can be used to retrieve detailed information about one particular drug.
+        %span.label GET
+        %pre
+          \http://dgidb.genome.wustl.edu/api/v2/drugs/&#60;chembl_id&#62;
+        %h5
+          Example Call:
+        %p
+          %span.label.label-info Note:
+          %small
+            The following example would query DGIdb for the drug with
+            ChEMBL ID
+            %code CHEMBL1237026
+        %pre
+          \http://dgidb.genome.wustl.edu/api/v2/drugs/CHEMBL1237026
+        %h5
+          Example Response:
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-one-drug-response'}}
+          Show/Hide Response
+        %pre#example-one-drug-response.collapse
+          :preserve
+            {
+              "name":"TESAMORELIN",
+              "chembl_id":"CHEMBL1237026",
+              "fda_approved":true,
+              "immunotherapy":false,
+              "anti_neoplastic":false,
+              "alias":[
+                "178103540",
+                "6959",
+                "DAP001556",
+                "GHRH(1-44)",
+                "N-[(3E)-1-oxo-3-hexenyl]Somatoliberin (human pancreatic islet)",
+                "218949-48-5",
+                "Egrifta",
+                "DB08869"
+              ],
+              "pmids":[],
+              "attributes":[
+                {
+                  "name":"Year of Approval",
+                  "value":"2010",
+                  "sources":[
+                    "TEND"
+                  ]
+                },
+                {
+                  "name":"Drug Class",
+                  "value":"antilipodystrophy agents",
+                  "sources":[
+                    "TEND"
+                  ]
+                },
+                {
+                  "name":"Drug Indications",
+                  "value":"for treatment of HIV-associated lipodystrophy",
+                  "sources":[
+                    "TdgClinicalTrial"
+                  ]
+                },
+                {
+                  "name":"Drug Class",
+                  "value":"peptide",
+                  "sources":[
+                    "TdgClinicalTrial"
+                  ]
+                },
+                {
+                  "name":"FDA Approval",
+                  "value":"approved",
+                  "sources":[
+                    "TdgClinicalTrial"
+                  ]
+                },
+                {
+                  "name":"Drug Type",
+                  "value":"small molecule",
+                  "sources":["DrugBank"]
+                },
+                {
+                  "name":"Drug Groups",
+                  "value":"approved",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Groups",
+                  "value":"investigational",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"amino acids",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"peptides",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"and proteins",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"anterior pituitary lobe hormones and analogues",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"chemical actions and uses",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"hormones",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"hormone substitutes",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"and hormone antagonists",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"hypothalamic hormones",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"lipodystrophy",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"nerve tissue proteins",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"neuropeptides",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"peptide hormones",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"pharmacologic actions",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"physiological effects of drugs",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"pituitary and hypothalamic hormones and analogues",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"pituitary hormone-releasing hormones",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"proteins",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"somatropin and somatropin agonists",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"systemic hormonal preparations",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                },
+                {
+                  "name":"Drug Categories",
+                  "value":"excl. sex hormones and insulins",
+                  "sources":[
+                    "DrugBank"
+                  ]
+                }
+              ],
+              "drug_claims":[
+                {
+                  "source":"GuideToPharmacologyInteractions",
+                  "name":"6959",
+                  "primary_name":"TESAMORELIN",
+                  "aliases":[
+                    "TESAMORELIN",
+                    "178103540"
+                  ],
+                  "attributes":[],
+                  "publications":[]
+                },
+                {
+                  "source":"TTD",
+                  "name":"DAP001556",
+                  "primary_name":"TESAMORELIN",
+                  "aliases":[
+                    "TESAMORELIN",
+                    "DAP001556"
+                  ],
+                  "attributes":[],
+                  "publications":[]
+                },
+                {
+                  "source":"DrugBank",
+                  "name":"DB08869",
+                  "primary_name":"TESAMORELIN",
+                  "aliases":[
+                    "TESAMORELIN",
+                    "GHRH(1-44)",
+                    "N-[(3E)-1-oxo-3-hexenyl]Somatoliberin (human pancreatic islet)",
+                    "218949-48-5",
+                    "Egrifta"
+                  ],
+                  "attributes":[
+                    {
+                      "name":"Drug Type",
+                      "value":"small molecule"
+                    },
+                    {
+                      "name":"Drug Groups",
+                      "value":"approved"
+                    },
+                    {
+                      "name":"Drug Groups",
+                      "value":"investigational"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"amino acids"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"peptides"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"and proteins"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"anterior pituitary lobe hormones and analogues"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"chemical actions and uses"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"hormones"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"hormone substitutes"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"and hormone antagonists"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"hypothalamic hormones"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"lipodystrophy"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"nerve tissue proteins"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"neuropeptides"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"peptide hormones"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"pharmacologic actions"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"physiological effects of drugs"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"pituitary and hypothalamic hormones and analogues"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"pituitary hormone-releasing hormones"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"proteins"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"somatropin and somatropin agonists"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"systemic hormonal preparations"
+                    },
+                    {
+                      "name":"Drug Categories",
+                      "value":"excl. sex hormones and insulins"
+                    }
+                  ],
+                  "publications":[]
+                },
+                {
+                  "source":"TEND",
+                  "name":"TESAMORELIN",
+                  "primary_name":"TESAMORELIN",
+                  "aliases":[
+                    "TESAMORELIN"
+                  ],
+                  "attributes":[
+                    {
+                      "name":"Year of Approval",
+                      "value":"2010"
+                    },
+                    {
+                      "name":"Drug Class",
+                      "value":"antilipodystrophy agents"
+                    }
+                  ],
+                  "publications":[]
+                },
+                {
+                  "source":"TdgClinicalTrial",
+                  "name":"TESAMORELIN",
+                  "primary_name":"TESAMORELIN",
+                  "aliases":[],
+                  "attributes":[
+                    {
+                      "name":"Drug Indications",
+                      "value":"for treatment of HIV-associated lipodystrophy"
+                    },
+                    {
+                      "name":"Drug Class",
+                      "value":"peptide"
+                    },
+                    {
+                      "name":"FDA Approval",
+                      "value":"approved"
+                    }
+                  ],
+                  "publications":[]
+                }
+              ]
+            }
+      %hr
+      %section#all-genes
+        %h3 All Genes
+        %p.lead
+          The genes endpoint can be used to retrieve a list of all genes in the DGIdb database.
+        %span.label GET
+        %pre
+          \http://dgidb.genome.wustl.edu/api/v2/genes.json
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-all-genes-response'}}
+          Show/Hide Response
+        %pre#example-all-genes-response.collapse
+          :preserve
+            [
+              {
+                "name":"A1BG",
+                "long_name":"alpha-1-B glycoprotein",
+                "entrez_id":1,
+                "aliases":[
+                  "A1B",
+                  "ABG",
+                  "GAB",
+                  "HYST2477",
+                  "ENSG00000121410"
+                ]
+              },
+              ...
+            ]
+      %hr
+      %section#one-gene
+        %h4 Gene Details
+        %p.lead
+          The gene details endpoint can be used to retrieve detailed information about one particular gene.
+        %span.label GET
+        %pre
+          \http://dgidb.genome.wustl.edu/api/v2/genes/&#60;entrez_id&#62;
+        %h5
+          Example Call:
+        %p
+          %span.label.label-info Note:
+          %small
+            The following example would query DGIdb for the gene with
+            Entrez ID
+            %code 346
+        %pre
+          \http://dgidb.genome.wustl.edu/api/v2/genes/346
+        %h5
+          Example Response:
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-one-gene-response'}}
+          Show/Hide Response
+        %pre#example-one-gene-response.collapse
+          :preserve
+            {
+              "name":"APOC4",
+              "long_name":"apolipoprotein C4",
+              "entrez_id":346,
+              "aliases":[
+                "APO-CIV",
+                "APOC-IV",
+                "ENSG00000224916",
+                "P55056",
+                "apolipoprotein C-IV","346",
+                "ENSG00000267467",
+                "P21731",
+                "TBXA2R",
+                "TP receptor"
+              ],
+              "pmids":[
+                1386885,
+                10634944,
+                2530338,
+                2968449,
+                1387312,
+                1833018,
+                1825698,
+                16604093,
+                2975605,
+                1830308,
+                1434130,
+                8437108,
+                3008368,
+                11454901,
+                2527074,
+                8242228,
+                9871769,
+                2743082
+              ],
+              "attributes":[
+                {
+                  "name":"Gene Biotype",
+                  "value":"PROTEIN_CODING",
+                  "sources":[
+                    "Ensembl"
+                  ]
+                }
+              ],
+              "categories":[
+                "TRANSPORTER"
+              ],
+              "gene_claims":[
+                {
+                  "source":"GuideToPharmacologyInteractions",
+                  "name":"346",
+                  "aliases":[
+                    "P21731",
+                    "TBXA2R",
+                    "TP receptor"
+                  ],
+                  "attributes":[],
+                  "publications":[
+                    10634944,
+                    8242228,
+                    2748606,
+                    8859002,
+                    1434130,
+                    10537280,
+                    8882612,
+                    3594077,
+                    1386885,
+                    2530338,
+                    2968449,
+                    1387312,
+                    1833018,
+                    16604093,
+                    2975605,
+                    1830308,
+                    8437108,
+                    3008368,
+                    11454901,
+                    2527074,
+                    9871769,
+                    2743082,
+                    1825698
+                  ]
+                },
+                {
+                  "source":"Ensembl",
+                  "name":"ENSG00000224916",
+                  "aliases":[
+                    "ENSG00000224916",
+                    "APOC4"
+                  ],
+                  "attributes":[
+                    {
+                      "name":"Gene Biotype",
+                      "value":"PROTEIN_CODING"
+                    }
+                  ],
+                  "publications":[]
+                },
+                {
+                  "source":"GO",
+                  "name":"APOC4",
+                  "aliases":[
+                    "P55056"
+                  ],
+                  "attributes":[],
+                  "publications":[]
+                }
+              ]
+            }
       %hr
       %section#interaction-types
         %h3 Interaction Types
@@ -244,7 +1243,7 @@
           interaction types for use in the interactions endpoint.
         %span.label GET
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/interaction_types.json
+          \http://dgidb.genome.wustl.edu/api/v2/interaction_types.json
         %h5 Example Response:
         %pre
           ["activator", "inhibitor", "unknown"]
@@ -256,22 +1255,10 @@
           interaction sources for use in calls to the interactions endpoint.
         %span.label GET
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/interaction_sources.json
+          \http://dgidb.genome.wustl.edu/api/v2/interaction_sources.json
         %h5 Example Response:
         %pre
           ["DrugBank","PharmGKB","TALC","TEND","TTD"]
-      %hr
-      %section#drug-types
-        %h3 Drug Types
-        %p.lead
-          The drug types endpoint can be used to retrieve a current list of supported
-          drug types for use in calls to the interactions endpoint.
-        %span.label GET
-        %pre
-          \http://dgidb.genome.wustl.edu/api/v1/drug_types.json
-        %h5 Example Response:
-        %pre
-          ["antineoplastic"]
       %hr
       %section#gene-categories
         %h3 Gene Categories
@@ -280,7 +1267,7 @@
           gene categories for use in calls to the interactions endpoint.
         %span.label GET
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/gene_categories.json
+          \http://dgidb.genome.wustl.edu/api/v2/gene_categories.json
         %h5 Example Response:
         %pre
           ["KINASE", "DNA REPAIR", "TUMOR SUPPRESSOR"]
@@ -292,7 +1279,7 @@
           source trust levels for use in calls to the interactions endpoint.
         %span.label GET
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/source_trust_levels.json
+          \http://dgidb.genome.wustl.edu/api/v2/source_trust_levels.json
         %h5 Example Response:
         %pre
           ["Expert curated", "Non-curated"]
@@ -305,7 +1292,7 @@
             genes that are known to interact in pathways with your gene list
           %span.label GET
           %pre
-            \/api/v1/related_genes.json
+            \/api/v2/related_genes.json
           %h5 Accepted Parameters:
           %table.table.table-bordered.table-striped
             %thead
@@ -329,7 +1316,7 @@
               The following example would query DGIdb for a list of genes known to interact with
               FLT1 or FLT3
           %pre
-            \http://dgidb.genome.wustl.edu/api/v1/related_genes.json?genes=FLT1,FLT3
+            \http://dgidb.genome.wustl.edu/api/v2/related_genes.json?genes=FLT1,FLT3
           %h5 Example Response:
           %p
             The response will come back containing a list of hashes each with two keys:
@@ -407,7 +1394,7 @@
           that are known to be in a specific category.
         %span.label GET
         %pre
-          \/api/v1/genes_in_category.json
+          \/api/v2/genes_in_category.json?
         %h5 Accepted Parameters:
         %table.table.table-bordered.table-striped
           %thead
@@ -430,7 +1417,7 @@
           %small
             The following example would query DGIdb for a list of genes known to be Kinases
         %pre
-          \http://dgidb.genome.wustl.edu/api/v1/genes_in_category.json?category=kinase
+          \http://dgidb.genome.wustl.edu/api/v2/genes_in_category.json?category=kinase
         %h5 Example Response:
         %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-genes-in-category-response'}}
           Show/Hide Response
@@ -557,7 +1544,7 @@
           <br><br>Try the following examples from the command line to view and format output from the API:<br>
           %span.label SAMPLE CODE
           %pre
-            curl http://dgidb.genome.wustl.edu/api/v1/interactions.json<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT3,STK1,FAKE1\&interaction_sources=TTD,DrugBank\&interaction_type=inhibitor | python -mjson.tool<br>
+            curl http://dgidb.genome.wustl.edu/api/v2/interactions.json<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=STK1,FAKE1 | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1&amp;interaction_sources=TTD,DrugBank | python -mjson.tool<br><br>curl http://dgidb.genome.wustl.edu/api/v2/interactions.json?genes=FLT3,STK1,FAKE1&amp;interaction_sources=TTD,DrugBank&amp;interaction_type=inhibitor | python -mjson.tool<br>
       %hr
 
   :css

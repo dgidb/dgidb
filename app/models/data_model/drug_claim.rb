@@ -19,6 +19,10 @@ module DataModel
       eager_load(:source, :drug_claim_aliases, :drug_claim_attributes)
     end
 
+    def self.for_tsv
+      includes(:drug, :source)
+    end
+
     def sort_value
       DrugClaimSortOrder.sort_value(self.nomenclature)
     end

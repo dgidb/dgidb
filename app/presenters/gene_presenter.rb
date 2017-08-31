@@ -41,6 +41,15 @@ class GenePresenter < SimpleDelegator
   def publications
     interactions.map{|i| i.publications}.flatten.uniq
   end
+
+  def data
+    {
+      name: self.display_name,
+      long_name: gene.long_name,
+      entrez_id: gene.entrez_id,
+      aliases: gene.gene_aliases.map(&:alias)
+    }
+  end
   
   private
   def group_map(gene)
