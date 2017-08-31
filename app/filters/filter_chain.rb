@@ -31,6 +31,10 @@ class FilterChain
     end
   end
 
+  def include?(id)
+    empty? || evaluate_all_filters.include?(id)
+  end
+
   private
   def empty?
     @all_include.empty? && @all_exclude.empty?
