@@ -6,7 +6,7 @@ class FilterChain
     @all_exclude = []
   end
 
-  #TODO it will now recalculate if you modify the filter after calcuating it
+  #TODO it will now recalculate if you modify the filter after calculating it
   #but once something is excluded, it can't be added back in
   #is that an acceptable limitation?
 
