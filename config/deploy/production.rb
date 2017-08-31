@@ -1,4 +1,4 @@
-server "", user: 'ubuntu', roles: %w{web}
+server "ec2-35-167-156-177.us-west-2.compute.amazonaws.com", user: 'ubuntu', roles: %w{web db}
 
 set :rbenv_ruby, '2.4.1'
 
