@@ -13,7 +13,19 @@ module Genome
         self.load_interaction_claims
       end
 
-      def self.init_records_from_db # This is for an initial, non-incremental load into the chembl_molecule table
+      def self.reload_chembl_molecules
+        Utils::Database.delete_drugs
+        DataModel::ChemblMoleculeSynonym.delete_all
+        DataModel::ChemblMolecule.delete_all
+        self.init_molecules_from_db
+        self.init_synonyms_from_db
+        grouper = Grouper.new
+        grouper.perform
+        postgrouper = PostGrouper.new
+        postgrouper.perform
+      end
+
+      def self.init_molecules_from_db # This is for an initial, non-incremental load into the chembl_molecule table
         new_records = []
         i = 0
         connection.exec( "SELECT * FROM molecule_dictionary").each do |record|
@@ -29,6 +41,7 @@ module Genome
       end
 
       def self.init_synonyms_from_db # This is for an initial, non-incremental load into chembl_molecule_synonym table
+
         connection.exec("SELECT * FROM molecule_synonyms").each do |record|
           params = get_params(record, syn_col_hash)
           params[:synonym] = record['synonyms']

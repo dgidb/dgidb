@@ -6,5 +6,4 @@
       =@gene_claim.title
     %small 
       ="gene data from #{@gene_claim.source.source_db_name}" 
-- cache @gene_claim do
-  =render partial: 'gene_claims/gene_claim', locals: {gene_claim: @gene_claim}
+=render partial: 'gene_claims/gene_claim', locals: {gene_claim: @gene_claim}

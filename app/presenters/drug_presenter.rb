@@ -39,7 +39,7 @@ class DrugPresenter < SimpleDelegator
   end
 
   def sorted_interactions_by_score
-    interactions.sort_by{ |i| -(i.publications.count + i.interaction_claims.count)}
+    interactions.sort_by{ |i| -(i.publications.size + i.interaction_claims.size)}
   end
 
   def publications

@@ -3,85 +3,82 @@
 - else
   - entity = DrugPresenter.new(entity)
 
-- cache entity do
-  %div(class="item-title")
-    %div(class="item-name")
-      %h3(class="item-source")
-        %span
-          = "Search Term: " + "\"" + term + "\""
-        %i{class: "fa fa-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
-        &nbsp
-        - if @search_mode == "genes"
-          %a{href: "/genes/#{entity.name}#_interactions"}
-            = entity.name
-        - else 
-          %a{href: "/drugs/#{entity.name}#_interactions"}
-            = entity.name
+%div(class="item-title")
+  %div(class="item-name")
+    %h3(class="item-source")
+      %span
+        = "Search Term: " + "\"" + term + "\""
+      %i{class: "fa fa-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
+      &nbsp
+      - if @search_mode == "genes"
+        %a{href: "/genes/#{entity.name}#_interactions"}
+          = entity.name
+      - else
+        %a{href: "/drugs/#{entity.name}#_interactions"}
+          = entity.name
 
-  %div(class="item-content")
-    %div(class="cell category")
-      %div{class: "item-panel"}
-        %h4{style: "display: inline-block;"}
-        - interactions = entity.sorted_interactions_by_score & filtered_interactions
-        - if interactions.count > 0
-          %table{class: "search_panel table table-condensed table-striped", style: "width: 100%; margin-top: -20px;"}
-            %tr
-              %th
+%div(class="item-content")
+  %div(class="cell category")
+    %div{class: "item-panel"}
+      %h4{style: "display: inline-block;"}
+      - interactions = filtered_interactions.sort_by { |i| -i.sources.size - i.publications.size }
+      - if interactions.count > 0
+        %table{class: "search_panel table table-condensed table-striped", style: "width: 100%; margin-top: -20px;"}
+          %tr
+            %th
+              - if @search_mode == "genes"
+                Drug
+              - else
+                Gene
+            %th
+              Interaction Type
+            %th
+              Sources
+            %th
+              PMIDs
+            %th
+              Score
+          %tbody
+          - interactions.each do |interaction|
+            - interaction = InteractionPresenter.new(interaction)
+            %tr{onclick: "location.href='/interactions/#{interaction.id}';"}
+              %td
                 - if @search_mode == "genes"
-                  Drug
-                - else 
-                  Gene
-              %th
-                Interaction Type
-              %th
-                Sources
-              %th
-                PMIDs
-              %th
-                Score
-            %tbody
-            - interactions.each do |interaction|
-              - interaction = InteractionPresenter.new(interaction)
-              %tr{onclick: "location.href='/interactions/#{interaction.id}';"}
-                %td
-                  - if @search_mode == "genes" 
-                    %a{href: "/drugs/#{interaction.drug.name}"}
-                      = interaction.drug.name
-                  - else
-                    %a{href: "/genes/#{interaction.gene.name}"}
-                      = interaction.gene.name
-                %td
-                  = interaction.na_or_types
-                %td
-                  - source_count = interaction.interaction_claims.count
-                  = interaction.interaction_claims.map{|ic| TrustLevelPresenter.source_link_green(@view_context, ic.source)}.join(' ').html_safe
-                %td
-                  - if (pub_count = interaction.publications.count) > 0 
-                    = interaction.publications.map{|pub| pubmed_link_to(pub.pmid)}.join(" ").html_safe
-                  - else
-                    %i
-                      None found
-                %td
-                  = source_count + pub_count
-          %button{class: "show-all", style: "margin-top: 5px"}
-            Show All
-          %button{class: "show-more", style: "margin-top: 5px"}
-            Show More
-          %button{class: "show-less", style: "margin-top: 5px"}
-            Show Less
-          %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
-            Showing 
-            %span#nrows
-              = [10, interactions.length].min
-            %span 
-              = "out of #{interactions.length} Interactions"
-        - else
-          No interactions found.
+                  %a{href: "/drugs/#{interaction.drug.name}"}
+                    = interaction.drug.name
+                - else
+                  %a{href: "/genes/#{interaction.gene.name}"}
+                    = interaction.gene.name
+              %td
+                = interaction.na_or_types
+              %td
+                - source_count = interaction.sources.size
+                = interaction.sources.map{|source| TrustLevelPresenter.source_link_green(@view_context, source)}.join(' ').html_safe
+              %td
+                - if (pub_count = interaction.publications.size) > 0
+                  = interaction.publications.map{|pub| pubmed_link_to(pub.pmid)}.join(" ").html_safe
+                - else
+                  %i
+                    None found
+              %td
+                = source_count + pub_count
+        %button{class: "show-all", style: "margin-top: 5px"}
+          Show All
+        %button{class: "show-more", style: "margin-top: 5px"}
+          Show More
+        %button{class: "show-less", style: "margin-top: 5px"}
+          Show Less
+        %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
+          Showing
+          %span#nrows
+            = [10, interactions.length].min
+          %span
+            = "out of #{interactions.length} Interactions"
+      - else
+        No interactions found.
 
 :css
   tr:hover td{
     background-color:rgba(220, 220, 220, 1);
     cursor: pointer;
   }
-
-

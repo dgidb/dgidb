@@ -24,33 +24,32 @@
     Link outs to relevant records from the original source databases are provided wherever possible (marked with a special icon beside them).
     The 'By Source' tab summarizes the alternate names for this gene as used by each individual source.
 
--cache @gene do
-  .container-fluid
-    .tabbable
-      %ul.nav.nav-tabs
-        %li.active
-          %a(href="#detailed_view" data-toggle="tab") Detailed View
-        %li
-          %a(href="#by_source" data-toggle="tab") By Source
-      .tab-content
-        .tab-pane.active#detailed_view
-          .row-fluid#container
-            %div(class="span2")
-              %div(id="list-filter-tabs")
+.container-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active
+        %a(href="#detailed_view" data-toggle="tab") Detailed View
+      %li
+        %a(href="#by_source" data-toggle="tab") By Source
+    .tab-content
+      .tab-pane.active#detailed_view
+        .row-fluid#container
+          %div(class="span2")
+            %div(id="list-filter-tabs")
 
-                %ul(class="nav nav-tabs nav-stacked")
-                  %li(class="active")
-                    %a(href="#" data-category="all")
-                      %i(class="icon-chevron-right")
-                      All
+              %ul(class="nav nav-tabs nav-stacked")
+                %li(class="active")
+                  %a(href="#" data-category="all")
+                    %i(class="icon-chevron-right")
+                    All
 
-            %div(class="span10")
-              =render partial: 'genes/gene', locals:{gene: @gene}
+          %div(class="span10")
+            =render partial: 'genes/gene', locals:{gene: @gene}
 
-        .tab-pane.fade#by_source
-          .row-fluid
-            .span12
-              =render partial: 'genes/by_source_table', locals:{gene: @gene}
+      .tab-pane.fade#by_source
+        .row-fluid
+          .span12
+            =render partial: 'genes/by_source_table', locals:{gene: @gene}
 
   =javascript_include_tag "jquery.masonry.min"
   =javascript_include_tag "jquery.dataTables.min"

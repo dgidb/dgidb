@@ -1,6 +1,5 @@
-- cache r do
-  .well
-    %em Gene
-    %p
-      %strong=link_to r.name, gene_path(r.name)
-      %p="Gene Claims:  #{r.gene_claims.count}"
+.well
+  %em Gene
+  %p
+    %strong=link_to r.name, gene_path(r.name)
+    %p="Gene Claims:  #{r.gene_claims.count}"

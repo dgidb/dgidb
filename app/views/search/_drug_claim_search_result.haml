@@ -1,6 +1,5 @@
-- cache r do
-  .well
-    %em Drug Claim
-    %p
-      %strong=link_to r.name, drug_claim_path(r)
-      %p="Source:  #{r.source.source_db_name} version #{r.source.source_db_version}"
+.well
+  %em Drug Claim
+  %p
+    %strong=link_to r.name, drug_claim_path(r)
+    %p="Source:  #{r.source.source_db_name} version #{r.source.source_db_version}"
