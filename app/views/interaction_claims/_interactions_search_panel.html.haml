@@ -42,7 +42,7 @@
             %tbody
             - interactions.each do |interaction|
               - interaction = InteractionPresenter.new(interaction)
-              %tr
+              %tr{onclick: "location.href='/interactions/#{interaction.id}';"}
                 %td
                   - if @search_mode == "genes" 
                     %a{href: "/drugs/#{interaction.drug.name}"}
@@ -54,7 +54,7 @@
                   = interaction.na_or_types
                 %td
                   - source_count = interaction.interaction_claims.count
-                  = interaction.interaction_claims.map{|ic| TrustLevelPresenter.source_link_with_trust_flag(@view_context, ic.source)}.join(' ').html_safe
+                  = interaction.interaction_claims.map{|ic| TrustLevelPresenter.source_link_green(@view_context, ic.source)}.join(' ').html_safe
                 %td
                   - if (pub_count = interaction.publications.count) > 0 
                     = interaction.publications.map{|pub| pubmed_link_to(pub.pmid)}.join(" ").html_safe
@@ -78,5 +78,10 @@
         - else
           No interactions found.
 
+:css
+  tr:hover td{
+    background-color:rgba(220, 220, 220, 1);
+    cursor: pointer;
+  }
 
 

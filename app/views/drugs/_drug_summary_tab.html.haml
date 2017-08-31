@@ -1,26 +1,30 @@
-/ takes in variable for type of summary (drug or gene)
-/ displays lists of aliases, drug/gene info, publications
+/ takes in variable for type of summary (drug or drug)
+/ displays lists of aliases, drug/drug info, publications
 
 %div(class="item-content")
-  %div{class: "cell category", style: "float: right; width: 50%"}
-    %div(class="item-panel")
+  %div{class: "cell category", style: "float: right; width: 50%;"}
+    %div{class: "item-panel"}
       %h4
         Alternate Names:
-      %table{class: "table table-condensed table-striped", style: "display: block; height: 494px; overflow-y: scroll; table-layout:fixed;", id: "table_aliases"}
-        -drug.drug_aliases.each do |alt_name| ######
-          %tr
-            %td{style: "width: 100%; word-break:break-all"}
-              =alt_name.alias
+      %div{style: "height: 489px; overflow-y: scroll; margin-bottom: 5px;"}
+        %table{class: "table table-condensed table-striped", id: "table_aliases"}
+          %tbody
+            -drug.drug_aliases.each do |alt_name| ######
+              %tr
+                %td
+                  =alt_name.alias
 
   %div{class: "cell category", style: "float: left; width: 50%" }
-    %div{class: "item-panel", style:"margin-bottom: 10px"}
+    %div{class: "item-panel", style: "margin-bottom: 11px;"}
       %h4
         Drug Info:
-      %table{class: "table table-condensed table-striped", style: "display: block; table-layout:fixed; height: 200px; overflow-y: scroll", id:"table_info"}
-        -drug.drug_attributes.each do |attribute| #######
-          %tr
-            %td{style: "width: 50%"}=attribute.name
-            %td{style: "width: 50%"}=attribute.value
+      %div{style: "height: 200px; overflow-y: scroll; margin-bottom: 5px;"}  
+        %table{class: "table table-condensed table-striped", id:"table_info"}
+          %tbody
+            -drug.drug_attributes.each do |attribute| #######
+              %tr
+                %td=attribute.name
+                %td=attribute.value
       %div#linkouts
         - drug.drug_claims[0..3].each do |dc|
           %button{class: "button", type: "button", style:"background-color: #e7e7e7; border: none; margin-bottom: 4px", onclick:"location.href='#{dc.original_data_source_url}';"}
@@ -28,26 +32,19 @@
         %a#more{style: "display: inline-block; margin-left: 5px; cursor: pointer"}
           - num_left = (drug.drug_claims.count - 4 > 0 ? drug.drug_claims.count - 4 : 0)
           = "(#{num_left} More Sources)"
-
-    %div(class="item-panel")
+    %div{class: "item-panel"}
       %h4
         Publications:
-      %table{class: "table table-condensed table-striped", style: "display: block; height: 200px; table-layout:fixed; overflow-y: scroll", id:"table_publications"}
-        -drug.publications.each do |publication| ########
-          %tr
-            %td{style: "width: 100%"}
-              %a{href: PMID.pubmed_url(publication.pmid)}
-                = publication.citation
+      %div{style: "height: 200px; overflow-y: scroll; margin-bottom: 5px;"}
+        %table{class: "table table-condensed table-striped", id:"table_publications"}
+          -drug.publications.each do |publication| ########
+            %tr
+              %td
+                %a{href: PMID.pubmed_url(publication.pmid)}
+                  = publication.citation
 
 :javascript
-  var remaining = 252 - 20 - $('#linkouts')["0"].offsetHeight
-    $('#table_info')["0"].style.height = remaining + "px";
 
-  window.addEventListener('resize', function(){
-    var remaining = 252 - 20 - $('#linkouts')["0"].offsetHeight
-    $('#table_info')["0"].style.height = remaining + "px";
-  })
-  
   $("a#more").click(function () {
     $('a[href="' + "#" + "claims" + '"]').trigger('click');
     return true;
