@@ -23,7 +23,7 @@ class PostGrouper
   end
 
   def update_drug_types
-    Genome::Normalizers::DrugTypeNormalizers.normalize_types
+    Genome::Normalizers::DrugTypeNormalizer.normalize_types
   end
 
 end
