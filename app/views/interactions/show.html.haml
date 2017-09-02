@@ -8,25 +8,24 @@
       %a(href="/faq#defined")
         =icon('question-sign') # this is not going to the right spot
 
-- cache @interaction do
-  .container-fluid
-    .tabbable
-      %ul.nav.nav-tabs
-        %li.active
-          %a(href="#summary" data-toggle="tab") Summary
-        %li
-          %a(href="#claims" data-toggle="tab") Claims
-      .tab-content{style: "margin-top: 12px;"}
-        .tab-pane.active#summary
-          .row-fluid#container
-            .span12
-              %ul(class="result-list" id="list-results")
-                %li
-                  =render partial: 'interactions/interaction_summary_tab', locals: { interaction: @interaction } 
-        .tab-pane.fade#claims
-          .row-fluid
-            .span12
-              =render partial: 'shared/claims_tab', locals: {interaction: @interaction}
+.container-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active
+        %a(href="#summary" data-toggle="tab") Summary
+      %li
+        %a(href="#claims" data-toggle="tab") Claims
+    .tab-content{style: "margin-top: 12px;"}
+      .tab-pane.active#summary
+        .row-fluid#container
+          .span12
+            %ul(class="result-list" id="list-results")
+              %li
+                =render partial: 'interactions/interaction_summary_tab', locals: { interaction: @interaction } 
+      .tab-pane.fade#claims
+        .row-fluid
+          .span12
+            =render partial: 'shared/claims_tab', locals: {interaction: @interaction}
 
 :javascript
   $(document).ready(function () {

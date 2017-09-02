@@ -1,0 +1,68 @@
+- cache interaction_claim do
+  - interaction = interaction_claim.interaction
+  .container-fluid
+    .tabbable
+      .tab-content
+        .tab-pane.active#summary
+          .row-fluid#container 
+            .span12
+              %ul(class="result-list" id="list-results")
+                %li.interaction
+                  %div(class="item-title")
+                    %div(class="item-name")
+                      %h3(class="item-source")
+                        =succeed ':' do
+                          =link_to interaction_claim.source.source_db_name, source_path(interaction_claim.source.source_db_name)
+                        %a{href: "/drugs/#{interaction.drug.name}"} 
+                          =interaction.drug.name
+                        %i{class: "fa fa-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
+                        &nbsp
+                        %a{href: "/genes/#{interaction.gene.name}"} 
+                          =interaction.gene.name 
+                    %div(class="item-corner")
+                      %ul(class="attribute-list")
+                        %li
+                          %strong
+                            Version:
+                          =interaction_claim.source.source_db_version
+                        
+                  %div(class="item-content")
+                    %div{class: "cell category", style: "float: left; width: 50%" }
+                      %div{class: "item-panel", style:"margin-bottom: 10px"}
+                        %h4
+                          Main Info:
+                        %div{style: "height: 90px; overflow-y: scroll; margin-bottom: 5px;"}
+                          %table{class: "table table-condensed table-striped", id: "table_main"}
+                            %tr
+                              %td{style: "width: 30%"}="Gene"
+                              %td{style: "width: 70%"}
+                                %a{href: "/genes/#{interaction.gene.name}"} 
+                                  =interaction.gene.name
+                            %tr
+                              %td="Drug"
+                              %td
+                                %a{href: "/drugs/#{interaction.drug.name}"} 
+                                  =interaction.drug.name
+                            %tr
+                              %td="interaction_claim Types"
+                              %td=interaction_claim.interaction_claim_types.map{|it| it.type}.join(", ")
+                      %div(class="item-panel")
+                        %h4
+                          Publications:
+                        %div{style: "height: 305px; overflow-y: scroll; "}
+                          %table{class: "table table-condensed table-striped", id:"table_publications"}
+                            -interaction_claim.publications.each do |publication|
+                              %tr
+                                %td
+                                  %a{href: PMID.pubmed_url(publication.pmid)}
+                                    = publication.citation
+                    %div{class: "cell category", style: "float: right; width: 50%"}
+                      %div(class="item-panel")
+                        %h4
+                          Other Info:
+                        %div{style: "height: 456px; overflow-y: scroll; "}
+                          %table{class: "table table-condensed table-striped", id: "table_info"}
+                            -interaction_claim.interaction_claim_attributes.each do |attribute|
+                              %tr
+                                %td{style: "width: 300px"}=attribute.name
+                                %td{style: "width: 350px"}=attribute.value

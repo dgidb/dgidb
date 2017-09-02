@@ -6,7 +6,7 @@ class FilterChain
     @all_exclude = []
   end
 
-  #TODO it will now recalculate if you modify the filter after calcuating it
+  #TODO it will now recalculate if you modify the filter after calculating it
   #but once something is excluded, it can't be added back in
   #is that an acceptable limitation?
 
@@ -23,10 +23,15 @@ class FilterChain
     end
   end
 
-  # this gets called in the filter_results method in lookup_interactions.rb
-  # checks the filtered set of interaction ids to see whether each interaction should be included 
+  def filter_rel(rel)
+    if empty?
+      rel
+    else
+      rel.where(interactions: { id: evaluate_all_filters.to_a })
+    end
+  end
+
   def include?(id)
-    
     empty? || evaluate_all_filters.include?(id)
   end
 
@@ -40,7 +45,6 @@ class FilterChain
     @computed_exclude ||= evaluate_filter(@all_exclude)
     @computed_final ||= @computed_include - @computed_exclude
     @computed_final
-    
   end
 
   def evaluate_filter(filter)

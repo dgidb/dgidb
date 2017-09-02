@@ -15,7 +15,8 @@ module DataModel
     cache_query :all_gene_names, :all_gene_names
 
     def self.for_search
-      includes(interactions: [:drug, :interaction_types, :publications, :sources])
+      eager_load(:interactions)
+        .includes(interactions: [:drug, :interaction_types, :publications, :sources])
     end
 
     def self.for_gene_categories

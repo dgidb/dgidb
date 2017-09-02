@@ -7,14 +7,14 @@
     =csrf_meta_tags
     %meta(name="description" content="DGIdb, The Drug Gene Interaction Database, is a research resource that can be used to search candidate genes or drugs against the known and potentially druggable genome.")
     %meta(name="keywords" content="genomics,genome,drug,gene,interactions,druggable,druggability,drugability,druggable-genome,drugable,dgidb,dgi-db,precision,medicine,precision-medicine,McDonnell,genome,institute,washington,university")
-    %link{:href => "/assets/favicon.png", :rel => "shortcut icon"}/
+    %link{:href => image_path("favicon.png"), :rel => "shortcut icon"}/
   %body.wrap
     #wrap
       .container-fluid{ :id => "content"}
         .navbar.navbar-fixed-top.navbar-inverse{style: "margin-bottom: 0px"}
           .navbar-inner
             %a.brand(href="/")
-              %img{:src => "/assets/dgidb-header-branding_128c.png", :class => "logo", :width => "500"}
+              %img{:src => image_path("dgidb-header-branding_128c.png"), :class => "logo", :width => "500"}
             %ul.nav.nav-tabs.main-menu.wrap
               %li{class: @search_interactions_active}
                 %a(href="/search_interactions") Search Interactions
@@ -55,7 +55,7 @@
   #footer{style: "height: 20px; background: white; margin-top: 60px; text-align: center; width: 100%;"}
     .container{style: "width: 100%;"}
       .container.muted.span12{style: "width: 100%;"}
-        %p.span5{style: "width: 100%;"}
+        %p.span5{style: "width: 100%; margin: 0;"}
           ="DGIdb (v#{CURRENT_VERSION.version} - sha1 #{CURRENT_VERSION.sha})"
           •
           ="Last updated #{CURRENT_VERSION.time}"

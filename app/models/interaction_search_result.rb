@@ -7,7 +7,7 @@ class InteractionSearchResult
     @search_terms = search_terms
     @type = type
     @identifiers = identifiers.uniq
-    @interactions = identifiers.flat_map(&:interactions).uniq
+    @interactions = identifiers.each_with_object({}){ |identifier, h| h[identifier] = identifier.interactions}
   end
 
   def is_ambiguous?
@@ -24,11 +24,6 @@ class InteractionSearchResult
 
   def has_interactions?
     interactions.length > 0
-  end
-
-  # yield passes interaction to each block in filter_results from lookup_interactions.rb
-  def filter_interactions
-    @interactions = @interactions.select{ |interaction| yield interaction }
   end
 
   def match_type_label

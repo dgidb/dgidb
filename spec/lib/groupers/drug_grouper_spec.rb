@@ -216,7 +216,7 @@ describe Genome::Groupers::DrugGrouper do
 
     group
 
-    Genome::Normalizers::DrugTypeNormalizers.normalize_types
+    Genome::Normalizers::DrugTypeNormalizer.normalize_types
 
     anti_neoplastic_drugs.each do |drug|
       drug.reload

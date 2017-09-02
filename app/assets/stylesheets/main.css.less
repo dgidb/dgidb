@@ -4,10 +4,24 @@
 @import "twitter/bootstrap/mixins.less";
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
 
+/* BASE COLORS
+ **************************************************/
+@dgidb-green:  #69b53e;
+@dgidb-brown:  #5f604b;
+@dgidb-purple: #502066;
+@dgidb-red:    #a40014;
+@dgidb-blue:   #4ea1b9;
+@dgidb-yellow: #f3b128;
+@dgidb-orange: #c54b16;
+
+// entity colors
+@entity-category:     @dgidb-orange;
+@entity-gene:         @dgidb-green;
+@entity-drug:         @dgidb-red;
+@entity-interaction:  @dgidb-blue;
+
 /* Import Application LESS
  **************************************************/
-@import "color_genes.css.less";
-@import "color_sources.css.less";
 @import "sticky_footer.css.less";
 
 /* BOOTSTRAP OVERRIDES
@@ -74,21 +88,6 @@
   .border-left-radius(@radius);
 }
 
-/* BASE COLORS
- **************************************************/
-@dgidb-green:  #69b53e;
-@dgidb-brown:  #5f604b;
-@dgidb-purple: #502066;
-@dgidb-red:    #a40014;
-@dgidb-blue:   #4ea1b9;
-@dgidb-yellow: #f3b128;
-@dgidb-orange: #c54b16;
-
-// entity colors
-@entity-category:     @dgidb-orange;
-@entity-gene:         @dgidb-green;
-@entity-drug:         @dgidb-red;
-@entity-interaction:  @dgidb-blue;
 
 /* LAYOUT
  **************************************************/
@@ -135,7 +134,7 @@ body {
 .navbar-inner {
   position: relative;
   background-color: #190A20 !important;
-  background-image: url('dgidb-header-bg.png') !important;
+  background-image: image-url('dgidb-header-bg.png') !important;
   background-repeat: no-repeat !important;
   background-attachment: fixed !important;
   .brand {
@@ -155,7 +154,7 @@ body {
 }
 
 #content {
-  background-image: url('dgidb-content-bg.png');
+  background-image: image-url('dgidb-content-bg.png');
   background-repeat: no-repeat;
 }
 
@@ -285,23 +284,23 @@ body {
 
   li.gene {
     border-left-color: @entity-gene;
-    .icon { background-image: url('icons/icon-gene_32.png'); background-color: @dgidb-green; }
-    .item-name h3 { background-image: url('icons/icon-gene_32.png'); }
+    .icon { background-image: asset-url('icons/icon-gene_32.png'); background-color: @dgidb-green; }
+    .item-name h3 { background-image: asset-url('icons/icon-gene_32.png'); }
   }
   li.drug {
     border-left-color: @entity-drug;
-    .icon { background-image: url('icons/icon-drug_32.png'); background-color: @dgidb-red; }
-    .item-name h3 { background-image: url('icons/icon-drug_32.png'); }
+    .icon { background-image: asset-url('icons/icon-drug_32.png'); background-color: @dgidb-red; }
+    .item-name h3 { background-image: asset-url('icons/icon-drug_32.png'); }
   }
   li.interaction {
     border-left-color: @entity-interaction;
-    .icon { background-image: url('icons/icon-interaction_32.png'); background-color: @dgidb-blue; }
-    .item-name h3 { background-image: url('icons/icon-interaction_32.png'); }
+    .icon { background-image: asset-url('icons/icon-interaction_32.png'); background-color: @dgidb-blue; }
+    .item-name h3 { background-image: asset-url('icons/icon-interaction_32.png'); }
   }
   li.potentially_druggable {
     border-left-color: @entity-category;
-    .icon { background-image: url('icons/icon-potentially_druggable_32.png'); background-color: @dgidb-orange; }
-    .item-name h3 { background-image: url('icons/icon-gene-potentially_druggable_32.png'); }
+    .icon { background-image: asset-url('icons/icon-potentially_druggable_32.png'); background-color: @dgidb-orange; }
+    .item-name h3 { background-image: asset-url('icons/icon-gene-potentially_druggable_32.png'); }
   }
 
 }

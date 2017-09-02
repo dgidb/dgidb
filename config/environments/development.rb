@@ -29,7 +29,7 @@ DruggableGene::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
 
   # Use a different cache store in dev
   config.cache_store = :file_store, 'tmp/cache/dev'

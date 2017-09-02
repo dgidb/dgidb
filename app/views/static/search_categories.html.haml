@@ -36,13 +36,13 @@
           %div{style: "height: 348px; width: 340px; padding-top: 25px;", class: "well"} 
             %label
               Advanced Filters
-            %div{style: "background-color: white; margin-top: 5px; padding: 5px; border-radius: 5px; height: 150px;"} 
+            %div{style: "background-color: white; margin-top: 5px; padding: 5px; border-radius: 5px; height: 100px;"}
               #source-control{style: "margin-top: 3px;"}
                 =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
                   flag_text_key: 'sources_flag', select_tag_name: 'category_sources', collection: @sources, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
-              #source-trust-level
-                =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
-                  flag_text_key: 'source_trust_level_flag', select_tag_name: 'source_trust_levels', collection: @source_trust_levels, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'source_trust_level_tour' }
+              -##source-trust-level
+              -#  =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
+              -#    flag_text_key: 'source_trust_level_flag', select_tag_name: 'source_trust_levels', collection: @source_trust_levels, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'source_trust_level_tour' }
               #gene-category-control
               =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
                 flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_categories_tour' }
