@@ -7,7 +7,7 @@ class InteractionSearchResult
     @search_terms = search_terms
     @type = type
     @identifiers = identifiers.uniq
-    @interactions = identifiers.flat_map(&:interactions).uniq
+    @interactions = identifiers.each_with_object({}){ |identifier, h| h[identifier] = identifier.interactions}
   end
 
   def is_ambiguous?
