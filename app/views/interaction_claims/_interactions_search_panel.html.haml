@@ -8,7 +8,7 @@
     %h3(class="item-source")
       %span
         = "Search Term: " + "\"" + term + "\""
-      %i{class: "fa fa-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
+      %span{class: "glyphicon glyphicon-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
       &nbsp
       - if @search_mode == "genes"
         %a{href: "/genes/#{entity.name}#_interactions"}

@@ -12,28 +12,42 @@
     %h3{style: "margin-top: -5px; margin-bottom: -5px;"}
       Multiple Matches
     %div{style: "width: 200px; padding: 0", class: "container demo"}
-    - ambiguous_matches.each do |result|
-      %ul{class: "tree", style: "margin-left: -15px;"}
-        %li
-          %input{type: "checkbox", checked: "checked", id: "#{'heading' + result[:term]}"}
-          %label{for: "#{'heading' + result[:term]}", class: "tree_label"}
-            %span
-              %input{class: "ambiguous search-term", type: "checkbox", name: result[:term], checked: 1}
-                = result[:term]
-          %ul
-            - result[:identifiers].each do |entity|
-              %li
-                %span{class: "tree_label"}
-                  %input{class: "ambiguous sidebar-toggle #{result[:term]}", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
-                    = entity.name 
+      - if ambiguous_matches.count > 0
+        %div(class="panel-group" id="accordion" role="tablist" aria-multiselectable="true")
+          - ambiguous_matches.each do |result|
+          %ul{class: "tree", style: "margin-left: -15px;"}
+            %li
+              %input{type: "checkbox", checked: "checked", id: "#{'heading' + result[:term]}"}
+              %label{for: "#{'heading' + result[:term]}", class: "tree_label"}
+                %span
+                  %input{class: "ambiguous search-term", type: "checkbox", name: result[:term], checked: 1}
+                    = result[:term]
+              %ul
+                - result[:identifiers].each do |entity|
+                  %li
+                    %span{class: "tree_label"}
+                      %input{class: "ambiguous sidebar-toggle #{result[:term]}", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
+                        = entity.name 
+      - else
+        %div{style: "margin-top:15px;"}
+          %i
+            None found.
 
 %div{style: "float: left; width: 81%;"}
   %ul(class="result-list" id="list-results")
-    - ambiguous_matches.each do |result|
-      - result[:identifiers].each do |entity|
+    - if ambiguous_matches.count > 0
+      - ambiguous_matches.each do |result|
+        - result[:identifiers].each do |entity|
         %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-ambiguous", style: "display: list-item; width: 100%;"}
           = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions][entity].to_a }
-
+    - else 
+      %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", style: "width: 100%; height: 300px;"}
+        %h3{style: "margin-left: 20px;"}
+          None of your search terms returned 
+          %i 
+            ambiguous 
+          matches.
+          
 :css
   /* ————————————————————–
     Tree core styles

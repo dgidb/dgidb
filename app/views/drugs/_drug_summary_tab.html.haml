@@ -1,6 +1,15 @@
 / takes in variable for type of summary (drug or drug)
 / displays lists of aliases, drug/drug info, publications
 
+%div(class="item-title")
+  %div(class="item-name")
+    %h3(class="item-source")
+      %span
+        = drug.name
+      %span{style: "font-size: 15px; color: grey; margin-right: 5px"}
+        = drug.chembl_id
+      %span{style: "float: right;"}
+        = drug.flag_icons
 %div(class="item-content")
   %div{class: "cell category", style: "float: right; width: 50%;"}
     %div{class: "item-panel"}
@@ -54,4 +63,7 @@
   div button:hover {
       background-color: #330066!important;
       color: white;
+  }
+  .flag_icon {
+    margin-right: 5px;
   }

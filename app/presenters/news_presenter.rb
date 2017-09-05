@@ -11,16 +11,20 @@ class NewsPresenter < SimpleDelegator
   end
 
   def news_ticker
-    if unread_news?
-      headline = link_to(@unread_item['headline'], '/news')
-      content_tag(:p) do
-        concat content_tag(:hr, "", style: "margin-top: 0px; margin-bottom: 15px;")
-        concat content_tag(:strong, 'Unread News: ')
-        concat content_tag(:strong, headline)
-        concat content_tag(:hr, "", style: "margin-top: 15px; margin-bottom: 10px;")
-      end
-    else
-      ''
+    # change to add persistent news item
+    # if unread_news?
+    #   headline = link_to(@unread_item['headline'], '/news')
+    #   content_tag(:p) do
+    #     concat content_tag(:strong, 'Unread News: ')
+    #     concat content_tag(:strong, headline)
+    #   end
+    # else
+    #   ''
+    # end
+    headline = link_to(EXTERNAL_STRINGS['news']['posts'].last['headline'], '/news')
+    content_tag(:p) do
+      concat content_tag(:strong, 'News: ')
+      concat content_tag(:strong, headline)
     end
   end
 

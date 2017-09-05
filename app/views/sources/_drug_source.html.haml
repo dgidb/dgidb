@@ -1,0 +1,37 @@
+%div(class="item-title")
+  %div(class="item-name")
+    %h3(class="item-source")
+      =ext_link_to(source.source_db_name, source.site_url)
+  %div(class="item-corner")
+    %ul(class="attribute-list")
+      %li
+        %strong
+          Full Name:
+        =source.full_name
+        %strong
+          Version:
+        =source.source_db_version
+
+%div(class="item-content")
+  %div(class="cell category" style="width: 15%;")
+    %div(class="item-panel")
+      %h4
+        Drugs
+      %table(class="table table-condensed")
+        %tr
+          %td
+            Total:
+          %td
+            =source.drug_claims_count
+
+        %tr
+          %td
+            In&nbsp;Groups:
+          %td
+            =source.drug_claims_in_groups_count
+
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Full Citation
+      %p=source.citation_with_pmid_link.html_safe

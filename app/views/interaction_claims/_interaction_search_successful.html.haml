@@ -13,16 +13,28 @@
     %h3{style: "margin-top: -5px;"}
       Unique Matches
     %div
-    - definite_matches.each do |result|
-      %div
-      - result[:identifiers].each do |entity|
-        %input{class: "unique sidebar-toggle", type: "checkbox", name: "#{entity.name + "-unique"}", checked: 1}
-          = "Search Term: " + result[:term]
+    - if definite_matches.count > 0
+      - definite_matches.each do |result|
+        %div
+        - result[:identifiers].each do |entity|
+          %input{class: "unique sidebar-toggle", type: "checkbox", name: "#{entity.name + "-unique"}", checked: 1}
+            = "Search Term: " + result[:term]
+    - else
+      %i 
+        None found.
 
 %div{style: "float: left; width: 81%;"}
   %ul(class="result-list" id="list-results")
-    - definite_matches.each do |result|
-      - result[:identifiers].each do |entity|
-        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-unique", style: "width: 100%;"}
-          = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions][entity].to_a }
+    - if definite_matches.count > 0
+      - definite_matches.each do |result|
+        - result[:identifiers].each do |entity|
+          %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-unique", style: "width: 100%;"}
+            = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions][entity].to_a }
+    - else 
+      %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", style: "width: 100%; height: 300px;"}
+        %h3{style: "margin-left: 20px;"}
+          None of your search terms returned 
+          %i 
+            unique 
+          matches.
 

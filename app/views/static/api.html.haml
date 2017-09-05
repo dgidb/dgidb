@@ -65,7 +65,7 @@
           %li
             %a{href: '#shell-sample'}Shell
           %li.divider
-    .span9{style: "float: left; width: 700px; margin-left: 20px; display: block;"}
+    .span9{style: "float: left; width: 70%; margin-left: 20px; display: block;"}
       %h2 Introduction
       %p
         The DGIdb API can be used to query for drug-gene interactions in your own applications
@@ -81,9 +81,9 @@
           %h2
             Endpoints
             %small available API method calls
-      %section#interactions
+      %section#interactions.anchor
         %h3 Interactions
-      %section#search-interactions
+      %section#search-interactions.anchor
         %h4 Search Interactions
         %p.lead
           The interactions endpoint can be used to return
@@ -470,7 +470,7 @@
                 "FAKE"
               ]
       %hr
-      %section#all-interactions
+      %section#all-interactions.anchor
         %h4 All Interactions
         %p.lead
           When used without any parameters, the interactions endpoint returns a list of all interactions in the DGIdb database.
@@ -501,7 +501,7 @@
               ...
             ]
       %hr
-      %section#one-interaction
+      %section#one-interaction.anchor
         %h4 Interaction Details
         %p.lead
           The interaction details endpoint can be used to retrieve detailed information about one particular interaction.
@@ -624,8 +624,10 @@
               }
             ]
       %hr
-      %section#all-drugs
-        %h3 All Drugs
+      %section#drugs.anchor
+        %h3 Drugs
+      %section#all-drugs.anchor
+        %h4 All Drugs
         %p.lead
           The drugs endpoint can be used to retrieve a list of all drugs in the DGIdb database.
         %span.label GET
@@ -656,7 +658,7 @@
               ...
             ]
       %hr
-      %section#one-drug
+      %section#one-drug.anchor
         %h4 Drug Details
         %p.lead
           The drug details endpoint can be used to retrieve detailed information about one particular drug.
@@ -1076,8 +1078,10 @@
               ]
             }
       %hr
-      %section#all-genes
-        %h3 All Genes
+      %section#genes.anchor
+        %h3 Genes
+      %section#all-genes.anchor
+        %h4 All Genes
         %p.lead
           The genes endpoint can be used to retrieve a list of all genes in the DGIdb database.
         %span.label GET
@@ -1103,7 +1107,7 @@
               ...
             ]
       %hr
-      %section#one-gene
+      %section#one-gene.anchor
         %h4 Gene Details
         %p.lead
           The gene details endpoint can be used to retrieve detailed information about one particular gene.
@@ -1236,7 +1240,7 @@
               ]
             }
       %hr
-      %section#interaction-types
+      %section#interaction-types.anchor
         %h3 Interaction Types
         %p.lead
           The interaction types endpoint can be used to retrieve a current list of supported
@@ -1248,7 +1252,7 @@
         %pre
           ["activator", "inhibitor", "unknown"]
       %hr
-      %section#interaction-sources
+      %section#interaction-sources.anchor
         %h3 Interaction Sources
         %p.lead
           The interaction sources endpoint can be used to retrieve a current list of supported
@@ -1260,7 +1264,7 @@
         %pre
           ["DrugBank","PharmGKB","TALC","TEND","TTD"]
       %hr
-      %section#gene-categories
+      %section#gene-categories.anchor
         %h3 Gene Categories
         %p.lead
           The gene categories endpoint can be used to retrieve a current list of supported
@@ -1272,7 +1276,7 @@
         %pre
           ["KINASE", "DNA REPAIR", "TUMOR SUPPRESSOR"]
       %hr
-      %section#source-trust-levels
+      %section#source-trust-levels.anchor
         %h3 Source Trust Levels
         %p.lead
           The source trust levels endpoint can be used to retrieve a current list of supported
@@ -1285,7 +1289,7 @@
           ["Expert curated", "Non-curated"]
       %hr
       /
-        %section#related-genes
+        %section#related-genes.anchor
           %h3 Related Genes
           %p.lead
             The related genes endpoint can be used to return Entrez gene symbols for other
@@ -1387,7 +1391,7 @@
                 ]
               }
         %hr
-      %section#genes-in-category
+      %section#genes-in-category.anchor
         %h3 Genes in Category
         %p.lead
           The Genes in Category endpoint can be used to get a list of all genes in DGIdb
@@ -1430,13 +1434,13 @@
           %h2
             Responses
             %small response information
-      %section#formats
+      %section#formats.anchor
         %h3 Formats
         %p
           Currently, all API responses are provided only in JSON. If you are experimenting with the API in your browser and you want to improve the display for JSON output you use a JSON formatter such as
           =link_to 'this one.', 'http://jsonformatter.curiousconcept.com/'
       %hr
-      %section#status-codes
+      %section#status-codes.anchor
         %h3 Status Codes
         %p
           The DGIdb API can respond to requests with a number of status codes.
@@ -1482,7 +1486,7 @@
           %h2
             Sample Code
             %small get started using DGIdb in the language of your choice
-      %section#perl-sample
+      %section#perl-sample.anchor
         %h3= link_to 'Perl', 'https://github.com/genome/dgi-db/blob/master/files/perl_example.pl'
         %p
           A sample Perl application that interacts with DGIdb can be found
@@ -1504,7 +1508,7 @@
           %pre
             get JSON<br>make JSON<br>install JSON<br>q
       %hr
-      %section#python-sample
+      %section#python-sample.anchor
         %h3= link_to 'Python', 'https://github.com/genome/dgi-db/blob/master/files/python_example.py'
         %p
           A sample Python application that interacts with DGIdb can be found
@@ -1523,7 +1527,7 @@
             <br>or you can do this,
             %pre
               wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py<br>sudo python get-pip.py
-      %section#ruby-sample
+      %section#ruby-sample.anchor
         %h3= link_to 'Ruby', 'https://github.com/genome/dgi-db/blob/master/files/ruby_example.rb'
         %p
           A small Ruby client library, along with a short usage demo can be found
@@ -1536,7 +1540,7 @@
           %pre
             wget https://raw.github.com/genome/dgi-db/master/files/ruby_example.rb<br>ruby ruby_example.rb
       %hr
-      %section#shell-sample
+      %section#shell-sample.anchor
         %h3= link_to 'Shell', 'https://github.com/genome/dgi-db/blob/master/files/shell_example.sh'
         %p
           A small tutorial showing command-line usage of the DGIdb API using shell commands
@@ -1605,6 +1609,12 @@
     li {
       display: list-item;
       text-align: -webkit-match-parent;
+    }
+    .anchor::before {
+      content:"";
+      display:block;
+      height:100px; /* fixed header height*/
+      margin:-100px 0 0; /* negative fixed header height */
     }
 
   :javascript
