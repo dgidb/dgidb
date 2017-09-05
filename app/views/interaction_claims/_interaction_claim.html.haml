@@ -15,7 +15,7 @@
                           =link_to interaction_claim.source.source_db_name, source_path(interaction_claim.source.source_db_name)
                         %a{href: "/drugs/#{interaction.drug.name}"} 
                           =interaction.drug.name
-                        %i{class: "fa fa-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
+                        %span{class: "glyphicon glyphicon-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
                         &nbsp
                         %a{href: "/genes/#{interaction.gene.name}"} 
                           =interaction.gene.name 

@@ -1,4 +1,5 @@
 class DrugPresenter < SimpleDelegator
+  include ApplicationHelper
   attr_reader :drug
   def initialize(drug)
     @drug = drug
@@ -55,5 +56,23 @@ class DrugPresenter < SimpleDelegator
       anti_neoplastic: drug.anti_neoplastic,
       alias: drug.drug_aliases.map(&:alias),
     }
+  end
+
+  def flag_icons
+
+    flags = []
+
+    if data[:fda_approved]
+      flags = flags.push(["FDA Approved", "success"])
+    end
+    if data[:anti_neoplastic]
+      flags = flags.push(["Anti-neoplastic","danger"])
+    end
+    if data[:immunotherapy]
+      flags = flags.push(["Immunotherapy", "info"])
+    end
+    
+    flag_help(flags)
+
   end
 end
