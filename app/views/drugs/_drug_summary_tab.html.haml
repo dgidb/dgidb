@@ -6,7 +6,10 @@
     %h3(class="item-source")
       %span
         = drug.name
-      = drug.flag_icons
+      %span{style: "font-size: 15px; color: grey; margin-right: 5px"}
+        = drug.chembl_id
+      %span{style: "float: right;"}
+        = drug.flag_icons
 %div(class="item-content")
   %div{class: "cell category", style: "float: right; width: 50%;"}
     %div{class: "item-panel"}
@@ -60,4 +63,7 @@
   div button:hover {
       background-color: #330066!important;
       color: white;
+  }
+  .flag_icon {
+    margin-right: 5px;
   }

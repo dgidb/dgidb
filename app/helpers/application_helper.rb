@@ -65,7 +65,7 @@ module ApplicationHelper
   def flag_help(flags)
     content_tag :span do
       flags.collect do |text, type|
-        content_tag(:span, text, class: ['label', 'label-' + type])
+        content_tag(:span, text, class: ['label', 'label-' + type, "flag_icon"])
       end.join.html_safe
     end
   end
