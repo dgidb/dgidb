@@ -53,16 +53,16 @@ class GenePresenter < SimpleDelegator
   end
 
   def flag_icons
-    categories = gene_categories.map{|category| category.id}
+    categories = gene_categories.map{|category| category.name}
 
     flags = []
-    if categories.include? "d3ec2631e0b2434b9dcc008e793d3fa5"
+    if categories.include? "DRUGGABLE GENOME"
       flags = flags.push(["Druggable Genome", "warning"])
     end
-    if categories.include? "0d157beb-fd17-404d-8755-3a81aa5ed704"
+    if categories.include? "CLINICALLY ACTIONABLE"
       flags = flags.push(["Clinically Actionable","primary"])
     end
-    if categories.include? "655bedfa9d71482796a5a34b87dfb297"
+    if categories.include? "DRUG RESISTANCE"
       flags = flags.push(["Drug Resistance", "default"])
     end
     #binding.pry
