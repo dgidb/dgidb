@@ -67,21 +67,20 @@ class InteractionClaimsController < ApplicationController
     @tsv = CSV.generate(col_sep: "\t") do |tsv|
       tsv << headers
       @search_results.search_results.each do |result|
-        match_field = result.type.singularize + '_id'
         row_hash = {
             'match_type' => result.match_type_label,
             'search_term' => result.search_term
         }
-        identifiers = result.identifiers
-        result.interactions.each do |interaction|
-          id = interaction[match_field]
-          row_hash['match_term'] = identifiers.select { |i| i.id == id}.first.name
-          row_hash['gene'] = interaction.gene.name
-          row_hash['drug'] = interaction.drug.name
-          row_hash['interaction_types'] = interaction.type_names.join(compound_field_separator)
-          row_hash['pmids'] = interaction.pmids.join(compound_field_separator)
-          row_hash['sources'] = interaction.source_names.join(compound_field_separator)
-          tsv << headers.map{ |field| row_hash[field] }
+        result.interactions.each do |identifier, interactions|
+          row_hash['match_term'] = identifier.name
+          interactions.each do |interaction|
+            row_hash['gene'] = interaction.gene.name
+            row_hash['drug'] = interaction.drug.name
+            row_hash['interaction_types'] = interaction.type_names.join(compound_field_separator)
+            row_hash['pmids'] = interaction.pmids.join(compound_field_separator)
+            row_hash['sources'] = interaction.source_names.join(compound_field_separator)
+            tsv << headers.map{ |field| row_hash[field] }
+          end
         end
       end
     end

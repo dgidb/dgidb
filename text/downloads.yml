@@ -18,6 +18,18 @@ downloads:
         TSV download of all drug-gene interactions in DGIdb from all sources that were mapped to Entrez genes.
         For ease of use, we recommend working directly with the <a href="http://dgidb.genome.wustl.edu/api">API</a>
         or SQL database dump below.
+    - title: Genes TSV
+      link: "http://dgidb.genome.wustl.edu/downloads/genes.tsv"
+      description: >
+        TSV download of all gene claims in DGIdb.
+        For ease of use, we recommend working directly with the <a href="http://dgidb.genome.wustl.edu/api">API</a>
+        or SQL database dump below.
+    - title: Drugs TSV
+      link: "http://dgidb.genome.wustl.edu/downloads/drugs.tsv"
+      description: >
+        TSV download of all drug claims in DGIdb.
+        For ease of use, we recommend working directly with the <a href="http://dgidb.genome.wustl.edu/api">API</a>
+        or SQL database dump below.
     - title: Categories TSV
       link: "http://dgidb.genome.wustl.edu/downloads/categories.tsv"
       description: >

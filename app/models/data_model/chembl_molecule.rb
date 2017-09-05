@@ -1,6 +1,6 @@
 module DataModel
   class ChemblMolecule < ActiveRecord::Base
-    belongs_to :drug
+    has_one :drug
     has_many :chembl_molecule_synonyms
 
     def names

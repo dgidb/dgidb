@@ -1,4 +1,3 @@
-
 - cache interaction_claim do
   -interaction = interaction_claim.interaction
   %div(class="item-title")
@@ -19,39 +18,39 @@
             Version:
           =interaction_claim.source.source_db_version
 
-  %div(class="item-content")
-    %div(class="cell category")
-      %div(class="item-panel")
-        %h4{style: "display: inline-block;"}
-          Main Info:
-          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
-            %tr
-              %td="Gene"
-              %td=@interaction.gene.name
-            %tr
-              %td="Drug"
-              %td=@interaction.drug.name
-            %tr
-              %td="Interaction Types"
-              %td=interaction_claim.interaction_claim_types.map{|ict| ict.type}.join(", ")
+%div(class="item-content")
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4{style: "display: inline-block;"}
+        Main Info:
+        %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
+          %tr
+            %td="Gene"
+            %td=@interaction.gene.name
+          %tr
+            %td="Drug"
+            %td=@interaction.drug.name
+          %tr
+            %td="Interaction Types"
+            %td=interaction_claim.interaction_claim_types.map{|ict| ict.type}.join(", ")
 
-    %div(class="cell category")
-      %div(class="item-panel")
-        %h4
-          Other Info:
-          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
-            -interaction_claim.interaction_claim_attributes[0..2].each do |attribute|
-              %tr
-                %td=attribute.name
-                %td=attribute.value
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Other Info:
+        %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
+          -interaction_claim.interaction_claim_attributes[0..2].each do |attribute|
+            %tr
+              %td=attribute.name
+              %td=attribute.value
 
-    %div(class="cell category")
-      %div(class="item-panel")
-        %h4
-          Publications:
-          %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
-            -interaction_claim.publications[0..2].each do |publication|
-              %tr
-                %td
-                  %a{href: PMID.pubmed_url(publication.pmid)}
-                    = publication.citation
+  %div(class="cell category")
+    %div(class="item-panel")
+      %h4
+        Publications:
+        %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
+          -interaction_claim.publications[0..2].each do |publication|
+            %tr
+              %td
+                %a{href: PMID.pubmed_url(publication.pmid)}
+                  = publication.citation

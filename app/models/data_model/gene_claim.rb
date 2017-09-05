@@ -25,6 +25,10 @@ module DataModel
       eager_load(gene: [gene_claims: [:source]])
     end
 
+    def self.for_tsv
+      includes(:gene, :source)
+    end
+
     def source_db_name
       self.source.source_db_name
     end

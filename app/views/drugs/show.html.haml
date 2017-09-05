@@ -13,8 +13,6 @@
       =@title
     %small
       Drug Record
-      %a(href="/faq#defined")
-        =icon('question-sign') # this is not going to the right spot
 
 - cache @drug do
   .container-fluid
@@ -33,16 +31,15 @@
               %ul(class="result-list" id="list-results")
                 %li.drug
                   =render partial: 'drugs/drug_summary_tab', locals: { drug: @drug } 
+      .tab-pane.fade#interactions
+        .row-fluid#container
+          .span12
+            =render partial: 'shared/interactions_tab', locals: { drug: @drug }
 
-        .tab-pane.fade#interactions
-          .row-fluid#container
-            .span12
-              =render partial: 'shared/interactions_tab', locals: { drug: @drug }
-
-        .tab-pane.fade#claims
-          .row-fluid#container
-            .span12
-              =render partial: 'shared/claims_tab', locals: { drug: @drug }
+      .tab-pane.fade#claims
+        .row-fluid#container
+          .span12
+            =render partial: 'shared/claims_tab', locals: { drug: @drug }
 
 :javascript
   $(document).ready(function () {

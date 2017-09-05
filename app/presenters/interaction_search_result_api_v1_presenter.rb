@@ -1,4 +1,4 @@
-class InteractionSearchResultApiPresenter
+class InteractionSearchResultApiV1Presenter
   def initialize(search_result)
     @result = search_result
   end
@@ -79,6 +79,10 @@ class InteractionSearchResultApiPresenter
 
     def gene_long_name
       interaction_claim.gene_claim.gene.long_name
+    end
+
+    def publications
+      interaction_claim.publications.map(&:pmid)
     end
 
   end

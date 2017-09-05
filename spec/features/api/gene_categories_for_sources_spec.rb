@@ -12,17 +12,19 @@ describe 'gene_categories_for_sources' do
   it 'should return a list of json hashes that contain category names and gene counts' do
     (category, source, _, gene) = setup_categories_and_genes
     source_name = CGI::escape(source.source_db_name)
-    visit "/api/v1/gene_categories_for_sources.json?sources=#{source_name}"
+    ['v1', 'v2'].each do |version|
+      visit "/api/#{version}/gene_categories_for_sources.json?sources=#{source_name}"
 
-    expect(page.status_code).to eq(200)
-    body = JSON.parse(page.body)
+      expect(page.status_code).to eq(200)
+      body = JSON.parse(page.body)
 
-    expect(body).to be_an_instance_of(Array)
-    expect(body.first).to be_an_instance_of(Hash)
+      expect(body).to be_an_instance_of(Array)
+      expect(body.first).to be_an_instance_of(Hash)
 
 
-    expect(body.first['name']).to eq(category.name)
-    expect(body.first['gene_count'].to_i).to eq(1)
+      expect(body.first['name']).to eq(category.name)
+      expect(body.first['gene_count'].to_i).to eq(1)
+    end
   end
 
   it 'should only return categories in requested_sources' do
@@ -30,13 +32,15 @@ describe 'gene_categories_for_sources' do
     (category2, _) = setup_categories_and_genes
 
     source_name = CGI::escape(source1.source_db_name)
-    visit "/api/v1/gene_categories_for_sources.json?sources=#{source_name}"
+    ['v1', 'v2'].each do |version|
+      visit "/api/#{version}/gene_categories_for_sources.json?sources=#{source_name}"
 
-    expect(page.status_code).to eq(200)
-    body = JSON.parse(page.body)
+      expect(page.status_code).to eq(200)
+      body = JSON.parse(page.body)
 
-    category_names = body.map { |category_hash| category_hash['name'] }
-    expect(category_names).to include(category1.name)
-    expect(category_names).not_to include(category2.name)
+      category_names = body.map { |category_hash| category_hash['name'] }
+      expect(category_names).to include(category1.name)
+      expect(category_names).not_to include(category2.name)
+    end
   end
 end
