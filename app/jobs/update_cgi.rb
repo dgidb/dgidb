@@ -1,6 +1,16 @@
-class UpdateCgi < ApiUpdater
-  def updater
-    Genome::OnlineUpdaters::Cgi::Updater.new()
+require('zip')
+
+class UpdateCgi < TsvUpdater
+  def tempfile_name
+    ['cgi_biomarkers_per_variant', '.tsv']
+  end
+
+  def importer
+    Genome::OnlineUpdaters::Cgi::NewCgi.new(tempfile)
+  end
+
+  def download_file
+
   end
 
   def next_update_time
