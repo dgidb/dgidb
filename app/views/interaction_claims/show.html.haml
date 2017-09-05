@@ -4,5 +4,6 @@
   %h2
     =@interaction_claim.title
     %small 
-      ="drug-gene interaction data from #{@interaction.source.source_db_name}"
-=render partial: 'interaction_claims/interaction_claim', locals: {interaction_claim: @interaction_claim}
+      ="drug-gene interaction data from #{@interaction_claim.source.source_db_name}" 
+- cache @interaction_claim do
+  =render partial: 'interaction_claims/interaction_claim', locals: {interaction_claim: @interaction_claim}

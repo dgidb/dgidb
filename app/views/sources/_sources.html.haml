@@ -1,5 +1,13 @@
 %ul(class="result-list" id="source-list-results")
 
   -sources.sort_by{ |s| s.type }.reverse.each do |source|
-    %li(class="#{source.type}" data-category="#{source.type}" data-name="#{source.type_display_name}")
-      =render partial: 'sources/source', locals:{source: source}
+    -type = source.type
+    %li(class="#{type}" data-category="#{type}" data-name="#{source.type_display_name}")
+      - if type == "gene"
+        =render partial: 'sources/gene_source', locals:{source: source}
+      - elsif type == "drug"
+        =render partial: 'sources/drug_source', locals:{source: source}
+      - elsif type == "interaction"
+        =render partial: 'sources/interaction_source', locals:{source: source}
+      - elsif type == "potentially_druggable"
+        =render partial: 'sources/category_source', locals:{source: source}

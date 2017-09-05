@@ -2,7 +2,6 @@
 /lists all claims in summary form (so renders list of claim summary partial)
 /similar to _drug.html.haml or _gene.html.haml but has variable claim type
 
-
 - if defined? drug
   %ul(class="result-list" id="list-results")
     -drug.sorted_claims.each do |drug_claim|
@@ -16,11 +15,11 @@
 - else
   %ul(class="result-list" id="list-results")
     -interaction.interaction_claims.sort_by{ |i| [-i.interaction_claim_attributes.length] }.each do |interaction_claim|
-      %li(class="#{interaction_claim.source.source_type.type} claim-panel" data-category="#{interaction_claim.source.source_type.type}" data-name="#{interaction_claim.source.source_type.display_name}")
-        =render partial: 'interaction_claims/interaction_claim_summary', locals: { interaction_claim: interaction_claim }
+      %li(class="#{interaction_claim.source.source_type.type} claim-panel" data-category="#{interaction_claim.source.source_type.type}" data-name="#{interaction_claim.source.source_type.display_name}" onclick="location.href='/interaction_claims/#{interaction_claim.id}';")
+        =render partial: 'interaction_claims/interaction_claim_summary', locals: { interaction_claim: InteractionClaimPresenter.new(interaction_claim) }
 
 :css
-  li.claim-panel.gene-drug:hover {
+  li.claim-panel:hover {
     background-color:rgba(220, 220, 220, 1);
     cursor: pointer;
   }
