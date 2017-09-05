@@ -10,10 +10,10 @@ module Genome; module OnlineUpdaters; module Go;
     def get_tsv(url)
       uri = URI.parse(url)
       body = make_get_request(uri)
-      csv_rows = CSV.parse(body, :headers => ['alteration', 'alteration_type', 'assay_type', 'association','biomarker',
-      'curator', 'drug', 'drug_family', 'drug_full_name', 'drug_status','evidence_label', 'gene', 'tumor_type',
-      'primary_tumor_acronym', 'source', 'targeting', 'individual_mutation', 'transcript', 'gene', 'strand', 'region', 'info',
-                                              'cDNA', 'gDNA', 'primary_tumor_type'], :col_sep => '\t')
+      csv_rows = CSV.parse(body, :headers => ['alteration', 'alteration_type', 'assay_type', 'Association','biomarker',
+      'curator', 'drug', 'drug_family', 'Drug Full Name', 'Drug Status','Evidence Label', 'gene', 'tumor_type',
+      'Primary Tumor Acronym', 'Source', 'targeting', 'individual_mutation', 'transcript', 'gene', 'strand', 'region', 'info',
+                                              'cDNA', 'gDNA', 'Primary Tumor type'], :col_sep => '\t')
     end
 
     def make_get_request(uri)
