@@ -11,7 +11,7 @@
     %link{:href => image_path("favicon.png"), :rel => "shortcut icon"}/
   %body.wrap
     #wrap
-      .container-fluid{ :id => "content"}
+      .container-fluid{ id: "content", style: "padding-bottom: 30px; margin-bottom: -65px; margin-top: -10px;"}
         .navbar.navbar-fixed-top.navbar-inverse{style: "margin-bottom: 0px"}
           .navbar-inner
             %a.brand(href="/")
@@ -43,7 +43,7 @@
                     %a(href="/contact") Contact
                     %a{href: "#", data: {toggle: 'modal', target:'#disclaimer-modal'}} View Disclaimer
         .container-fluid{style: "margin-bottom: 27px; margin-top: 27px"}
-          .page-header{style: "margin-top: 0px; margin-bottom: 0px; padding: 15px 0; border: 0;"}
+          .page-header{style: "margin-top: 0px; margin-bottom: 0px; padding: 0 0 -10 0; border: 0;"}
             = @news.news_ticker
         .container-fluid
           - flash.each do |key, val|

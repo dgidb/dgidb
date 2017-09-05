@@ -7,7 +7,10 @@
     %h3(class="item-source")
       %span
         = gene.name
-      = gene.flag_icons
+      %span{style: "font-size: 15px; color: grey; margin-right: 5px"}
+        = gene.entrez_id
+      %span{style: "float: right;"}
+        = gene.flag_icons
 %div(class="item-content")
   %div{class: "cell category", style: "float: right; width: 50%;"}
     %div{class: "item-panel"}
@@ -58,6 +61,11 @@
   }); 
   
 :css
+  
+  .flag_icon {
+    margin-right: 5px;
+  }
+
   div button:hover {
       background-color: #330066!important;
       color: white;
