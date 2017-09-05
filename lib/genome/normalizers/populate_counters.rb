@@ -4,7 +4,7 @@ module Genome
       def self.populate_source_counters
         DataModel::Source.all.each do |source|
           source_db_name = source.source_db_name
-          if source_db_name = "Chembl"
+          if source_db_name = "ChemblDrugs"
             source.gene_claims_count = 0
             source.drug_claims_count = DataModel::Drug.count
             source.interaction_claims_count = 0
