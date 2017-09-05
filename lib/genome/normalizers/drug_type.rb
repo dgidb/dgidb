@@ -68,6 +68,7 @@ module Genome
           'ClearityFoundationClinicalTrial',
           'CKB',
           'OncoKB',
+          'CGI'
         ]
       end
     end
