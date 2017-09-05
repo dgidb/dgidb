@@ -13,7 +13,7 @@
       Multiple Matches
     %div{style: "width: 200px; padding: 0", class: "container demo"}
     - ambiguous_matches.each do |result|
-      %ul{class: "tree"}
+      %ul{class: "tree", style: "margin-left: -15px;"}
         %li
           %input{type: "checkbox", checked: "checked", id: "#{'heading' + result[:term]}"}
           %label{for: "#{'heading' + result[:term]}", class: "tree_label"}
