@@ -14,22 +14,26 @@
                           =link_to drug_claim.source.source_db_name, source_path(drug_claim.source.source_db_name)
                         %span(class="item-id")
                           =ext_link_to drug_claim.name, drug_claim.original_data_source_url
-
-                  %div(class="item-corner")
-                    %ul(class="attribute-list")
-                      %li
-                        %strong
-                          Version:
-                        =drug_claim.source.source_db_version
-                      %div{style: "height: 461px; overflow-y: scroll; margin-bottom: 5px;"}
-                        %table{class: "table table-condensed table-striped", id: "table_aliases"}
-                          %tbody
-                            -drug_claim.drug_claim_aliases.each do |alt_name| ######
-                              %tr
-                                %td
-                                  =alt_name.alias
-                                %td{style: "text-align: right;"}
-                                  =alt_name.nomenclature
+                    %div(class="item-corner")
+                      %ul(class="attribute-list")
+                        %li
+                          %strong
+                            Version:
+                          =drug_claim.source.source_db_version
+                  %div(class="item-content")
+                    %div{class: "cell category", style: "float: right; width: 50%;"}
+                      %div{class: "item-panel"}
+                        %h4
+                          Alternate Names:
+                        %div{style: "height: 461px; overflow-y: scroll; margin-bottom: 5px;"}
+                          %table{class: "table table-condensed table-striped", id: "table_aliases"}
+                            %tbody
+                              -drug_claim.drug_claim_aliases.each do |alt_name| ######
+                                %tr
+                                  %td
+                                    =alt_name.alias
+                                  %td{style: "text-align: right;"}
+                                    =alt_name.nomenclature
                     %div{class: "cell category", style: "float: left; width: 50%" }
                       %div{class: "item-panel", style: "margin-bottom: 11px;"}
                         %h4
