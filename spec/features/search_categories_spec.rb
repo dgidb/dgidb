@@ -24,14 +24,14 @@ describe 'search_categories' do
     expect(page).not_to have_content(non_druggable_source.source_db_name)
   end
 
-  it 'should display a list of source trust levels' do
+  it 'should not display a list of source trust levels' do
     Fabricate(:source_type, type: 'potentially_druggable')
     trust_levels = (1..3).map { Fabricate(:source_trust_level) }
 
     visit '/search_categories'
 
     trust_levels.each do |level|
-      expect(page).to have_content(level.level)
+      expect(page).not_to have_content(level.level)
     end
   end
 

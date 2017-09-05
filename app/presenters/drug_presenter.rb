@@ -1,4 +1,5 @@
 class DrugPresenter < SimpleDelegator
+  attr_reader :drug
   def initialize(drug)
     @drug = drug
     super
@@ -38,10 +39,21 @@ class DrugPresenter < SimpleDelegator
   end
 
   def sorted_interactions_by_score
-    interactions.sort_by{ |i| -(i.publications.count + i.interaction_claims.count)}
+    interactions.sort_by{ |i| -(i.publications.size + i.interaction_claims.size)}
   end
 
   def publications
     interactions.map{|i| i.publications}.flatten.uniq
+  end
+
+  def data
+    {
+      name: drug.name,
+      chembl_id: drug.chembl_id,
+      fda_approved: drug.fda_approved,
+      immunotherapy: drug.immunotherapy,
+      anti_neoplastic: drug.anti_neoplastic,
+      alias: drug.drug_aliases.map(&:alias),
+    }
   end
 end

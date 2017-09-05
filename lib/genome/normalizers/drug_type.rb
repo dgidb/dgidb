@@ -1,6 +1,6 @@
 module Genome
   module Normalizers
-    class DrugTypeNormalizers
+    class DrugTypeNormalizer
 
       def self.normalize_types
         drugs = antineoplastic_drugs
@@ -65,7 +65,9 @@ module Genome
           'MyCancerGenomeClinicalTrial',
           'CancerCommons',
           'ClearityFoundationBiomarkers',
-          'ClearityFoundationClinicalTrial'
+          'ClearityFoundationClinicalTrial',
+          'CKB',
+          'OncoKB',
         ]
       end
     end

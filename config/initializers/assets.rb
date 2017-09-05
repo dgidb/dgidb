@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w(*.min *.js)
+Rails.application.config.assets.precompile += %w(*.min *.js *.css *.coffee *.less)

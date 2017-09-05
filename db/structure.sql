@@ -107,8 +107,7 @@ CREATE TABLE chembl_molecules (
     withdrawn_flag boolean,
     withdrawn_year integer,
     withdrawn_country text,
-    withdrawn_reason text,
-    drug_id text
+    withdrawn_reason text
 );
 
 
@@ -281,7 +280,8 @@ CREATE TABLE drugs (
     fda_approved boolean,
     immunotherapy boolean,
     anti_neoplastic boolean,
-    chembl_id character varying NOT NULL
+    chembl_id character varying NOT NULL,
+    chembl_molecule_id integer
 );
 
 
@@ -1170,13 +1170,6 @@ CREATE UNIQUE INDEX index_chembl_molecules_on_chembl_id ON chembl_molecules USIN
 
 
 --
--- Name: index_chembl_molecules_on_drug_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_chembl_molecules_on_drug_id ON chembl_molecules USING btree (drug_id);
-
-
---
 -- Name: index_chembl_molecules_on_molregno; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1771,11 +1764,11 @@ ALTER TABLE ONLY drug_aliases
 
 
 --
--- Name: chembl_molecules fk_rails_4d99531977; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: drugs fk_rails_de0c74dec1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY chembl_molecules
-    ADD CONSTRAINT fk_rails_4d99531977 FOREIGN KEY (drug_id) REFERENCES drugs(id);
+ALTER TABLE ONLY drugs
+    ADD CONSTRAINT fk_rails_de0c74dec1 FOREIGN KEY (chembl_molecule_id) REFERENCES chembl_molecules(id);
 
 
 --
@@ -1925,5 +1918,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170728015708'),
 ('20170728023124'),
 ('20170729004221'),
-('20170808210937');
+('20170808210937'),
+('20170824182356');
+
+
 

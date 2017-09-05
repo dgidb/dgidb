@@ -6,45 +6,42 @@
       Gene Record
       %a(href="/faq#defined")
         =icon('question-sign')
-  -#%a{class: ['btn', 'btn-success'], href: "/interaction_search_results?genes=#{@title}"}
-  -#  =icon('search', class: 'icon-white')
-  -#  =" interactions for #{@title}"
+
   %a{class: ['btn', 'btn-success'], href: "/categories_search_results?genes=#{@title}"}
     =icon('search', class: 'icon-white')
     =" categories for #{@title}"
+
   -#%a{class: ['btn', 'btn-success'], href: "/interactions_for_related_genes?genes=#{@title}"}
   -#  =icon('search', class: 'icon-white')
   -#  =" interactions for genes related to #{@title}"
 
+.container-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active
+        %a(href="#summary" data-toggle="tab") Summary
+      %li
+        %a(href="#interactions" data-toggle="tab") Interactions
+      %li
+        %a(href="#claims" data-toggle="tab") Claims
+    .tab-content{style: "margin-top: 12px;"}
+      .tab-pane.active#summary
+        .row-fluid#container 
+          .span12
+            %ul(class="result-list" id="list-results")
+              %li
+                =render partial: 'genes/gene_summary_tab', locals: { gene: @gene } # partial will check if drug is null to tell if it is in drug or gene mode
 
+      .tab-pane.fade#interactions
+        .row-fluid#container
+          .span12
+            =render partial: 'shared/interactions_tab', locals: {gene: @gene}
 
-- cache @gene do
-  .container-fluid
-    .tabbable
-      %ul.nav.nav-tabs
-        %li.active
-          %a(href="#summary" data-toggle="tab") Summary
-        %li
-          %a(href="#interactions" data-toggle="tab") Interactions
-        %li
-          %a(href="#claims" data-toggle="tab") Claims
-      .tab-content{style: "margin-top: 12px;"}
-        .tab-pane.active#summary
-          .row-fluid#container 
-            .span12
-              %ul(class="result-list" id="list-results")
-                %li
-                  =render partial: 'genes/gene_summary_tab', locals: { gene: @gene } # partial will check if drug is null to tell if it is in drug or gene mode
+      .tab-pane.fade#claims
+        .row-fluid
+          .span12
+            =render partial: 'shared/claims_tab', locals: {gene: @gene}
 
-        .tab-pane.fade#interactions
-          .row-fluid#container
-            .span12
-              =render partial: 'shared/interactions_tab', locals: {gene: @gene}
-
-        .tab-pane.fade#claims
-          .row-fluid
-            .span12
-              =render partial: 'shared/claims_tab', locals: {gene: @gene}
 
 :javascript
   $(document).ready(function () {

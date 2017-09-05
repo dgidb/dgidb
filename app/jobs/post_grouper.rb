@@ -2,10 +2,10 @@
 class PostGrouper
   def perform(cleanup_gene_claims = false)
     if cleanup_gene_claims
-      delete_orphaned_gene_claims()
+      delete_orphaned_gene_claims
     end
-    update_counts()
-    update_trust_levels()
+    update_counts
+    update_trust_levels
   end
 
   def delete_orphaned_gene_claims
@@ -15,10 +15,15 @@ class PostGrouper
   end
 
   def update_counts
-    Genome::Normalizers::PopulateCounters.populate_source_counters()
+    Genome::Normalizers::PopulateCounters.populate_source_counters
   end
 
   def update_trust_levels
-    Genome::Normalizers::SourceTrustLevel.populate_trust_levels()
+    Genome::Normalizers::SourceTrustLevel.populate_trust_levels
   end
+
+  def update_drug_types
+    Genome::Normalizers::DrugTypeNormalizer.normalize_types
+  end
+
 end

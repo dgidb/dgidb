@@ -13,5 +13,17 @@ module DataModel
     def self.for_show
       eager_load(:interaction_claim_types, :interaction_claim_attributes, :source, :drug_claim, gene_claim: [:gene, :source])
     end
+
+    def self.for_tsv
+      includes(:source, :interaction_claim_types, drug_claim: [:drug], gene_claim: [:gene])
+    end
+
+    def drug
+      self.drug_claim.drug
+    end
+
+    def gene
+      self.gene_claim.gene
+    end
   end
 end
