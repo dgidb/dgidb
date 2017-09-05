@@ -1,4 +1,5 @@
 class GenePresenter < SimpleDelegator
+  include ApplicationHelper
   attr_accessor :gene
 
   def initialize(gene)
@@ -49,6 +50,23 @@ class GenePresenter < SimpleDelegator
       entrez_id: gene.entrez_id,
       aliases: gene.gene_aliases.map(&:alias)
     }
+  end
+
+  def flag_icons
+    categories = gene_categories.map{|category| category.id}
+
+    flags = []
+    if categories.include? "d3ec2631e0b2434b9dcc008e793d3fa5"
+      flags = flags.push(["Druggable Genome", "warning"])
+    end
+    if categories.include? "0d157beb-fd17-404d-8755-3a81aa5ed704"
+      flags = flags.push(["Clinically Actionable","primary"])
+    end
+    if categories.include? "655bedfa9d71482796a5a34b87dfb297"
+      flags = flags.push(["Drug Resistance", "default"])
+    end
+    #binding.pry
+    flag_help(flags)
   end
 
   private

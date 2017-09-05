@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include ActionView::Helpers::TagHelper
+  include ActionView::Context   
   def tx( fragment_id, action = params['action'] )
     action_hash = Maybe(EXTERNAL_STRINGS[action])
     if !action_hash[fragment_id].nil?
@@ -58,6 +60,14 @@ module ApplicationHelper
 
   def download_link(filename)
     link_to("/downloads/#{filename}")
+  end
+
+  def flag_help(flags)
+    content_tag :span do
+      flags.collect do |text, type|
+        content_tag(:span, text, class: ['label', 'label-' + type])
+      end.join.html_safe
+    end
   end
 
 end
