@@ -65,7 +65,6 @@ class GenePresenter < SimpleDelegator
     if categories.include? "DRUG RESISTANCE"
       flags = flags.push(["Drug Resistance", "default"])
     end
-    #binding.pry
     flag_help(flags)
   end
 
