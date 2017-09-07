@@ -15,18 +15,19 @@
     - if ambiguous_matches.count > 0
       %div(class="panel-group" id="accordion" role="tablist" aria-multiselectable="true")
         - ambiguous_matches.each do |result|
-          %div{class: "panel-heading", role: "tab", id: "#{'heading' + result[:term]}"}
-            %h4(class="panel-title" style="margin-left: -20px;")
-              %a{role: "button", "data-toggle" => "collapse", "data-parent" => "#accordion", href: "#{'#collapse' + result[:term]}", "aria-expanded" => "true", "aria-controls" => "#{'collapse' + result[:term]}", style: "word-wrap: break-word; display: inline-block;"}
-                %i(class="more-less glyphicon glyphicon-plus")
-                = "Search Term: " + result[:term]
-
-          %div{id: "#{'collapse' + result[:term]}", class: "panel-collapse collapse", role: "tabpanel", "aria-labelledby" => "#{'heading' + result[:term]}"}
-            %div{class: "panel-body", style: "padding: 0px;"}
-            - result[:identifiers].each do |entity|
-              %div
-                %input{class: "ambiguous sidebar-toggle", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
-                  = entity.name
+          %ul{class: "tree", style: "margin-left: -15px;"}
+            %li
+              %input{type: "checkbox", checked: "checked", id: "#{'heading' + result[:term]}"}
+              %label{for: "#{'heading' + result[:term]}", class: "tree_label"}
+                %span
+                  %input{class: "ambiguous search-term", type: "checkbox", name: result[:term], checked: 1}
+                    = result[:term]
+              %ul
+                - result[:identifiers].each do |entity|
+                  %li
+                    %span{class: "tree_label"}
+                      %input{class: "ambiguous sidebar-toggle #{result[:term]}", type: "checkbox", name: "#{entity.name + "-ambiguous"}", checked: 1}
+                        = entity.name 
     - else
       %div{style: "margin-top:15px;"}
         %i
@@ -45,12 +46,127 @@
           %i 
             ambiguous 
           matches.
-:javascript
-  function toggleIcon(e) {
-    $(e.target)
-      .prev('.panel-heading')
-      .find(".more-less")
-      .toggleClass('glyphicon-plus glyphicon-minus');
+          
+:css
+  /* ————————————————————–
+    Tree core styles
+  */
+  .tree { margin: 1em; }
+
+  .tree input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    }
+
+  .tree input ~ ul { display: none; }
+
+  .tree input:checked ~ ul { display: block; }
+
+  /* ————————————————————–
+    Tree rows
+  */
+  .tree li {
+    line-height: 1.2;
+    position: relative;
+    padding: 0 0 1em 1em;
+    }
+
+  .tree ul li { padding: 1em 0 0 1em; }
+
+  .tree ul { padding-left: 0; margin: -5px 0 0 -1px }
+
+  .tree > li:last-child { padding-bottom: 0; }
+
+  /* ————————————————————–
+    Tree labels
+  */
+  .tree_label {
+    position: relative;
+    display: inline-block;
+    }
+
+  label.tree_label { cursor: pointer; }
+
+  label.tree_label:hover { color: #666; }
+
+  /* ————————————————————–
+    Tree expanded icon
+  */
+  label.tree_label:before {
+    background: #000;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    float: left;
+    margin: 0 1em 0 -2em;
+    width: 1em;
+    height: 1em;
+    border-radius: 1em;
+    content: '+';
+    text-align: center;
+    line-height: .9em;
+    }
+
+  :checked ~ label.tree_label:before { content: '–'; }
+
+  /* ————————————————————–
+    Tree branches
+  */
+  .tree li:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -.5em;
+    display: block;
+    width: 0;
+    border-left: 1px solid #777;
+    content: "";
+    }
+
+  .tree_label:after {
+    position: absolute;
+    top: 0;
+    left: -1.5em;
+    display: block;
+    height: 0.5em;
+    width: 1em;
+    border-bottom: 1px solid #777;
+    border-left: 1px solid #777;
+    border-radius: 0 0 0 .3em;
+    content: '';
+    }
+
+  label.tree_label:after { border-bottom: 0; }
+
+  :checked ~ label.tree_label:after {
+    border-radius: 0 .3em 0 0;
+    border-top: 1px solid #777;
+    border-right: 1px solid #777;
+    border-bottom: 0;
+    border-left: 0;
+    bottom: 0;
+    top: 0.5em;
+    height: auto;
+    }
+
+  .tree li:last-child:before {
+    height: 1em;
+    bottom: auto;
+    }
+
+  .tree > li:last-child:before { display: none; }
+
+  .tree_custom {
+    display: block;
+    background: #eee;
+    padding: 1em;
+    border-radius: 0.3em;
   }
-  $('.panel-group').on('hidden.bs.collapse', toggleIcon);
-  $('.panel-group').on('shown.bs.collapse', toggleIcon);
+
+  ul {
+    list-style-type:none
+  }
+
+  input.ambiguous {
+    position: relative;
+  }
