@@ -39,33 +39,29 @@ module Genome; module OnlineUpdaters; module Cgi;
 
     def create_interaction_claims
       CSV.parse(body, :headers => true, :col_sep => '\t') do |row|
-        drug_claim = DataModel::DrugClaim.where(
-          name: row['Drug'].upcase,
-          nomenclature: 'CGI Drug Name',
-          primary_name: row['Drug'],
-          source_id: source.id
-        ).first_or_create
+        gene_claim = create_gene_claim(gene['Gene'], 'CGI Gene Name')
 
-        gene_claim = DataModel::GeneClaim.where(
-          name: row['Gene'],
-          nomenclature: 'CGI Gene Name',
-          source_id: source.id
-        ).first_or_create
-
-        interaction_claim = DataModel::InteractionClaim.where(
-        gene_claim_id: gene_claim.id,
-        drug_claim_id: drug_claim.id,
-        source_id: source.id
-        ).first_or_create
-
-        row['Source'].split(':').last do |pmid|
-            publication = DataModel::Publication.where(
-              pmid: pmid
-            )
-            interaction_claim.publications << publication unless interaction_claim.publications.include? publication
+        if ['Drug'].include? ','
+          combination_drug_name = ['Drug']
+          combination_drug_name.scan(/[a-zA-Z0-9]+/).each do |individual_drug_name|
+            drug = drugs[individual_drug_name]
+            drug_claim = create_drug_claim(drug['Drug'], drug['Drug'], 'CGI Drug Name')
+            interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+            create_interaction_claim_attribute(interaction_claim, 'combination therapy', combination_drug_name)
+            add_interaction_claim_publications(interaction_claim, ['Source'])
+            end
+        else
+          drug_claim = create_drug_claim(drug['Drug'], drug['Drug'], 'CGI Drug Name')
+          interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+          add_interaction_claim_publications(interaction_claim, ['Source'])
         end
-        interaction_claim.save
+      end
+    end
+
+    def add_interaction_claim_publications(interaction_claim, pmid)
+      ['Source'].split(':').last do |pmid|
+        create_interaction_claim_publications(interaction_claim, pmid)
       end
     end
   end
-end; end; end;
+end; end; end
