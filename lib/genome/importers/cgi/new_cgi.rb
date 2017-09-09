@@ -1,6 +1,6 @@
 require 'genome/online_updater'
 
-module Genome; module OnlineUpdaters; module Cgi;
+module Genome; module Importers; module Cgi;
   class NewCgi
     attr_reader :file_path, :source
     def initialize(file_path)
