@@ -1,4 +1,8 @@
-require('zip')
+require 'net/http'
+require 'openssl'
+require 'zip'
+
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 class UpdateCgi < TsvUpdater
   def tempfile_name
@@ -6,29 +10,23 @@ class UpdateCgi < TsvUpdater
   end
 
   def importer
-    Genome::OnlineUpdaters::Cgi::NewCgi.new(tempfile)
+    Genome::Importers::Cgi::NewCgi.new(tempfile)
   end
 
-  def get_interactions
-    get_zipfile(zip_url)
-  end
-
-  def zip_url
-    'https://www.cancergenomeinterpreter.org/data/cgi_biomarkers_latest.zip'
-  end
-
-  def get_zipfile(url)
-    uri = URI(url)
-
-    uri.query = URI.encode_www_form(docm_params)
-
-    req = Net::HTTP::Get.new(uri)
-    resp = Net::HTTP.start(uri.host, uri.port) { |http| http.read_timeout = 1000; http.request(req)}
-    if resp.code != '200'
-      raise StandardError.new('Failed HTTP request')
+  def download_file
+    uri = URI('https://www.cancergenomeinterpreter.org/data/cgi_biomarkers_latest.zip')
+    response = Net::HTTP.start(uri.host, uri.port,
+                    :use_ssl => uri.scheme == 'https') do |http|
+      request = Net::HTTP::Get.new uri
+      http.request(request)
     end
-
-    resp.body
+    Zip::InputStream.open(StringIO.new(response.body)) do |io|
+      while entry = io.get_next_entry
+        if entry.name == 'cgi_biomarkers_per_variant.tsv'
+          tempfile.write(io.read.encode("ASCII-8BIT").force_encoding("utf-8"))
+        end
+      end
+    end
   end
 
   def next_update_time
