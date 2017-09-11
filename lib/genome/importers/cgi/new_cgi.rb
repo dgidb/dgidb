@@ -48,12 +48,14 @@ module Genome; module Importers; module Cgi;
             drug_claim = create_drug_claim(drug['Drug'], drug['Drug'], 'CGI Drug Name')
             interaction_claim = create_interaction_claim(gene_claim, drug_claim)
             create_interaction_claim_attribute(interaction_claim, 'combination therapy', combination_drug_name)
+            create_interaction_claim_attribute(interaction_claim, 'Drug family', ['Drug family'])
             add_interaction_claim_publications(interaction_claim, ['Source'])
             end
         else
           drug_claim = create_drug_claim(drug['Drug'], drug['Drug'], 'CGI Drug Name')
           interaction_claim = create_interaction_claim(gene_claim, drug_claim)
           add_interaction_claim_publications(interaction_claim, ['Source'])
+          create_interaction_claim_attribute(interaction_claim, 'Drug family', ['Drug family'])
         end
       end
     end
