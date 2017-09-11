@@ -9,8 +9,26 @@ class UpdateCgi < TsvUpdater
     Genome::OnlineUpdaters::Cgi::NewCgi.new(tempfile)
   end
 
-  def download_file
+  def get_interactions
+    get_zipfile(zip_url)
+  end
 
+  def zip_url
+    'https://www.cancergenomeinterpreter.org/data/cgi_biomarkers_latest.zip'
+  end
+
+  def get_zipfile(url)
+    uri = URI(url)
+
+    uri.query = URI.encode_www_form(docm_params)
+
+    req = Net::HTTP::Get.new(uri)
+    resp = Net::HTTP.start(uri.host, uri.port) { |http| http.read_timeout = 1000; http.request(req)}
+    if resp.code != '200'
+      raise StandardError.new('Failed HTTP request')
+    end
+
+    resp.body
   end
 
   def next_update_time
