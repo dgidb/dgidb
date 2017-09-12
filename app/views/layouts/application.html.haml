@@ -12,7 +12,7 @@
   %body.wrap
     #wrap
       .container-fluid{ id: "content", style: "padding-bottom: 30px; margin-bottom: -65px; margin-top: -10px;"}
-        .navbar.navbar-fixed-top.navbar-inverse{style: "margin-bottom: 0px"}
+        .navbar.navbar-fixed-top.navbar-inverse#fixed_navbar{style: "margin-bottom: 0px"}
           .navbar-inner
             %a.brand(href="/")
               %img{:src => image_path("dgidb-header-branding_128c.png"), :class => "logo", :width => "500"}
@@ -65,7 +65,9 @@
       -moz-transform: scale(0.8);
     }
     .wrap{ 
-      width:100%; min-width:1100px;
+      width:100%; 
+      min-width: 800px;
+      max-height: 900px;
     }
     .dropdown-menu {
       margin-top: 1em;
@@ -90,6 +92,21 @@
     .dropdown-menu:after {
       top: -.7em;
         border-bottom-color: #fff;
+    }
+
+    .navbar {
+      position: absolute;
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+      background-size: cover;
+      min-width: 1100px;
+    }
+
+    .navbar .nav.main-menu {
+      width: 500px;
+      min-width: 500px;
+      max-width: 500px;
     }
 
   :javascript

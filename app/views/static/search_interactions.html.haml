@@ -41,7 +41,7 @@
                 = "  FDA Approved"
             %div
               %input{type: "checkbox", value: "checked", name: "anti_neoplastic", form: "search_form"} 
-                = "  Anti-neoplastic"
+                = "  Antineoplastic"
             %div
               %input{type: "checkbox", value: "checked", name: "immunotherapy", form: "search_form"} 
                 = "  Immunotherapies"
@@ -77,20 +77,21 @@
               flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types,
               name_meth: 'to_s', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
     .form-actions{style: "clear: both; display: flex; justify-content: center;"}
-      %button.btn.btn-success(type="submit" id='search-btn' style='font-size: 20px' form='search_form')
+      %button.btn.btn-success(href="#" type="submit" id='search-btn' style='font-size: 20px' form='search_form')
         %i(class="fa fa-search" aria-hidden="true")
         Find Drug-Gene Interactions
 
-  =render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
-
+  - if !browser.safari?
+    = render partial: 'shared/loading_modal', locals: {title: "Searching Drug-Gene Interactions..."}
 
   :javascript
+
     $(document).ready(function() {
 
       $('#geneSearch > input').prop("checked", true);
 
       $('#geneSearch').on("click", function() {
-
+        console.log("TRULY");
         $('#drugSearch > input').prop("checked", false);
         $('#drug_search_filters').hide();
         $('#drug_search_filters > div > div > input').prop("disabled", true);
@@ -112,6 +113,7 @@
         $('#drug_search_filters > div > div > input').prop("disabled", false);
 
       });
+      
     });
 
   =javascript_include_tag 'jquery-ui-1.8.21.custom.min'
