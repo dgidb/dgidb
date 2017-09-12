@@ -1,7 +1,7 @@
 require 'genome/online_updater'
 
 module Genome; module Importers; module Cgi;
-  class NewCgi
+  class NewCgi < Genome::OnlineUpdater
     attr_reader :file_path, :source
     def initialize(file_path)
       @file_path = file_path
@@ -38,13 +38,12 @@ module Genome; module Importers; module Cgi;
     end
 
     def create_interaction_claims
-      CSV.parse(file_path, :headers => true, :col_sep => '\t') do |row|
-        gene_claim = create_gene_claim(row['Gene'], 'CGI Gene Name')
-
-        if row['Drug'].include? ','
+      CSV.foreach(file_path, :headers => true, :col_sep => '\t') do |row|
+        if row['Drug'].include?(',')
           combination_drug_name = row['Drug']
           combination_drug_name.scan(/[a-zA-Z0-9]+/).each do |individual_drug_name|
             drug_claim = create_drug_claim(individual_drug_name, individual_drug_name, 'CGI Drug Name')
+            gene_claim = create_gene_claim(row['Gene'], 'CGI Gene Name')
             interaction_claim = create_interaction_claim(gene_claim, drug_claim)
             create_interaction_claim_attribute(interaction_claim, 'combination therapy', combination_drug_name)
             create_interaction_claim_attribute(interaction_claim, 'Drug family', row['Drug family'])
@@ -52,6 +51,7 @@ module Genome; module Importers; module Cgi;
             end
         else
           drug_claim = create_drug_claim(row['Drug'], row['Drug'], 'CGI Drug Name')
+          gene_claim = create_gene_claim(row['Gene'], 'CGI Gene Name')
           interaction_claim = create_interaction_claim(gene_claim, drug_claim)
           add_interaction_claim_publications(interaction_claim, row['Source'])
           create_interaction_claim_attribute(interaction_claim, 'Drug family', row['Drug family'])
