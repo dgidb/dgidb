@@ -17,8 +17,8 @@ module Genome
         Utils::Database.delete_drugs
         DataModel::ChemblMoleculeSynonym.delete_all
         DataModel::ChemblMolecule.delete_all
-        self.init_molecules_from_db
-        self.init_synonyms_from_db
+        init_molecules_from_db
+        init_synonyms_from_db
         grouper = Grouper.new
         grouper.perform
         postgrouper = PostGrouper.new
@@ -44,7 +44,7 @@ module Genome
 
         connection.exec("SELECT * FROM molecule_synonyms").each do |record|
           params = get_params(record, syn_col_hash)
-          params[:synonym] = record['synonyms']
+          params[:synonym] = record['synonyms'].strip
           synonym = DataModel::ChemblMoleculeSynonym.create(params)
           DataModel::ChemblMolecule.where(molregno: params[:molregno]).first.chembl_molecule_synonyms << synonym
         end
@@ -61,7 +61,7 @@ module Genome
           elsif col_hash[k].type == :boolean
             params[ks] = flag(v)
           else
-            params[ks] = v
+            params[ks] = v&.strip
           end
         end
         params
@@ -114,7 +114,7 @@ module Genome
         if to_yn
           value = ActiveRecord::Type::Boolean.new.cast(value) ? 'yes' : 'no'
         end
-        DataModel::InteractionClaimAttribute.create(interaction_claim: ic, name: name, value: value)
+        DataModel::InteractionClaimAttribute.create(interaction_claim: ic, name: name.strip, value: value.strip)
       end
 
       def self.load_interaction_claims
@@ -138,17 +138,17 @@ module Genome
             gene_syn = synonyms.select{|s| s['syn_type'] == 'GENE_SYMBOL' && !s['component_synonym'].blank?}.first ||
                        synonyms.select{|s| s['syn_type'] == 'UNIPROT' && !s['component_synonym'].blank?}.first
             next if gene_syn.nil?
-            gene_name = gene_syn['component_synonym']
-            gene_nomenclature = gene_syn['syn_type']
-            drug_claim = DataModel::DrugClaim.where(name: molecule.chembl_id, nomenclature: 'ChEMBL ID',
-                                                primary_name: molecule.pref_name, source: source).first_or_create
+            gene_name = gene_syn['component_synonym'].strip
+            gene_nomenclature = gene_syn['syn_type'].strip
+            drug_claim = DataModel::DrugClaim.where(name: molecule.chembl_id.strip, nomenclature: 'ChEMBL ID',
+                                                primary_name: molecule.pref_name.strip, source: source).first_or_create
             gene_claim = DataModel::GeneClaim.where(name: gene_name, nomenclature: gene_nomenclature, source: source)
                           .first_or_create do |gc|
               synonyms.each do |synonym|
                 next unless synonym['syn_type'].in? %w(GENE_SYMBOL UNIPROT)
                 next if synonym['component_synonym'].blank?
-                DataModel::GeneClaimAlias.create(gene_claim: gc, alias: synonym['component_synonym'],
-                                                 nomenclature: synonym['syn_type'])
+                DataModel::GeneClaimAlias.create(gene_claim: gc, alias: synonym['component_synonym'].strip,
+                                                 nomenclature: synonym['syn_type'].strip)
               end
             end
             interaction_claim = DataModel::InteractionClaim.where(drug_claim: drug_claim,
@@ -156,7 +156,7 @@ module Genome
               add_ica('Mechanism of Interaction', interaction['mechanism_of_action'], ic)
               add_ica('Direct Interaction', interaction['direct_interaction'], ic, true)
               begin
-                type = DataModel::InteractionClaimType.find_by(type: interaction['action_type'].downcase)
+                type = DataModel::InteractionClaimType.find_by(type: interaction['action_type'].downcase.strip)
               rescue NoMethodError
                 type = nil
               end
