@@ -66,7 +66,7 @@ class DrugPresenter < SimpleDelegator
       flags = flags.push(["FDA Approved", "success"])
     end
     if data[:anti_neoplastic]
-      flags = flags.push(["Anti-neoplastic","danger"])
+      flags = flags.push(["Antineoplastic","danger"])
     end
     if data[:immunotherapy]
       flags = flags.push(["Immunotherapy", "info"])
