@@ -160,17 +160,6 @@ module Genome
         @fuzzy_multimatch ||= Set.new
       end
 
-      # def drug_claims_not_in_groups
-      #   @drug_claim_relation.where(drug_id: nil).to_a.keep_if do |drug_claim|
-      #     !(
-      #       (direct_multimatch.member? drug_claim) ||
-      #       (molecule_multimatch.member? drug_claim) ||
-      #       (indirect_multimatch.member? drug_claim) ||
-      #       (fuzzy_multimatch.member? drug_claim)
-      #     )
-      #   end
-      # end
-
       def drug_claims_not_in_groups
         multimatch_claims = direct_multimatch + molecule_multimatch + indirect_multimatch + fuzzy_multimatch
         relation = @drug_claim_relation

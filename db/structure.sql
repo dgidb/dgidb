@@ -1018,10 +1018,24 @@ ALTER TABLE ONLY sources
 
 
 --
+-- Name: chembl_molecule_synonyms_index_on_upper_alphanumeric_synonym; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX chembl_molecule_synonyms_index_on_upper_alphanumeric_synonym ON chembl_molecule_synonyms USING btree (upper(regexp_replace((synonym)::text, '[^\w]+|_'::text, ''::text)));
+
+
+--
 -- Name: chembl_molecule_synonyms_index_on_upper_synonym; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX chembl_molecule_synonyms_index_on_upper_synonym ON chembl_molecule_synonyms USING btree (upper((synonym)::text));
+
+
+--
+-- Name: chembl_molecules_index_on_upper_alphanumeric_pref_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX chembl_molecules_index_on_upper_alphanumeric_pref_name ON chembl_molecules USING btree (upper(regexp_replace((pref_name)::text, '[^\w]+|_'::text, ''::text)));
 
 
 --
@@ -1036,6 +1050,13 @@ CREATE INDEX chembl_molecules_index_on_upper_pref_name ON chembl_molecules USING
 --
 
 CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
+
+
+--
+-- Name: drug_alias_index_on_upper_alphanumeric_alias; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX drug_alias_index_on_upper_alphanumeric_alias ON drug_aliases USING btree (upper(regexp_replace(alias, '[^\w]+|_'::text, ''::text)));
 
 
 --
@@ -1971,6 +1992,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170729004221'),
 ('20170808210937'),
 ('20170824182356'),
+('20170913042301'),
 ('20170913202927');
 
 
