@@ -19,7 +19,7 @@ module Utils
       if grouper.direct_multimatch.any?
         return DataModel::Drug.where('upper(name) in (?) or chembl_id IN (?)', drug_claim.names, drug_claim.names)
       elsif grouper.molecule_multimatch.any?
-        return 'Molecule multimatch'
+        return DataModel::ChemblMolecule.where('chembl_id IN (?)', drug_claim.names)
       elsif grouper.indirect_multimatch.any?
         return 'Indirect multimatch'
       elsif grouper.fuzzy_multimatch.any?
@@ -30,18 +30,15 @@ module Utils
     end
 
     def self.drug_grouper_dry_run(drug_claim_relation = DataModel::DrugClaim)
-      total_count = drug_claim_relation.includes(:source)
-                        .group(:source)
-                        .size
-                        .each_with_object({}) { |(k, v), h| h[k.source_db_name] = v}
-      pre_count = ungrouped_drug_count
+      total_count = total_drug_count drug_claim_relation
+      pre_count = ungrouped_drug_count drug_claim_relation
       ActiveRecord::Base.transaction do
         # do stuff
         @drug_grouper = Genome::Groupers::DrugGrouper.new drug_claim_relation
         @drug_grouper.run
 
         # record result
-        @post_grouper_count = ungrouped_drug_count
+        @post_grouper_count = ungrouped_drug_count drug_claim_relation
 
         # undo stuff
         raise ActiveRecord::Rollback
@@ -56,8 +53,8 @@ module Utils
               grouper: @drug_grouper}
     end
 
-    def self.ungrouped_drug_count
-      DataModel::DrugClaim
+    def self.ungrouped_drug_count(relation = DataModel::DrugClaim)
+      relation
           .includes(:drug_claim_aliases, :source)
           .where(drug_id: nil)
           .group(:source)
@@ -65,8 +62,9 @@ module Utils
           .each_with_object({}) { |(k, v), h| h[k.source_db_name] = v}
     end
 
-    def self.total_drug_count
-      DataModel::DrugClaim.includes(:source)
+    def self.total_drug_count(relation = DataModel::DrugClaim)
+      relation
+          .includes(:source)
           .group(:source)
           .size
           .each_with_object({}) { |(k, v), h| h[k.source_db_name] = v}

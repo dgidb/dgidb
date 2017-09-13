@@ -2,7 +2,7 @@ module Genome
   module Groupers
     class DrugGrouper
 
-      def initialize(drug_claim_relation=DataModel::DrugClaim)
+      def initialize(drug_claim_relation = DataModel::DrugClaim)
         @drug_claim_relation = drug_claim_relation
       end
 
@@ -12,12 +12,8 @@ module Genome
 
       def run
         begin
-          newly_added_claims_count = 0
-          drug_claims_not_in_groups.in_groups_of(1000, false) do |claims|
-            grouped_claims = add_members(claims)
-            newly_added_claims_count += grouped_claims.length
-          end
-        end until newly_added_claims_count == 0
+          grouped_claims = add_members(drug_claims_not_in_groups)
+        end until grouped_claims.length == 0
       end
 
       def add_members(claims)
@@ -147,13 +143,26 @@ module Genome
         @fuzzy_multimatch ||= Set.new
       end
 
+      # def drug_claims_not_in_groups
+      #   @drug_claim_relation.where(drug_id: nil).to_a.keep_if do |drug_claim|
+      #     !(
+      #       (direct_multimatch.member? drug_claim) ||
+      #       (molecule_multimatch.member? drug_claim) ||
+      #       (indirect_multimatch.member? drug_claim) ||
+      #       (fuzzy_multimatch.member? drug_claim)
+      #     )
+      #   end
+      # end
+
       def drug_claims_not_in_groups
-        @drug_claim_relation.where(drug_id: nil).to_a.keep_if do |drug_claim|
-          !(
-            (direct_multimatch.member? drug_claim) ||
-            (molecule_multimatch.member? drug_claim) ||
-            (indirect_multimatch.member? drug_claim)
-          )
+        multimatch_claims = direct_multimatch + molecule_multimatch + indirect_multimatch + fuzzy_multimatch
+        relation = @drug_claim_relation
+                       .where(drug_id: nil)
+                       .includes(:drug_claim_aliases, :source, :drug_claim_attributes)
+        if multimatch_claims.any?
+          relation.where('id not in (?)', multimatch_claims.pluck(:id))
+        else
+          relation
         end
       end
 
