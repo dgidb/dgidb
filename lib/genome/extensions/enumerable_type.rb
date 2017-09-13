@@ -24,7 +24,7 @@ module Genome
         end
 
         def self.enumerable_cache_key
-          raise "You must implement  enumerable_cache_key!"
+          raise "You must implement enumerable_cache_key!"
         end
 
         def self.type_column
