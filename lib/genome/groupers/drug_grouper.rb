@@ -6,7 +6,8 @@ module Genome
         @alias_failures ||= []
       end
 
-      def run
+      def run(drug_claim_relation=DataModel::DrugClaim)
+        @drug_claim_relation = drug_claim_relation
         begin
           newly_added_claims_count = 0
           drug_claims_not_in_groups.in_groups_of(1000, false) do |claims|
@@ -144,7 +145,7 @@ module Genome
       end
 
       def drug_claims_not_in_groups
-        DataModel::DrugClaim.where(drug_id: nil).to_a.keep_if do |drug_claim|
+        @drug_claim_relation.where(drug_id: nil).to_a.keep_if do |drug_claim|
           !(
             (direct_multimatch.member? drug_claim) ||
             (molecule_multimatch.member? drug_claim) ||
