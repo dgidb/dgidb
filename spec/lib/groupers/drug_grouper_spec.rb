@@ -14,10 +14,11 @@ describe Genome::Groupers::DrugGrouper do
     source = Fabricate(:source, source_db_name: 'Test Source')
     drug_claims << Fabricate(:drug_claim, name: 'Test Drug', source: source, primary_name: 'Test Drug')
     drug_claims << Fabricate(:drug_claim, name: 'TEST DRUG', source: source, primary_name: 'TEST DRUG')
+    drug_claims << Fabricate(:drug_claim, name: 'Test!-drug', source: source, primary_name: 'Test!-drug')
 
     group
     drug_claims.each { |dc| dc.reload; expect(dc.drug).not_to be_nil }
-    expect(drug.drug_claims.count).to eq 2
+    expect(drug.drug_claims.count).to eq 3
     expect(drug.drug_aliases.count).to eq 0
     expect(drug.drug_attributes.count).to eq 0
   end
