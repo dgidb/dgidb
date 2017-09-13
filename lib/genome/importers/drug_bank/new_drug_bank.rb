@@ -22,6 +22,9 @@ module Genome; module Importers; module DrugBank;
     end
 
     private
+
+    DELIMITER = ';'
+
     def remove_existing_source
       Utils::Database.delete_source('DrugBank')
     end
@@ -49,19 +52,19 @@ module Genome; module Importers; module DrugBank;
         ).first_or_create
 
         add_drug_claim_alias(drug_claim.id, row['drug_name'].upcase, 'DrugBank Drug Name')
-        row['drug_synonyms'].split(',').each do |synonym|
+        row['drug_synonyms'].split(DELIMITER).each do |synonym|
           add_drug_claim_alias(drug_claim.id, synonym, 'Drug Synonym')
         end
         add_drug_claim_alias(drug_claim.id, row['drug_cas_number'], 'CAS Number')
-        row['drug_brands'].split(',').each do |synonym|
+        row['drug_brands'].split(DELIMITER).each do |synonym|
           add_drug_claim_alias(drug_claim.id, synonym, 'Drug Brand')
         end
 
         add_drug_claim_attribute(drug_claim.id, 'Drug Type', row['drug_type'])
-        row['drug_groups'].split(',').each do |group|
+        row['drug_groups'].split(DELIMITER).each do |group|
           add_drug_claim_attribute(drug_claim.id, 'Drug Groups', group)
         end
-        row['drug_categories'].split(',').each do |category|
+        row['drug_categories'].split(DELIMITER).each do |category|
           add_drug_claim_attribute(drug_claim.id, 'Drug Categories', category)
         end
 
@@ -80,13 +83,13 @@ module Genome; module Importers; module DrugBank;
           drug_claim_id: drug_claim.id,
           source_id: source.id
         ).first_or_create
-        row['target_actions'].split(',').each do |type|
+        row['target_actions'].split(DELIMITER).each do |type|
           claim_type = DataModel::InteractionClaimType.where(
             type: type
           ).first_or_create
           interaction_claim.interaction_claim_types << claim_type unless interaction_claim.interaction_claim_types.include? claim_type
         end
-        row['pmid'].split(',').each do |pmid|
+        row['pmid'].split(DELIMITER).each do |pmid|
           publication = DataModel::Publication.where(
             pmid: pmid
           ).first_or_create

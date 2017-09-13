@@ -241,7 +241,7 @@ class DrugBank(object):
                     out = list()
                     for datum in data:
                         if isinstance(datum, tuple):
-                            datum = ','.join(datum)
+                            datum = ';'.join(datum)
                         datum = str(datum).replace("\t", '')
                         if not datum or datum == 'None':
                             datum = 'N/A'
