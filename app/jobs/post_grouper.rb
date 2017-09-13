@@ -6,6 +6,8 @@ class PostGrouper
     end
     update_counts
     update_trust_levels
+    update_drug_types
+    Rails.cache.clear
   end
 
   def delete_orphaned_gene_claims
