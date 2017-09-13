@@ -16,13 +16,13 @@ module Utils
         return 'Successfully grouped'
       end
       grouper = results[:grouper]
-      if grouper.direct_multimatch
+      if grouper.direct_multimatch.any?
         return DataModel::Drug.where('upper(name) in (?) or chembl_id IN (?)', drug_claim.names, drug_claim.names)
-      elsif grouper.molecule_multimatch
+      elsif grouper.molecule_multimatch.any?
         return 'Molecule multimatch'
-      elsif grouper.indirect_multimatch
+      elsif grouper.indirect_multimatch.any?
         return 'Indirect multimatch'
-      elsif grouper.fuzzy_multimatch
+      elsif grouper.fuzzy_multimatch.any?
         return 'Fuzzy multimatch'
       else
         return 'No match'
@@ -56,11 +56,17 @@ module Utils
               grouper: @drug_grouper}
     end
 
-    private
     def self.ungrouped_drug_count
       DataModel::DrugClaim
           .includes(:drug_claim_aliases, :source)
           .where(drug_id: nil)
+          .group(:source)
+          .size
+          .each_with_object({}) { |(k, v), h| h[k.source_db_name] = v}
+    end
+
+    def self.total_drug_count
+      DataModel::DrugClaim.includes(:source)
           .group(:source)
           .size
           .each_with_object({}) { |(k, v), h| h[k.source_db_name] = v}
