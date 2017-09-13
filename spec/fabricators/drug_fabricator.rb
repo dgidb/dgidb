@@ -1,7 +1,7 @@
 Fabricator(:drug, class_name: 'DataModel::Drug') do
-  chembl_molecule
-  chembl_id { |attrs| attrs[:chembl_molecule].chembl_id }
-  name { |attrs| attrs[:chembl_molecule].pref_name }
+  name { sequence(:pref_name) { |i| "Drug Name ##{i}" } }
+  chembl_id { sequence(:chembl_id) { |i| "CHEMBL#{i}" } }
+  chembl_molecule { |attrs| Fabricate(:chembl_molecule, pref_name: attrs[:name], chembl_id: attrs[:chembl_id])}
 end
 
 Fabricator(:drug_claim, class_name: 'DataModel::DrugClaim') do

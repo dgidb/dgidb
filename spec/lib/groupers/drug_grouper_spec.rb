@@ -19,7 +19,7 @@ describe Genome::Groupers::DrugGrouper do
     group
     drug_claims.each { |dc| dc.reload; expect(dc.drug).not_to be_nil }
     expect(drug.drug_claims.count).to eq 3
-    expect(drug.drug_aliases.count).to eq 0
+    expect(drug.drug_aliases.count).to eq 1
     expect(drug.drug_attributes.count).to eq 0
   end
 
@@ -30,12 +30,15 @@ describe Genome::Groupers::DrugGrouper do
     drug_claim = Fabricate(:drug_claim, name: 'Nonmatching Drug Name', source: source, primary_name: nil)
     Fabricate(:drug_claim_alias, alias: name, drug_claim: drug_claim)
     Fabricate(:drug_claim_attribute, drug_claim: drug_claim, name: 'adverse reaction', value: 'true')
+    another_drug_claim = Fabricate(:drug_claim, name: 'Another Nonmatching Drug Name', source: source, primary_name: nil)
+    Fabricate(:drug_claim_alias, alias: 'test-drug!', drug_claim: another_drug_claim)
+    Fabricate(:drug_claim_attribute, drug_claim: another_drug_claim, name: 'adverse reaction', value: 'true')
 
     group
     drug_claim.reload
     expect(drug_claim.drug).not_to be_nil
-    expect(drug.drug_claims.count).to eq 1
-    expect(drug.drug_aliases.count).to eq 1
+    expect(drug.drug_claims.count).to eq 2
+    expect(drug.drug_aliases.count).to eq 3
     expect(drug.drug_attributes.count).to eq 1
   end
 
