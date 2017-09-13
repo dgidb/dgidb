@@ -6,6 +6,7 @@ class PostGrouper
     end
     update_counts
     update_trust_levels
+    update_drug_types
   end
 
   def delete_orphaned_gene_claims
