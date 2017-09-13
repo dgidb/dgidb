@@ -40,7 +40,7 @@ module Genome; module Importers; module Cgi;
     def create_interaction_claims
       CSV.foreach(file_path, :headers => true, :col_sep => "\t") do |row|
         next if row['Drug'].nil? || row['Drug'] == '[]'
-        if row['Drug'].include?(',')
+        if row['Drug'].include?(',') || row['Drug'].include?(';')
           combination_drug_name = row['Drug']
           combination_drug_name.scan(/[a-zA-Z0-9]+/).each do |individual_drug_name|
             drug_claim = create_drug_claim(individual_drug_name, individual_drug_name, 'CGI Drug Name')
