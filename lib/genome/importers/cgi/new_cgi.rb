@@ -38,7 +38,8 @@ module Genome; module Importers; module Cgi;
     end
 
     def create_interaction_claims
-      CSV.foreach(file_path, :headers => true, :col_sep => '\t') do |row|
+      CSV.foreach(file_path, :headers => true, :col_sep => "\t") do |row|
+        next if row['Drug'].nil? || row['Drug'] == '[]'
         if row['Drug'].include?(',')
           combination_drug_name = row['Drug']
           combination_drug_name.scan(/[a-zA-Z0-9]+/).each do |individual_drug_name|
@@ -47,21 +48,38 @@ module Genome; module Importers; module Cgi;
             interaction_claim = create_interaction_claim(gene_claim, drug_claim)
             create_interaction_claim_attribute(interaction_claim, 'combination therapy', combination_drug_name)
             create_interaction_claim_attribute(interaction_claim, 'Drug family', row['Drug family'])
-            add_interaction_claim_publications(interaction_claim, row['Source'])
+            create_interaction_claim_attribute(interaction_claim, 'Alteration', row['Alteration'])
+            if row['Source'].include?('PMID')
+              add_interaction_claim_publications(interaction_claim, row['Source'])
             end
+          end
         else
           drug_claim = create_drug_claim(row['Drug'], row['Drug'], 'CGI Drug Name')
           gene_claim = create_gene_claim(row['Gene'], 'CGI Gene Name')
           interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-          add_interaction_claim_publications(interaction_claim, row['Source'])
           create_interaction_claim_attribute(interaction_claim, 'Drug family', row['Drug family'])
+          create_interaction_claim_attribute(interaction_claim, 'Alteration', row['Alteration'])
+          if row['Source'].include?('PMID')
+            add_interaction_claim_publications(interaction_claim, row['Source'])
+          end
         end
       end
     end
 
+
     def add_interaction_claim_publications(interaction_claim, source_string)
-      source_string.split(':').last do |pmid|
-        create_interaction_claim_publications(interaction_claim, pmid)
+      if source_string.include?(';')
+        source_string.split(';').each do |value|
+          value.split(/[^\d]/).each do |pmid|
+            unless pmid.nil? || pmid == ''
+              create_interaction_claim_publication(interaction_claim, pmid)
+            end
+          end
+        end
+      else
+        source_string.split(':').last do |pmid|
+          create_interaction_claim_publication(interaction_claim, pmid)
+        end
       end
     end
   end
