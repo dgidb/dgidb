@@ -170,6 +170,35 @@ ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
 
 
 --
+-- Name: drug_alias_blacklists; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE drug_alias_blacklists (
+    id bigint NOT NULL,
+    alias text
+);
+
+
+--
+-- Name: drug_alias_blacklists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE drug_alias_blacklists_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: drug_alias_blacklists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE drug_alias_blacklists_id_seq OWNED BY drug_alias_blacklists.id;
+
+
+--
 -- Name: drug_aliases; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -638,6 +667,13 @@ ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_
 
 
 --
+-- Name: drug_alias_blacklists id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_alias_blacklists ALTER COLUMN id SET DEFAULT nextval('drug_alias_blacklists_id_seq'::regclass);
+
+
+--
 -- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -667,6 +703,14 @@ ALTER TABLE ONLY chembl_molecules
 
 ALTER TABLE ONLY delayed_jobs
     ADD CONSTRAINT delayed_jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: drug_alias_blacklists drug_alias_blacklists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY drug_alias_blacklists
+    ADD CONSTRAINT drug_alias_blacklists_pkey PRIMARY KEY (id);
 
 
 --
@@ -974,24 +1018,10 @@ ALTER TABLE ONLY sources
 
 
 --
--- Name: chembl_molecule_synonyms_index_on_upper_alphanumeric_synonym; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecule_synonyms_index_on_upper_alphanumeric_synonym ON chembl_molecule_synonyms USING btree (upper(regexp_replace((synonym)::text, '[^\w]+|_'::text, ''::text)));
-
-
---
 -- Name: chembl_molecule_synonyms_index_on_upper_synonym; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX chembl_molecule_synonyms_index_on_upper_synonym ON chembl_molecule_synonyms USING btree (upper((synonym)::text));
-
-
---
--- Name: chembl_molecules_index_on_upper_alphanumeric_pref_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecules_index_on_upper_alphanumeric_pref_name ON chembl_molecules USING btree (upper(regexp_replace((pref_name)::text, '[^\w]+|_'::text, ''::text)));
 
 
 --
@@ -1006,13 +1036,6 @@ CREATE INDEX chembl_molecules_index_on_upper_pref_name ON chembl_molecules USING
 --
 
 CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at);
-
-
---
--- Name: drug_alias_index_on_upper_alphanumeric_alias; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX drug_alias_index_on_upper_alphanumeric_alias ON drug_aliases USING btree (upper(regexp_replace(alias, '[^\w]+|_'::text, ''::text)));
 
 
 --
@@ -1195,6 +1218,13 @@ CREATE UNIQUE INDEX index_chembl_molecules_on_chembl_id ON chembl_molecules USIN
 --
 
 CREATE UNIQUE INDEX index_chembl_molecules_on_molregno ON chembl_molecules USING btree (molregno);
+
+
+--
+-- Name: index_drug_alias_blacklists_on_alias; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_drug_alias_blacklists_on_alias ON drug_alias_blacklists USING btree (alias);
 
 
 --
@@ -1941,6 +1971,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170729004221'),
 ('20170808210937'),
 ('20170824182356'),
-('20170913042301');
+('20170913202927');
 
 

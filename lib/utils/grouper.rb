@@ -12,7 +12,7 @@ module Utils
         return 'Already grouped'
       end
       results = drug_grouper_dry_run DataModel::DrugClaim.where(id: drug_claim.id)
-      if results[:post_count].values.sum == 1
+      if results[:post_count].values.sum == 0
         return 'Successfully grouped'
       end
       grouper = results[:grouper]
