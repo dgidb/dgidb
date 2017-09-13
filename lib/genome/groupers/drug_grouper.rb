@@ -2,12 +2,15 @@ module Genome
   module Groupers
     class DrugGrouper
 
+      def initialize(drug_claim_relation=DataModel::DrugClaim)
+        @drug_claim_relation = drug_claim_relation
+      end
+
       def alias_failures
         @alias_failures ||= []
       end
 
-      def run(drug_claim_relation=DataModel::DrugClaim)
-        @drug_claim_relation = drug_claim_relation
+      def run
         begin
           newly_added_claims_count = 0
           drug_claims_not_in_groups.in_groups_of(1000, false) do |claims|

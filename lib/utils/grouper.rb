@@ -7,15 +7,37 @@ module Utils
       end
     end
 
-    def self.drug_grouper_dry_run
-      total_count = DataModel::DrugClaim.includes(:source)
+    def self.test_group_drug_claim(drug_claim)
+      if drug_claim.drug
+        return 'Already grouped'
+      end
+      results = drug_grouper_dry_run DataModel::DrugClaim.where(id: drug_claim.id)
+      if results[:post_count].values.sum == 1
+        return 'Successfully grouped'
+      end
+      grouper = results[:grouper]
+      if grouper.direct_multimatch
+        return DataModel::Drug.where('upper(name) in (?) or chembl_id IN (?)', drug_claim.names, drug_claim.names)
+      elsif grouper.molecule_multimatch
+        return 'Molecule multimatch'
+      elsif grouper.indirect_multimatch
+        return 'Indirect multimatch'
+      elsif grouper.fuzzy_multimatch
+        return 'Fuzzy multimatch'
+      else
+        return 'No match'
+      end
+    end
+
+    def self.drug_grouper_dry_run(drug_claim_relation = DataModel::DrugClaim)
+      total_count = drug_claim_relation.includes(:source)
                         .group(:source)
                         .size
                         .each_with_object({}) { |(k, v), h| h[k.source_db_name] = v}
       pre_count = ungrouped_drug_count
       ActiveRecord::Base.transaction do
         # do stuff
-        @drug_grouper = Genome::Groupers::DrugGrouper.new
+        @drug_grouper = Genome::Groupers::DrugGrouper.new drug_claim_relation
         @drug_grouper.run
 
         # record result
