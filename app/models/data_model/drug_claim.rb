@@ -31,6 +31,10 @@ module DataModel
       @names ||= (self.drug_claim_aliases.pluck(:alias) + [self.name, self.primary_name]).compact.map(&:upcase).to_set
     end
 
+    def cleaned_names
+      @cleaned_names ||= names.map { |element| element.gsub(/[^\w]+|_/,'')}.to_set
+    end
+
     def original_data_source_url
       base_url = self.source.base_url
       name = self.name

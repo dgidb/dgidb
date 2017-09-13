@@ -82,11 +82,46 @@ module Genome
         #   - against claim aliases
 
         if (drug_ids = DataModel::DrugAlias.where('upper(alias) in (?)', drug_claim.names).pluck(:drug_id).to_set).one?
-          drug = DataModel::Drug.where(id: drug_ids.first).first
+          drug = DataModel::Drug.find(drug_ids.first)
           add_drug_claim_to_drug(drug_claim, drug)
           return drug_claim
         elsif drug_ids.many?
           indirect_multimatch << drug_claim
+          return nil
+        end
+
+        # attempt to morph name to match
+        if (molecules = DataModel::ChemblMolecule.where("upper(regexp_replace(pref_name, '[^\w]+|_', '')) in (?)", drug_claim.cleaned_names)).one?
+          drug = create_drug_from_molecule(molecules.first)
+          add_drug_claim_to_drug(drug_claim, drug)
+          return drug_claim
+        elsif molecules.many? and (molecules.pluck(:pref_name).map(&:upcase).to_set).one?
+          new_drugs = []
+          molecules.each do |molecule|
+            next unless molecule.drug.nil? and rspec_nil? (molecule) # TODO: rspec_nil? is a hack for rspec / Fabricate.
+            drug = create_drug_from_molecule(molecule)
+            new_drugs << drug
+          end
+          if new_drugs.any?
+            return drug_claim
+          end
+        elsif molecules.many?
+          fuzzy_multimatch << drug_claim
+          return nil
+        elsif (molecule_ids = DataModel::ChemblMoleculeSynonym.where("upper(regexp_replace(synonym, '[^\w]+|_', '')) in (?)", drug_claim.cleaned_names).pluck(:chembl_molecule_id).to_set).one?
+          molecule = DataModel::ChemblMolecule.where(id: molecule_ids.first).first
+          drug = create_drug_from_molecule(molecule)
+          add_drug_claim_to_drug(drug_claim, drug)
+          return drug_claim
+        elsif molecule_ids.many?
+          fuzzy_multimatch << drug_claim
+          return nil
+        elsif (drug_ids = DataModel::DrugAlias.where("upper(regexp_replace(alias, '[^\w]+|_', '')) in (?)", drug_claim.cleaned_names).pluck(:drug_id).to_set).one?
+          drug = DataModel::Drug.find(drug_ids.first)
+          add_drug_claim_to_drug(drug_claim, drug)
+          return drug_claim
+        elsif drug_ids.many?
+          fuzzy_multimatch << drug_claim
           return nil
         end
 
@@ -102,6 +137,10 @@ module Genome
 
       def indirect_multimatch
         @indirect_multimatch ||= Set.new
+      end
+
+      def fuzzy_multimatch
+        @fuzzy_multimatch ||= Set.new
       end
 
       def drug_claims_not_in_groups
