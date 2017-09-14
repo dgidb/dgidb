@@ -1,5 +1,7 @@
+require 'genome/online_updater'
+
 module Genome; module Importers; module DrugBank;
-  class NewDrugBank
+  class NewDrugBank < Genome::OnlineUpdater
     attr_reader :file_path, :source
     def initialize(file_path)
       @file_path = file_path
@@ -41,84 +43,40 @@ module Genome; module Importers; module DrugBank;
 
     def import_claims
       CSV.foreach(file_path, :col_sep => "\t", :headers => true) do |row|
-        drug_claim = DataModel::DrugClaim.where(
-          name: row['drug_id'].upcase,
-          nomenclature: 'DrugBank Drug Identifier',
-          primary_name: row['drug_name'],
-          source_id: source.id
-        ).first_or_create
+        drug_claim = create_drug_claim(row['drug_id'].upcase, row['drug_name'], 'DrugBank Drug Identifier')
 
-        add_drug_claim_alias(drug_claim.id, row['drug_name'].upcase, 'DrugBank Drug Name')
+        create_drug_claim_alias(drug_claim, row['drug_name'].upcase, 'DrugBank Drug Name')
         row['drug_synonyms'].split(',').each do |synonym|
-          add_drug_claim_alias(drug_claim.id, synonym, 'Drug Synonym')
+          create_drug_claim_alias(drug_claim, synonym, 'Drug Synonym')
         end
-        add_drug_claim_alias(drug_claim.id, row['drug_cas_number'], 'CAS Number')
+        create_drug_claim_alias(drug_claim, row['drug_cas_number'], 'CAS Number')
         row['drug_brands'].split(',').each do |synonym|
-          add_drug_claim_alias(drug_claim.id, synonym, 'Drug Brand')
+          create_drug_claim_alias(drug_claim, synonym, 'Drug Brand')
         end
 
-        add_drug_claim_attribute(drug_claim.id, 'Drug Type', row['drug_type'])
+        create_drug_claim_attribute(drug_claim, 'Drug Type', row['drug_type'])
         row['drug_groups'].split(',').each do |group|
-          add_drug_claim_attribute(drug_claim.id, 'Drug Groups', group)
+          create_drug_claim_attribute(drug_claim, 'Drug Groups', group)
         end
         row['drug_categories'].split(',').each do |category|
-          add_drug_claim_attribute(drug_claim.id, 'Drug Categories', category)
+          create_drug_claim_attribute(drug_claim, 'Drug Categories', category)
         end
 
-        gene_claim = DataModel::GeneClaim.where(
-          name: row['gene_id'],
-          nomenclature: 'DrugBank Gene Identifier',
-          source_id: source.id
-        ).first_or_create
-        add_gene_claim_alias(gene_claim.id, row['gene_symbol'], 'DrugBank Gene Name')
-        add_gene_claim_alias(gene_claim.id, row['uniprot_id'], 'UniProt Accession')
-        add_gene_claim_alias(gene_claim.id, row['entrez_id'], 'Entrez Gene Id')
-        add_gene_claim_alias(gene_claim.id, row['ensembl_id'], 'Ensembl Gene Id')
+        gene_claim = create_gene_claim(row['gene_id'], 'DrugBank Gene Identifier')
+        create_gene_claim_alias(gene_claim, row['gene_symbol'], 'DrugBank Gene Name')
+        create_gene_claim_alias(gene_claim, row['uniprot_id'], 'UniProt Accession')
+        create_gene_claim_alias(gene_claim, row['entrez_id'], 'Entrez Gene Id')
+        create_gene_claim_alias(gene_claim, row['ensembl_id'], 'Ensembl Gene Id')
 
-        interaction_claim = DataModel::InteractionClaim.where(
-          gene_claim_id: gene_claim.id,
-          drug_claim_id: drug_claim.id,
-          source_id: source.id
-        ).first_or_create
+        interaction_claim = create_interaction_claim(gene_claim, drug_claim)
         row['target_actions'].split(',').each do |type|
-          claim_type = DataModel::InteractionClaimType.where(
-            type: type
-          ).first_or_create
-          interaction_claim.interaction_claim_types << claim_type unless interaction_claim.interaction_claim_types.include? claim_type
+          create_interaction_claim_type(interaction_claim, type)
         end
         row['pmid'].split(',').each do |pmid|
-          publication = DataModel::Publication.where(
-            pmid: pmid
-          ).first_or_create
-          interaction_claim.publications << publication unless interaction_claim.publications.include? publication
+          create_interaction_claim_publication(interaction_claim, pmid)
         end
         interaction_claim.save
       end
     end
-
-    def add_drug_claim_alias(drug_claim_id, synonym, nomenclature)
-      DataModel::DrugClaimAlias.where(
-        alias: synonym,
-        nomenclature: nomenclature,
-        drug_claim_id: drug_claim_id,
-      ).first_or_create
-    end
-
-    def add_drug_claim_attribute(drug_claim_id, name, value)
-      DataModel::DrugClaimAttribute.where(
-        name: name,
-        value: value,
-        drug_claim_id: drug_claim_id,
-      ).first_or_create
-    end
-
-    def add_gene_claim_alias(gene_claim_id, synonym, nomenclature)
-      DataModel::GeneClaimAlias.where(
-        alias: synonym,
-        nomenclature: nomenclature,
-        gene_claim_id: gene_claim_id,
-      ).first_or_create
-    end
-
   end
 end; end; end;
