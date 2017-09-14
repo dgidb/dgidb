@@ -2,6 +2,10 @@ require 'genome/online_updater'
 
 module Genome; module Importers; module Nci;
 class NewNci < Genome::OnlineUpdater
+  
+  def initialize(file_path)
+    @file_path = '/Users/kcotto/Projects/DGIdb/NCI_parsed.tsv'
+  end
 
   def get_version
     source_db_version = Date.today.strftime('%d-%B-%Y')
@@ -34,7 +38,6 @@ class NewNci < Genome::OnlineUpdater
   end
 
   def create_interaction_claims
-    filepath = '/Users/kcotto/Projects/DGIdb/NCI_parsed.tsv'
     CSV.foreach(filepath, :headers => true, :col_sep => "\t") do |row|
       gene_claim = create_gene_claim(row['Gene'], 'CGI Gene Name')
       drug = row['Drug'].upcase
