@@ -1,5 +1,7 @@
+require 'genome/online_updater'
+
 module Genome; module Importers; module Ensembl;
-  class NewEnsembl
+  class NewEnsembl < Genome::OnlineUpdater
     attr_reader :file_path, :source, :version
     def initialize(file_path, version)
       @file_path = file_path
@@ -58,23 +60,9 @@ module Genome; module Importers; module Ensembl;
         attribute_hash[key] = value[1..-2] #Stripe quotes
       end
 
-      gene_claim = DataModel::GeneClaim.where(
-        name: attribute_hash['gene_id'].upcase,
-        nomenclature: 'Ensembl Gene Id',
-        source_id: source.id,
-      ).first_or_create
-
-      gene_claim_alias = DataModel::GeneClaimAlias.where(
-        alias: attribute_hash['gene_name'].upcase,
-        nomenclature: 'Ensembl Gene Name',
-        gene_claim_id: gene_claim.id,
-      ).first_or_create
-
-      gene_claim_attribute = DataModel::GeneClaimAttribute.where(
-        name: 'Gene Biotype',
-        value: attribute_hash['gene_biotype'].upcase,
-        gene_claim_id: gene_claim.id,
-      ).first_or_create
+      gene_claim = create_gene_claim(attribute_hash['gene_id'].upcase, 'Ensembl Gene Id')
+      create_gene_claim_alias(gene_claim, attribute_hash['gene_name'].upcase, 'Ensembl Gene Name')
+      create_gene_claim_attribute(gene_claim, 'Gene Biotype', attribute_hash['gene_biotype'].upcase)
     end
   end
 end; end; end
