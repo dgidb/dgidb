@@ -26,6 +26,8 @@ module Genome
     end
 
     def create_drug_claim_alias(drug_claim, synonym, nomenclature)
+      cleaned = synonym.gsub(/[^\w_]+/,'').upcase
+      return nil unless DataModel::DrugAliasBlacklist.find_by(alias: cleaned).nil?
       DataModel::DrugClaimAlias.where(
         alias: synonym,
         nomenclature: nomenclature,

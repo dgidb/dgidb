@@ -32,7 +32,7 @@ module DataModel
     end
 
     def cleaned_names
-      @cleaned_names ||= names.map { |element| element.gsub(/[^\w]+|_/,'')}.to_set
+      @cleaned_names ||= names.map { |element| element.gsub(/[^\w_]+/,'')}.to_set
     end
 
     def original_data_source_url

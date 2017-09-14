@@ -97,9 +97,9 @@ module Utils
     def self.destroy_common_aliases
       DataModel::DrugAlias
           .includes(:drug)
-          .group('clean(alias) as clean')
-          .having('clean' > 3)
-          .pluck('clean')
+          .group('clean(alias)')
+          .having('count(clean(alias)) > 3')
+          .pluck('clean(alias)')
           .to_set
           .each do |dup_alias|
         DataModel::DrugAliasBlacklist.find_or_create_by(alias: dup_alias)
