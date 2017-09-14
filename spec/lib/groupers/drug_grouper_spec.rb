@@ -310,4 +310,18 @@ describe Genome::Groupers::DrugGrouper do
     expect{Fabricate(:drug, molecule: molecule)}.to raise_error
   end
 
+  it 'should blacklist and remove common aliases' do
+    drug_claims = Fabricate.times(4, :drug_claim).each do |dc|
+      Fabricate(:drug, name: dc.name)
+      Fabricate(:drug_claim_alias, alias: 'beans', drug_claim: dc)
+      Fabricate(:drug_claim_alias, drug_claim: dc)
+    end
+    group
+    drug_claims.each do |dc|
+      dc.reload
+      expect(dc.drug).to_not be_nil
+      expect(dc.drug_claim_aliases.count).to eq 1
+    end
+  end
+
 end

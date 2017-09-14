@@ -95,23 +95,16 @@ module Utils
     end
 
     def self.destroy_common_aliases
-      sql = <<-SQL
-        DELETE FROM drug_claim_aliases
-        WHERE alias in (
-          select alias from (
-            select * from (
-              select count(distinct d.id), alias, length(alias)
-              from drugs d, drug_claims_drugs dcd, drug_claim_aliases dca
-              where d.id = dcd.drug_id and dcd.drug_claim_id = dca.drug_claim_id
-              group by alias
-            ) t
-            where (count >= 5 and length <= 4) or length <= 2 or count >= 10
-          ) t
-        )
-      SQL
-      ActiveRecord::Base.transaction do
-        ActiveRecord::Base.connection.execute(sql)
-        destroy_empty_groups
+      DataModel::DrugAlias
+          .includes(:drug)
+          .group('clean(alias) as clean')
+          .having('clean' > 3)
+          .pluck('clean')
+          .to_set
+          .each do |dup_alias|
+        DataModel::DrugAliasBlacklist.find_or_create_by(alias: dup_alias)
+        DataModel::DrugAlias.where('clean(alias) = ?', dup_alias).destroy_all
+        DataModel::DrugClaimAlias.where('clean(alias) = ?', dup_alias).destroy_all
       end
     end
 

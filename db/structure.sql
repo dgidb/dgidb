@@ -23,6 +23,21 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: clean(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION clean(text) RETURNS text
+    LANGUAGE plpgsql IMMUTABLE
+    AS $_$
+            declare cleaned text;
+            BEGIN
+              select upper(regexp_replace($1, '[^[:alnum:]]+', '', 'g')) into cleaned;
+              return cleaned;
+            END
+            $_$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -1018,10 +1033,10 @@ ALTER TABLE ONLY sources
 
 
 --
--- Name: chembl_molecule_synonyms_index_on_upper_alphanumeric_synonym; Type: INDEX; Schema: public; Owner: -
+-- Name: chembl_molecule_synonyms_index_on_clean_synonym; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX chembl_molecule_synonyms_index_on_upper_alphanumeric_synonym ON chembl_molecule_synonyms USING btree (upper(regexp_replace((synonym)::text, '[^\w]+|_'::text, ''::text)));
+CREATE INDEX chembl_molecule_synonyms_index_on_clean_synonym ON chembl_molecule_synonyms USING btree (clean((synonym)::text));
 
 
 --
@@ -1032,10 +1047,10 @@ CREATE INDEX chembl_molecule_synonyms_index_on_upper_synonym ON chembl_molecule_
 
 
 --
--- Name: chembl_molecules_index_on_upper_alphanumeric_pref_name; Type: INDEX; Schema: public; Owner: -
+-- Name: chembl_molecules_index_on_clean_pref_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX chembl_molecules_index_on_upper_alphanumeric_pref_name ON chembl_molecules USING btree (upper(regexp_replace((pref_name)::text, '[^\w]+|_'::text, ''::text)));
+CREATE INDEX chembl_molecules_index_on_clean_pref_name ON chembl_molecules USING btree (clean((pref_name)::text));
 
 
 --
@@ -1053,10 +1068,10 @@ CREATE INDEX delayed_jobs_priority ON delayed_jobs USING btree (priority, run_at
 
 
 --
--- Name: drug_alias_index_on_upper_alphanumeric_alias; Type: INDEX; Schema: public; Owner: -
+-- Name: drug_aliases_index_on_clean_alias; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX drug_alias_index_on_upper_alphanumeric_alias ON drug_aliases USING btree (upper(regexp_replace(alias, '[^\w]+|_'::text, ''::text)));
+CREATE INDEX drug_aliases_index_on_clean_alias ON drug_aliases USING btree (clean(alias));
 
 
 --
@@ -1092,6 +1107,13 @@ CREATE INDEX drug_claim_aliases_drug_claim_id_idx ON drug_claim_aliases USING bt
 --
 
 CREATE INDEX drug_claim_aliases_full_text ON drug_claim_aliases USING gin (to_tsvector('english'::regconfig, alias));
+
+
+--
+-- Name: drug_claim_aliases_index_on_clean_alias; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX drug_claim_aliases_index_on_clean_alias ON drug_claim_aliases USING btree (clean(alias));
 
 
 --
@@ -1992,7 +2014,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170729004221'),
 ('20170808210937'),
 ('20170824182356'),
-('20170913042301'),
-('20170913202927');
+('20170913202927'),
+('20170914145053');
 
 

@@ -13,21 +13,10 @@ module Genome
       def run
         begin
           grouped_claims = add_members(drug_claims_not_in_groups)
-          clean_up_aliases
+          Utils::Database.destroy_common_aliases
         end until grouped_claims.length == 0
       end
 
-      def clean_up_aliases
-        blacklist = DataModel::DrugAlias
-            .includes(:drug)
-            .group(%q{upper(regexp_replace(alias, '[^[:alnum:]]+', '', 'g'))})
-            .having(%q{count(upper(regexp_replace(alias, '[^[:alnum:]]+', '', 'g'))) > 3})
-            .pluck(%q{upper(regexp_replace(alias, '[^[:alnum:]]+', '', 'g'))})
-            .to_set
-            .map { |da| {alias: da}}
-        DataModel::DrugAliasBlacklist.create(blacklist)
-        DataModel::DrugAlias.where('alias in (?)', blacklist.flat_map(&:values))
-      end
 
       def alias_blacklist
         @alias_blacklist ||= DataModel::DrugAliasBlacklist.all.to_a
@@ -108,7 +97,7 @@ module Genome
         end
 
         # attempt to morph name to match
-        if (molecules = DataModel::ChemblMolecule.where(%q{upper(regexp_replace(pref_name, '[^[:alnum:]]+', '', 'g')) in (?)}, drug_claim.cleaned_names)).one?
+        if (molecules = DataModel::ChemblMolecule.where('clean(pref_name) in (?)', drug_claim.cleaned_names)).one?
           drug = create_drug_from_molecule(molecules.first)
           add_drug_claim_to_drug(drug_claim, drug)
           return drug_claim
@@ -125,7 +114,7 @@ module Genome
         elsif molecules.many?
           fuzzy_multimatch << drug_claim
           return nil
-        elsif (molecule_ids = DataModel::ChemblMoleculeSynonym.where(%q{upper(regexp_replace(synonym, '[^[:alnum:]]+', '', 'g')) in (?)}, drug_claim.cleaned_names).pluck(:chembl_molecule_id).to_set).one?
+        elsif (molecule_ids = DataModel::ChemblMoleculeSynonym.where('clean(synonym) in (?)', drug_claim.cleaned_names).pluck(:chembl_molecule_id).to_set).one?
           molecule = DataModel::ChemblMolecule.where(id: molecule_ids.first).first
           drug = create_drug_from_molecule(molecule)
           add_drug_claim_to_drug(drug_claim, drug)
@@ -133,7 +122,7 @@ module Genome
         elsif molecule_ids.many?
           fuzzy_multimatch << drug_claim
           return nil
-        elsif (drug_ids = DataModel::DrugAlias.where(%q{upper(regexp_replace(alias, '[^[:alnum:]]+', '', 'g')) in (?)}, drug_claim.cleaned_names).pluck(:drug_id).to_set).one?
+        elsif (drug_ids = DataModel::DrugAlias.where('clean(alias) in (?)', drug_claim.cleaned_names).pluck(:drug_id).to_set).one?
           drug = DataModel::Drug.find(drug_ids.first)
           add_drug_claim_to_drug(drug_claim, drug)
           return drug_claim
