@@ -12,9 +12,9 @@ menu:
 
 additional_downloads:
   - text: Walkthrough
-    href: http://dgidb.genome.wustl.edu/downloads/walkthroughUpdated.pdf
+    href: http://dgidb.org/downloads/walkthroughUpdated.pdf
 
 doc_downloads:
   - text: API Documentation
-    href: http://dgidb.genome.wustl.edu/api
+    href: http://dgidb.org/api
 

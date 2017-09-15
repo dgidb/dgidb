@@ -28,7 +28,7 @@ def usage():
   sys.exit(0)
 
 def parse_args():
-    parser = argparse.ArgumentParser(description = "A Python example for using the DGIdb API", epilog = "For complete API documentation refer to http://dgidb.genome.wustl.edu/api")
+    parser = argparse.ArgumentParser(description = "A Python example for using the DGIdb API", epilog = "For complete API documentation refer to http://dgidb.org/api")
     parser.add_argument("-g", "--genes", help="list of gene symbols(REQUIRED). Use official Entrez symbols for best results", dest="genes")
     parser.add_argument("-is", "--interaction_sources", help="Limit results to those from particular data sources. e.g. 'DrugBank', 'PharmGKB', 'TALC', 'TEND', 'TTD', 'MyCancerGenome')", dest="interaction_sources")
     parser.add_argument("-it", "--interaction_types", help="Limit results to interactions with drugs that have a particular mechanism of action. e.g. 'inhibitor', 'antibody', etc", dest="interaction_types")
@@ -40,7 +40,7 @@ def parse_args():
 
 class DGIAPI:
     'API Example class for DGI API.'
-    domain = 'http://dgidb.genome.wustl.edu/'
+    domain = 'http://dgidb.org/'
     api_path = '/api/v1/interactions.json'
     def __init__(self, args):
         self.genes = args.genes
@@ -54,7 +54,7 @@ class DGIAPI:
         self.post_request()
         self.print_response()
     def create_request(self):
-        self.request = "http://dgidb.genome.wustl.edu/api/v1/interactions.json?genes=FLT1&drug_types=antineoplastic&interaction_sources=TALC"
+        self.request = "http://dgidb.org/api/v1/interactions.json?genes=FLT1&drug_types=antineoplastic&interaction_sources=TALC"
         self.payload = {}
         if(self.genes):
             self.payload['genes'] = self.genes

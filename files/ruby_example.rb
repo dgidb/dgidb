@@ -4,7 +4,7 @@ require 'uri'
 
 class DgidbApiClient
 
-  def initialize(host = 'http://dgidb.genome.wustl.edu', port = 80, api_version = '/api/v1/')
+  def initialize(host = 'http://dgidb.org', port = 80, api_version = '/api/v1/')
     @connection_uri = URI(host).tap do |uri|
       uri.port = port
     end

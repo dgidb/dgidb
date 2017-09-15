@@ -19,7 +19,7 @@ use LWP::UserAgent;
 use Getopt::Long;
 use Data::Dumper qw(Dumper);
 
-my $domain = 'http://dgidb.genome.wustl.edu/';
+my $domain = 'http://dgidb.org/';
 my $api_path = '/api/v1/interactions.json';
 
 my $genes;
@@ -53,7 +53,7 @@ sub parse_opts {
         'help'                  => \$help,
     );
     if (!$genes || $help){
-        print "\n\nFor complete API documentation refer to http://dgidb.genome.wustl.edu/api";
+        print "\n\nFor complete API documentation refer to http://dgidb.org/api";
         print "\n\nRequired parameters:";
         print "\n--genes (List of gene symbols. Use offical entrez symbols for best results)";
         print "\n\nOptional parameters:";

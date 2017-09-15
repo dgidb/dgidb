@@ -50,7 +50,7 @@ module Utils; module SnapshotHelpers
 
   def download_data_dump(desination)
     Dir.mkdir('data')
-    system_or_die("wget -O #{desination} http://dgidb.genome.wustl.edu/downloads/data.sql")
+    system_or_die("wget -O #{desination} http://dgidb.org/downloads/data.sql")
   end
 
   private

@@ -76,7 +76,7 @@ rake spec
 
 #File location for internal storage of download files for TGI developers
 #There is a git repo (the same one that the database dump lives in) at ssh://git/srv/git/dgidb-data.git. 
-#If you put a file in there, commit and push to master, it will be available for public download at dgidb.genome.wustl.edu/downloads/<filename> the next time puppet runs.
+#If you put a file in there, commit and push to master, it will be available for public download at dgidb.org/downloads/<filename> the next time puppet runs.
 #External developers setting up their own instance of DGIdb would need to create their own download location
 cd ~/git/
 git clone ssh://git/srv/git/dgidb-data.git

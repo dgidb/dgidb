@@ -157,7 +157,7 @@ faq:
         This question has several answers.  The footer of every page in the web interface contains a version stamp that describes versions for various components.
         The interface code itself is meticulously tracked in <a href="https://github.com/genome/dgi-db">dgi-db at github</a>. 
         The source stamp contains a SHA-1 tag that corresponds to the version of code being run.
-        Each input source of data we import may have its own version number associated with it. If so, we maintain this info and display it on the <a href="http://dgidb.genome.wustl.edu/sources">source summary view</a>.
+        Each input source of data we import may have its own version number associated with it. If so, we maintain this info and display it on the <a href="http://dgidb.org/sources">source summary view</a>.
         If an input source does not have concept of versioning, we note the date of import instead.
         Source versions are included in TSV export results for each drug-gene interaction found.
 

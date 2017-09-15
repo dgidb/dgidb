@@ -12,7 +12,7 @@ index:
     - url: /druggable_gene_categories
       title: Druggable Genes
       description: Browse druggable gene categories
-    - url: http://dgidb.genome.wustl.edu/downloads/walkthroughUpdated.pdf
+    - url: http://dgidb.org/downloads/walkthroughUpdated.pdf
       title: Walkthrough (pdf)
       description: Illustrated user guide
     - url: /search
