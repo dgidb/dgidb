@@ -2,7 +2,7 @@ class TrustLevelPresenter
   # old method which differentiated sources by trust level
   def self.source_link_with_trust_flag(context, source)
     type = if source.source_trust_level_id == DataModel::SourceTrustLevel.EXPERT_CURATED
-               'success'
+                'success'
               else
                 'warning'
               end

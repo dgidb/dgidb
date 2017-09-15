@@ -46,6 +46,12 @@ module ApplicationHelper
     dynamic_link_to(title, link)
   end
 
+  def pubmed_link_blue(pmid)
+    type = 'primary'
+    link = "http://www.ncbi.nlm.nih.gov/pubmed/" + pmid.to_s
+    link_to(label(pmid, type), link)
+  end
+
   def gene_claim_path(gene_claim)
     "/gene_claims/#{gene_claim.source.source_db_name}/#{gene_claim.name}"
   end
