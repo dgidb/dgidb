@@ -1,15 +1,21 @@
 module Utils
   class Updater
+
     attr_accessor :grouper
     def update_all
       import_all
       full_regroup
     end
 
-    def import_all
+    def logger
+      @logger ||= Logger.new('log/importer.log')
+    end
+
+    def import_all(exclude = [])
+      exclude += ['UpdateEntrez']
       all_updaters.each do |updater|
         updater_name = updater.class.to_s
-        next if updater_name == "UpdateEntrez"
+        next if exclude.include? updater_name
         logger.info "Processing #{updater_name}..."
         updater.import
       end
