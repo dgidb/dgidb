@@ -33,7 +33,7 @@
                   =interaction.drug.name
             %tr
               %td="Interaction Types"
-              %td=interaction.interaction_types.map{|it| it.type}.join(", ")
+              %td=interaction.na_or_types.join(", ")
     %div(class="item-panel")
       %h4
         Publications:
