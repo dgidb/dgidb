@@ -15,7 +15,7 @@ class DruggableGeneCategoryPresenter < Struct.new(:search_results, :source_db_na
   private
   class DisplayGene < Struct.new(:gene_name, :sources, :short_name, :view_context)
     def source_links
-      sources.map { |s| TrustLevelPresenter.source_link_with_trust_flag(view_context, s) }
+      sources.map { |s| TrustLevelPresenter.source_link_green(view_context, s) }
         .join(' ')
         .html_safe
     end

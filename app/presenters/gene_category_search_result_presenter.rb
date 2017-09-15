@@ -13,7 +13,7 @@ class GeneCategorySearchResultPresenter < SimpleDelegator
   end
 
   def sources
-    sources_with_category.map { |s| TrustLevelPresenter.source_link_with_trust_flag(@view_context, s) }
+    sources_with_category.map { |s| TrustLevelPresenter.source_link_green(@view_context, s) }
       .join(' ')
       .html_safe
   end
