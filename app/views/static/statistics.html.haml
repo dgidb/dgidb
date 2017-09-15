@@ -1,0 +1,21 @@
+#notice= notice
+=content_for :title do
+  =tx "title"
+=content_for :header do
+  %h2
+    =tx 'title_main'
+    %small=tx 'title_small'
+- cache do
+  .container-fluid
+    .row-fluid
+      .span12
+        .well
+          %ul
+            %li
+              = "Total Genes: " + DataModel::Gene.all.count.to_s
+            %li
+              = "Total Druggable Genes: " + DataModel::GeneClaimCategory.joins(:genes).where(name: "DRUGGABLE GENOME").order('genes.name').pluck('genes.name').uniq.count.to_s
+            %li
+              = "Total Drugs: " + DataModel::Drug.all.count.to_s
+            %li
+              = "Total Interactions: " + DataModel::Interaction.all.count.to_s
