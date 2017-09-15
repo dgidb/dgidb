@@ -69,5 +69,17 @@ module Utils
           .size
           .each_with_object({}) { |(k, v), h| h[k.source_db_name] = v}
     end
+
+    def self.total_ungrouped_percentage(relation = DataModel::DrugClaim)
+      ungrouped = ungrouped_drug_count relation
+      total = total_drug_count relation
+      ungrouped.values.sum / total.values.sum.to_f
+    end
+
+    def self.ungrouped_percentages(relation = DataModel::DrugClaim)
+      ungrouped = ungrouped_drug_count relation
+      total = total_drug_count relation
+      ungrouped.keys.each_with_object({}) { |k, h| h[k] = ungrouped[k] / total[k].to_f}
+    end
   end
 end
