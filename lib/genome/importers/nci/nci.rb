@@ -38,11 +38,13 @@ module Genome; module Importers; module Nci;
     end
 
     def create_interaction_claims
-      CSV.foreach(file_path, :headers => true, :col_sep => "\t") do |row|
+      CSV.foreach(file_path, encoding:'iso-8859-1:utf-8', :headers => true, :col_sep => "\t") do |row|
         gene_claim = create_gene_claim(row['Gene'], 'CGI Gene Name')
         drug = row['Drug'].upcase
         drug_claim = create_drug_claim(drug, drug, 'NCI Drug Name')
-        create_interaction_claim(gene_claim, drug_claim)
+        create_drug_claim_alias(drug_claim, row['NCI drug code'], 'NCI drug code')
+        interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+        create_interaction_claim_publication(interaction_claim, row['PMID'])
       end
     end
   end
