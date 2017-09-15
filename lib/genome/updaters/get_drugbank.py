@@ -160,17 +160,12 @@ class DrugBank(object):
                 for action in target.find('entry:actions', ns):
                     target_actions.add(action.text)
                 gene_symbol = hgnc_gene_acc = uniprot_id = entrez_id = ensembl_id = None
-                raw_refs = target.find('entry:references', ns).text
-                refs_regex = re.compile(r'"Pubmed":http://www.ncbi.nlm.nih.gov/pubmed/(\d+)')
-                references = set()
-                try:
-                    for string in raw_refs.split('#'):
-                        match = refs_regex.search(string)
-                        if match:
-                            references.add(match.group(1))
-                except AttributeError:
-                    pass
-                references = tuple(references)
+                pmids = set()
+                references = target.find('entry:references', ns)
+                articles = references.find('entry:articles', ns).findall('entry:article', ns)
+                for article in articles:
+                    pmids.add(article.find('entry:pubmed-id', ns).text)
+                pmids = tuple(pmids)
                 polypeptide = target.find('entry:polypeptide', ns)
                 synonyms = None
                 if polypeptide is not None:
@@ -215,7 +210,7 @@ class DrugBank(object):
                             ensembl_id = synonyms['Ensembl']
                             info += 1
                 interaction_tuple = (gene_id, known_action, tuple(sorted(target_actions)),
-                                     gene_symbol, uniprot_id, entrez_id, ensembl_id, references)
+                                     gene_symbol, uniprot_id, entrez_id, ensembl_id, pmids)
                 total += 1
                 try:
                     interactions[drug_id].append(interaction_tuple)
