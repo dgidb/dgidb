@@ -16,6 +16,14 @@ module Genome
       ).first_or_create
     end
 
+    def create_gene_claim_attribute(gene_claim, name, value)
+      DataModel::GeneClaimAttribute.where(
+        name: name,
+        value: value,
+        gene_claim_id: gene_claim.id,
+      ).first_or_create
+    end
+
     def create_drug_claim(name, primary_name, nomenclature)
       DataModel::DrugClaim.where(
         name: name,
