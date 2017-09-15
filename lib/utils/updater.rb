@@ -26,7 +26,7 @@ module Utils
       logger.info 'Deleting all groups...'
       delete_groups
       logger.info 'Running pre-grouper...'
-      pre_group
+      pregroup
       logger.info 'Restoring gene groups (importing entrez...)'
       restore_genes
       logger.info 'Grouping all...'
@@ -67,7 +67,7 @@ module Utils
     end
 
     def group
-      @grouper ||= Grouper.new
+      @grouper ||= ::Grouper.new
       @grouper.perform
     end
 

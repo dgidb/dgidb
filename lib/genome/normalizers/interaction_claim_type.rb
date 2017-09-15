@@ -6,7 +6,7 @@ module Genome
           fill_in_new_types
           cleanup_type(default_type)
           cleanup_type(other_type)
-          remove_empty_types
+          # remove_empty_types
         end
       end
 
@@ -29,11 +29,11 @@ module Genome
       end
 
       def self.default_type
-        DataModel::InteractionClaimType.where(type: 'n/a').first
+        DataModel::InteractionClaimType.find_by(type: 'n/a')
       end
 
       def self.other_type
-        DataModel::InteractionClaimType.where(type: 'other/unknown').first
+        DataModel::InteractionClaimType.find_by(type: 'other/unknown')
       end
 
       def self.add_unless_exists(type, interaction_claim)
