@@ -4,9 +4,9 @@ module Genome
       def self.normalize_types
         ActiveRecord::Base.transaction do
           fill_in_new_types
-          backfill_with_default_type
           cleanup_type(default_type)
           cleanup_type(other_type)
+          remove_empty_types
         end
       end
 
@@ -22,20 +22,9 @@ module Genome
       end
 
       def self.cleanup_type(type)
-        interaction_claims_with_more_than_one_type = type.interaction_claims
-          .reject { |ic| ic.interaction_claim_types.size == 1 }
-        interaction_claims_with_more_than_one_type.each do |ic|
+        type.interaction_claims.each do |ic|
           ic.interaction_claim_types.delete(type)
           ic.save
-        end
-      end
-
-      def self.backfill_with_default_type
-        type = default_type
-        interactions_with_no_type = DataModel::InteractionClaim.eager_load(:interaction_claim_types)
-          .select { |ic| ic.interaction_claim_types.size == 0 }
-        interactions_with_no_type.each do |i|
-          i.interaction_claim_types << type
         end
       end
 
@@ -73,6 +62,10 @@ module Genome
         DataModel::InteractionClaimType.all.each_with_object({}) do |i, h|
           h[i.type] = i
         end
+      end
+
+      def self.remove_empty_types
+        DataModel::InteractionClaimType.includes(:interaction_claims).where(interaction_claims: {id: nil}).destroy_all
       end
     end
   end

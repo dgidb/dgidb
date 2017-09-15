@@ -7,9 +7,11 @@ class TsvUpdater < Updater
   def perform(recurring = true)
     begin
       import
-      grouper = Grouper.new()
+      pre_grouper = PreGrouper.new
+      pre_grouper.perform
+      grouper = Grouper.new
       grouper.perform(should_group_genes?, should_group_drugs?)
-      post_grouper = PostGrouper.new()
+      post_grouper = PostGrouper.new
       post_grouper.perform(should_cleanup_gene_claims?)
     ensure
       reschedule if recurring

@@ -25,6 +25,8 @@ module Utils
     def full_regroup
       logger.info 'Deleting all groups...'
       delete_groups
+      logger.info 'Running pre-grouper...'
+      pre_group
       logger.info 'Restoring gene groups (importing entrez...)'
       restore_genes
       logger.info 'Grouping all...'
@@ -57,6 +59,11 @@ module Utils
     def restore_genes
       entrez = all_updaters.select{ |u| u.class.to_s == 'UpdateEntrez'}.first
       entrez.import
+    end
+
+    def pregroup
+      @pregrouper ||= PreGrouper.new
+      @pregrouper.perform
     end
 
     def group
