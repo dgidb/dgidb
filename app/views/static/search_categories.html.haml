@@ -9,10 +9,10 @@
         =icon('question-sign')
 
 - cache do
-  .container.search-container{style: "width: 100%; margin: auto;"}
+  .container.search-container{style: "width: 100%; margin: auto; margin-top: 80px;"}
     .row-fluid
       %div{style: "clear: both; display: flex; justify-content: center;"} 
-        .span8{style: "float: left; margin-left: -20px; margin-bottom: 20px; padding: 17px 35px 35px 35px", class: "well"}
+        .span8{style: "float: left; margin-bottom: 20px; padding: 17px 35px 35px 35px", class: "well"}
           %form.form-horizontal(id="search_form" action="categories_search_results" method="post" enctype="multipart/form-data")
             %fieldset
               .control-group
@@ -33,7 +33,7 @@
                   %button.btn.btn-small.btn-danger#clear(type='button') Clear Genes
                   %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace with Demo List
         .span8{style: "float: left; margin-left: 20px"}
-          %div{style: "height: 348px; width: 340px; padding-top: 25px;", class: "well"} 
+          %div{style: "height: 348px; width: 355px; padding-top: 25px;", class: "well"} 
             %label
               Advanced Filters
             %div{style: "background-color: white; margin-top: 5px; padding: 5px; border-radius: 5px; height: 100px;"}
@@ -46,7 +46,7 @@
               #gene-category-control
               =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
                 flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_categories_tour' }
-            %div.filters{style: "margin-top: 50px; margin-bottom: -50px; color: #337ab7; font-style: oblique;"}
+            %div.filters{style: "margin-top: 70px; margin-bottom: -50px; color: #337ab7; font-style: oblique;"}
               Find CATEGORIES that your GENES belong to
       .form-actions{style: "clear: both; display: flex; justify-content: center;"} 
         %button.btn.btn-success(type="submit" id='search-btn' style='font-size: 20px' form='search_form')

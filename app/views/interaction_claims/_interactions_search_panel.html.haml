@@ -56,7 +56,7 @@
                 = interaction.sources.map{|source| TrustLevelPresenter.source_link_green(@view_context, source)}.join(' ').html_safe
               %td
                 - if (pub_count = interaction.publications.size) > 0
-                  = interaction.publications.map{|pub| pubmed_link_to(pub.pmid)}.join(" ").html_safe
+                  = interaction.publications.map{|pub| pubmed_link_blue(pub.pmid)}.join(" ").html_safe
                 - else
                   %i
                     None found
