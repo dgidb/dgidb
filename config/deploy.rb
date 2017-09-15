@@ -7,6 +7,7 @@ set :rails_env, "production"
 set :deploy_to, "/var/www/dgidb"
 
 set :rbenv_type, :user
+set :rbenv_ruby, '2.3.4'
 
 set :migration_role, :web
 
