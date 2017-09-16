@@ -25,8 +25,8 @@ namespace :db do
         execute :psql, ustring, hstring, dstring, "< #{current_path}/db/structure.sql"
         execute :psql, ustring, hstring, dstring, "< #{shared_path}/data/data.sql"
       ensure
-        execute sudo :service, :apache2, :start
         execute sudo :service, :memcached, :restart
+        execute sudo :service, :apache2, :start
       end
     end
   end
