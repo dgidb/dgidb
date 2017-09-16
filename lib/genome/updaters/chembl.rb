@@ -68,7 +68,7 @@ module Genome
       end
 
       def self.remove_existing_source
-        Utils::Database.delete_source('ChEMBL')
+        Utils::Database.delete_source('ChemblInteractions')
       end
 
       def self.create_new_source
@@ -87,7 +87,7 @@ module Genome
       end
 
       def self.source
-        @@source ||= DataModel::Source.find_by(source_db_name: 'ChEMBL')
+        @@source ||= DataModel::Source.find_by(source_db_name: 'ChemblInteractions')
       end
 
       def self.flag(string)
