@@ -74,7 +74,7 @@ module Genome
       def self.create_new_source
         @@source ||= DataModel::Source.create(
          {
-           source_db_name: 'ChEMBL',
+           source_db_name: 'ChemblInteractions',
            source_db_version: self.chembl_db_name,
            base_url: 'https://www.ebi.ac.uk/chembldb/index.php/target/inspect/',
            site_url: 'https://www.ebi.ac.uk/chembl',
