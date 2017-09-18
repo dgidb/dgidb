@@ -1,7 +1,8 @@
 class InteractionSearchResultApiV2Presenter
-  def initialize(search_result, identifier)
+  def initialize(search_result, identifier, interactions)
     @result = search_result
     @identifier = identifier
+    @interactions= interactions.map{|i| InteractionWrapper.new(i)}
   end
 
   def identifier
@@ -21,9 +22,7 @@ class InteractionSearchResultApiV2Presenter
   end
 
   def interactions
-    @interactions ||= @result.interactions.map do |i|
-      InteractionWrapper.new(i)
-    end
+    @interactions
   end
 
   private
