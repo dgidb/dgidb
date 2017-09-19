@@ -69,8 +69,11 @@ module Genome
     def create_interaction_claim_publication(interaction_claim, pmid)
       publication = DataModel::Publication.where(
         pmid: pmid,
-        citation: PMID.get_citation_from_pubmed_id(pmid),
       ).first_or_create
+      if publication.citation.nil?
+        publication.citation = PMID.get_citation_from_pubmed_id(pmid)
+        publication.save
+      end
       interaction_claim.publications << publication unless interaction_claim.publications.include? publication
     end
 
