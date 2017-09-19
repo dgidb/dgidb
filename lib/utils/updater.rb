@@ -27,7 +27,7 @@ module Utils
       delete_groups
       logger.info 'Running pre-grouper...'
       pregroup
-      logger.info 'Restoring gene groups (importing entrez...)'
+      logger.info 'Restoring gene groups (importing entrez)...'
       restore_genes
       logger.info 'Grouping all...'
       group
