@@ -62,10 +62,18 @@ module Genome
         end
       end
 
+      def self.assign_default_trust_level(source_map)
+        DataModel::Source.where(source_trust_level:nil).each do |source|
+          source.source_trust_level = source_map['Non-curated']
+          source.save
+        end
+      end
+
       def self.populate_trust_levels
         ActiveRecord::Base.transaction do
           source_map = save_trust_levels
           assign_trust_levels(source_map)
+          assign_default_trust_level(source_map)
         end
       end
     end
