@@ -5,8 +5,8 @@ module Genome
 				# create publication objects without citations from interaction claim attributes
 				# might be unnecessary if we're creating publications straight from import
 				ActiveRecord::Base.transaction do
-					iclaims = DataModel::InteractionClaimAttribute.all(conditions: {name: "PMID"})
-					iclaims |= DataModel::InteractionClaimAttribute.all(conditions: {name: "PubMed ID for Interaction"})
+					iclaims = DataModel::InteractionClaimAttribute.where(name: "PMID").all
+					iclaims |= DataModel::InteractionClaimAttribute.where(name: "PubMed ID for Interaction").all
 					iclaims.map{|pmid|
 						new_pub = DataModel::Publication.where(pmid: pmid.value).first_or_create(pmid: pmid.value)
 						pmid.interaction_claim.publications << new_pub unless pmid.interaction_claim.publications.include? new_pub
