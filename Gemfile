@@ -20,6 +20,7 @@ gem 'syslog-logger'
 gem 'rye'
 gem 'delayed_job_active_record'
 gem 'rubyzip'
+gem 'kaminari', '~> 0.16.1'
 
 group :production do
   gem 'dalli'

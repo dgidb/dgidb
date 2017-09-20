@@ -47,7 +47,7 @@ class DrugPresenter < SimpleDelegator
     interactions.map{|i| i.publications}.flatten.uniq
   end
 
-  def data
+  def as_json(opts = {})
     {
       name: drug.name,
       chembl_id: drug.chembl_id,
@@ -59,16 +59,15 @@ class DrugPresenter < SimpleDelegator
   end
 
   def flag_icons
-
     flags = []
 
-    if data[:fda_approved]
+    if drug.fda_approved
       flags = flags.push(["FDA Approved", "success"])
     end
-    if data[:anti_neoplastic]
+    if drug.anti_neoplastic
       flags = flags.push(["Antineoplastic","danger"])
     end
-    if data[:immunotherapy]
+    if drug.immunotherapy
       flags = flags.push(["Immunotherapy", "info"])
     end
     
