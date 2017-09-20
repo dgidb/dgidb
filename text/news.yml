@@ -181,7 +181,7 @@ news:
           <li>New and updated sources
             <ul>
               <li>An <a href="http://stm.sciencemag.org/content/9/383/eaag1166">expanded definition of the Druggable Genome</a> predicted from GWAS data from AD Hingorani and JP Casas</li>
-              <li>New cancer relevant drug-gene interactions from <a href="https://www.cancergenomeinterpreter.org/">Cancer Genome Interpreter (CGI)</a>, <a href="https://ckb.jax.org/">The Jackson Laboratory Clinical Knowledgebase (CKB)</a>, <a href="http://ascopubs.org/doi/full/10.1200/PO.17.00011">Precision Oncology Knowledge Base (OncoKB)</a>.
+              <li>New cancer relevant drug-gene interactions from <a href="https://www.cancergenomeinterpreter.org/">Cancer Genome Interpreter (CGI)</a>, <a href="https://ckb.jax.org/">The Jackson Laboratory Clinical Knowledgebase (CKB)</a>, <a href="http://ascopubs.org/doi/full/10.1200/PO.17.00011">Precision Oncology Knowledge Base (OncoKB)</a>
               <li>New drug-gene interactions from the <a href="https://www.fda.gov/drugs/scienceresearch/researchareas/pharmacogenetics/ucm083378.htm">FDA Pharmacogenomic Biomarkers table</a>
               <li>New drug-gene interactions from the National Cancer Institute (NCI) <a href="https://wiki.nci.nih.gov/display/cageneindex">Cancer Gene Index</a>
               <li>Updated <a href="https://www.ncbi.nlm.nih.gov/pubmed/24377743">targeted agents in lung cancer (TALC)</a> interactions from GR Simon and N Somaiah
