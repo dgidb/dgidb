@@ -1,12 +1,7 @@
 class ServicesV2Controller < ApplicationController
   def genes
-    genes = DataModel::Gene.eager_load(:gene_aliases).page(params[:page]).per(params[:count])
-    render json: PaginatedCollectionPresenter.new(
-      genes,
-      request,
-      GenePresenter,
-      PaginationPresenter
-    )
+    genes = DataModel::Gene.eager_load(:gene_aliases).all.map{|g| GenePresenter.new(g).data}
+    render_format(genes)
   end
 
   def gene_details
@@ -15,13 +10,8 @@ class ServicesV2Controller < ApplicationController
   end
 
   def drugs
-    drugs = DataModel::Drug.eager_load(:drug_aliases).page(params[:page]).per(params[:count])
-    render json: PaginatedCollectionPresenter.new(
-      drugs,
-      request,
-      DrugPresenter,
-      PaginationPresenter
-    )
+    drugs = DataModel::Drug.eager_load(:drug_aliases).all.map{|d| DrugPresenter.new(d).data}
+    render_format(drugs)
   end
 
   def drug_details
@@ -31,14 +21,9 @@ class ServicesV2Controller < ApplicationController
 
   def render_all_interactions
     interactions = DataModel::Interaction.eager_load(:gene, :drug, :publications, :interaction_types, :sources)
-      .page(params[:page])
-      .per(params[:count])
-    render json: PaginatedCollectionPresenter.new(
-      interactions,
-      request,
-      InteractionPresenter,
-      PaginationPresenter
-    )
+      .all
+      .map{|i| InteractionPresenter.new(i).data}
+    render_format(interactions)
   end
 
   def interaction_details
@@ -87,8 +72,7 @@ class ServicesV2Controller < ApplicationController
     elsif params.key?(:genes)
       combine_input_genes(params)
     elsif params.keys.sort == ['action', 'controller', 'format'] or
-          params.keys.sort == ['action', 'controller'] or
-          (params.key?(:count) and params.key?(:page))
+          params.keys.sort == ['action', 'controller']
       render_all_interactions()
       return
     end

@@ -473,77 +473,33 @@
       %section#all-interactions.anchor
         %h4 All Interactions
         %p.lead
-          When used without a
-          %code genes
-          or
-          %code drugs
-          parameter, the interactions endpoint returns a list of all interactions in the DGIdb database.
-          This is an index style endpoint and is paginated by default. You can use the
-          %code count
-          and
-          %code page
-          parameters to iterate through all the variants.
+          When used without any parameters, the interactions endpoint returns a list of all interactions in the DGIdb database.
         %span.label GET
         %pre
-          \http://dgidb.org/api/v2/interactions
-        %h5 Query Parameters:
-        %table.table.table-bordered.table-striped
-          %thead
-            %tr
-              %td Parameter
-              %td Default
-              %td Description
-          %tbody
-            %tr
-              %td
-                page
-              %td
-                1
-              %td
-                Which page of results to return
-            %tr
-              %td
-                count
-              %td
-                25
-              %td
-                How many interactions to return on a single page
-
+          \http://dgidb.org/api/v2/interactions.json
         %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-all-interactions-response'}}
           Show/Hide Response
         %pre#example-all-interactions-response.collapse
           :preserve
-            {
-              "_meta": {
-                "current_page": 1,
-                "per_page": 25,
-                "total_pages": 1192,
-                "total_count": 29783,
-                "links": {
-                  "next": "http://localhost:3000/api/v2/interactions?count=25&page=2",
-                  "previous": null
-                }
+            [
+              {
+                "id":"d7f26f83-681f-4546-a71e-4651c8c88c7c",
+                "gene_name":"AKT1",
+                "entrez_id":207,
+                "drug_name":"GSK-690693",
+                "chembl_id":"CHEMBL494089",
+                "publications":[18800763],
+                "interaction_types":[
+                  "n/a",
+                  "inhibitor"
+                ],
+                "sources":[
+                  "ChEMBL",
+                  "GuideToPharmacologyInteractions"
+                ]
               },
-              "records": [
-                {
-                  "id":"d7f26f83-681f-4546-a71e-4651c8c88c7c",
-                  "gene_name":"AKT1",
-                  "entrez_id":207,
-                  "drug_name":"GSK-690693",
-                  "chembl_id":"CHEMBL494089",
-                  "publications":[18800763],
-                  "interaction_types":[
-                    "n/a",
-                    "inhibitor"
-                  ],
-                  "sources":[
-                    "ChEMBL",
-                    "GuideToPharmacologyInteractions"
-                  ]
-                },
-                ...
-              ]
-            }
+              ...
+            ]
       %hr
       %section#one-interaction.anchor
         %h4 Interaction Details
@@ -674,72 +630,33 @@
         %h4 All Drugs
         %p.lead
           The drugs endpoint can be used to retrieve a list of all drugs in the DGIdb database.
-          This is an index style endpoint and is paginated by default. You can use the
-          %code count
-          and
-          %code page
-          parameters to iterate through all the variants.
         %span.label GET
         %pre
-          \http://dgidb.org/api/v2/drugs
-        %h5 Query Parameters:
-        %table.table.table-bordered.table-striped
-          %thead
-            %tr
-              %td Parameter
-              %td Default
-              %td Description
-          %tbody
-            %tr
-              %td
-                page
-              %td
-                1
-              %td
-                Which page of results to return
-            %tr
-              %td
-                count
-              %td
-                25
-              %td
-                How many drugs to return on a single page
+          \http://dgidb.org/api/v2/drugs.json
         %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-all-drugs-response'}}
           Show/Hide Response
         %pre#example-all-drugs-response.collapse
           :preserve
-            {
-              "_meta": {
-                "current_page": 1,
-                "per_page": 25,
-                "total_pages": 380,
-                "total_count": 9495,
-                "links": {
-                  "next": "http://localhost:3000/api/v2/drugs?count=25&page=2",
-                  "previous": null
-                }
+            [
+              {
+                "name":"TESAMORELIN",
+                "chembl_id":"CHEMBL1237026",
+                "fda_approved":true,
+                "immunotherapy":false,
+                "anti_neoplastic":false,
+                "alias":[
+                  "178103540",
+                  "6959",
+                  "DAP001556",
+                  "GHRH(1-44)",
+                  "N-[(3E)-1-oxo-3-hexenyl]Somatoliberin (human pancreatic islet)",
+                  "218949-48-5",
+                  "Egrifta",
+                  "DB08869"
+                ]
               },
-              "records": [
-                {
-                  "name":"TESAMORELIN",
-                  "chembl_id":"CHEMBL1237026",
-                  "fda_approved":true,
-                  "immunotherapy":false,
-                  "anti_neoplastic":false,
-                  "alias":[
-                    "178103540",
-                    "6959",
-                    "DAP001556",
-                    "GHRH(1-44)",
-                    "N-[(3E)-1-oxo-3-hexenyl]Somatoliberin (human pancreatic islet)",
-                    "218949-48-5",
-                    "Egrifta",
-                    "DB08869"
-                  ]
-                },
-                ...
-              ]
-            }
+              ...
+            ]
       %hr
       %section#one-drug.anchor
         %h4 Drug Details
@@ -1167,67 +1084,28 @@
         %h4 All Genes
         %p.lead
           The genes endpoint can be used to retrieve a list of all genes in the DGIdb database.
-          This is an index style endpoint and is paginated by default. You can use the
-          %code count
-          and
-          %code page
-          parameters to iterate through all the variants.
         %span.label GET
         %pre
-          \http://dgidb.org/api/v2/genes
-        %h5 Query Parameters:
-        %table.table.table-bordered.table-striped
-          %thead
-            %tr
-              %td Parameter
-              %td Default
-              %td Description
-          %tbody
-            %tr
-              %td
-                page
-              %td
-                1
-              %td
-                Which page of results to return
-            %tr
-              %td
-                count
-              %td
-                25
-              %td
-                How many genes to return on a single page
+          \http://dgidb.org/api/v2/genes.json
         %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-all-genes-response'}}
           Show/Hide Response
         %pre#example-all-genes-response.collapse
           :preserve
-            {
-              "_meta": {
-                "current_page": 1,
-                "per_page": 25,
-                "total_pages": 1644,
-                "total_count": 41100,
-                "links": {
-                  "next": "http://localhost:3000/api/v2/genes?count=25&page=2",
-                  "previous": null
-                }
+            [
+              {
+                "name":"A1BG",
+                "long_name":"alpha-1-B glycoprotein",
+                "entrez_id":1,
+                "aliases":[
+                  "A1B",
+                  "ABG",
+                  "GAB",
+                  "HYST2477",
+                  "ENSG00000121410"
+                ]
               },
-              "records": [
-                {
-                  "name":"A1BG",
-                  "long_name":"alpha-1-B glycoprotein",
-                  "entrez_id":1,
-                  "aliases":[
-                    "A1B",
-                    "ABG",
-                    "GAB",
-                    "HYST2477",
-                    "ENSG00000121410"
-                  ]
-                },
-                ...
-              ]
-            }
+              ...
+            ]
       %hr
       %section#one-gene.anchor
         %h4 Gene Details
