@@ -43,7 +43,7 @@ class GenePresenter < SimpleDelegator
     interactions.map{|i| i.publications}.flatten.uniq
   end
 
-  def data
+  def as_json(opts = {})
     {
       name: self.display_name,
       long_name: gene.long_name,
