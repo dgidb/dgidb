@@ -6,7 +6,7 @@ class InteractionSearchResultsApiV1Presenter
   def matched_results
     @matched_results ||= @search_results
       .select { |r| r.is_definite? && r.has_interactions? }
-      .map { |r| InteractionSearchResultApiV1Presenter.new(r) }
+      .flat_map { |r| r.interactions.map {|identifier, interactions| InteractionSearchResultApiV1Presenter.new(r, identifier, interactions) }}
   end
 
   def unmatched_results
