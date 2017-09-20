@@ -5,6 +5,10 @@ class InteractionSearchResultApiV1Presenter
     @interactions = interactions.flat_map(&:interaction_claims).map{|i| InteractionWrapper.new(i)}
   end
 
+  def identifier
+    @identifier
+  end
+
   def search_term
     @result.search_term
   end
@@ -26,7 +30,7 @@ class InteractionSearchResultApiV1Presenter
   end
 
   def potentially_druggable_categories
-    gene.gene_claims.flat_map { |gc| gc.gene_claim_categories }
+    @identifier.gene_claims.flat_map { |gc| gc.gene_claim_categories }
     .map { |c| c.name }
     .uniq
   end
