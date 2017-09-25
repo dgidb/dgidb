@@ -6,6 +6,7 @@ namespace :db do
   task :copy_data_to_remote do
     on roles(:all) do
       upload!('data/data.sql', "#{shared_path}/public/data/data.sql")
+      upload!('data/dGene_04-16-2013_2257.tsv', "#{shared_path}/public/data/dGene_04-16-2013_2257.tsv")
       %w(interactions categories genes drugs).each do |type|
         upload!("data/#{type}.tsv", "#{shared_path}/public/data/#{type}.tsv")
       end
