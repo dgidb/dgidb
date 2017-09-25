@@ -7,7 +7,7 @@ namespace :db do
     on roles(:all) do
       upload!('data/data.sql', "#{shared_path}/data/data.sql")
       %w(interactions categories genes drugs).each do |type|
-        upload!("data/#{type}.tsv", "#{shared_path}/data/#{type}.sql")
+        upload!("data/#{type}.tsv", "#{shared_path}/data/#{type}.tsv")
       end
     end
   end
