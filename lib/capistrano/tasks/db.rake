@@ -24,7 +24,7 @@ namespace :db do
         execute :dropdb, :dgidb
         execute :createdb, ustring, hstring, :dgidb
         execute :psql, ustring, hstring, dstring, "< #{current_path}/db/structure.sql"
-        execute :psql, ustring, hstring, dstring, "< #{shared_path}/data/data.sql"
+        execute :psql, ustring, hstring, dstring, "< #{shared_path}/public/data/data.sql"
       ensure
         execute sudo :service, :memcached, :restart
         execute sudo :service, :apache2, :start
