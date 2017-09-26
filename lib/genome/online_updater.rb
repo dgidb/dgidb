@@ -73,6 +73,7 @@ module Genome
       if publication.citation.nil?
         publication.citation = PMID.get_citation_from_pubmed_id(pmid)
         publication.save
+        sleep(1)
       end
       interaction_claim.publications << publication unless interaction_claim.publications.include? publication
     end
