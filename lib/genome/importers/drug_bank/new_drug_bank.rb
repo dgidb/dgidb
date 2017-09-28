@@ -14,7 +14,7 @@ module Genome; module Importers; module DrugBank;
     end
 
     def get_version
-      File.open('lib/genome/updaters/data/version').readlines.each do |line|
+      File.open('tmp/version').readlines.each do |line|
         source, version = line.split("\t")
         if source == 'DrugBank'
           return version.strip
