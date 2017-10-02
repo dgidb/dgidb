@@ -1,6 +1,12 @@
 class InteractionSearchResultApiV1Presenter
-  def initialize(search_result)
+  def initialize(search_result, identifier, interactions)
     @result = search_result
+    @identifier = identifier
+    @interactions = interactions.flat_map(&:interaction_claims).map{|i| InteractionWrapper.new(i)}
+  end
+
+  def identifier
+    @identifier
   end
 
   def search_term
@@ -24,7 +30,7 @@ class InteractionSearchResultApiV1Presenter
   end
 
   def potentially_druggable_categories
-    gene.gene_claims.flat_map { |gc| gc.gene_claim_categories }
+    @identifier.gene_claims.flat_map { |gc| gc.gene_claim_categories }
     .map { |c| c.name }
     .uniq
   end
@@ -34,20 +40,18 @@ class InteractionSearchResultApiV1Presenter
   end
 
   def interactions
-    @interactions ||= @result.interactions.flat_map(&:interaction_claims).map do |i|
-      InteractionWrapper.new(i)
-    end
+    @interactions
   end
 
   private
   def gene
-    @result.interactions
+    @interactions
       .first
       .gene
   end
 
   def drug
-    @result.interactions
+    @interactions
       .first
       .drug
   end
@@ -68,9 +72,17 @@ class InteractionSearchResultApiV1Presenter
       interaction_claim.source.source_db_name
     end
 
+    def drug
+      interaction_claim.drug_claim.drug
+    end
+
     def drug_name
       interaction_claim.drug_claim.primary_name ||
         interaction_claim.drug_claim.name
+    end
+
+    def gene
+      interaction_claim.gene_claim.gene
     end
 
     def gene_name

@@ -1,7 +1,7 @@
 json.matchedTerms @search_results.matched_results do |result|
   if result.type == 'drugs'
     json.searchTerm result.search_term
-    json.drugName result.drug_name
+    json.drugName result.identifier.name
     json.interactions result.interactions do |interaction|
       json.interactionId interaction.interaction_id
       json.interactionType interaction.types_string
@@ -11,8 +11,8 @@ json.matchedTerms @search_results.matched_results do |result|
     end
   else
     json.searchTerm result.search_term
-    json.geneName result.gene_name
-    json.geneLongName result.gene_long_name
+    json.geneName result.identifier.name
+    json.geneLongName result.identifier.long_name
     json.geneCategories result.potentially_druggable_categories
     json.interactions result.interactions do |interaction|
       json.interactionId interaction.interaction_id

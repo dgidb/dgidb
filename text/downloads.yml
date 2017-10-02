@@ -13,25 +13,25 @@ downloads:
       description: >
         This is the full source code of the DGIdb web application. It runs Ruby on Rails and Postgres.
     - title: Interactions TSV
-      link: "http://dgidb.org/downloads/interactions.tsv"
+      link: "/data/interactions.tsv"
       description: >
         TSV download of all drug-gene interactions in DGIdb from all sources that were mapped to Entrez genes.
         For ease of use, we recommend working directly with the <a href="http://dgidb.org/api">API</a>
         or SQL database dump below.
     - title: Genes TSV
-      link: "http://dgidb.org/downloads/genes.tsv"
+      link: "/data/genes.tsv"
       description: >
         TSV download of all gene claims in DGIdb.
         For ease of use, we recommend working directly with the <a href="http://dgidb.org/api">API</a>
         or SQL database dump below.
     - title: Drugs TSV
-      link: "http://dgidb.org/downloads/drugs.tsv"
+      link: "/data/drugs.tsv"
       description: >
         TSV download of all drug claims in DGIdb.
         For ease of use, we recommend working directly with the <a href="http://dgidb.org/api">API</a>
         or SQL database dump below.
     - title: Categories TSV
-      link: "http://dgidb.org/downloads/categories.tsv"
+      link: "/data/categories.tsv"
       description: >
         TSV download of all genes in druggable categories in DGIdb from all sources that were mapped to Entrez genes.
         For ease of use, we recommend working directly with the <a href="http://dgidb.org/api">API</a>
@@ -47,12 +47,12 @@ downloads:
         Note that DrugBank is not included in the interactions TSV file above. These data must be requested directly from
         <a href="https://www.drugbank.ca/releases/latest">DrugBank</a>.
     - title: dGene data (04-16-2013)
-      link: "http://dgidb.org/downloads/dGene_04-16-2013_2257.tsv"
+      link: "/data/dGene_04-16-2013_2257.tsv"
       description: >
         TSV download of the latest version of the dGene database made available here at the request of the dGene creators.
         This data corresponds to the dGene publication and has not changed significantly since that publication.
     - title: DGIdb database dump
-      link: "http://dgidb.org/downloads/data.sql"
+      link: "/data/data.sql"
       description: >
         SQL dump of the contents of the DGIdb Postgres database.
 

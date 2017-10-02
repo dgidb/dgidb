@@ -38,10 +38,22 @@ module Genome; module OnlineUpdaters; module Ckb;
         gene_claim = create_gene_claim(gene['geneName'], 'CKB Gene Name')
         create_gene_claim_aliases(gene_claim, gene)
         api_client.interactions_for_gene_id(gene['id']).each do |interaction|
-          drug_claim = create_drug_claim(interaction['Therapy Name'], interaction['Therapy Name'], 'CKB Drug Name')
-          interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-          create_interaction_claim_publications(interaction_claim, interaction['References'])
-          create_interaction_claim_attributes(interaction_claim, interaction)
+          drug_name = interaction['Therapy Name']
+          if drug_name.include? '+'
+            combination_drug_name = drug_name
+            combination_drug_name.split(' + ').each do |individual_drug_name|
+              drug_claim = create_drug_claim(individual_drug_name, individual_drug_name, 'CKB Drug Name')
+              interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+              create_interaction_claim_attribute(interaction_claim, 'combination therapy', combination_drug_name)
+              create_interaction_claim_publications(interaction_claim, interaction['References'])
+              create_interaction_claim_attributes(interaction_claim, interaction)
+            end
+          else
+            drug_claim = create_drug_claim(drug_name, drug_name, 'CKB Drug Name')
+            interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+            create_interaction_claim_publications(interaction_claim, interaction['References'])
+            create_interaction_claim_attributes(interaction_claim, interaction)
+          end
         end
       end
     end
