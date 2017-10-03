@@ -1,7 +1,17 @@
-%tr
+%tr{onclick: "location.href='/genes/#{gene.short_name}';"}
   %td
-    =link_to gene.short_name, gene_path(gene.short_name)
+    =gene.short_name
   %td
-    =link_to gene.gene_name, gene_path(gene.short_name)
+    =gene.gene_name
   %td
     =gene.source_links
+
+:css
+  tr:hover td{
+    background-color:rgba(220, 220, 220, 1);
+    cursor: pointer;
+  }
+  td .label {
+    display: inline-block;
+    margin-bottom: 3px;
+  }

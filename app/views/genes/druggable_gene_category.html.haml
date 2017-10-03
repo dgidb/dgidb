@@ -47,6 +47,12 @@
                           = [10, @genes.display_genes.length].min
                         %span
                           = "out of #{@genes.display_genes.length} Genes"
+:css
+  tr:hover td{
+    background-color:rgba(220, 220, 220, 1);
+    cursor: pointer;
+  }
+
 
 :javascript
   $('table').each(function(index){
@@ -67,3 +73,4 @@
     tbl.find('> tbody > tr').hide().slice(0, 10).show();
     $("#nrows", $(this).next()).html(tbl.find('tr:visible').length - 1);
   });
+
