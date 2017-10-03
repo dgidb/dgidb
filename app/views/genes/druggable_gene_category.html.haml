@@ -14,8 +14,8 @@
                 %div(class="item-content")
                   %div(class="cell category")
                     %div(class="item-panel")
-                      %div{style: "max-height: 700px; overflow-y: scroll; margin-bottom: 5px;"}
-                        %table{class: "table table-condensed table-striped", style: "table-layout:fixed;" }
+                      %div{style: "margin-bottom: 5px;"}
+                        %table{class: "table table-condensed table-striped" }
                           %thead
                             %tr
                               %th
@@ -35,3 +35,35 @@
                                     %i.icon-flag.tip{title: tx("source_table_header_flag")}
                             %tbody
                               =render partial: 'genes/category_table_row', collection: @genes.display_genes, as: :gene
+                      %button{class: "show-all", style: "margin-top: 5px"}
+                        Show All
+                      %button{class: "show-more", style: "margin-top: 5px"}
+                        Show More
+                      %button{class: "show-less", style: "margin-top: 5px"}
+                        Show Less
+                      %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
+                        Showing
+                        %span#nrows
+                          = [10, @genes.display_genes.length].min
+                        %span
+                          = "out of #{@genes.display_genes.length} Genes"
+
+:javascript
+  $('table').each(function(index){
+    $(this).find('> tbody > tr').hide().slice(0, 10).show();
+  });
+  $(".show-all").on("click", function() {
+    var tbl = $('table');
+    $("tbody > tr", tbl).show();
+    $("#nrows", $(this).next().next().next()).html(tbl.find('tr:visible').length - 1);
+  });
+  $(".show-more").on("click", function() {
+    var tbl = $('table');
+    $("tbody > tr", tbl).slice(0, tbl.find('tr:visible').length + 9).show();
+    $("#nrows", $(this).next().next()).html(tbl.find('tr:visible').length - 1);
+  });
+  $(".show-less").on("click", function() {
+    var tbl = $('table');
+    tbl.find('> tbody > tr').hide().slice(0, 10).show();
+    $("#nrows", $(this).next()).html(tbl.find('tr:visible').length - 1);
+  });

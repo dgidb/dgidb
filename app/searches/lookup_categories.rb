@@ -19,6 +19,7 @@ class LookupCategories
       .order('genes.name')
       .pluck('genes.name')
       .uniq
+    binding.pry
   end
 
   def self.find_genes_for_category_and_sources(category_name, source_names)
