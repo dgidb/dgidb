@@ -23,34 +23,23 @@
       %li
         %a(href="#by_source" data-toggle="tab") By Source
     .tab-content{style: "margin-left: -30px; margin-top: 20px;"}
-      .tab-pane.active#successful
-        -if @search_results.show_result_categories?
+      -if @search_results.show_result_categories?
+        .tab-pane.active#successful
           .row-fluid
             .span12
-              = @search_results.unique_matches
-              
-        .row-fluid
-          -if @search_results.show_ambiguous_results?
-            =render partial: 'genes/no_category_result', locals: {title: 'Ambiguous Search Terms', results: @search_results.ambiguous_results, tooltip_text: tx('ambiguous_terms_flag'), subtitle: "Search terms matching multiple genes. These genes may or may not belong to druggable gene categories."}
-          -if @search_results.show_definite_results_with_no_categories?
-            =render partial: 'genes/no_category_result', locals: {title: 'Matched Genes With No Categories', results: @search_results.definite_results_with_no_categories, subtitle: "Search terms matching multiple genes. These genes may or may not belong to druggable gene categories.", tooltip_text: tx('no_matches_flag')}
-          -if @search_results.show_no_results_results?
-            .span6
-              .well
-                %h3
-                  Search Terms With No Matches
-                  %small
-                    %strong
-                      %i.icon-flag.tip{title: tx("terms_with_no_matches_flag")}
-                %small      
-                  %strong 
-                    %em Search terms that could not be matched to a gene.
-                %p  
-                %ul
-                  -@search_results.no_results_results.each do |result|
-                    %li=result.search_term
-      .tab-pane.active#failed
-        = @search_results.ambiguous_matches
+              - definite_results = @search_results.unique_matches
+              = render partial: 'genes/successful_search', locals: {definite_results: definite_results} #use @search_mode to determine type of view, just use one set of templates
+        .tab-pane#failed
+          .row-fluid
+            .span12
+              - ambiguous_results = @search_results.ambiguous_matches
+              - ambiguous_result_presenters = @search_results.ambiguous_result_presenters
+              - failed_results = @search_results.no_results_results
+              - if failed_results.any?
+                - failed_terms = failed_results.map{|result| result.search_term}
+              - else
+                - failed_terms = []
+              = render partial: 'genes/failed_search', locals: {ambiguous_results: ambiguous_results, ambiguous_result_presenters: ambiguous_result_presenters, failed_terms: failed_terms}
       .tab-pane.fade#by_categories
         -if @search_results.show_genes_by_category?
           .row-fluid
@@ -158,6 +147,35 @@
 =javascript_include_tag "trunk8"
 
 :javascript
+  $(".sidebar-toggle").on("click", function() {
+    name = "#" + this.name;
+    $(name).toggle();
+  });
+
+  $(".ambiguous.search-term").on("click", function() {
+    name = "." + this.name;
+    $(name).click();
+  });
+
+  $('table').each(function(index){
+    $(this).find('> tbody > tr').hide().slice(0, 11).show();
+  });
+  $(".show-all").on("click", function() {
+    var tbl = $(this).prev();
+    $("tbody > tr", tbl).show();
+    $("#nrows", $(this).next().next().next()).html(tbl.find('tr:visible').length - 1);
+  });
+  $(".show-more").on("click", function() {
+    var tbl = $(this).prev().prev();
+    $("tbody > tr", tbl).slice(0, tbl.find('tr:visible').length + 10).show();
+    $("#nrows", $(this).next().next()).html(tbl.find('tr:visible').length - 1);
+  });
+  $(".show-less").on("click", function() {
+    var tbl = $(this).prev().prev().prev();
+    tbl.find('> tbody > tr').hide().slice(0, 11).show();
+    $("#nrows", $(this).next()).html(tbl.find('tr:visible').length - 1);
+  });
+
   $(document).ready(function () {
     var activeTab = $('#' + window.location.hash.substr(2));
 

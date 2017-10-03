@@ -80,7 +80,7 @@ class GeneCategorySearchResultsPresenter
   def unique_matches
     unless @unique_matches
       @unique_matches = []
-      results = result_presenters
+      results = result_presenters.uniq{|r| r.gene_categories}
       results.each do |result|
         gene = result.genes[0]
         gene_claims = result.gene_claims
@@ -108,7 +108,7 @@ class GeneCategorySearchResultsPresenter
   def ambiguous_matches
     unless @ambiguous_matches
       @ambiguous_matches = []
-      results = ambiguous_result_presenters
+      results = ambiguous_result_presenters.uniq{|r| r.gene_categories}
       results.each do |result|
         genes = result.genes
         genes.each do |gene|
@@ -120,7 +120,7 @@ class GeneCategorySearchResultsPresenter
               .select { |gc| gc.gene_claim_categories.select { |gcc| gcc.name == category.name }.any?}
               .map { |gc| gc.source.source_db_name }
             rows << OpenStruct.new(
-                category: category,
+                category: category.name,
                 sources: sources
               )
           end

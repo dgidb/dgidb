@@ -34,6 +34,7 @@ class GenesController < ApplicationController
   end
 
   def categories_search_results
+    @view_context = view_context
     @search_categories_active = 'active'
     start_time = Time.now
     validate_search_request(params)
