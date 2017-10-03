@@ -24,7 +24,7 @@ contact:
       email_title: Email
 
     - title: Alex Wagner
-      description: Project lead, developer\nHardware/systems architect
+      description: Project lead, developer<br>Hardware/systems architect
       link: "http://www.alexwagner.info"
       link_title: Academic profile
       email: "mailto:awagner24@wustl.edu"
