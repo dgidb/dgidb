@@ -17,11 +17,7 @@
       %li
         %a(href="#failed" data-toggle="tab") Ambiguous or Unmatched
       %li
-        %a(href="#search_summary_tab" data-toggle="tab") Search Results Summary
-      %li
         %a(href="#by_categories" data-toggle="tab") By Category
-      %li
-        %a(href="#by_source" data-toggle="tab") By Source
     .tab-content{style: "margin-left: -30px; margin-top: 20px;"}
       -if @search_results.show_result_categories?
         .tab-pane.active#successful
@@ -45,10 +41,6 @@
           .row-fluid
             .span12
               =render partial: 'genes/results_by_category_table', locals: {title: "Results Grouped by Categories", categories: @search_results.genes_by_category, tooltip_text: tx('search_results_by_categories_flag'), subtitle: "Number of search terms matching genes in each druggable gene category." }
-      .tab-pane.fade#search_summary_tab
-        =render partial: 'genes/results_summary', locals: {title: "Results Grouped by Gene Category", results: @search_results}
-      .tab-pane.fade#by_source
-        =render partial: 'genes/results_by_source_table', locals: {title: "Results Enumerated by Source", results: @search_results, tooltip_text: tx('title_search_results_by_source'), subtitle: "Number of search terms matching genes in each druggable gene category broken down by source."}
 
 :css
   .dataTables_wrapper > div.row {
