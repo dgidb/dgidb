@@ -24,7 +24,7 @@ contact:
       email_title: Email
 
     - title: Alex Wagner
-      description: Project lead, developer
+      description: Project lead, developer\nHardware/systems architect
       link: "http://www.alexwagner.info"
       link_title: Academic profile
       email: "mailto:awagner24@wustl.edu"
@@ -63,11 +63,6 @@ contact:
       link: "http://genome.wustl.edu/people/individual/joshua-mcmichael"
       link_title: McDonnell Genome Institute profile
       email: "mailto:jmcmicha@wustl.edu"
-      email_title: Email
-
-    - title: Matthew B. Callaway
-      description: Hardware/systems architect
-      email: "mailto:mcallawa@wustl.edu"
       email_title: Email
 
     - title: The McDonnell Genome Institute
