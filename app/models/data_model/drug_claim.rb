@@ -47,7 +47,9 @@ module DataModel
           [base_url, 'drug', name].join('/')
         when 'TTD'
           base_url + 'DRUG.asp?ID=' + name
-        when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial', 'CGI', 'FDA', 'NCI', 'OncoKB', 'TALC', 'TEND', 'HingoraniCasas'
+        when 'TEND'
+          'http://www.ncbi.nlm.nih.gov/pubmed/21804595/'
+        when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial', 'CGI', 'FDA', 'NCI', 'OncoKB', 'TALC', 'HingoraniCasas'
           base_url
         when 'GuideToPharmacologyInteractions'
           'http://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=' + name

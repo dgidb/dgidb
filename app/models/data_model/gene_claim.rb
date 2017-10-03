@@ -41,24 +41,24 @@ module DataModel
       base_url = self.source.base_url
       name = self.name
       case self.source.source_db_name
-      when 'DrugBank'
-        [base_url, 'biodb', 'bio_entities', name].join('/')
-      when 'CIViC'
-        [base_url, '#', 'events', 'genes', name, 'summary'].join('/')
-      when 'PharmGKB'
-        [base_url, 'gene', name].join('/')
-      when 'TTD'
-        base_url + 'Detail.asp?ID=' + name
-      when 'CKB'
+        when 'DrugBank'
+          [base_url, 'biodb', 'bio_entities', name].join('/')
+        when 'CIViC'
+          [base_url, '#', 'events', 'genes', name, 'summary'].join('/')
+        when 'PharmGKB'
+          [base_url, 'gene', name].join('/')
+        when 'TTD'
+          base_url + 'Detail.asp?ID=' + name
+        when 'CKB'
           entrez_id = self.gene_claim_aliases.select{|a| a.nomenclature == 'CKB Entrez Id'}.first.alias
           base_url + entrez_id
         when 'GO'
-            if (self.gene_claim_aliases.select{|a| a.nomenclature == 'UniProtKB ID'}.first).one?
-              entrez_id = self.gene_claim_aliases.select{|a| a.nomenclature == 'UniProtKB ID'}.first.alias
-              base_url + entrez_id
-            else
-              'http://amigo.geneontology.org/amigo/search/bioentity?q=' + name
-            end
+          if (self.gene_claim_aliases.select{|a| a.nomenclature == 'UniProtKB ID'}.first).one?
+            entrez_id = self.gene_claim_aliases.select{|a| a.nomenclature == 'UniProtKB ID'}.first.alias
+            base_url + entrez_id
+          else
+            'http://amigo.geneontology.org/amigo/search/bioentity?q=' + name
+          end
         when 'OncoKB'
           'http://oncokb.org/#/gene/' + name
         when 'GuideToPharmacologyInteractions', 'GuideToPharmacologyGenes'
@@ -66,8 +66,8 @@ module DataModel
         when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial',
             'MyCancerGenomeClinicalTrial', 'MskImpact', 'CarisMolecularIntelligence', 'CGI', 'FDA', 'NCI', 'HingoraniCasas', 'TALC'
           base_url
-      else
-        base_url + name
+        else
+          base_url + name
       end
     end
   end
