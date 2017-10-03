@@ -49,13 +49,23 @@ module DataModel
         [base_url, 'gene', name].join('/')
       when 'TTD'
         base_url + 'Detail.asp?ID=' + name
-      when 'GO'
-        base_url + name
-      when 'GuideToPharmacologyInteractions', 'GuideToPharmacologyGenes'
-        'http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=' + name
+      when 'CKB'
+          entrez_id = self.gene_claim_aliases.select{|a| a.nomenclature == 'CKB Entrez Id'}.first.alias
+          base_url + entrez_id
+        when 'GO'
+            if (self.gene_claim_aliases.select{|a| a.nomenclature == 'UniProtKB ID'}.first).one?
+              entrez_id = self.gene_claim_aliases.select{|a| a.nomenclature == 'UniProtKB ID'}.first.alias
+              base_url + entrez_id
+            else
+              'http://amigo.geneontology.org/amigo/search/bioentity?q=' + name
+            end
+        when 'OncoKB'
+          'http://oncokb.org/#/gene/' + name
+        when 'GuideToPharmacologyInteractions', 'GuideToPharmacologyGenes'
+          'http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=' + name
         when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial',
-            'MyCancerGenomeClinicalTrial', 'MskImpact', 'CarisMolecularIntelligence'
-        base_url
+            'MyCancerGenomeClinicalTrial', 'MskImpact', 'CarisMolecularIntelligence', 'CGI', 'FDA', 'NCI', 'HingoraniCasas', 'TALC'
+          base_url
       else
         base_url + name
       end
