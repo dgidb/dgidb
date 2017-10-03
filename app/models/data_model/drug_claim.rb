@@ -55,6 +55,8 @@ module DataModel
           'http://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=' + name
         when 'ChEMBL'
           'https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/' + name
+        when 'CKB'
+          'https://ckb.jax.org/'
         else
           base_url + name
       end
