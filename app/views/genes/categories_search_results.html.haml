@@ -13,7 +13,9 @@
   .tabbable
     %ul.nav.nav-tabs
       %li.active
-        %a(href="#by_genes" data-toggle="tab") Category Results
+        %a(href="#successful" data-toggle="tab") Unique Matches
+      %li
+        %a(href="#failed" data-toggle="tab") Ambiguous or Unmatched
       %li
         %a(href="#search_summary_tab" data-toggle="tab") Search Results Summary
       %li
@@ -21,11 +23,12 @@
       %li
         %a(href="#by_source" data-toggle="tab") By Source
     .tab-content{style: "margin-left: -30px; margin-top: 20px;"}
-      .tab-pane.active#by_genes
+      .tab-pane.active#successful
         -if @search_results.show_result_categories?
           .row-fluid
             .span12
-              =render partial: 'genes/category_results_table', locals: {title: "Primary Results", categories: @search_results.result_presenters, tooltip_text: tx("definite_results_passed_filter_flag"), subtitle: "Search terms matching exactly one gene that belongs to one or more druggable categories.", export_id: 'category_result_export'}
+              = @search_results.unique_matches
+              
         .row-fluid
           -if @search_results.show_ambiguous_results?
             =render partial: 'genes/no_category_result', locals: {title: 'Ambiguous Search Terms', results: @search_results.ambiguous_results, tooltip_text: tx('ambiguous_terms_flag'), subtitle: "Search terms matching multiple genes. These genes may or may not belong to druggable gene categories."}
@@ -46,6 +49,8 @@
                 %ul
                   -@search_results.no_results_results.each do |result|
                     %li=result.search_term
+      .tab-pane.active#failed
+        = @search_results.ambiguous_matches
       .tab-pane.fade#by_categories
         -if @search_results.show_genes_by_category?
           .row-fluid
@@ -148,7 +153,33 @@
 
 =javascript_include_tag "jquery.dataTables.min"
 =javascript_include_tag "pagination_bootstrap"
-=javascript_include_tag "interaction_search_results"
 =javascript_include_tag "table-export"
 =javascript_include_tag "jquery.smartresize"
 =javascript_include_tag "trunk8"
+
+:javascript
+  $(document).ready(function () {
+    var activeTab = $('#' + window.location.hash.substr(2));
+
+    if(activeTab.length) {
+      $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+    } else {
+      $('a[href="' + "#successful" + '"]').trigger('click');
+    }
+  });
+
+  window.addEventListener("popstate", function() {
+    console.log("pop");
+    var activeTab = $('#' + window.location.hash.substr(2));
+    if (activeTab.length) {
+      $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
+    } else {
+      $('a[href="' + "#successful" + '"]').trigger('click');
+    }
+  });
+
+  $(".tabbable li a").click(function () {
+    console.log("click");
+    window.location.hash = "_" + $(this).attr('href').substr(1);
+    return true;
+  }); 
