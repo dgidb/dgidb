@@ -62,11 +62,7 @@ module PMID
     end
 
     def year
-      if Date.new(publication_date.to_i).gregorian?
-        publication_date
-      else
-        Date.parse(publication_date).year
-      end
+      Date.parse(result['sortpubdate']).year
     end
 
     def journal
