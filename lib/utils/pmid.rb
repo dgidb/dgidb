@@ -43,6 +43,7 @@ module PMID
           return articles['value']
         end
       end
+      return
     end
 
     def first_author
