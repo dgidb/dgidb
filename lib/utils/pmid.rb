@@ -45,10 +45,6 @@ module PMID
       end
     end
 
-    #def abstract
-    #  xpath_contents_or_nil('//Abstract/AbstractText')
-    #end
-
     def first_author
       if authors.size > 1
         authors.first + " et al."
