@@ -246,7 +246,7 @@ module Utils
     end
 
     def self.cleanup_whitespaces
-      DataModel::InteractionClaimType.where("type lIKE ' %' or type LIKE '% '").all.each do |t|
+      DataModel::InteractionClaimType.where("type LIKE ' %' or type LIKE '% '").all.each do |t|
         t.value = t.value.strip
         t.save!
       end
