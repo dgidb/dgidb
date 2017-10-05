@@ -2,7 +2,7 @@
 
   -sources.sort_by{ |s| s.type }.reverse.each do |source|
     -type = source.type
-    %li(class="#{type}" data-category="#{type}" data-name="#{source.type_display_name}")
+    %li(class="#{type} source-panel" data-category="#{type}" data-name="#{source.type_display_name}" onclick="location.href='/sources/#{source.source_db_name}';")
       - if type == "gene"
         =render partial: 'sources/gene_source', locals:{source: source}
       - elsif type == "drug"
@@ -11,3 +11,6 @@
         =render partial: 'sources/interaction_source', locals:{source: source}
       - elsif type == "potentially_druggable"
         =render partial: 'sources/category_source', locals:{source: source}
+:css
+  li.source-panel { cursor: pointer; }
+  li.source-panel:hover { background-color: #DDD; }
