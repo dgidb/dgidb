@@ -258,6 +258,14 @@ module Utils
         a.value = a.value.strip
         a.save!
       end
+      DataModel::InteractionAttribute.where("name LIKE ' %' or name LIKE '% '").all.each do |a|
+        a.name = a.name.strip
+        a.save!
+      end
+      DataModel::InteractionAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
+        a.value = a.value.strip
+        a.save!
+      end
 
       DataModel::GeneClaimAlias.where("alias LIKE ' %' or alias LIKE '% '").all.each do |a|
         a.alias = a.alias.strip
@@ -270,6 +278,35 @@ module Utils
       DataModel::GeneClaimAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
         a.value = a.value.strip
         a.save!
+      end
+      DataModel::GeneAlias.where("alias LIKE ' %' or alias LIKE '% '").all.each do |a|
+        clean_alias = a.alias.strip
+        if (clean_gene_alias = DataModel::GeneAlias.where('upper(alias) = ? and gene_id = ?', clean_alias.upcase, a.gene_id)).one?
+          a.sources.each do |source|
+            clean_gene_alias.first.sources << source unless clean_gene_alias.first.sources.include? source
+            a.sources.delete(source)
+          end
+          a.delete
+        else
+          a.alias = clean_alias
+          a.save!
+        end
+      end
+      DataModel::GeneAttribute.where("name LIKE ' %' or name LIKE '% '").all.each do |a|
+        clean_attribute = DataModel::GeneAttribute.where(name: a.name.strip, value: a.value.strip, gene_id: a.gene_id).first_or_create
+        a.sources.each do |source|
+          clean_attribute.sources << source unless clean_attribute.sources.include? source
+          a.sources.delete(source)
+        end
+        a.delete
+      end
+      DataModel::GeneAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
+        clean_attribute = DataModel::GeneAttribute.where(name: a.name.strip, value: a.value.strip, gene_id: a.gene_id).first_or_create
+        a.sources.each do |source|
+          clean_attribute.sources << source unless clean_attribute.sources.include? source
+          a.sources.delete(source)
+        end
+        a.delete
       end
       DataModel::GeneClaim.where("name LIKE ' %' or name LIKE '% '").all.each do |c|
         clean_name = c.name.strip
@@ -307,6 +344,27 @@ module Utils
         a.save!
       end
       DataModel::DrugClaimAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
+        a.value = a.value.strip
+        a.save!
+      end
+      DataModel::DrugAlias.where("alias LIKE ' %' or alias LIKE '% '").all.each do |a|
+        clean_alias = a.alias.strip
+        if (clean_drug_alias = DataModel::DrugAlias.where('alias ILIKE ? and drug_id = ?', clean_alias, a.drug_id)).one?
+          a.sources.each do |source|
+            clean_drug_alias.first.sources << source unless clean_drug_alias.first.sources.include? source
+            a.sources.delete(source)
+          end
+          a.delete
+        else
+          a.alias = clean_alias
+          a.save!
+        end
+      end
+      DataModel::DrugAttribute.where("name LIKE ' %' or name LIKE '% '").all.each do |a|
+        a.name = a.name.strip
+        a.save!
+      end
+      DataModel::DrugAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
         a.value = a.value.strip
         a.save!
       end
