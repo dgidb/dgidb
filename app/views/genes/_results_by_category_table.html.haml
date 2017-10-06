@@ -32,7 +32,7 @@
                                 Non-Matching Gene(s)
                                 %i.icon-flag.tip(title="The genes in the submitted gene list that do NOT belong to each druggable gene category")
                           %tbody
-                            =render partial: 'genes/results_by_category_table_row', collection: categories
+                            =render partial: 'genes/results_by_category_table_row', collection: categories.sort_by{|c| [-c.gene_count,c.category_name]}
                         %button{class: "show-all", style: "margin-top: 5px"}
                           Show All
                         %button{class: "show-more", style: "margin-top: 5px"}
