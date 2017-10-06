@@ -150,7 +150,7 @@
   });
 
   $('table').each(function(index){
-    $(this).find('> tbody > tr').hide().slice(0, 11).show();
+    $(this).find('> tbody > tr').hide().slice(0, 10).show();
   });
   $(".show-all").on("click", function() {
     var tbl = $(this).prev();
@@ -164,7 +164,7 @@
   });
   $(".show-less").on("click", function() {
     var tbl = $(this).prev().prev().prev();
-    tbl.find('> tbody > tr').hide().slice(0, 11).show();
+    tbl.find('> tbody > tr').hide().slice(0, 10).show();
     $("#nrows", $(this).next()).html(tbl.find('tr:visible').length - 1);
   });
 
