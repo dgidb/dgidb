@@ -129,6 +129,9 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.1.0)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     less (2.6.0)
@@ -321,6 +324,7 @@ DEPENDENCIES
   haml
   jbuilder
   jquery-rails
+  kaminari (~> 0.16.1)
   launchy
   less-rails-bootstrap
   libv8
