@@ -1,0 +1,52 @@
+%div(class="item-title")
+  %div(class="item-name")
+    %h3(class="item-source")
+      %span
+        = "Search Term(s): " + "\"" + term.join(", ") + "\""
+      %span{class: "glyphicon glyphicon-play", "aria-hidden" => "true", style: "margin-left: 10px; margin-right: -8px"}
+      &nbsp
+      %a{href: "/drugs/#{gene}"}
+        = gene
+
+%div(class="item-content")
+  %div(class="cell category")
+    %div{class: "item-panel"}
+      %h4{style: "display: inline-block;"}
+      - if rows.count > 0
+        %table{class: "search_panel table table-condensed table-striped", style: "width: 100%; margin-top: -20px;"}
+          %tr
+            %th
+              Category
+            %th
+              Sources
+          %tbody
+          - rows.each do |row|
+            %tr{onclick: "location.href='/';"}
+              %td
+                = row[:category]
+              %td
+                = row[:sources].map{|source| TrustLevelPresenter.source_link_green(@view_context, DataModel::Source.find_by(source_db_name: source))}.join(' ').html_safe 
+        %button{class: "show-all", style: "margin-top: 5px"}
+          Show All
+        %button{class: "show-more", style: "margin-top: 5px"}
+          Show More
+        %button{class: "show-less", style: "margin-top: 5px"}
+          Show Less
+        %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
+          Showing
+          %span#nrows
+            = [10, rows.length].min
+          %span
+            = "out of #{rows.length} Categories"
+      - else
+        No categories found.
+
+:css
+  tr:hover td{
+    background-color:rgba(220, 220, 220, 1);
+    cursor: pointer;
+  }
+  td .label {
+    display: inline-block;
+    margin-bottom: 3px;
+  }
