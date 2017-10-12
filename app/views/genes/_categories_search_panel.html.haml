@@ -21,7 +21,7 @@
               Sources
           %tbody
           - rows.each do |row|
-            %tr{onclick: "location.href='/';"}
+            %tr{onclick: "location.href='/druggable_gene_categories/#{row[:category]}';"}
               %td
                 = row[:category]
               %td
@@ -46,7 +46,4 @@
     background-color:rgba(220, 220, 220, 1);
     cursor: pointer;
   }
-  td .label {
-    display: inline-block;
-    margin-bottom: 3px;
-  }
+
