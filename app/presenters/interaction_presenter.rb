@@ -15,7 +15,7 @@ class InteractionPresenter < SimpleDelegator
     types.count > 0 ? types : ["n/a"]
   end
 
-  def data
+  def as_json(opts = {})
     {
       id: interaction.id,
       gene_name: interaction.gene.name,

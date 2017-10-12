@@ -12,6 +12,7 @@ namespace :db do
       end
     end
   end
+  before 'copy_data_to_remote', 'deploy:update_data_submodule'
 
   desc 'restore database from remote data.sql file'
   task :restore_remote_db do
@@ -24,11 +25,11 @@ namespace :db do
         execute :dropdb, :dgidb
         execute :createdb, ustring, hstring, :dgidb
         execute :psql, ustring, hstring, dstring, "< #{current_path}/db/structure.sql"
-        execute :psql, ustring, hstring, dstring, "< #{shared_path}/data/data.sql"
+        execute :psql, ustring, hstring, dstring, "< #{shared_path}/public/data/data.sql"
       ensure
-        execute sudo :service, :memcached, :restart
         execute sudo :service, :apache2, :start
       end
     end
   end
+  after 'db:restore_remote_db', 'deploy:flush_memcached'
 end

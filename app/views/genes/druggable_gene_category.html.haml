@@ -1,129 +1,76 @@
-=content_for :title, "DGIdb - Genes in the #@title Category"
-=content_for :header do
-  %h2
-    =@category_name + " Category"
-    %small
-      listing of genes in the selected druggable gene category
-  as reported by: 
-  = @genes.source_db_names.to_sentence
 .container-fluid
-  .row-fluid
-    .span12
-      %p=tx(@category_name.downcase)
-      .well
-        =render partial: 'shared/table_export', locals: {id: 'category-list-export'}
-        %table#category-list-export.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
-          %thead
-            %tr
-              %th
-                Gene
-                %small
-                  %strong
-                    %i.icon-flag.tip{title: tx("gene_table_header_flag")}
-              %th
-                Gene Description
-                %small
-                  %strong
-                    %i.icon-flag.tip{title: tx("description_table_header_flag")}
-              %th
-                Source(s)
-                %small
-                  %strong
-                    %i.icon-flag.tip{title: tx("source_table_header_flag")}
-          %tbody
-            =render partial: 'genes/category_table_row', collection: @genes.display_genes, as: :gene
+  .tabbable
+    .tab-content
+      .tab-pane.active#summary
+        .row-fluid#container 
+          .span12
+            %ul(class="result-list" id="list-results")
+              %li.gene
+                %div(class="item-title")
+                  %div(class="item-name")
+                    %h3(class="item-source")
+                      =@category_name
 
-  =javascript_include_tag "jquery.dataTables.min"
-  =javascript_include_tag "pagination_bootstrap"
-  =javascript_include_tag "category_page"
-  =javascript_include_tag "table-export"
-
+                %div(class="item-content")
+                  %div(class="cell category")
+                    %div(class="item-panel")
+                      %div{style: "margin-bottom: 5px;"}
+                        %table{class: "table table-condensed table-striped" }
+                          %thead
+                            %tr
+                              %th
+                                Gene
+                                %small
+                                  %strong
+                                    %i.icon-flag.tip{title: tx("gene_table_header_flag")}
+                              %th
+                                Gene Description
+                                %small
+                                  %strong
+                                    %i.icon-flag.tip{title: tx("description_table_header_flag")}
+                              %th
+                                Source(s)
+                                %small
+                                  %strong
+                                    %i.icon-flag.tip{title: tx("source_table_header_flag")}
+                            %tbody
+                              =render partial: 'genes/category_table_row', collection: @genes.display_genes, as: :gene
+                      %button{class: "show-all", style: "margin-top: 5px"}
+                        Show All
+                      %button{class: "show-more", style: "margin-top: 5px"}
+                        Show More
+                      %button{class: "show-less", style: "margin-top: 5px"}
+                        Show Less
+                      %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
+                        Showing
+                        %span#nrows
+                          = [10, @genes.display_genes.length].min
+                        %span
+                          = "out of #{@genes.display_genes.length} Genes"
 :css
-  .dataTables_wrapper > div.row {
-    margin: 0;
+  tr:hover td{
+    background-color:rgba(220, 220, 220, 1);
+    cursor: pointer;
   }
-  .row-fluid {
-    width: 100%;
-    display: block;
-    margin-left: 30px;
-    float: left;
-  }
-  .row-fluid [class*="span"] {
-    display: block;
-    box-sizing: border-box;
-    float: left;
-    margin-left: 10px;
-    width: 98%;
-  }
-  .row-fluid > .span12 > .well .span6 {
-    width: 48%;
-  }
-  .row-fluid > .span6 {
-    box-sizing: border-box;
-    width: 48.7%;
-    float: left;
-    display: block;
-  }
-  .pagination {
-    display: block;
-  }
-  .pagination ul {
-    display: inline-block;
-    margin: 5px 0 10px 25px;
-    padding: 0;
-    list-style-type: disc;
-    border-radius: 4px;
-    border-collapse: separate; 
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  }
-  .pagination ul > li {
-    display: inline;
-    line-height: 20px;
-  }
-  .pagination ul>li>a, .pagination ul>li>span {
-    float: left;
-    padding: 4px 12px;
-    line-height: 20px;
-    border: 1px solid #dddddd;
-  }
-  .table-bordered {
-    border-radius: 4px;
-    border-collapse: separate; 
-    border-spacing: 0;
-    border-left: 0;
-  }
-  .table td {
-    padding: 8px;
-    line-height: 20px;
-    text-align: left;
-    vertical-align: top;
-    display: table-cell;
-    border-top: 10px solid #dddddd;
-    margin: 10px;
-  }
-  .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-    padding: 8px;
-    line-height: 20px;
-    text-align: left;
-    vertical-align: top;
-    display: table-cell;
-    border: 0;
-    margin: 10px;
-  }
-  .table > tbody > tr > td {
-    border-left: 1px solid #dddddd;
-    border-top: 1px solid #dddddd
-  }
-  .table > thead > tr > th {
-    border-left: 1px solid #dddddd;
-  }
-  .row-fluid [class*="span"]:first-child {
-    margin-left: 0;
-  }
-  .row-fluid > .span12 > .well .span6:first-child {
-    float: left;
-    margin-left: -20px;
-  }
-  .row-fluid > .span12 > .well .span6:nth-child(2) {
-    float: right;
-  }
+
+
+:javascript
+  $('table').each(function(index){
+    $(this).find('> tbody > tr').hide().slice(0, 10).show();
+  });
+  $(".show-all").on("click", function() {
+    var tbl = $('table');
+    $("tbody > tr", tbl).show();
+    $("#nrows", $(this).next().next().next()).html(tbl.find('tr:visible').length - 1);
+  });
+  $(".show-more").on("click", function() {
+    var tbl = $('table');
+    $("tbody > tr", tbl).slice(0, tbl.find('tr:visible').length + 9).show();
+    $("#nrows", $(this).next().next()).html(tbl.find('tr:visible').length - 1);
+  });
+  $(".show-less").on("click", function() {
+    var tbl = $('table');
+    tbl.find('> tbody > tr').hide().slice(0, 10).show();
+    $("#nrows", $(this).next()).html(tbl.find('tr:visible').length - 1);
+  });
+

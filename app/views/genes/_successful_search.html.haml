@@ -1,0 +1,29 @@
+%div{style: "float: right; margin-top: -15px; width: 17%"}
+  = render partial: 'shared/page_export'
+  %div.well{style: "margin-top: 15px; padding-right: 20px; width: 240px;"}
+    %h3{style: "margin-top: -5px;"}
+      Unique Matches
+    %div
+    - if definite_results.count > 0
+      - definite_results.each do |result|
+        %div
+          %input{class: "unique sidebar-toggle", type: "checkbox", name: "#{result[:gene_name] + "-unique"}", checked: 1}
+            = "Search Term(s): " + result[:search_terms].join(", ")
+    - else
+      %i 
+        None found.
+
+%div{style: "float: left; width: 81%;"}
+  %ul(class="result-list" id="list-results")
+    - if definite_results.count > 0
+      - definite_results.each do |result|
+        %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: result[:gene_name] + "-unique", style: "width: 100%;"}
+          = render partial: 'genes/categories_search_panel', locals: { term: result[:search_terms], gene: result[:gene_name], rows: result[:rows] }
+    - else 
+      %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", style: "width: 100%; height: 300px;"}
+        %h3{style: "margin-left: 20px;"}
+          None of your search terms returned 
+          %i 
+            unique 
+          matches.
+
