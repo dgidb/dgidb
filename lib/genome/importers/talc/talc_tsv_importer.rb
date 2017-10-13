@@ -3,7 +3,7 @@ module Genome
     module Talc
       def self.source_info
         {
-            base_url: 'http://www.ncbi.nlm.nih.gov/gene?term=',
+            base_url: 'https://www.ncbi.nlm.nih.gov/pubmed/24377743',
             site_url: 'https://www.ncbi.nlm.nih.gov/pubmed/24377743',
             citation: "A tabulated summary of targeted and biologic therapies for non-small-cell lung cancer. Simon GR, Somaiah N. Clin Lung Cancer. 2014 Jan;15(1):21-51. doi: 10.1016/j.cllc.2013.11.009. Epub 2013 Nov 21. PMID: 24377743",
             source_db_version:  '12-May-2016',
