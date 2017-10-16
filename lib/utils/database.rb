@@ -244,5 +244,156 @@ module Utils
         end
       end
     end
+
+    def self.cleanup_whitespaces
+      DataModel::InteractionClaimType.where("type LIKE ' %' or type LIKE '% '").all.each do |t|
+        t.value = t.value.strip
+        t.save!
+      end
+      DataModel::InteractionClaimAttribute.where("name LIKE ' %' or name LIKE '% '").all.each do |a|
+        a.name = a.name.strip
+        a.save!
+      end
+      DataModel::InteractionClaimAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
+        a.value = a.value.strip
+        a.save!
+      end
+      DataModel::InteractionAttribute.where("name LIKE ' %' or name LIKE '% '").all.each do |a|
+        a.name = a.name.strip
+        a.save!
+      end
+      DataModel::InteractionAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
+        a.value = a.value.strip
+        a.save!
+      end
+
+      DataModel::GeneClaimAlias.where("alias LIKE ' %' or alias LIKE '% '").all.each do |a|
+        a.alias = a.alias.strip
+        a.save!
+      end
+      DataModel::GeneClaimAttribute.where("name LIKE ' %' or name LIKE '% '").all.each do |a|
+        a.name = a.name.strip
+        a.save!
+      end
+      DataModel::GeneClaimAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
+        a.value = a.value.strip
+        a.save!
+      end
+      DataModel::GeneAlias.where("alias LIKE ' %' or alias LIKE '% '").all.each do |a|
+        clean_alias = a.alias.strip
+        if (clean_gene_alias = DataModel::GeneAlias.where('upper(alias) = ? and gene_id = ?', clean_alias.upcase, a.gene_id)).one?
+          a.sources.each do |source|
+            clean_gene_alias.first.sources << source unless clean_gene_alias.first.sources.include? source
+            a.sources.delete(source)
+          end
+          a.delete
+        else
+          a.alias = clean_alias
+          a.save!
+        end
+      end
+      DataModel::GeneAttribute.where("name LIKE ' %' or name LIKE '% '").all.each do |a|
+        clean_attribute = DataModel::GeneAttribute.where(name: a.name.strip, value: a.value.strip, gene_id: a.gene_id).first_or_create
+        a.sources.each do |source|
+          clean_attribute.sources << source unless clean_attribute.sources.include? source
+          a.sources.delete(source)
+        end
+        a.delete
+      end
+      DataModel::GeneAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
+        clean_attribute = DataModel::GeneAttribute.where(name: a.name.strip, value: a.value.strip, gene_id: a.gene_id).first_or_create
+        a.sources.each do |source|
+          clean_attribute.sources << source unless clean_attribute.sources.include? source
+          a.sources.delete(source)
+        end
+        a.delete
+      end
+      DataModel::GeneClaim.where("name LIKE ' %' or name LIKE '% '").all.each do |c|
+        clean_name = c.name.strip
+        clean_claim = DataModel::GeneClaim.where(name: clean_name, nomenclature: c.nomenclature, source_id: c.source_id).first_or_create
+        c.gene_claim_aliases.each do |synonym|
+          DataModel::GeneClaimAlias.where(alias: synonym.alias, nomenclature: synonym.nomenclature, gene_claim_id: clean_claim.id).first_or_create
+          synonym.delete
+        end
+        c.gene_claim_attributes.each do |attribute|
+          DataModel::GeneClaimAttribute.where(name: attribute.name, value: attribute.value, gene_claim_id: clean_claim.if).first_or_create
+          attribute.delete
+        end
+        c.interaction_claims.each do |interaction|
+          clean_interaction = DataModel::InteractionClaim.where(drug_claim_id: interaction.drug_claim_id, gene_claim_id: clean_claim.id, source_id: interaction.source_id).first_or_create
+          interaction.interaction_claim_attributes.each do |attribute|
+            DataModel::InteractionClaimAttribute.where(name: attribute.name, value: attribute.value, interaction_claim_id: clean_interaction.id).first_or_create
+            attribute.delete
+          end
+          interaction.interaction_claim_types.each do |type|
+            clean_interaction.interaction_claim_types << type unless clean_interaction.interaction_claim_types.include? type
+            interaction.interaction_claim_types.delete(type)
+          end
+          interaction.delete
+        end
+        c.delete
+      end
+
+      DataModel::DrugClaimAlias.where("alias LIKE ' %' or alias LIKE '% '").all.each do |a|
+        clean_alias = a.alias.strip
+        DataModel::DrugClaimAlias.where(alias: clean_alias, nomenclature: a.nomenclature, drug_claim_id: a.drug_claim_id).first_or_create
+        a.delete
+      end
+      DataModel::DrugClaimAttribute.where("name LIKE ' %' or name LIKE '% '").all.each do |a|
+        a.name = a.name.strip
+        a.save!
+      end
+      DataModel::DrugClaimAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
+        a.value = a.value.strip
+        a.save!
+      end
+      DataModel::DrugAlias.where("alias LIKE ' %' or alias LIKE '% '").all.each do |a|
+        clean_alias = a.alias.strip
+        if (clean_drug_alias = DataModel::DrugAlias.where('alias ILIKE ? and drug_id = ?', clean_alias, a.drug_id)).one?
+          a.sources.each do |source|
+            clean_drug_alias.first.sources << source unless clean_drug_alias.first.sources.include? source
+            a.sources.delete(source)
+          end
+          a.delete
+        else
+          a.alias = clean_alias
+          a.save!
+        end
+      end
+      DataModel::DrugAttribute.where("name LIKE ' %' or name LIKE '% '").all.each do |a|
+        a.name = a.name.strip
+        a.save!
+      end
+      DataModel::DrugAttribute.where("value LIKE ' %' or value LIKE '% '").all.each do |a|
+        a.value = a.value.strip
+        a.save!
+      end
+      DataModel::DrugClaim.where("name LIKE ' %' or name LIKE '% ' or primary_name LIKE ' %' or primary_name LIKE '% '").all.each do |c|
+        clean_name = c.name.strip
+        clean_primary_name = c.primary_name.strip
+        clean_claim = DataModel::DrugClaim.where(name: clean_name, primary_name: clean_primary_name, nomenclature: c.nomenclature, source_id: c.source_id).first_or_create
+        c.drug_claim_aliases.each do |synonym|
+          DataModel::DrugClaimAlias.where(alias: synonym.alias, nomenclature: synonym.nomenclature, drug_claim_id: clean_claim.id).first_or_create
+          synonym.delete
+        end
+        c.drug_claim_attributes.each do |attribute|
+          DataModel::DrugClaimAttribute.where(name: attribute.name, value: attribute.value, drug_claim_id: clean_claim.if).first_or_create
+          attribute.delete
+        end
+        c.interaction_claims.each do |interaction|
+          clean_interaction = DataModel::InteractionClaim.where(gene_claim_id: interaction.gene_claim_id, drug_claim_id: clean_claim.id, source_id: interaction.source_id).first_or_create
+          interaction.interaction_claim_attributes.each do |attribute|
+            DataModel::InteractionClaimAttribute.where(name: attribute.name, value: attribute.value, interaction_claim_id: clean_interaction.id).first_or_create
+            attribute.delete
+          end
+          interaction.interaction_claim_types.each do |type|
+            clean_interaction.interaction_claim_types << type unless clean_interaction.interaction_claim_types.include? type
+            interaction.interaction_claim_types.delete(type)
+          end
+          interaction.delete
+        end
+        c.delete
+      end
+    end
   end
 end

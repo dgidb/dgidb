@@ -1,6 +1,6 @@
 %ul(class="result-list" id="source-list-results")
-
-  -sources.sort_by{ |s| s.type }.reverse.each do |source|
+  
+  -sources.sort_by{ |s| [s.type_display_name, s.source_db_name.downcase] }.each do |source|
     -type = source.type
     %li(class="#{type} source-panel" data-category="#{type}" data-name="#{source.type_display_name}" onclick="location.href='/sources/#{source.source_db_name}';")
       - if type == "gene"

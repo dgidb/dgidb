@@ -1,29 +1,47 @@
-.well
-  %p
-    %h3
-      =title
-      %small
-        %strong
-          %i.icon-flag.tip{title: tooltip_text}
-    %small
-      %strong
-        %em
-          =subtitle
-  =render partial: 'shared/table_export', locals: {id: 'by-gene-category-export'}
-  %table#by-gene-category-export.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
-    %thead
-      %tr
-        %th
-          Druggable Gene Category
-          %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
-        %th
-          Matching Gene Count
-          %i.icon-flag.tip(title="The number of genes in the submitted gene list that belong to each druggable gene category")
-        %th
-          Matching Gene(s)
-          %i.icon-flag.tip(title="The identity of genes in the submitted gene list that belong to each druggable gene category")
-        %th
-          Non-Matching Gene(s)
-          %i.icon-flag.tip(title="The genes in the submitted gene list that do NOT belong to each druggable gene category")
-    %tbody
-      =render partial: 'genes/results_by_category_table_row', collection: categories
+.container-fluid
+  .tabbable
+    .tab-content
+      .tab-pane.active#summary
+        .row-fluid#container{style: "margin-left: -15px;"} 
+          .span12
+            %ul(class="result-list" id="list-results")
+              %li.gene
+                %div(class="item-title")
+                  %div(class="item-name")
+                    %h3(class="item-source")
+                      Results Grouped by Categories
+                      / %span{style: "display: inline-block;"}
+                      /   = render partial: 'shared/table_export', locals: {id: 'by-gene-category-export'}
+                %div(class="item-content")
+                  %div(class="cell category")
+                    %div(class="item-panel")
+                      %div{style: "margin-bottom: 5px;"}
+                        %table#by-gene-category-export.table.table-striped.table-bordered(cellpadding="0" cellspacing="0" border="0")
+                          %thead
+                            %tr
+                              %th
+                                Druggable Gene Category
+                                %i.icon-flag.tip(title="Categories are groups of genes considered by some to be potentially druggable targets.")
+                              %th
+                                Matching Gene Count
+                                %i.icon-flag.tip(title="The number of genes in the submitted gene list that belong to each druggable gene category")
+                              %th
+                                Matching Gene(s)
+                                %i.icon-flag.tip(title="The identity of genes in the submitted gene list that belong to each druggable gene category")
+                              %th
+                                Non-Matching Gene(s)
+                                %i.icon-flag.tip(title="The genes in the submitted gene list that do NOT belong to each druggable gene category")
+                          %tbody
+                            =render partial: 'genes/results_by_category_table_row', collection: categories.sort_by{|c| [-c.gene_count,c.category_name]}
+                        %button{class: "show-all", style: "margin-top: 5px"}
+                          Show All
+                        %button{class: "show-more", style: "margin-top: 5px"}
+                          Show More
+                        %button{class: "show-less", style: "margin-top: 5px"}
+                          Show Less
+                        %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
+                          Showing
+                          %span#nrows
+                            = [10, categories.length].min
+                          %span
+                            = "out of #{categories.length} Categories"

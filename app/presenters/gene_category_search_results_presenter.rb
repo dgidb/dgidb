@@ -77,6 +77,64 @@ class GeneCategorySearchResultsPresenter
     @genes_by_category
   end
 
+  def unique_matches
+    unless @unique_matches
+      @unique_matches = []
+      results = result_presenters.uniq{|r| r.gene_categories}
+      results.each do |result|
+        gene = result.genes[0]
+        gene_claims = result.gene_claims
+        categories = result.gene_categories
+        rows = []
+        categories.each do |category|
+          sources = gene_claims
+            .select { |gc| gc.gene_claim_categories.select { |gcc| gcc.name == category }.any?}
+            .map { |gc| gc.source.source_db_name }
+          rows << OpenStruct.new(
+              category: category,
+              sources: sources
+            )
+        end
+        @unique_matches << OpenStruct.new(
+            search_terms: result.search_terms,
+            gene_name: gene.name,
+            rows: rows
+          )
+      end
+    end
+    @unique_matches
+  end
+
+  def ambiguous_matches
+    unless @ambiguous_matches
+      @ambiguous_matches = []
+      results = ambiguous_result_presenters.uniq{|r| r.gene_categories}
+      results.each do |result|
+        genes = result.genes
+        genes.each do |gene|
+          gene_claims = gene.gene_claims
+          categories = gene.gene_categories.uniq
+          rows = []
+          categories.each do |category|
+            sources = gene_claims
+              .select { |gc| gc.gene_claim_categories.select { |gcc| gcc.name == category.name }.any?}
+              .map { |gc| gc.source.source_db_name }
+            rows << OpenStruct.new(
+                category: category.name,
+                sources: sources
+              )
+          end
+          @ambiguous_matches << OpenStruct.new(
+              search_terms: result.search_terms,
+              gene_name: gene.name,
+              rows: rows
+            )
+        end
+      end
+    end
+    @ambiguous_matches
+  end
+
   def source_db_names_for_table
     @source_db_names ||= genes_by_category.map{|x| x.sources}.flatten.uniq.sort
   end
@@ -100,6 +158,10 @@ class GeneCategorySearchResultsPresenter
 
   def result_presenters
     @result_presenters ||= gene_category_result_presenters(@search_results.group_by { |result| result.partition }[:definite] || [])
+  end
+
+  def ambiguous_result_presenters
+    @ambiguous_result_presenters ||= gene_category_result_presenters(@search_results.group_by { |result| result.partition }[:ambiguous] || [])
   end
 
   private

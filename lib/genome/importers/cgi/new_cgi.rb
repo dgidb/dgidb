@@ -27,7 +27,7 @@ module Genome; module Importers; module Cgi;
     def create_new_source
       @source ||= DataModel::Source.create(
           {
-              base_url: 'http://https://www.cancergenomeinterpreter.org/biomarkers',
+              base_url: 'https://www.cancergenomeinterpreter.org/biomarkers',
               site_url: 'https://www.cancergenomeinterpreter.org/',
               citation: 'https://www.cancergenomeinterpreter.org/',
               source_db_version:  get_version,
