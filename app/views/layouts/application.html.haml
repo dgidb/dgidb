@@ -17,32 +17,46 @@
             %a.brand(href="/")
               %img{:src => image_path("dgidb-header-branding_128c.png"), :class => "logo", :width => "500"}
             %ul.nav.nav-tabs.main-menu.wrap
-              %li{class: @search_interactions_active}
-                %a(href="/search_interactions") Search Interactions
-              %li{class: @search_categories_active}
-                %a(href="/search_categories") Search Categories
-              %li{class: @druggable_gene_categories_active}
-                %a(href="/druggable_gene_categories") Browse Categories
-            %ul.nav.pull-right.help-menu
-              %li.divider-vertical
-              %li.dropdown{class: @help_active}
-                %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
-                  Info
-                  =@news.unread_news_badge
-                  %b.caret
-                %ul.dropdown-menu{style: "position: absolute; top: 100%; z-index: 1000; float: left; min-width: 150px; padding: 5px 0; margin: 2px 0 0; list-style: none; background-clip: padding-box; left: auto; right: 0;"}
-                  %li
-                    %a(href="/getting_started") Getting Started
-                    %a(href="/api") API Documentation
-                    %a(href="/news")
-                      News
-                      =@news.unread_news_badge
-                    %a(href="/faq") FAQ
-                    %a(href="/statistics") Statistics
-                    %a(href="/sources") Sources
-                    %a(href="/downloads") Downloads
-                    %a(href="/contact") Contact
-                    %a{href: "#", data: {toggle: 'modal', target:'#disclaimer-modal'}} View Disclaimer
+              %li
+                %ul.nav.help-menu
+                  %li.dropdown
+                    %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
+                      Search
+                    %ul.dropdown-menu{style: "position: absolute; top: 100%; z-index: 1000; float: left; min-width: 150px; padding: 5px 0; list-style: none; background-clip: padding-box; left: auto; right: 0;"}
+                      %li
+                        %a(href="/search_interactions") Search Interactions
+                        %a(href="/search_categories") Search Categories
+              %li
+                %ul.nav.help-menu
+                  %li.divider-vertical
+                  %li.dropdown
+                    %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
+                      Browse
+                    %ul.dropdown-menu{style: "position: absolute; top: 100%; z-index: 1000; float: left; min-width: 150px; padding: 5px 0; margin: 2px 0 0; list-style: none; background-clip: padding-box; left: auto; right: 0;"}
+                      %li
+                        %a(href="/druggable_gene_categories") Browse Categories
+                        %a(href="/sources") Browse Sources
+              %li
+                %ul.nav.help-menu
+                  %li.divider-vertical
+                  %li.dropdown
+                    %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
+                      Help
+                    %ul.dropdown-menu{style: "position: absolute; top: 100%; z-index: 1000; float: left; min-width: 150px; padding: 5px 0; margin: 2px 0 0; list-style: none; background-clip: padding-box; left: auto; right: 0;"}
+                      %li
+                        %a(href="/getting_started") Getting Started
+                        %a(href="/api") API Documentation
+                        %a(href="/faq") FAQ
+                        %a(href="/contact") Contact
+              %li
+                %ul.nav.help-menu
+                  %li.divider-vertical
+                  %li.dropdown
+                    %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
+                      Downloads
+                    %ul.dropdown-menu{style: "position: absolute; top: 100%; z-index: 1000; float: left; min-width: 150px; padding: 5px 0; margin: 2px 0 0; list-style: none; background-clip: padding-box; left: auto; right: 0;"}
+                      %li
+                        %a(href="/downloads") Downloads
         .container-fluid{style: "margin-bottom: 27px; margin-top: 27px"}
           .page-header{style: "margin-top: 0px; margin-bottom: 0px; padding: 0 0 -10 0; border: 0;"}
             = @news.news_ticker
@@ -72,27 +86,6 @@
     }
     .dropdown-menu {
       margin-top: 1em;
-    }
-
-    .dropdown-menu:before,
-    .dropdown-menu:after{
-      content: ' ';
-      display: block;
-      border-style: solid;
-      border-width: 0 .5em .8em .5em;
-      border-color: transparent;
-      position: absolute;
-      right: 0.8em;
-    }
-
-    .dropdown-menu:before {
-      top: -.8em;
-      border-bottom-color: rgba(0,0,0,0.5);
-    }
-
-    .dropdown-menu:after {
-      top: -.7em;
-        border-bottom-color: #fff;
     }
 
     .navbar {
