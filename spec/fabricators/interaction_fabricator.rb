@@ -1,3 +1,8 @@
+Fabricator(:interaction, class_name: 'DataModel::Interaction') do
+  drug { |attrs| Fabricate(:drug) }
+  gene { |attrs| Fabricate(:gene, name: attrs[:gene_name]) }
+end
+
 Fabricator(:interaction_claim, class_name: 'DataModel::InteractionClaim') do
   source
   drug_claim { |attrs| Fabricate(:drug_claim, source: attrs[:source]) }
