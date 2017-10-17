@@ -1,8 +1,8 @@
 class InteractionDetailPresenter < InteractionPresenter
-  def data
+  def as_json
     super.merge(
-      attributes: interaction.interaction_attributes.map{|a| AttributePresenter.new(a).data},
-      interaction_claims: interaction.interaction_claims.map{|c| InteractionClaimPresenter.new(c).data},
+      attributes: interaction.interaction_attributes.map{|a| AttributePresenter.new(a).as_json},
+      interaction_claims: interaction.interaction_claims.map{|c| InteractionClaimPresenter.new(c).as_json},
     )
   end
 end

@@ -10,8 +10,8 @@ class ServicesV2Controller < ApplicationController
   end
 
   def gene_details
-    gene_details = GeneDetailPresenter.new(DataModel::Gene.find_by!(entrez_id: params[:entrez_id])).data
-    render_format(gene_details)
+    gene_details = GeneDetailPresenter.new(DataModel::Gene.find_by!(entrez_id: params[:entrez_id])).as_json
+    render json: gene_details
   end
 
   def drugs
@@ -25,8 +25,8 @@ class ServicesV2Controller < ApplicationController
   end
 
   def drug_details
-    drug_details = DrugDetailPresenter.new(DataModel::Drug.find_by!(chembl_id: params[:chembl_id])).data
-    render_format(drug_details)
+    drug_details = DrugDetailPresenter.new(DataModel::Drug.find_by!(chembl_id: params[:chembl_id])).as_json
+    render json: drug_details
   end
 
   def render_all_interactions
@@ -42,8 +42,8 @@ class ServicesV2Controller < ApplicationController
   end
 
   def interaction_details
-    interaction_details = InteractionDetailPresenter.new(DataModel::Interaction.find_by!(id: params[:id])).data
-    render_format(interaction_details)
+    interaction_details = InteractionDetailPresenter.new(DataModel::Interaction.find_by!(id: params[:id])).as_json
+    render json: interaction_details
   end
 
   def gene_categories

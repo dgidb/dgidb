@@ -16,13 +16,13 @@ class DrugClaimPresenter < SimpleDelegator
     interaction_claims.map{|ic| ic.publications}.flatten.uniq
   end
 
-  def data
+  def as_json
     {
       source: source.source_db_name,
       name: name,
       primary_name: primary_name,
       aliases: drug_claim_aliases.map(&:alias),
-      attributes: drug_claim_attributes.map{|a| ClaimAttributePresenter.new(a).data},
+      attributes: drug_claim_attributes.map{|a| ClaimAttributePresenter.new(a).as_json},
       publications: publications.map(&:pmid),
     }
   end

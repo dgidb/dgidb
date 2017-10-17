@@ -23,12 +23,12 @@ class GeneClaimPresenter < SimpleDelegator
     interaction_claims.map{|ic| ic.publications}.flatten.uniq
   end
 
-  def data
+  def as_json
     {
       source: source.source_db_name,
       name: name,
       aliases: gene_claim_aliases.map(&:alias),
-      attributes: gene_claim_attributes.map{|a| ClaimAttributePresenter.new(a).data},
+      attributes: gene_claim_attributes.map{|a| ClaimAttributePresenter.new(a).as_json},
       publications: publications.map(&:pmid),
     }
   end

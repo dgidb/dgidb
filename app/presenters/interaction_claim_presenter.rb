@@ -16,13 +16,13 @@ class InteractionClaimPresenter < SimpleDelegator
     @title ||= "#{drug_claim.title} interacting with #{gene_claim.title}"
   end
 
-  def data
+  def as_json
     {
       source: @interaction_claim.source.source_db_name,
       drug: drug_claim.drug_claim_name,
       gene: gene_claim.name,
       interaction_types: @interaction_claim.interaction_claim_types.map{|t| t.type},
-      attributes: @interaction_claim.interaction_claim_attributes.map{|a| ClaimAttributePresenter.new(a).data},
+      attributes: @interaction_claim.interaction_claim_attributes.map{|a| ClaimAttributePresenter.new(a).as_json},
       publications: @interaction_claim.publications.map(&:pmid),
     }
   end

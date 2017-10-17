@@ -5,7 +5,7 @@ class AttributePresenter < SimpleDelegator
     super
   end
 
-  def data
+  def as_json
     {
       name: self.name,
       value: self.value,
