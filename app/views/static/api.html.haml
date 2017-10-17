@@ -91,7 +91,7 @@
           It also allows you to filter returned interactions.
         %span.label GET
         %pre
-          \/api/v2/interactions.json?
+          \/api/v2/interactions.json?&#60;parameters&#62;
         %p
           %small
             %span.label.label-info Note:
@@ -526,7 +526,7 @@
               },
               "records": [
                 {
-                  "id":"d7f26f83-681f-4546-a71e-4651c8c88c7c",
+                  "id":"53b9d202-9241-4064-87b3-0ae0be49390a",
                   "gene_name":"AKT1",
                   "entrez_id":207,
                   "drug_name":"GSK-690693",
@@ -559,16 +559,16 @@
           %small
             The following example would query DGIdb for the interaction with
             ID
-            %code d7f26f83-681f-4546-a71e-4651c8c88c7c
+            %code 53b9d202-9241-4064-87b3-0ae0be49390a
         %pre
-          \http://dgidb.org/api/v2/interactions/d7f26f83-681f-4546-a71e-4651c8c88c7c
+          \http://dgidb.org/api/v2/interactions/53b9d202-9241-4064-87b3-0ae0be49390a
         %h5
           Example Response:
         %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-one-interaction-response'}}
           Show/Hide Response
         %pre#example-one-interaction-response.collapse
           :preserve
-            "id": "d7f26f83-681f-4546-a71e-4651c8c88c7c",
+            "id": "53b9d202-9241-4064-87b3-0ae0be49390a",
             "gene_name": "AKT1",
             "entrez_id": 207,
             "drug_name": "GSK-690693",
@@ -1371,8 +1371,11 @@
         %pre
           \http://dgidb.org/api/v2/interaction_types.json
         %h5 Example Response:
-        %pre
-          ["activator", "inhibitor", "unknown"]
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-interaction-types-response'}}
+          Show/Hide Response
+        %pre#example-interaction-types-response.collapse
+          :preserve
+            ["activator", "inhibitor", "unknown"]
       %hr
       %section#interaction-sources.anchor
         %h3 Interaction Sources
@@ -1383,8 +1386,11 @@
         %pre
           \http://dgidb.org/api/v2/interaction_sources.json
         %h5 Example Response:
-        %pre
-          ["DrugBank","PharmGKB","TALC","TEND","TTD"]
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-interaction-sources-response'}}
+          Show/Hide Response
+        %pre#example-interaction-sources-response.collapse
+          :preserve
+            ["DrugBank","PharmGKB","TALC","TEND","TTD"]
       %hr
       %section#gene-categories.anchor
         %h3 Gene Categories
@@ -1395,8 +1401,11 @@
         %pre
           \http://dgidb.org/api/v2/gene_categories.json
         %h5 Example Response:
-        %pre
-          ["KINASE", "DNA REPAIR", "TUMOR SUPPRESSOR"]
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-gene-categories-response'}}
+          Show/Hide Response
+        %pre#example-gene-categories-response.collapse
+          :preserve
+            ["KINASE", "DNA REPAIR", "TUMOR SUPPRESSOR"]
       %hr
       %section#source-trust-levels.anchor
         %h3 Source Trust Levels
@@ -1407,8 +1416,11 @@
         %pre
           \http://dgidb.org/api/v2/source_trust_levels.json
         %h5 Example Response:
-        %pre
-          ["Expert curated", "Non-curated"]
+        %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-source-trust-levels-response'}}
+          Show/Hide Response
+        %pre#example-source-trust-levels-response.collapse
+          :preserve
+            ["Expert curated", "Non-curated"]
       %hr
       /
         %section#related-genes.anchor
@@ -1520,7 +1532,7 @@
           that are known to be in a specific category.
         %span.label GET
         %pre
-          \/api/v2/genes_in_category.json?
+          \/api/v2/genes_in_category.json?&#60;parameters&#62;
         %h5 Accepted Parameters:
         %table.table.table-bordered.table-striped
           %thead
