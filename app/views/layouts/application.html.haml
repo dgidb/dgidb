@@ -19,6 +19,7 @@
             %ul.nav.nav-tabs.main-menu.wrap
               %li
                 %ul.nav.help-menu
+                  %li.divider-vertical
                   %li.dropdown
                     %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
                       Search
@@ -75,10 +76,6 @@
           ="Last updated #{CURRENT_VERSION.time}"
 
   :css
-    html {
-      zoom: 0.8;
-      -moz-transform: scale(0.8);
-    }
     .wrap{ 
       width:100%; 
       min-width: 800px;
@@ -97,10 +94,8 @@
       min-width: 1100px;
     }
 
-    .navbar .nav.main-menu {
-      width: 500px;
-      min-width: 500px;
-      max-width: 500px;
+    .nav.help-menu {
+      background-color: white;
     }
 
   :javascript
