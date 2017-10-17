@@ -1,6 +1,10 @@
 class StaticController < ApplicationController
   before_action :set_active
 
+  def home
+
+  end
+
   def search_categories
     @current_sources = DataModel::Source.all_sources
     @sources         = DataModel::Source.potentially_druggable_source_names
