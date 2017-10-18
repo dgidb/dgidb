@@ -2,7 +2,8 @@ class StaticController < ApplicationController
   before_action :set_active
 
   def home
-
+    cookies[:most_recent_post_date] = NewsFilter.most_recent_post_date.to_s
+    @news.mark_read!
   end
 
   def search_categories

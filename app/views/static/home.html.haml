@@ -1,17 +1,35 @@
 %div{style: "text-align: center;"}
-	%h1
-		Welcome to DGIdb!
-	%div{style: "width: 900px; margin: 0 auto;"}
-		%span{style: "font-size: 17px;"}
-			We offer user-friendly browsing, searching, and filtering of information on drug-gene interactions mined from over thirty trusted sources. If this is your first time here, check out our guide on 
+  %h1{style: "font-size: 50px;"}
+    Welcome to DGIdb!
+  %div{style: "width: 1000px; margin: 0 auto;"}
+    %span{style: "font-size: 20px;"}
+      We offer user-friendly browsing, searching, and filtering of information on drug-gene interactions mined from over thirty trusted sources. If this is your first time here, check out our guide on 
 
-			%a(href="/getting_started") getting started
+      %a(href="/getting_started" style="text-decoration: underline;") getting started
 
-			or just try us out!
-		%div{style: "margin-top:20px; text-align: center;"}
-			%a{href:"/search_interactions"}	
-				%button.btn.btn-success(style='font-size: 20px')
-					Search Interactions
-			%a{href:"/search_categories"}	
-				%button.btn.btn-success(style='font-size: 20px')
-					Search Categories
+      or just try us out!
+    %div{style: "margin-top:40px; margin-bottom:60px; text-align: center;"}
+      %a{href:"/search_interactions", style:"margin: 0 5px"} 
+        %button.btn.btn-success(style='font-size: 35px')
+          Search for Interactions
+      %a{href:"/search_categories", style:"margin: 0 5px"} 
+        %button.btn.btn-success(style='font-size: 35px')
+          Search for Categories
+    %a(class="twitter-timeline" href="https://twitter.com/DGI_db?ref_src=twsrc%5Etfw")
+      Tweets by DGI_db 
+    / %div{style: "text-align: left;"}
+    /   - cache do
+    /     .container-fluid
+    /       .row-fluid
+    /         .span12
+    /           -to("posts", "news").reverse_each do |q|
+    /             .panel.panel-default
+    /               .panel-heading
+    /                 %h3.panel-title
+    /                   =q['headline']
+    /                   %em.pull-right.small
+    /                     =q['date']
+    /               .panel-body
+    /                 =q['article'].html_safe 
+
+%script(async src="//platform.twitter.com/widgets.js" charset="utf-8")
