@@ -8,14 +8,28 @@
       %a(href="/getting_started" style="text-decoration: underline;") getting started
 
       or just try us out!
-    %div{style: "margin-top:40px; margin-bottom:60px; text-align: center;"}
+    %div{style: "margin-top: 40px; margin-bottom: 50px; text-align: center;"}
       %a{href:"/search_interactions", style:"margin: 0 5px"} 
         %button.btn.btn-success(style='font-size: 35px')
           Search for Interactions
       %a{href:"/search_categories", style:"margin: 0 5px"} 
         %button.btn.btn-success(style='font-size: 35px')
           Search for Categories
-    %a(class="twitter-timeline" href="https://twitter.com/DGI_db?ref_src=twsrc%5Etfw")
-      Tweets by DGI_db 
+    %hr{style: "display: block; height: 1px; border: 0; border-top: 1px solid #ccc"}
+    %div
+      %div{style: "float: left; width:70%; "}
+        .modal-header
+          %p.lead
+            %strong Disclaimer:
+            This resource is intended for purely research purposes. It should not be used for emergencies or medical or professional advice.
+        .modal-body
+          %p
+            A finding of a drug-gene interaction or potentially druggable category does not necessarily indicate effectiveness (or lack thereof) of any drug or treatment regimen. A finding of no interaction or no potentially druggable category does not necessarily indicate lack of effectiveness of any drug or treatment regimen. Drug-gene interactions or potentially druggable categories are not presented in ranked order of potential or predicted efficacy. 
+          %p
+            The dgidb.org website does not provide any medical or healthcare products, services or advice, and is not for medical emergencies or urgent situations. IF YOU THINK YOU MAY HAVE A MEDICAL EMERGENCY, CALL YOUR DOCTOR OR 911 IMMEDIATELY. Information contained on this website is not a substitute for a doctor's medical judgment or advice.  We recommend that you discuss your specific, individual health concerns with your doctor or health care professional.
+      %div{style: "margin-left: 70%;"}
+        %a(class="twitter-timeline" href="https://twitter.com/DGI_db?ref_src=twsrc%5Etfw")
+          Tweets by DGI_db 
+    %hr{style: "display: block; height: 1px; border: 0; border-bottom: 1px solid #ccc;"}
 
 %script(async src="//platform.twitter.com/widgets.js" charset="utf-8")

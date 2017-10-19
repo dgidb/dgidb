@@ -16,7 +16,7 @@
       %a(href="/faq#difference")
         =icon('question-sign')
 
-.container-fluid
+.container-fluid.interaction-search-results
   .tabbable
     %ul.nav.nav-tabs
       %li.active
@@ -43,6 +43,11 @@
             - else
               - failed_terms = []
             = render partial: 'interaction_claims/interaction_search_failed', locals: {ambiguous_results: ambiguous_results, ambiguous_no_interactions: ambiguous_no_interactions, failed_terms: failed_terms}
+
+:css
+  .interaction-search-results {
+    zoom: 1.25;
+  }
 
 :javascript
   $(".sidebar-toggle").on("click", function() {
