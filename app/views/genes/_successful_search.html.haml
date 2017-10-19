@@ -1,6 +1,6 @@
-%div{style: "float: right; margin-top: -15px; width: 17%"}
+%div{style: "float: right; margin-top: -15px; width: 20%"}
   = render partial: 'shared/page_export'
-  %div.well{style: "margin-top: 15px; padding-right: 20px; width: 240px;"}
+  %div.well{style: "margin-top: 15px; padding-right: 20px; width: 200px;"}
     %h3{style: "margin-top: -5px;"}
       Unique Matches
     %div
@@ -13,7 +13,7 @@
       %i 
         None found.
 
-%div{style: "float: left; width: 81%;"}
+%div{style: "float: left; width: 78%;"}
   %ul(class="result-list" id="list-results")
     - if definite_results.count > 0
       - definite_results.each do |result|

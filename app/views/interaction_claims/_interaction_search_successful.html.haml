@@ -1,7 +1,7 @@
 - definite_matches = definite_results + definite_no_interactions
-%div{style: "float: right; margin-top: -15px; width: 17%"}
+%div{style: "float: right; margin-top: -15px; width: 20%"}
   = render partial: 'shared/page_export'
-  %div.alert.alert-error.well{style: "margin-top: 15px; padding-right: 20px; width: 240px;"}
+  %div.alert.alert-error.well{style: "margin-top: 15px; padding-right: 20px; width: 200px;"}
     %h3{style: "margin-top: -5px;"}
       Preset Filters
     %ul
@@ -9,7 +9,7 @@
       %li
         = preset
 
-  %div.well{style: "margin-top: -5px; padding-right: 20px; width: 240px;"}
+  %div.well{style: "margin-top: -5px; padding-right: 20px; width: 200px;"}
     %h3{style: "margin-top: -5px;"}
       Unique Matches
     %div
@@ -23,7 +23,7 @@
       %i 
         None found.
 
-%div{style: "float: left; width: 81%;"}
+%div{style: "float: left; width: 78%;"}
   %ul(class="result-list" id="list-results")
     - if definite_matches.count > 0
       - definite_matches.each do |result|

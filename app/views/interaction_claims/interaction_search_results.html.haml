@@ -44,6 +44,8 @@
               - failed_terms = []
             = render partial: 'interaction_claims/interaction_search_failed', locals: {ambiguous_results: ambiguous_results, ambiguous_no_interactions: ambiguous_no_interactions, failed_terms: failed_terms}
 
+#gap{style: "height: 50px;"}
+
 :javascript
   $(".sidebar-toggle").on("click", function() {
     name = "#" + this.name;

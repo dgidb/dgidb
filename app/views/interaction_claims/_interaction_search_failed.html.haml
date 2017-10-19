@@ -1,5 +1,5 @@
 - ambiguous_matches = ambiguous_results + ambiguous_no_interactions
-%div{style: "float: right; margin-top: -15px; width: 17%"}
+%div{style: "float: right; margin-top: -15px; width: 20%"}
   = render partial: 'shared/page_export'
   %div.well{style: "margin-top: 15px;"}
     %h3{style: "margin-top: -5px;"}
@@ -32,7 +32,7 @@
       %div{style: "margin-top:15px;"}
         %i
           None found.
-%div{style: "float: left; width: 81%;"}
+%div{style: "float: left; width: 78%;"}
   %ul(class="result-list" id="list-results")
     - if ambiguous_matches.count > 0
       - ambiguous_matches.each do |result|
