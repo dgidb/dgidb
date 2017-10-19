@@ -42,12 +42,13 @@
                   %li.divider-vertical
                   %li.dropdown
                     %a.dropdown-toggle{href: "#", data: {toggle: "dropdown"}}
-                      Help
+                      Info
                     %ul.dropdown-menu{style: "position: absolute; top: 100%; z-index: 1000; float: left; min-width: 150px; padding: 5px 0; margin: 2px 0 0; list-style: none; background-clip: padding-box; left: auto; right: 0;"}
                       %li
                         %a(href="/getting_started") Getting Started
                         %a(href="/api") API Documentation
                         %a(href="/faq") FAQ
+                        %a(href="/news") News
                         %a(href="/contact") Contact
               %li
                 %ul.nav.help-menu
@@ -57,7 +58,8 @@
                       Downloads
                     %ul.dropdown-menu{style: "position: absolute; top: 100%; z-index: 1000; float: left; min-width: 150px; padding: 5px 0; margin: 2px 0 0; list-style: none; background-clip: padding-box; left: auto; right: 0;"}
                       %li
-                        %a(href="/downloads") Downloads
+                        %a(href="/downloads") Data
+                        %a(href="https://github.com/griffithlab/dgi-db") Source Code
         .container-fluid{style: "margin-bottom: 27px; margin-top: 27px"}
           .page-header{style: "margin-top: 0px; margin-bottom: 0px; padding: 0 0 -10 0; border: 0;"}
             = @news.news_ticker
@@ -67,7 +69,7 @@
       =yield
     =render partial: 'layouts/disclaimer_modal'
   #push
-  #footer{style: "height: 20px; background: white; margin-top: 60px; text-align: center; width: 100%;"}
+  #footer{style: "height: 20px; background: white; margin-top: 40px; text-align: center; width: 100%;"}
     .container{style: "width: 100%;"}
       .container.muted.span12{style: "width: 100%;"}
         %p.span5{style: "width: 100%; margin: 0;"}
@@ -77,15 +79,16 @@
 
   :css
     .wrap{ 
+      zoom: 0.8;
       width:100%; 
-      min-width: 800px;
       max-height: 800px;
     }
     .dropdown-menu {
       margin-top: 1em;
     }
     .main-menu {
-      width: 30%;
+      width: 500px;
+      padding: 0;
     }
     .navbar {
       position: absolute;
@@ -141,6 +144,10 @@
       border-color: black;
       border-style: solid;
       border-width: 0 0.5px;
+    }
+
+    .search-results {
+      zoom: 1.25;
     }
 
   :javascript

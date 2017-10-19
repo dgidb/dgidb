@@ -8,10 +8,6 @@ downloads:
     section under the help menu if you would like to ask us detailed questions about the implementation, data sources, etc.
 
   downloads:
-    - title: Source code of DGIdb application
-      link: "http://www.github.com/genome/dgi-db"
-      description: >
-        This is the full source code of the DGIdb web application. It runs Ruby on Rails and Postgres.
     - title: Interactions TSV
       link: "/data/interactions.tsv"
       description: >
