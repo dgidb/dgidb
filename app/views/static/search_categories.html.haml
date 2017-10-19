@@ -9,49 +9,48 @@
         =icon('question-sign')
 
 - cache do
-  .container.search-container{style: "width: 100%; margin: auto; margin-top: 80px;"}
-    .row-fluid
-      %div{style: "clear: both; display: flex; justify-content: center;"} 
-        .span8{style: "float: left; margin-bottom: 20px; padding: 17px 35px 35px 35px", class: "well"}
-          %form.form-horizontal(id="search_form" action="categories_search_results" method="post" enctype="multipart/form-data")
-            %fieldset
-              .control-group
-                %label.control-label(id='genes_flag')
-                  Genes
-                  %i.icon-flag.tip{title: tx("genes_flag")}
-                  %a(href="/faq#types")
-                    =icon('question-sign')
-                .controls
-                  %textarea#genes{name: 'genes', rows: "12", style: "width: 280px; font-size: 20px; margin-top: 2px;"}
-              .control-group#loadingBar
-                %label(style='display: none')
-                .controls
-                  .progress.progress-striped.active.span2
-                    .bar(style='width: 100%') Loading Autocomplete
-              .control-group
-                .controls
-                  %button.btn.btn-small.btn-danger#clear(type='button') Clear Genes
-                  %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace with Demo List
-        .span8{style: "float: left; margin-left: 20px"}
-          %div{style: "height: 348px; width: 355px; padding-top: 25px;", class: "well"} 
-            %label
-              Advanced Filters
-            %div{style: "background-color: white; margin-top: 5px; padding: 5px; border-radius: 5px; height: 100px;"}
-              #source-control{style: "margin-top: 3px;"}
-                =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
-                  flag_text_key: 'sources_flag', select_tag_name: 'category_sources', collection: @sources, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
-              -##source-trust-level
-              -#  =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
-              -#    flag_text_key: 'source_trust_level_flag', select_tag_name: 'source_trust_levels', collection: @source_trust_levels, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'source_trust_level_tour' }
-              #gene-category-control
-              =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
-                flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_categories_tour' }
-            %div.filters{style: "margin-top: 70px; margin-bottom: -50px; color: #337ab7; font-style: oblique;"}
-              Find CATEGORIES that your GENES belong to
-      .form-actions{style: "clear: both; display: flex; justify-content: center;"} 
-        %button.btn.btn-success(type="submit" id='search-btn' style='font-size: 20px' form='search_form')
-          %i(class="fa fa-search" aria-hidden="true")
-          Find Gene Categories  
+  .row-fluid
+    %div{style: "clear: both; display: flex; justify-content: center; margin-top:20px;"} 
+      .span8{style: "float: left; margin-bottom: 20px; padding: 17px 35px 35px 35px", class: "well"}
+        %form.form-horizontal(id="search_form" action="categories_search_results" method="post" enctype="multipart/form-data")
+          %fieldset
+            .control-group
+              %label.control-label(id='genes_flag')
+                Genes
+                %i.icon-flag.tip{title: tx("genes_flag")}
+                %a(href="/faq#types")
+                  =icon('question-sign')
+              .controls
+                %textarea#genes{name: 'genes', rows: "12", style: "width: 280px; font-size: 20px; margin-top: 2px;"}
+            .control-group#loadingBar
+              %label(style='display: none')
+              .controls
+                .progress.progress-striped.active.span2
+                  .bar(style='width: 100%') Loading Autocomplete
+            .control-group
+              .controls
+                %button.btn.btn-small.btn-danger#clear(type='button') Clear Genes
+                %button.btn.btn-small.btn-primary#defaultGenes(type='button') Replace with Demo List
+      .span8{style: "float: left; margin-left: 20px"}
+        %div{style: "height: 348px; width: 355px; padding-top: 25px;", class: "well"} 
+          %label
+            Advanced Filters
+          %div{style: "background-color: white; margin-top: 5px; padding: 5px; border-radius: 5px; height: 100px;"}
+            #source-control{style: "margin-top: 3px;"}
+              =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
+                flag_text_key: 'sources_flag', select_tag_name: 'category_sources', collection: @sources, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
+            -##source-trust-level
+            -#  =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
+            -#    flag_text_key: 'source_trust_level_flag', select_tag_name: 'source_trust_levels', collection: @source_trust_levels, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'source_trust_level_tour' }
+            #gene-category-control
+            =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
+              flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_categories_tour' }
+          %div.filters{style: "margin-top: 70px; margin-bottom: -50px; color: #337ab7; font-style: oblique;"}
+            Find CATEGORIES that your GENES belong to
+    .form-actions{style: "clear: both; display: flex; justify-content: center; margin-bottom:20px;"} 
+      %button.btn.btn-success(type="submit" id='search-btn' style='font-size: 20px' form='search_form')
+        %i(class="fa fa-search" aria-hidden="true")
+        Find Gene Categories  
 
   =render partial: 'shared/loading_modal', locals: {title: "Searching Druggable Gene Categories..."}
 
