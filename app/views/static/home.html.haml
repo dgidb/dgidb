@@ -17,19 +17,5 @@
           Search for Categories
     %a(class="twitter-timeline" href="https://twitter.com/DGI_db?ref_src=twsrc%5Etfw")
       Tweets by DGI_db 
-    / %div{style: "text-align: left;"}
-    /   - cache do
-    /     .container-fluid
-    /       .row-fluid
-    /         .span12
-    /           -to("posts", "news").reverse_each do |q|
-    /             .panel.panel-default
-    /               .panel-heading
-    /                 %h3.panel-title
-    /                   =q['headline']
-    /                   %em.pull-right.small
-    /                     =q['date']
-    /               .panel-body
-    /                 =q['article'].html_safe 
 
 %script(async src="//platform.twitter.com/widgets.js" charset="utf-8")
