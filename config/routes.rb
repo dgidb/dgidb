@@ -35,5 +35,5 @@ DruggableGene::Application.routes.draw do
   match 'interactions_for_related_genes' => 'interaction_claims#interactions_for_related_genes', via: [:get, :post]
   match 'categories_search_results' => 'genes#categories_search_results', via: [:get, :post]
   get ':action' => 'static#:action'
-  root :to => 'static#search_interactions'
+  root :to => 'static#home'
 end
