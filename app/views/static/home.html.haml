@@ -3,10 +3,14 @@
     Welcome to DGIdb!
   %div{style: "width: 1000px; margin: 0 auto;"}
     %span{style: "font-size: 18px;"}
-      We offer user-friendly browsing, searching, and filtering of information on drug-gene interactions mined from over thirty trusted sources. If this is your first time here, check out our guide on 
-
+      We offer user-friendly browsing, searching, and filtering of information on drug-gene interactions and the druggable genome, mined from over thirty trusted sources. All data can be downloaded freely (except as noted on our
+      %a(href="/downloads" style="text-decoration: underline;") Downloads
+      page) or accessed via our
+      %a(href="/api" style="text-decoration: underline;") API.
+      DGIdb is an open-source project and we welcome feedback on our
+      %a(href="https://github.com/griffithlab/dgi-db" style="text-decoration: underline;") GitHub
+      page. If this is your first time here, check out our guide on
       %a(href="/getting_started" style="text-decoration: underline;") getting started
-
       or just try us out!
     %div{style: "margin-top: 20px; margin-bottom: 25px; text-align: center;"}
       %a{href:"/search_interactions", style:"margin: 0 5px"} 
@@ -17,16 +21,17 @@
           Search Potential Druggability
     %hr{style: "display: block; height: 1px; border: 0; border-top: 1px solid #ccc"}
     %div
-      %div{style: "float: left; width:70%; "}
+      %div{style: "float: left; width:70%; text-align: left;"}
         .modal-header
           %p.lead
             %strong Disclaimer:
             This resource is intended for purely research purposes. It should not be used for emergencies or medical or professional advice.
-        .modal-body
-          %p
-            A finding of a drug-gene interaction or potentially druggable category does not necessarily indicate effectiveness (or lack thereof) of any drug or treatment regimen. A finding of no interaction or no potentially druggable category does not necessarily indicate lack of effectiveness of any drug or treatment regimen. Drug-gene interactions or potentially druggable categories are not presented in ranked order of potential or predicted efficacy. 
-          %p
-            The dgidb.org website does not provide any medical or healthcare products, services or advice, and is not for medical emergencies or urgent situations. IF YOU THINK YOU MAY HAVE A MEDICAL EMERGENCY, CALL YOUR DOCTOR OR 911 IMMEDIATELY. Information contained on this website is not a substitute for a doctor's medical judgment or advice.  We recommend that you discuss your specific, individual health concerns with your doctor or health care professional.
+        %div{style: "float: left; text-align: left;"}
+          .modal-body
+            %p
+              A finding of a drug-gene interaction or potentially druggable category does not necessarily indicate effectiveness (or lack thereof) of any drug or treatment regimen. A finding of no interaction or no potentially druggable category does not necessarily indicate lack of effectiveness of any drug or treatment regimen. Drug-gene interactions or potentially druggable categories are not presented in ranked order of potential or predicted efficacy.
+            %p
+              The dgidb.org website does not provide any medical or healthcare products, services or advice, and is not for medical emergencies or urgent situations. IF YOU THINK YOU MAY HAVE A MEDICAL EMERGENCY, CALL YOUR DOCTOR OR 911 IMMEDIATELY. Information contained on this website is not a substitute for a doctor's medical judgment or advice.  We recommend that you discuss your specific, individual health concerns with your doctor or health care professional.
       %div{style: "margin-left: 70%;"}
         %a(class="twitter-timeline" href="https://twitter.com/DGI_db?ref_src=twsrc%5Etfw")
           Tweets by DGI_db 
