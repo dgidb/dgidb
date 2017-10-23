@@ -71,16 +71,6 @@ faq:
         This is an open source project and you could therefore create your own instance with your own data. However, if you want that
         source, chances are that we do too. <a href="mailto:help@dgidb.org">Contact us</a> and we will be happy to consider adding your source for you.
 
-    - question: What does 'Source Trust Level' mean?
-      anchor: trust
-      answer: >
-        We assign each source used by DGIdb to one of two trust levels: 'Expert curated' or 'Non-curated'.
-        This status is internal to DGIdb. 'Expert curated' sources were examined manually by domain experts during the process of importing to DGIdb.
-        'Non-curated' sources were imported in an automatic fashion from the primary source using an importer module (i.e. a script).
-        'Non-curated' sources may still have involved some manual curation at the original source.
-        Within each of the two trust levels, we further rank each source according to our own assessment of quality.
-        Results will be sorted to favor 'Expert curated' data and by quality rank within those sources.
-
     - question: What is the meaning of 'Gene Categories' in DGIdb?
       anchor: categories
       answer: >
