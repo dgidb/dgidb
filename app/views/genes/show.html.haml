@@ -43,12 +43,8 @@
 :javascript
   $(document).ready(function () {
     var activeTab = $('#' + window.location.hash.substr(2));
-    window.onunload = function(){};
-
     if(activeTab.length) {
       $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
-    } else {
-      $('a[href="' + "#summary" + '"]').trigger('click');
     }
   });
 
@@ -56,8 +52,6 @@
     var activeTab = $('#' + window.location.hash.substr(2));
     if (activeTab.length) {
       $('a[href="' + "#" + window.location.hash.substr(2) + '"]').trigger('click');
-    } else {
-      $('a[href="' + "#summary" + '"]').trigger('click');
     }
   });
 
