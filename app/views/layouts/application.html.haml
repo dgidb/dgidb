@@ -75,10 +75,13 @@
     ="Last updated #{CURRENT_VERSION.time}"
 
   :css
+    html {
+      zoom: 0.8;
+    }
     .wrap{
       width:100%;
-      min-width: 1200px; 
       max-height: 800px;
+      min-width: 1200px;
     }
     #footer{
       min-width: 1200px;
@@ -87,7 +90,6 @@
       margin-top: 1em;
     }
     .main-menu {
-      width: 500px;
       padding: 0;
     }
     .navbar {
@@ -96,10 +98,12 @@
       margin: 0px;
       padding: 0px;
       background-size: cover;
-      min-width: 1100px;
+      min-width: 1200px;
     }
     .nav-tabs {
       border-bottom: 0;
+      width: 400px;
+      min-width: initial;
     }
 
     .nav.help-menu {
