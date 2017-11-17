@@ -39,18 +39,36 @@ class NewPharmgkb < Genome::OnlineUpdater
 
   def create_interaction_claims
     CSV.foreach(file_path, :headers => true, :col_sep => "\t") do |row|
-      gene_claim = create_gene_claim(row['Gene'], 'PharmGKB Gene Name')
-      create_gene_claim_alias(gene_claim, ['GeneID'], 'PharmGKB Gene ID')
-      drug = row['Chemical'].upcase
-      drug_claim = create_drug_claim(drug, drug, 'PharmGKB Drug Name')
-      create_drug_claim_alias(drug_claim, row['ChemicalID'], 'PharmGKB Drug ID')
-      interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-      unless row['PMIDs'].to_s.empty?
-        add_interaction_claim_publications(interaction_claim, row['PMIDs'])
-      end
-      create_interaction_claim_attribute(interaction_claim, row['Association'], 'Association')
-      if row['VariantID'] != 'N/A'
-        create_interaction_claim_attribute(interaction_claim, row['VariantID'], 'Reference SNP ID number')
+      if row['Gene'].include?(',')
+        row['Gene'].split(',').each do |indv_gene|
+          gene_claim = create_gene_claim(indv_gene, 'PharmGKB Gene Name')
+          create_gene_claim_alias(gene_claim, ['GeneID'], 'PharmGKB Gene ID')
+          drug = row['Chemical'].upcase
+          drug_claim = create_drug_claim(drug, drug, 'PharmGKB Drug Name')
+          create_drug_claim_alias(drug_claim, row['ChemicalID'], 'PharmGKB Drug ID')
+          interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+          unless row['PMIDs'].to_s.empty?
+            add_interaction_claim_publications(interaction_claim, row['PMIDs'])
+          end
+          create_interaction_claim_attribute(interaction_claim, row['Association'], 'Association')
+          if row['VariantID'] != 'N/A'
+            create_interaction_claim_attribute(interaction_claim, row['VariantID'], 'Reference SNP ID number')
+          end
+        end
+      else
+        gene_claim = create_gene_claim(row['Gene'], 'PharmGKB Gene Name')
+        create_gene_claim_alias(gene_claim, ['GeneID'], 'PharmGKB Gene ID')
+        drug = row['Chemical'].upcase
+        drug_claim = create_drug_claim(drug, drug, 'PharmGKB Drug Name')
+        create_drug_claim_alias(drug_claim, row['ChemicalID'], 'PharmGKB Drug ID')
+        interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+        unless row['PMIDs'].to_s.empty?
+          add_interaction_claim_publications(interaction_claim, row['PMIDs'])
+        end
+        create_interaction_claim_attribute(interaction_claim, row['Association'], 'Association')
+        if row['VariantID'] != 'N/A'
+          create_interaction_claim_attribute(interaction_claim, row['VariantID'], 'Reference SNP ID number')
+        end
       end
     end
   end
