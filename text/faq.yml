@@ -29,7 +29,7 @@ faq:
       anchor: learn
       answer: > 
         You can try reading: the <a href="/getting_started">'Getting Started'</a> section under the help menu,
-         the <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">manuscript</a>, and this FAQ.
+         the <a href="https://doi.org/10.1093/nar/gkx1143">manuscript</a>, and this FAQ.
         Some sections also contain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
         If all else fails, please <a href="mailto:help@dgidb.org">email us</a> with your questions.
 
