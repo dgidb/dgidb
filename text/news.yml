@@ -235,3 +235,7 @@ news:
           </li>
         </ul>
       date: June 30, 2017
+    - headline: DGIdb 3.0 publication released
+      article : >
+        <a href="https://doi.org/10.1093/nar/gkx1143">DGIdb 3.0</a> has been published (open-access) in the 2016 Nucleic Acids Research Database edition.
+      date: November 17, 2017
