@@ -5,8 +5,10 @@ contact:
   description: >
     DGIdb was developed at The McDonnell Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us at <a href="mailto:help@dgidb.org">help@dgidb.org</a>.<br><br>
 
-    Citation: <strong>DGIdb 2.0: mining clinically relevant drug-gene interactions</strong>. Alex H Wagner, Adam C Coffman, Benjamin J Ainscough, Nicholas C Spies, Zachary L Skidmore, Katie M Campbell, Kilannin Krysiak, Deng Pan, Joshua F McMichael, James M Eldred, Jason R Walker, Richard K Wilson, Elaine R Mardis, Malachi Griffith, Obi L Griffith.
-    <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">Nucleic Acids Research</a> (2016) doi:10.1093/nar/gkv1165.<br><br>
+    Citation: <strong><a href="https://doi.org/10.1093/nar/gkx1143">DGIdb 3.0: a redesign and expansion of the drug–gene interaction database.</a></strong>
+                            Cotto KC, Wagner AH, Feng Y, Kiwala S, Coffman AC, Spies G, Wollam A, Spies NC, Griffith OL, Griffith M.
+                            Nucleic Acids Research.
+                            2017 Nov 17. doi:https://doi.org/10.1093/nar/gkx1143.<br><br>
 
   people:
     - title: Malachi Griffith

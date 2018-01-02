@@ -14,12 +14,8 @@ faq:
     - question: How do I cite DGIdb?
       anchor: cite
       answer: >
-        Please cite our most recent paper on DGIdb: Wagner AH, Coffman AC, Ainscough BJ, Spies NC, Skidmore ZL,
-        Campbell KM, Krysiak K, Pan D, McMichael JF, Eldred JM, Walker JR,
-        Wilson RK, Mardis ER, Griffith M, Griffith OL.
-        DGIdb 2.0: mining clinically relevant drug-gene interactions.
-        <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">Nucleic Acids Research.</a>
-        2016 Jan 4;44(D1):D1036-44. doi:10.1093/nar/gkv1165.
+        Please cite our most recent paper on DGIdb: <a href="https://doi.org/10.1093/nar/gkx1143">DGIdb 3.0: a redesign and expansion of the drug–gene interaction database.</a> Cotto KC, Wagner AH, Feng Y, Kiwala S, Coffman AC, Spies G, Wollam A, Spies NC, Griffith OL, Griffith M.
+          Nucleic Acids Research. 2017 Nov 17. doi:https://doi.org/10.1093/nar/gkx1143.
 
     - question: Is DGIdb open source and open access?
       anchor: source
@@ -33,7 +29,7 @@ faq:
       anchor: learn
       answer: > 
         You can try reading: the <a href="/getting_started">'Getting Started'</a> section under the help menu,
-         the <a href="http://nar.oxfordjournals.org/content/44/D1/D1036.long">manuscript</a>, and this FAQ.
+         the <a href="https://doi.org/10.1093/nar/gkx1143">manuscript</a>, and this FAQ.
         Some sections also contain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
         If all else fails, please <a href="mailto:help@dgidb.org">email us</a> with your questions.
 

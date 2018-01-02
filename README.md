@@ -20,9 +20,12 @@ Two of the web application’s primary pieces of functionality are its gene name
 The DGIdb API can be used to query for drug-gene interactions in your own applications through a simple JSON based interface.  Extensive documentation of the API including functioning code example is maintained at: http://dgidb.org/api
 
 #### Citations
-<strong>DGIdb 2.0: mining clinically relevant drug-gene interactions</strong>. Alex H Wagner, Adam C Coffman, Benjamin J Ainscough, Nicholas C Spies, Zachary L Skidmore, Katie M Campbell, Kilannin Krysiak, Deng Pan, Joshua F McMichael, James M Eldred, Jason R Walker, Richard K Wilson, Elaine R Mardis, Malachi Griffith, Obi L Griffith. <i>Nucleic Acids Research</i>. 2016 Jan 4;44(D1):D1036-44. doi: <a href="https://doi.org/10.1093/nar/gkv1165">10.1093/nar/gkv1165</a>. PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26531824">26531824</a>.
+<strong>DGIdb 3.0: a redesign and expansion of the drug-gene interaction database. </strong>Kelsy C Cotto*, Alex H Wagner*, Yang-Yang Feng, Susanna Kiwala, Adam C Coffman,
+Gregory Spies, Alex Wollam, Nicholas C Spies, Obi L Griffith, Malachi Griffith. <i>Nucleic Acids Research.</i> 2017 Nov 16. doi:  https://doi.org/10.1093/nar/gkx1143 . *These authors contributed equally to this work. 
 
-<strong>DGIdb - mining the druggable genome</strong>. Malachi Griffith\*, Obi L Griffith\*, Adam C Coffman, James V Weible, Josh F McMichael, Nicholas C Spies, 
+<strong>DGIdb 2.0: mining clinically relevant drug-gene interactions.</strong>Alex H Wagner, Adam C Coffman, Benjamin J Ainscough, Nicholas C Spies, Zachary L Skidmore, Katie M Campbell, Kilannin Krysiak, Deng Pan, Joshua F McMichael, James M Eldred, Jason R Walker, Richard K Wilson, Elaine R Mardis, Malachi Griffith, Obi L Griffith. <i>Nucleic Acids Research</i>. 2016 Jan 4;44(D1):D1036-44. doi: <a href="https://doi.org/10.1093/nar/gkv1165">10.1093/nar/gkv1165</a>. PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/26531824">26531824</a>.
+
+<strong>DGIdb - mining the druggable genome.</strong>Malachi Griffith\*, Obi L Griffith\*, Adam C Coffman, James V Weible, Josh F McMichael, Nicholas C Spies, 
 James Koval, Indraniel Das, Matthew B Callaway, James M Eldred, Christopher A Miller, Janakiraman Subramanian, Ramaswamy Govindan, Runjun D Kumar, 
 Ron Bose, Li Ding, Jason R Walker, David E Larson, David J Dooling, Scott M Smith, Timothy J Ley, Elaine R Mardis, Richard K Wilson. <i>Nature Methods</i>. 2013 Dec;10(12):1209-10. doi: <a href="https://doi.org/10.1038/nmeth.2689">10.1038/nmeth.2689</a>. PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/24122041">24122041</a>.
 \*These authors contributed equally to this work.
