@@ -68,17 +68,20 @@
             = content_tag :div, (content_tag :h3, val), class: "alert alert-#{key}"
       =yield
     =render partial: 'layouts/disclaimer_modal'
-#footer{style: "position: absolute; background: white; text-align: center; width: 100%; margin-top: 20px;"}
-  %p.span5{style: "width: 100%; margin: 0;"}
-    ="DGIdb (v#{CURRENT_VERSION.version} - sha1 #{CURRENT_VERSION.sha})"
-    •
-    ="Last updated #{CURRENT_VERSION.time}"
+  #footer{style: "position: absolute; background: white; text-align: center; width: 100%; margin-top: 20px;"}
+    %p.span5{style: "width: 100%; margin: 0;"}
+      ="DGIdb (v#{CURRENT_VERSION.version} - sha1 #{CURRENT_VERSION.sha})"
+      •
+      ="Last updated #{CURRENT_VERSION.time}"
 
   :css
+    html {
+      zoom: 0.8;
+    }
     .wrap{
       width:100%;
-      min-width: 1200px; 
       max-height: 800px;
+      min-width: 1200px;
     }
     #footer{
       min-width: 1200px;
@@ -87,7 +90,6 @@
       margin-top: 1em;
     }
     .main-menu {
-      width: 500px;
       padding: 0;
     }
     .navbar {
@@ -96,10 +98,12 @@
       margin: 0px;
       padding: 0px;
       background-size: cover;
-      min-width: 1100px;
+      min-width: 1200px;
     }
     .nav-tabs {
       border-bottom: 0;
+      width: 400px;
+      min-width: initial;
     }
 
     .nav.help-menu {
@@ -180,4 +184,4 @@
        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
        })();
-       
+     
