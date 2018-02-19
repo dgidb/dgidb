@@ -60,4 +60,13 @@ class GeneCategorySearchResult
     end
   end
 
+  def match_type_label
+    if is_ambiguous?
+      "Ambiguous"
+    elsif !has_results?
+      "None"
+    else
+      "Definite"
+    end
+  end
 end

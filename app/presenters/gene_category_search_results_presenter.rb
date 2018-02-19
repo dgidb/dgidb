@@ -1,5 +1,7 @@
 class GeneCategorySearchResultsPresenter
   include Genome::Extensions
+  attr_reader :search_results
+
   def initialize(search_results, params, start_time, view_context)
     @start_time = start_time
     @search_results = search_results
