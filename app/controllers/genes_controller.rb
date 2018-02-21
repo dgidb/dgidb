@@ -42,6 +42,30 @@ class GenesController < ApplicationController
 
     search_results = LookupCategories.find(params)
     @search_results = GeneCategorySearchResultsPresenter.new(search_results, params, start_time, view_context)
+    prepare_export
+  end
+
+  def prepare_export(compound_field_separator = '|')
+    headers = %w[search_term match_term match_type category sources]
+    @tsv = CSV.generate(col_sep: "\t") do |tsv|
+      tsv << headers
+      @search_results.search_results.each do |result|
+        result.gene_categories.each do |category|
+          row_hash = {
+            'match_type' => result.match_type_label,
+            'search_term' => result.search_term,
+          }
+          sources_with_category = result.gene_claims.select do |gc|
+            gc.gene_claim_categories.map(&:name)
+              .include?(category.upcase)
+          end.map { |gc| gc.source }
+          row_hash['match_term'] = result.gene_name
+          row_hash['category'] = category.upcase
+          row_hash['sources'] = sources_with_category.map(&:source_db_name).join(compound_field_separator)
+          tsv << headers.map{ |field| row_hash[field] }
+        end
+      end
+    end
   end
 
   private
