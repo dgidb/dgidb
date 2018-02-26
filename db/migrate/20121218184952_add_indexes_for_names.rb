@@ -1,4 +1,4 @@
-class AddIndexesForNames < ActiveRecord::Migration[3.2]
+class AddIndexesForNames < ActiveRecord::Migration[4.2]
   def up
     add_index :genes, :name
     add_index :gene_claims, :name

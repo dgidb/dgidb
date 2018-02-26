@@ -1,4 +1,4 @@
-class AddInterGeneInteractionCountToSources < ActiveRecord::Migration[3.2]
+class AddInterGeneInteractionCountToSources < ActiveRecord::Migration[4.2]
   def up
     add_column :sources, :gene_gene_interaction_claims_count, :integer, default: 0
   end

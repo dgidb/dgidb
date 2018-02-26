@@ -1,4 +1,4 @@
-class FurtherNormalization < ActiveRecord::Migration[3.2]
+class FurtherNormalization < ActiveRecord::Migration[4.2]
   def up
     #add column for display name at the gene level - most likely entrez name
     add_column :genes, :display_name, :string

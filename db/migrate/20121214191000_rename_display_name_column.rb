@@ -1,4 +1,4 @@
-class RenameDisplayNameColumn < ActiveRecord::Migration[3.2]
+class RenameDisplayNameColumn < ActiveRecord::Migration[4.2]
   def up
     rename_column :genes, :display_name, :long_name
   end

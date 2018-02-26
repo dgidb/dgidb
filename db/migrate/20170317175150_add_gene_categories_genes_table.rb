@@ -1,4 +1,4 @@
-class AddGeneCategoriesGenesTable < ActiveRecord::Migration[3.2]
+class AddGeneCategoriesGenesTable < ActiveRecord::Migration[4.2]
   def up
     create_table :gene_categories_genes, id: false do |t|
       t.text :gene_claim_category_id, null: false

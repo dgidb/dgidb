@@ -1,4 +1,4 @@
-class AddLowerIndexes < ActiveRecord::Migration[3.2]
+class AddLowerIndexes < ActiveRecord::Migration[4.2]
   def tables_and_columns
     [
       ['drugs', 'name'],

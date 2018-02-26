@@ -1,4 +1,4 @@
-class NormalizeDrugTypes < ActiveRecord::Migration[3.2]
+class NormalizeDrugTypes < ActiveRecord::Migration[4.2]
   def up
     create_table :drug_claim_types, id: false do |t|
       t.string :id, null: false

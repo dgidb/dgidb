@@ -1,4 +1,4 @@
-class AddInteractionsTable < ActiveRecord::Migration[3.2]
+class AddInteractionsTable < ActiveRecord::Migration[4.2]
   def up
     remove_column :interaction_claims, :interaction_type
     add_column :interaction_claims, :interaction_id, :text

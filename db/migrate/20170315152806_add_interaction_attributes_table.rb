@@ -1,4 +1,4 @@
-class AddInteractionAttributesTable < ActiveRecord::Migration[3.2]
+class AddInteractionAttributesTable < ActiveRecord::Migration[4.2]
   def up
     create_table :interaction_attributes, id: false do |t|
       t.text :id, null: false
