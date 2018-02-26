@@ -1,4 +1,4 @@
-class AddDrugAliasesTable < ActiveRecord::Migration
+class AddDrugAliasesTable < ActiveRecord::Migration[3.2]
   def up
     remove_column :drug_claim_aliases, :description
 

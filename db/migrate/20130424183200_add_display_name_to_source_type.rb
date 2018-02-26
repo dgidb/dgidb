@@ -1,4 +1,4 @@
-class AddDisplayNameToSourceType < ActiveRecord::Migration
+class AddDisplayNameToSourceType < ActiveRecord::Migration[3.2]
   def up
     add_column :source_types, :display_name, :string
   end

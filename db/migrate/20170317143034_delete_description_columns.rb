@@ -1,4 +1,4 @@
-class DeleteDescriptionColumns < ActiveRecord::Migration
+class DeleteDescriptionColumns < ActiveRecord::Migration[3.2]
   def up
     remove_column :gene_claims, :description
     remove_column :drug_claims, :description

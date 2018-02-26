@@ -1,4 +1,4 @@
-class AddGeneAliasesTable < ActiveRecord::Migration
+class AddGeneAliasesTable < ActiveRecord::Migration[3.2]
   def up
     remove_column :gene_claim_aliases, :description
 

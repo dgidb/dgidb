@@ -1,4 +1,4 @@
-class AddCaseInsensitiveIndexes < ActiveRecord::Migration
+class AddCaseInsensitiveIndexes < ActiveRecord::Migration[3.2]
   def tables_and_columns
     [
       ['drug_claim_types', 'type'],

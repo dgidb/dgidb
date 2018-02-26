@@ -1,4 +1,4 @@
-class AddGeneAttributesTable < ActiveRecord::Migration
+class AddGeneAttributesTable < ActiveRecord::Migration[3.2]
   def up
       remove_column :gene_claim_attributes, :description
 

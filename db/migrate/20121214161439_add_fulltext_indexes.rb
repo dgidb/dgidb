@@ -1,4 +1,4 @@
-class AddFulltextIndexes < ActiveRecord::Migration
+class AddFulltextIndexes < ActiveRecord::Migration[3.2]
   def up
     execute "CREATE INDEX drugs_full_text ON drugs USING gin (to_tsvector('english'::regconfig, name));"
     execute "CREATE INDEX drug_claim_aliases_full_text ON drug_claim_aliases USING gin (to_tsvector('english'::regconfig, alias));"

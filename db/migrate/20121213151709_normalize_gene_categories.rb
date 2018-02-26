@@ -1,4 +1,4 @@
-class NormalizeGeneCategories < ActiveRecord::Migration
+class NormalizeGeneCategories < ActiveRecord::Migration[3.2]
   def up
     create_table :gene_claim_categories, id: false do |t|
       t.string :id, null: false

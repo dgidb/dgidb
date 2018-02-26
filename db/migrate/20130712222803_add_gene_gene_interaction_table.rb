@@ -1,4 +1,4 @@
-class AddGeneGeneInteractionTable < ActiveRecord::Migration
+class AddGeneGeneInteractionTable < ActiveRecord::Migration[3.2]
   def up
     create_table :gene_gene_interaction_claims, id: false do |t|
       t.string :id, null: false

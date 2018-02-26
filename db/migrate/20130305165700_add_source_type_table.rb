@@ -1,4 +1,4 @@
-class AddSourceTypeTable < ActiveRecord::Migration
+class AddSourceTypeTable < ActiveRecord::Migration[3.2]
   def up
     add_column :sources, :source_trust_level_id, :string
     create_table :source_trust_levels, id: false do |t|
