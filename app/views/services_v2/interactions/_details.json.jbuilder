@@ -10,6 +10,7 @@ if result.type == 'drugs'
     json.geneEntrezId interaction.gene_entrez_id
     json.sources interaction.source_db_names
     json.pmids interaction.publications
+    json.score interaction.score
   end
 else
   json.searchTerm result.search_term
@@ -24,5 +25,6 @@ else
     json.drugChemblId interaction.drug_chembl_id
     json.sources interaction.source_db_names
     json.pmids interaction.publications
+    json.score interaction.score
   end
 end

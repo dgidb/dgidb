@@ -79,5 +79,9 @@ class InteractionSearchResultApiV2Presenter
       interaction.publications.map(&:pmid)
     end
 
+    def score
+      publications.size + source_db_names.size
+    end
+
   end
 end
