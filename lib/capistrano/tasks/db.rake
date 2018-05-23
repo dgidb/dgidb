@@ -22,7 +22,7 @@ namespace :db do
     on roles(:all) do
       execute sudo :service, :apache2, :stop
       begin
-        execute :dropdb, :dgidb
+        execute :dropdb, '-U postgres', :dgidb
         execute :createdb, ustring, hstring, :dgidb
         execute :psql, ustring, hstring, dstring, "< #{current_path}/db/structure.sql"
         execute :psql, ustring, hstring, dstring, "< #{shared_path}/public/data/data.sql"
