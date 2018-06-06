@@ -15,7 +15,7 @@ module DataModel
     end
 
     def self.for_tsv
-      includes(:source, :interaction_claim_types, drug_claim: [:drug], gene_claim: [:gene])
+      includes(:source, :interaction_claim_types, :publications, drug_claim: [:drug], gene_claim: [:gene])
     end
 
     def drug

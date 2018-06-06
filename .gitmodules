@@ -1,3 +1,3 @@
 [submodule "data"]
 	path = data
-	url = ssh://git/srv/git/dgidb-data.git
+	url = git://git.genomedata.org/dgidb_data.git
