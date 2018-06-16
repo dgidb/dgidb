@@ -10,7 +10,7 @@
         =icon('question-sign')
 
 .container-fluid
-  .row-fluid#container
+  .row-fluid#container(style="width: auto")
     %div(class="span2" style="float: left; width: 14.893617021276595%; display: block;")
       %div(id="list-filter-tabs")
 
@@ -20,7 +20,7 @@
               %i(class="icon-chevron-right")
               All
 
-    %div(class="span10" style="float: left; width: 82.97872340425532%; display: block; margin-left: 2.127659574468085%")
+    %div(class="span10" style="float: left; width: 82.97872340425532%; display: block;")
       =render partial: 'sources/sources', locals:{sources: @sources}
 
 :css
