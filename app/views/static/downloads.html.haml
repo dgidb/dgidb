@@ -13,6 +13,9 @@
         .well
           %dl
             -to("downloads").each do |d|
-              %dt=dynamic_link_to(d["title"], d["link"])
+              -if d["link"].nil?
+                %dt=d["title"]
+              -else
+                %dt=dynamic_link_to(d["title"], d["link"])
               %dd=d["description"].html_safe
               %br
