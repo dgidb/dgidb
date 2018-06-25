@@ -48,8 +48,10 @@ module Utils; module SnapshotHelpers
     system_or_die("git submodule update --init data")
   end
 
-  def download_data_dump(desination)
-    Dir.mkdir('data')
+  def download_data_dump(destination)
+    unless Dir.exist? 'data'
+      Dir.mkdir('data')
+    end
     system_or_die("wget -O #{desination} http://dgidb.org/downloads/data.sql")
   end
 
