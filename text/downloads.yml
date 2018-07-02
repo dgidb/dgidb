@@ -48,7 +48,9 @@ downloads:
         TSV download of the latest version of the dGene database made available here at the request of the dGene creators.
         This data corresponds to the dGene publication and has not changed significantly since that publication.
     - title: DGIdb database dump
-      link: "/data/data.sql"
       description: >
-        SQL dump of the contents of the DGIdb Postgres database.
-
+        You may load the latest data dump into your local database instance by running the following command while in your local
+        checkout of the DGIdb repository: <code>rake dgidb:load_local</code>. This will recreate your local database and import
+        the latest data dump directly from the data repository. The data.sql file can then be found in the `data` directory of
+        your local repository. Please see the <a href="https://github.com/griffithlab/dgi-db#installation">Installation instructions</a>
+        for more details about creating a local instance of DGIdb.
