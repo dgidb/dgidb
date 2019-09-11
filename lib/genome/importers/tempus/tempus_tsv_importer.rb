@@ -3,7 +3,7 @@ module Genome
     module Tempus
       def self.source_info
         {
-          #base_url:           'http://stm.sciencemag.org/content/9/383/eaag1166',
+          base_url:           'https://www.tempus.com/',
           site_url:           'https://www.tempus.com/',
           citation:           'https://www.tempus.com/',
           source_db_version:  '11-November-2018',
