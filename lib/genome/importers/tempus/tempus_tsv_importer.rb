@@ -5,7 +5,7 @@ module Genome
         {
           base_url:           'https://www.tempus.com/',
           site_url:           'https://www.tempus.com/',
-          citation:           'https://www.tempus.com/',
+          citation:           'https://www.tempus.com/clinical-validation-of-the-tempus-xt-next-generation-targeted-oncology-sequencing-assay/',
           source_db_version:  '11-November-2018',
           source_type_id:     DataModel::SourceType.POTENTIALLY_DRUGGABLE,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
