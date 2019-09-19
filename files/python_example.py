@@ -72,7 +72,7 @@ class DGIAPI:
         self.request = DGIAPI.domain + DGIAPI.api_path
         self.response = requests.post(self.request, data = self.payload)
     def print_response(self):
-        response = json.loads(self.response.content)
+        response = json.loads(self.response.content.decode('utf-8'))
         matches = response['matchedTerms']
         if(matches):
           print "gene_name\tdrug_name\tinteraction_type\tsource\tgene_categories"
