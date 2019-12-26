@@ -36,30 +36,21 @@ class InteractionSearchResultsPresenter
   end
 
   def scores_for_result(result, grouped_results)
-    if @search_context == "genes"
-      scores = result.interactions.values.flatten.each_with_object({}) do |result_interaction, h|
-        overlap_count = grouped_results.map{ |r|
-          r.interactions.values.flatten.count{|other_interaction| other_interaction.drug_id == result_interaction.drug_id}
-        }.sum
-        promiscuity_count = DataModel::Interaction.where(drug_id: result_interaction.drug_id).count
-        pub_count = result_interaction.publications.count
-        source_count = result_interaction.sources.count
-        drug_promiscuity_counts = DataModel::Interaction.group(:drug_id).count.values
-        average_drug_promiscuity = drug_promiscuity_counts.sum / drug_promiscuity_counts.size.to_f
-        h[result_interaction.id] = ((pub_count + source_count) * (overlap_count * average_drug_promiscuity / promiscuity_count)).round(2)
-      end
+    identifier = if @search_context == 'genes'
+      :drug_id
     elsif @search_context == 'drugs'
-      scores = result.interactions.values.flatten.each_with_object({}) do |result_interaction, h|
-        overlap_count = grouped_results.map{ |r|
-          r.interactions.values.flatten.count{|other_interaction| other_interaction.gene_id == result_interaction.gene_id}
-        }.sum
-        promiscuity_count = DataModel::Interaction.where(gene_id: result_interaction.gene_id).count
-        pub_count = result_interaction.publications.count
-        source_count = result_interaction.sources.count
-        gene_promiscuity_counts = DataModel::Interaction.group(:gene_id).count.values
-        average_gene_promiscuity = gene_promiscuity_counts.sum / gene_promiscuity_counts.size.to_f
-        h[result_interaction.id] = ((pub_count + source_count) * (overlap_count * average_gene_promiscuity / promiscuity_count)).round(2)
-      end
+      :gene_id
+    end
+    scores = result.interactions.values.flatten.each_with_object({}) do |result_interaction, h|
+      overlap_count = grouped_results.map{ |r|
+        r.interactions.values.flatten.count{|other_interaction| other_interaction.send(identifier) == result_interaction.send(identifier)}
+      }.sum
+      promiscuity_count = DataModel::Interaction.where(identifier => result_interaction.send(identifier)).count
+      pub_count = result_interaction.publications.count
+      source_count = result_interaction.sources.count
+      all_promiscuity_counts = DataModel::Interaction.group(identifier).count.values
+      average_promiscuity = all_promiscuity_counts.sum / all_promiscuity_counts.size.to_f
+      h[result_interaction.id] = ((pub_count + source_count) * (overlap_count * average_promiscuity / promiscuity_count)).round(2)
     end
   end
 
