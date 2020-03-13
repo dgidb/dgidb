@@ -35,6 +35,25 @@ class InteractionSearchResultsPresenter
     results_for_view(Maybe(grouped_results[:definite_no_interactions]))
   end
 
+  def scores_for_result(result, grouped_results)
+    identifier = if @search_context == 'genes'
+      :drug_id
+    elsif @search_context == 'drugs'
+      :gene_id
+    end
+    scores = result.interactions.values.flatten.each_with_object({}) do |result_interaction, h|
+      overlap_count = grouped_results.map{ |r|
+        r.interactions.values.flatten.count{|other_interaction| other_interaction.send(identifier) == result_interaction.send(identifier)}
+      }.sum
+      promiscuity_count = DataModel::Interaction.where(identifier => result_interaction.send(identifier)).count
+      pub_count = result_interaction.publications.count
+      source_count = result_interaction.sources.count
+      all_promiscuity_counts = DataModel::Interaction.group(identifier).count.values
+      average_promiscuity = all_promiscuity_counts.sum / all_promiscuity_counts.size.to_f
+      h[result_interaction.id] = ((pub_count + source_count) * (overlap_count * average_promiscuity / promiscuity_count)).round(2)
+    end
+  end
+
   private
   def grouped_results
     @grouped_results ||= @search_results.group_by { |result| result.partition }
@@ -46,7 +65,8 @@ class InteractionSearchResultsPresenter
       .map{ |result| {
           term: result.search_term,
           identifiers: result.identifiers,
-          interactions: result.interactions
+          interactions: result.interactions,
+          scores: scores_for_result(result, results),
       }}
   end
 end

@@ -21,7 +21,7 @@
   %div(class="cell category")
     %div{class: "item-panel"}
       %h4{style: "display: inline-block;"}
-      - interactions = filtered_interactions.sort_by { |i| -i.sources.size - i.publications.size }.map{|i| InteractionPresenter.new(i)}
+      - interactions = filtered_interactions.sort_by { |i| -scores[i.id] }.map{|i| InteractionPresenter.new(i)}
       - if interactions.count > 0
         %table{class: "search_panel table table-condensed table-striped", style: "width: 100%; margin-top: -20px;"}
           %tr
@@ -51,7 +51,6 @@
               %td
                 = interaction.na_or_types.join(", ")
               %td
-                - source_count = interaction.sources.size
                 = interaction.sources.map{|source| TrustLevelPresenter.source_link_green(@view_context, source)}.join(' ').html_safe
               %td
                 - if (pub_count = interaction.publications.size) > 0
@@ -60,7 +59,7 @@
                   %i
                     None found
               %td
-                = source_count + pub_count
+                = scores[interaction.id]
         %button{class: "show-all", style: "margin-top: 5px"}
           Show All
         %button{class: "show-more", style: "margin-top: 5px"}
