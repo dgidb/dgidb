@@ -11,7 +11,7 @@ class InteractionPresenter < SimpleDelegator
   end
 
   def na_or_types
-    types = interaction.interaction_types.map{|t| t.type.downcase}.uniq.reject{|t| t == "n/a"}
+    types = interaction.interaction_types.map{|t| t.type}.reject{|t| t == "n/a"}
     types.count > 0 ? types : ["n/a"]
   end
 
