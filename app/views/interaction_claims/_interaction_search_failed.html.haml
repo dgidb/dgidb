@@ -38,7 +38,7 @@
       - ambiguous_matches.each do |result|
         - result[:identifiers].each do |entity|
           %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-ambiguous", style: "display: list-item; width: 100%;"}
-            = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions][entity].to_a }
+            = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions][entity].to_a, scores: result[:scores]  }
     - else 
       %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", style: "width: 100%; height: 300px;"}
         %h3{style: "margin-left: 20px;"}
