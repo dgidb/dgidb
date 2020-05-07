@@ -21,7 +21,7 @@ module Genome; module Importers; module GuideToPharmacologyInteractions;
         gene_claim = create_gene_claim(line['target_id'], 'GuideToPharmacology ID')
         create_gene_claim_aliases(gene_claim, line)
 
-        drug_claim = create_drug_claim(line['ligand_id'], strip_tags(line['ligand']).upcase, 'GuideToPharmacology Ligand Identifier')
+        drug_claim = create_drug_claim(line['ligand_pubchem_sid'], strip_tags(line['ligand']).upcase, 'PubChem Drug SID')
         create_drug_claim_aliases(drug_claim, line)
         create_drug_claim_attribute(drug_claim, 'Name of the Ligand Species (if a Peptide)', line['ligand_species']) unless blank?(line['ligand_species'])
 
@@ -38,7 +38,7 @@ module Genome; module Importers; module GuideToPharmacologyInteractions;
     end
 
     def valid_line?(line)
-      line['target_species'] == 'Human' && blank?(line['target_ligand'])
+      line['target_species'] == 'Human' && blank?(line['target_ligand']) && !blank?(line['ligand_pubchem_sid'])
     end
 
     def create_gene_claim_aliases(gene_claim, line)
@@ -62,7 +62,6 @@ module Genome; module Importers; module GuideToPharmacologyInteractions;
         end
       end
       create_drug_claim_alias(drug_claim, strip_tags(line['ligand']).upcase, 'GuideToPharmacology Ligand Name')
-      create_drug_claim_alias(drug_claim, line['ligand_pubchem_sid'], 'PubChem Drug SID') unless blank?(line['ligand_pubchem_sid'])
     end
 
     def blank?(value)
