@@ -15,6 +15,10 @@ class InteractionPresenter < SimpleDelegator
     types.count > 0 ? types : ["n/a"]
   end
 
+  def directionality
+    direction = interaction.interaction_types.map{|d| d.directionality}.uniq
+  end
+
   def as_json(opts = {})
     {
       id: interaction.id,
@@ -24,6 +28,7 @@ class InteractionPresenter < SimpleDelegator
       chembl_id: interaction.drug.chembl_id,
       publications: interaction.publications.map(&:pmid),
       interaction_types: interaction.interaction_types.map(&:type),
+      interaction_direction: interaction.interaction_types.map(&:directionality),
       sources: interaction.sources.map(&:source_db_name),
     }
   end

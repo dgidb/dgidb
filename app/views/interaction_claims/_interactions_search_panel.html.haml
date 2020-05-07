@@ -33,6 +33,8 @@
             %th
               Interaction Type
             %th
+              Interaction Directionality
+            %th
               Sources
             %th
               PMIDs
@@ -50,6 +52,8 @@
                     = interaction.gene.name
               %td
                 = interaction.na_or_types.join(", ")
+              %td
+                = interaction.directionality.join(", ")
               %td
                 = interaction.sources.map{|source| TrustLevelPresenter.source_link_green(@view_context, source)}.join(' ').html_safe
               %td
