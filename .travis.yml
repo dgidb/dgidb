@@ -7,7 +7,7 @@ script:
 before_script:
   - psql -c 'create database dgidb_test;' -U postgres
 rvm:
-  - "2.3.3"
+  - "2.6.5"
 env:
   - RAILS_ENV=test TRAVIS_BUILD=true
 notifications:
