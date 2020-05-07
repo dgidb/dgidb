@@ -49,7 +49,7 @@ module DataModel
           base_url + 'DRUG.asp?ID=' + name
         when 'TEND'
           'http://www.ncbi.nlm.nih.gov/pubmed/21804595/'
-        when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial', 'CGI', 'FDA', 'NCI', 'OncoKB', 'TALC', 'HingoraniCasas'
+        when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial', 'CGI', 'FDA', 'NCI', 'OncoKB', 'TALC', 'HingoraniCasas', 'Tempus'
           base_url
         when 'GuideToPharmacologyInteractions'
           'http://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=' + name
