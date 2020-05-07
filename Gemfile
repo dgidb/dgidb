@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.1.7'
+gem 'rails', '~> 6.0.3'
 
 gem 'browser'
-gem 'pg', '~>1.2.3'
+gem 'pg', '~> 1.2.3'
 # Using forked copy until https://github.com/metaskills/less-rails-bootstrap/pull/132 is merged
 gem 'less-rails-bootstrap', git: 'https://github.com/veelenga/less-rails-bootstrap',
     ref: '7c479c2fdff500dc036c15364aa085332a73c642'
