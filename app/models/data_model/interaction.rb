@@ -23,5 +23,9 @@ module DataModel
     def pmids
       self.publications.pluck(:pmid).uniq
     end
+
+    def directionality
+      self.interaction_types.pluck(:directionality).reject{ |d| d.nil? }.uniq
+    end
   end
 end
