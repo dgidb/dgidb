@@ -1,6 +1,6 @@
 Fabricator(:interaction, class_name: 'DataModel::Interaction') do
   drug { |attrs| Fabricate(:drug) }
-  gene { |attrs| Fabricate(:gene, name: attrs[:gene_name]) }
+  gene { |attrs| Fabricate(:gene) }
 end
 
 Fabricator(:interaction_claim, class_name: 'DataModel::InteractionClaim') do
