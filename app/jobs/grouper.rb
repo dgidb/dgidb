@@ -1,5 +1,4 @@
-#class Grouper < ActiveJob::Base
-class Grouper
+class Grouper < ApplicationJob
   def perform(group_genes = true, group_drugs = true)
       if group_genes
         gene_grouper = Genome::Groupers::GeneGrouper.new()

@@ -1,5 +1,4 @@
-#class PostGrouper < ActiveJob::Base
-class PostGrouper
+class PostGrouper < ApplicationJob
   def perform(cleanup_gene_claims = false)
     if cleanup_gene_claims
       delete_orphaned_gene_claims

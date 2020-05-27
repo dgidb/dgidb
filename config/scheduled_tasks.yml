@@ -1,0 +1,53 @@
+UpdateCgi:
+  cron: '0 0 1 * *'
+  description: Update data from Cancer Genome Interpreter
+  queue: default
+  class: UpdateCgi
+
+UpdateCivic:
+  cron: '0 0 */14 * *'
+  description: Update data from CIViC
+  queue: default
+  class: UpdateCivic
+
+UpdateCkb:
+  cron: '0 0 */14 * *'
+  description: Update data from JAX CKB
+  queue: default
+  class: UpdateCkb
+
+UpdateDocm:
+  cron: '0 0 1 * *'
+  description: Update data from DoCM
+  queue: default
+  class: UpdateDocm
+
+UpdateEnsembl:
+  cron: '0 0 1 * *'
+  description: Update data from Ensembl
+  queue: default
+  class: UpdateEnsembl
+
+UpdateEntrez:
+  cron: '0 0 1 * *'
+  description: Update data from Entrez
+  queue: default
+  class: UpdateEntrez
+
+UpdateGo:
+  cron: '0 0 1 * *'
+  description: Update data from GO
+  queue: default
+  class: UpdateGo
+
+UpdateGuideToPharmacology:
+  cron: '0 0 1 * *'
+  description: Update data from Guide To Pharmacology
+  queue: default
+  class: UpdateGuideToPharmacology
+
+UpdateOncokb:
+  cron: '0 0 */14 * *'
+  description: Update data from OncoKB
+  queue: default
+  class: UpdateOncokb
