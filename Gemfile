@@ -23,7 +23,7 @@ gem 'rye'
 gem 'delayed_job', '~> 4.1.4'
 gem 'delayed_job_active_record'
 gem 'rubyzip'
-gem 'kaminari', '~> 0.16.1'
+gem 'kaminari', '~> 1.2.1'
 
 group :production do
   gem 'dalli'
