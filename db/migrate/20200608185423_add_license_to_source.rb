@@ -1,5 +1,5 @@
 class AddLicenseToSource < ActiveRecord::Migration[6.0]
-  def change
+  def up
     add_column :sources, :license, :string
     add_column :sources, :license_link, :string
 
@@ -139,5 +139,10 @@ class AddLicenseToSource < ActiveRecord::Migration[6.0]
     s.license = ''
     s.license_link = ''
     s.save
+  end
+
+  def down
+    remove_column :sources, :license
+    remove_column :sources, :license_link
   end
 end
