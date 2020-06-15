@@ -106,6 +106,8 @@ of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'GuideToPharmacologyInteractions',
           full_name: 'Guide to Pharmacology Interactions',
+          license: 'Creative Commons Attribution-ShareAlike 4.0 International License',
+          license_url: 'https://www.guidetopharmacology.org/about.jsp',
       ).first_or_initialize
       source.source_db_version = Date.today.strftime("%d-%B-%Y")
       source.save

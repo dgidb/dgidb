@@ -27,7 +27,9 @@ module Genome; module Importers; module Ensembl;
         source_db_version:  version,
         source_type_id:     DataModel::SourceType.GENE,
         source_db_name:     'Ensembl',
-        full_name:          'Ensembl'
+        full_name:          'Ensembl',
+        license:            '',
+        license_url:        'https://useast.ensembl.org/info/about/legal/disclaimer.html',
       ).first_or_create
     end
 

@@ -12,6 +12,8 @@ module Genome
           source_db_name: 'MyCancerGenome',
           full_name: 'My Cancer Genome',
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
+          license: '',
+          license_url: 'https://www.mycancergenome.org/content/page/legal-policies-licensing/',
         }
       end
 

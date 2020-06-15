@@ -71,10 +71,12 @@ module Genome; module OnlineUpdaters; module Civic
           source_db_version: new_version,
           base_url: 'https://civic.genome.wustl.edu',
           site_url: 'https://www.civicdb.org',
-          citation: 'CIViC: Clinical Interpretations of Variants in Cancer',
+          citation: 'CIViC: Clinical Interpretation of Variants in Cancer',
           source_type_id: DataModel::SourceType.INTERACTION,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
-          full_name: 'CIViC: Clinical Interpretations of Variants in Cancer'
+          full_name: 'CIViC: Clinical Interpretation of Variants in Cancer',
+          license: 'Creative Commons Public Domain Dedication (CC0 1.0 Universal)',
+          license_url: 'https://docs.civicdb.org/en/latest/about/faq.html#how-is-civic-licensed',
         }
       )
     end

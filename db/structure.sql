@@ -654,7 +654,9 @@ CREATE TABLE public.sources (
     gene_claims_in_groups_count integer DEFAULT 0,
     drug_claims_in_groups_count integer DEFAULT 0,
     source_trust_level_id character varying(255),
-    gene_gene_interaction_claims_count integer DEFAULT 0
+    gene_gene_interaction_claims_count integer DEFAULT 0,
+    license character varying,
+    license_link character varying
 );
 
 
@@ -2054,6 +2056,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170914145053'),
 ('20191016180948'),
 ('20191107152512'),
+('20200608185423'),
 ('20200615173440');
 
 

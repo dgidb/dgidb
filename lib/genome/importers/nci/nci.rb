@@ -32,7 +32,8 @@ module Genome; module Importers; module Nci;
               source_db_version:  get_version,
               source_type_id: DataModel::SourceType.INTERACTION,
               source_db_name: 'NCI',
-              full_name: 'NCI Cancer Gene Index'
+              full_name: 'NCI Cancer Gene Index',
+              license: ''
           }
       )
     end

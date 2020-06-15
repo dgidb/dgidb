@@ -11,6 +11,8 @@
               source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
               source_db_name: 'MyCancerGenomeClinicalTrial',
               full_name: 'MyCancerGenome Clinical Trial',
+              license: '',
+              license_url: 'https://www.mycancergenome.org/content/page/legal-policies-licensing/',
           }
         end
 

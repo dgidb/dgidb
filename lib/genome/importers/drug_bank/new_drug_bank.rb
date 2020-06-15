@@ -39,7 +39,8 @@ module Genome; module Importers; module DrugBank;
         source_db_version: get_version,
         source_type_id: DataModel::SourceType.INTERACTION,
         source_db_name: 'DrugBank',
-        full_name: 'DrugBank - Open Data Drug & Drug Target Database'
+        full_name: 'DrugBank - Open Data Drug & Drug Target Database',
+        license: '',
         #source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
       ).first_or_create
     end

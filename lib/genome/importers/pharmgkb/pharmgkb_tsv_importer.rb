@@ -9,7 +9,9 @@ module Genome
           source_db_version:  '12-Jul-2012',
           source_type_id:    DataModel::SourceType.INTERACTION,
           source_db_name:    'PharmGKB',
-          full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase'
+          full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase',
+          license:           'Creative Commons Attribution-ShareAlike 4.0 International License',
+          license_url:       'https://www.pharmgkb.org/page/faqs',
         }
       end
 
