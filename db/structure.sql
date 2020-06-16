@@ -26,7 +26,7 @@ CREATE FUNCTION public.clean(text) RETURNS text
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
@@ -496,6 +496,18 @@ CREATE TABLE public.interaction_claim_attributes (
 
 
 --
+-- Name: interaction_claim_links; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.interaction_claim_links (
+    id text NOT NULL,
+    interaction_claim_id text NOT NULL,
+    link_text character varying NOT NULL,
+    link_url character varying NOT NULL
+);
+
+
+--
 -- Name: interaction_claim_types; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -922,6 +934,14 @@ ALTER TABLE ONLY public.interaction_attributes_sources
 
 ALTER TABLE ONLY public.interaction_claim_attributes
     ADD CONSTRAINT interaction_claim_attributes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: interaction_claim_links interaction_claim_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.interaction_claim_links
+    ADD CONSTRAINT interaction_claim_links_pkey PRIMARY KEY (id);
 
 
 --
@@ -1867,6 +1887,14 @@ ALTER TABLE ONLY public.drug_aliases
 
 
 --
+-- Name: interaction_claim_links fk_rails_af235a7f08; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.interaction_claim_links
+    ADD CONSTRAINT fk_rails_af235a7f08 FOREIGN KEY (interaction_claim_id) REFERENCES public.interaction_claims(id);
+
+
+--
 -- Name: drugs fk_rails_de0c74dec1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2027,6 +2055,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170913202927'),
 ('20170914145053'),
 ('20191016180948'),
-('20191107152512');
+('20191107152512'),
+('20200615173440');
 
 

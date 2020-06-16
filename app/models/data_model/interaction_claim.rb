@@ -3,6 +3,7 @@ module DataModel
     include Genome::Extensions::UUIDPrimaryKey
 
     has_many :interaction_claim_attributes, inverse_of: :interaction_claim
+    has_many :interaction_claim_links, inverse_of: :interaction_claim
     belongs_to :gene_claim, inverse_of: :interaction_claims
     belongs_to :drug_claim, inverse_of: :interaction_claims
     belongs_to :source, inverse_of: :interaction_claims, counter_cache: true

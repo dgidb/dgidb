@@ -44,6 +44,7 @@ module Genome; module OnlineUpdaters; module Civic
           create_interaction_claim_publication(ic, ei['source']['citation_id'])
         end
         create_interaction_claim_attribute(ic, 'Interaction Type', 'N/A')
+        create_interaction_claim_link(ic, ei['name'], "https://civicdb.org/links/evidence/#{ei['id']}")
       end
     end
 
