@@ -40,7 +40,9 @@ module Genome; module OnlineUpdaters; module Civic
         create_gene_claim_aliases(gc, variant)
         dc = create_drug_claim(drug['name'].upcase, drug['name'].upcase, 'CIViC Drug Name')
         ic = create_interaction_claim(gc, dc)
-        create_interaction_claim_publication(ic, ei['source']['pubmed_id'])
+        if ei['source']['citation_id'].present? and ei['source']['source_type'] == 'PubMed'
+          create_interaction_claim_publication(ic, ei['source']['citation_id'])
+        end
         create_interaction_claim_attribute(ic, 'Interaction Type', 'N/A')
       end
     end
