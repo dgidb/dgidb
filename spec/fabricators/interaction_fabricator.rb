@@ -1,6 +1,9 @@
 Fabricator(:interaction, class_name: 'DataModel::Interaction') do
-  drug { |attrs| Fabricate(:drug) }
-  gene { |attrs| Fabricate(:gene) }
+  drug
+  gene
+  sources(rand: 3)
+  interaction_types(rand: 3)
+  publications(rand: 3)
 end
 
 Fabricator(:interaction_claim, class_name: 'DataModel::InteractionClaim') do
@@ -18,3 +21,5 @@ end
 Fabricator(:interaction_claim_type, class_name: 'DataModel::InteractionClaimType') do
   type { ['inhibitor', 'n/a', 'antagonist', 'multitarget'].sample }
 end
+
+Fabricator(:interaction_type, from: :interaction_claim_type)
