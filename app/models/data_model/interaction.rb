@@ -23,5 +23,13 @@ module DataModel
     def pmids
       self.publications.pluck(:pmid).uniq
     end
+
+    def directionality
+      self.interaction_types.where.not(directionality: nil).distinct.pluck(:directionality)
+    end
+
+    def self.for_tsv
+      eager_load(:gene, :drug, :interaction_types, :sources)
+    end
   end
 end
