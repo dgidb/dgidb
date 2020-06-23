@@ -25,7 +25,7 @@ module DataModel
     end
 
     def directionality
-      self.interaction_types.pluck(:directionality).reject{ |d| d.nil? }.uniq
+      self.interaction_types.where.not(directionality: nil).distinct.pluck(:directionality)
     end
 
     def self.for_tsv
