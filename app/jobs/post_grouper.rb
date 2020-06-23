@@ -36,8 +36,9 @@ class PostGrouper
 
   def generate_tsvs
     Utils::TSV.generate_categories_tsv
-    Utils::TSV.generate_interactions_tsv
+    Utils::TSV.generate_interaction_claims_tsv
     Utils::TSV.generate_genes_tsv
     Utils::TSV.generate_drugs_tsv
+    Utils::TSV.generate_ndex_interaction_groups_tsv
   end
 end

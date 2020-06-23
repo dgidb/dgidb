@@ -27,5 +27,9 @@ module DataModel
     def directionality
       self.interaction_types.pluck(:directionality).reject{ |d| d.nil? }.uniq
     end
+
+    def self.for_tsv
+      eager_load(:gene, :drug, :interaction_types, :sources)
+    end
   end
 end

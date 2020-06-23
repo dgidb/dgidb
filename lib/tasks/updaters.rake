@@ -129,7 +129,7 @@ namespace :dgidb do
       puts 'Exporting categories...'
       Utils::TSV.generate_categories_tsv
       puts 'Exporting interactions...'
-      Utils::TSV.generate_interactions_tsv
+      Utils::TSV.generate_interaction_claims_tsv
       puts 'Exporting genes...'
       Utils::TSV.generate_genes_tsv
       puts 'Exporting drugs...'
