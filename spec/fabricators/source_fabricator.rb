@@ -3,7 +3,7 @@ def count_initializer(source_types)
 end
 
 Fabricator(:source, class_name: 'DataModel::Source') do
-  source_type
+  source_types { [ Fabricate(:source_type) ] }
   source_trust_level
   source_db_name { sequence(:source_db_name) { |i| "Source##{i}" } }
   source_db_version { sequence(:source_db_version) { |i| "db version string for source#{i}" } }

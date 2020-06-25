@@ -12,8 +12,8 @@ describe 'search_categories' do
     druggable_type = Fabricate(:source_type, type: 'potentially_druggable')
     non_druggable_type = Fabricate(:source_type, type: 'gene')
 
-    druggable_sources = (1..3).map { Fabricate(:source, source_type: druggable_type) }
-    non_druggable_source = Fabricate(:source, source_type: non_druggable_type)
+    druggable_sources = (1..3).map { Fabricate(:source, source_types: [druggable_type]) }
+    non_druggable_source = Fabricate(:source, source_types: [non_druggable_type])
 
     visit '/search_categories'
 

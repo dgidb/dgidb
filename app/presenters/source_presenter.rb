@@ -5,12 +5,12 @@ class SourcePresenter < SimpleDelegator
     super(source)
   end
 
-  def type
-    source_type.type
+  def types
+    source_types.map(&:type)
   end
 
   def type_display_name
-    source_type.display_name
+    source_types.map(&:display_name).join(', ')
   end
 
   def trust_level

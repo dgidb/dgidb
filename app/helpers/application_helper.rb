@@ -76,4 +76,12 @@ module ApplicationHelper
     end
   end
 
+  def format_source_types(source)
+    source.source_types.map(&:type).join(', ')
+  end
+
+  def format_source_type_names(source)
+    source.source_types.map(&:display_name).join(', ')
+  end
+
 end
