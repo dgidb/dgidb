@@ -27,6 +27,7 @@ gem 'kaminari', '~> 0.16.1'
 gem 'sidekiq', '~> 6.0.3'
 gem 'sidekiq-cron', '~> 1.1.0'
 gem 'airbrake', '~> 10.0.5'
+gem 'staccato', '~> 0.5.3'
 
 
 group :production do
