@@ -1,4 +1,5 @@
 class ServicesV1Controller < ApplicationController
+  include ApiAnalytics
 
   def gene_categories
     render_format DataModel::GeneClaimCategory.all_category_names
