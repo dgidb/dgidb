@@ -12,8 +12,8 @@ describe 'search_interactions' do
     interaction_source_type = Fabricate(:source_type, type: 'interaction')
     other_source_type = Fabricate(:source_type, type: 'gene')
 
-    interaction_sources = (1..3).map { Fabricate(:source, source_type: interaction_source_type) }
-    other_source = Fabricate(:source, source_type: other_source_type)
+    interaction_sources = (1..3).map { Fabricate(:source, source_types: [interaction_source_type]) }
+    other_source = Fabricate(:source, source_types: [other_source_type])
 
     visit '/search_interactions'
 
