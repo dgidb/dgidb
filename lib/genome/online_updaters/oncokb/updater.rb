@@ -51,6 +51,7 @@ module Genome; module OnlineUpdaters; module Oncokb;
                 interaction_claim = create_interaction_claim(gene_claim, drug_claim)
                 create_interaction_claim_attribute(interaction_claim, 'combination therapy', combination_drug_name)
                 add_interaction_claim_publications(interaction_claim, variant['pmids'])
+                create_interaction_claim_link(interaction_claim, "#{gene['hugoSymbol']} Clinically Relevant Alterations", "https://www.oncokb.org/gene/#{gene['hugoSymbol']}")
               end
             end
           else
@@ -59,6 +60,7 @@ module Genome; module OnlineUpdaters; module Oncokb;
               drug_claim = create_drug_claim(drug['drugName'], drug['drugName'], 'OncoKB Drug Name')
               interaction_claim = create_interaction_claim(gene_claim, drug_claim)
               add_interaction_claim_publications(interaction_claim, variant['pmids'])
+              create_interaction_claim_link(interaction_claim, "#{gene['hugoSymbol']} Clinically Relevant Alterations", "https://www.oncokb.org/gene/#{gene['hugoSymbol']}")
             end
           end
         end

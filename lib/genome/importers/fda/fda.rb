@@ -47,6 +47,7 @@ class NewFda < Genome::OnlineUpdater
         if not fusion_protein.nil?
           create_interaction_claim_attribute(interaction_claim, 'Fusion protein', fusion_protein)
         end
+        create_interaction_claim_link(interaction_claim, 'Table of Pharmacogenomic Biomarkers in Drug Labeling', 'https://www.fda.gov/drugs/science-and-research-drugs/table-pharmacogenomic-biomarkers-drug-labeling')
       end
     else
       drug_claim = create_drug_claim(row['Drug'], row['Drug'], 'FDA Drug Name')
@@ -54,6 +55,7 @@ class NewFda < Genome::OnlineUpdater
       if not fusion_protein.nil?
         create_interaction_claim_attribute(interaction_claim, 'Fusion protein', fusion_protein)
       end
+      create_interaction_claim_link(interaction_claim, 'Table of Pharmacogenomic Biomarkers in Drug Labeling', 'https://www.fda.gov/drugs/science-and-research-drugs/table-pharmacogenomic-biomarkers-drug-labeling')
     end
   end
 
