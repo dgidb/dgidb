@@ -313,6 +313,7 @@ GEM
     sshkit (1.21.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    staccato (0.5.3)
     stamp (0.6.0)
     storable (0.8.9)
     sync (0.5.0)
@@ -390,6 +391,7 @@ DEPENDENCIES
   sass-rails
   sidekiq (~> 6.0.3)
   sidekiq-cron (~> 1.1.0)
+  staccato (~> 0.5.3)
   stamp
   syslog-logger
   test-unit
