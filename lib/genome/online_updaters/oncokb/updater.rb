@@ -50,7 +50,8 @@ module Genome; module OnlineUpdaters; module Oncokb;
                 drug_claim = create_drug_claim(drug['drugName'], drug['drugName'], 'OncoKB Drug Name')
                 interaction_claim = create_interaction_claim(gene_claim, drug_claim)
                 create_interaction_claim_attribute(interaction_claim, 'combination therapy', combination_drug_name)
-                add_interaction_claim_publications(interaction_claim, variant['pmids'])
+                #Our current agreement with OncoKB preclused us from importing the associated PMIDs
+                #add_interaction_claim_publications(interaction_claim, variant['pmids'])
               end
             end
           else
@@ -58,7 +59,8 @@ module Genome; module OnlineUpdaters; module Oncokb;
               drug = drugs[drug_name]
               drug_claim = create_drug_claim(drug['drugName'], drug['drugName'], 'OncoKB Drug Name')
               interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-              add_interaction_claim_publications(interaction_claim, variant['pmids'])
+              #Our current agreement with OncoKB preclused us from importing the associated PMIDs
+              #add_interaction_claim_publications(interaction_claim, variant['pmids'])
             end
           end
         end
