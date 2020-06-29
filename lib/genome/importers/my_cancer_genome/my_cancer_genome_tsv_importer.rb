@@ -36,6 +36,10 @@ module Genome
             attribute :interaction_type, name: 'Interaction Type', unless: blank_filter
           end
         end.save!
+        s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Overview of Targeted Therapies for Cancer', "https://www.mycancergenome.org/content/page/overview-of-targeted-therapies-for-cancer/")
+        end
       end
     end
   end

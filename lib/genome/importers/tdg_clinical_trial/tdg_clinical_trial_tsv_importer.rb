@@ -36,6 +36,10 @@ module Genome
             attribute :target_novelty, name: 'Novel drug target', unless: blank_filter
           end
         end.save!
+        s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, s.citation, "https://www.annualreviews.org/doi/10.1146/annurev-pharmtox-011613-135943")
+        end
       end
     end
   end

@@ -109,6 +109,7 @@ module Genome; module Importers; module Cgi;
               if row['Source'].include?('PMID')
                 add_interaction_claim_publications(interaction_claim, row['Source'])
               end
+              create_interaction_claim_link(interaction_claim, 'Cancer Biomarkers database', 'https://www.cancergenomeinterpreter.org/biomarkers')
             end
           else
             gene_claim = create_gene_claim(row['Gene'], 'CGI Gene Name')
@@ -118,6 +119,7 @@ module Genome; module Importers; module Cgi;
             if row['Source'].include?('PMID')
               add_interaction_claim_publications(interaction_claim, row['Source'])
             end
+            create_interaction_claim_link(interaction_claim, 'Cancer Biomarkers database', 'https://www.cancergenomeinterpreter.org/biomarkers')
           end
         end
       end

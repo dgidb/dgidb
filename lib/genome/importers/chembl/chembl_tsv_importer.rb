@@ -43,6 +43,10 @@ module Genome
             attribute :action_type, name: 'Interaction Type', transform: downcase, unless: blank_filter
           end
         end.save!
+        s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Drug Mechanisms', "https://www.ebi.ac.uk/chembl/compound_report_card/#{ic.drug_claim.name}/#MechanismOfAction")
+        end
       end
     end
   end

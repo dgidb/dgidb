@@ -45,6 +45,7 @@ module Genome; module Importers; module Nci;
         create_drug_claim_alias(drug_claim, row['NCI drug code'], 'NCI drug code')
         interaction_claim = create_interaction_claim(gene_claim, drug_claim)
         create_interaction_claim_publication(interaction_claim, row['PMID'])
+        create_interaction_claim_link(interaction_claim, "The Cancer Gene Index Gene-Disease and Gene-Compound XML Documents", 'https://wiki.nci.nih.gov/display/cageneindex/The+Cancer+Gene+Index+Gene-Disease+and+Gene-Compound+XML+Documents')
       end
     end
   end

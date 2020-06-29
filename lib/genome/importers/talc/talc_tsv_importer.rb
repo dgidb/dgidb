@@ -36,6 +36,10 @@ module Genome
 
           end
         end.save!
+        s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, s.citation, "https://www.sciencedirect.com/science/article/pii/S1525730413002350")
+        end
       end
     end
   end
