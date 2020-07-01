@@ -1,0 +1,69 @@
+=content_for :title, "DGIdb - Downloads"
+=content_for :header do
+  %h2
+    %span
+      Downloads
+    %small
+      commonly requested data
+
+#container.container-fluid
+  %div{class: "well"}
+    This page provides access to raw data and source code for DGIdb. While the application is open source, some of the sources we import may have restrictions that prevent us from redistributing them. Please refer to the contact section under the help menu if you would like to ask us detailed questions about the implementation, data sources, etc.
+
+#container.container-fluid
+  %div{class: "well"}
+    %h4 Monthly TSVs
+    %strong Interactions TSV
+    %p
+      TSV download of all drug-gene interaction claims in DGIdb from all sources that were mapped to Entrez genes. For ease of use, we recommend working directly with the
+      %a{:href => "api"} API
+      or SQL database dump below.
+    %strong Genes TSV
+    %p
+      TSV download of all gene claims in DGIdb. For ease of use, we recommend working directly with the
+      %a{:href => "api"} API
+      or SQL database dump below.
+    %strong Drugs TSV
+    %p
+      TSV download of all drug claims in DGIdb. For ease of use, we recommend working directly with the
+      %a{:href => "api"} API
+      or SQL database dump below.
+    %strong Categories TSV
+    %p
+      TSV download of all genes in druggable categories in DGIdb from all sources that were mapped to Entrez genes. For ease of use, we recommend working directly with the
+      %a{:href => "api"} API
+      or SQL database dump below.
+    %table{class: "table table-condensed table-striped", id: "tsv_downloads"}
+      %thead
+        %tr
+          %th Date
+          %th Interactions TSV
+          %th Genes TSV
+          %th Drugs TSV
+          %th Categories TSV
+      %tbody
+        - @files.each do |date, file_h|
+          %tr
+            %td=date
+            - @tsvs.each do |tsv|
+              %td= raw "#{link_to tsv, file_h[tsv]}"
+    %h4
+      %a{:href => "http://www.pharmgkb.org/downloads.jsp"} PharmGKB Data
+    %p
+      Note that PharmGKB is not included in the interactions TSV file above. These data must be requested directly from 
+      %a{:href => "https://www.pharmgkb.org/downloads/"} PharmGKB.
+    %h4
+      %a{:href => "https://www.drugbank.ca/releases/latest"} DrugBank Data
+    %p
+      Note that DrugBank is not included in the interactions TSV file above. These data must be requested directly from
+      %a{:href => "https://www.drugbank.ca/releases/latest"} DrugBank.
+    %h4
+      %a{:href => "data/dGene_04-16-2013_2257.tsv"} dGene data (04-16-2013)
+    %p TSV download of the latest version of the dGene database made available here at the request of the dGene creators. This data corresponds to the dGene publication and has not changed significantly since that publication.
+    %h4 DGIdb database dump
+    %p
+      You may load the latest data dump into your local database instance by running the following command while in your local checkout of the DGIdb repository:
+      %code rake dgidb:load_local
+      %span . This will recreate your local database and import the latest data dump directly from the data repository. The data.sql file can then be found in the `data` directory of your local repository. Please see the
+      %a{:href => "https://github.com/griffithlab/dgi-db#installation"} Installation instructions
+      for more details about creating a local instance of DGIdb.
