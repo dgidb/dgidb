@@ -36,6 +36,7 @@ module Genome; module Importers; module GuideToPharmacologyInteractions;
             end
           end
           create_interaction_claim_attributes(interaction_claim, line)
+          create_interaction_claim_link(interaction_claim, "Ligand Biological Activity", "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=#{line['ligand_id']}&tab=biology")
         end
       end
     end

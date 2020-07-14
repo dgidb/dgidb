@@ -26,6 +26,7 @@ module Genome; module OnlineUpdaters; module Docm
           ic = create_interaction_claim(gc, dc)
           create_interaction_claim_attributes(ic, interaction_info)
           create_interaction_claim_publications(ic, variant['diseases'])
+          create_interaction_claim_link(ic, "DoCM Website", 'http://docm.info')
         end
       end
     end
