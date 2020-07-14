@@ -64,7 +64,7 @@ module DataModel
         when 'GuideToPharmacologyInteractions', 'GuideToPharmacologyGenes'
           'http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=' + name
         when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial',
-            'MyCancerGenomeClinicalTrial', 'MskImpact', 'CarisMolecularIntelligence', 'CGI', 'FDA', 'NCI', 'HingoraniCasas', 'TALC'
+            'MyCancerGenomeClinicalTrial', 'MskImpact', 'CarisMolecularIntelligence', 'CGI', 'FDA', 'NCI', 'HingoraniCasas', 'TALC', 'Tempus'
           base_url
         else
           base_url + name

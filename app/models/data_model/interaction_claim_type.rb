@@ -10,6 +10,8 @@ module DataModel
 
     cache_query :all_type_names, :all_interaction_type_names
 
+    enum directionality:["activating","inhibitory","directionality unclear"]
+
     def self.all_type_names
       pluck(:type).sort
     end
