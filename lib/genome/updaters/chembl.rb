@@ -161,6 +161,7 @@ module Genome
                 type = nil
               end
               ic.interaction_claim_types << type unless type.nil?
+              Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Drug Mechanisms', "https://www.ebi.ac.uk/chembl/compound_report_card/#{drug_claim.name}/#MechanismOfAction")
             end
           end
         end
