@@ -73,7 +73,7 @@ module Genome
           'n/a'
         elsif val =~ /other/ || val =~ /unknown/
           'other/unknown'
-        elsif val == 'neutralizer' || val == 'reducer' || val == 'metabolizer' || val == 'acetylation' || val == 'chelator' || val == 'cross-linking/alkylation' || val == 'positive modulator'
+        elsif val == 'neutralizer' || val == 'reducer' || val == 'metabolizer' || val == 'acetylation' || val == 'chelator' || val == 'cross-linking/alkylation'
           'modulator'
         elsif val == 'inhibitor, competitive' || val == 'gating inhibitor'
           'inhibitor'
