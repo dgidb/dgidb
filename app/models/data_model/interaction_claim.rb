@@ -12,7 +12,7 @@ module DataModel
     has_and_belongs_to_many :publications
 
     def self.for_show
-      eager_load(:interaction_claim_types, :interaction_claim_attributes, :source, :drug_claim, gene_claim: [:gene, :source])
+      eager_load(:interaction_claim_types, :interaction_claim_attributes, :source, :publications, :interaction_claim_links, :drug_claim, gene_claim: [:gene], interaction: [:gene, :drug])
     end
 
     def self.for_tsv
