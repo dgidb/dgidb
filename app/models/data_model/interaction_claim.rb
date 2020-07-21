@@ -3,6 +3,7 @@ module DataModel
     include Genome::Extensions::UUIDPrimaryKey
 
     has_many :interaction_claim_attributes, inverse_of: :interaction_claim
+    has_many :interaction_claim_links, inverse_of: :interaction_claim
     belongs_to :gene_claim, inverse_of: :interaction_claims
     belongs_to :drug_claim, inverse_of: :interaction_claims
     belongs_to :source, inverse_of: :interaction_claims, counter_cache: true
@@ -11,7 +12,7 @@ module DataModel
     has_and_belongs_to_many :publications
 
     def self.for_show
-      eager_load(:interaction_claim_types, :interaction_claim_attributes, :source, :drug_claim, gene_claim: [:gene, :source])
+      eager_load(:interaction_claim_types, :interaction_claim_attributes, :source, :publications, :interaction_claim_links, :drug_claim, gene_claim: [:gene], interaction: [:gene, :drug])
     end
 
     def self.for_tsv

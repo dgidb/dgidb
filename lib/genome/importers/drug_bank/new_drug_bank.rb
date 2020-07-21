@@ -78,6 +78,7 @@ module Genome; module Importers; module DrugBank;
         row['pmid'].split(DELIMITER).each do |pmid|
           create_interaction_claim_publication(interaction_claim, pmid) unless pmid == 'N/A'
         end
+        create_interaction_claim_link(interaction_claim, "Drug Target", "https://www.drugbank.ca/drugs/#{row['drug_id']}#targets")
         interaction_claim.save
       end
     end

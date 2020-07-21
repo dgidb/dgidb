@@ -34,11 +34,11 @@ module Genome; module OnlineUpdaters; module Civic
     end
 
     def variant_base_url
-      "https://civic.genome.wustl.edu/api/variants"
+      "https://civicdb.org/api/variants"
     end
 
     def evidence_items_url_for_variant(variant_id)
-      "https://civic.genome.wustl.edu/api/variants/#{variant_id}/evidence_items"
+      "https://civicdb.org/api/variants/#{variant_id}/evidence_items?status=accepted"
     end
   end
 end; end; end

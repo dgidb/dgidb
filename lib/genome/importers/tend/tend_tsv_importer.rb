@@ -37,6 +37,10 @@ module Genome
             end
           end
         end
+        s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+        DataModel::InteractionClaim.where(source_id: s.id).each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Trends in the exploitation of novel drug targets, Table 1', "https://www.nature.com/articles/nrd3478/tables/1")
+        end
       end
     end
   end
