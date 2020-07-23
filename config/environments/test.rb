@@ -37,4 +37,6 @@ DruggableGene::Application.configure do
   FileUtils.mkdir_p(File.join(Rails.root, 'tmp/cache/test'))
   # Use a different cache store in dev
   config.cache_store = :file_store, 'tmp/cache/test'
+
+  config.active_job.queue_adapter = :async
 end

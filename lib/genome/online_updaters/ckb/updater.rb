@@ -47,12 +47,14 @@ module Genome; module OnlineUpdaters; module Ckb;
               create_interaction_claim_attribute(interaction_claim, 'combination therapy', combination_drug_name)
               create_interaction_claim_publications(interaction_claim, interaction['References'])
               create_interaction_claim_attributes(interaction_claim, interaction)
+              create_interaction_claim_link(interaction_claim, "#{gene['geneName']} Gene Level Evidence", "https://ckb.jax.org/gene/show?geneId=#{gene['id']}&tabType=GENE_LEVEL_EVIDENCE")
             end
           else
             drug_claim = create_drug_claim(drug_name, drug_name, 'CKB Drug Name')
             interaction_claim = create_interaction_claim(gene_claim, drug_claim)
             create_interaction_claim_publications(interaction_claim, interaction['References'])
             create_interaction_claim_attributes(interaction_claim, interaction)
+            create_interaction_claim_link(interaction_claim, "#{gene['geneName']} Gene Level Evidence", "https://ckb.jax.org/gene/show?geneId=#{gene['id']}&tabType=GENE_LEVEL_EVIDENCE")
           end
         end
       end
@@ -67,6 +69,9 @@ module Genome; module OnlineUpdaters; module Ckb;
 
     def create_interaction_claim_publications(interaction_claim, publications)
       publications.split.select { |p| valid_pmid?(p) }.each do |pmid|
+        if pmid == '30715168'
+          pmid = '31987360'
+        end
         create_interaction_claim_publication(interaction_claim, pmid)
       end
     end

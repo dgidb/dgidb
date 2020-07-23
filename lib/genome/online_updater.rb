@@ -85,5 +85,13 @@ module Genome
         interaction_claim_id: interaction_claim.id
       ).first_or_create
     end
+
+    def create_interaction_claim_link(interaction_claim, link_text, link_url)
+      DataModel::InteractionClaimLink.where(
+        interaction_claim_id: interaction_claim.id,
+        link_text: link_text,
+        link_url: link_url,
+      ).first_or_create
+    end
   end
 end

@@ -29,6 +29,9 @@ DruggableGene::Application.routes.draw do
       get   'drugs/:chembl_id' => 'services_v2#drug_details'
       get   'interactions/:id' => 'services_v2#interaction_details'
     end
+    require 'sidekiq/web'
+    require 'sidekiq/cron/web'
+    mount Sidekiq::Web, at: '/jobs'
   end
   match 'interaction_search_results/:name' => 'interaction_claims#interaction_search_results', name: /.*[^#]/, via: [:get, :post]
   match 'interaction_search_results' => 'interaction_claims#interaction_search_results', via: [:get, :post]

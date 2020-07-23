@@ -44,6 +44,10 @@ module Genome
             end
           end
         end
+        s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Drug Label Annotations', "https://www.pharmgkb.org/chemical/#{ic.drug_claim.name}/labelAnnotation")
+        end
       end
     end
   end

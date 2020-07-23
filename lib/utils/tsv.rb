@@ -1,7 +1,7 @@
 module Utils
   module TSV
-    def self.generate_interactions_tsv(filename = File.join(Rails.root, 'data/interactions.tsv'))
-      write_tsv_file_for_query(filename, DataModel::InteractionClaim.for_tsv, 'interaction')
+    def self.generate_interaction_claims_tsv(filename = File.join(Rails.root, 'data/interactions.tsv'))
+      write_tsv_file_for_query(filename, DataModel::InteractionClaim.for_tsv, 'interaction_claim')
     end
 
     def self.generate_genes_tsv(filename = File.join(Rails.root, 'data', 'genes.tsv'))
@@ -14,6 +14,10 @@ module Utils
 
     def self.generate_categories_tsv(filename = File.join(Rails.root, 'data/categories.tsv'))
       write_tsv_file_for_query(filename, DataModel::Gene.for_gene_categories, 'category')
+    end
+
+    def self.generate_ndex_interaction_groups_tsv(filename = File.join(Rails.root, ['data', 'ndex.tsv']))
+      write_tsv_file_for_query(filename, DataModel::Interaction.for_tsv, 'ndex_interaction_group')
     end
 
     def self.update_druggable_gene_tsvs_archive(filename = Rails.root.join('data', 'druggable_gene_tsvs.tar.gz'))
@@ -86,14 +90,14 @@ module Utils
       end
     end
 
-    def self.print_interaction_header(file_handle)
+    def self.print_interaction_claim_header(file_handle)
       header = ['gene_name','gene_claim_name','entrez_id','interaction_claim_source',
         'interaction_types','drug_claim_name','drug_claim_primary_name','drug_name','drug_chembl_id',
         'PMIDs'].join("\t")
       file_handle.puts(header)
     end
 
-    def self.print_interaction_row(file_handle, interaction_claim)
+    def self.print_interaction_claim_row(file_handle, interaction_claim)
       return if license_restricted? interaction_claim.source.source_db_name
       row = [
         interaction_claim.gene ? interaction_claim.gene.name : "",
@@ -106,6 +110,25 @@ module Utils
         interaction_claim.drug ? interaction_claim.drug.name : "",
         interaction_claim.drug ? interaction_claim.drug.chembl_id : "",
         interaction_claim.publications ? interaction_claim.publications.map(&:pmid).join(',') : "",
+      ].join("\t")
+
+      file_handle.puts(row)
+    end
+
+    def self.print_ndex_interaction_group_header(file_handle)
+      header = %w[gene_name entrez_id drug_name drug_external_id supporting_sources]
+                   .join("\t") # Restore interaction_directionality to header once #387 is resolved
+      file_handle.puts(header)
+    end
+
+    def self.print_ndex_interaction_group_row(file_handle, interaction)
+      row = [
+          interaction.gene.name,
+          interaction.gene.entrez_id,
+          interaction.drug.name,
+          interaction.drug.chembl_id,
+          # interaction.directionality.join(";"), # Add this back in once #387 is resolved
+          interaction.sources.count
       ].join("\t")
 
       file_handle.puts(row)
