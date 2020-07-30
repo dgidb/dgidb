@@ -1,23 +1,28 @@
 module Utils
   module TSV
-    def self.generate_interaction_claims_tsv(filename = File.join(Rails.root, 'data/interactions.tsv'))
-      write_tsv_file_for_query(filename, DataModel::InteractionClaim.for_tsv, 'interaction_claim')
+    def self.generate_interaction_claims_tsv(directory = File.join(Rails.root, 'data'), filename = 'interactions.tsv')
+      filepath = File.join(directory, filename)
+      write_tsv_file_for_query(filepath, DataModel::InteractionClaim.for_tsv, 'interaction_claim')
     end
 
-    def self.generate_genes_tsv(filename = File.join(Rails.root, 'data', 'genes.tsv'))
-      write_tsv_file_for_query(filename, DataModel::GeneClaim.for_tsv, 'gene')
+    def self.generate_genes_tsv(directory = File.join(Rails.root, 'data'), filename = 'genes.tsv')
+      filepath = File.join(directory, filename)
+      write_tsv_file_for_query(filepath, DataModel::GeneClaim.for_tsv, 'gene')
     end
 
-    def self.generate_drugs_tsv(filename = File.join(Rails.root, 'data', 'drugs.tsv'))
-      write_tsv_file_for_query(filename, DataModel::DrugClaim.for_tsv, 'drug')
+    def self.generate_drugs_tsv(directory = File.join(Rails.root, 'data'), filename = 'drugs.tsv')
+      filepath = File.join(directory, filename)
+      write_tsv_file_for_query(filepath, DataModel::DrugClaim.for_tsv, 'drug')
     end
 
-    def self.generate_categories_tsv(filename = File.join(Rails.root, 'data/categories.tsv'))
-      write_tsv_file_for_query(filename, DataModel::Gene.for_gene_categories, 'category')
+    def self.generate_categories_tsv(directory = File.join(Rails.root, 'data'), filename = 'categories.tsv')
+      filepath = File.join(directory, filename)
+      write_tsv_file_for_query(filepath, DataModel::Gene.for_gene_categories, 'category')
     end
 
-    def self.generate_ndex_interaction_groups_tsv(filename = File.join(Rails.root, ['data', 'ndex.tsv']))
-      write_tsv_file_for_query(filename, DataModel::Interaction.for_tsv, 'ndex_interaction_group')
+    def self.generate_ndex_interaction_groups_tsv(directory = File.join(Rails.root, 'data'), filename = 'ndex.tsv')
+      filepath = File.join(directory, filename)
+      write_tsv_file_for_query(filepath, DataModel::Interaction.for_tsv, 'ndex_interaction_group')
     end
 
     def self.update_druggable_gene_tsvs_archive(filename = Rails.root.join('data', 'druggable_gene_tsvs.tar.gz'))
