@@ -54,3 +54,9 @@ UpdateOncokb:
   description: Update data from OncoKB
   queue: default
   class: UpdateOncokb
+
+CreateMonthlyTsvs:
+  cron: '0 6 1 * *'
+  description: Create monthly TSV data dumps for interaction claims, gene claims, drug claims, gene categories, and NDEx
+  queue: default
+  class: CreateMonthlyTsvs
