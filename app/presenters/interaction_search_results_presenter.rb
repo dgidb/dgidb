@@ -46,8 +46,8 @@ class InteractionSearchResultsPresenter
         r.interactions.values.flatten.count{|other_interaction| other_interaction.send(identifier) == result_interaction.send(identifier)}
       }.sum
       promiscuity_count = DataModel::Interaction.where(identifier => result_interaction.send(identifier)).count
-      pub_count = result_interaction.publications.count
-      source_count = result_interaction.sources.count
+      pub_count = result_interaction.publications.size
+      source_count = result_interaction.sources.size
       all_promiscuity_counts = DataModel::Interaction.group(identifier).count.values.map{|x| 1/x}
       average_promiscuity = all_promiscuity_counts.sum / all_promiscuity_counts.size.to_f
       h[result_interaction.id] = ((pub_count + source_count) * (overlap_count * average_promiscuity / promiscuity_count)).round(2)
