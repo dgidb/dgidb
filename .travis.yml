@@ -1,4 +1,4 @@
-dist: trusty
+dist: focal
 language: ruby
 script:
   - bundle exec rake db:structure:load
@@ -17,4 +17,4 @@ git:
 services:
   - postgresql
 addons:
-  postgresql: "9.6"
+  postgresql: "12.3"
