@@ -21,7 +21,8 @@ module Genome; module Importers; module Entrez;
         source_type_id: DataModel::SourceType.GENE,
         source_db_name: 'Entrez',
         full_name: 'NCBI Entrez Gene',
-        license: '',
+        license: 'Unrestricted license, pass-through constraints',
+        license_link: 'https://www.nlm.nih.gov/accessibility.html',
       ).first_or_initialize
       source.source_db_version = Date.today.strftime("%d-%B-%Y")
       source.save

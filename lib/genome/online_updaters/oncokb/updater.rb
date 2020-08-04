@@ -28,7 +28,7 @@ module Genome; module OnlineUpdaters; module Oncokb;
           citation: 'OncoKB: A Precision Oncology Knowledge Base. Chakravarty D, Gao J, Phillips S, et. al. JCO Precision Oncology 2017 :1, 1-16',
           source_type_id: DataModel::SourceType.INTERACTION,
           full_name: 'OncoKB: A Precision Oncology Knowledge Base',
-          license: 'Custom',
+          license: 'Restrictive, non-commercial',
           license_url: 'https://www.oncokb.org/terms',
         }
       )

@@ -12,7 +12,8 @@ module Genome
           source_db_name: 'CarisMolecularIntelligence',
           full_name: 'Caris Molecular Intelligence',
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
-
+          license: 'Unknown; data is no longer publicly available from site',
+          license_link: 'https://www.carismolecularintelligence.com/contact-us/',
         }
       end
       

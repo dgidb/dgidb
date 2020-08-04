@@ -33,7 +33,8 @@ class NewFda < Genome::OnlineUpdater
             source_type_id: DataModel::SourceType.INTERACTION,
             source_db_name: 'FDA',
             full_name: 'FDA Pharmacogenomic Biomarkers',
-            license: '',
+            license: 'Public Domain',
+            license_link: 'https://www.fda.gov/about-fda/about-website/website-policies#linking',
         }
     )
   end

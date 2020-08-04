@@ -28,7 +28,7 @@ module Genome; module Importers; module Ensembl;
         source_type_id:     DataModel::SourceType.GENE,
         source_db_name:     'Ensembl',
         full_name:          'Ensembl',
-        license:            '',
+        license: 'Unrestricted license, pass-through constraints',
         license_url:        'https://useast.ensembl.org/info/about/legal/disclaimer.html',
       ).first_or_create
     end

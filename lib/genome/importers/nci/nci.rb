@@ -33,7 +33,8 @@ module Genome; module Importers; module Nci;
               source_type_id: DataModel::SourceType.INTERACTION,
               source_db_name: 'NCI',
               full_name: 'NCI Cancer Gene Index',
-              license: ''
+              license: 'Public domain',
+              license_link: 'https://www.cancer.gov/policies/copyright-reuse',
           }
       )
     end

@@ -12,6 +12,8 @@ module Genome
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           source_db_name: 'CancerCommons',
           full_name: 'Cancer Commons',
+          license: 'Custom non-commercial',
+          license_link: 'https://www.cancercommons.org/terms-of-use/',
         }
       end
 
