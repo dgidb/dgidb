@@ -47,7 +47,6 @@ class InteractionSearchResultsPresenter
 
     all_promiscuity_scores = promiscuity_counts
       .values
-      .map{ |x| 1.0/x }
 
     average_promiscuity = all_promiscuity_scores.sum / all_promiscuity_scores.size.to_f
     result_interactions = result.interactions.values.flatten
@@ -81,3 +80,4 @@ class InteractionSearchResultsPresenter
       }}
   end
 end
+
