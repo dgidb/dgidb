@@ -11,7 +11,9 @@ module Genome
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'ChEMBL',
           full_name: 'The ChEMBL Bioactivity Database',
-          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
+          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
+          license: 'Creative Commons Attribution-Share Alike 3.0 Unported License',
+          license_link: 'https://chembl.gitbook.io/chembl-interface-documentation/about',
         }
       end
 

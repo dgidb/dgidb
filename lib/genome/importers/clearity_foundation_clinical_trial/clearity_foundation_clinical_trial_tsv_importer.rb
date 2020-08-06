@@ -12,6 +12,8 @@
               source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
               source_db_name: 'ClearityFoundationClinicalTrial',
               full_name: 'Clearity Foundation Clinical Trial',
+              license: 'Unknown; data is no longer publicly available from site',
+              license_link: 'https://www.clearityfoundation.org/about-clearity/contact/',
           }
         end
 

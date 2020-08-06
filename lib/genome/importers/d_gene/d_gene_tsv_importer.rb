@@ -10,7 +10,9 @@ module Genome
           source_db_version:  '27-Jun-2013',
           source_type_id:     DataModel::SourceType.POTENTIALLY_DRUGGABLE,
           source_db_name:     'dGene',
-          full_name:          'dGENE - The Druggable Gene List'
+          full_name:          'dGENE - The Druggable Gene List',
+          license: 'Creative Commons Attribution License (Version not specified)',
+          license_link: 'https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0067980#pone.0067980.s002',
         }
       end
 

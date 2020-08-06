@@ -10,7 +10,9 @@ module Genome
           source_db_version:  'Jan-2014',
           source_type_id:    DataModel::SourceType.INTERACTION,
           source_db_name:    'TdgClinicalTrial',
-          full_name:         'The Druggable Genome: Evaluation of Drug Targets in Clinical Trials Suggests Major Shifts in Molecular Class and Indication (Rask-Andersen, Masuram, Schioth 2014)'
+          full_name:         'The Druggable Genome: Evaluation of Drug Targets in Clinical Trials Suggests Major Shifts in Molecular Class and Indication (Rask-Andersen, Masuram, Schioth 2014)',
+          license: 'Supplementary table from Annual Reviews copyright publication',
+          license_link: 'https://www.annualreviews.org/doi/10.1146/annurev-pharmtox-011613-135943?url_ver=Z39.88-2003&rfr_id=ori%3Arid%3Acrossref.org&rfr_dat=cr_pub++0pubmed',
         }
       end
 

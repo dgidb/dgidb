@@ -87,7 +87,9 @@ module Genome; module OnlineUpdaters; module Docm
             source_type_id: DataModel::SourceType.INTERACTION,
             source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
             source_db_name: 'DoCM',
-            full_name: 'Database of Curated Mutations'
+            full_name: 'Database of Curated Mutations',
+            license: 'Creative Commons Attribution 4.0 International License',
+            license_url: 'http://www.docm.info/about',
         }
       )
     end

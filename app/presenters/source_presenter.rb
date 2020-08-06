@@ -37,6 +37,18 @@ class SourcePresenter < SimpleDelegator
     end
   end
 
+  def license_linkout
+    if license.present?
+      if license_link.present?
+          @view_context.ext_link_to(license, license_link)
+      else
+          license
+      end
+    else
+      ""
+    end
+  end
+
   private
   def sort_order_to_string(sort_type, source_db_name)
     val = sort_type.sort_value(source_db_name)

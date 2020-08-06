@@ -10,7 +10,9 @@ module Genome
             source_type_id: DataModel::SourceType.INTERACTION,
             source_trust_level_id:  DataModel::SourceTrustLevel.EXPERT_CURATED,
             source_db_name: 'TALC',
-            full_name: 'Targeted Agents in Lung Cancer (Commentary, 2014)'
+            full_name: 'Targeted Agents in Lung Cancer (Commentary, 2014)',
+            license: 'Data extracted from tables in Elsevier copyright publication',
+            license_link: 'https://www.sciencedirect.com/science/article/pii/S1525730413002350',
         }
       end
 

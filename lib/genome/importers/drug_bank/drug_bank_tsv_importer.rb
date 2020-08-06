@@ -21,7 +21,9 @@ module Genome
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'DrugBank',
           full_name: 'DrugBank - Open Data Drug & Drug Target Database',
-          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
+          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
+          license: '',
+          license_url: 'https://dev.drugbankplus.com/guides/drugbank/citing?_ga=2.29505343.1251048939.1591976592-781844916.1591645816',
         }
       end
 
