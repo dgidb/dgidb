@@ -6,7 +6,7 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 class UpdatePharmgkb < TsvUpdater
   def tempfile_name
-    ['interactions', '.tsv']
+    ['pharmgkb_interactions', '.tsv']
   end
 
   def importer

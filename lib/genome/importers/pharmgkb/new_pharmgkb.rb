@@ -33,7 +33,9 @@ module Genome; module Importers; module Pharmgkb;
               source_db_version:  get_version,
               source_type_id:    DataModel::SourceType.INTERACTION,
               source_db_name:    'PharmGKB',
-              full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase'
+              full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase',
+              license_link:      'https://creativecommons.org/licenses/by-sa/4.0/',
+              license_text:      'Creative Commons Attribution-ShareAlike 4.0 International License'
           }
       )
     end
@@ -51,6 +53,7 @@ module Genome; module Importers; module Pharmgkb;
           gene_claim = create_gene_claim(gene_name, 'PharmGKB Gene Name')
           create_gene_claim_alias(gene_claim, pharmgkb_gene_id, 'PharmGKB ID')
           interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+          create_interaction_claim_link(interaction_claim, 'PharmGKB interaction', "https://www.pharmgkb.org/combination/#{pharmgkb_gene_id},#{pharmgkb_drug_id}/overview")
           if row['PMIDs'].present?
             add_interaction_claim_publications(interaction_claim, row['Source'])
           end
@@ -65,6 +68,7 @@ module Genome; module Importers; module Pharmgkb;
             gene_claim = create_gene_claim(gene_name, 'PharmGKB Gene Name')
             create_gene_claim_alias(gene_claim, pharmgkb_gene_id, 'PharmGKB ID')
             interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+            create_interaction_claim_link(interaction_claim, 'PharmGKB interaction', "https://www.pharmgkb.org/combination/#{pharmgkb_gene_id},#{pharmgkb_drug_id}/overview")
             if row['PMIDs'].present?
               add_interaction_claim_publications(interaction_claim, row['PMIDs'])
             end
