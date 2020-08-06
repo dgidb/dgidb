@@ -11,7 +11,9 @@ module Genome
           source_type_id:     DataModel::SourceType.POTENTIALLY_DRUGGABLE,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           source_db_name:     'IDG',
-          full_name:          'Illuminating the Druggable Genome'
+          full_name:          'Illuminating the Druggable Genome',
+          license_text:       'Creative Commons Attribution-ShareAlike 4.0 International License',
+          license_link:       'https://druggablegenome.net/IDGPolicies#Policy3',
         }
       end
 
