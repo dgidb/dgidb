@@ -37,6 +37,10 @@
               attribute :mode_of_action, name: 'Mechanism of Interaction'
             end
           end.save!
+          s = DataModel::Source.find_by(source_db_name: source_info['source_db_name'])
+          s.interaction_claims.each do |ic|
+            Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Source TSV', File.join('data', 'source_tsvs', 'ClearityFoundationClinicalTrials_INTERACTIONS.tsv'))
+          end
         end
       end
     end

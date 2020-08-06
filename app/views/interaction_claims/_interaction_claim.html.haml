@@ -74,5 +74,6 @@
                             -interaction_claim.interaction_claim_links.each do |link|
                               %tr
                                 %td
-                                  %a{href: link.link_url}
+                                  - url = link.link_url.include?('source_tsvs') ? File.join('..', link.link_url) : link.link_url
+                                  %a{href: url}
                                     = link.link_text

@@ -37,6 +37,10 @@ module Genome
             attribute :cancer_type, name: 'Reported Cancer Type'
           end
         end.save!
+        s = DataModel::Source.find_by(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Source TSV', File.join('data', 'source_tsvs', 'CancerCommons_INTERACTIONS.tsv'))
+        end
       end
     end
   end
