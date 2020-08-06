@@ -34,7 +34,7 @@ module Genome; module Importers; module Pharmgkb;
               source_type_id:    DataModel::SourceType.INTERACTION,
               source_db_name:    'PharmGKB',
               full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase',
-              license_link:      'https://creativecommons.org/licenses/by-sa/4.0/',
+              license_link:      'https://www.pharmgkb.org/page/dataUsagePolicy',
               license_text:      'Creative Commons Attribution-ShareAlike 4.0 International License'
           }
       )
