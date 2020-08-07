@@ -1,4 +1,6 @@
 class ServicesV2Controller < ApplicationController
+  include ApiAnalytics
+
   def genes
     genes = DataModel::Gene.eager_load(:gene_aliases).page(params[:page]).per(params[:count])
     render json: PaginatedCollectionPresenter.new(
