@@ -35,6 +35,12 @@ UpdateGuideToPharmacology:
   queue: default
   class: UpdateGuideToPharmacology
 
+UpdatePharmGKB:
+  cron: '0 6 1 * *'
+  description: Update data from PharmGKB
+  queue: default
+  class: UpdatePharmgkb
+
 #Tasks to execute every 14th and 28th of the month (closest to every two weeks
 #possible in cron notation)
 UpdateCivic:
