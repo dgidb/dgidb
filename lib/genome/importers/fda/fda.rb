@@ -32,7 +32,9 @@ class NewFda < Genome::OnlineUpdater
             source_db_version:  get_version,
             source_type_id: DataModel::SourceType.INTERACTION,
             source_db_name: 'FDA',
-            full_name: 'FDA Pharmacogenomic Biomarkers'
+            full_name: 'FDA Pharmacogenomic Biomarkers',
+            license: 'Public Domain',
+            license_link: 'https://www.fda.gov/about-fda/about-website/website-policies#linking',
         }
     )
   end
@@ -47,6 +49,7 @@ class NewFda < Genome::OnlineUpdater
         if not fusion_protein.nil?
           create_interaction_claim_attribute(interaction_claim, 'Fusion protein', fusion_protein)
         end
+        create_interaction_claim_link(interaction_claim, 'Table of Pharmacogenomic Biomarkers in Drug Labeling', 'https://www.fda.gov/drugs/science-and-research-drugs/table-pharmacogenomic-biomarkers-drug-labeling')
       end
     else
       drug_claim = create_drug_claim(row['Drug'], row['Drug'], 'FDA Drug Name')
@@ -54,6 +57,7 @@ class NewFda < Genome::OnlineUpdater
       if not fusion_protein.nil?
         create_interaction_claim_attribute(interaction_claim, 'Fusion protein', fusion_protein)
       end
+      create_interaction_claim_link(interaction_claim, 'Table of Pharmacogenomic Biomarkers in Drug Labeling', 'https://www.fda.gov/drugs/science-and-research-drugs/table-pharmacogenomic-biomarkers-drug-labeling')
     end
   end
 

@@ -3,13 +3,15 @@ module Genome
     module TTD
       def source_info
         {
-          base_url:          'http://bidd.nus.edu.sg/group/cjttd/ZFTTD',
-          site_url:          'http://bidd.nus.edu.sg/group/ttd/ttd.asp',
+          base_url:          'http://db.idrblab.net/ttd/',
+          site_url:          'http://bidd.nus.edu.sg/group/cjttd/',
           citation:          "Update of TTD: Therapeutic Target Database. Zhu F, Han BC, ..., Zheng CJ, Chen YZ. Nucleic Acids Res. 38(suppl 1):D787-91, 2010. PMID: 19933260.",
           source_db_version:  '4.3.02 (2011.08.25)',
           source_type_id:    DataModel::SourceType.INTERACTION,
           source_db_name:    'TTD',
-          full_name:         'Therapeutic Target Database'
+          full_name:         'Therapeutic Target Database',
+          license: 'Unclear. Website states "All Rights Reserved" but resource structure and description in 2002 publication indicate "open-access".',
+          license_link: 'https://academic.oup.com/nar/article/30/1/412/1331814',
         }
       end
 
@@ -35,6 +37,10 @@ module Genome
               name :drug_pubchem_sid, nomenclature: 'Pubchem SId', unless: na_filter
             end
           end
+        end
+        s = DataModel::Source.find_by(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'TTD Target Information', "http://idrblab.net/ttd/data/target/details/#{ic.gene_claim.name}")
         end
       end
     end

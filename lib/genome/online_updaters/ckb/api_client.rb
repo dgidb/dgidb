@@ -49,7 +49,7 @@ module Genome; module OnlineUpdaters; module Ckb;
     end
 
     def gene_lookup_base_url(id)
-      "https://ckb.jax.org/gene/show?geneId=#{id}"
+      "https://ckb.jax.org/gene/show?geneId=#{id}&tabType=GENE_LEVEL_EVIDENCE"
     end
   end
 end; end; end

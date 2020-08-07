@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.1.7'
+gem 'rails', '~> 6.0.3'
 
 gem 'browser'
 gem 'pg', '~>1.2.3'
@@ -24,6 +24,11 @@ gem 'delayed_job', '~> 4.1.4'
 gem 'delayed_job_active_record'
 gem 'rubyzip'
 gem 'kaminari', '~> 0.16.1'
+gem 'sidekiq', '~> 6.0.3'
+gem 'sidekiq-cron', '~> 1.1.0'
+gem 'airbrake', '~> 10.0.5'
+gem 'staccato', '~> 0.5.3'
+
 
 group :production do
   gem 'dalli'

@@ -9,7 +9,9 @@ module Genome
           source_db_version:  '12-Jul-2012',
           source_type_id:    DataModel::SourceType.INTERACTION,
           source_db_name:    'PharmGKB',
-          full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase'
+          full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase',
+          license:           'Creative Commons Attribution-ShareAlike 4.0 International License',
+          license_url:       'https://www.pharmgkb.org/page/faqs',
         }
       end
 
@@ -43,6 +45,10 @@ module Genome
               attribute :Drug_Type, name: 'Drug Type', unless: na_filter
             end
           end
+        end
+        s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Drug Label Annotations', "https://www.pharmgkb.org/chemical/#{ic.drug_claim.name}/labelAnnotation")
         end
       end
     end

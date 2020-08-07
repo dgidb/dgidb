@@ -60,6 +60,7 @@ module Utils
         sql = <<-SQL
           delete from interaction_claims_publications where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
           delete from interaction_claim_attributes where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
+          delete from interaction_claim_links where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
           delete from interaction_claim_types_interaction_claims where interaction_claim_id in (select id from interaction_claims where source_id = '#{source_id}');
           update interaction_claims set interaction_id = NULL where source_id = '#{source_id}';
           delete from interaction_claims where source_id = '#{source_id}';

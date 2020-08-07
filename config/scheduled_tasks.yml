@@ -1,0 +1,62 @@
+#monthly tasks
+UpdateCgi:
+  cron: '0 0 1 * *'
+  description: Update data from Cancer Genome Interpreter
+  queue: default
+  class: UpdateCgi
+
+UpdateDocm:
+  cron: '0 1 1 * *'
+  description: Update data from DoCM
+  queue: default
+  class: UpdateDocm
+
+UpdateEnsembl:
+  cron: '0 2 1 * *'
+  description: Update data from Ensembl
+  queue: default
+  class: UpdateEnsembl
+
+UpdateEntrez:
+  cron: '0 3 1 * *'
+  description: Update data from Entrez
+  queue: default
+  class: UpdateEntrez
+
+UpdateGo:
+  cron: '0 4 1 * *'
+  description: Update data from GO
+  queue: default
+  class: UpdateGo
+
+UpdateGuideToPharmacology:
+  cron: '0 5 1 * *'
+  description: Update data from Guide To Pharmacology
+  queue: default
+  class: UpdateGuideToPharmacology
+
+#Tasks to execute every 14th and 28th of the month (closest to every two weeks
+#possible in cron notation)
+UpdateCivic:
+  cron: '0 0 */14 * *'
+  description: Update data from CIViC
+  queue: default
+  class: UpdateCivic
+
+UpdateCkb:
+  cron: '0 1 */14 * *'
+  description: Update data from JAX CKB
+  queue: default
+  class: UpdateCkb
+
+UpdateOncokb:
+  cron: '0 2 */14 * *'
+  description: Update data from OncoKB
+  queue: default
+  class: UpdateOncokb
+
+CreateMonthlyTsvs:
+  cron: '0 6 1 * *'
+  description: Create monthly TSV data dumps for interaction claims, gene claims, drug claims, gene categories, and NDEx
+  queue: default
+  class: CreateMonthlyTsvs

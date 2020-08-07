@@ -18,27 +18,31 @@ module Genome; module Importers; module GuideToPharmacologyInteractions;
     def import_claims
       CSV.foreach(file_path, :headers => true) do |line|
         next unless valid_line?(line)
-        gene_claim = create_gene_claim(line['target_id'], 'GuideToPharmacology ID')
-        create_gene_claim_aliases(gene_claim, line)
 
-        drug_claim = create_drug_claim(line['ligand_id'], strip_tags(line['ligand']).upcase, 'GuideToPharmacology Ligand Identifier')
+        drug_claim = create_drug_claim(line['ligand_pubchem_sid'], strip_tags(line['ligand']).upcase, 'PubChem Drug SID')
         create_drug_claim_aliases(drug_claim, line)
         create_drug_claim_attribute(drug_claim, 'Name of the Ligand Species (if a Peptide)', line['ligand_species']) unless blank?(line['ligand_species'])
 
-        interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-        type = line['type'].downcase
-        create_interaction_claim_type(interaction_claim, type) unless type == 'none'
-        unless blank?(line['pubmed_ids'])
-          line['pubmed_ids'].split('|').each do |pmid|
-            create_interaction_claim_publication(interaction_claim, pmid)
+        line['target_ensembl_gene_id'].split('|').each do |gene_id|
+          gene_claim = create_gene_claim(gene_id, 'Ensembl Gene ID')
+          create_gene_claim_aliases(gene_claim, line)
+
+          interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+          type = line['type'].downcase
+          create_interaction_claim_type(interaction_claim, type) unless type == 'none'
+          unless blank?(line['pubmed_ids'])
+            line['pubmed_ids'].split('|').each do |pmid|
+              create_interaction_claim_publication(interaction_claim, pmid)
+            end
           end
+          create_interaction_claim_attributes(interaction_claim, line)
+          create_interaction_claim_link(interaction_claim, "Ligand Biological Activity", "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=#{line['ligand_id']}&tab=biology")
         end
-        create_interaction_claim_attributes(interaction_claim, line)
       end
     end
 
     def valid_line?(line)
-      line['target_species'] == 'Human' && blank?(line['target_ligand'])
+      line['target_species'] == 'Human' && blank?(line['target_ligand']) && !blank?(line['ligand_pubchem_sid']) && !blank?(line['target_ensembl_gene_id'])
     end
 
     def create_gene_claim_aliases(gene_claim, line)
@@ -62,7 +66,6 @@ module Genome; module Importers; module GuideToPharmacologyInteractions;
         end
       end
       create_drug_claim_alias(drug_claim, strip_tags(line['ligand']).upcase, 'GuideToPharmacology Ligand Name')
-      create_drug_claim_alias(drug_claim, line['ligand_pubchem_sid'], 'PubChem Drug SID') unless blank?(line['ligand_pubchem_sid'])
     end
 
     def blank?(value)
@@ -103,6 +106,8 @@ of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'GuideToPharmacologyInteractions',
           full_name: 'Guide to Pharmacology Interactions',
+          license: 'Creative Commons Attribution-ShareAlike 4.0 International License',
+          license_url: 'https://www.guidetopharmacology.org/about.jsp',
       ).first_or_initialize
       source.source_db_version = Date.today.strftime("%d-%B-%Y")
       source.save

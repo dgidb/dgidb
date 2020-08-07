@@ -15,10 +15,6 @@ class InteractionPresenter < SimpleDelegator
     types.count > 0 ? types : ["n/a"]
   end
 
-  def directionality
-    direction = interaction.interaction_types.map{|d| d.directionality}.uniq
-  end
-
   def as_json(opts = {})
     {
       id: interaction.id,

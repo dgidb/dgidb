@@ -11,7 +11,9 @@ module Genome
           source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'ChEMBL',
           full_name: 'The ChEMBL Bioactivity Database',
-          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
+          source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
+          license: 'Creative Commons Attribution-Share Alike 3.0 Unported License',
+          license_link: 'https://chembl.gitbook.io/chembl-interface-documentation/about',
         }
       end
 
@@ -43,6 +45,10 @@ module Genome
             attribute :action_type, name: 'Interaction Type', transform: downcase, unless: blank_filter
           end
         end.save!
+        s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Drug Mechanisms', "https://www.ebi.ac.uk/chembl/compound_report_card/#{ic.drug_claim.name}/#MechanismOfAction")
+        end
       end
     end
   end

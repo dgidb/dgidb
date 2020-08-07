@@ -81,7 +81,9 @@ module Genome
            citation: "The ChEMBL bioactivity database: an update. Bento AP, Gaulton A, Hersey A, Bellis LJ, Chambers J, Davies M, Kruger FA, Light Y, Mak L, McGlinchey S, Nowotka M, Papadatos G, Santos R, Overington JP. Nucleic Acids Res. 42(Database issue):D1083-90. PubMed ID: 24214965",
            source_type_id: DataModel::SourceType.INTERACTION,
            source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
-           full_name: 'The ChEMBL Bioactivity Database'
+           full_name: 'The ChEMBL Bioactivity Database',
+           license: 'Creative Commons Attribution-Share Alike 3.0 Unported License',
+           license_url: 'https://chembl.gitbook.io/chembl-interface-documentation/about',
          }
         )
       end
@@ -161,6 +163,7 @@ module Genome
                 type = nil
               end
               ic.interaction_claim_types << type unless type.nil?
+              Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Drug Mechanisms', "https://www.ebi.ac.uk/chembl/compound_report_card/#{drug_claim.name}/#MechanismOfAction")
             end
           end
         end

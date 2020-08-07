@@ -7,13 +7,6 @@ class UpdateGuideToPharmacology < TsvUpdater
     Genome::Importers::GuideToPharmacologyInteractions::NewGuideToPharmacology.new(tempfile)
   end
 
-  def next_update_time
-    Date.today
-      .beginning_of_week
-      .next_month
-      .midnight
-  end
-
   def latest_url
     "http://www.guidetopharmacology.org/DATA/interactions.csv"
   end

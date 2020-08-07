@@ -11,6 +11,8 @@
               source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
               source_db_name: 'MyCancerGenomeClinicalTrial',
               full_name: 'MyCancerGenome Clinical Trial',
+              license: 'Restrictive, custom, non-commercial',
+              license_url: 'https://www.mycancergenome.org/content/page/legal-policies-licensing/',
           }
         end
 
@@ -37,6 +39,10 @@
               attribute :indication_of_interaction, name: 'Indication of Interaction'
             end
           end.save!
+          s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+          s.interaction_claims.each do |ic|
+            Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Clinical Trials', "https://www.mycancergenome.org/content/clinical_trials/")
+          end
         end
       end
     end

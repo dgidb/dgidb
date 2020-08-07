@@ -1,3 +1,5 @@
+require_relative 'deploy/sidekiq'
+
 set :application, "dgidb"
 set :repo_url, "https://github.com/griffithlab/dgi-db.git"
 

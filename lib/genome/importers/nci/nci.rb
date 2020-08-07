@@ -32,7 +32,9 @@ module Genome; module Importers; module Nci;
               source_db_version:  get_version,
               source_type_id: DataModel::SourceType.INTERACTION,
               source_db_name: 'NCI',
-              full_name: 'NCI Cancer Gene Index'
+              full_name: 'NCI Cancer Gene Index',
+              license: 'Public domain',
+              license_link: 'https://www.cancer.gov/policies/copyright-reuse',
           }
       )
     end
@@ -45,6 +47,7 @@ module Genome; module Importers; module Nci;
         create_drug_claim_alias(drug_claim, row['NCI drug code'], 'NCI drug code')
         interaction_claim = create_interaction_claim(gene_claim, drug_claim)
         create_interaction_claim_publication(interaction_claim, row['PMID'])
+        create_interaction_claim_link(interaction_claim, "The Cancer Gene Index Gene-Disease and Gene-Compound XML Documents", 'https://wiki.nci.nih.gov/display/cageneindex/The+Cancer+Gene+Index+Gene-Disease+and+Gene-Compound+XML+Documents')
       end
     end
   end

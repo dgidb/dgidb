@@ -39,7 +39,9 @@ module Genome; module Importers; module DrugBank;
         source_db_version: get_version,
         source_type_id: DataModel::SourceType.INTERACTION,
         source_db_name: 'DrugBank',
-        full_name: 'DrugBank - Open Data Drug & Drug Target Database'
+        full_name: 'DrugBank - Open Data Drug & Drug Target Database',
+        license: 'Custom non-commercial',
+        license_link: 'https://dev.drugbankplus.com/guides/drugbank/citing?_ga=2.29505343.1251048939.1591976592-781844916.1591645816',
         #source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
       ).first_or_create
     end
@@ -78,6 +80,7 @@ module Genome; module Importers; module DrugBank;
         row['pmid'].split(DELIMITER).each do |pmid|
           create_interaction_claim_publication(interaction_claim, pmid) unless pmid == 'N/A'
         end
+        create_interaction_claim_link(interaction_claim, "Drug Target", "https://www.drugbank.ca/drugs/#{row['drug_id']}#targets")
         interaction_claim.save
       end
     end

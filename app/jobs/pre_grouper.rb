@@ -1,5 +1,4 @@
-#class PreGrouper < ActiveJob::Base
-class PreGrouper
+class PreGrouper < ApplicationJob
   def perform
     normalize_interaction_claim_types
   end
