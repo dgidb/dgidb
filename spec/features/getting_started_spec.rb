@@ -7,7 +7,7 @@ describe 'getting_started' do
 
   it 'check to see if the page exists' do
     expect(page.status_code).to eq (200)
-    expect(page).to have_content('This page provides tutorials and other resources on how to use DGIdb.')
+    expect(page).to have_content('Mining the druggable genome for personalized medicine')
   end
 
 end
