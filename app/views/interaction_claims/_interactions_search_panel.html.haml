@@ -31,9 +31,7 @@
               - else
                 Gene
             %th
-              Interaction Type
-            %th
-              Interaction Directionality
+              Interaction Type & Directionality
             %th
               Sources
             %th
@@ -51,9 +49,7 @@
                   %a{href: "/genes/#{interaction.gene.name}"}
                     = interaction.gene.name
               %td
-                = interaction.na_or_types.join(", ")
-              %td
-                = interaction.directionality.join(", ")
+                = interaction.na_or_types.map{|t| t[:directionality].nil? ? t[:type] : "#{t[:type]} (#{t[:directionality]})"}.join(", ")
               %td
                 = interaction.sources.map{|source| TrustLevelPresenter.source_link_green(@view_context, source)}.join(' ').html_safe
               %td
