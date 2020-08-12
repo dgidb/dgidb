@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe 'getting_started' do
+describe 'about' do
   before :each do
-    visit '/getting_started'
+    visit '/about'
   end
 
   it 'check to see if the page exists' do
