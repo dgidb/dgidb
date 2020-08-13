@@ -61,7 +61,7 @@ group :test, :development  do
   gem 'activerecord-import'
   gem 'stamp'
   gem 'database_cleaner'
-  gem 'coveralls'
+  gem 'simplecov'
   gem 'test-unit'
 end
 
