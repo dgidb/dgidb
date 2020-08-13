@@ -23,7 +23,6 @@ test:
   <% if ENV['CI_BUILD'] %>
   username: postgres
   password: 'ci'
-  host: postgres
   <% end %>
 
 
