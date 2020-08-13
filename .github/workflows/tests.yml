@@ -1,0 +1,51 @@
+name: Unit Tests
+on:
+  push:
+    branches: [ master, staging ]
+  pull_request:
+    branches: [ master, staging]
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        ruby: [2.5, 2.6, 2.7]
+    services:
+        postgres:
+          image: postgres:12
+          env:
+            POSTGRES_USER: postgres
+            POSTGRES_DB: dgidb_test
+            POSTGRES_PASSWORD: 'ci'
+          ports:
+            - 5432:5432
+
+    steps:
+      - name: 'Checkout code'
+        uses: actions/checkout@v2
+
+      - name: 'Setup Ruby'
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: ${{ matrix.ruby }}
+
+      - name: Setup DB
+        env:
+          CI_BUILD: true
+          RAILS_ENV: test
+        run: bundle exec rake db:create db:structure:load db:test:prepare
+
+      - name: Run Tests
+        env:
+          CI_BUILD: true
+          RAILS_ENV: test
+        run: bundle exec rake spec
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
