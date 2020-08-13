@@ -62,6 +62,7 @@ group :test, :development  do
   gem 'stamp'
   gem 'database_cleaner'
   gem 'simplecov'
+  gem 'simplecov-lcov'
   gem 'test-unit'
 end
 
