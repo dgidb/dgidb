@@ -55,7 +55,7 @@ module Genome; module Importers; module Pharmgkb;
           interaction_claim = create_interaction_claim(gene_claim, drug_claim)
           create_interaction_claim_link(interaction_claim, 'PharmGKB interaction', "https://www.pharmgkb.org/combination/#{pharmgkb_gene_id},#{pharmgkb_drug_id}/overview")
           if row['PMIDs'].present?
-            add_interaction_claim_publications(interaction_claim, row['Source'])
+            add_interaction_claim_publications(interaction_claim, row['PMIDs'])
           end
         else
           if row['Entity1_type'] == 'Chemical' and row['Entity2_type'] == 'Gene'
