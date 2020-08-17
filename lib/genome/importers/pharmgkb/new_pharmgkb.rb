@@ -44,10 +44,10 @@ module Genome; module Importers; module Pharmgkb;
       CSV.foreach(file_path, :headers => true, :col_sep => "\t") do |row|
         next if row['Association'] == 'not associated' || row['Association'] == 'ambiguous'
         if row['Entity1_type'] == 'Gene' and row['Entity2_type'] == 'Chemical'
-          drug_name = row['Entity1_name']
-          pharmgkb_drug_id = row['Entity1_id']
-          gene_name = row['Entity2_name']
-          pharmgkb_gene_id = row['Entity2_id']
+          gene_name = row['Entity1_name']
+          pharmgkb_gene_id = row['Entity1_id']
+          drug_name = row['Entity2_name']
+          pharmgkb_drug_id = row['Entity2_id']
           drug_claim = create_drug_claim(drug_name, drug_name, 'PharmGKB Drug Name')
           create_drug_claim_alias(drug_claim, 'PharmGKB ID', pharmgkb_drug_id)
           gene_claim = create_gene_claim(gene_name, 'PharmGKB Gene Name')
@@ -59,10 +59,10 @@ module Genome; module Importers; module Pharmgkb;
           end
         else
           if row['Entity1_type'] == 'Chemical' and row['Entity2_type'] == 'Gene'
-            gene_name = row['Entity1_name']
-            pharmgkb_gene_id = row['Entity1_id']
-            drug_name = row['Entity2_name']
-            pharmgkb_drug_id = row['Entity2_id']
+            drug_name = row['Entity1_name']
+            pharmgkb_drug_id = row['Entity1_id']
+            gene_name = row['Entity2_name']
+            pharmgkb_gene_id = row['Entity2_id']
             drug_claim = create_drug_claim(drug_name, drug_name, 'PharmGKB Drug Name')
             create_drug_claim_alias(drug_claim, 'PharmGKB ID', pharmgkb_drug_id)
             gene_claim = create_gene_claim(gene_name, 'PharmGKB Gene Name')
