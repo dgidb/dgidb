@@ -18,7 +18,7 @@
     %div{class: "item-panel", style:"margin-bottom: 11px"}
       %h4
         Main Info:
-      %div{style: "height: 90px; overflow-y: scroll; margin-bottom: 5px;"}
+      %div{style: "height: 100px; overflow-y: scroll; margin-bottom: 5px;"}
         %table{class: "table table-condensed table-striped", id: "table_main"}
           %tbody
             %tr
@@ -32,12 +32,12 @@
                 %a{href: "/drugs/#{interaction.drug.name}"} 
                   =interaction.drug.name
             %tr
-              %td="Interaction Types"
-              %td=interaction.na_or_types.join(", ")
+              %td="Interaction Types & Directionality"
+              %td=interaction.na_or_types.map{|t| "#{t[:type]} (#{t[:directionality]})"}.join(", ")
     %div(class="item-panel")
       %h4
         Publications:
-      %div{style: "height: 305px; overflow-y: scroll; "}
+      %div{style: "height: 295px; overflow-y: scroll; "}
         %table{class: "table table-condensed table-striped", id:"table_publications"}
           -interaction.publications.each do |publication|
             %tr

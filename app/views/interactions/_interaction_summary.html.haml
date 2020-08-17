@@ -14,11 +14,11 @@
   %div(class="cell category")
     %div{class: "item-panel"}
       %h4{style: "display: inline-block;"}
-        Interaction Types:
+        Interaction Types & Directionality:
         %table{class: "table table-condensed table-striped", style: "table-layout:fixed;"}
           -interaction.na_or_types[0..2].each do |interaction_type|
             %tr
-              %td=interaction_type
+              %td=interaction_type[:directionality].nil? ? interaction_type[:type] : "#{interaction_type[:type]} (#{interaction_type[:directionality]})"
 
   %div(class="cell category")
     %div{class: "item-panel"}
