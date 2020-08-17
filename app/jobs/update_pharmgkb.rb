@@ -22,7 +22,7 @@ class UpdatePharmgkb < TsvUpdater
     end
     Zip::InputStream.open(StringIO.new(response.body)) do |io|
       while entry = io.get_next_entry
-        if entry.name == 'interactions.tsv'
+        if entry.name == 'relationships.tsv'
           tempfile.write(io.read.encode("ASCII-8BIT").force_encoding("utf-8"))
         end
       end
