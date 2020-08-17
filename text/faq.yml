@@ -3,8 +3,7 @@ faq:
   title_main: FAQ
   title_small: frequently asked questions
   description: > 
-    This page provides answers to a wide array of general questions. For detailed tutorials on how to use DGIdb, 
-    see the tutorials under the "<a href=getting_started>Getting started</a>" section of the help menu.
+    This page provides answers to a wide array of general questions.
   questions:
     - question: What is the goal of DGIdb?
       anchor: goal
@@ -25,13 +24,13 @@ faq:
         The data used in DGIdb is all open access and where possible made available as raw data dumps in the 
         <a href="/downloads">downloads</a> section.
 
-    - question: How can I learn more about how to use DGIdb?
-      anchor: learn
-      answer: > 
-        You can try reading: the <a href="/getting_started">'Getting Started'</a> section under the help menu,
-         the <a href="https://doi.org/10.1093/nar/gkx1143">manuscript</a>, and this FAQ.
-        Some sections also contain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
-        If all else fails, please <a href="mailto:help@dgidb.org">email us</a> with your questions.
+    #- question: How can I learn more about how to use DGIdb?
+    #  anchor: learn
+    #  answer: > 
+    #    You can try reading: the <a href="/getting_started">'Getting Started'</a> section under the help menu,
+    #     the <a href="https://doi.org/10.1093/nar/gkx1143">manuscript</a>, and this FAQ.
+    #    Some sections also contain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
+    #    If all else fails, please <a href="mailto:help@dgidb.org">email us</a> with your questions.
 
     - question: What types of gene names/symbols should I use as input?
       anchor: types
@@ -74,7 +73,7 @@ faq:
         <a href="http://en.wikipedia.org/wiki/Druggability">potentially druggable</a>.
         For example, kinases are generally deemed to have high potential value for development of targeted drugs.
         For more details on the sources of druggable gene category definitions, refer to the <a href="/sources">sources</a> 
-        and <a href="getting_started">background reading</a>.
+        and <a href="about">background reading</a>.
 
     - question: What is an 'Interaction Type'?
       anchor: interaction

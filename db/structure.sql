@@ -513,7 +513,8 @@ CREATE TABLE public.interaction_claim_types (
     id character varying(255) NOT NULL,
     type character varying(255),
     directionality integer,
-    definition text
+    definition text,
+    reference text
 );
 
 
@@ -2051,12 +2052,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170729004221'),
 ('20170808210937'),
 ('20170824182356'),
-('20170913042301'),
 ('20170913202927'),
 ('20170914145053'),
 ('20191016180948'),
 ('20191107152512'),
 ('20200608185423'),
-('20200615173440');
+('20200615173440'),
+('20200811160413');
 
 
