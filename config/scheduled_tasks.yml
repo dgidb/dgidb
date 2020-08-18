@@ -41,6 +41,12 @@ UpdatePharmGKB:
   queue: default
   class: UpdatePharmgkb
 
+UpdateDtc:
+  cron: '0 6 1 * *'
+  description: Update data from Drug Target Commons
+  queue: default
+  class: UpdateDtc
+
 #Tasks to execute every 14th and 28th of the month (closest to every two weeks
 #possible in cron notation)
 UpdateCivic:
