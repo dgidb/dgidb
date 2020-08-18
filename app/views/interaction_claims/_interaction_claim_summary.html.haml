@@ -32,7 +32,7 @@
             %td=@interaction.drug.name
           %tr
             %td="Interaction Types"
-            %td=interaction_claim.interaction_claim_types.map{|ict| ict.type}.join(", ")
+            %td=interaction_claim.interaction_claim_types.count==0 ? "n/a" : interaction_claim.interaction_claim_types.map{|ict| ict.directionality.nil? ? ict.type : "#{ict.type} (#{ict.directionality})"}.join(", ")
 
   %div(class="cell category")
     %div(class="item-panel")
@@ -61,5 +61,6 @@
           -interaction_claim.interaction_claim_links.each do |link|
             %tr
               %td
-                %a{href: link.link_url}
+                - url = link.link_url.include?('source_tsvs') ? File.join('..', link.link_url) : link.link_url
+                %a{href: url}
                   = link.link_text

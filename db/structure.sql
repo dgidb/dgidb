@@ -513,7 +513,8 @@ CREATE TABLE public.interaction_claim_types (
     id character varying(255) NOT NULL,
     type character varying(255),
     directionality integer,
-    definition text
+    definition text,
+    reference text
 );
 
 
@@ -654,7 +655,9 @@ CREATE TABLE public.sources (
     gene_claims_in_groups_count integer DEFAULT 0,
     drug_claims_in_groups_count integer DEFAULT 0,
     source_trust_level_id character varying(255),
-    gene_gene_interaction_claims_count integer DEFAULT 0
+    gene_gene_interaction_claims_count integer DEFAULT 0,
+    license character varying,
+    license_link character varying
 );
 
 
@@ -2049,11 +2052,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170729004221'),
 ('20170808210937'),
 ('20170824182356'),
-('20170913042301'),
 ('20170913202927'),
 ('20170914145053'),
 ('20191016180948'),
 ('20191107152512'),
-('20200615173440');
+('20200608185423'),
+('20200615173440'),
+('20200811160413');
 
 

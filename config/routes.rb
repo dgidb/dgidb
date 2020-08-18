@@ -15,6 +15,7 @@ DruggableGene::Application.routes.draw do
   get 'search_results' => 'search#search_results'
   get 'cache/invalidate' => 'utilities#invalidate_cache'
   get 'downloads' => 'downloads#show'
+  get 'interaction_types' => 'interaction_types#show'
   post  'download_table' => 'utilities#download_request_content'
   scope 'api' do
     scope 'v1' do

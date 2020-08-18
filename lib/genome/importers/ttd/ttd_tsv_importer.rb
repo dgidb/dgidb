@@ -9,7 +9,9 @@ module Genome
           source_db_version:  '4.3.02 (2011.08.25)',
           source_type_id:    DataModel::SourceType.INTERACTION,
           source_db_name:    'TTD',
-          full_name:         'Therapeutic Target Database'
+          full_name:         'Therapeutic Target Database',
+          license: 'Unclear. Website states "All Rights Reserved" but resource structure and description in 2002 publication indicate "open-access".',
+          license_link: 'https://academic.oup.com/nar/article/30/1/412/1331814',
         }
       end
 

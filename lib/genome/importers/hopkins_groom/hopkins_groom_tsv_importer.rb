@@ -9,7 +9,9 @@ module Genome
           source_db_version:  '11-Sep-2012',
           source_type_id:     DataModel::SourceType.POTENTIALLY_DRUGGABLE,
           source_db_name:     'HopkinsGroom',
-          full_name:          'The druggable genome (Hopkins & Groom, 2002)'
+          full_name:          'The druggable genome (Hopkins & Groom, 2002)',
+          licensei: 'Supplementary data from Nature Publishing Group copyright publication',
+          license_link: 'https://www.nature.com/articles/nrd892',
         }
       end
 

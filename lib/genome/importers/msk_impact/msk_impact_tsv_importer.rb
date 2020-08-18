@@ -11,7 +11,9 @@ module Genome
             source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE,
             source_db_name: 'MskImpact',
             full_name: 'Memorial Sloan Kettering IMPACT',
-            source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
+            source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
+            license: 'Supplementary data from American Society for Investigative Pathology and the Association for Molecular Pathology copyright publication',
+            license_link: 'https://jmd.amjpathol.org/action/showPdf?pii=S1525-1578%2815%2900045-8',
         }
       end
 
