@@ -26,9 +26,9 @@ class NewFda < Genome::OnlineUpdater
   def create_new_source
     @source ||= DataModel::Source.create(
         {
-            base_url: 'https://www.fda.gov/drugs/scienceresearch/researchareas/pharmacogenetics/ucm083378.htm',
-            site_url: 'https://www.fda.gov/drugs/scienceresearch/researchareas/pharmacogenetics/ucm083378.htm',
-            citation: 'https://www.fda.gov/drugs/scienceresearch/researchareas/pharmacogenetics/ucm083378.htm',
+            base_url: 'https://www.fda.gov/drugs/science-and-research-drugs/table-pharmacogenomic-biomarkers-drug-labeling',
+            site_url: 'https://www.fda.gov/drugs/science-and-research-drugs/table-pharmacogenomic-biomarkers-drug-labeling',
+            citation: 'https://www.fda.gov/drugs/science-and-research-drugs/table-pharmacogenomic-biomarkers-drug-labeling',
             source_db_version:  get_version,
             source_type_id: DataModel::SourceType.INTERACTION,
             source_db_name: 'FDA',
@@ -63,14 +63,14 @@ class NewFda < Genome::OnlineUpdater
 
   def create_interaction_claims
     CSV.foreach(file_path, encoding:'iso-8859-1:utf-8', :headers => true, :col_sep => "\t") do |row|
-      if row['Gene'].include?(':')
+      if row['Biomarker'].include?('-')
         fusion_protein = row['Gene']
-        row['Gene'].split(':').each do |indv_gene|
+        row['Biomarker'].split('-').each do |indv_gene|
           gene_claim = create_gene_claim(indv_gene, 'FDA Gene Name')
           create_drug_claims(row, gene_claim, fusion_protein)
         end
       else
-        gene_claim = create_gene_claim(row['Gene'], 'FDA Gene Name')
+        gene_claim = create_gene_claim(row['Biomarker'], 'FDA Gene Name')
         create_drug_claims(row, gene_claim, nil)
       end
     end
