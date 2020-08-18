@@ -65,6 +65,10 @@ class DtcImporter < Genome::OnlineUpdater
           unless pmid.nil? || pmid == '' || pmid =~ /-/
             create_interaction_claim_publication(interaction_claim, pmid)
           end
+          mechanism = row['ep_action_mode']
+          unless mechanism.nil?
+            create_interaction_claim_type(interaction_claim, mechanism)
+          end
           create_interaction_claim_link(interaction_claim, 'Drug Target Commons Interactions', 'https://drugtargetcommons.fimm.fi/')
         end
       end
