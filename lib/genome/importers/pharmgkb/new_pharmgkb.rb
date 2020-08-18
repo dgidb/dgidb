@@ -89,9 +89,7 @@ module Genome; module Importers; module Pharmgkb;
           end
         end
       else
-        source_string.split(':').last do |pmid|
-          create_interaction_claim_publication(interaction_claim, pmid)
-        end
+        create_interaction_claim_publication(interaction_claim, source_string)
       end
     end
   end
