@@ -11,7 +11,7 @@ class PaginationPresenter
     {
       current_page: items.current_page,
       per_page: page_size,
-      total_pages: items.num_pages,
+      total_pages: items.total_pages,
       total_count: items.total_count,
       links: links
     }
