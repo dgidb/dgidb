@@ -77,7 +77,7 @@ module Genome
           'modulator'
         elsif val == 'positive allosteric modulator'
           'positive modulator'
-        elsif val == 'inhibitor, competitive' || val == 'gating inhibitor'
+        elsif val == 'inhibitor, competitive' || val == 'gating inhibitor' || val == 'growth_inhibition' || val == 'inhibition'
           'inhibitor'
         elsif val == 'channel blocker'
           'blocker'
@@ -91,6 +91,10 @@ module Genome
           'immunotherapy'
         elsif val == 'component of'
           'product of'
+        elsif val == 'inverse_agonist'
+          'inverse agonist'
+        elsif val == 'cytotoxicity'
+          'cytotoxic'
         else
           val
         end

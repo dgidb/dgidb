@@ -35,7 +35,7 @@ class DtcImporter < Genome::OnlineUpdater
             source_db_name: 'DTC',
             full_name: 'Drug Target Commons',
             license: 'Creative Commons Attribution-NonCommercial 3.0 (BY-NC)',
-            license_url: 'https://academic.oup.com/database/article/doi/10.1093/database/bay083/5096727',
+            license_link: 'https://academic.oup.com/database/article/doi/10.1093/database/bay083/5096727',
         }
     )
   end
@@ -48,13 +48,25 @@ class DtcImporter < Genome::OnlineUpdater
       drug_claim = create_drug_claim(drug_id, drug_id, 'CHEMBL ID')
       if drug_name.present?
         create_drug_claim_alias(drug_claim, drug_name, 'DTC drug name')
-      gene_name = row['gene_names']
-      gene_claim = create_gene_claim(gene_name, 'DTC gene name')
-      interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-        if row['pubmed_id'].present?
-          create_interaction_claim_publication(interaction_claim, row['pubmed_id'])
+      if row['gene_names'].include?(',')
+        row['gene_names'].split(',').each do |indv_gene|
+          gene_claim = create_gene_claim(indv_gene, 'CGI Gene Name')
+          interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+          if row['pubmed_id'].present?
+            create_interaction_claim_publication(interaction_claim, row['pubmed_id'])
+          end
+          create_interaction_claim_link(interaction_claim, 'Drug Target Commons Interactions', 'https://drugtargetcommons.fimm.fi/')
         end
-        create_interaction_claim_link(interaction_claim, 'Drug Target Commons Interactions', 'https://drugtargetcommons.fimm.fi/')
+        else
+          gene_name = row['gene_names']
+          gene_claim = create_gene_claim(gene_name, 'DTC gene name')
+          interaction_claim = create_interaction_claim(gene_claim, drug_claim)
+          pmid = row['pubmed_id']
+          unless pmid.nil? || pmid == '' || pmid == '-1'
+            create_interaction_claim_publication(interaction_claim, pmid)
+          end
+          create_interaction_claim_link(interaction_claim, 'Drug Target Commons Interactions', 'https://drugtargetcommons.fimm.fi/')
+        end
       end
     end
   end

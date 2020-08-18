@@ -1,5 +1,3 @@
-require 'open-uri'
-
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
 class UpdateDtc < TsvUpdater
@@ -11,24 +9,19 @@ class UpdateDtc < TsvUpdater
     Genome::Importers::Dtc::DtcImporter.new(tempfile)
   end
 
-  def download_file
-    uri = URI('https://drugtargetcommons.fimm.fi/static/Excell_files/DTC_data.csv')
-    download = open(uri)
-    IO.copy(download, tempfile_name)
+  def latest_url
+    'https://drugtargetcommons.fimm.fi/static/Excell_files/DTC_data.csv'
   end
-end
-end
-end
 
-def should_group_genes?
-  true
-end
+  def should_group_genes?
+    true
+  end
 
-def should_group_drugs?
-  true
-end
+  def should_group_drugs?
+    true
+  end
 
-def should_cleanup_gene_claims?
-  false
-end
+  def should_cleanup_gene_claims?
+    false
+  end
 end
