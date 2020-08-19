@@ -62,7 +62,7 @@ class DtcImporter < Genome::OnlineUpdater
           gene_claim = create_gene_claim(gene_name, 'DTC gene name')
           interaction_claim = create_interaction_claim(gene_claim, drug_claim)
           pmid = row['pubmed_id']
-          unless pmid.nil? || pmid == '' || pmid.to_i < 1
+          unless pmid.nil? || pmid == '""' || pmid == "''" || pmid == '-1' || pmid =='-102' || pmid == '-103'
             create_interaction_claim_publication(interaction_claim, pmid)
           end
           mechanism = row['ep_action_mode']
