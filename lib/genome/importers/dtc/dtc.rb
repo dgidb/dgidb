@@ -48,7 +48,7 @@ class DtcImporter < Genome::OnlineUpdater
       pmid = row['pubmed_id']
       mechanism = row['ep_action_mode']
       unless drug_name.nil? || gene_name.nil?
-        drug_claim = create_drug_claim(gene_name, gene_name, 'DTC Drug Name')
+        drug_claim = create_drug_claim(drug_name, drug_name, 'DTC Drug Name')
         unless drug_id.nil?
           create_drug_claim_alias(drug_claim, drug_id, 'ChEMBL Drug ID')
         end
