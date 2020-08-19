@@ -46,23 +46,23 @@ class DtcImporter < Genome::OnlineUpdater
       drug_id = row['compound_id']
       drug_name = row['compound_name']
       drug_claim = create_drug_claim(drug_id, drug_id, 'CHEMBL ID')
+      gene_name = row['gene_names']
+      pmid = row['pubmed_id']
       if drug_name.present?
         create_drug_claim_alias(drug_claim, drug_name, 'DTC drug name')
-      if row['gene_names'].include?(',')
-        row['gene_names'].split(',').each do |indv_gene|
+      if row[gene_name].include?(',')
+        row[gene_name].split(',').each do |indv_gene|
           gene_claim = create_gene_claim(indv_gene, 'CGI Gene Name')
           interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-          if row['pubmed_id'].present?
+          unless pmid.nil? || pmid == '""' || pmid == "''" || pmid[0] =='-'
             create_interaction_claim_publication(interaction_claim, row['pubmed_id'])
           end
           create_interaction_claim_link(interaction_claim, 'Drug Target Commons Interactions', 'https://drugtargetcommons.fimm.fi/')
         end
         else
-          gene_name = row['gene_names']
           gene_claim = create_gene_claim(gene_name, 'DTC gene name')
           interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-          pmid = row['pubmed_id']
-          unless pmid.nil? || pmid == '""' || pmid == "''" || pmid == '-1' || pmid =='-102' || pmid == '-103'
+          unless pmid.nil? || pmid == '""' || pmid == "''" || pmid[0] =='-'
             create_interaction_claim_publication(interaction_claim, pmid)
           end
           mechanism = row['ep_action_mode']
