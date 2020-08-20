@@ -68,29 +68,39 @@ module Genome
       end
 
       def self.name_normalizer(val)
-        val = val.downcase
+        val = val.downcase.strip
         if val == 'na' || val == 'n/a'
           'n/a'
         elsif val =~ /other/ || val =~ /unknown/
           'other/unknown'
-        elsif val == 'neutralizer' || val == 'reducer' || val == 'metabolizer' || val == 'acetylation' || val == 'chelator' || val == 'cross-linking/alkylation'
+        elsif val == 'neutralizer' || val == 'reducer' || val == 'metabolizer' || val == 'acetylation' || val == 'chelator' || val == 'cross-linking/alkylation' || val == 'regulator'
           'modulator'
-        elsif val == 'positive allosteric modulator'
+        elsif val == 'positive allosteric modulator' || val == 'regulator (upregulator)' || val == 'enhancer' || val == 'modulator (allosteric modulator)'
           'positive modulator'
-        elsif val == 'inhibitor, competitive' || val == 'gating inhibitor'
+        elsif val == 'inhibitor, competitive' || val == 'gating inhibitor' || val == 'inhibitor; antagonist; blocker' || val == 'inhibitor (gating inhibitor)'
           'inhibitor'
-        elsif val == 'channel blocker'
+        elsif val == 'channel blocker' || val == 'blocker (channel blocker)'
           'blocker'
-        elsif val == 'antisense'
+        elsif val == 'antisense' || val == 'sirna drug'
           'antisense oligonucleotide'
-        elsif val == 'binding'
+        elsif val == 'binding' || val == 'binder (minor groove binder)' || val == 'breaker'
           'binder'
-        elsif val == 'incorporation into and destabilization' || val == 'intercalation' || val == 'desensitize the target'
+        elsif val == 'incorporation into and destabilization' || val == 'intercalation' || val == 'desensitize the target' || val == 'disrupter' || val == 'intercalator'
           'negative modulator'
-        elsif val == 'inhibitory immune response'
+        elsif val == 'inhibitory immune response' || val == 'car-t-cell-therapy(dual specific)' || val == 'immunomodulator' || val == 'immunomodulator (immunostimulant)' || val == 'immune response agent' || val == 'car-t-cell-therapy' || val == 'immune response agent' || val == 'immunostimulant'
           'immunotherapy'
         elsif val == 'component of'
           'product of'
+        elsif val == 'opener'
+          'potentiator'
+        elsif val == 'stablizer'
+          'chaperone'
+        elsif val == 'reactivator'
+          'activator'
+        elsif val == 'co-agonist'
+          'agonist'
+        elsif val == 'agonis; inverse agonist'
+          'inverse agonist'
         else
           val
         end
