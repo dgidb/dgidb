@@ -78,6 +78,16 @@ module Genome
       interaction_claim.publications << publication unless interaction_claim.publications.include? publication
     end
 
+    def create_interaction_claim_publication_by_pmcid(interaction_claim, pmcid)
+      uri = URI.parse("https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/?ids=#{pmcid}&format=json&tool=DGIdb&email=help@dgidb.org")
+      res = Net::HTTP.get_response(uri)
+      raise StandardError.new(res.body) unless res.code == '200'
+      pmid = JSON.parse(res.body)['records'][0]['pmid']
+      if !pmid.nil?
+        create_interaction_claim_publication(interaction_claim, pmid)
+      end
+    end
+
     def create_interaction_claim_attribute(interaction_claim, name, value)
       DataModel::InteractionClaimAttribute.where(
         name: name.to_s.strip(),
