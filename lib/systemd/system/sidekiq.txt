@@ -5,7 +5,7 @@ After=syslog.target network.target redis-server.service
 
 [Service]
 Type=simple
-WorkingDirectory=/var/www/myapp/current/
+WorkingDirectory=/var/www/dgidb/current/
 ExecStart=/bin/bash -lc 'exec /home/ubuntu/.rbenv/shims/bundle exec sidekiq -e production'
 
 # use `systemctl reload sidekiq` to send the quiet signal to Sidekiq
