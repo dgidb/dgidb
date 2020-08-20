@@ -23,6 +23,7 @@ module Genome; module OnlineUpdaters; module Civic
           create_entries_for_evidence_item(variant, ei, source)
         end
       end
+      backfill_publication_information()
     end
 
     def importable_eid?(evidence_item)

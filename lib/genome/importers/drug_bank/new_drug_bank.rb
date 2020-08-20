@@ -83,6 +83,7 @@ module Genome; module Importers; module DrugBank;
         create_interaction_claim_link(interaction_claim, "Drug Target", "https://www.drugbank.ca/drugs/#{row['drug_id']}#targets")
         interaction_claim.save
       end
+      backfill_publication_information()
     end
   end
 end; end; end;

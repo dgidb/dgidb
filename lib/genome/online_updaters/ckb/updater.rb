@@ -60,6 +60,7 @@ module Genome; module OnlineUpdaters; module Ckb;
           end
         end
       end
+      backfill_publication_information()
     end
 
     def create_gene_claim_aliases(gene_claim, gene)
