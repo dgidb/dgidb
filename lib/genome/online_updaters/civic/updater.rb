@@ -76,7 +76,7 @@ module Genome; module OnlineUpdaters; module Civic
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           full_name: 'CIViC: Clinical Interpretation of Variants in Cancer',
           license: 'Creative Commons Public Domain Dedication (CC0 1.0 Universal)',
-          license_url: 'https://docs.civicdb.org/en/latest/about/faq.html#how-is-civic-licensed',
+          license_link: 'https://docs.civicdb.org/en/latest/about/faq.html#how-is-civic-licensed',
         }
       )
     end
