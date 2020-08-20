@@ -1,9 +1,17 @@
 module PMID
   def self.make_get_request(url)
-    uri = URI(url)
-    res = Net::HTTP.get_response(uri)
-    raise StandardError.new(res.body) unless res.code == '200'
-    res.body
+    retries = 0
+    begin
+      uri = URI(url)
+      res = Net::HTTP.get_response(uri)
+      raise StandardError.new(res.body) unless res.code == '200'
+      res.body
+    rescue
+      if (retries += 1) <= 3
+        sleep(retries)
+        retry
+      end
+    end
   end
   def self.call_pubmed_api(pubmed_id)
     http_resp = PMID.make_get_request(PMID.url_for_pubmed_id(pubmed_id))
