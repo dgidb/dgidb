@@ -13,7 +13,7 @@ module Genome
           full_name: 'My Cancer Genome',
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           license: 'Restrictive, custom, non-commercial',
-          license_url: 'https://www.mycancergenome.org/content/page/legal-policies-licensing/',
+          license_link: 'https://www.mycancergenome.org/content/page/legal-policies-licensing/',
         }
       end
 

@@ -29,7 +29,7 @@ module Genome; module OnlineUpdaters; module Go;
           source_db_name:     'GO',
           full_name:          'The Gene Ontology',
           license:            'Creative Commons Attribution 4.0 Unported License',
-          license_url:        'http://geneontology.org/docs/go-citation-policy/',
+          license_link:        'http://geneontology.org/docs/go-citation-policy/',
         }
       )
     end

@@ -1,10 +1,12 @@
 module Genome
   module Groupers
     class InteractionGrouper
-      def self.run
+      def self.run(group_from_scratch=false)
         ActiveRecord::Base.transaction do
-          puts 'reset members'
-          reset_members
+          if group_from_scratch
+            puts 'reset members'
+            reset_members
+          end
           puts 'add members'
           add_members
           puts 'add attributes'
@@ -19,12 +21,9 @@ module Genome
       end
 
       def self.add_members
-        DataModel::InteractionClaim.all.each do |interaction_claim|
-          next unless interaction_claim.interaction.nil?
+        DataModel::InteractionClaim.joins(drug_claim: [:drug], gene_claim: [:gene]).where(interaction_id: nil).each do |interaction_claim|
           drug = interaction_claim.drug_claim.drug
-          next if drug.nil?
           gene = interaction_claim.gene_claim.gene
-          next if gene.nil?
           interaction = DataModel::Interaction.where(drug_id: drug.id, gene_id: gene.id).first_or_create
           interaction_claim.interaction = interaction
           interaction_claim.interaction_claim_types.each do |t|

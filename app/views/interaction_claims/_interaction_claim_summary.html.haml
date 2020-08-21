@@ -31,7 +31,7 @@
             %td="Drug"
             %td=@interaction.drug.name
           %tr
-            %td="Interaction Types"
+            %td="Interaction Types & Directionality"
             %td=interaction_claim.interaction_claim_types.count==0 ? "n/a" : interaction_claim.interaction_claim_types.map{|ict| ict.directionality.nil? ? ict.type : "#{ict.type} (#{ict.directionality})"}.join(", ")
 
   %div(class="cell category")

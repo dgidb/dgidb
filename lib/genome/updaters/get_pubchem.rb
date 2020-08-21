@@ -125,7 +125,7 @@ module Genome
           source_trust_level_id: DataModel::SourceTrustLevel.NON_CURATED,
           full_name: 'PubChem',
           license: 'Public domain',
-          license_url: 'https://pubchemdocs.ncbi.nlm.nih.gov/downloads',
+          license_link: 'https://pubchemdocs.ncbi.nlm.nih.gov/downloads',
         ).first_or_create
       end
 
