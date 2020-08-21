@@ -89,7 +89,7 @@ module Genome; module OnlineUpdaters; module Docm
             source_db_name: 'DoCM',
             full_name: 'Database of Curated Mutations',
             license: 'Creative Commons Attribution 4.0 International License',
-            license_url: 'http://www.docm.info/about',
+            license_link: 'http://www.docm.info/about',
         }
       )
     end

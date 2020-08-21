@@ -12,7 +12,7 @@
               source_db_name: 'MyCancerGenomeClinicalTrial',
               full_name: 'MyCancerGenome Clinical Trial',
               license: 'Restrictive, custom, non-commercial',
-              license_url: 'https://www.mycancergenome.org/content/page/legal-policies-licensing/',
+              license_link: 'https://www.mycancergenome.org/content/page/legal-policies-licensing/',
           }
         end
 
