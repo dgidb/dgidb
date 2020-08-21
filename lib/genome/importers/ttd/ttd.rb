@@ -75,6 +75,7 @@ module Genome; module Importers; module TTD
 
         create_interaction_claim_link(interaction_claim, 'TTD Target Information', "http://idrblab.net/ttd/data/target/details/#{row['TargetID']}")
       end
+      backfill_publication_information()
     end
   end
 end; end; end
