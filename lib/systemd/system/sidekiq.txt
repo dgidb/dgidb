@@ -1,0 +1,36 @@
+[Unit]
+Description=sidekiq
+# start us only once the network and logging subsystems and redis are available
+After=syslog.target network.target redis-server.service
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/dgidb/current/
+ExecStart=/bin/bash -lc 'exec /home/ubuntu/.rbenv/shims/bundle exec sidekiq -e production'
+
+# use `systemctl reload sidekiq` to send the quiet signal to Sidekiq
+# at the start of your deploy process.
+ExecReload=/usr/bin/kill -TSTP $MAINPID
+
+User=ubuntu
+Group=ubuntu
+UMask=0002
+
+# Greatly reduce Ruby memory fragmentation and heap usage
+# https://www.mikeperham.com/2018/04/25/taming-rails-memory-bloat/
+Environment=MALLOC_ARENA_MAX=2
+
+# if we crash, restart
+RestartSec=1
+Restart=on-failure
+
+# output goes to /var/log/syslog
+StandardOutput=syslog
+StandardError=syslog
+
+# This will default to "bundler" if we don't specify it
+SyslogIdentifier=sidekiq
+
+[Install]
+WantedBy=multi-user.target
+
