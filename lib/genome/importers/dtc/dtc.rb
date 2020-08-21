@@ -65,6 +65,7 @@ class DtcImporter < Genome::OnlineUpdater
         end
       end
     end
+    backfill_publication_information()
   end
 end
 end; end; end
