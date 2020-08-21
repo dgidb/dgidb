@@ -48,6 +48,7 @@ module Genome; module Importers; module TTD
         if !row['MOA'].nil? and !row['MOA'] == '.'
           create_interaction_claim_type(interaction_claim, Genome::Normalizers::InteractionClaimType.name_normalzier(row['MOA']))
         end
+
         #this is not a typo but the actual column header from the source TSV
         if !row['Referecnce'].nil?
           row['Referecnce'].split('; ').each do |ref|
@@ -68,8 +69,9 @@ module Genome; module Importers; module TTD
               create_interaction_claim_publication_by_pmcid(interaction_claim, pmcid)
             end
           end
-          create_interaction_claim_link(interaction_claim, 'TTD Target Information', "http://idrblab.net/ttd/data/target/details/#{row['TargetID']}")
         end
+
+        create_interaction_claim_link(interaction_claim, 'TTD Target Information', "http://idrblab.net/ttd/data/target/details/#{row['TargetID']}")
       end
     end
   end
