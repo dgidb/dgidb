@@ -35,7 +35,7 @@ module Genome; module Importers; module TTD
 
     def import_claims
       CSV.foreach(file_path, :headers => true, :col_sep => ",") do |row|
-        next if row['Highest_status'] == 'Terminated' || row['Highest_status'] == 'Withdrawn from market' || row['Highest status'].match(/Discontinued/)
+        next if row['Highest_status'] == 'Terminated' || row['Highest_status'] == 'Withdrawn from market' || row['Highest_status'].match(/Discontinued/)
 
         gene_name, gene_abbreviation = row['Target_Name'].split(' (', 2)
         gene_abbreviation.sub!(')', '')
