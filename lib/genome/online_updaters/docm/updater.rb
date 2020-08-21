@@ -29,6 +29,7 @@ module Genome; module OnlineUpdaters; module Docm
           create_interaction_claim_link(ic, "DoCM Website", 'http://docm.info')
         end
       end
+      backfill_publication_information()
     end
 
     def parse_interaction_information(variant)

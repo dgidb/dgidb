@@ -5,13 +5,15 @@ module PMID
     raise StandardError.new(res.body) unless res.code == '200'
     res.body
   end
-  def self.call_pubmed_api(pubmed_id)
-    http_resp = PMID.make_get_request(PMID.url_for_pubmed_id(pubmed_id))
-    PubMedResponse.new(http_resp, pubmed_id.to_s)
+
+  def self.call_pubmed_api(pubmed_ids)
+    PMID.make_get_request(PMID.url_for_pubmed_ids(pubmed_ids.join(',')))
   end
-  def self.get_citation_from_pubmed_id(pubmed_id)
-    resp = PMID.call_pubmed_api(pubmed_id)
-    resp.citation
+
+  def self.get_citations_from_publications(publications)
+    pmids = publications.map{|p| p.pmid.to_s}
+    resp = PMID.call_pubmed_api(pmids)
+    responses(resp, publications)
   end
 
   def self.pubmed_url(pubmed_id)
@@ -19,14 +21,21 @@ module PMID
   end
 
   private
-  def self.url_for_pubmed_id(pubmed_id)
-    "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=#{pubmed_id}&retmode=json&tool=DGIdb&email=help@dgidb.org"
+  def self.url_for_pubmed_ids(pubmed_ids)
+    "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=#{pubmed_ids}&retmode=json&tool=DGIdb&email=help@dgidb.org"
+  end
+
+  def self.responses(http_resp, publications)
+    response_body = JSON.parse(http_resp)['result']
+    publications.each_with_object({}) do | publication, h |
+      h[publication] = PubMedResponse.new(response_body[publication.pmid.to_s]).citation
+    end
   end
 
   class PubMedResponse
     attr_reader :result
-    def initialize(response_body, pmid)
-      @result = JSON.parse(response_body)['result'][pmid]
+    def initialize(result)
+      @result = result
     end
 
     def citation

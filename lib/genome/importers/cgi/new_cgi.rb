@@ -125,6 +125,7 @@ module Genome; module Importers; module Cgi;
           end
         end
       end
+      backfill_publication_information()
     end
 
 
