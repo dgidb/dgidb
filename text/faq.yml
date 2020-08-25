@@ -55,7 +55,7 @@ faq:
         data imported into DGIdb. Drugs are first defined by ChEMBL but mapped together with drug records from other sources.
         
     - question: How are the gene and drug filters defined in DGIdb?
-      anchor: defined
+      anchor: filters
       answer: >
         The filters currently include FDA-approved drugs, anti-neoplastic drugs, immunotherapy drugs, clinically actionable genes, 
         genes included in the druggable genome definition and drug resistant genes. FDA approval status is extracted from ChEMBL. 
