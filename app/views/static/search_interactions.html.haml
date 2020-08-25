@@ -31,10 +31,10 @@
               %button.btn.btn-small.btn-danger#clear(type='button') Clear Identifiers
               %button.btn.btn-small.btn-primary#defaultIdentifiers(type='button') Replace with Demo List
     .span8{style: "float: left; margin-left: 20px"}
-      %div.search_filters#gene_search_filters{style: "height: 172px; width: 360px", class: "well"}
+      %div.search_filters#gene_search_filters{style: "height: 180px; width: 360px", class: "well"}
         %label
           Preset Filters
-        %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
+        %div{style: "background-color: white; margin-top: 5px; padding: 5px; border-radius: 5px;"}
           %div
             %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "search_form"} 
               = "  FDA Approved"
@@ -44,13 +44,15 @@
           %div
             %input{type: "checkbox", value: "checked", name: "immunotherapy", form: "search_form"} 
               = "  Immunotherapies"
-        %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
+        %div.filters{style: "margin-top: 5px; color: #337ab7; font-style: oblique;"}
           Filter the DRUGS that interact with your GENES
+        %div.filters{style: "margin-top: 5px; margin-bottom: -10px;"}
+          Definitions for these filters can be found here <a href="http://dgidb.org/faq/#filters">here.</a>
 
-      %div.search_filters#drug_search_filters{style: "height: 172px; width: 360px; display: none", class: "well"}
+      %div.search_filters#drug_search_filters{style: "height: 180px; width: 360px; display: none", class: "well"}
         %label 
           Preset Filters
-        %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px;"} 
+        %div{style: "background-color: white; margin-top: 5px; padding: 5px; border-radius: 5px;"}
           %div
             %input{type: "checkbox", value: "checked", name: "clinically_actionable", form: "search_form"} 
               = "  Clinically Actionable"
@@ -60,8 +62,10 @@
           %div
             %input{type: "checkbox", value: "checked", name: "drug_resistance", form: "search_form"} 
               = "  Drug Resistance"
-        %div.filters{style: "margin-top: 10px; margin-bottom: -10px; color: #337ab7; font-style: oblique;"}
+        %div.filters{style: "margin-top: 5px; color: #337ab7; font-style: oblique;"}
           Filter the GENES that interact with your DRUGS
+        %div.filters{style: "margin-top: 5px; margin-bottom: -10px;"}
+          Definitions for these filters can be found here <a href="http://dgidb.org/faq/#filters">here.</a>
       %div{style: "height: 220px; width: 360px", class: "well"} 
         %label
           Advanced Filters
