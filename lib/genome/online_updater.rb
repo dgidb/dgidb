@@ -74,11 +74,12 @@ module Genome
     end
 
     def backfill_publication_information
-      DataModel::Publication.where(citation: nil).find_in_batches(batch_size: 10) do |publications|
+      DataModel::Publication.where(citation: nil).find_in_batches(batch_size: 100) do |publications|
         PMID.get_citations_from_publications(publications).each do |publication, citation|
           publication.citation = citation
           publication.save
         end
+        sleep(0.3)
       end
     end
 
