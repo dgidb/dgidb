@@ -81,6 +81,9 @@ module Genome
         end
         sleep(0.3)
       end
+      DataModel::Publication.where(citation: "").each do |publication|
+        publication.destroy
+      end
     end
 
     def create_interaction_claim_attribute(interaction_claim, name, value)
