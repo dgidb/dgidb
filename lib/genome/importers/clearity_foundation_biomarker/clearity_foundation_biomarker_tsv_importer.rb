@@ -12,6 +12,8 @@ module Genome
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           source_db_name: 'ClearityFoundationBiomarkers',
           full_name: 'Clearity Foundation Biomarkers',
+          license: 'Unknown; data is no longer publicly available from site',
+          license_link: 'https://www.clearityfoundation.org/about-clearity/contact/',
         }
       end
 
@@ -36,6 +38,10 @@ module Genome
             attribute :interaction_mechanism, name: 'Mechanism of Interaction'
           end
         end.save!
+        s = DataModel::Source.find_by(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Source TSV', File.join('data', 'source_tsvs', 'ClearityFoundation_INTERACTIONS.tsv'))
+        end
       end
     end
   end

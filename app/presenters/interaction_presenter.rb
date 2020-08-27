@@ -11,8 +11,8 @@ class InteractionPresenter < SimpleDelegator
   end
 
   def na_or_types
-    types = interaction.interaction_types.map{|t| t.type}.reject{|t| t == "n/a"}
-    types.count > 0 ? types : ["n/a"]
+    types = interaction.interaction_types.map{|t| {type: t.type, directionality: t.directionality}}.reject{|t| t['type'] == "n/a"}
+    types.count > 0 ? types : [{type: "n/a", directionality: nil}]
   end
 
   def as_json(opts = {})

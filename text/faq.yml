@@ -3,8 +3,7 @@ faq:
   title_main: FAQ
   title_small: frequently asked questions
   description: > 
-    This page provides answers to a wide array of general questions. For detailed tutorials on how to use DGIdb, 
-    see the tutorials under the "<a href=getting_started>Getting started</a>" section of the help menu.
+    This page provides answers to a wide array of general questions.
   questions:
     - question: What is the goal of DGIdb?
       anchor: goal
@@ -25,13 +24,13 @@ faq:
         The data used in DGIdb is all open access and where possible made available as raw data dumps in the 
         <a href="/downloads">downloads</a> section.
 
-    - question: How can I learn more about how to use DGIdb?
-      anchor: learn
-      answer: > 
-        You can try reading: the <a href="/getting_started">'Getting Started'</a> section under the help menu,
-         the <a href="https://doi.org/10.1093/nar/gkx1143">manuscript</a>, and this FAQ.
-        Some sections also contain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
-        If all else fails, please <a href="mailto:help@dgidb.org">email us</a> with your questions.
+    #- question: How can I learn more about how to use DGIdb?
+    #  anchor: learn
+    #  answer: > 
+    #    You can try reading: the <a href="/getting_started">'Getting Started'</a> section under the help menu,
+    #     the <a href="https://doi.org/10.1093/nar/gkx1143">manuscript</a>, and this FAQ.
+    #    Some sections also contain a 'Tour' that can be activated by pressing the 'Show Tour' button in the top left.
+    #    If all else fails, please <a href="mailto:help@dgidb.org">email us</a> with your questions.
 
     - question: What types of gene names/symbols should I use as input?
       anchor: types
@@ -54,6 +53,19 @@ faq:
       answer: >
         The drug summary page shows the primary drug name, alternates names, and metadata for each gene as provided by each source of the
         data imported into DGIdb. Drugs are first defined by ChEMBL but mapped together with drug records from other sources.
+        
+    - question: How are the gene and drug filters defined in DGIdb?
+      anchor: filters
+      answer: >
+        The filters currently include FDA-approved drugs, anti-neoplastic drugs, immunotherapy drugs, clinically actionable genes, 
+        genes included in the druggable genome definition and drug resistant genes. FDA approval status is extracted from ChEMBL. 
+        Anti-neoplastic drugs are defined by inclusion in an anti-neoplastic drug–gene interaction source (e.g. My Cancer Genome), or as a 
+        drug with an anti-neoplastic attribute from its constituent source. Immunotherapy drugs are defined as any drug with an attribute of 
+        ‘immunosuppressive agent’, ‘immunomodulatory agent’ or ‘immunostimulant’. Clinically actionable genes are genes that constitute the DGIdb 
+        ‘clinically actionable’ gene category, and by definition is used to inform clinical action (e.g. the Foundation One diagnostic gene panels). 
+        Similarly, druggable genome genes are genes listed in the DGIdb ‘druggable genome’ gene category. Drug resistance genes are defined by the 
+        Gene Ontology as genes that confer drug resistance or susceptibility (GO identifier 0042493), and are maintained in the DGIdb through the 
+        ‘drug resistance’ gene category.
 
     - question: Where can I find the source code for DGIdb?
       anchor: source
@@ -74,7 +86,7 @@ faq:
         <a href="http://en.wikipedia.org/wiki/Druggability">potentially druggable</a>.
         For example, kinases are generally deemed to have high potential value for development of targeted drugs.
         For more details on the sources of druggable gene category definitions, refer to the <a href="/sources">sources</a> 
-        and <a href="getting_started">background reading</a>.
+        and <a href="about">background reading</a>.
 
     - question: What is an 'Interaction Type'?
       anchor: interaction

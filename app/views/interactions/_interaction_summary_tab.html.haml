@@ -32,8 +32,8 @@
                 %a{href: "/drugs/#{interaction.drug.name}"} 
                   =interaction.drug.name
             %tr
-              %td="Interaction Types"
-              %td=interaction.na_or_types.join(", ")
+              %td="Interaction Types & Directionality"
+              %td=interaction.na_or_types.map{|t| "#{t[:type]} (#{t[:directionality]})"}.join(", ")
             %tr
               %td="Interaction Score"
               %td=interaction.interaction_score.round(2)
