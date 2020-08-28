@@ -56,7 +56,11 @@ module Genome; module OnlineUpdaters; module Go;
       gene_claim = create_gene_claim(gene['bioentity_label'], 'Gene Symbol')
       unless gene['synonym'].nil?
         gene['synonym'].each do |synonym|
-          create_gene_claim_alias(gene_claim, synonym, 'GO Gene Synonym')
+          if synonym.include? 'UniProtKB:'
+            create_gene_claim_alias(gene_claim, synonym.gsub('UniProtKB:', ''), 'UniProtKB ID')
+          else
+            create_gene_claim_alias(gene_claim, synonym, 'GO Gene Synonym')
+          end
         end
       end
       gene_category = DataModel::GeneClaimCategory.find_by(name: category)
