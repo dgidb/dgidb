@@ -16,7 +16,7 @@ module Genome; module Importers; module HumanProteinAtlas;
 
     private
     def remove_existing_source
-      Utils::Database.delete_source('HPA')
+      Utils::Database.delete_source('HumanProteinAtlas')
     end
 
     def create_new_source
@@ -27,7 +27,7 @@ module Genome; module Importers; module HumanProteinAtlas;
             citation: 'Uhlén M, Fagerberg L, Hallström BM, et al. Proteomics. Tissue-based map of the human proteome. Science. 2015;347(6220):1260419. doi:10.1126/science.1260419. PMID: 25613900',
             source_db_version:  '19.3',
             source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE,
-            source_db_name: 'HPA',
+            source_db_name: 'HumanProteinAtlas',
             full_name: 'The Human Protein Atlas',
             license: 'Creative Commons Attribution-ShareAlike 3.0 International License',
             license_link: 'https://www.proteinatlas.org/about/licence',
