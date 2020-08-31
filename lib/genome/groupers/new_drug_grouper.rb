@@ -1,0 +1,266 @@
+require 'net/https'
+
+module Genome
+  module Groupers
+    class NewDrugGrouper
+      attr_reader :term_to_record_dict
+      def initialize
+        @term_to_record_dict = {}
+      end
+
+      def run
+        DataModel::DrugClaim.eager_load(:drug_claim_aliases, :drug_claim_attributes).where(drug_id: nil).each do |drug_claim|
+        #DataModel::DrugClaim.where(drug_id: nil).each do |drug_claim|
+          record = find_normalized_record_for_term(drug_claim.primary_name)
+          if record.nil?
+            record = find_normalized_record_for_term(drug_claim.name)
+            if record.nil?
+              records = drug_claim.drug_claim_aliases.map{|a| find_normalized_record_for_term(a.alias)}.uniq.compact
+              if records.size == 1
+                record = records.first
+              else
+                #do we do anything here (aka aliases don't agree on a single drug)
+              end
+            end
+          end
+
+          unless record.nil?
+            if record.is_a?(DataModel::Drug)
+              drug = record
+            else
+              drug = DataModel::Drug.where(concept_id: record['concept_identifier'], name: record['label']).first_or_create
+              record['aliases'].each do |a|
+                DataModel::DrugAlias.where(alias: a.upcase, drug_id: drug.id).first_or_create
+              end
+              #QUESTION: do we want to add other_identifiers as drug aliases? as drug attributes?
+              #set fda_approved
+              #set immunotherapy
+              #set anti_neoplastic
+              drug.save
+            end
+            drug_claim.drug_id = drug.id
+            #QUESTION: do we want to pull up drug claim attributes?
+            drug_claim.save
+          end
+        end
+      end
+
+      def find_normalized_record_for_term(term)
+        term = term.upcase
+        #TODO: delete once 404 bug is fixed
+        if term.include? '/'
+          return nil
+        elsif term.include? '\''
+          return nil
+        end
+        if term_to_record_dict.has_key? term
+          return term_to_record_dict[term]
+        end
+        matches = normalizer_matches_for_term(term)
+        normalized_record = get_normalized_record_from_matches(matches)
+        term_to_record_dict[term] = normalized_record
+        return normalized_record
+      end
+
+      def normalizer_matches_for_term(term)
+        uri = URI.parse(normalizer_url(ERB::Util.url_encode(term)))
+        uri.port = 8000
+        res = Net::HTTP.get_response(uri)
+        if res.code != '200'
+          raise StandardError.new("Request Failed!")
+        end
+        return JSON.parse(res.body)['normalizer_matches']
+      end
+
+      def normalizer_url(term)
+        "http://127.0.0.1/query/#{term}"
+      end
+
+      def get_normalized_record_from_matches(matches)
+        if matches['ChEMBL']['match_type'] >=80
+          return get_normalized_record_for_chembl_match(matches['ChEMBL'])
+        end
+
+        other_matches = matches.select{|t, m| m['match_type'] > 0}
+        if other_matches.size > 0
+          best_match_type = other_matches.map{|t, m| m['match_type']}.max
+          best_matches = other_matches.select{|t, m| m['match_type'] == best_match_type}
+          return get_normalized_record_for_multi_matches(best_matches)
+        end
+
+        return nil
+      end
+
+      def get_normalized_record_for_chembl_match(chembl_match)
+        records = chembl_match['records']
+        if records.size == 1
+          return get_normalized_record_or_drug_for_chembl_id(records.first['concept_identifier'])
+        else
+          chembl_ids = records.map{|r| r['concept_identifier']}.uniq
+          if chembl_ids.size == 1
+            return get_normalized_record_or_drug_for_chembl_id(chembl_ids.first)
+          else
+            records_with_highest_max_phase = select_records_with_highest_max_phase(records)
+            if records_with_highest_max_phase.size == 1
+              return get_normalized_record_or_drug_for_chembl_id(records_with_highest_max_phase.first['concept_identifier'])
+            else
+              records_with_trade_name = records_with_highest_max_phase.select{|r| !r['trade_name'].nil?}
+              if records_with_trade_name.size == 1
+                return get_normalized_record_or_drug_for_chembl_id(records_with_trade_name.first['concept_identifier'])
+              elsif records_with_trade_name.size == 0
+                return get_normalized_record_or_drug_for_chembl_id(get_min_chembl_id(chembl_ids_for_records(records_with_highest_max_phase)))
+              else
+                return get_normalized_record_or_drug_for_chembl_id(get_min_chembl_id(chembl_ids_for_records(records_with_trade_name)))
+              end
+            end
+          end
+        end
+      end
+
+      def get_normalized_record_or_drug_for_chembl_id(chembl_id)
+        drug = DataModel::Drug.find_by(concept_id: chembl_id)
+        if drug.nil?
+          return get_normalized_record_for_chembl_id(chembl_id)
+        else
+          return drug
+        end
+      end
+
+      def get_normalized_record_for_chembl_id(chembl_id)
+        if term_to_record_dict.has_key? chembl_id
+          return term_to_record_dict[chembl_id]
+        end
+        matches = normalizer_matches_for_term(chembl_id)
+        good_matches = matches.select{|t, m| m['match_type'] >= 80}
+        #this is to catch cases where the chembl_id was entered wrong in other
+        #resources
+        priority.each do |p|
+          if good_matches.has_key? p
+            best_match = good_matches[p]
+            best_record = best_match['records'].first
+            best_match['records'][1..-1] do |r|
+              best_record['aliases'].concat(r['aliases'])
+              best_record['other_identifiers'].concat(r['other_identifiers'])
+            end
+            good_matches.delete(p)
+            good_matches.each do |t, m|
+              m['records'].each do |r|
+                best_record['aliases'].concat(r['aliases'])
+                best_record['other_identifiers'].concat(r['other_identifiers'])
+              end
+            end
+            if p!= 'ChEMBL'
+              #we didn't actually find a ChEMBL record for this chembl_id, the
+              #chembl_id doesn't actually exist and should be removed as an
+              #alias
+              best_record['aliases'].delete(chembl_id)
+              best_record['other_identifiers'].delete(chembl_id)
+            end
+            term_to_record_dict[best_record['concept_identifier']] = best_record
+            return best_record
+          end
+        end
+      end
+
+      def get_normalized_record_for_multi_matches(matches)
+        #2. a.
+        matches_with_chembl_id = matches.select{|t, m| chembl_ids_for_records(m['records']).size > 0}
+        if matches_with_chembl_id.size == 0
+          matches_with_chembl_id = matches
+        end
+
+        #2. b.
+        highest_priority_normalizer, highest_priority_match = select_match_with_highest_priority(matches_with_chembl_id)
+        #2. b. i.
+        if highest_priority_normalizer == 'ChEMBL'
+          return get_normalized_record_for_chembl_match(highest_priority_match)
+        else
+          #2. b. ii.
+          if highest_priority_match['records'].size == 1
+            chembl_ids = chembl_ids_for_records(highest_priority_match['records'])
+            #2. b. ii. 1.
+            if chembl_ids.size == 1
+              return get_normalized_record_or_drug_for_chembl_id(chembl_ids.first)
+            #2. b. ii. 2.
+            elsif chembl_ids.size == 0
+              return highest_priority_match['records'].first
+            else
+              #this shouldn't happen (record has conflicting chembl ids)
+            end
+          #2. b. iii.
+          elsif highest_priority_match['records'].size > 1
+            chembl_ids = chembl_ids_for_records(highest_priority_match['records'])
+
+            #2. b. iii. 1. a 
+            if chembl_ids.size == 1
+              return get_normalized_record_or_drug_for_chembl_id(chembl_ids.first)
+            #2. b. iii. 1. b.
+            elsif chembl_ids.size > 1
+              normalized_records = chembl_ids.each_with_object([]) do |chembl_id, a|
+                a << get_normalized_record_for_chembl_id(chembl_id)
+              end
+              records_with_highest_max_phase = select_records_with_highest_max_phase(normalized_records)
+              if records_with_highest_max_phase.size == 1
+                return records_with_highest_max_phase.first
+              else
+                if highest_priority_match['match_type'] >= 40
+                  records_with_trade_name = records_with_highest_max_phase.select{|r| !r['trade_name'].nil?}
+                  if records_with_trade_name.size == 1
+                    return records_with_trade_name.first
+                  elsif records_with_trade_name.size == 0
+                    return get_normalized_record_or_drug_for_chembl_id(get_min_chembl_id(chembl_ids_for_records(records_with_highest_max_phase)))
+                  else
+                    return get_normalized_record_or_drug_for_chembl_id(get_min_chembl_id(chembl_ids_for_records(records_with_trade_name)))
+                  end
+                else
+                  return nil
+                end
+              end
+            else
+              #2. b. iii. 2.
+              return nil
+            end
+          else
+            #this shouldn't happen (normalizer has no records)
+          end
+        end
+      end
+
+      def select_records_with_highest_max_phase(records)
+        highest_max_phase = records.sort_by{|r| r['max_phase']}.reverse.first['max_phase']
+        return records.select{|r| r['max_phase'] == highest_max_phase}
+      end
+
+      def get_min_chembl_id(chembl_ids)
+        min_chembl_id = chembl_ids.map{|i| i.gsub('chembl:CHEMBL', '').to_i}.min
+        return chembl_ids.select{|i| i == "chembl:CHEMBL#{min_chembl_id}"}.first
+      end
+
+      def select_match_with_highest_priority(matches)
+        priority.each do |p|
+          if matches.keys.include? p
+            return p, matches[p]
+          end
+        end
+      end
+
+      def priority
+        return ['ChEMBL', 'Wikidata']
+      end
+
+      def chembl_ids_for_records(records)
+        chembl_ids = records.each_with_object([]) do |r, ids|
+          if r['concept_identifier'].start_with?('chembl:')
+            ids << r['concept_identifier']
+          end
+          r['other_identifiers'].each do |i|
+            if i.start_with?('chembl:')
+              ids << i
+            end
+          end
+        end
+        return chembl_ids.uniq
+      end
+    end
+  end
+end
