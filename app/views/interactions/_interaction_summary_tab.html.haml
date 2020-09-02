@@ -33,7 +33,7 @@
                   =interaction.drug.name
             %tr
               %td="Interaction Types & Directionality"
-              %td=interaction.na_or_types.map{|t| "#{t[:type]} (#{t[:directionality]})"}.join(", ")
+              %td=interaction.na_or_types.map{|t| t[:directionality].nil? ? t[:type] : "#{t[:type]} (#{t[:directionality]})"}.join(', ')
             %tr
               %td="Interaction Score"
               %td=interaction.interaction_score.round(2)

@@ -24,6 +24,15 @@ module Genome
       ).first_or_create
     end
 
+    def create_gene_claim_category(gene_claim, category)
+      gene_category = DataModel::GeneClaimCategory.find_by(name: category)
+      if gene_category.nil?
+        raise StandardError.new("GeneClaimCategory with name #{category} does not exist. If this is a valid category, please create its database entry manually before running the importer.")
+      else
+        gene_claim.gene_claim_categories << gene_category unless gene_claim.gene_claim_categories.include? gene_category
+      end
+    end
+
     def create_drug_claim(name, primary_name, nomenclature)
       DataModel::DrugClaim.where(
         name: name.strip(),
@@ -83,11 +92,15 @@ module Genome
     end
 
     def backfill_publication_information
-      DataModel::Publication.where(citation: nil).find_in_batches(batch_size: 10) do |publications|
+      DataModel::Publication.where(citation: nil).find_in_batches(batch_size: 100) do |publications|
         PMID.get_citations_from_publications(publications).each do |publication, citation|
           publication.citation = citation
           publication.save
         end
+        sleep(0.3)
+      end
+      DataModel::Publication.where(citation: "").each do |publication|
+        publication.destroy
       end
     end
 
