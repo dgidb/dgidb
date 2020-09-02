@@ -45,8 +45,7 @@ module Genome; module OnlineUpdaters; module Pharos;
             gene_claim = create_gene_claim(gene['sym'], 'Gene Symbol')
             create_gene_claim_alias(gene_claim, gene['name'], 'Gene Name')
             create_gene_claim_alias(gene_claim, gene['uniprot'], 'UniProt ID')
-            gene_category = DataModel::GeneClaimCategory.find_by(name: category.upcase)
-            gene_claim.gene_claim_categories << gene_category unless gene_claim.gene_claim_categories.include? gene_category
+            create_gene_claim_category(gene_claim, category)
             start += count
             genes = api_client.genes_for_category(category, start, count)
           end
