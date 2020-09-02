@@ -26,7 +26,9 @@ module Genome
 
     def create_gene_claim_category(gene_claim, category)
       gene_category = DataModel::GeneClaimCategory.find_by(name: category)
-      unless gene_category.nil?
+      if gene_category.nil?
+        raise StandardError.new("GeneClaimCategory with name #{category} does not exist. If this is a valid category, please create its database entry manually before running the importer.")
+      else
         gene_claim.gene_claim_categories << gene_category unless gene_claim.gene_claim_categories.include? gene_category
       end
     end
