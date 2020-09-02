@@ -33,6 +33,10 @@ module Genome
             end
           end
         end
+        # these actions might be unnecessary if we create interaction types and publications directly
+        DataModel::InteractionAttribute.where(name: 'PMID').destroy_all
+        DataModel::InteractionAttribute.where(name: 'PubMed ID for Interaction').destroy_all
+        DataModel::InteractionAttribute.where(name: 'Interaction Type').destroy_all
       end
 
       def self.add_member(interaction_claim)
@@ -40,7 +44,6 @@ module Genome
         gene = interaction_claim.gene_claim.gene
         interaction = DataModel::Interaction.where(drug_id: drug.id, gene_id: gene.id).first_or_create
         interaction_claim.interaction = interaction
-        interaction_claim.save
 
         #roll types up to interaction level
         interaction_claim.interaction_claim_types.each do |t|
@@ -71,12 +74,9 @@ module Genome
           interaction.publications << pub unless interaction.publications.include? pub
         end
 
+        interaction_claim.save
         interaction.save
       end
-      # these actions might be unnecessary if we create interaction types and publications directly
-      DataModel::InteractionAttribute.where(name: 'PMID').destroy_all
-      DataModel::InteractionAttribute.where(name: 'PubMed ID for Interaction').destroy_all
-      DataModel::InteractionAttribute.where(name: 'Interaction Type').destroy_all
     end
   end
 end
