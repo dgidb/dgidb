@@ -18,7 +18,7 @@
     %div{class: "item-panel", style:"margin-bottom: 11px"}
       %h4
         Main Info:
-      %div{style: "height: 100px; overflow-y: scroll; margin-bottom: 5px;"}
+      %div{style: "height: 135px; overflow-y: scroll; margin-bottom: 5px;"}
         %table{class: "table table-condensed table-striped", id: "table_main"}
           %tbody
             %tr
@@ -34,10 +34,13 @@
             %tr
               %td="Interaction Types & Directionality"
               %td=interaction.na_or_types.map{|t| t[:directionality].nil? ? t[:type] : "#{t[:type]} (#{t[:directionality]})"}.join(', ')
+            %tr
+              %td="Interaction Score"
+              %td=interaction.interaction_score.round(2)
     %div(class="item-panel")
       %h4
         Publications:
-      %div{style: "height: 295px; overflow-y: scroll; "}
+      %div{style: "height: 260px; overflow-y: scroll; "}
         %table{class: "table table-condensed table-striped", id:"table_publications"}
           -interaction.publications.each do |publication|
             %tr
