@@ -2,13 +2,16 @@ module Genome
   module Groupers
     class InteractionGrouper
       def self.run(group_from_scratch=false)
-        ActiveRecord::Base.transaction do
-          if group_from_scratch
+        if group_from_scratch
+          ActiveRecord::Base.transaction do
             puts 'reset members'
             reset_members
+            puts 'add members'
+            add_members(group_from_scratch)
           end
+        else
           puts 'add members'
-          add_members
+          add_members(group_from_scratch)
         end
       end
 
@@ -18,10 +21,16 @@ module Genome
         DataModel::Interaction.destroy_all
       end
 
-      def self.add_members
+      def self.add_members(group_from_scratch)
         DataModel::InteractionClaim.eager_load(:interaction_claim_types, :source, :interaction_claim_attributes, :publications).joins(drug_claim: [:drug], gene_claim: [:gene]).where(interaction_id: nil).in_batches do |interaction_claims|
           interaction_claims.each do |interaction_claim|
-            add_member(interaction_claim)
+            if group_from_scratch
+              add_member(interaction_claim)
+            else
+              ActiveRecord::Base.transaction do
+                add_member(interaction_claim)
+              end
+            end
           end
         end
       end
