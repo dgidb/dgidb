@@ -21,7 +21,7 @@ module Genome
       end
 
       def self.add_members
-        DataModel::InteractionClaim.joins(drug_claim: [:drug], gene_claim: [:gene]).where(interaction_id: nil).each do |interaction_claim|
+        DataModel::InteractionClaim.eager_load(:interaction_claim_types, :source, :interaction_claim_attributes, :publications).joins(drug_claim: [:drug], gene_claim: [:gene]).where(interaction_id: nil).each do |interaction_claim|
           drug = interaction_claim.drug_claim.drug
           gene = interaction_claim.gene_claim.gene
           interaction = DataModel::Interaction.where(drug_id: drug.id, gene_id: gene.id).first_or_create
