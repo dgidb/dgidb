@@ -22,12 +22,14 @@ module Genome
       end
 
       def self.add_members(group_from_scratch)
-        DataModel::InteractionClaim.eager_load(:interaction_claim_types, :source, :interaction_claim_attributes, :publications).joins(drug_claim: [:drug], gene_claim: [:gene]).where(interaction_id: nil).each do |interaction_claim|
-          if group_from_scratch
-            add_member(interaction_claim)
-          else
-            ActiveRecord::Base.transaction do
+        DataModel::InteractionClaim.eager_load(:interaction_claim_types, :source, :interaction_claim_attributes, :publications).joins(drug_claim: [:drug], gene_claim: [:gene]).where(interaction_id: nil).in_batches do |interaction_claims|
+          interaction_claims.each do |interaction_claim|
+            if group_from_scratch
               add_member(interaction_claim)
+            else
+              ActiveRecord::Base.transaction do
+                add_member(interaction_claim)
+              end
             end
           end
         end
