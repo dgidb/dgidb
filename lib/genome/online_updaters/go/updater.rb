@@ -63,8 +63,7 @@ module Genome; module OnlineUpdaters; module Go;
           end
         end
       end
-      gene_category = DataModel::GeneClaimCategory.find_by(name: category)
-      gene_claim.gene_claim_categories << gene_category unless gene_claim.gene_claim_categories.include? gene_category
+      create_gene_claim_category(gene_claim, category)
     end
 
     def categories
