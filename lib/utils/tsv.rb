@@ -106,6 +106,7 @@ module Utils
         'drug_claim_primary_name',
         'drug_name',
         'drug_chembl_id',
+        'interaction_group_score',
         'PMIDs',
       ].join("\t")
       file_handle.puts(header)
@@ -123,6 +124,7 @@ module Utils
         interaction_claim.drug_claim.primary_name,
         interaction_claim.drug ? interaction_claim.drug.name : "",
         interaction_claim.drug ? interaction_claim.drug.chembl_id : "",
+        interaction_claim.interaction.present? ? interaction_claim.interaction.interaction_score.round(2) : "",
         interaction_claim.publications ? interaction_claim.publications.map(&:pmid).join(',') : "",
       ].join("\t")
 
