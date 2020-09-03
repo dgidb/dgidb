@@ -2,7 +2,7 @@ require 'genome/online_updater'
 
 module Genome; module Importers; module HumanProteinAtlas;
   class HumanProteinAtlas < Genome::OnlineUpdater
-    attr_reader :file_path, :source
+    attr_reader :file_path, :source, :categories
 
     def initialize(file_path)
       @file_path = file_path
@@ -57,7 +57,7 @@ module Genome; module Importers; module HumanProteinAtlas;
     end
 
     def categories
-      {
+      @categories ||= {
         'Enzymes' => 'ENZYME',
         'Transporters' => 'TRANSPORTER',
         'G-protein coupled receptors' => 'G PROTEIN COUPLED RECEPTOR',
