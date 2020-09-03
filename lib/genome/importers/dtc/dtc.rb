@@ -55,10 +55,10 @@ class DtcImporter < Genome::OnlineUpdater
         gene_name.split(',').each do |indv_gene|
           gene_claim = create_gene_claim(indv_gene, 'DTC Gene Name')
           interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-          unless pmid.nil? || pmid == '""' || pmid == "''" || pmid[0] =='-' || pmid =='15288657'
-            create_interaction_claim_publication(interaction_claim, row['pubmed_id'])
+          unless pmid.nil? || pmid == "" || pmid == '""' || pmid == "''" || pmid[0] =='-' || pmid =='15288657'
+            create_interaction_claim_publication(interaction_claim, pmid)
           end
-          unless mechanism.nil?
+          unless mechanism.nil? || mechanism == ""
             create_interaction_claim_type(interaction_claim, mechanism)
           end
           create_interaction_claim_link(interaction_claim, 'Drug Target Commons Interactions', 'https://drugtargetcommons.fimm.fi/')
