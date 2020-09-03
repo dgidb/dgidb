@@ -49,8 +49,7 @@ module Genome; module Importers; module HumanProteinAtlas;
 
         row['Protein class'].split(', ').each do |c|
           if categories.has_key? c
-            gene_category = DataModel::GeneClaimCategory.find_by(name: categories[c])
-            gene_claim.gene_claim_categories << gene_category unless gene_claim.gene_claim_categories.include? gene_category
+            create_gene_claim_category(gene_claim, categories[c])
           end
         end
       end
