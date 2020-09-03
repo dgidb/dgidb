@@ -42,13 +42,23 @@ module Genome; module OnlineUpdaters; module Pharos;
         genes = api_client.genes_for_category(category, start, count)
         while genes.size > 0
           genes.each do |gene|
-            gene_claim = create_gene_claim(gene['sym'], 'Gene Symbol')
-            create_gene_claim_alias(gene_claim, gene['name'], 'Gene Name')
-            create_gene_claim_alias(gene_claim, gene['uniprot'], 'UniProt ID')
-            create_gene_claim_category(gene_claim, category)
-            start += count
-            genes = api_client.genes_for_category(category, start, count)
+            unless gene['sym'].nil?
+              gene_claim = create_gene_claim(gene['sym'], 'Gene Symbol')
+              create_gene_claim_alias(gene_claim, gene['name'], 'Gene Name')
+              create_gene_claim_alias(gene_claim, gene['uniprot'], 'UniProt ID')
+              normalized_category = case category
+              when 'GPCR'
+                'G PROTEIN COUPLED RECEPTOR'
+              when 'Nuclear Receptor'
+                'NUCLEAR HORMONE RECEPTOR'
+              else
+                category.upcase
+              end
+              create_gene_claim_category(gene_claim, normalized_category)
+            end
           end
+          start += count
+          genes = api_client.genes_for_category(category, start, count)
         end
       end
     end
