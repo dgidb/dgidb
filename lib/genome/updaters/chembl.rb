@@ -83,7 +83,7 @@ module Genome
            source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
            full_name: 'The ChEMBL Bioactivity Database',
            license: 'Creative Commons Attribution-Share Alike 3.0 Unported License',
-           license_url: 'https://chembl.gitbook.io/chembl-interface-documentation/about',
+           license_link: 'https://chembl.gitbook.io/chembl-interface-documentation/about',
          }
         )
       end

@@ -29,7 +29,7 @@ module Genome; module Importers; module Ensembl;
         source_db_name:     'Ensembl',
         full_name:          'Ensembl',
         license: 'Unrestricted license, pass-through constraints',
-        license_url:        'https://useast.ensembl.org/info/about/legal/disclaimer.html',
+        license_link:        'https://useast.ensembl.org/info/about/legal/disclaimer.html',
       ).first_or_create
     end
 

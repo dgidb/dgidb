@@ -26,6 +26,7 @@ class InteractionPresenter < SimpleDelegator
       interaction_types: interaction.interaction_types.map(&:type),
       interaction_direction: interaction.interaction_types.map(&:directionality),
       sources: interaction.sources.map(&:source_db_name),
+      score: interaction.interaction_score.round(2),
     }
   end
 end

@@ -179,7 +179,7 @@ module Utils
 
     private
     def self.license_restricted
-      @@license_restricted ||= %w[PharmGKB DrugBank]
+      @@license_restricted ||= %w[DrugBank]
     end
 
     def self.license_restricted? (source_name)

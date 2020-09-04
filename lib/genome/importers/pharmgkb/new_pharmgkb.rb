@@ -75,6 +75,7 @@ module Genome; module Importers; module Pharmgkb;
           end
         end
       end
+      backfill_publication_information()
     end
 
 

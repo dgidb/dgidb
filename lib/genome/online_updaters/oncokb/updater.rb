@@ -29,7 +29,7 @@ module Genome; module OnlineUpdaters; module Oncokb;
           source_type_id: DataModel::SourceType.INTERACTION,
           full_name: 'OncoKB: A Precision Oncology Knowledge Base',
           license: 'Restrictive, non-commercial',
-          license_url: 'https://www.oncokb.org/terms',
+          license_link: 'https://www.oncokb.org/terms',
         }
       )
     end
