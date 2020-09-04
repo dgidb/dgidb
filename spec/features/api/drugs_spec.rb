@@ -14,12 +14,12 @@ end
 
 describe 'drug details' do
   def setup_drug
-    Fabricate(:drug, chembl_id: 'CHEMBL1237026')
+    Fabricate(:drug, concept_id: 'CHEMBL1237026')
   end
 
   it 'should load example URL with a valid 200 status code' do
     drug = setup_drug
-    visit "/api/v2/drugs/#{drug.chembl_id}"
+    visit "/api/v2/drugs/#{drug.concept_id}"
     expect(page.status_code).to eq(200)
   end
 end
