@@ -8,9 +8,12 @@ module Genome
         @term_to_record_dict = {}
       end
 
-      def run
-        DataModel::DrugClaim.eager_load(:drug_claim_aliases, :drug_claim_attributes).where(drug_id: nil).each do |drug_claim|
-        #DataModel::DrugClaim.where(drug_id: nil).each do |drug_claim|
+      def run(source_id=nil)
+        claims = DataModel::DrugClaim.eager_load(:drug_claim_aliases, :drug_claim_attributes).where(drug_id: nil)
+        unless source_id.nil?
+          claims = claims.where(source_id: source_id)
+        end
+        claims.each do |drug_claim|
           record = find_normalized_record_for_term(drug_claim.primary_name)
           if record.nil?
             record = find_normalized_record_for_term(drug_claim.name)
