@@ -63,15 +63,17 @@ module Genome; module Importers; module Fda;
 
     def create_interaction_claims
       CSV.foreach(file_path, encoding:'iso-8859-1:utf-8', :headers => true, :col_sep => "\t") do |row|
-        if row['Biomarker'].include?('-')
+        if row['Biomarker'].include?(':')
           fusion_protein = row['Biomarker']
-          row['Biomarker'].split('-').each do |indv_gene|
+          row['Biomarker'].split(':').each do |indv_gene|
             gene_claim = create_gene_claim(indv_gene, 'FDA Gene Name')
             create_drug_claims(row, gene_claim, fusion_protein)
           end
         else
-          gene_claim = create_gene_claim(row['Biomarker'], 'FDA Gene Name')
-          create_drug_claims(row, gene_claim, nil)
+          row['Biomarker'].split(',').each do |indv_gene|
+            gene_claim = create_gene_claim(indv_gene, 'FDA Gene Name')
+            create_drug_claims(row, gene_claim, nil)
+          end
         end
       end
     end
