@@ -50,7 +50,7 @@ class DrugPresenter < SimpleDelegator
   def as_json(opts = {})
     {
       name: drug.name,
-      chembl_id: drug.chembl_id,
+      concept_id: drug.concept_id,
       fda_approved: drug.fda_approved,
       immunotherapy: drug.immunotherapy,
       anti_neoplastic: drug.anti_neoplastic,

@@ -97,7 +97,7 @@ module Utils
 
     def self.print_interaction_claim_header(file_handle)
       header = ['gene_name','gene_claim_name','entrez_id','interaction_claim_source',
-        'interaction_types','drug_claim_name','drug_claim_primary_name','drug_name','drug_chembl_id',
+        'interaction_types','drug_claim_name','drug_claim_primary_name','drug_name','drug_concept_id',
         'PMIDs'].join("\t")
       file_handle.puts(header)
     end
@@ -113,7 +113,7 @@ module Utils
         interaction_claim.drug_claim.name,
         interaction_claim.drug_claim.primary_name,
         interaction_claim.drug ? interaction_claim.drug.name : "",
-        interaction_claim.drug ? interaction_claim.drug.chembl_id : "",
+        interaction_claim.drug ? interaction_claim.drug.concept_id : "",
         interaction_claim.publications ? interaction_claim.publications.map(&:pmid).join(',') : "",
       ].join("\t")
 
@@ -131,7 +131,7 @@ module Utils
           interaction.gene.name,
           interaction.gene.entrez_id,
           interaction.drug.name,
-          interaction.drug.chembl_id,
+          interaction.drug.concept_id,
           # interaction.directionality.join(";"), # Add this back in once #387 is resolved
           interaction.sources.count
       ].join("\t")
@@ -159,18 +159,18 @@ module Utils
     end
 
     def self.print_drug_header(file_handle)
-      header = ['drug_claim_name','drug_name','chembl_id','drug_claim_source'].join("\t")
+      header = ['drug_claim_name','drug_name','concept_id','drug_claim_source'].join("\t")
       file_handle.puts(header)
     end
 
     def self.print_drug_row(file_handle, drug_claim)
       drug_name = drug_claim.drug ? drug_claim.drug.name : ""
-      chembl_id = drug_claim.drug ? drug_claim.drug.chembl_id : ""
+      concept_id = drug_claim.drug ? drug_claim.drug.concept_id : ""
       return if license_restricted? drug_claim.source.source_db_name
       row = [
         drug_claim.name,
         drug_name,
-        chembl_id,
+        concept_id,
         drug_claim.source.source_db_name,
       ].join("\t")
 

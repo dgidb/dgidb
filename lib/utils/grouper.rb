@@ -17,7 +17,7 @@ module Utils
       end
       grouper = results[:grouper]
       if grouper.direct_multimatch.any?
-        return DataModel::Drug.where('upper(name) in (?) or chembl_id IN (?)', drug_claim.names, drug_claim.names)
+        return DataModel::Drug.where('upper(name) in (?) or concept_id IN (?)', drug_claim.names, drug_claim.names)
       elsif grouper.molecule_multimatch.any?
         return DataModel::ChemblMolecule.where('chembl_id IN (?)', drug_claim.names)
       elsif grouper.indirect_multimatch.any?
