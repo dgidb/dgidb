@@ -35,12 +35,43 @@ module Genome
               if record['withdrawn'] == false && record['max_phase'] == 4
                 drug.approved = true
               end
-              #QUESTION: do we want to add other_identifiers as drug aliases? as drug attributes?
-              drug.save
+              record['other_identifiers'].each do |i|
+                DataModel::DrugAlias.where(alias: i, drug_id: drug.id).first_or_create
+              end
             end
             drug_claim.drug_id = drug.id
-            #QUESTION: do we want to pull up drug claim attributes?
+            add_drug_claim_attributes_to_drug(drug_claim, drug)
+            drug.save
             drug_claim.save
+          end
+        end
+      end
+
+      def add_drug_claim_attributes_to_drug(drug_claim, drug)
+        drug_attributes = drug.drug_attributes.pluck(:name, :value)
+                              .map { |drug_attribute| drug_attribute.map(&:upcase) }
+                              .to_set
+        drug_claim.drug_claim_attributes.each do |drug_claim_attribute|
+          unless drug_attributes.member? [drug_claim_attribute.name.upcase, drug_claim_attribute.value.upcase]
+            drug_attribute = DataModel::DrugAttribute.create(name: drug_claim_attribute.name,
+                                                             value: drug_claim_attribute.value,
+                                                             drug: drug
+            )
+            drug_attribute.sources << drug_claim.source
+          else
+            drug_attribute = DataModel::DrugAttribute.where('upper(name) = ? and upper(value) = ?',
+                                                            drug_claim_attribute.name.upcase,
+                                                            drug_claim_attribute.value.upcase
+            ).first
+            if drug_attribute.nil? # this can occur when a character (e.g. α) is treated differently by upper and upcase
+              drug_attribute = DataModel::DrugAttribute.where('lower(name) = ? and lower(value) = ?',
+                                                              drug_claim_attribute.name.downcase,
+                                                              drug_claim_attribute.value.downcase
+              ).first
+            end
+            unless drug_attribute.sources.member? drug_claim.source
+              drug_attribute.sources << drug_claim.source
+            end
           end
         end
       end
