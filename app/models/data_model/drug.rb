@@ -35,9 +35,7 @@ module DataModel
 
     private
     def populate_flags
-      if self.fda_approved.nil?  # This assumes that the flag will get updated elsewhere if the molecule record changes
-        self.fda_approved = (self.chembl_molecule.max_phase == 4 && !self.chembl_molecule.withdrawn_flag)
-      end
+      self.approved = false
       self.immunotherapy = false
       self.anti_neoplastic = false
     end

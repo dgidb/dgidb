@@ -58,7 +58,7 @@ class InteractionClaimsController < ApplicationController
   end
 
   def unpack_locals(params)
-    @preset_fda = (params[:fda_approved_drug] == "checked" ? "FDA Approved" : "")
+    @preset_fda = (params[:approved_drug] == "checked" ? "Approved" : "")
     @preset_neo = (params[:anti_neoplastic] == "checked" ? "Anti-neoplastics" : "")
     @preset_immuno = (params[:immunotherapy] == "checked" ? "Immunotherapies" : "")
     @preset_clin = (params[:clinically_actionable] == "checked" ? "Clinically Actionable" : "")

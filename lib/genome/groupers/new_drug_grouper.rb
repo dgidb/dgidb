@@ -32,10 +32,10 @@ module Genome
               record['aliases'].each do |a|
                 DataModel::DrugAlias.where(alias: a.upcase, drug_id: drug.id).first_or_create
               end
+              if record['withdrawn'] == false && record['max_phase'] == 4
+                drug.approved = true
+              end
               #QUESTION: do we want to add other_identifiers as drug aliases? as drug attributes?
-              #set fda_approved
-              #set immunotherapy
-              #set anti_neoplastic
               drug.save
             end
             drug_claim.drug_id = drug.id

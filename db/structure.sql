@@ -216,7 +216,7 @@ CREATE TABLE public.drug_claims (
 CREATE TABLE public.drugs (
     id text NOT NULL,
     name text NOT NULL,
-    fda_approved boolean,
+    approved boolean,
     immunotherapy boolean,
     anti_neoplastic boolean,
     concept_id character varying NOT NULL
@@ -1868,6 +1868,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200608185423'),
 ('20200615173440'),
 ('20200811160413'),
-('20200901140610');
+('20200901140610'),
+('20200904144705');
 
 
