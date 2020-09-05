@@ -1,9 +1,17 @@
 module PMID
   def self.make_get_request(url)
-    uri = URI(url)
-    res = Net::HTTP.get_response(uri)
-    raise StandardError.new(res.body) unless res.code == '200'
-    res.body
+    retries = 0
+    begin
+      uri = URI(url)
+      res = Net::HTTP.get_response(uri)
+      raise StandardError.new(res.body) unless res.code == '200'
+      res.body
+    rescue
+      if (retries += 1) <= 3
+        sleep(retries)
+        retry
+      end
+    end
   end
 
   def self.call_pubmed_api(pubmed_ids)
@@ -39,7 +47,11 @@ module PMID
     end
 
     def citation
-      [first_author, year, article_title, journal].compact.join(', ')
+      if result.has_key? 'authors'
+        [first_author, year, article_title, journal].compact.join(', ')
+      else
+        ""
+      end
     end
 
     def authors
