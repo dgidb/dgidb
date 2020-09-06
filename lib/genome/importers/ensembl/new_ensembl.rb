@@ -55,9 +55,10 @@ module Genome; module Importers; module Ensembl;
     end
 
     def process_line(line)
-      attributes = line['attribute'].split('; ')
+      attributes = line['attribute'].split(';')
       attribute_hash = {}
       attributes.each do |a|
+        a = a.strip
         (key, value) = a.split(' ')
         attribute_hash[key] = value[1..-2] #Stripe quotes
       end
