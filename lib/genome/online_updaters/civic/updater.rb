@@ -72,11 +72,12 @@ module Genome; module OnlineUpdaters; module Civic
           base_url: 'https://civic.genome.wustl.edu',
           site_url: 'https://www.civicdb.org',
           citation: 'CIViC: Clinical Interpretations of Variants in Cancer',
-          source_type_id: DataModel::SourceType.INTERACTION,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           full_name: 'CIViC: Clinical Interpretations of Variants in Cancer'
         }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.save
     end
   end
 end; end; end

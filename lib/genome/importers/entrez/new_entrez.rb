@@ -18,11 +18,11 @@ module Genome; module Importers; module Entrez;
         base_url: 'http://www.ncbi.nlm.nih.gov/gene?term=',
         site_url: 'http://www.ncbi.nlm.nih.gov/gene',
         citation: 'Entrez Gene: gene-centered information at NCBI. Maglott D, Ostell J, Pruitt KD, Tatusova T. Nucleic Acids Res. 2011 Jan;39(Database issue)52-7. Epub 2010 Nov 28. PMID: 21115458.',
-        source_type_id: DataModel::SourceType.GENE,
         source_db_name: 'Entrez',
         full_name: 'NCBI Entrez Gene'
       ).first_or_initialize
       source.source_db_version = Date.today.strftime("%d-%B-%Y")
+      source.source_types << DataModel::SourceType.find_by(type: 'gene')
       source.save
     end
 

@@ -84,12 +84,13 @@ module Genome; module OnlineUpdaters; module Docm
             base_url: 'http://docm.genome.wustl.edu/',
             citation: 'DoCM: a database of curated mutations in cancer. Ainscough BJ, Griffith M, Coffman AC, Wagner AH, Kunisaki J, Choudhary MN, McMichael JF, Fulton RS, Wilson RK, Griffith OL, Mardis ER. Nat Methods. 2016;13(10):806-7. PMID: 27684579',
             source_db_version: new_version,
-            source_type_id: DataModel::SourceType.INTERACTION,
             source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
             source_db_name: 'DoCM',
             full_name: 'Database of Curated Mutations'
         }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.save
     end
   end
 end; end; end

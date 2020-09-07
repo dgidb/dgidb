@@ -103,11 +103,11 @@ module Genome; module Importers; module GuideToPharmacologyInteractions;
           site_url: 'http://www.guidetopharmacology.org/',
           citation: 'Pawson, Adam J., et al. "The IUPHAR/BPS Guide to PHARMACOLOGY: an expert-driven knowledgebase 
 of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D1106. PMID: 24234439.',
-          source_type_id: DataModel::SourceType.INTERACTION,
           source_db_name: 'GuideToPharmacologyInteractions',
           full_name: 'Guide to Pharmacology Interactions',
       ).first_or_initialize
       source.source_db_version = Date.today.strftime("%d-%B-%Y")
+      source.source_types << DataModel::SourceType.find_by(type: 'interaction')
       source.save
     end
   end
