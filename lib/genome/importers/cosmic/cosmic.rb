@@ -44,7 +44,8 @@ module Genome; module Importers; module Cosmic;
           gene_name, rest = gene.split('_ENST')
           gene_claim = create_gene_claim(gene_name, 'Gene Symbol')
           interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-          gene_link, rest = gene.split(' GRCH')
+          gene_link, rest = gene.split('(GRC')
+          gene_link = gene_link.strip
           create_interaction_claim_link(interaction_claim, "COSMIC #{gene_link} Gene Page", "https://cancer.sanger.ac.uk/cosmic/gene/analysis?ln=#{gene_link}#drug-resistance")
         end
       end
