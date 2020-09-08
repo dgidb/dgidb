@@ -29,6 +29,7 @@ module Genome; module OnlineUpdaters; module Docm
           create_interaction_claim_link(ic, "DoCM Website", 'http://docm.info')
         end
       end
+      backfill_publication_information()
     end
 
     def parse_interaction_information(variant)
@@ -89,7 +90,7 @@ module Genome; module OnlineUpdaters; module Docm
             source_db_name: 'DoCM',
             full_name: 'Database of Curated Mutations',
             license: 'Creative Commons Attribution 4.0 International License',
-            license_url: 'http://www.docm.info/about',
+            license_link: 'http://www.docm.info/about',
         }
       )
     end

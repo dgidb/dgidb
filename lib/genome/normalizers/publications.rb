@@ -13,24 +13,7 @@ module Genome
 						pmid.delete
 					}
 				end
-				recurrences = 0
-				# scrape pubmed
-				while (pubs_without_citations = DataModel::Publication.where(citation: nil)).length > 0 do
-					if recurrences > 0
-						sleep 300
-					end
-					pubs_without_citations.each do |pub|
-						begin
-							retries ||= 0
-							pub.citation = PMID.get_citation_from_pubmed_id(pub.pmid)
-							pub.save
-						rescue
-							sleep 1
-							retry if (retries += 1) < 3
-						end
-					end
-					recurrences += 1
-				end
+        Genome::OnlineUpdater.new().backfill_publication_information
 			end
 		end
 	end

@@ -44,8 +44,8 @@
                                 %a{href: "/drugs/#{interaction.drug.name}"} 
                                   =interaction.drug.name
                             %tr
-                              %td="interaction_claim Types"
-                              %td=interaction_claim.interaction_claim_types.map{|it| it.type}.join(", ")
+                              %td="Interaction Claim Types & Directionality"
+                              %td=interaction_claim.interaction_claim_types.count==0 ? "n/a" : interaction_claim.interaction_claim_types.map{|ict| ict.directionality.nil? ? ict.type : "#{ict.type} (#{ict.directionality})"}.join(", ")
                       %div(class="item-panel")
                         %h4
                           Publications:

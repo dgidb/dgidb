@@ -29,7 +29,7 @@ module Genome; module OnlineUpdaters; module Go;
           source_db_name:     'GO',
           full_name:          'The Gene Ontology',
           license:            'Creative Commons Attribution 4.0 Unported License',
-          license_url:        'http://geneontology.org/docs/go-citation-policy/',
+          license_link:        'http://geneontology.org/docs/go-citation-policy/',
         }
       )
     end
@@ -37,20 +37,33 @@ module Genome; module OnlineUpdaters; module Go;
     def create_gene_claims
       api_client = ApiClient.new
       categories.each do |category, go_id|
-        api_client.genes_for_go_id(go_id).each do |gene|
-          gene_claim = create_gene_claim(gene['gene_name'], 'Gene Symbol')
-          id = gene['id'].gsub("#{gene['nomenclature']}:", "")
-          nomenclature = "#{gene['nomenclature']} ID"
-          create_gene_claim_alias(gene_claim, id, nomenclature)
-          unless gene['synonyms'].nil?
-            gene['synonyms'].split('|').each do |synonym|
-              create_gene_claim_alias(gene_claim, synonym, 'GO Gene Synonym')
+        start = 0
+        rows = 500
+        genes = api_client.genes_for_go_id(go_id, start, rows)
+        while genes.count > 0 do
+          genes.each do |gene|
+            if gene['taxon_label'] == 'Homo sapiens'
+              create_gene_claim_for_entry(gene, category)
             end
           end
-          gene_category = DataModel::GeneClaimCategory.where(name: category).first
-          gene_claim.gene_claim_categories << gene_category unless gene_claim.gene_claim_categories.include? gene_category
+          start += rows
+          genes = api_client.genes_for_go_id(go_id, start, rows)
         end
       end
+    end
+
+    def create_gene_claim_for_entry(gene, category)
+      gene_claim = create_gene_claim(gene['bioentity_label'], 'Gene Symbol')
+      unless gene['synonym'].nil?
+        gene['synonym'].each do |synonym|
+          if synonym.include? 'UniProtKB:'
+            create_gene_claim_alias(gene_claim, synonym.gsub('UniProtKB:', ''), 'UniProtKB ID')
+          else
+            create_gene_claim_alias(gene_claim, synonym, 'GO Gene Synonym')
+          end
+        end
+      end
+      create_gene_claim_category(gene_claim, category)
     end
 
     def categories

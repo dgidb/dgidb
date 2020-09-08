@@ -29,7 +29,7 @@ module Genome; module OnlineUpdaters; module Ckb;
           source_type_id: DataModel::SourceType.INTERACTION,
           full_name: 'The Jackson Laboratory Clinical Knowledgebase',
           license: 'Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License',
-          license_url: 'https://ckb.jax.org/about/index',
+          license_link: 'https://ckb.jax.org/about/index',
         }
       )
     end
@@ -60,6 +60,7 @@ module Genome; module OnlineUpdaters; module Ckb;
           end
         end
       end
+      backfill_publication_information()
     end
 
     def create_gene_claim_aliases(gene_claim, gene)

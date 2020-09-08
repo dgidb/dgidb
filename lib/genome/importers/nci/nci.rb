@@ -49,6 +49,7 @@ module Genome; module Importers; module Nci;
         create_interaction_claim_publication(interaction_claim, row['PMID'])
         create_interaction_claim_link(interaction_claim, "The Cancer Gene Index Gene-Disease and Gene-Compound XML Documents", 'https://wiki.nci.nih.gov/display/cageneindex/The+Cancer+Gene+Index+Gene-Disease+and+Gene-Compound+XML+Documents')
       end
+      backfill_publication_information()
     end
   end
 end; end; end

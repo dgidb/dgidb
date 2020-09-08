@@ -5,7 +5,7 @@ module Genome; module OnlineUpdaters; module Docm
     end
 
     def variant_url
-      'http://docm.genome.wustl.edu/api/v1/variants.json'
+      'http://docm.info/api/v1/variants.json'
     end
 
     def get_page(url)

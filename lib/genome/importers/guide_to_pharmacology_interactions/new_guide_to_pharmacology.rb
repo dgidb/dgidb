@@ -39,6 +39,7 @@ module Genome; module Importers; module GuideToPharmacologyInteractions;
           create_interaction_claim_link(interaction_claim, "Ligand Biological Activity", "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=#{line['ligand_id']}&tab=biology")
         end
       end
+      backfill_publication_information()
     end
 
     def valid_line?(line)
@@ -107,7 +108,7 @@ of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D
           source_db_name: 'GuideToPharmacologyInteractions',
           full_name: 'Guide to Pharmacology Interactions',
           license: 'Creative Commons Attribution-ShareAlike 4.0 International License',
-          license_url: 'https://www.guidetopharmacology.org/about.jsp',
+          license_link: 'https://www.guidetopharmacology.org/about.jsp',
       ).first_or_initialize
       source.source_db_version = Date.today.strftime("%d-%B-%Y")
       source.save

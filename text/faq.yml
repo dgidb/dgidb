@@ -53,6 +53,19 @@ faq:
       answer: >
         The drug summary page shows the primary drug name, alternates names, and metadata for each gene as provided by each source of the
         data imported into DGIdb. Drugs are first defined by ChEMBL but mapped together with drug records from other sources.
+        
+    - question: How are the gene and drug filters defined in DGIdb?
+      anchor: filters
+      answer: >
+        The filters currently include FDA-approved drugs, anti-neoplastic drugs, immunotherapy drugs, clinically actionable genes, 
+        genes included in the druggable genome definition and drug resistant genes. FDA approval status is extracted from ChEMBL. 
+        Anti-neoplastic drugs are defined by inclusion in an anti-neoplastic drug–gene interaction source (e.g. My Cancer Genome), or as a 
+        drug with an anti-neoplastic attribute from its constituent source. Immunotherapy drugs are defined as any drug with an attribute of 
+        ‘immunosuppressive agent’, ‘immunomodulatory agent’ or ‘immunostimulant’. Clinically actionable genes are genes that constitute the DGIdb 
+        ‘clinically actionable’ gene category, and by definition is used to inform clinical action (e.g. the Foundation One diagnostic gene panels). 
+        Similarly, druggable genome genes are genes listed in the DGIdb ‘druggable genome’ gene category. Drug resistance genes are defined by the 
+        Gene Ontology as genes that confer drug resistance or susceptibility (GO identifier 0042493), and are maintained in the DGIdb through the 
+        ‘drug resistance’ gene category.
 
     - question: Where can I find the source code for DGIdb?
       anchor: source
