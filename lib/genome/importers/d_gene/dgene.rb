@@ -1,7 +1,7 @@
 require 'genome/online_updater'
 
 module Genome; module Importers; module DGene;
-  class NewDGene < Genome::OnlineUpdater
+  class DGene < Genome::OnlineUpdater
     attr_reader :file_path
     def initialize(file_path)
       @file_path = file_path
@@ -36,6 +36,33 @@ module Genome; module Importers; module DGene;
     
     def create_gene_claims
       CSV.foreach(file_path, :headers => true, :col_sep => "\t") do |row|
+        if row['tax_id'] == '9606'
+          gene_claim = create_gene_claim(row['Symbol'], 'Gene Symbol')
+          create_gene_claim_alias(gene_claim, row['GeneID'], 'Gene ID')
+          row['Synonyms'].split('|').each do |indv_synonym|
+            create_gene_claim_alias(gene_claim, indv_synonym, 'dGene Synonym')
+          end
+          create_gene_claim_category(gene_claim, categories[row['class']])
+          if row['class'] == 'PI3K' || row['class'] == 'ST_KINASE' || row['class'] == 'Y_KINASE'
+            create_gene_claim_category(gene_claim, 'KINASE')
+          end
+        end
+      end
+    end
+
+    def categories
+      @categories ||= {
+          'GPCR' => 'G PROTEIN COUPLED RECEPTOR',
+          'NHR' => 'NUCLEAR HORMONE RECEPTOR',
+          'PI3K' => 'PHOSPHATIDYLINOSITOL 3 KINASE',
+          'PROTEASE' => 'PROTEASE',
+          'PROT_INHIB' => 'PROTEASE INHIBITOR',
+          'PTEN' => 'PTEN FAMILY',
+          'PTP' => 'PROTEIN PHOSPHATASE',
+          'PTP_MTMR' => 'MYOTUBULARIN RELATED PROTEIN PHOSPHATASE',
+          'ST_KINASE' => 'SERINE THREONINE KINASE',
+          'Y_KINASE' => 'TYROSINE KINASE'
+      }
     end
   end
 end;end;end
