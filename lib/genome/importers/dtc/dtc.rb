@@ -29,7 +29,7 @@ class DtcImporter < Genome::OnlineUpdater
         {
             base_url: 'https://drugtargetcommons.fimm.fi/',
             site_url: 'https://drugtargetcommons.fimm.fi/',
-            citation: 'Drug Target Commons 2.0: a community platform for systematic analysis of drug–target interaction profiles. Tanoli Z, Alam Z, Vähä-Koskela M, Malyutina A, Jaiswal A, Tang J, Wennerberg K, Aittokallio T. Database. 2018.',
+            citation: 'Drug Target Commons 2.0: a community platform for systematic analysis of drug–target interaction profiles. Tanoli Z, Alam Z, Vähä-Koskela M, Malyutina A, Jaiswal A, Tang J, Wennerberg K, Aittokallio T. Database. 2018. PMID: 30219839',
             source_db_version:  get_version,
             source_type_id: DataModel::SourceType.INTERACTION,
             source_db_name: 'DTC',
