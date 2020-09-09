@@ -23,7 +23,7 @@ class FoundationOneGenes < Genome::OnlineUpdater
     @source ||= DataModel::Source.create(
         {
             base_url: 'https://www.foundationmedicine.com/portfolio',
-            citation: 'High-throughput detection of actionable genomic alterations in clinical tumor samples by targeted, massively parallel sequencing. Wagle N, Berger MF, ..., Meyerson M, Gabriel SB, Garraway LA. Cancer Discov. 2012 Jan;2(1):82-93',
+            citation: 'High-throughput detection of actionable genomic alterations in clinical tumor samples by targeted, massively parallel sequencing. Wagle N, Berger MF, ..., Meyerson M, Gabriel SB, Garraway LA. Cancer Discov. 2012 Jan;2(1):82-93. PMID: 22585170',
             site_url: 'http://www.foundationone.com/',
             source_db_version: Time.new().strftime("%d-%B-%Y"),
             source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE,
