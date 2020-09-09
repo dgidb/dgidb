@@ -21,7 +21,7 @@ module Genome; module OnlineUpdaters; module Ckb;
     def create_new_source
       @source ||= DataModel::Source.create(
         {
-          source_db_name: 'CKB',
+          source_db_name: 'JAX-CKB',
           source_db_version: new_version,
           base_url: 'https://ckb.jax.org/gene/show?geneId=',
           site_url: 'https://ckb.jax.org',
