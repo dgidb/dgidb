@@ -38,6 +38,14 @@
                 =attribute.name
               %td 
                 =attribute.value
+    -if gene_claim.gene_claim_categories.count > 0
+      %div(class="item-panel")
+        %h4
+          Gene Categories:
+          %table{class: "table table-condensed table-striped"}
+            %tr
+              %td
+                =gene_claim.gene_claim_categories.map{|c| c.name}.join(', ')
 
   %div(class="cell category")
     %div(class="item-panel")
