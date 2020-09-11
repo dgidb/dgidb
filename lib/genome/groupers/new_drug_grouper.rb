@@ -125,8 +125,10 @@ module Genome
       end
 
       def normalizer_matches_for_term(term)
-        uri = URI.parse(normalizer_url(ERB::Util.url_encode(term)))
-        uri.port = 8000
+        uri = URI.parse(normalizer_url).tap do |u|
+          u.query = URI.encode_www_form( { q: ERB::Util.url_encode(term) } )
+          u.port = 8000
+        end
         res = Net::HTTP.get_response(uri)
         if res.code != '200'
           raise StandardError.new("Request Failed!")
@@ -134,8 +136,8 @@ module Genome
         return JSON.parse(res.body)['normalizer_matches']
       end
 
-      def normalizer_url(term)
-        "http://127.0.0.1/query/#{term}"
+      def normalizer_url
+        "http://127.0.0.1/search"
       end
 
       def get_normalized_record_from_matches(matches)
