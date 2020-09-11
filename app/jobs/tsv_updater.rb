@@ -37,7 +37,7 @@ class TsvUpdater < Updater
   end
 
   def download_file
-    download_stream = open(latest_url)
+    download_stream = open(latest_url, open_timeout: 300)
     IO.copy_stream(download_stream, tempfile)
   end
 

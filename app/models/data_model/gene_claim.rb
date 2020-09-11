@@ -53,10 +53,11 @@ module DataModel
           entrez_id = self.gene_claim_aliases.select{|a| a.nomenclature == 'CKB Entrez Id'}.first.alias
           base_url + entrez_id
         when 'GO'
-          entrez_id = self.gene_claim_aliases.select{|a| a.nomenclature == 'UniProtKB ID'}.first.alias
-          if entrez_id.nil?
+          uniprot_alias = self.gene_claim_aliases.select{|a| a.nomenclature == 'UniProtKB ID'}.first
+          if uniprot_alias.nil?
             'http://amigo.geneontology.org/amigo/search/bioentity?q=' + name
           else
+            entrez_id = uniprot_alias.alias
             base_url + entrez_id
           end
         when 'OncoKB'

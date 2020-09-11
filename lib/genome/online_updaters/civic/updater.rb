@@ -70,9 +70,9 @@ module Genome; module OnlineUpdaters; module Civic
         {
           source_db_name: 'CIViC',
           source_db_version: new_version,
-          base_url: 'https://civic.genome.wustl.edu',
+          base_url: 'https://www.civicdb.org',
           site_url: 'https://www.civicdb.org',
-          citation: 'CIViC: Clinical Interpretation of Variants in Cancer',
+          citation: 'Griffith M*, Spies NC*, Krysiak K*, McMichael JF, Coffman AC, Danos AM, Ainscough BJ, Ramirez CA, Rieke DT, Kujan L, Barnell EK, Wagner AH, Skidmore ZL, Wollam A, Liu CJ, Jones MR, Bilski RL, Lesurf R, Feng YY, Shah NM, Bonakdar M, Trani L, Matlock M, Ramu A, Campbell KM, Spies GC, Graubert AP, Gangavarapu K, Eldred JM, Larson DE, Walker JR, Good BM, Wu C, Su AI, Dienstmann R, Margolin AA, Tamborero D, Lopez-Bigas N, Jones SJ, Bose R, Spencer DH Wartman LD, Wilson RK, Mardis ER, Griffith OL†. 2016. CIViC is a community knowledgebase for expert crowdsourcing the clinical interpretation of variants in cancer. Nat Genet. 49, 170–174 (2017); doi: doi.org/10.1038/ng.3774. PMID: 28138153',
           source_type_id: DataModel::SourceType.INTERACTION,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           full_name: 'CIViC: Clinical Interpretation of Variants in Cancer',
