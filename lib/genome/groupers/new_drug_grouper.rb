@@ -54,11 +54,22 @@ module Genome
             if record.is_a?(DataModel::Drug)
               drug = record
             else
-              drug = DataModel::Drug.where(concept_id: record['concept_identifier'], name: record['label'].upcase).first_or_create
-              if record['concept_identifier'].startwith('chembl:')
-                Genome::OnlineUpdater.new.create_drug_claim(record['concept_identifier'], record['label'], 'ChEMBL ID', source=chembl_source)
-              elsif record['concept_identifer'].startwith('wikidata:')
-                Genome::OnlineUpdater.new.create_drug_claim(record['concept_identifier'], record['label'], 'Wikidata ID', source=wikidata_source)
+              if record['label'].nil?
+                claim_label = record['concept_identifier']
+                drug_label = record['concept_identifier']
+              else
+                claim_label = record['label']
+                drug_label = record['label'].upcase
+              end
+              drug = DataModel::Drug.where(concept_id: record['concept_identifier'], name: drug_label).first_or_create
+              if record['concept_identifier'].start_with?('chembl:')
+                c = Genome::OnlineUpdater.new.create_drug_claim(record['concept_identifier'], claim_label, 'ChEMBL ID', source=chembl_source)
+                c.drug_id = drug.id
+                c.save
+              elsif record['concept_identifier'].start_with?('wikidata:')
+                c = Genome::OnlineUpdater.new.create_drug_claim(record['concept_identifier'], claim_label, 'Wikidata ID', source=wikidata_source)
+                c.drug_id = drug.id
+                c.save
               end
               record['aliases'].each do |a|
                 DataModel::DrugAlias.where(alias: a.upcase, drug_id: drug.id).first_or_create
