@@ -16,7 +16,7 @@
     %div{class: "item-panel"}
       %h4
         Alternate Names:
-      %div{style: "height: 489px; overflow-y: scroll; margin-bottom: 5px;"}
+      %div{style: "height: 657px; overflow-y: scroll; margin-bottom: 5px;"}
         %table{class: "table table-condensed table-striped", id: "table_aliases"}
           %tbody
             -gene.gene_aliases.each do |alt_name| ######
@@ -42,6 +42,19 @@
         %a#more{style: "display: inline-block; margin-left: 5px; cursor: pointer"}
           - num_left = (gene.gene_claims.count - 4 > 0 ? gene.gene_claims.count - 4 : 0)
           = "(#{num_left} More Sources)"
+    %div{class: "item-panel", style: "margin-bottom: 11px;"}
+      %div{style: "height: 40px"}
+        %h4
+          Gene Categories:
+          %a{class: ['btn', 'btn-success'], style: "float: right",  href: "/categories_search_results?genes=#{gene.name}"}
+            =icon('search', class: 'icon-white')
+            =" Category Details"
+      %div{style: "height: 100px; overflow-y: scroll; margin-bottom: 5px;"}  
+        %table{class: "table table-condensed table-striped", id:"table_info"}
+          %tbody
+            -gene.gene_categories.each do |category|
+              %tr
+                %td=category.name
     %div{class: "item-panel"}
       %h4
         Publications:
