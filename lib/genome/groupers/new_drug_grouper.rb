@@ -136,6 +136,9 @@ module Genome
       end
 
       def normalizer_matches_for_term(term)
+        if term.start_with? 'chembl:'
+          term = term.gsub('chembl:', '')
+        end
         uri = URI.parse(normalizer_url).tap do |u|
           u.query = URI.encode_www_form( { q: ERB::Util.url_encode(term) } )
           u.port = 8000
