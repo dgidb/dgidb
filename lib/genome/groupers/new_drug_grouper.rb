@@ -41,12 +41,7 @@ module Genome
           if record.nil?
             record = find_normalized_record_for_term(drug_claim.name)
             if record.nil?
-              records = drug_claim.drug_claim_aliases.map{|a| find_normalized_record_for_term(a.alias)}.uniq.compact
-              if records.size == 1
-                record = records.first
-              else
-                #do we do anything here (aka aliases don't agree on a single drug)
-              end
+              record = query_drug_claim_aliases(drug_claim.drug_claim_aliases)
             end
           end
 
@@ -87,6 +82,31 @@ module Genome
             drug_claim.save
           end
         end
+      end
+
+      def query_drug_claim_aliases(drug_claim_aliases)
+        record = nil
+        drug_claim_aliases.each do |a|
+          normalized_record = find_normalized_record_for_term(a.alias)
+          unless normalized_record.nil?
+            if record.nil?
+              record = normalized_record
+            else
+              if record.is_a?(Hash) && normalized_record.is_a?(Hash)
+                if record['concept_identifier'] != normalized_record['concept_identifier']
+                  return nil
+                end
+              elsif record.is_a?(DataModel::Drug) && normalized_record.is_a?(DataModel::Drug)
+                if record.id != normalized_record.id
+                  return nil
+                end
+              else
+                return nil
+              end
+            end
+          end
+        end
+        return record
       end
 
       def add_drug_claim_attributes_to_drug(drug_claim, drug)
