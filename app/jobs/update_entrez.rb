@@ -3,7 +3,7 @@ class UpdateEntrez < TsvUpdater
     ['entrez_download', '.gz']
   end
 
-  def importer
+  def create_importer
     Genome::Importers::Entrez::NewEntrez.new(tempfile)
   end
 

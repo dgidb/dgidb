@@ -5,7 +5,7 @@ class UpdateDtc < TsvUpdater
     ['dtc_bioactivity', '.csv']
   end
 
-  def importer
+  def create_importer
     Genome::Importers::Dtc::DtcImporter.new(tempfile)
   end
 
