@@ -140,12 +140,6 @@ module Genome
 
       def find_normalized_record_for_term(term)
         term = term.upcase
-        #TODO: delete once 404 bug is fixed
-        if term.include? '/'
-          return nil
-        elsif term.include? '\''
-          return nil
-        end
         if term_to_record_dict.has_key? term
           return term_to_record_dict[term]
         end
