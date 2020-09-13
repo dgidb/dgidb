@@ -3,10 +3,12 @@ require 'net/https'
 module Genome
   module Groupers
     class NewDrugGrouper
-      attr_reader :term_to_matches_dict, :term_to_record_dict, :chembl_source, :wikidata_source
+      attr_reader :term_to_matches_dict, :term_to_record_dict, :valid_chembl_ids, :invalid_chembl_ids, :chembl_source, :wikidata_source
       def initialize
         @term_to_matches_dict = {}
         @term_to_record_dict = {}
+        @valid_chembl_ids = []
+        @invalid_chembl_ids = []
         @chembl_source = DataModel::Source.where(
           source_db_name: 'ChemblDrugs',
           source_db_version: 'ChEMBL_27',
@@ -68,13 +70,25 @@ module Genome
                 c.save
               end
               record['aliases'].each do |a|
-                DataModel::DrugAlias.where(alias: a.upcase, drug_id: drug.id).first_or_create
+                if a.start_with? 'chembl:'
+                  if valid_chembl_id?(a)
+                    DataModel::DrugAlias.where(alias: a.upcase, drug_id: drug.id).first_or_create
+                  end
+                else
+                  DataModel::DrugAlias.where(alias: a.upcase, drug_id: drug.id).first_or_create
+                end
               end
               if record['withdrawn'] == false && record['max_phase'] == 4
                 drug.approved = true
               end
               record['other_identifiers'].each do |i|
-                DataModel::DrugAlias.where(alias: i, drug_id: drug.id).first_or_create
+                if i.start_with? 'chembl:'
+                  if valid_chembl_id?(i)
+                    DataModel::DrugAlias.where(alias: i, drug_id: drug.id).first_or_create
+                  end
+                else
+                  DataModel::DrugAlias.where(alias: i, drug_id: drug.id).first_or_create
+                end
               end
             end
             drug_claim.drug_id = drug.id
@@ -230,33 +244,24 @@ module Genome
         end
         matches = normalizer_matches_for_term(chembl_id)
         good_matches = matches.select{|t, m| m['match_type'] >= 80}
-        #this is to catch cases where the chembl_id was entered wrong in other
-        #resources
-        priority.each do |p|
-          if good_matches.has_key? p
-            best_match = good_matches[p]
-            best_record = best_match['records'].first
-            best_match['records'][1..-1] do |r|
+        if good_matches.has_key? 'ChEMBL'
+          best_match = good_matches['ChEMBL']
+          best_record = best_match['records'].first
+          best_match['records'][1..-1] do |r|
+            best_record['aliases'].concat(r['aliases'])
+            best_record['other_identifiers'].concat(r['other_identifiers'])
+          end
+          good_matches.delete('ChEMBL')
+          good_matches.each do |t, m|
+            m['records'].each do |r|
               best_record['aliases'].concat(r['aliases'])
               best_record['other_identifiers'].concat(r['other_identifiers'])
             end
-            good_matches.delete(p)
-            good_matches.each do |t, m|
-              m['records'].each do |r|
-                best_record['aliases'].concat(r['aliases'])
-                best_record['other_identifiers'].concat(r['other_identifiers'])
-              end
-            end
-            if p!= 'ChEMBL'
-              #we didn't actually find a ChEMBL record for this chembl_id, the
-              #chembl_id doesn't actually exist and should be removed as an
-              #alias
-              best_record['aliases'].delete(chembl_id)
-              best_record['other_identifiers'].delete(chembl_id)
-            end
-            term_to_record_dict[best_record['concept_identifier']] = best_record
-            return best_record
           end
+          term_to_record_dict[best_record['concept_identifier']] = best_record
+          return best_record
+        else
+          return nil
         end
       end
 
@@ -324,6 +329,26 @@ module Genome
         end
       end
 
+      def valid_chembl_id?(chembl_id)
+        if chembl_id.start_with? 'chembl:'
+          chembl_id = chembl_id.gsub('chembl:', '')
+        end
+        if valid_chembl_ids.include? chembl_id
+          return true
+        end
+        if invalid_chembl_ids.include? chembl_id
+          return false
+        end
+        matches = normalizer_matches_for_term(chembl_id)
+        if matches['ChEMBL']['match_type'] == 100
+          valid_chembl_ids << chembl_id
+          return true
+        else
+          invalid_chembl_ids << chembl_id
+          return false
+        end
+      end
+
       def select_records_with_highest_max_phase(records)
         highest_max_phase = records.sort_by{|r| r['max_phase']}.reverse.first['max_phase']
         return records.select{|r| r['max_phase'] == highest_max_phase}
@@ -348,11 +373,11 @@ module Genome
 
       def chembl_ids_for_records(records)
         chembl_ids = records.each_with_object([]) do |r, ids|
-          if r['concept_identifier'].start_with?('chembl:')
+          if r['concept_identifier'].start_with?('chembl:') && valid_chembl_id?(r['concept_identifier'])
             ids << r['concept_identifier']
           end
           r['other_identifiers'].each do |i|
-            if i.start_with?('chembl:')
+            if i.start_with?('chembl:') && valid_chembl_id?(i)
               ids << i
             end
           end
