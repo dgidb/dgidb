@@ -9,7 +9,7 @@ class UpdatePharmgkb < TsvUpdater
     ['pharmgkb_interactions', '.tsv']
   end
 
-  def importer
+  def create_importer
     Genome::Importers::Pharmgkb::NewPharmgkb.new(tempfile)
   end
 

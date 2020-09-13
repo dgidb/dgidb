@@ -9,7 +9,7 @@ class UpdateCgi < TsvUpdater
     ['cgi_biomarkers_per_variant', '.tsv']
   end
 
-  def importer
+  def create_importer
     Genome::Importers::Cgi::NewCgi.new(tempfile)
   end
 

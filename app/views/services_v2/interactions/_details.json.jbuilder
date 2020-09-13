@@ -1,7 +1,7 @@
 if result.type == 'drugs'
   json.searchTerm result.search_term
   json.drugName result.identifier.name
-  json.chemblId result.identifier.chembl_id
+  json.conceptId result.identifier.concept_id
   json.interactions result.interactions do |interaction|
     json.interactionId interaction.interaction_id
     json.interactionTypes interaction.types
@@ -22,7 +22,7 @@ else
     json.interactionId interaction.interaction_id
     json.interactionTypes interaction.types
     json.drugName interaction.drug_name
-    json.drugChemblId interaction.drug_chembl_id
+    json.drugConceptId interaction.drug_concept_id
     json.sources interaction.source_db_names
     json.pmids interaction.publications
     json.score interaction.score

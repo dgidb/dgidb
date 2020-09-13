@@ -50,8 +50,8 @@ class DrugPresenter < SimpleDelegator
   def as_json(opts = {})
     {
       name: drug.name,
-      chembl_id: drug.chembl_id,
-      fda_approved: drug.fda_approved,
+      concept_id: drug.concept_id,
+      approved: drug.approved,
       immunotherapy: drug.immunotherapy,
       anti_neoplastic: drug.anti_neoplastic,
       alias: drug.drug_aliases.map(&:alias),
@@ -61,8 +61,8 @@ class DrugPresenter < SimpleDelegator
   def flag_icons
     flags = []
 
-    if drug.fda_approved
-      flags = flags.push(["FDA Approved", "success"])
+    if drug.approved
+      flags = flags.push(["Approved", "success"])
     end
     if drug.anti_neoplastic
       flags = flags.push(["Antineoplastic","danger"])

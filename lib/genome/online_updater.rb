@@ -33,12 +33,12 @@ module Genome
       end
     end
 
-    def create_drug_claim(name, primary_name, nomenclature)
+    def create_drug_claim(name, primary_name, nomenclature, source=@source)
       DataModel::DrugClaim.where(
         name: name.strip(),
         primary_name: primary_name.strip(),
         nomenclature: nomenclature.strip(),
-        source_id: @source.id,
+        source_id: source.id,
       ).first_or_create
     end
 

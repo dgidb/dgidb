@@ -1,5 +1,5 @@
 class UpdatePharos < ApiUpdater
-  def updater
+  def create_updater
     Genome::OnlineUpdaters::Pharos::Updater.new()
   end
 

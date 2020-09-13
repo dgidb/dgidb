@@ -5,7 +5,7 @@ class UpdateDrugBank < TsvUpdater
     ['drugbank', '.tsv']
   end
 
-  def importer
+  def create_importer
     Genome::Importers::DrugBank::NewDrugBank.new(tempfile)
   end
 

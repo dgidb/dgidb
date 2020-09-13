@@ -3,7 +3,7 @@ class UpdateGuideToPharmacology < TsvUpdater
     ['interactions', '.tsv']
   end
 
-  def importer
+  def create_importer
     Genome::Importers::GuideToPharmacologyInteractions::NewGuideToPharmacology.new(tempfile)
   end
 
