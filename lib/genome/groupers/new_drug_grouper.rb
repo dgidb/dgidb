@@ -3,8 +3,9 @@ require 'net/https'
 module Genome
   module Groupers
     class NewDrugGrouper
-      attr_reader :term_to_record_dict, :chembl_source, :wikidata_source
+      attr_reader :term_to_matches_dict, :term_to_record_dict, :chembl_source, :wikidata_source
       def initialize
+        @term_to_matches_dict = {}
         @term_to_record_dict = {}
         @chembl_source = DataModel::Source.where(
           source_db_name: 'ChemblDrugs',
@@ -153,6 +154,9 @@ module Genome
         if term.start_with? 'chembl:'
           term = term.gsub('chembl:', '')
         end
+        if term_to_matches_dict.has_key? term
+          return term_to_matches_dict[term]
+        end
         uri = URI.parse(normalizer_url).tap do |u|
           u.query = URI.encode_www_form( { q: ERB::Util.url_encode(term) } )
           u.port = 8000
@@ -161,7 +165,9 @@ module Genome
         if res.code != '200'
           raise StandardError.new("Request Failed!")
         end
-        return JSON.parse(res.body)['normalizer_matches']
+        resp = JSON.parse(res.body)['normalizer_matches']
+        term_to_matches_dict[term] = resp
+        return resp
       end
 
       def normalizer_url
