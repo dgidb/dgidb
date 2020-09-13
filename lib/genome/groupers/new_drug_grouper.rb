@@ -26,10 +26,10 @@ module Genome
           source_db_version: '12-August-2020',
           base_url: 'https://www.wikidata.org/wiki/',
           site_url: 'https://www.wikidata.org/',
-          citation: "Denny Vrandečić and Markus Krötzsch. 2014. Wikidata: a free collaborative knowledgebase. Commun. ACM> 57, 10 (October 2014), 78–85. DOI:https://doi.org/10.1145/2629489",
+          citation: "Denny Vrandečić and Markus Krötzsch. 2014. Wikidata: a free collaborative knowledgebase. Commun. ACM 57, 10 (October 2014), 78–85. DOI:https://doi.org/10.1145/2629489",
           source_type_id: DataModel::SourceType.DRUG,
           full_name: 'Wikidata',
-          license: 'Creative Commons Attribution-ShareAlike License;',
+          license: 'Creative Commons Attribution-ShareAlike License',
           license_link: 'https://foundation.wikimedia.org/wiki/Terms_of_Use/en#7._Licensing_of_Content',
         ).first_or_create
       end
