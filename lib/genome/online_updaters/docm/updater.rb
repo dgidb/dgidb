@@ -29,6 +29,7 @@ module Genome; module OnlineUpdaters; module Docm
           create_interaction_claim_link(ic, "DoCM Website", 'http://docm.info')
         end
       end
+      backfill_publication_information()
     end
 
     def parse_interaction_information(variant)
@@ -81,12 +82,15 @@ module Genome; module OnlineUpdaters; module Docm
     def create_new_source
       @source ||= DataModel::Source.create(
         {
-            base_url: 'http://docm.genome.wustl.edu/',
+            base_url: 'http://docm.info/',
+            site_url: 'http://docm.info/',
             citation: 'DoCM: a database of curated mutations in cancer. Ainscough BJ, Griffith M, Coffman AC, Wagner AH, Kunisaki J, Choudhary MN, McMichael JF, Fulton RS, Wilson RK, Griffith OL, Mardis ER. Nat Methods. 2016;13(10):806-7. PMID: 27684579',
             source_db_version: new_version,
             source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
             source_db_name: 'DoCM',
-            full_name: 'Database of Curated Mutations'
+            full_name: 'Database of Curated Mutations',
+            license: 'Creative Commons Attribution 4.0 International License',
+            license_link: 'http://www.docm.info/about',
         }
       )
       @source.source_types << DataModel::SourceType.find_by(type: 'interaction')

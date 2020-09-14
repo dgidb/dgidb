@@ -1,7 +1,15 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
-require 'coveralls'
-Coveralls.wear! 'rails' do
+require 'simplecov'
+require 'simplecov-lcov'
+
+SimpleCov::Formatter::LcovFormatter.config do |c|
+  c.report_with_single_file = true
+  c.single_report_path = 'coverage/lcov.info'
+end
+
+SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+SimpleCov.start 'rails' do
   add_filter '/importers/.+/'
 end
 
@@ -40,3 +48,5 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.infer_base_class_for_anonymous_controllers = false
 end
+
+RSpec::Expectations.configuration.on_potential_false_positives = :nothing

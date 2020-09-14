@@ -12,6 +12,8 @@ module Genome
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           source_db_name: 'BaderLabGenes',
           full_name: 'Bader Lab Genes',
+          license: 'Supplemental data from CC-BY 3.0 arXiv preprint',
+          license_link: 'http://baderlab.org/Data/RoadsNotTaken',
         }
       end
 

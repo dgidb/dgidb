@@ -1,0 +1,110 @@
+primary_gene_name	entrez_gene_id	reported_gene_name	pubchem_drug_id	pubchem_drug_name	source_reported_drug_name	drug_trade_name	drug_development_name	primary_drug_name	drug_class	interaction_type	pharmaceutical_developer	data_source	cancer_type
+BRAF	673	BRAF (V660) E/K	42611257	PLX4032	Vemurafenib/Zelboraf/PLX4032 RO 5185426	Vemurafenib	Zelboraf	Zelboraf	RAF Inhibitor	Inhibition	Genentech	CancerCommons	Melanoma
+BRAF	673	BRAF	44462760	GSK 2118436	Dabrafenib/GSK2118436	Dabrafenib	Dabrafenib	Dabrafenib	RAF Inhibitor	Inhibition	GlaxoSmithKline	CancerCommons	Melanoma
+BRAF	673	BRAF	na	na	LGX818	LGX818	LGX818	LGX818	RAF Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+BRAF	673	Pan-RAF	11656518	RAF265	RAF265/CHIR-265 pan-RAF	RAF265	CHIR-265	CHIR-265	RAF Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+BRAF 	673	BRAF V600E	na	na	RO5212054 /PLX3603/	RO5212054	PLX3603	PLX3603	RAF Inhibitor	Inhibition	Hoffmann-La Roche	CancerCommons	Melanoma
+MAP2K1	5604	MEK	na	na	RO4987655	RO4987655	RO4987655	RO4987655	MEK Inhibitor	Inhibition	Hoffmann-La Roche	CancerCommons	Melanoma
+MAP2K1	5604	MEK	11707110	GSK 1120212	MEK162 trametinib/ GSK1120212	Trametinib	GSK1120212	Mekinist	MEK Inhibitor	Inhibition	GlaxoSmithKline	CancerCommons	Melanoma
+MAP2K1	5604	MEK	16222096	GDC-0973	GDC-0973/XL518	XL518	GDC-0973	GDC-0973	MEK Inhibitor	Inhibition	Exelixis	CancerCommons	Melanoma
+MAP2K1	5604	MEK	24963252	TAK-733	TAK-733	TAK-733	TAK-733	TAK-733	MEK Inhibitor	Inhibition	Millennium Pharmaceuticals	CancerCommons	Melanoma
+MAP2K1	5604	MEK	10127622	AZD6244	AZD6244/selumetinib	Selumetinib	AZD6244	AZD6244	MEK Inhibitor	Inhibition	AstraZenica	CancerCommons	Melanoma
+MAP2K1	5604	MEK	44187362	N-(2,3-dihydroxypropyl)-1-((2-fluoro-4-iodophenyl)amino)isonicotinamide	MSC1936369B/pimasertib	Pimasertib	MSC1936369B	MSC1936369B	MEK Inhibitor	Inhibition	Merck	CancerCommons	Melanoma
+MAP2K1	5604	MEK	44182295	BAY86-9766	BAY86-9766/refametinib	Refametinib	BAY86-9766	BAY86-9766	MEK Inhibitor	Inhibition	Ardea Biosciences	CancerCommons	Melanoma
+PIK3CA	5290	PI3K	9849735	PX-866	PX-866	PX-866	PX-866	PX-866	PI3K Inhibitor	Inhibition	Oncothyreon	CancerCommons	Melanoma
+PIK3CA	5290	PI3K	16654980	BKM120	BKM120	BKM120	BKM120	BKM120	PI3K Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+PIK3CA	5290	PI3K	na	na	SAR260301	SAR260301	SAR260301	SAR260301	PI3K Inhibitor	Inhibition	Sanofi-Aventis	CancerCommons	Melanoma
+PIK3CA	5290	PI3K	11977753	Dactolisib	BEZ235	BEZ235	BEZ235	BEZ235	PI3K/mTOR dual Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+mTOR	2475	PI3K/mTOR	11977753	Dactolisib	BEZ235	BEZ235	BEZ235	BEZ235	PI3K/mTOR dual Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+PIK3CA	5290	PI3K	49867926	XL765	SAR245409	SAR245409	XL765	XL765	PI3K/mTOR dual Inhibitor	Inhibition	Sanofi	CancerCommons	Melanoma
+mTOR	2475	PI3K/mTOR	49867926	XL765	SAR245409	SAR245409	XL765	XL765	PI3K/mTOR dual Inhibitor	Inhibition	Sanofi	CancerCommons	Melanoma
+PIK3CA	5290	PI3K	66563707	BAY80-6946	BAY80-6946	BAY80-6946	BAY80-6946	BAY80-6946	PI3K Inhibitor	Inhibition	Bayer	CancerCommons	Melanoma
+AKT1	207	AKT	46930998	MK2206	MK2206	MK2206	MK2206	MK2206	AKT Allosteric Inhibitor	Allosteric Inhibitor 	Merck	CancerCommons	Melanoma
+CDK4	1019	CDK4/6	11431660	PD 0332991	PD0332991	Palbociclib	PD0332991	Palbociclib	CDK/Rb Inhibitor	Inhibition	Pfizer	CancerCommons	Melanoma
+CDK6	1021	CDK4/6	11431660	PD 0332991	PD0332991	Palbociclib	PD0332991	Palbociclib	CDK/Rb Inhibitor	Inhibition	Pfizer	CancerCommons	Melanoma
+CDK1	983	CDK1,2,5,9	46926350	Dinaciclib 	Dinaciclib (SCH727965)	Dinaciclib 	SCH727965	SCH727965	Pan-CDK Inhibitor	Inhibition	Merck	CancerCommons	Melanoma
+CDK2	1017	CDK1,2,5,9	46926350	Dinaciclib	Dinaciclib (SCH727965)	Dinaciclib 	SCH727965	SCH727965	Pan-CDK Inhibitor	Inhibition	Merck	CancerCommons	Melanoma
+CDK5	1020	CDK1,2,5,9	46926350	Dinaciclib	Dinaciclib (SCH727965)	Dinaciclib 	SCH727965	SCH727965	Pan-CDK Inhibitor	Inhibition	Merck	CancerCommons	Melanoma
+CDK9	1025	CDK1,2,5,9	46926350	Dinaciclib	Dinaciclib (SCH727965)	Dinaciclib 	SCH727965	SCH727965	Pan-CDK Inhibitor	Inhibition	Merck	CancerCommons	Melanoma
+CDK2	1017	CDK2,7,9	3025986	N-(5-(((5-(1,1-dimethylethyl)-2-oxazolyl)methyl)thio)-2-thiazolyl)-4-piperidinecarboxamide	SNS-032	SNS-032	SNS-032	SNS-032	Pan-CDK Inhibitor	Inhibition	Sunesis	CancerCommons	Melanoma
+CDK7	1022	CDK2,7,9	3025986	N-(5-(((5-(1,1-dimethylethyl)-2-oxazolyl)methyl)thio)-2-thiazolyl)-4-piperidinecarboxamide	SNS-032	SNS-032	SNS-032	SNS-032	Pan-CDK Inhibitor	Inhibition	Sunesis	CancerCommons	Melanoma
+CDK9	1025	CDK2,7,9	3025986	N-(5-(((5-(1,1-dimethylethyl)-2-oxazolyl)methyl)thio)-2-thiazolyl)-4-piperidinecarboxamide	SNS-032	SNS-032	SNS-032	SNS-032	Pan-CDK Inhibitor	Inhibition	Sunesis	CancerCommons	Melanoma
+CDK4	1019	CDK4/6	na	na	LY2835219	LY2835219	LY2835219	LY2835219	CDK/Rb Inhibitor	Inhibition	Eli Lilly	CancerCommons	Melanoma
+CDK6	1021	CDK4/6	na	na	LY2835219	LY2835219	LY2835219	LY2835219	CDK/Rb Inhibitor	Inhibition	Eli Lilly	CancerCommons	Melanoma
+CDK1	983	Pan CDK	na	na	BAY1000394	BAY1000394	BAY1000394	BAY1000394	Pan-CDK Inhibitor	Inhibition	Bayer	CancerCommons	Melanoma
+CDK2	1017	Pan CDK	na	na	BAY1000394	BAY1000394	BAY1000394	BAY1000394	Pan-CDK Inhibitor	Inhibition	Bayer	CancerCommons	Melanoma
+CDK4	1019	Pan CDK	na	na	BAY1000394	BAY1000394	BAY1000394	BAY1000394	Pan-CDK Inhibitor	Inhibition	Bayer	CancerCommons	Melanoma
+CDK9	1025	Pan CDK	na	na	BAY1000394	BAY1000394	BAY1000394	BAY1000394	Pan-CDK Inhibitor	Inhibition	Bayer	CancerCommons	Melanoma
+HSP90AA1	3320	HSP90	23624255	STA-9090	STA-9090(Ganetespib)	Ganetespib	STA-9090	STA-9090	Chaperone Inhibitor	Inhibition	Synta Pharmaceuticals	CancerCommons	Melanoma
+HSP90AA1	3320	HSP90	71301280	XL888	XL888	XL888	XL888	XL888	Chaperone Inhibitor	Inhibition	Exelixis	CancerCommons	Melanoma
+NOTCH1	4851	Gamma-Secretase	49867930	RO4929097	RO4929097	RO4929097	RO4929097	RO4929097	Notch Inhibitor	Inhibition	Roche	CancerCommons	Melanoma
+MET	4233	MET	25102847	Cabozantinib	Cabozantinib (XL184)	Cabozantinib	XL184	Cometriq	MET Inhibitor	Inhibition	Exelixis	CancerCommons	Melanoma
+MET	4233	MET	na	na	INC280	INC280	INC280	INC280	MET Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+FGFR1	2260	FGFRs	53235510	BGJ398	BGJ398	BGJ398	BGJ398	BGJ398	Pan-FGFR Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+FGFR2	2263	FGFRs	53235510	BGJ398	BGJ398	BGJ398	BGJ398	BGJ398	Pan-FGFR Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+FGFR3	2261	FGFRs	53235510	BGJ398	BGJ398	BGJ398	BGJ398	BGJ398	Pan-FGFR Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+FGFR4	2264	FGFRs	53235510	BGJ398	BGJ398	BGJ398	BGJ398	BGJ398	Pan-FGFR Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+IGF1R	3480	IGF1 Receptor	na	na	AMG 479 (human antibody)	AMG 479	AMG 479	AMG 479	Monoclonal Antibody	Antibody	Amgen	CancerCommons	Melanoma
+KIT	3815	KIT	644241	Nilotinib	Nilotinib/AMNN107 (approved for CML+)	Tasigna	AMNN107	Nilotinib	Kit Inhibitor	Inhibition	Novartis	CancerCommons	Melanoma
+KIT	3815	KIT	10074640	Masitinib	Masitinib	Masitinib	Masitinib	Masitinib	Kit Inhibitor	Inhibition	AB Science	CancerCommons	Melanoma
+KIT	3815	KIT	3062316	Dasatinib	Dasatinib	Sprycel	Dasatinib	Dasatinib	Kit Inhibitor	Inhibition	Bristol-Myers Squibb	CancerCommons	Melanoma
+KIT	3815	KIT	na	na	PLX108-01	PLX108-01	PLX108-01	PLX108-01	Kit Inhibitor	Inhibition	Plexxicon	CancerCommons	Melanoma
+FLT3	2322	KIT	na	na	Immunotherapies in testing with BRAFi or KITi:	PLX108-01	PLX108-01	PLX108-01	Kit Inhibitor	Inhibition	Plexxicon	CancerCommons	Melanoma
+CD274	29126	Anti-PD-L1	na	na	MPDL3280A/ RG7446 (human antibody)	MPDL3280A	RG7446 	RG7446 	Monoclonal Antibody	Antibody	Genentech	CancerCommons	Melanoma
+PDCD1	5133	Anti-PD-1	na	na	CT-011	CT-011	CT-011	CT-011	Monoclonal Antibody	Antibody	Teva and CureTech	CancerCommons	Melanoma
+CTLA4	1493	Anti-CTLA4	na	na	Yervoy/ipilimumab	Yervoy	Ipilimumab	Ipilimumab	Monoclonal Antibody	Antibody	Bristol-Myers Squibb	CancerCommons	Melanoma
+EGFR	1956	EGFR	176870	Erlotinib	Erlotinib	Tarceva	Erlotinib	Erlotinib	EGFR Inhibitor	Inhibition	Roche	CancerCommons	Lung
+EGFR	1956	EGFR	11511120	PF 00299804	PF-00299804/Dacomitinib	Dacomitinib	PF-00299804	PF-00299804	EGFR Inhibitor	Inhibition	Pfizer	CancerCommons	Lung
+EGFR	1956	EGFR	56842117	IFL Protocol	Cetuximab	Erbitux	Cetuximab	Cetuximab	Monoclonal Antibody	Antibody	Bristol-Myers Squibb	CancerCommons	Lung
+EGFR	1956	EGFR	123631	Gelfitinib	Gelfitinib/Iressa	Iressa	Gelfitinib	Gelfitinib	EGFR Inhibitor	Inhibition	AstraZeneca	CancerCommons	Lung
+EGFR	1956	EGFR	10184653	BIBW 2992	Afatinib	Afatinib	BIBW2992	BIBW2992	EGFR Inhibitor	Inhibition	Boehringer Ingelheim	CancerCommons	Lung, Prostate
+ALK	238	ALK, ROS	25134326	ASP3026	ASP3026	ASP3026	ASP3026	ASP3026	ALK Inhibitor	Inhibition	Astellas Pharma	CancerCommons	Lung
+ALK	238	ALK, ROS	11626560	Crizotinib	Crizotinib/Xalkori/PF-02341066	Xalkori	PF-02341066	Crizotinib	ALK Inhibitor	Inhibition	Pfizer	CancerCommons	Lung
+ROS1	6098	ALK, ROS	25134326	ASP3026	ASP3026	ASP3026	ASP3026	ASP3026	ALK Inhibitor	Inhibition	Astellas Pharma	CancerCommons	Lung
+ROS1	6098	ALK, ROS	11626560	Crizotinib	Crizotinib/Xalkori/PF-02341066	Xalkori	PF-02341066	Crizotinib	ALK Inhibitor	Inhibition	Pfizer	CancerCommons	Lung
+ALK	238	ALK	na	na	X-396	X-396	X-396	X-396	ALK Inhibitor	Inhibition	Xcovery	CancerCommons	Lung
+ALK	238	ALK	na	na	LDK378	LDK378	LDK378	LDK378	ALK Inhibitor	Inhibition	Novartis	CancerCommons	Lung
+MET	4233	MET	42642645	GSK1363089	GSK1363089	Foretinib	GSK1363089	GSK1363089	MET/VEGFR Inhibitor 	Inhibition	GlaxoSmithKline	CancerCommons	Lung
+MET	4233	MET	na	na	Onartuzumab	Onartuzumab	Onartuzumab	Onartuzumab	MET Inhibitor	Inhibition	Genentech	CancerCommons	Lung, Prostate
+MET	4233	MET	11494412	ARQ 197	ARQ 197/Tivantinib	Tivantinib	ARQ 197	ARQ 197	MET Inhibitor	Inhibition	ArQule and Daiichi Sankyo	CancerCommons	Lung, Prostate
+MET	4233	MET, VEGFRs, Axl, Tie2, Ron	24901704	MGCD265	MGCD265	MGCD265	MGCD265	MGCD265	MET Inhibitor	Inhibition	MethylGene	CancerCommons	Lung
+HGF	3082	HGF (MET Ligand)	na	na	AMG 102/Rilotumumab	Rilotumumab	AMG 102	AMG 102	Monoclonal Antibody	Inhibition	Amgen	CancerCommons	Lung
+IGF1R	3480	IGF1R	11640390	3-(8-amino-1-(2-phenylquinolin-7-yl)imidazo(1,5-a)pyrazin-3-yl)-1-methylcyclobutanol	OSI-906	OSI-906	OSI-906	Linsitinib	IGF1R Inhibitor	Inhibition	OSI Pharmaceuticals	CancerCommons	Lung
+FLT1	2321	VEGFR	9911830	Tivozanib	Tivozanib	Tivozanib	AV951	AV951	VEGFR Inhibitor	Inhibition	Aveo Oncology	CancerCommons	Lung
+FLT1	2321	VEGFR	11226834	Cediranib maleate	Cediranib maleate/ AZD2171/Recentin	Cediranib 	AZD2171	Recentin	VEGFR Inhibitor	Inhibition	AstraZeneca	CancerCommons	Lung
+PIK3CA	5289	PI3K/mTOR	56649450	BYL719	BYL719	BYL719	BYL719	BYL719	PI3K/mTOR dual Inhibitor	Inhibition	Novartis	CancerCommons	Lung
+mTOR	2475	PI3K/mTOR	56649450	BYL719	BYL719	BYL719	BYL719	BYL719	PI3K/mTOR dual Inhibitor	Inhibition	Novartis	CancerCommons	Lung
+mTOR	2475	mTOR	na	na	DS-3078a	DS-3078a	DS-3078a	DS-3078a	mTOR Inhibitor	Inhibition	Daiichi Sankyo	CancerCommons	Lung
+KRAS	3485	KRAS-RAS	na	na	Reolysin	Reolysin	Reolysin	Reolysin	Ras Inhibitor	Inhibition	Oncolytics Biotech	CancerCommons	Lung
+mTOR	2475	TORC	na	na	CC-223	CC-223	CC-223	CC-223	mTOR Inhibitor	Inhibition	Celgene	CancerCommons	Lung
+mTOR	2475	mTOR	6918289	Temsirolimus	Temsirolimus	Torisel	Temsirolimus	Temsirolimus	mTOR Inhibitor	Inhibition	Wyeth Pharmaceuticals	CancerCommons	Lung
+AURKA	6790	Aurora Kinase	24771867	MLN 8237	MLN8237	Alisertib	MLN8237	MLN8237	AurK Inhibitor	Inhibition	Millenium	CancerCommons	Lung
+HSP90AA1	3320	HSP90	11955716	AT13387	AT13387	AT13387	AT13387	AT13387	HSP90 Inhibitor	Inhibition	Astex Pharmaceuticals	CancerCommons	Lung
+HSP90AA1	3320	HSP90	10096043	AUY922	AUY922	AUY922	AUY922	AUY922	HSP90 Inhibitor	Inhibition	Novartis	CancerCommons	Lung
+CYP17A1	1586	CYP17	57336518	17-(3-pyridyl)-5,16-androstadien-3beta-acetate	Zytiga/abiraterone acetate (FDA-approved)	Zytiga	abiraterone acetate	Abiraterone Acetate	Cytochrome Inhibitor	Inhibition	Janssen Biotech	CancerCommons	Prostate
+AR	367	Androgen receptor	15951529	MDV 3100	Xtandi/MDV3100/enzalutamide (FDA-approved)	Xtandi	MDV 3100	Enzalutamide	Androgen Inhibitor	Inhibition	Astellas Pharma	CancerCommons	Prostate
+CYP17A1	1586	CYP17	9883029	Orteronel	Orteronel/TAK700	Orteronel	TAK700	Orteronel	Cytochrome Inhibitor	Inhibition	Millennium Pharmaceuticals	CancerCommons	Prostate
+AR	367	Androgen receptor	na	na	ODM-201	ODM-201	ODM-201	ODM-201	Androgen Inhibitor	Inhibition	Orion Pharmaceuticals	CancerCommons	Prostate
+FOLH1	2346	PSMA	na	na	BIND-014/PSMA-targeted docetaxel nanoparticle	Docetaxel	Docetaxel	Docetaxel	Folate Inhibitor	Inhibition	BIND Biosciences	CancerCommons	Prostate
+FGFR3	2261	FGFR3 and others (VEGFR)	9886808	4-amino-5-fluoro-3-(5-(4-methylpiperazin-1-yl)-1H-benzimidazol-2-yl)quinolin-2(1H)-one	Dovitinib/TKI258	Dovitinib	TK1258	Dovitinib	FGFR Inhibitor	Inhibition	Novartis	CancerCommons	Prostate
+FLT1	2321	FGFR3 and others (VEGFR)	9886808	4-amino-5-fluoro-3-(5-(4-methylpiperazin-1-yl)-1H-benzimidazol-2-yl)quinolin-2(1H)-one	Dovitinib/TKI258	Dovitinib	TK1258	Dovitinib	FGFR Inhibitor	Inhibition	Novartis	CancerCommons	Prostate
+FLT1	2321	VEGF, PDGF	6450551	Axitinib	Axitinib/AG013736/Inlyta	Inlyta	AG013736	Axitinib	Kinase Inhibitor	Inhibition	Novartis	CancerCommons	Prostate
+FLT4	2324	VEGF, PDGF	6450551	Axitinib	Axitinib/AG013736/Inlyta	Inlyta	AG013736	Axitinib	Kinase Inhibitor	Inhibition	Novartis	CancerCommons	Prostate
+KDR	3791	VEGF, PDGF	6450551	Axitinib	Axitinib/AG013736/Inlyta	Inlyta	AG013736	Axitinib	Kinase Inhibitor	Inhibition	Novartis	CancerCommons	Prostate
+PDGFB	5155	VEGF, PDGF	6450551	Axitinib	Axitinib/AG013736/Inlyta	Inlyta	AG013736	Axitinib	Kinase Inhibitor	Inhibition	Novartis	CancerCommons	Prostate
+KIT	3815	VEGF, PDGF	6450551	Axitinib	Axitinib/AG013736/Inlyta	Inlyta	AG013736	Axitinib	Kinase Inhibitor	Inhibition	Pfizer	CancerCommons	Prostate
+IGF1R	3480	IGF1-R	na	na	Cixutumumab/IMC-A12	Cixutumumab	IMC-A12	Cixutumumab	Monoclonal Antibody	Antibody	ImClone Systems	CancerCommons	Prostate
+EGFR	1956	EGFR	208908	Lapatinib	Lapatinib	Lapatinib	Lapatinib	Lapatinib	EGFR inhibitor	Inhibition	GlaxoSmithKline	CancerCommons	Prostate
+KIT	3815	Receptor tyrosine kinases KIT, CSF1R, and FLT3	na	na	PLX3397	PLX3397	PLX3397	PLX3397	Kinase Inhibitor	Inhibition	Plexxicon	CancerCommons	Prostate
+CSF1R	1436	Receptor tyrosine kinases KIT, CSF1R, and FLT3	na	na	PLX3397	PLX3397	PLX3397	PLX3397	Kinase Inhibitor	Inhibition	Plexxicon	CancerCommons	Prostate
+FLT3	2322	Receptor tyrosine kinases KIT, CSF1R, and FLT3	na	na	PLX3397	PLX3397	PLX3397	PLX3397	Kinase Inhibitor	Inhibition	Plexxicon	CancerCommons	Prostate
+PTK2	5747	FAK, PYK2	11713159	PF00562271	PF00562271	PF00562271	PF00562271	PF00562271	FAK Inhibitor	Inhibition	Merck	CancerCommons	Prostate
+PTK2B	2185	FAK, PYK2	11713159	PF00562271	PF00562271	PF00562271	PF00562271	PF00562271	FAK Inhibitor	Inhibition	Merck	CancerCommons	Prostate
+SRC	6714	SRC	3062316	Dasatinib	Dasatinib/Sprycel/ BMS-354825	Dasatinib	Sprycel	Dasatinib	Kit Inhibitor	Inhibition	Bristol-Myers Squibb	CancerCommons	Prostate
+EIF4E	1977	EIF4E	na	na	ISIS-EIF4ERx	ISIS-EIF4ERx	ISIS-EIF4ERx	ISIS-EIF4ERx	eIF Inhibitor	Inhibition	Isis Pharmaceuticals	CancerCommons	Prostate
+CLU	1191	Clusterin	70689314	CHEMBL2103801	OGX-011/custirsen	Custirsen	OGX-011	OGX-011	CLU Inhibitor	Inhibition	OncoGenex	CancerCommons	Prostate
+HSPB1	3315	HSP27	na	na	OGX-427	OGX-427	OGX-427	OGX-427	HSP27 Inhibitor	Inhibition	OncoGenex	CancerCommons	Prostate
+PARP1	142	PARP	11960529	2-((R)-2-methylpyrrolidin-2-yl)-1H-benzimidazole-4-carboxamide	Veliparib/ABT-888	Veliparib	ABT-888	ABT-888	PARP Inhibitor	Inhibition	Active Biochem	CancerCommons	Prostate
+PARP2	10038	PARP	11960529	2-((R)-2-methylpyrrolidin-2-yl)-1H-benzimidazole-4-carboxamide	Veliparib/ABT-888	Veliparib	ABT-888	ABT-888	PARP Inhibitor	Inhibition	Active Biochem	CancerCommons	Prostate
+HDAC1	3065	HDAC	49855250	SB939	Pracinostat SB939	Pracinostat	SB939	SB939	HDAC Inhibitor	Inhibition	MEI Pharma	CancerCommons	Prostate
+HDAC1	3065	HDAC	6918837	Panobinostat	Panobinostat	Panobinostat	Panobinostat	Panobinostat	HDAC Inhibitor	Inhibition	Novartis	CancerCommons	Prostate

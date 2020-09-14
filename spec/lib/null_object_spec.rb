@@ -24,7 +24,7 @@ describe Genome::Extensions::NullObject do
     end
 
     it 'should return the argument if it isnt nil' do
-      expect(Maybe(1)).to be_a(Fixnum)
+      expect(Maybe(1)).to be_a(Integer)
       expect(Maybe(1)).to eq(1)
     end
   end

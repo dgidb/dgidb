@@ -32,7 +32,9 @@ module Genome; module Importers; module Cgi;
               citation: 'https://www.cancergenomeinterpreter.org/',
               source_db_version:  get_version,
               source_db_name: 'CGI',
-              full_name: 'Cancer Genome Interpreter'
+              full_name: 'Cancer Genome Interpreter',
+              license: 'Creative Commons Attribution-NonCommercial 4.0 (BY-NC)',
+              license_link: 'https://www.cancergenomeinterpreter.org/faq#q11c',
           }
       )
       @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
@@ -124,6 +126,7 @@ module Genome; module Importers; module Cgi;
           end
         end
       end
+      backfill_publication_information()
     end
 
 

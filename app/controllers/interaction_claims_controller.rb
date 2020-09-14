@@ -30,7 +30,11 @@ class InteractionClaimsController < ApplicationController
     @view_context = view_context
     unpack_locals(params)
     perform_interaction_search
-    prepare_export
+    if @search_results.search_results.length == 1
+      redirect_to "/#{params['search_mode']}/#{ERB::Util.url_encode(@search_results.search_results[0].identifiers[0]['name'])}#_interactions"
+    else
+      prepare_export
+    end
   end
 
   def interactions_for_related_genes
@@ -54,7 +58,7 @@ class InteractionClaimsController < ApplicationController
   end
 
   def unpack_locals(params)
-    @preset_fda = (params[:fda_approved_drug] == "checked" ? "FDA Approved" : "")
+    @preset_fda = (params[:approved_drug] == "checked" ? "Approved" : "")
     @preset_neo = (params[:anti_neoplastic] == "checked" ? "Anti-neoplastics" : "")
     @preset_immuno = (params[:immunotherapy] == "checked" ? "Immunotherapies" : "")
     @preset_clin = (params[:clinically_actionable] == "checked" ? "Clinically Actionable" : "")

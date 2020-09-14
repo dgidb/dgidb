@@ -1,5 +1,5 @@
 class UpdateGo < ApiUpdater
-  def updater
+  def create_updater
     Genome::OnlineUpdaters::Go::Updater.new()
   end
 

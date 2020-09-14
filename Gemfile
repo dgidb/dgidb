@@ -19,13 +19,14 @@ gem 'xpath'
 gem 'jbuilder'
 gem 'lograge'
 gem 'syslog-logger'
-gem 'rye'
 gem 'delayed_job', '~> 4.1.4'
 gem 'delayed_job_active_record'
 gem 'rubyzip'
-gem 'kaminari', '~> 0.16.1'
+gem 'kaminari', '~> 1.2.1'
 gem 'sidekiq', '~> 6.0.3'
 gem 'sidekiq-cron', '~> 1.1.0'
+gem 'airbrake', '~> 10.0.5'
+gem 'staccato', '~> 0.5.3'
 
 
 group :production do
@@ -60,7 +61,8 @@ group :test, :development  do
   gem 'activerecord-import'
   gem 'stamp'
   gem 'database_cleaner'
-  gem 'coveralls'
+  gem 'simplecov'
+  gem 'simplecov-lcov'
   gem 'test-unit'
 end
 
