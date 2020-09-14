@@ -3,7 +3,7 @@ require 'genome/online_updater'
 
 module Genome; module OnlineUpdaters; module Civic
   class Updater < Genome::OnlineUpdater
-    attr_reader :new_version
+    attr_reader :new_version, :source
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
     end
@@ -39,6 +39,12 @@ module Genome; module OnlineUpdaters; module Civic
       ei['drugs'].select { |d| valid_drug?(d) }.each do |drug|
         gc = create_gene_claim(variant['entrez_name'], 'Entrez Gene Symbol')
         create_gene_claim_aliases(gc, variant)
+        if ei['clinical_significance'] == 'Resistance'
+          create_gene_claim_category(gc, "DRUG RESISTANCE")
+        end
+        if ei['evidence_level'] == 'A'
+          create_gene_claim_category(gc, "CLINICALLY ACTIONABLE")
+        end
         dc = create_drug_claim(drug['name'].upcase, drug['name'].upcase, 'CIViC Drug Name')
         ic = create_interaction_claim(gc, dc)
         if ei['source']['citation_id'].present? and ei['source']['source_type'] == 'PubMed'
@@ -80,6 +86,7 @@ module Genome; module OnlineUpdaters; module Civic
         }
       )
       @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
       @source.save
     end
   end
