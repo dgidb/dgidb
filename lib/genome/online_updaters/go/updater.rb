@@ -2,7 +2,7 @@ require 'genome/online_updater'
 
 module Genome; module OnlineUpdaters; module Go;
   class Updater < Genome::OnlineUpdater
-    attr_reader :new_version
+    attr_reader :new_version, :source
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
     end
