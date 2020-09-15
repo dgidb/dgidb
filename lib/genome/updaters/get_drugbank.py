@@ -10,7 +10,7 @@ import ssl
 import requests
 from requests.auth import HTTPBasicAuth
 from version_logger import Version
-from urllib.request import urlopen
+from urllib import request
 from bs4 import BeautifulSoup
 from get_entrez import Entrez
 
@@ -35,7 +35,7 @@ class DrugBank(object):
     def get_online_version(self):
         print('Checking DrugBank Version...')
         context = ssl._create_unverified_context()
-        html = urlopen('http://www.drugbank.ca/downloads', context=context)
+        html = request.urlopen('http://www.drugbank.ca/downloads', context=context)
         bsObj = BeautifulSoup(html.read(), "html.parser")
         r = re.compile(r'Version ([\d\.]+)')
         match = r.search(bsObj.h1.text)

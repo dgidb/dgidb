@@ -29,7 +29,7 @@ class Entrez:
         bsObj = BeautifulSoup(r.text, "html.parser")
         for link in bsObj.find_all('a'):
             if link.get('href') == 'gene2accession.gz':
-                self.online_version = datetime.datetime.strptime(link.next.next.split()[0], '%d-%b-%Y').strftime(
+                self.online_version = datetime.datetime.strptime(link.next.next.split()[0], '%Y-%m-%d').strftime(
                     '%d-%B-%Y')
                 break
 
