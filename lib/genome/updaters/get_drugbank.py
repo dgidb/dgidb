@@ -55,7 +55,7 @@ class DrugBank(object):
     def download_files(self):
         print('Downloading DrugBank XML...')
         filename = os.path.join(self.download_path, 'drugbank.zip')
-        self.download_file('https://www.drugbank.ca/releases/5-0-6/downloads/all-full-database', filename)
+        self.download_file('https://www.drugbank.ca/releases/5-1-7/downloads/all-full-database', filename)
 
         print('\nExtracting DrugBank XML...')
         zfile = zipfile.ZipFile(filename)
