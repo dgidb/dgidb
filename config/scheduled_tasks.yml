@@ -46,8 +46,8 @@ UpdatePharos:
   description: Update data from Pharos
   queue: default
   class: UpdatePharos
-  
- UpdateDrugBank:
+
+UpdateDrugBank:
   cron: '0 8 1 * *'
   description: Update data from DrugBank
   queue: default
