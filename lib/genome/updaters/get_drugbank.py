@@ -55,7 +55,7 @@ class DrugBank(object):
     def download_files(self):
         print('Downloading DrugBank XML...')
         filename = os.path.join(self.download_path, 'drugbank.zip')
-        self.download_file('https://www.drugbank.ca/releases/5-0-6/downloads/all-full-database', filename)
+        self.download_file('https://www.drugbank.ca/releases/5-1-7/downloads/all-full-database', filename)
 
         print('\nExtracting DrugBank XML...')
         zfile = zipfile.ZipFile(filename)
@@ -152,7 +152,7 @@ class DrugBank(object):
                                   tuple(sorted(drug_groups)), tuple(sorted(drug_categories)))
             for target in targets:
                 organism = target.find('entry:organism', ns).text
-                if organism != 'Human':
+                if organism != 'Humans':
                     continue
                 gene_id = target.find('entry:id', ns).text
                 known_action = target.find('entry:known-action', ns).text
@@ -236,7 +236,7 @@ class DrugBank(object):
                     out = list()
                     for datum in data:
                         if isinstance(datum, tuple):
-                            datum = ';'.join(datum)
+                            datum = ';'.join(str(x) for x in datum)
                         datum = str(datum).replace("\t", '')
                         if not datum or datum == 'None':
                             datum = 'N/A'
