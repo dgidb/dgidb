@@ -3,15 +3,8 @@ class UpdateGuideToPharmacology < TsvUpdater
     ['interactions', '.tsv']
   end
 
-  def importer
+  def create_importer
     Genome::Importers::GuideToPharmacologyInteractions::NewGuideToPharmacology.new(tempfile)
-  end
-
-  def next_update_time
-    Date.today
-      .beginning_of_week
-      .next_month
-      .midnight
   end
 
   def latest_url

@@ -10,7 +10,9 @@ module Genome
           source_type_id:     DataModel::SourceType.POTENTIALLY_DRUGGABLE,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           source_db_name:     'HingoraniCasas',
-          full_name:          'The druggable genome and support for target identification and validation in drug development (Hingorani & Casas, 2017)'
+          full_name:          'The druggable genome and support for target identification and validation in drug development (Hingorani & Casas, 2017)',
+          license: 'Supplementary data from Author Copyright publication',
+          license_link: 'https://stm.sciencemag.org/content/9/383/eaag1166/tab-pdf',
         }
       end
 

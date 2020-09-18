@@ -44,8 +44,8 @@
                                 %a{href: "/drugs/#{interaction.drug.name}"} 
                                   =interaction.drug.name
                             %tr
-                              %td="interaction_claim Types"
-                              %td=interaction_claim.interaction_claim_types.map{|it| it.type}.join(", ")
+                              %td="Interaction Claim Types & Directionality"
+                              %td=interaction_claim.interaction_claim_types.count==0 ? "n/a" : interaction_claim.interaction_claim_types.map{|ict| ict.directionality.nil? ? ict.type : "#{ict.type} (#{ict.directionality})"}.join(", ")
                       %div(class="item-panel")
                         %h4
                           Publications:
@@ -57,12 +57,23 @@
                                   %a{href: PMID.pubmed_url(publication.pmid)}
                                     = publication.citation
                     %div{class: "cell category", style: "float: right; width: 50%"}
-                      %div(class="item-panel")
+                      %div{class: "item-panel", style:"margin-bottom: 10px"}
                         %h4
                           Other Info:
-                        %div{style: "height: 456px; overflow-y: scroll; "}
+                        %div{style: "height: 197px; overflow-y: scroll; "}
                           %table{class: "table table-condensed table-striped", id: "table_info"}
                             -interaction_claim.interaction_claim_attributes.each do |attribute|
                               %tr
                                 %td{style: "width: 300px"}=attribute.name
                                 %td{style: "width: 350px"}=attribute.value
+                      %div(class="item-panel")
+                        %h4
+                          Source Links:
+                        %div{style: "height: 198px; overflow-y: scroll; "}
+                          %table{class: "table table-condensed table-striped", id: "table_info"}
+                            -interaction_claim.interaction_claim_links.each do |link|
+                              %tr
+                                %td
+                                  - url = link.link_url.include?('source_tsvs') ? File.join('..', link.link_url) : link.link_url
+                                  %a{href: url}
+                                    = link.link_text

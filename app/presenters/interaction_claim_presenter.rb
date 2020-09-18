@@ -24,6 +24,7 @@ class InteractionClaimPresenter < SimpleDelegator
       interaction_types: @interaction_claim.interaction_claim_types.map{|t| t.type},
       attributes: @interaction_claim.interaction_claim_attributes.map{|a| ClaimAttributePresenter.new(a).as_json},
       publications: @interaction_claim.publications.map(&:pmid),
+      source_links: @interaction_claim.interaction_claim_links.map{|l| {url: l.link_url, text: l.link_text}  },
     }
   end
 end

@@ -1,13 +1,6 @@
 class UpdateCkb < ApiUpdater
-  def updater
+  def create_updater
     Genome::OnlineUpdaters::Ckb::Updater.new()
-  end
-
-  def next_update_time
-    Date.today
-      .beginning_of_week
-      .next_day(14)
-      .midnight
   end
 
   def should_group_genes?

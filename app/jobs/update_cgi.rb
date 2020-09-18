@@ -9,7 +9,7 @@ class UpdateCgi < TsvUpdater
     ['cgi_biomarkers_per_variant', '.tsv']
   end
 
-  def importer
+  def create_importer
     Genome::Importers::Cgi::NewCgi.new(tempfile)
   end
 
@@ -27,13 +27,6 @@ class UpdateCgi < TsvUpdater
         end
       end
     end
-  end
-
-  def next_update_time
-    Date.today
-      .beginning_of_week
-      .next_month
-      .midnight
   end
 
   def should_group_genes?

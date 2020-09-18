@@ -33,7 +33,9 @@ module Genome; module Importers; module Cgi;
               source_db_version:  get_version,
               source_type_id: DataModel::SourceType.INTERACTION,
               source_db_name: 'CGI',
-              full_name: 'Cancer Genome Interpreter'
+              full_name: 'Cancer Genome Interpreter',
+              license: 'Creative Commons Attribution-NonCommercial 4.0 (BY-NC)',
+              license_link: 'https://www.cancergenomeinterpreter.org/faq#q11c',
           }
       )
     end
@@ -55,6 +57,7 @@ module Genome; module Importers; module Cgi;
                 if row['Source'].include?('PMID')
                   add_interaction_claim_publications(interaction_claim, row['Source'])
                 end
+                create_interaction_claim_link(interaction_claim, 'Cancer Biomarkers database', 'https://www.cancergenomeinterpreter.org/biomarkers')
               end
             else
               gene_claim = create_gene_claim(row['Gene'], 'CGI Gene Name')
@@ -65,6 +68,7 @@ module Genome; module Importers; module Cgi;
               if row['Source'].include?('PMID')
                 add_interaction_claim_publications(interaction_claim, row['Source'])
               end
+              create_interaction_claim_link(interaction_claim, 'Cancer Biomarkers database', 'https://www.cancergenomeinterpreter.org/biomarkers')
             end
           end
         if row['Drug'].include?(';')
@@ -81,6 +85,7 @@ module Genome; module Importers; module Cgi;
                 if row['Source'].include?('PMID')
                   add_interaction_claim_publications(interaction_claim, row['Source'])
                 end
+                create_interaction_claim_link(interaction_claim, 'Cancer Biomarkers database', 'https://www.cancergenomeinterpreter.org/biomarkers')
               end
             else
               gene_claim = create_gene_claim(row['Gene'], 'CGI Gene Name')
@@ -91,6 +96,7 @@ module Genome; module Importers; module Cgi;
               if row['Source'].include?('PMID')
                 add_interaction_claim_publications(interaction_claim, row['Source'])
               end
+              create_interaction_claim_link(interaction_claim, 'Cancer Biomarkers database', 'https://www.cancergenomeinterpreter.org/biomarkers')
             end
           end
         end
@@ -105,6 +111,7 @@ module Genome; module Importers; module Cgi;
               if row['Source'].include?('PMID')
                 add_interaction_claim_publications(interaction_claim, row['Source'])
               end
+              create_interaction_claim_link(interaction_claim, 'Cancer Biomarkers database', 'https://www.cancergenomeinterpreter.org/biomarkers')
             end
           else
             gene_claim = create_gene_claim(row['Gene'], 'CGI Gene Name')
@@ -114,9 +121,11 @@ module Genome; module Importers; module Cgi;
             if row['Source'].include?('PMID')
               add_interaction_claim_publications(interaction_claim, row['Source'])
             end
+            create_interaction_claim_link(interaction_claim, 'Cancer Biomarkers database', 'https://www.cancergenomeinterpreter.org/biomarkers')
           end
         end
       end
+      backfill_publication_information()
     end
 
 

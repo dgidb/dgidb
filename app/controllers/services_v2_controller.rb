@@ -1,4 +1,6 @@
 class ServicesV2Controller < ApplicationController
+  include ApiAnalytics
+
   def genes
     genes = DataModel::Gene.eager_load(:gene_aliases).page(params[:page]).per(params[:count])
     render json: PaginatedCollectionPresenter.new(
@@ -25,7 +27,7 @@ class ServicesV2Controller < ApplicationController
   end
 
   def drug_details
-    drug_details = DrugDetailPresenter.new(DataModel::Drug.find_by!(chembl_id: params[:chembl_id])).as_json
+    drug_details = DrugDetailPresenter.new(DataModel::Drug.find_by!(concept_id: params[:concept_id])).as_json
     render json: drug_details
   end
 

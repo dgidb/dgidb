@@ -35,11 +35,13 @@ module Genome; module Importers; module DrugBank;
       @source = DataModel::Source.where(
         base_url: 'http://www.drugbank.ca',
         site_url: 'http://www.drugbank.ca/',
-        citation: "DrugBank 4.0: shedding new light on drug metabolism. Law V, Knox C, Djoumbou Y, Jewison T, Guo AC, Liu Y, Maciejewski A, Arndt D, Wilson M, Neveu V, Tang A, Gabriel G, Ly C, Adamjee S, Dame ZT, Han B, Zhou Y, Wishart DS.Nucleic Acids Res. 2014 Jan 1;42(1):D1091-7. PubMed ID: 24203711",
+        citation: "DrugBank 4.0: shedding new light on drug metabolism. Law V, Knox C, Djoumbou Y, Jewison T, Guo AC, Liu Y, Maciejewski A, Arndt D, Wilson M, Neveu V, Tang A, Gabriel G, Ly C, Adamjee S, Dame ZT, Han B, Zhou Y, Wishart DS.Nucleic Acids Res. 2014 Jan 1;42(1):D1091-7. PMID: 24203711",
         source_db_version: get_version,
         source_type_id: DataModel::SourceType.INTERACTION,
         source_db_name: 'DrugBank',
-        full_name: 'DrugBank - Open Data Drug & Drug Target Database'
+        full_name: 'DrugBank - Open Data Drug & Drug Target Database',
+        license: 'Custom non-commercial',
+        license_link: 'https://dev.drugbankplus.com/guides/drugbank/citing?_ga=2.29505343.1251048939.1591976592-781844916.1591645816',
         #source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
       ).first_or_create
     end
@@ -78,8 +80,10 @@ module Genome; module Importers; module DrugBank;
         row['pmid'].split(DELIMITER).each do |pmid|
           create_interaction_claim_publication(interaction_claim, pmid) unless pmid == 'N/A'
         end
+        create_interaction_claim_link(interaction_claim, "Drug Target", "https://www.drugbank.ca/drugs/#{row['drug_id']}#targets")
         interaction_claim.save
       end
+      backfill_publication_information()
     end
   end
 end; end; end;

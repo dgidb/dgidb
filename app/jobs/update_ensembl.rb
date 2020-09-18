@@ -5,7 +5,7 @@ class UpdateEnsembl < TsvUpdater
     ['gene_txt.gz', '.gz']
   end
 
-  def importer
+  def create_importer
     Genome::Importers::Ensembl::NewEnsembl.new(tempfile, latest_version)
   end
 
@@ -43,13 +43,6 @@ class UpdateEnsembl < TsvUpdater
     end
 
     true
-  end
-
-  def next_update_time
-    Date.today
-      .beginning_of_week
-      .next_month
-      .midnight
   end
 
   def should_group_genes?

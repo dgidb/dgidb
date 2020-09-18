@@ -32,7 +32,7 @@ class LookupDrugs
       case result
         when DataModel::Drug
           results_to_drug_groups[result.name] << result if results_to_drug_groups.include? result.name
-          results_to_drug_groups[result.chembl_id] << result if results_to_drug_groups.include? result.chembl_id
+          results_to_drug_groups[result.concept_id] << result if results_to_drug_groups.include? result.concept_id
         when DataModel::DrugAlias
           results_to_drug_groups[result.alias] << result.drug
       end
@@ -43,10 +43,10 @@ class LookupDrugs
   def self.match_search_terms_to_objects(search_terms, scope, filter)
     search_terms = search_terms.dup
 
-    unfiltered_drug_results = DataModel::Drug.send(scope).where(["drugs.name in (?) or chembl_id in (?)", search_terms, search_terms])
+    unfiltered_drug_results = DataModel::Drug.send(scope).where(["drugs.name in (?) or concept_id in (?)", search_terms, search_terms])
     filtered_drug_results = filter.filter_rel(unfiltered_drug_results)
 
-    search_terms = search_terms - unfiltered_drug_results.map(&:name) - unfiltered_drug_results.map(&:chembl_id)
+    search_terms = search_terms - unfiltered_drug_results.map(&:name) - unfiltered_drug_results.map(&:concept_id)
 
     unfiltered_drug_alias_results = DataModel::DrugAlias.send(scope).where(alias: search_terms)
     filtered_drug_alias_results = filter.filter_rel(unfiltered_drug_alias_results)

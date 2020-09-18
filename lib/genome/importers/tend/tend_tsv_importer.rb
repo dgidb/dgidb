@@ -9,7 +9,9 @@ module Genome
           source_db_version:  '01-Aug-2011',
           source_type_id:    DataModel::SourceType.INTERACTION,
           source_db_name:    'TEND',
-          full_name:         'Trends in the exploitation of novel drug targets (Rask-Andersen, et al., 2011)'
+          full_name:         'Trends in the exploitation of novel drug targets (Rask-Andersen, et al., 2011)',
+          license: 'Supplementary table from Macmillan Publishers Limited copyright publication',
+          license_link: 'https://www.nature.com/articles/nrd3478',
         }
       end
 
@@ -36,6 +38,10 @@ module Genome
               attribute :year_of_approval, name: 'Year of Approval', unless: na_filter
             end
           end
+        end
+        s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+        DataModel::InteractionClaim.where(source_id: s.id).each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Trends in the exploitation of novel drug targets, Table 1', "https://www.nature.com/articles/nrd3478/tables/1")
         end
       end
     end

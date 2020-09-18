@@ -2,7 +2,7 @@ require 'genome/online_updater'
 
 module Genome; module OnlineUpdaters; module Oncokb;
   class Updater < Genome::OnlineUpdater
-    attr_reader :new_version
+    attr_reader :new_version, :source
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
     end
@@ -25,9 +25,11 @@ module Genome; module OnlineUpdaters; module Oncokb;
           source_db_version: new_version,
           base_url: 'http://oncokb.org/',
           site_url: 'http://oncokb.org/',
-          citation: 'OncoKB: A Precision Oncology Knowledge Base. Chakravarty D, Gao J, Phillips S, et. al. JCO Precision Oncology 2017 :1, 1-16',
+          citation: 'OncoKB: A Precision Oncology Knowledge Base. Chakravarty D, Gao J, Phillips S, et. al. JCO Precision Oncology 2017 :1, 1-16. PMID: 28890946',
           source_type_id: DataModel::SourceType.INTERACTION,
           full_name: 'OncoKB: A Precision Oncology Knowledge Base',
+          license: 'Restrictive, non-commercial',
+          license_link: 'https://www.oncokb.org/terms',
         }
       )
     end
@@ -50,7 +52,9 @@ module Genome; module OnlineUpdaters; module Oncokb;
                 drug_claim = create_drug_claim(drug['drugName'], drug['drugName'], 'OncoKB Drug Name')
                 interaction_claim = create_interaction_claim(gene_claim, drug_claim)
                 create_interaction_claim_attribute(interaction_claim, 'combination therapy', combination_drug_name)
-                add_interaction_claim_publications(interaction_claim, variant['pmids'])
+                #Our current agreement with OncoKB precludes us from importing the associated PMIDs
+                #add_interaction_claim_publications(interaction_claim, variant['pmids'])
+                create_interaction_claim_link(interaction_claim, "#{gene['hugoSymbol']} Clinically Relevant Alterations", "https://www.oncokb.org/gene/#{gene['hugoSymbol']}")
               end
             end
           else
@@ -58,7 +62,9 @@ module Genome; module OnlineUpdaters; module Oncokb;
               drug = drugs[drug_name]
               drug_claim = create_drug_claim(drug['drugName'], drug['drugName'], 'OncoKB Drug Name')
               interaction_claim = create_interaction_claim(gene_claim, drug_claim)
-              add_interaction_claim_publications(interaction_claim, variant['pmids'])
+              #Our current agreement with OncoKB precludes us from importing the associated PMIDs
+              #add_interaction_claim_publications(interaction_claim, variant['pmids'])
+              create_interaction_claim_link(interaction_claim, "#{gene['hugoSymbol']} Clinically Relevant Alterations", "https://www.oncokb.org/gene/#{gene['hugoSymbol']}")
             end
           end
         end

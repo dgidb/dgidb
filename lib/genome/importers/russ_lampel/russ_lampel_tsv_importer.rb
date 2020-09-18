@@ -9,8 +9,9 @@ module Genome
           source_db_version:  '26-Jul-2011',
           source_type_id:     DataModel::SourceType.GENE,
           source_db_name:     'RussLampel',
-          full_name:          'The druggable genome: an update (Russ & Lampel, 2005)'
-
+          full_name:          'The druggable genome: an update (Russ & Lampel, 2005)',
+          license: 'Unknown; data is no longer publicly available from external site, referenced in Elsevier copyright publication',
+          license_link: 'https://www.sciencedirect.com/science/article/pii/S1359644605036664',
         }
       end
 

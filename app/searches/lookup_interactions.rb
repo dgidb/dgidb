@@ -42,7 +42,7 @@ class LookupInteractions
     gene_categories: :include_gene_claim_category_interaction,
     interaction_types:  :include_interaction_claim_type,
     source_trust_levels: :include_source_trust_level,
-    fda_approved_drug: :include_fda_approved_drug,
+    approved_drug: :include_approved_drug,
     immunotherapy: :include_immunotherapy,
     anti_neoplastic: :include_anti_neoplastic,
     clinically_actionable: :include_clinically_actionable,

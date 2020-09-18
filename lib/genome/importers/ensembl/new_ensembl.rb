@@ -27,7 +27,9 @@ module Genome; module Importers; module Ensembl;
         source_db_version:  version,
         source_type_id:     DataModel::SourceType.GENE,
         source_db_name:     'Ensembl',
-        full_name:          'Ensembl'
+        full_name:          'Ensembl',
+        license: 'Unrestricted license, pass-through constraints',
+        license_link:        'https://useast.ensembl.org/info/about/legal/disclaimer.html',
       ).first_or_create
     end
 
@@ -53,9 +55,10 @@ module Genome; module Importers; module Ensembl;
     end
 
     def process_line(line)
-      attributes = line['attribute'].split('; ')
+      attributes = line['attribute'].split(';')
       attribute_hash = {}
       attributes.each do |a|
+        a = a.strip
         (key, value) = a.split(' ')
         attribute_hash[key] = value[1..-2] #Stripe quotes
       end

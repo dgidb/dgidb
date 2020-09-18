@@ -1,19 +1,28 @@
 module Utils
   module TSV
-    def self.generate_interactions_tsv(filename = File.join(Rails.root, 'data/interactions.tsv'))
-      write_tsv_file_for_query(filename, DataModel::InteractionClaim.for_tsv, 'interaction')
+    def self.generate_interaction_claims_tsv(directory = File.join(Rails.root, 'data'), filename = 'interactions.tsv')
+      filepath = File.join(directory, filename)
+      write_tsv_file_for_query(filepath, DataModel::InteractionClaim.for_tsv, 'interaction_claim')
     end
 
-    def self.generate_genes_tsv(filename = File.join(Rails.root, 'data', 'genes.tsv'))
-      write_tsv_file_for_query(filename, DataModel::GeneClaim.for_tsv, 'gene')
+    def self.generate_genes_tsv(directory = File.join(Rails.root, 'data'), filename = 'genes.tsv')
+      filepath = File.join(directory, filename)
+      write_tsv_file_for_query(filepath, DataModel::GeneClaim.for_tsv, 'gene')
     end
 
-    def self.generate_drugs_tsv(filename = File.join(Rails.root, 'data', 'drugs.tsv'))
-      write_tsv_file_for_query(filename, DataModel::DrugClaim.for_tsv, 'drug')
+    def self.generate_drugs_tsv(directory = File.join(Rails.root, 'data'), filename = 'drugs.tsv')
+      filepath = File.join(directory, filename)
+      write_tsv_file_for_query(filepath, DataModel::DrugClaim.for_tsv, 'drug')
     end
 
-    def self.generate_categories_tsv(filename = File.join(Rails.root, 'data/categories.tsv'))
-      write_tsv_file_for_query(filename, DataModel::Gene.for_gene_categories, 'category')
+    def self.generate_categories_tsv(directory = File.join(Rails.root, 'data'), filename = 'categories.tsv')
+      filepath = File.join(directory, filename)
+      write_tsv_file_for_query(filepath, DataModel::Gene.for_gene_categories, 'category')
+    end
+
+    def self.generate_ndex_interaction_groups_tsv(directory = File.join(Rails.root, 'data'), filename = 'ndex.tsv')
+      filepath = File.join(directory, filename)
+      write_tsv_file_for_query(filepath, DataModel::Interaction.for_tsv, 'ndex_interaction_group')
     end
 
     def self.update_druggable_gene_tsvs_archive(filename = Rails.root.join('data', 'druggable_gene_tsvs.tar.gz'))
@@ -86,14 +95,14 @@ module Utils
       end
     end
 
-    def self.print_interaction_header(file_handle)
+    def self.print_interaction_claim_header(file_handle)
       header = ['gene_name','gene_claim_name','entrez_id','interaction_claim_source',
-        'interaction_types','drug_claim_name','drug_claim_primary_name','drug_name','drug_chembl_id',
+        'interaction_types','drug_claim_name','drug_claim_primary_name','drug_name','drug_concept_id',
         'PMIDs'].join("\t")
       file_handle.puts(header)
     end
 
-    def self.print_interaction_row(file_handle, interaction_claim)
+    def self.print_interaction_claim_row(file_handle, interaction_claim)
       return if license_restricted? interaction_claim.source.source_db_name
       row = [
         interaction_claim.gene ? interaction_claim.gene.name : "",
@@ -104,8 +113,27 @@ module Utils
         interaction_claim.drug_claim.name,
         interaction_claim.drug_claim.primary_name,
         interaction_claim.drug ? interaction_claim.drug.name : "",
-        interaction_claim.drug ? interaction_claim.drug.chembl_id : "",
+        interaction_claim.drug ? interaction_claim.drug.concept_id : "",
         interaction_claim.publications ? interaction_claim.publications.map(&:pmid).join(',') : "",
+      ].join("\t")
+
+      file_handle.puts(row)
+    end
+
+    def self.print_ndex_interaction_group_header(file_handle)
+      header = %w[gene_name entrez_id drug_name drug_external_id supporting_sources]
+                   .join("\t") # Restore interaction_directionality to header once #387 is resolved
+      file_handle.puts(header)
+    end
+
+    def self.print_ndex_interaction_group_row(file_handle, interaction)
+      row = [
+          interaction.gene.name,
+          interaction.gene.entrez_id,
+          interaction.drug.name,
+          interaction.drug.concept_id,
+          # interaction.directionality.join(";"), # Add this back in once #387 is resolved
+          interaction.sources.count
       ].join("\t")
 
       file_handle.puts(row)
@@ -131,18 +159,18 @@ module Utils
     end
 
     def self.print_drug_header(file_handle)
-      header = ['drug_claim_name','drug_name','chembl_id','drug_claim_source'].join("\t")
+      header = ['drug_claim_name','drug_name','concept_id','drug_claim_source'].join("\t")
       file_handle.puts(header)
     end
 
     def self.print_drug_row(file_handle, drug_claim)
       drug_name = drug_claim.drug ? drug_claim.drug.name : ""
-      chembl_id = drug_claim.drug ? drug_claim.drug.chembl_id : ""
+      concept_id = drug_claim.drug ? drug_claim.drug.concept_id : ""
       return if license_restricted? drug_claim.source.source_db_name
       row = [
         drug_claim.name,
         drug_name,
-        chembl_id,
+        concept_id,
         drug_claim.source.source_db_name,
       ].join("\t")
 
@@ -151,7 +179,7 @@ module Utils
 
     private
     def self.license_restricted
-      @@license_restricted ||= %w[PharmGKB DrugBank]
+      @@license_restricted ||= %w[DrugBank]
     end
 
     def self.license_restricted? (source_name)

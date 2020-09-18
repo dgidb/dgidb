@@ -25,7 +25,7 @@
                       %div{class: "item-panel"}
                         %h4
                           Alternate Names:
-                        %div{style: "height: 461px; overflow-y: scroll; margin-bottom: 5px;"}
+                        %div{style: "height: 541px; overflow-y: scroll; margin-bottom: 5px;"}
                           %table{class: "table table-condensed table-striped", id: "table_aliases"}
                             %tbody
                               -gene_claim.gene_claim_aliases.each do |alt_name| ######
@@ -45,10 +45,19 @@
                                 %tr
                                   %td=attribute.name
                                   %td=attribute.value
+                      %div{class: "item-panel", style: "margin-bottom: 11px;"}
+                        %h4
+                          Gene Categories:
+                        %div{style: "height: 70px; overflow-y: scroll; margin-bottom: 5px;"}  
+                          %table{class: "table table-condensed table-striped", id:"table_info"}
+                            %tbody
+                              -gene_claim.gene_claim_categories.each do |category|
+                                %tr
+                                  %td=category.name
                       %div{class: "item-panel"}
                         %h4
                           Publications:
-                        %div{style: "height: 200px; overflow-y: scroll; margin-bottom: 5px;"}
+                        %div{style: "height: 150px; overflow-y: scroll; margin-bottom: 5px;"}
                           %table{class: "table table-condensed table-striped", id:"table_publications"}
                             -gene_claim.publications.each do |publication| ########
                               %tr

@@ -3,6 +3,9 @@
 - else
   - entity = DrugPresenter.new(entity)
 
+- known_drug_partners_per_gene = DataModel::Interaction.group(:gene_id).count
+- known_gene_partners_per_drug = DataModel::Interaction.group(:drug_id).count
+
 %div(class="item-title")
   %div(class="item-name")
     %h3(class="item-source")
@@ -31,15 +34,15 @@
               - else
                 Gene
             %th
-              Interaction Type
-            %th
-              Interaction Directionality
+              Interaction Type & Directionality
             %th
               Sources
             %th
               PMIDs
             %th
-              Score
+              Query Score
+            %th
+              Interaction Score
           %tbody
           - interactions.each do |interaction|
             %tr{onclick: "location.href='/interactions/#{interaction.id}';"}
@@ -51,9 +54,7 @@
                   %a{href: "/genes/#{interaction.gene.name}"}
                     = interaction.gene.name
               %td
-                = interaction.na_or_types.join(", ")
-              %td
-                = interaction.directionality.join(", ")
+                = interaction.na_or_types.map{|t| t[:directionality].nil? ? t[:type] : "#{t[:type]} (#{t[:directionality]})"}.join(", ")
               %td
                 = interaction.sources.map{|source| TrustLevelPresenter.source_link_green(@view_context, source)}.join(' ').html_safe
               %td
@@ -64,6 +65,8 @@
                     None found
               %td
                 = scores[interaction.id]
+              %td
+                = interaction.interaction_score(known_drug_partners_per_gene, known_gene_partners_per_drug).round(2)
         %button{class: "show-all", style: "margin-top: 5px"}
           Show All
         %button{class: "show-more", style: "margin-top: 5px"}

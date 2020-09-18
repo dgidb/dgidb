@@ -1,5 +1,4 @@
-#class PostGrouper < ActiveJob::Base
-class PostGrouper
+class PostGrouper < ApplicationJob
   def perform(cleanup_gene_claims = false)
     if cleanup_gene_claims
       delete_orphaned_gene_claims
@@ -8,7 +7,6 @@ class PostGrouper
     update_trust_levels
     update_drug_types
     backfill_publications
-    generate_tsvs
     Rails.cache.clear
   end
 
@@ -32,12 +30,5 @@ class PostGrouper
 
   def backfill_publications
     Genome::Normalizers::Publications.populate_interaction_claims
-  end
-
-  def generate_tsvs
-    Utils::TSV.generate_categories_tsv
-    Utils::TSV.generate_interactions_tsv
-    Utils::TSV.generate_genes_tsv
-    Utils::TSV.generate_drugs_tsv
   end
 end

@@ -12,6 +12,8 @@ module Genome
           source_db_name: 'MyCancerGenome',
           full_name: 'My Cancer Genome',
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
+          license: 'Restrictive, custom, non-commercial',
+          license_link: 'https://www.mycancergenome.org/content/page/legal-policies-licensing/',
         }
       end
 
@@ -36,6 +38,10 @@ module Genome
             attribute :interaction_type, name: 'Interaction Type', unless: blank_filter
           end
         end.save!
+        s = DataModel::Source.where(source_db_name: source_info['source_db_name'])
+        s.interaction_claims.each do |ic|
+          Genome::OnlineUpdater.new.create_interaction_claim_link(ic, 'Overview of Targeted Therapies for Cancer', "https://www.mycancergenome.org/content/page/overview-of-targeted-therapies-for-cancer/")
+        end
       end
     end
   end
