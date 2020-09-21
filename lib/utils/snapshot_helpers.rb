@@ -64,7 +64,18 @@ module Utils; module SnapshotHelpers
   def bump_version_number(old_version, revision_type)
     parts = {}
     parts[:major], parts[:minor], parts[:patch] = old_version.split('.')
-    parts[revision_type].next!
+    if revision_type == :major
+      parts[:major].next!
+      parts[:minor] = '0'
+      parts[:patch] = '0'
+    elsif revision_type == :minor
+      parts[:minor].next!
+      parts[:patch] = '0'
+    elsif revision_type == :patch
+      parts[:patch].next!
+    else
+      raise StandardError.new("Unsupported revision type #{revision_type}. Must be one of :major, :minor, :patch")
+    end
     parts.values.join('.')
   end
 
