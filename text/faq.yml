@@ -71,7 +71,6 @@ faq:
       anchor: source
       answer: >
         The code for DGIdb is available at <a href="https://github.com/genome/dgi-db">github</a><i class="icon-share"></i>.
-        Please refer to the Downloads section for more details.
 
     - question: I have a source of druggable genes or drug-gene interactions that I would like to add to DGIdb. How do I do that?
       anchor: add
@@ -86,7 +85,7 @@ faq:
         <a href="http://en.wikipedia.org/wiki/Druggability">potentially druggable</a>.
         For example, kinases are generally deemed to have high potential value for development of targeted drugs.
         For more details on the sources of druggable gene category definitions, refer to the <a href="/sources">sources</a> 
-        and <a href="about">background reading</a>.
+        and <a href="/about">background reading</a>.
 
     - question: What is an 'Interaction Type'?
       anchor: interaction
@@ -107,14 +106,14 @@ faq:
         may or may not have existing drugs that target them. On the other hand, all of the genes from the drug-gene interaction sources 
         are targeted by specific known compounds.
 
-    - question: How is this application different from DrugBank or TTD?
+    - question: How is this application different from DrugBank, TTD or other databases?
       anchor: different
       answer: >
         There are many differences. DGIdb is limited to human genes only. DrugBank and TTD are databases that catalogue drugs and store
         detailed information about those drugs and the genes they target. DGIdb aggregates many such databases into a common framework.
         DGIdb adds considerable functionality for efficiently searching a list of input genes against these sources. DGIdb integrates both
         known drug-gene interactions and potentially druggable gene data. DGIdb allows the user to refine their query to certain gene families,
-        types of interactions, classes of drugs, etc.  DGIdb is open source and available in a format that would allow you to create your own
+        types of interactions, etc.  DGIdb is open source and available in a format that would allow you to create your own
         instance. DGIdb incorporates sources of drug-gene interaction data that were previously only available in inaccessible formats (e.g.
         tables in a PDF document). DGIdb is meant to be used in combination with the original sources of raw data. Wherever possible we link
         out to those original sources.
@@ -124,10 +123,10 @@ faq:
       answer: >  
         We are working on updates to the interface that would allows us to readily capture this kind of information directly from users. In the meantime 
         please feel free to report it to us. The quality of our data is only as good as the sources of raw data. Throughout the results you will
-        be able to see if multiple independent sources report the same findings. Using this as a filter may help you disqualify some spurious
+        be able to see if multiple independent sources report the same findings. Using the number of sources, query score, or interaction score as filters may help you disqualify some spurious
         entries and have increased confidence in others.
 
-    - question: Some druggable gene categories seem very inclusive. For example, are there really >800 human kinases?
+    - question: Some druggable gene categories seem very inclusive. For example, are there really nearly 2000 human kinases?
       anchor: inclusive
       answer: >
         This is by design. Druggable gene categories are aggregated from multiple sources, some of which are predictive in nature. Predictions based on
@@ -162,7 +161,7 @@ faq:
     - question: What does the version stamp at the foot of each view mean?
       anchor: stamp
       answer: >
-        It's currently generated whenever we perform a rake task to create a new data snapshot for DGIdb.
+        It is currently generated whenever we perform a rake task to create a new data snapshot for DGIdb.
         The version number corresponds to a tag in git and eventually the debian package we use to push a development version of DGIdb to the publicly facing server.
         The SHA-1 is the commit id from when the snapshot was generated, as is the datestamp.
 
