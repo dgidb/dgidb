@@ -57,7 +57,7 @@ faq:
     - question: How are the gene and drug filters defined in DGIdb?
       anchor: filters
       answer: >
-        The filters currently include Approved drugs, Antineoplastic drugs, and Immunotherapies. FDA approval status is extracted from ChEMBL. 
+        The filters currently include Approved drugs, Antineoplastic drugs, and Immunotherapies. Regulatory approval status is extracted from ChEMBL. 
         Anti-neoplastic drugs are defined by inclusion in an anti-neoplastic drug–gene interaction source (e.g. My Cancer Genome), or as a 
         drug with an anti-neoplastic attribute from its constituent source. Immunotherapy drugs are defined as any drug with an attribute of 
         ‘immunosuppressive agent’, ‘immunomodulatory agent’ or ‘immunostimulant’. 
@@ -159,4 +159,3 @@ faq:
         The <a href="https://github.com/griffithlab/dgi-db">code for DGIdb</a> is open-source, and if you have a GitHub account
         you may post your question directly to the GitHub <a href="https://github.com/genome/dgi-db/issues">issue tracker</a> for our developers to review.
         If you are the curious/ambitious type, feel free to investigate a solution and let us know what you find.
-
