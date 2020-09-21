@@ -35,8 +35,8 @@ class DrugBank(object):
     def get_online_version(self):
         print('Checking DrugBank Version...')
         context = ssl._create_unverified_context()
-        html = request.urlopen('http://www.drugbank.ca/downloads', context=context)
-        bsObj = BeautifulSoup(html.read(), "html.parser")
+        html = requests.get('http://www.drugbank.ca/downloads')
+        bsObj = BeautifulSoup(html.text, "html.parser")
         r = re.compile(r'Version ([\d\.]+)')
         match = r.search(bsObj.h1.text)
         if match:
@@ -247,7 +247,8 @@ class DrugBank(object):
                     if out[15] == 'N/A':
                         no_ensembl += 1
                     writer.writerow(out)
-        self.version.write_log()
+        with open('tmp/version', 'w') as version_file:
+            version_file.write(self.version)
 
     def update(self):
         if not self.is_current():
