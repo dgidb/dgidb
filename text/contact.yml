@@ -12,45 +12,45 @@ contact:
 
   people:
     - title: Malachi Griffith
-      description: Creator, developer
-      link: "http://www.malachigriffith.org"
+      description: Creator
+      link: "https://griffithlab.org"
       link_title: Faculty profile
       email: "mailto:mgriffit@wustl.edu"
       email_title: Email
 
     - title: Obi Griffith
-      description: Creator, developer
-      link: "http://www.obigriffith.org"
+      description: Creator
+      link: "https://griffithlab.org"
       link_title: Faculty profile
       email: "mailto:obigriffith@wustl.edu"
       email_title: Email
 
     - title: Alex Wagner
-      description: Project lead, developer<br>Hardware/systems architect
-      link: "http://www.alexwagner.info"
+      description: Creator, developer
+      link: "http://alexwagner.info"
       link_title: Academic profile
-      email: "mailto:awagner24@wustl.edu"
+      email: "mailto:Alex.Wagner@nationwidechildrens.org"
       email_title: Email
 
     - title: Susanna Kiwala
       description: Software developer
       link: "https://github.com/susannasiebert"
       link_title: Github profile
-      email: "mailto:ssiebert@wustl.edu"
-      email_title: Email
-
-    - title: Yang-Yang Feng
-      description: User interface (UI) developer
-      link: "https://github.com/yanyangfeng"
-      link_title: Github profile
-      email: "mailto:yan-yang.feng@wustl.edu"
+      email: "mailto:susanna.kiwala@wustl.edu"
       email_title: Email
 
     - title: Kelsy Cotto
-      description: Curator
+      description: Curator, developer
       link: "https://www.linkedin.com/in/kelsy-cotto-94b9018b/"
       link_title: LinkedIn profile
       email: "mailto:kelsy.cotto@wustl.edu"
+      email_title: Email
+
+    - title: Sharon Freshour
+      description: Curator, developer
+      link: "https://www.linkedin.com/in/sharonfreshour/"
+      link_title: LinkedIn profile
+      email: "mailto:sharonfreshour@wustl.edu"
       email_title: Email
 
     - title: Adam Coffman
@@ -62,8 +62,8 @@ contact:
 
     - title: Josh McMichael
       description: User experience (UX) developer
-      link: "http://genome.wustl.edu/people/individual/joshua-mcmichael"
-      link_title: McDonnell Genome Institute profile
+      link: "https://github.com/jmcmichael"
+      link_title: Github profile
       email: "mailto:jmcmicha@wustl.edu"
       email_title: Email
 
@@ -75,16 +75,16 @@ contact:
       people: Elaine Mardis, Rick Wilson
 
     - category: Additional software developers
-      people: Indraniel Das, James Koval, Nicholas Spies, Avinash Ramu, Jim Eldred
+      people: Indraniel Das, James Koval, Nicholas Spies, Avinash Ramu, Jim Eldred, Yang-Yang Feng, Jim Weible, Scott Smith, Ben Ainscough, Jonathan Song 
 
     - category: Beta testers
       people: David Larson, Jason Walker, Chris Miller, Ron Bose, Runjun Kumar
 
     - category: Expert curators
-      people: Malachi Griffith, Obi Griffith, Alex Wagner, Janakiraman Subramanian, Nicholas Spies, Jaclyn Boozalis, Deng Pan
+      people: Malachi Griffith, Obi Griffith, Alex Wagner, Janakiraman Subramanian, Nicholas Spies, Jaclyn Boozalis, Deng Pan, Kelsy Cotto, Sharon Freshour
 
     - category: Additional conceptual contributors
       people: Timothy J. Ley, Li Ding, David J. Dooling, Ramaswamy Govindan
 
-    - category: Miscellaneous support
+    - category: Miscellaneous contributions
       people: Kilannin Krysiak, Zachary Skidmore, Robert Lesurf, Lee Trani
