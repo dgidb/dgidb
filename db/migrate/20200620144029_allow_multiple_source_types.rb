@@ -27,7 +27,7 @@ class AllowMultipleSourceTypes < ActiveRecord::Migration[6.0]
   end
 
   def down
-    drop_table :sources_source_types
-    add_column :sources, :source_type_id, index: true
+    drop_table :source_types_sources
+    add_column :sources, :source_type_id, :string, index: true
   end
 end
