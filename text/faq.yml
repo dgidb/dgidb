@@ -133,15 +133,6 @@ faq:
         sequence similarity may result in some false positives. More stringent lists can be obtained by limiting to a particular source(s) (e.g. dGene only)
         or by requiring that multiple sources agree.
 
-    - question: What does the 'interactions for genes related to $GENE' button on the genes pages do?
-      anchor: related
-      answer: >
-        This button will submit a search for drug-gene interactions of genes that have direct gene-gene interactions with the current gene.
-        For example, say you search for drugs that interact with the gene MPL. This search returns no drug interactions, but there are drugs that 
-        inhibit other genes that form complexes with or are in the same pathway as MPL.  This button search for interactions with all of these genes.
-        Gene-gene interaction information is obtained from <a href="http://www.ncbi.nlm.nih.gov/books/NBK3841/#EntrezGene.Interactions_2">Entrez Gene Interactions</a>. 
-        Entrez obtains these interactions from <a href="http://bind.ca">BIND</a>, <a href="http://thebiogrid.org">BioGRID</a>, <a href="http://www.hprd.org">HPRD</a>, etc.
-
     - question: How is DGIdb implemented?
       anchor: implementation
       answer: >
