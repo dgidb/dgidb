@@ -238,3 +238,50 @@ news:
       article : >
         <a href="https://doi.org/10.1093/nar/gkx1143">DGIdb 3.0</a> has been published (open-access) in the 2018 Nucleic Acids Research Database edition.
       date: November 17, 2017
+
+    - headline: DGIdb 4.0 released
+      article : >
+        DGIdb 4.0 is here, and brings with it several major improvements:
+        <ul>
+          <li>New sources
+            <ul>
+              <li>New drug-gene interactions curated from <a href="https://cancer.sanger.ac.uk/cosmic">COSMIC</a> and <a href="https://drugtargetcommons.fimm.fi/">Drug Target Commons</a>
+              <li>New druggable gene category claims curated from the <a href="https://www.proteinatlas.org/">Human Protein Atlas</a>, the <a href="https://druggablegenome.net/">Illuminating the Druggable Genome</a> program, <a href="https://pharos.nih.gov/">Pharos</a>, <a href="https://assets.thermofisher.com/TFS-Assets/LSG/brochures/oncomine-comprehensive-assay-v3-flyer.pdf">Oncomine</a>, and <a href="https://www.tempus.com/">Tempus xT</a> 
+            </ul>
+          </li>
+          <li>Updated sources
+            <ul>
+              <li>Updated to <a href="https://go.drugbank.com/">DrugBank 5.1.7</a>
+              <li>Updated drug-gene interactions curated from <a href="https://www.cancergenomeinterpreter.org/home">Cancer Genome Interpreter</a>, <a href="https://civicdb.org/home">CIViC</a>, <a href="https://www.fda.gov/drugs/science-and-research-drugs/table-pharmacogenomic-biomarkers-drug-labeling">FDA</a>, <a href="https://www.guidetopharmacology.org/">IUPHAR Guide to Pharmacology</a>, <a href="https://ckb.jax.org/">JAX-CKB</a>, <a href="https://www.oncokb.org/">OncoKB</a>, <a href="https://www.pharmgkb.org/">PharmGKB</a>, and the <a href="http://bidd.nus.edu.sg/group/cjttd/">Therapeutic Target Database</a>
+              <li>Updated druggable gene category claims curated from <a href="https://www.carismolecularintelligence.com/">Caris Molecular Intelligence</a>, <a href="https://www.startwithstepone.com/">Foundation One</a>, and <a href="http://geneontology.org/">Gene Ontology</a>
+            </ul>
+          </li>
+          <li>Updates to search results features
+            <ul>
+              <li>Introduced new relative query score for interaction claims</li>
+              <li>Improved existing static score for interactions claims</li>
+              <li>Inclusion of link outs to specific evidence</li>
+              <li>Directionality of interaction claim types</li>
+            </ul>
+          </li>
+          <li>Integration with NDEx
+            <ul>
+              <li>DGIdb is now integrated with the Network Data Exchange (NDEx) resource</li>
+            </ul>
+          </li>
+          <li>Improved normalization and grouping of drug claims
+            <ul>
+              <li>Leverages the "thera-py" normalization service from Variant Interpretation for Cancer Consortium (VICC)</li>
+              <li>Normalizer utilizes Wikidata community resource</li>
+            </ul>
+          </li>
+          <li>Framework upgrade
+            <ul>
+              <li>Upgraded from Rails 5 to Rails 6</li>
+              <li>Upgraded from Postgres 9.6 to 12</li>
+              <li>Upgraded server to the latest Ubuntu LTS release (20.04)</li>
+              <li>Switched to Sidekiq for job scheduling of source updates, data dumps</li>
+            </ul>
+          </li>
+        </ul>
+      date: September 21, 2020
