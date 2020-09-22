@@ -68,7 +68,7 @@ module Genome; module Importers; module DrugBank;
           create_interaction_claim_type(interaction_claim, type) unless type == 'N/A'
         end
         row['pmid'].split(DELIMITER).each do |pmid|
-          create_interaction_claim_publication(interaction_claim, pmid) unless pmid == 'N/A'
+          create_interaction_claim_publication(interaction_claim, pmid) unless pmid == 'N/A' || pmid == 'None' || pmid.blank? || pmid == 0
         end
         create_interaction_claim_link(interaction_claim, "Drug Target", "https://www.drugbank.ca/drugs/#{row['drug_id']}#targets")
         interaction_claim.save
