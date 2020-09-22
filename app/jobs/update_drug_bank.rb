@@ -10,7 +10,7 @@ class UpdateDrugBank < TsvUpdater
   end
 
   def download_file
-    system("python", "lib/genome/updaters/get_drugbank.py", temp_path, tempfile.path)
+    system("DRUGBANK_USERNAME=#{Rails.application.secrets.drugbank_username}", "DRUGBANK_PASSWORD=#{Rails.application.secrets.drugbank_password}", "python", "lib/genome/updaters/get_drugbank.py", temp_path, tempfile.path)
   end
 
   def should_group_genes?

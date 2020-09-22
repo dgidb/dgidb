@@ -15,7 +15,7 @@ module Genome; module OnlineUpdaters; module Ckb;
 
     private
     def remove_existing_source
-      Utils::Database.delete_source('CKB')
+      Utils::Database.delete_source('JAX-CKB')
     end
 
     def create_new_source

@@ -57,21 +57,15 @@ faq:
     - question: How are the gene and drug filters defined in DGIdb?
       anchor: filters
       answer: >
-        The filters currently include FDA-approved drugs, anti-neoplastic drugs, immunotherapy drugs, clinically actionable genes, 
-        genes included in the druggable genome definition and drug resistant genes. FDA approval status is extracted from ChEMBL. 
+        The filters currently include Approved drugs, Antineoplastic drugs, and Immunotherapies. Regulatory approval status is extracted from ChEMBL. 
         Anti-neoplastic drugs are defined by inclusion in an anti-neoplastic drug–gene interaction source (e.g. My Cancer Genome), or as a 
         drug with an anti-neoplastic attribute from its constituent source. Immunotherapy drugs are defined as any drug with an attribute of 
-        ‘immunosuppressive agent’, ‘immunomodulatory agent’ or ‘immunostimulant’. Clinically actionable genes are genes that constitute the DGIdb 
-        ‘clinically actionable’ gene category, and by definition is used to inform clinical action (e.g. the Foundation One diagnostic gene panels). 
-        Similarly, druggable genome genes are genes listed in the DGIdb ‘druggable genome’ gene category. Drug resistance genes are defined by the 
-        Gene Ontology as genes that confer drug resistance or susceptibility (GO identifier 0042493), and are maintained in the DGIdb through the 
-        ‘drug resistance’ gene category.
+        ‘immunosuppressive agent’, ‘immunomodulatory agent’ or ‘immunostimulant’. 
 
     - question: Where can I find the source code for DGIdb?
       anchor: source
       answer: >
         The code for DGIdb is available at <a href="https://github.com/genome/dgi-db">github</a><i class="icon-share"></i>.
-        Please refer to the Downloads section for more details.
 
     - question: I have a source of druggable genes or drug-gene interactions that I would like to add to DGIdb. How do I do that?
       anchor: add
@@ -86,7 +80,7 @@ faq:
         <a href="http://en.wikipedia.org/wiki/Druggability">potentially druggable</a>.
         For example, kinases are generally deemed to have high potential value for development of targeted drugs.
         For more details on the sources of druggable gene category definitions, refer to the <a href="/sources">sources</a> 
-        and <a href="about">background reading</a>.
+        and <a href="/about">background reading</a>.
 
     - question: What is an 'Interaction Type'?
       anchor: interaction
@@ -107,14 +101,14 @@ faq:
         may or may not have existing drugs that target them. On the other hand, all of the genes from the drug-gene interaction sources 
         are targeted by specific known compounds.
 
-    - question: How is this application different from DrugBank or TTD?
+    - question: How is this application different from DrugBank, TTD or other databases?
       anchor: different
       answer: >
         There are many differences. DGIdb is limited to human genes only. DrugBank and TTD are databases that catalogue drugs and store
         detailed information about those drugs and the genes they target. DGIdb aggregates many such databases into a common framework.
         DGIdb adds considerable functionality for efficiently searching a list of input genes against these sources. DGIdb integrates both
         known drug-gene interactions and potentially druggable gene data. DGIdb allows the user to refine their query to certain gene families,
-        types of interactions, classes of drugs, etc.  DGIdb is open source and available in a format that would allow you to create your own
+        types of interactions, etc.  DGIdb is open source and available in a format that would allow you to create your own
         instance. DGIdb incorporates sources of drug-gene interaction data that were previously only available in inaccessible formats (e.g.
         tables in a PDF document). DGIdb is meant to be used in combination with the original sources of raw data. Wherever possible we link
         out to those original sources.
@@ -124,24 +118,15 @@ faq:
       answer: >  
         We are working on updates to the interface that would allows us to readily capture this kind of information directly from users. In the meantime 
         please feel free to report it to us. The quality of our data is only as good as the sources of raw data. Throughout the results you will
-        be able to see if multiple independent sources report the same findings. Using this as a filter may help you disqualify some spurious
+        be able to see if multiple independent sources report the same findings. Using the number of sources, query score, or interaction score as filters may help you disqualify some spurious
         entries and have increased confidence in others.
 
-    - question: Some druggable gene categories seem very inclusive. For example, are there really >800 human kinases?
+    - question: Some druggable gene categories seem very inclusive. For example, are there really nearly 2000 human kinases?
       anchor: inclusive
       answer: >
         This is by design. Druggable gene categories are aggregated from multiple sources, some of which are predictive in nature. Predictions based on
         sequence similarity may result in some false positives. More stringent lists can be obtained by limiting to a particular source(s) (e.g. dGene only)
         or by requiring that multiple sources agree.
-
-    - question: What does the 'interactions for genes related to $GENE' button on the genes pages do?
-      anchor: related
-      answer: >
-        This button will submit a search for drug-gene interactions of genes that have direct gene-gene interactions with the current gene.
-        For example, say you search for drugs that interact with the gene MPL. This search returns no drug interactions, but there are drugs that 
-        inhibit other genes that form complexes with or are in the same pathway as MPL.  This button search for interactions with all of these genes.
-        Gene-gene interaction information is obtained from <a href="http://www.ncbi.nlm.nih.gov/books/NBK3841/#EntrezGene.Interactions_2">Entrez Gene Interactions</a>. 
-        Entrez obtains these interactions from <a href="http://bind.ca">BIND</a>, <a href="http://thebiogrid.org">BioGRID</a>, <a href="http://www.hprd.org">HPRD</a>, etc.
 
     - question: How is DGIdb implemented?
       anchor: implementation
@@ -162,7 +147,7 @@ faq:
     - question: What does the version stamp at the foot of each view mean?
       anchor: stamp
       answer: >
-        It's currently generated whenever we perform a rake task to create a new data snapshot for DGIdb.
+        It is currently generated whenever we perform a rake task to create a new data snapshot for DGIdb.
         The version number corresponds to a tag in git and eventually the debian package we use to push a development version of DGIdb to the publicly facing server.
         The SHA-1 is the commit id from when the snapshot was generated, as is the datestamp.
 
@@ -174,4 +159,3 @@ faq:
         The <a href="https://github.com/griffithlab/dgi-db">code for DGIdb</a> is open-source, and if you have a GitHub account
         you may post your question directly to the GitHub <a href="https://github.com/genome/dgi-db/issues">issue tracker</a> for our developers to review.
         If you are the curious/ambitious type, feel free to investigate a solution and let us know what you find.
-
