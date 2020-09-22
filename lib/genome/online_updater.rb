@@ -69,10 +69,14 @@ module Genome
     end
 
     def create_interaction_claim_type(interaction_claim, type)
-      claim_type = DataModel::InteractionClaimType.where(
-        type: type.strip()
-      ).first_or_create
-      interaction_claim.interaction_claim_types << claim_type unless interaction_claim.interaction_claim_types.include? claim_type
+      claim_type = DataModel::InteractionClaimType.find_by(
+        type: Genome::Normalizers::InteractionClaimType.name_normalizer(type.strip())
+      )
+      if claim_type.nil?
+        raise StandardError.new("InteractionClaimType with type #{type} does not exist. If this is a valid type, please create its database entry manually before running the importer.")
+      else
+        interaction_claim.interaction_claim_types << claim_type unless interaction_claim.interaction_claim_types.include? claim_type
+      end
     end
 
     def create_interaction_claim_publication(interaction_claim, pmid)
