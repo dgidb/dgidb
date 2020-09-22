@@ -1,6 +1,7 @@
 __author__ = 'Kelsy C Cotto'
 
 import os
+import sys
 import gzip
 import csv
 import requests
@@ -127,6 +128,7 @@ class Entrez:
 
 
 if __name__ == '__main__':
-    e = Entrez()
+    download_path = sys.argv[1]
+    e = Entrez(download_path)
     e.update()
     print('Done.')
