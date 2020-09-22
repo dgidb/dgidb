@@ -3,7 +3,7 @@ require 'genome/online_updater'
 
 module Genome; module OnlineUpdaters; module Civic
   class Updater < Genome::OnlineUpdater
-    attr_reader :new_version
+    attr_reader :new_version, :source
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
     end
@@ -39,6 +39,12 @@ module Genome; module OnlineUpdaters; module Civic
       ei['drugs'].select { |d| valid_drug?(d) }.each do |drug|
         gc = create_gene_claim(variant['entrez_name'], 'Entrez Gene Symbol')
         create_gene_claim_aliases(gc, variant)
+        if ei['clinical_significance'] == 'Resistance'
+          create_gene_claim_category(gc, "DRUG RESISTANCE")
+        end
+        if ei['evidence_level'] == 'A'
+          create_gene_claim_category(gc, "CLINICALLY ACTIONABLE")
+        end
         dc = create_drug_claim(drug['name'].upcase, drug['name'].upcase, 'CIViC Drug Name')
         ic = create_interaction_claim(gc, dc)
         if ei['source']['citation_id'].present? and ei['source']['source_type'] == 'PubMed'
@@ -73,13 +79,15 @@ module Genome; module OnlineUpdaters; module Civic
           base_url: 'https://www.civicdb.org',
           site_url: 'https://www.civicdb.org',
           citation: 'Griffith M*, Spies NC*, Krysiak K*, McMichael JF, Coffman AC, Danos AM, Ainscough BJ, Ramirez CA, Rieke DT, Kujan L, Barnell EK, Wagner AH, Skidmore ZL, Wollam A, Liu CJ, Jones MR, Bilski RL, Lesurf R, Feng YY, Shah NM, Bonakdar M, Trani L, Matlock M, Ramu A, Campbell KM, Spies GC, Graubert AP, Gangavarapu K, Eldred JM, Larson DE, Walker JR, Good BM, Wu C, Su AI, Dienstmann R, Margolin AA, Tamborero D, Lopez-Bigas N, Jones SJ, Bose R, Spencer DH Wartman LD, Wilson RK, Mardis ER, Griffith OL†. 2016. CIViC is a community knowledgebase for expert crowdsourcing the clinical interpretation of variants in cancer. Nat Genet. 49, 170–174 (2017); doi: doi.org/10.1038/ng.3774. PMID: 28138153',
-          source_type_id: DataModel::SourceType.INTERACTION,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           full_name: 'CIViC: Clinical Interpretation of Variants in Cancer',
           license: 'Creative Commons Public Domain Dedication (CC0 1.0 Universal)',
           license_link: 'https://docs.civicdb.org/en/latest/about/faq.html#how-is-civic-licensed',
         }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
+      @source.save
     end
   end
 end; end; end

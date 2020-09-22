@@ -20,7 +20,7 @@ module DataModel
     end
 
     def self.for_show
-      eager_load(drug_claims: [:drug_claim_aliases, :drug_claim_attributes, :drug, source: [:source_type]])
+      eager_load(drug_claims: [:drug_claim_aliases, :drug_claim_attributes, :drug, source: [:source_types]])
     end
 
     def self.all_drug_names

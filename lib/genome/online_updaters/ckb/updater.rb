@@ -26,12 +26,13 @@ module Genome; module OnlineUpdaters; module Ckb;
           base_url: 'https://ckb.jax.org/gene/show?geneId=',
           site_url: 'https://ckb.jax.org',
           citation: 'Sara E. Patterson, Rangjiao Liu, Cara M. Statz, Daniel Durkin, Anuradha Lakshminarayana, and Susan M. Mockus. The Clinical Trial Landscape in Oncology and Connectivity of Somatic Mutational Profiles to Targeted Therapies. Human Genomics, 2016 Jan 16;10(1):4. PMID: 26772741',
-          source_type_id: DataModel::SourceType.INTERACTION,
           full_name: 'The Jackson Laboratory Clinical Knowledgebase',
           license: 'Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License',
           license_link: 'https://ckb.jax.org/about/index',
         }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.save
     end
 
     def create_interaction_claims

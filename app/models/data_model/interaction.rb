@@ -40,7 +40,7 @@ module DataModel
     end
 
     def self.for_show
-      eager_load(:gene, :drug, :interaction_types, :interaction_attributes, :publications, interaction_claims: [:drug_claim, :gene_claim, :interaction_claim_types, :interaction_claim_attributes, :publications, :interaction_claim_links, source: [:source_type]])
+      eager_load(:gene, :drug, :interaction_types, :interaction_attributes, :publications, interaction_claims: [:drug_claim, :gene_claim, :interaction_claim_types, :interaction_claim_attributes, :publications, :interaction_claim_links, source: [:source_types]])
     end
 
     def interaction_score(known_drug_partners_per_gene = nil, known_gene_partners_per_drug = nil)
