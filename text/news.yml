@@ -283,5 +283,10 @@ news:
               <li>Switched to Sidekiq for job scheduling of source updates, data dumps</li>
             </ul>
           </li>
+          <li>Preprint published on bioRxiv
+            <ul>
+              <li>Available <a href="https://www.biorxiv.org/content/10.1101/2020.09.18.301721v1">here</a></li>
+            </ul>
+          </li>
         </ul>
       date: September 21, 2020
