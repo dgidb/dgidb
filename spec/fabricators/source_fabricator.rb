@@ -1,5 +1,5 @@
 def count_initializer(source_types)
-  ->(attrs) { source_types.include?(attrs[:source_type].type) ? rand(1000) : 0 }
+  ->(attrs) { source_types.include?(attrs[:source_types].first.type) ? rand(1000) : 0 }
 end
 
 Fabricator(:source, class_name: 'DataModel::Source') do
