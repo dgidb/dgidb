@@ -1,10 +1,10 @@
 module Genome
   module Groupers
     class GeneGrouper
-      def run
+      def run(source_id: nil)
         begin
           newly_added_claims_count = 0
-          gene_claims_not_in_groups.find_in_batches do |claims|
+          gene_claims_not_in_groups(source_id).find_in_batches do |claims|
             ActiveRecord::Base.transaction do
               grouped_claims = add_members(claims)
               newly_added_claims_count += grouped_claims.length
@@ -84,9 +84,13 @@ module Genome
         end
       end
 
-      def gene_claims_not_in_groups
-        DataModel::GeneClaim.eager_load(:gene, :gene_claim_aliases)
+      def gene_claims_not_in_groups(source_id)
+        claims = DataModel::GeneClaim.eager_load(:gene, :gene_claim_aliases)
           .where('gene_claims.gene_id IS NULL')
+        unless source_id.nil?
+          claims = claims.where(source_id: source_id)
+        end
+        return claims
       end
 
       def add_attributes(claims)
