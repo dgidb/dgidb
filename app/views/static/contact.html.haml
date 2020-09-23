@@ -10,8 +10,8 @@
     .row-fluid
       .span12
         %div{style: "text-align:center; background-color: #14091b; margin-bottom: 20px;"}
-          %img(src="https://civic.genome.wustl.edu/assets/images/hosted-by_WUSM.png" width="367" height="45" alt="Washington University School of Medicine")
-          %img(class="logo responsive" src="http://genome.wustl.edu/workspace/images/interface/mgi_logo_shadow.png" width="425" height="126" title="The Elizabeth H. and James S. McDonnell III Genome Institute at Washington University" alt="The Elizabeth H. and James S. McDonnell III Genome Institute at Washington University" style="height: auto;")
+          %img{:src => image_path("hosted-by_WUSM.png"), :width => "367", :height =>"45", :alt => "Washington University School of Medicine"}
+          %img{:class => "logo responsive", :src => image_path("mgi_logo_shadow.png"),  :width =>"425", :height => "126", :title => "The Elizabeth H. and James S. McDonnell III Genome Institute at Washington University", :alt => "The Elizabeth H. and James S. McDonnell III Genome Institute at Washington University", :style => "height: auto;"}
         .well=tx "description"
         .well
           %h3 Current Contributors
