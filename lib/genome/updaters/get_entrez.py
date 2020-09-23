@@ -1,6 +1,7 @@
 __author__ = 'Kelsy C Cotto'
 
 import os
+import sys
 import gzip
 import csv
 import requests
@@ -29,7 +30,7 @@ class Entrez:
         bsObj = BeautifulSoup(r.text, "html.parser")
         for link in bsObj.find_all('a'):
             if link.get('href') == 'gene2accession.gz':
-                self.online_version = datetime.datetime.strptime(link.next.next.split()[0], '%d-%b-%Y').strftime(
+                self.online_version = datetime.datetime.strptime(link.next.next.split()[0], '%Y-%m-%d').strftime(
                     '%d-%B-%Y')
                 break
 
@@ -127,6 +128,7 @@ class Entrez:
 
 
 if __name__ == '__main__':
-    e = Entrez()
+    download_path = sys.argv[1]
+    e = Entrez(download_path)
     e.update()
     print('Done.')

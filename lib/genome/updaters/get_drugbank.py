@@ -10,7 +10,7 @@ import ssl
 import requests
 from requests.auth import HTTPBasicAuth
 from version_logger import Version
-from urllib.request import urlopen
+from urllib import request
 from bs4 import BeautifulSoup
 from get_entrez import Entrez
 
@@ -35,8 +35,8 @@ class DrugBank(object):
     def get_online_version(self):
         print('Checking DrugBank Version...')
         context = ssl._create_unverified_context()
-        html = urlopen('http://www.drugbank.ca/downloads', context=context)
-        bsObj = BeautifulSoup(html.read(), "html.parser")
+        html = requests.get('http://www.drugbank.ca/downloads')
+        bsObj = BeautifulSoup(html.text, "html.parser")
         r = re.compile(r'Version ([\d\.]+)')
         match = r.search(bsObj.h1.text)
         if match:
@@ -152,7 +152,7 @@ class DrugBank(object):
                                   tuple(sorted(drug_groups)), tuple(sorted(drug_categories)))
             for target in targets:
                 organism = target.find('entry:organism', ns).text
-                if organism != 'Human':
+                if organism != 'Humans':
                     continue
                 gene_id = target.find('entry:id', ns).text
                 known_action = target.find('entry:known-action', ns).text
@@ -236,7 +236,7 @@ class DrugBank(object):
                     out = list()
                     for datum in data:
                         if isinstance(datum, tuple):
-                            datum = ';'.join(datum)
+                            datum = ';'.join(str(x) for x in datum)
                         datum = str(datum).replace("\t", '')
                         if not datum or datum == 'None':
                             datum = 'N/A'
@@ -247,7 +247,8 @@ class DrugBank(object):
                     if out[15] == 'N/A':
                         no_ensembl += 1
                     writer.writerow(out)
-        self.version.write_log()
+        with open('tmp/version', 'w') as version_file:
+            version_file.write(self.version)
 
     def update(self):
         if not self.is_current():
