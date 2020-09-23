@@ -1,0 +1,25 @@
+publications:
+  title: DGIdb - Publications
+  title_main: Publications
+  description: >
+    <a href="https://doi.org/10.1101/2020.09.18.301721">Integration of the Drug-Gene Interaction Database (DGIdb) with open crowdsource efforts.</a>
+    Freshour S, Kiwala S, Cotto KC, Coffman AC, McMichael JF, Song J, Griffith M, Griffith OL, Wagner AH.
+    bioRxiv 2020.09.18.301721; doi: https://doi.org/10.1101/2020.09.18.301721
+    <br>
+    <br>
+    <a href="https://doi.org/10.1093/nar/gkx1143">DGIdb 3.0: a redesign and expansion of the drug–gene interaction database.</a>
+    Cotto KC, Wagner AH, Feng Y, Kiwala S, Coffman AC, Spies G, Wollam A, Spies NC, Griffith OL, Griffith M.
+    Nucleic Acids Research.
+    2018 Jan 4;46(D1):D1068-D1073. doi: https://doi.org/10.1093/nar/gkx1143. PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/29156001">29156001</a>
+    <br>
+    <br>
+    <a href="https://doi.org/10.1093/nar/gkv1165">DGIdb 2.0: mining clinically relevant drug-gene interactions.</a>
+    Wagner AH, Coffman AC, Ainscough BJ, Spies NC, Skidmore ZL, Campbell KM, Krysiak K, Pan D, McMichael JF, Eldred JM, Walker JR, Wilson RK, Mardis ER, Griffith M, Griffith OL.
+    Nucleic Acids Research.
+    2016 Jan 4;44(D1):D1036-44. doi: https://doi.org/10.1093/nar/gkv1165. PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/26531824/">26531824</a>
+    <br>
+    <br>
+    <a href="https://doi.org/10.1038/nmeth.2689">DGIdb: mining the druggable genome.</a>
+    Griffith M, Griffith OL, Coffman AC, Weible JV, McMichael JF, Spies NC, Koval J, Das I, Callaway MB, Eldred JM, Miller CA, Subramanian J, Govindan R, Kumar RD, Bose R, Ding L, Walker JR, Larson DE, Dooling DJ, Smith SM, Ley TJ, Mardis ER, Wilson RK.
+    Nature Methods.
+    2013 Dec;10(12):1209-10. doi: https://doi.org/10.1038/nmeth.2689. PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/24122041/">24122041</a>.
