@@ -89,6 +89,7 @@ faq:
         Interaction type, as used in DGIdb, is very broad. Dozens of interaction types are currently defined.
         Many interaction types describe the mechanism of action between a small molecule and a protein.
         However, other broader types of 'interaction' might also be used. e.g. Gene X mediates 'resistance' or 'sensitivity' to drug Y.
+        A full list of interaction types and their definition can be found on the <a href="/interaction_types">Interaction Types</a> page.
 
     - question: What is the difference between a drug-gene interaction and druggable gene category?
       anchor: difference
