@@ -13,16 +13,6 @@ module Genome; module Importers; module DrugBank;
       import_claims
     end
 
-    def get_version
-      File.open('tmp/version').readlines.each do |line|
-        source, version = line.split("\t")
-        if source == 'DrugBank'
-          return version.strip
-        end
-      end
-      return nil
-    end
-
     private
 
     DELIMITER = ';'
@@ -36,7 +26,7 @@ module Genome; module Importers; module DrugBank;
         base_url: 'http://www.drugbank.ca',
         site_url: 'http://www.drugbank.ca/',
         citation: "DrugBank 4.0: shedding new light on drug metabolism. Law V, Knox C, Djoumbou Y, Jewison T, Guo AC, Liu Y, Maciejewski A, Arndt D, Wilson M, Neveu V, Tang A, Gabriel G, Ly C, Adamjee S, Dame ZT, Han B, Zhou Y, Wishart DS.Nucleic Acids Res. 2014 Jan 1;42(1):D1091-7. PMID: 24203711",
-        source_db_version: get_version,
+        source_db_version: "5.1.7",
         source_type_id: DataModel::SourceType.INTERACTION,
         source_db_name: 'DrugBank',
         full_name: 'DrugBank - Open Data Drug & Drug Target Database',
@@ -78,7 +68,7 @@ module Genome; module Importers; module DrugBank;
           create_interaction_claim_type(interaction_claim, type) unless type == 'N/A'
         end
         row['pmid'].split(DELIMITER).each do |pmid|
-          create_interaction_claim_publication(interaction_claim, pmid) unless pmid == 'N/A'
+          create_interaction_claim_publication(interaction_claim, pmid) unless pmid == 'N/A' || pmid == 'None' || pmid.blank? || pmid == 0
         end
         create_interaction_claim_link(interaction_claim, "Drug Target", "https://www.drugbank.ca/drugs/#{row['drug_id']}#targets")
         interaction_claim.save
