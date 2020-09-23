@@ -31,13 +31,14 @@ class DtcImporter < Genome::OnlineUpdater
             site_url: 'https://drugtargetcommons.fimm.fi/',
             citation: 'Drug Target Commons 2.0: a community platform for systematic analysis of drug–target interaction profiles. Tanoli Z, Alam Z, Vähä-Koskela M, Malyutina A, Jaiswal A, Tang J, Wennerberg K, Aittokallio T. Database. 2018. PMID: 30219839',
             source_db_version:  get_version,
-            source_type_id: DataModel::SourceType.INTERACTION,
             source_db_name: 'DTC',
             full_name: 'Drug Target Commons',
             license: 'Creative Commons Attribution-NonCommercial 3.0 (BY-NC)',
             license_link: 'https://academic.oup.com/database/article/doi/10.1093/database/bay083/5096727',
         }
     )
+    @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+    @source.save
   end
 
   def create_interaction_claims
