@@ -44,18 +44,19 @@ module DataModel
         when 'CIViC', 'DoCM'
           'https://pubchem.ncbi.nlm.nih.gov/search/#collection=compounds&query_type=text&query=' + name
         when 'PharmGKB'
-          [base_url, 'drug', name].join('/')
+          'https://www.pharmgkb.org/search?query=' + name
         when 'TTD'
-          base_url + 'DRUG.asp?ID=' + name
+          ttd_id = self.drug_claim_aliases.first{|a| a.nomenclature == 'TTD Drug ID'}.alias
+          [base_url, 'data', 'drug', 'details', ttd_id].join('/')
         when 'TEND'
           'http://www.ncbi.nlm.nih.gov/pubmed/21804595/'
-        when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial', 'CGI', 'FDA', 'NCI', 'OncoKB', 'TALC', 'HingoraniCasas', 'Tempus'
+        when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial', 'MyCancerGenomeClinicalTrial', 'CGI', 'FDA', 'NCI', 'OncoKB', 'TALC', 'HingoraniCasas', 'Tempus', 'COSMIC'
           base_url
-        when 'GuideToPharmacologyInteractions'
-          'http://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=' + name
-        when 'ChEMBL'
-          'https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/' + name
-        when 'CKB'
+        when 'GuideToPharmacology'
+          'https://www.guidetopharmacology.org/GRAC/LigandTextSearchForward?searchString=' + name
+        when 'ChemblDrugs'
+          'https://www.ebi.ac.uk/chembl/compound_report_card/' + name.gsub('chembl:', '')
+        when 'JAX-CKB'
           'https://ckb.jax.org/'
         else
           base_url + name

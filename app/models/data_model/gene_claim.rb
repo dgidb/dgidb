@@ -44,12 +44,14 @@ module DataModel
         when 'DrugBank'
           [base_url, 'biodb', 'bio_entities', name].join('/')
         when 'CIViC'
-          [base_url, '#', 'events', 'genes', name, 'summary'].join('/')
+          [base_url, 'links', 'entrez_name', name].join('/')
         when 'PharmGKB'
-          [base_url, 'gene', name].join('/')
+          pharmgkb_id = self.gene_claim_aliases.find{|a| a.nomenclature == 'PharmGKB ID'}.alias
+          [base_url, 'gene', pharmgkb_id].join('/')
         when 'TTD'
-          base_url + 'Detail.asp?ID=' + name
-        when 'CKB'
+          ttd_id = self.gene_claim_aliases.find{|a| a.nomenclature == 'TTD Target ID'}.alias
+          [base_url, 'data', 'target',  'details', ttd_id].join('/')
+        when 'JAX-CKB'
           entrez_id = self.gene_claim_aliases.select{|a| a.nomenclature == 'CKB Entrez Id'}.first.alias
           base_url + entrez_id
         when 'GO'
@@ -62,10 +64,15 @@ module DataModel
           end
         when 'OncoKB'
           'http://oncokb.org/#/gene/' + name
+        when 'ChemblInteractions'
+          'https://www.ebi.ac.uk/chembl/g/#search_results/all/query=' + name
+        when 'Pharos'
+          'https://pharos.nih.gov/targets?q=' + name
         when 'GuideToPharmacologyInteractions', 'GuideToPharmacologyGenes'
           'http://www.guidetopharmacology.org/GRAC/ObjectDisplayForward?objectId=' + name
         when 'MyCancerGenome', 'CancerCommons', 'ClearityFoundationBiomarkers', 'ClearityFoundationClinicalTrial',
-            'MyCancerGenomeClinicalTrial', 'MskImpact', 'CarisMolecularIntelligence', 'CGI', 'FDA', 'NCI', 'HingoraniCasas', 'TALC', 'Tempus'
+            'MyCancerGenomeClinicalTrial', 'MskImpact', 'CarisMolecularIntelligence', 'CGI', 'FDA', 'NCI',
+            'HingoraniCasas', 'TALC', 'Tempus', 'FoundationOneGenes', 'DoCM', 'COSMIC', 'Oncomine'
           base_url
         else
           base_url + name
