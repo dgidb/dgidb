@@ -131,6 +131,12 @@ class DrugBank(object):
                 language = synonym.get('language')
                 if language == '' or language == 'English':
                     drug_synonyms.add(synonym.text)
+            external_identifiers = drug.find('entry:external-identifiers', ns)
+            chembl_id = ''
+            for external_identfier in external_identifiers:
+                resource = external_identfier.find('entry:resource', ns).text
+                if resource == 'ChEMBL':
+                    chembl_id = external_identfier.find('entry:identifier', ns).text
             drug_cas_number = drug.find('entry:cas-number',ns).text
             drug_brands = set()
             for product in drug.find('entry:products', ns):
@@ -149,7 +155,7 @@ class DrugBank(object):
                 continue
             drug_info[drug_id] = (drug_name, tuple(sorted(drug_synonyms)), drug_cas_number,
                                   tuple(sorted(drug_brands)), drug_type,
-                                  tuple(sorted(drug_groups)), tuple(sorted(drug_categories)))
+                                  tuple(sorted(drug_groups)), tuple(sorted(drug_categories)), chembl_id)
             for target in targets:
                 organism = target.find('entry:organism', ns).text
                 if organism != 'Humans':
@@ -224,7 +230,7 @@ class DrugBank(object):
         i = 0
         no_ensembl = no_entrez = total = 0
         header = ('count', 'drug_id', 'drug_name', 'drug_synonyms', 'drug_cas_number', 'drug_brands',
-                  'drug_type', 'drug_groups', 'drug_categories', 'gene_id', 'known_action', 'target_actions',
+                  'drug_type', 'drug_groups', 'drug_categories', 'chembl_id', 'gene_id', 'known_action', 'target_actions',
                   'gene_symbol', 'uniprot_id', 'entrez_id', 'ensembl_id', 'pmid')
         with open(self.tsv_file, 'w') as f:
             writer = csv.writer(f, delimiter='\t')
