@@ -77,7 +77,7 @@ module Genome
           'modulator'
         elsif val == 'positive allosteric modulator' || val == 'regulator (upregulator)' || val == 'enhancer' || val == 'modulator (allosteric modulator)'
           'positive modulator'
-        elsif val == 'inhibitor, competitive' || val == 'gating inhibitor' || val == 'inhibitor; antagonist; blocker' || val == 'inhibitor (gating inhibitor)' || val == 'growth_inhibition' || val == 'inhibition' || val == 'weak inhibitor' || val == 'aggregation inhibitor' || val == 'inhibition of synthesis' || val == "translocation inhibitor" || val == 'inhibits downstream inflammation cascades'
+        elsif val == 'inhibitor, competitive' || val == 'gating inhibitor' || val == 'inhibitor; antagonist; blocker' || val == 'inhibitor (gating inhibitor)' || val == 'growth_inhibition' || val == 'inhibition' || val == 'weak inhibitor' || val == 'aggregation inhibitor' || val == 'inhibition of synthesis' || val == "translocation inhibitor" || val == 'inhibits downstream inflammation cascades' || val == 'inactivator'
           'inhibitor'
         elsif val == 'channel blocker' || val == 'blocker (channel blocker)' || val == 'nucleotide exchange blocker'
           'blocker'
