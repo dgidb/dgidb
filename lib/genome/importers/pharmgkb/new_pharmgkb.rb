@@ -31,13 +31,14 @@ module Genome; module Importers; module Pharmgkb;
               site_url:          'http://www.pharmgkb.org/',
               citation:          "From pharmacogenomic knowledge acquisition to clinical applications: the PharmGKB as a clinical pharmacogenomic biomarker resource. McDonagh EM, Whirl-Carrillo M, Garten Y, Altman RB, Klein TE. Biomark Med. 2011 Dec;5(6):795-806. PMID: 22103613",
               source_db_version:  get_version,
-              source_type_id:    DataModel::SourceType.INTERACTION,
               source_db_name:    'PharmGKB',
               full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase',
               license_link:      'https://www.pharmgkb.org/page/dataUsagePolicy',
               license:           'Creative Commons Attribution-ShareAlike 4.0 International License'
           }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.save
     end
 
     def create_interaction_claims

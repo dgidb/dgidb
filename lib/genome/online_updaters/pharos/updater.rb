@@ -25,13 +25,14 @@ module Genome; module OnlineUpdaters; module Pharos;
           site_url:           'https://pharos.nih.gov/',
           citation:           'Nguyen, D.-T., Mathias, S. et al, "Pharos: Collating Protein Information to Shed Light on the Druggable Genome", Nucl. Acids Res.i>, 2017, 45(D1), D995-D1002. DOI: 10.1093/nar/gkw1072. PMID: 27903890',
           source_db_version:  @new_version,
-          source_type_id:     DataModel::SourceType.POTENTIALLY_DRUGGABLE,
           source_db_name:     'Pharos',
           full_name:          'Pharos',
           license:            'Creative Commons Attribution-ShareAlike 4.0 International License',
           license_link:       'https://pharos.nih.gov/about',
         }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
+      @source.save
     end
 
     def create_gene_claims
