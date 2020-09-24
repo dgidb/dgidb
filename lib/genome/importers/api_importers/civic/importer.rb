@@ -1,26 +1,23 @@
 require 'net/http'
-require 'genome/online_updater'
 
-module Genome; module OnlineUpdaters; module Civic
-  class Updater < Genome::OnlineUpdater
-    attr_reader :new_version, :source
+module Genome; module Importers; module ApiImporters; module Civic
+  class Importer < Genome::Importers::ApiImporter
+    attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
+      @source_db_name = 'CIViC'
     end
 
-    def update
-      remove_existing_source
-      source = create_new_source
-      create_interaction_claims(source)
+    def create_claims
+      create_interaction_claims
     end
 
     private
-    def create_interaction_claims(source)
-      source = source
+    def create_interaction_claims
       api_client = ApiClient.new
       api_client.variants.each do |variant|
         api_client.evidence_items_for_variant(variant['id']).select { |ei| importable_eid?(ei) }.each do |ei|
-          create_entries_for_evidence_item(variant, ei, source)
+          create_entries_for_evidence_item(variant, ei)
         end
       end
       backfill_publication_information()
@@ -35,7 +32,7 @@ module Genome; module OnlineUpdaters; module Civic
       ].all?
     end
 
-    def create_entries_for_evidence_item(variant, ei, source)
+    def create_entries_for_evidence_item(variant, ei)
       ei['drugs'].select { |d| valid_drug?(d) }.each do |drug|
         gc = create_gene_claim(variant['entrez_name'], 'Entrez Gene Symbol')
         create_gene_claim_aliases(gc, variant)
@@ -67,14 +64,10 @@ module Genome; module OnlineUpdaters; module Civic
       create_gene_claim_alias(gc, variant['gene_id'].to_s, 'CIViC Gene ID')
     end
 
-    def remove_existing_source
-      Utils::Database.delete_source('CIViC')
-    end
-
     def create_new_source
       @source ||= DataModel::Source.create(
         {
-          source_db_name: 'CIViC',
+          source_db_name: source_db_name,
           source_db_version: new_version,
           base_url: 'https://www.civicdb.org',
           site_url: 'https://www.civicdb.org',
@@ -90,4 +83,4 @@ module Genome; module OnlineUpdaters; module Civic
       @source.save
     end
   end
-end; end; end
+end; end; end; end

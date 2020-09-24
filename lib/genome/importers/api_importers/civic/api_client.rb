@@ -1,4 +1,4 @@
-module Genome; module OnlineUpdaters; module Civic
+module Genome; module Importers; module ApiImporters; module Civic
   class ApiClient
     def variants
       enumerate_records(variant_base_url, 1, VariantResponse)
@@ -42,4 +42,4 @@ module Genome; module OnlineUpdaters; module Civic
       "https://civicdb.org/api/variants/#{variant_id}/evidence_items?status=accepted"
     end
   end
-end; end; end
+end; end; end; end

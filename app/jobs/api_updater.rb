@@ -1,22 +1,22 @@
 class ApiUpdater < Updater
-  attr_reader :updater
+  attr_reader :importer
 
   def perform()
     import
     pre_grouper = PreGrouper.new
     pre_grouper.perform
     grouper = Grouper.new
-    grouper.perform(should_group_genes?, should_group_drugs?, updater.source.id)
+    grouper.perform(should_group_genes?, should_group_drugs?, importer.source.id)
     post_grouper = PostGrouper.new
     post_grouper.perform(should_cleanup_gene_claims?)
   end
 
   def import
-    @updater = create_updater
-    updater.update
+    @importer = create_importer
+    importer.import
   end
 
-  def create_updater
-    raise StandardError.new('Must implement #create_updater in subclass')
+  def create_importer
+    raise StandardError.new('Must implement #create_importer in subclass')
   end
 end

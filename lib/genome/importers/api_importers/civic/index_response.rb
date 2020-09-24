@@ -1,4 +1,4 @@
-module Genome; module OnlineUpdaters; module Civic
+module Genome; module Importers; module ApiImporters; module Civic
   class IndexResponse
     attr_reader :data
 
@@ -34,4 +34,4 @@ module Genome; module OnlineUpdaters; module Civic
       records
     end
   end
-end; end; end
+end; end; end; end
