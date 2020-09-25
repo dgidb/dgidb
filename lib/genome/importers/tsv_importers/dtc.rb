@@ -1,11 +1,10 @@
-require 'genome/online_updater'
-
-module Genome; module Importers; module Dtc;
-class DtcImporter < Genome::OnlineUpdater
-  attr_reader :file_path, :source
+module Genome; module Importers; module TsvImporters;
+class Dtc < Genome::Importers::Base
+  attr_reader :file_path
 
   def initialize(file_path)
     @file_path = file_path
+    @source_db_name = 'DTC'
   end
 
   def get_version
@@ -13,17 +12,11 @@ class DtcImporter < Genome::OnlineUpdater
     @new_version = source_db_version
   end
 
-  def import
-    remove_existing_source
-    create_new_source
+  def create_claims
     create_interaction_claims
   end
 
   private
-  def remove_existing_source
-    Utils::Database.delete_source('DTC')
-  end
-
   def create_new_source
     @source ||= DataModel::Source.create(
         {
@@ -31,7 +24,7 @@ class DtcImporter < Genome::OnlineUpdater
             site_url: 'https://drugtargetcommons.fimm.fi/',
             citation: 'Drug Target Commons 2.0: a community platform for systematic analysis of drug–target interaction profiles. Tanoli Z, Alam Z, Vähä-Koskela M, Malyutina A, Jaiswal A, Tang J, Wennerberg K, Aittokallio T. Database. 2018. PMID: 30219839',
             source_db_version:  get_version,
-            source_db_name: 'DTC',
+            source_db_name: source_db_name,
             full_name: 'Drug Target Commons',
             license: 'Creative Commons Attribution-NonCommercial 3.0 (BY-NC)',
             license_link: 'https://academic.oup.com/database/article/doi/10.1093/database/bay083/5096727',
