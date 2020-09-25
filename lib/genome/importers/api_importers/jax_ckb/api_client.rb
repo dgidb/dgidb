@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'net/https'
 
-module Genome; module OnlineUpdaters; module Ckb;
+module Genome; module Importers; module ApiImporters; module JaxCkb;
   class ApiClient
     def genes
       get_json(gene_base_url)
@@ -52,4 +52,4 @@ module Genome; module OnlineUpdaters; module Ckb;
       "https://ckb.jax.org/gene/show?geneId=#{id}&tabType=GENE_LEVEL_EVIDENCE"
     end
   end
-end; end; end
+end; end; end; end

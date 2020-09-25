@@ -1,27 +1,19 @@
-require 'genome/online_updater'
-
-module Genome; module OnlineUpdaters; module Ckb;
-  class Updater < Genome::OnlineUpdater
-    attr_reader :new_version, :source
+module Genome; module Importers; module ApiImporters; module JaxCkb;
+  class Importer < Genome::Importers::ApiImporter
+    attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
+      @source_db_name = 'JAX-CKB'
     end
 
-    def update
-      remove_existing_source
-      create_new_source
+    def create_claims
       create_interaction_claims
-    end
-
-    private
-    def remove_existing_source
-      Utils::Database.delete_source('JAX-CKB')
     end
 
     def create_new_source
       @source ||= DataModel::Source.create(
         {
-          source_db_name: 'JAX-CKB',
+          source_db_name: source_db_name,
           source_db_version: new_version,
           base_url: 'https://ckb.jax.org/gene/show?geneId=',
           site_url: 'https://ckb.jax.org',
@@ -90,4 +82,4 @@ module Genome; module OnlineUpdaters; module Ckb;
       end
     end
   end
-end; end; end;
+end; end; end; end

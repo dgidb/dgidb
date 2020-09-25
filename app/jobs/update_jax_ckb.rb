@@ -1,6 +1,6 @@
-class UpdateCkb < ApiUpdater
-  def create_updater
-    Genome::OnlineUpdaters::Ckb::Updater.new()
+class UpdateJaxCkb < ApiUpdater
+  def create_importer
+    Genome::Importers::ApiImporters::JaxCkb::Importer.new()
   end
 
   def should_group_genes?
