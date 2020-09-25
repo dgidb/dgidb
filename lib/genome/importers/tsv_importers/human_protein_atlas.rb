@@ -1,24 +1,17 @@
-require 'genome/online_updater'
-
-module Genome; module Importers; module HumanProteinAtlas;
-  class HumanProteinAtlas < Genome::OnlineUpdater
-    attr_reader :file_path, :source, :categories
+module Genome; module Importers; module TsvImporters
+  class HumanProteinAtlas < Genome::Importers::Base
+    attr_reader :file_path, :categories
 
     def initialize(file_path)
       @file_path = file_path
+      @source_db_name = 'HumanProteinAtlas'
     end
 
-    def import
-      remove_existing_source
-      create_new_source
+    def create_claims
       create_gene_claims
     end
 
     private
-    def remove_existing_source
-      Utils::Database.delete_source('HumanProteinAtlas')
-    end
-
     def create_new_source
       @source ||= DataModel::Source.create(
         {
@@ -26,13 +19,14 @@ module Genome; module Importers; module HumanProteinAtlas;
             site_url: 'https://www.proteinatlas.org/',
             citation: 'Uhlén M, Fagerberg L, Hallström BM, et al. Proteomics. Tissue-based map of the human proteome. Science. 2015;347(6220):1260419. doi:10.1126/science.1260419. PMID: 25613900',
             source_db_version:  '19.3',
-            source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE,
-            source_db_name: 'HumanProteinAtlas',
+            source_db_name: source_db_name,
             full_name: 'The Human Protein Atlas',
             license: 'Creative Commons Attribution-ShareAlike 3.0 International License',
             license_link: 'https://www.proteinatlas.org/about/licence',
         }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
+      @source.save
     end
 
     def create_gene_claims
