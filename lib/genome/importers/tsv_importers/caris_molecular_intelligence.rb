@@ -1,24 +1,17 @@
-require 'genome/online_updater'
-
-module Genome; module Importers; module CarisMolecularIntelligence;
-  class CarisMolecularIntelligence < Genome::OnlineUpdater
-    attr_reader :file_path, :source
+module Genome; module Importers; module TsvImporters
+  class CarisMolecularIntelligence < Genome::Importers::Base
+    attr_reader :file_path
 
     def initialize(file_path)
       @file_path = file_path
+      @source_db_name = 'CarisMolecularIntelligence'
     end
 
-    def import
-      remove_existing_source
-      create_new_source
+    def create_claims
       create_gene_claims
     end
 
     private
-    def remove_existing_source
-      Utils::Database.delete_source('CarisMolecularIntelligence')
-    end
-
     def create_new_source
       @source ||= DataModel::Source.create(
           {
@@ -26,14 +19,15 @@ module Genome; module Importers; module CarisMolecularIntelligence;
               site_url: 'http://www.carismolecularintelligence.com/',
               citation: 'http://www.carismolecularintelligence.com/',
               source_db_version: Time.new().strftime("%d-%B-%Y"),
-              source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE,
-              source_db_name: 'CarisMolecularIntelligence',
+              source_db_name: source_db_name,
               full_name: 'Caris Molecular Intelligence',
               source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
               license: 'Unknown',
               license_link: 'https://www.carismolecularintelligence.com/contact-us/',
           }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
+      @source.save
     end
 
     def create_gene_claims
