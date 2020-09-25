@@ -1,6 +1,6 @@
 require 'open-uri'
 
-module Genome; module OnlineUpdaters; module Pharos;
+module Genome; module Importers; module ApiImporters; module Pharos;
   class ApiClient
     def genes_for_category(category, start=0, count=10)
       get_entries(gene_lookup_base_url, category, start, count)
@@ -30,4 +30,4 @@ module Genome; module OnlineUpdaters; module Pharos;
       }
     end
   end
-end; end; end;
+end; end; end; end
