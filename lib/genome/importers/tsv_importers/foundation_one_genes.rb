@@ -1,24 +1,17 @@
-require 'genome/online_updater'
-
-module Genome; module Importers; module FoundationOneGenes;
-class FoundationOneGenes < Genome::OnlineUpdater
-  attr_reader :file_path, :source
+module Genome; module Importers; module TsvImporters
+class FoundationOneGenes < Genome::Importers::Base
+  attr_reader :file_path
 
   def initialize(file_path)
     @file_path = file_path
+    @source_db_name = 'FoundationOneGenes'
   end
 
-  def import
-    remove_existing_source
-    create_new_source
+  def create_claims
     create_gene_claims
   end
 
   private
-  def remove_existing_source
-    Utils::Database.delete_source('FoundationOneGenes')
-  end
-
   def create_new_source
     @source ||= DataModel::Source.create(
         {
@@ -26,14 +19,15 @@ class FoundationOneGenes < Genome::OnlineUpdater
             citation: 'High-throughput detection of actionable genomic alterations in clinical tumor samples by targeted, massively parallel sequencing. Wagle N, Berger MF, ..., Meyerson M, Gabriel SB, Garraway LA. Cancer Discov. 2012 Jan;2(1):82-93. PMID: 22585170',
             site_url: 'http://www.foundationone.com/',
             source_db_version: Time.new().strftime("%d-%B-%Y"),
-            source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE,
             source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
-            source_db_name: 'FoundationOneGenes',
+            source_db_name: source_db_name,
             full_name: 'Foundation One',
             license: 'Unknown; data is no longer publicly available from site',
             license_link: 'https://www.foundationmedicine.com/resource/legal-and-privacy',
         }
     )
+    @source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
+    @source.save
   end
 
   def create_gene_claims
