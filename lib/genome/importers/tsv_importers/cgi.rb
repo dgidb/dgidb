@@ -1,11 +1,9 @@
-require 'genome/online_updater'
-
-module Genome; module Importers; module Cgi;
-  class NewCgi < Genome::OnlineUpdater
-    attr_reader :file_path, :source
-
+module Genome; module Importers; module TsvImporters
+  class Cgi < Genome::Importers::Base
+    attr_reader :file_path
     def initialize(file_path)
       @file_path = file_path
+      @source_db_name = 'CGI'
     end
 
     def get_version
@@ -13,17 +11,11 @@ module Genome; module Importers; module Cgi;
       @new_version = source_db_version
     end
 
-    def import
-      remove_existing_source
-      create_new_source
+    def create_claims
       create_interaction_claims
     end
 
     private
-    def remove_existing_source
-      Utils::Database.delete_source('CGI')
-    end
-
     def create_new_source
       @source ||= DataModel::Source.create(
           {
@@ -31,7 +23,7 @@ module Genome; module Importers; module Cgi;
               site_url: 'https://www.cancergenomeinterpreter.org/',
               citation: 'https://www.cancergenomeinterpreter.org/',
               source_db_version:  get_version,
-              source_db_name: 'CGI',
+              source_db_name: source_db_name,
               full_name: 'Cancer Genome Interpreter',
               license: 'Creative Commons Attribution-NonCommercial 4.0 (BY-NC)',
               license_link: 'https://www.cancergenomeinterpreter.org/faq#q11c',
