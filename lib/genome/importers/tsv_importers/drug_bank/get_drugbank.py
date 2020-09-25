@@ -259,8 +259,7 @@ class DrugBank(object):
 
 if __name__ == '__main__':
     if 'DRUGBANK_USERNAME' not in os.environ or 'DRUGBANK_PASSWORD' not in os.environ:
-        print('Missing DRUGBANK_USERNAME and/or DRUGBANK_PASSWORD environment variables.  Please set these and try again')
-        sys.exit(-1)
+        sys.exit('Missing DRUGBANK_USERNAME and/or DRUGBANK_PASSWORD environment variables.  Please set these and try again')
     username = os.environ['DRUGBANK_USERNAME']
     password = os.environ['DRUGBANK_PASSWORD']
     if len(sys.argv) == 3:

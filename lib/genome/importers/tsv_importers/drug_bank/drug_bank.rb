@@ -1,15 +1,14 @@
-require 'genome/online_updater'
+require 'csv'
 
-module Genome; module Importers; module DrugBank;
-  class NewDrugBank < Genome::OnlineUpdater
-    attr_reader :file_path, :source
+module Genome; module Importers; module TsvImporters; module DrugBank
+  class DrugBank < Genome::Importers::Base
+    attr_reader :file_path
     def initialize(file_path)
       @file_path = file_path
+      @source_db_name = 'DrugBank'
     end
 
-    def import
-      remove_existing_source
-      create_source
+    def create_claims
       import_claims
     end
 
@@ -17,17 +16,13 @@ module Genome; module Importers; module DrugBank;
 
     DELIMITER = ';'
 
-    def remove_existing_source
-      Utils::Database.delete_source('DrugBank')
-    end
-
-    def create_source
+    def create_new_source
       @source = DataModel::Source.where(
         base_url: 'http://www.drugbank.ca',
         site_url: 'http://www.drugbank.ca/',
         citation: "DrugBank 4.0: shedding new light on drug metabolism. Law V, Knox C, Djoumbou Y, Jewison T, Guo AC, Liu Y, Maciejewski A, Arndt D, Wilson M, Neveu V, Tang A, Gabriel G, Ly C, Adamjee S, Dame ZT, Han B, Zhou Y, Wishart DS.Nucleic Acids Res. 2014 Jan 1;42(1):D1091-7. PMID: 24203711",
         source_db_version: "5.1.7",
-        source_db_name: 'DrugBank',
+        source_db_name: source_db_name,
         full_name: 'DrugBank - Open Data Drug & Drug Target Database',
         license: 'Custom non-commercial',
         license_link: 'https://dev.drugbankplus.com/guides/drugbank/citing?_ga=2.29505343.1251048939.1591976592-781844916.1591645816',
@@ -77,4 +72,4 @@ module Genome; module Importers; module DrugBank;
       backfill_publication_information()
     end
   end
-end; end; end;
+end; end; end; end
