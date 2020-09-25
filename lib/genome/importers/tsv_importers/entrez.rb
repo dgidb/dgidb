@@ -1,7 +1,7 @@
 #we don't always need to update entrez, if this is slow, we should do it incrementally
 #which means we need to be aware of the previous version
-module Genome; module Importers; module Entrez;
-  class NewEntrez
+module Genome; module Importers; module TsvImporters;
+  class Entrez
     attr_reader :file_path, :source
     def initialize(file_path)
       @file_path = file_path
@@ -24,8 +24,11 @@ module Genome; module Importers; module Entrez;
         license_link: 'https://www.nlm.nih.gov/accessibility.html',
       ).first_or_initialize
       source.source_db_version = Date.today.strftime("%d-%B-%Y")
-      source.source_types << DataModel::SourceType.find_by(type: 'gene')
-      source.save
+      source_type = DataModel::SourceType.find_by(type: 'gene')
+      unless source.source_types.include? source_type
+        source.source_types << source_type
+        source.save
+      end
     end
 
     def import_symbols
