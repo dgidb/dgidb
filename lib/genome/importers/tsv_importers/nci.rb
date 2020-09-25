@@ -1,10 +1,9 @@
-require 'genome/online_updater'
-
-module Genome; module Importers; module Nci;
-  class NewNci < Genome::OnlineUpdater
+module Genome; module Importers; module TsvImporters
+  class Nci < Genome::Importers::Base
     attr_reader :file_path
     def initialize(file_path)
       @file_path = file_path
+      @source_db_name = 'NCI'
     end
 
     def get_version
@@ -12,17 +11,11 @@ module Genome; module Importers; module Nci;
       @new_version = source_db_version
     end
 
-    def import
-      remove_existing_source
-      create_new_source
+    def create_claims
       create_interaction_claims
     end
 
     private
-    def remove_existing_source
-      Utils::Database.delete_source('NCI')
-    end
-
     def create_new_source
       @source ||= DataModel::Source.create(
           {
@@ -30,13 +23,14 @@ module Genome; module Importers; module Nci;
               site_url: 'https://wiki.nci.nih.gov/display/cageneindex',
               citation: 'https://wiki.nci.nih.gov/display/cageneindex',
               source_db_version:  get_version,
-              source_type_id: DataModel::SourceType.INTERACTION,
-              source_db_name: 'NCI',
+              source_db_name: source_db_name,
               full_name: 'NCI Cancer Gene Index',
               license: 'Public domain',
               license_link: 'https://www.cancer.gov/policies/copyright-reuse',
           }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.save
     end
 
     def create_interaction_claims
