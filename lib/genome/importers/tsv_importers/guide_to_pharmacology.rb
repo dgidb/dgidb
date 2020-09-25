@@ -1,18 +1,16 @@
-require 'genome/online_updater'
 include ActionView::Helpers::SanitizeHelper
 
-module Genome; module Importers; module GuideToPharmacology;
-  class GuideToPharmacology < Genome::OnlineUpdater
-    attr_reader :interaction_file_path, :gene_file_path, :source, :target_to_entrez
+module Genome; module Importers; module TsvImporters;
+  class GuideToPharmacology < Genome::Importers::Base
+    attr_reader :interaction_file_path, :gene_file_path, :target_to_entrez
     def initialize(interaction_file_path, gene_file_path)
       @interaction_file_path = interaction_file_path
       @gene_file_path = gene_file_path
       @target_to_entrez = {}
+      @source_db_name = 'GuideToPharmacology'
     end
 
-    def import
-      remove_existing_source
-      create_source
+    def create_claims
       import_claims
     end
 
@@ -46,8 +44,8 @@ module Genome; module Importers; module GuideToPharmacology;
           create_gene_claim_alias(gene_claim, line['Human SwissProt'], 'SwissProt Accession')
         end
 
-        create_gene_claim_attribute(gene_claim, line['Family name'], 'GuideToPharmacology Gene Category Name')
-        create_gene_claim_attribute(gene_claim, line['Family id'], 'GuideToPharmacology Gene Category ID')
+        create_gene_claim_attribute(gene_claim, 'GuideToPharmacology Gene Category Name', line['Family name'])
+        create_gene_claim_attribute(gene_claim, 'GuideToPharmacology Gene Category ID', line['Family id'])
 
         category_lookup = {
           #"catalytic_receptor" => '',
@@ -144,25 +142,21 @@ module Genome; module Importers; module GuideToPharmacology;
       end
     end
 
-    def remove_existing_source
-      Utils::Database.delete_source('GuideToPharmacology')
-    end
-
-    def create_source
+    def create_new_source
       @source = DataModel::Source.where(
           base_url: 'http://www.guidetopharmacology.org/DATA/',
           site_url: 'http://www.guidetopharmacology.org/',
           citation: 'Pawson, Adam J., et al. "The IUPHAR/BPS Guide to PHARMACOLOGY: an expert-driven knowledgebase 
 of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D1106. PMID: 24234439.',
-          source_db_name: 'GuideToPharmacology',
+          source_db_name: source_db_name,
           full_name: 'Guide to Pharmacology',
           license: 'Creative Commons Attribution-ShareAlike 4.0 International License',
           license_link: 'https://www.guidetopharmacology.org/about.jsp',
       ).first_or_initialize
-      #source.source_db_version = Date.today.strftime("%d-%B-%Y")
-      #source.source_types << DataModel::SourceType.find_by(type: 'interaction')
-      #source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
-      #source.save
+      source.source_db_version = Date.today.strftime("%d-%B-%Y")
+      source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
+      source.save
     end
   end
 end; end; end;
