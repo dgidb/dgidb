@@ -1,21 +1,13 @@
-require 'genome/online_updater'
-
-module Genome; module OnlineUpdaters; module Go;
-  class Updater < Genome::OnlineUpdater
-    attr_reader :new_version, :source
+module Genome; module Importers; module ApiImporters; module Go;
+  class Importer < Genome::Importers::ApiImporter
+    attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
+      @source_db_name = 'GO'
     end
 
-    def update
-      remove_existing_source
-      create_new_source
+    def create_claims
       create_gene_claims
-    end
-
-    private
-    def remove_existing_source
-      Utils::Database.delete_source('GO')
     end
 
     def create_new_source
@@ -25,7 +17,7 @@ module Genome; module OnlineUpdaters; module Go;
           site_url:           'http://www.geneontology.org/',
           citation:           'Gene ontology: tool for the unification of biology. The unification of biology. The Gene Ontology Consortium. Ashburner M, Ball CA, ..., Rubin GM, Sherlock G. Nat Genet. 2000 May;25(1):25-9. PMID: 10802651.',
           source_db_version:  @new_version,
-          source_db_name:     'GO',
+          source_db_name:     source_db_name,
           full_name:          'The Gene Ontology',
           license:            'Creative Commons Attribution 4.0 Unported License',
           license_link:        'http://geneontology.org/docs/go-citation-policy/',
@@ -98,4 +90,4 @@ module Genome; module OnlineUpdaters; module Go;
       }
     end
   end
-end; end; end;
+end; end; end; end

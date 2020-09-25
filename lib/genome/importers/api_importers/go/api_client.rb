@@ -1,6 +1,6 @@
 require 'open-uri'
 
-module Genome; module OnlineUpdaters; module Go;
+module Genome; module Importers; module ApiImporters; module Go;
   class ApiClient
     def genes_for_go_id(id, start=0, rows=500)
       get_entries(gene_lookup_base_url(id), start, rows)
@@ -31,4 +31,4 @@ module Genome; module OnlineUpdaters; module Go;
       }
     end
   end
-end; end; end;
+end; end; end; end
