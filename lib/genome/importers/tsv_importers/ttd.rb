@@ -1,30 +1,24 @@
-require 'genome/online_updater'
-module Genome; module Importers; module TTD
-  class TTD < Genome::OnlineUpdater
-    attr_reader :file_path, :source
+module Genome; module Importers; module TsvImporters
+  class TTD < Genome::Importers::Base
+    attr_reader :file_path
     def initialize(file_path)
       @file_path = file_path
+      @source_db_name = 'TTD'
     end
 
-    def import
-      remove_existing_source
-      create_source
+    def create_claims
       import_claims
     end
 
     private
-    def remove_existing_source
-      Utils::Database.delete_source('TTD')
-    end
-
-    def create_source
+    def create_new_source
       @source ||= DataModel::Source.create(
         {
           base_url:          'http://db.idrblab.net/ttd/',
           site_url:          'http://bidd.nus.edu.sg/group/cjttd/',
           citation:          "Update of TTD: Therapeutic Target Database. Zhu F, Han BC, ..., Zheng CJ, Chen YZ. Nucleic Acids Res. 38(suppl 1):D787-91, 2010. PMID: 19933260.",
           source_db_version:  '2020.06.01',
-          source_db_name:    'TTD',
+          source_db_name:    source_db_name,
           full_name:         'Therapeutic Target Database',
           license: 'Unclear. Website states "All Rights Reserved" but resource structure and description in 2002 publication indicate "open-access".',
           license_link: 'https://academic.oup.com/nar/article/30/1/412/1331814',
