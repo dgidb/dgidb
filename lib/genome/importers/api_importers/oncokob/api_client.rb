@@ -1,4 +1,4 @@
-module Genome; module OnlineUpdaters; module Oncokb;
+module Genome; module Importers; module ApiImporters; module Oncokb;
   class ApiClient
     def variants
       get_data(variant_base_url, {})
@@ -68,4 +68,4 @@ module Genome; module OnlineUpdaters; module Oncokb;
       }
     end
   end
-end; end; end
+end; end; end; end

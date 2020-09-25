@@ -1,27 +1,20 @@
-require 'genome/online_updater'
-
-module Genome; module OnlineUpdaters; module Oncokb;
-  class Updater < Genome::OnlineUpdater
-    attr_reader :new_version, :source
+module Genome; module Importers; module ApiImporters; module Oncokb;
+  class Importer < Genome::Importers::ApiImporter
+    attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
+      @source_db_name = 'OncoKB'
     end
 
-    def update
-      remove_existing_source
-      create_new_source
+    def create_claims
       create_interaction_claims
     end
 
     private
-    def remove_existing_source
-      Utils::Database.delete_source('OncoKB')
-    end
-
     def create_new_source
       @source ||= DataModel::Source.create(
         {
-          source_db_name: 'OncoKB',
+          source_db_name: source_db_name,
           source_db_version: new_version,
           base_url: 'http://oncokb.org/',
           site_url: 'http://oncokb.org/',
@@ -101,4 +94,4 @@ module Genome; module OnlineUpdaters; module Oncokb;
       end
     end
   end
-end; end; end
+end; end; end; end
