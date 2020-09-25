@@ -1,11 +1,10 @@
-require 'genome/online_updater'
-
-module Genome; module Importers; module Pharmgkb;
-  class NewPharmgkb < Genome::OnlineUpdater
-    attr_reader :file_path, :source
+module Genome; module Importers; module TsvImporters;
+  class Pharmgkb < Genome::Importers::Base
+    attr_reader :file_path
 
     def initialize(file_path)
       @file_path = file_path
+      @source_db_name = 'PharmGKB'
     end
 
     def get_version
@@ -13,17 +12,11 @@ module Genome; module Importers; module Pharmgkb;
       @new_version = source_db_version
     end
 
-    def import
-      remove_existing_source
-      create_new_source
+    def create_claims
       create_interaction_claims
     end
 
     private
-    def remove_existing_source
-      Utils::Database.delete_source('PharmGKB')
-    end
-
     def create_new_source
       @source ||= DataModel::Source.create(
           {
@@ -31,7 +24,7 @@ module Genome; module Importers; module Pharmgkb;
               site_url:          'http://www.pharmgkb.org/',
               citation:          "From pharmacogenomic knowledge acquisition to clinical applications: the PharmGKB as a clinical pharmacogenomic biomarker resource. McDonagh EM, Whirl-Carrillo M, Garten Y, Altman RB, Klein TE. Biomark Med. 2011 Dec;5(6):795-806. PMID: 22103613",
               source_db_version:  get_version,
-              source_db_name:    'PharmGKB',
+              source_db_name:    source_db_name,
               full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase',
               license_link:      'https://www.pharmgkb.org/page/dataUsagePolicy',
               license:           'Creative Commons Attribution-ShareAlike 4.0 International License'
