@@ -1,5 +1,5 @@
 module Genome; module Importers; module ApiImporters; module Docm
-  class Importer < Genome::Importers::ApiImporter
+  class Importer < Genome::Importers::Base
     attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version

@@ -1,7 +1,7 @@
 require 'net/http'
 
 module Genome; module Importers; module ApiImporters; module Civic
-  class Importer < Genome::Importers::ApiImporter
+  class Importer < Genome::Importers::Base
     attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version

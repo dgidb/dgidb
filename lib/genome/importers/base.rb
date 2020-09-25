@@ -1,10 +1,10 @@
-module Genome
-  class Importer
+module Genome; module Importers
+  class Base
     attr_reader :source, :source_db_name
 
     def import
       remove_existing_source
-      source = create_new_source
+      create_new_source
       create_claims
     end
 
@@ -144,4 +144,4 @@ module Genome
       ).first_or_create
     end
   end
-end
+end; end
