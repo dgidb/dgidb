@@ -1,31 +1,24 @@
-require 'genome/online_updater'
-
-module Genome; module Importers; module Ensembl;
-  class NewEnsembl < Genome::OnlineUpdater
-    attr_reader :file_path, :source, :version
+module Genome; module Importers; module TsvImporters;
+  class Ensembl < Genome::Importers::Base
+    attr_reader :file_path, :version
     def initialize(file_path, version)
       @file_path = file_path
       @version = version
+      @source_db_name = 'Ensembl'
     end
 
-    def import
-      remove_existing_source
-      create_source
+    def create_claims
       import_symbols
     end
 
     private
-    def remove_existing_source
-      Utils::Database.delete_source('Ensembl')
-    end
-
-    def create_source
+    def create_new_source
       @source = DataModel::Source.where(
         base_url:           'http://useast.ensembl.org/Homo_sapiens/Gene/Summary?g=',
         site_url:           'http://ensembl.org/index.html',
         citation:           'Ensembl 2011. Flicek P, Amode MR, ..., Vogel J, Searle SM. Nucleic Acids Res. 2011 Jan;39(Database issue)800-6. Epub 2010 Nov 2. PMID: 21045057.',
         source_db_version:  version,
-        source_db_name:     'Ensembl',
+        source_db_name:     source_db_name,
         full_name:          'Ensembl',
         license: 'Unrestricted license, pass-through constraints',
         license_link:        'https://useast.ensembl.org/info/about/legal/disclaimer.html',
