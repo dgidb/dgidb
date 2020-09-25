@@ -1,10 +1,9 @@
-require 'genome/online_updater'
-
-module Genome; module Importers; module Fda;
-  class NewFda < Genome::OnlineUpdater
+module Genome; module Importers; module TsvImporters;
+  class Fda < Genome::Importers::Base
     attr_reader :file_path
     def initialize(file_path)
       @file_path = file_path
+      @source_db_name = 'FDA'
     end
 
     def get_version
@@ -12,17 +11,11 @@ module Genome; module Importers; module Fda;
       @new_version = source_db_version
     end
 
-    def import
-      remove_existing_source
-      create_new_source
+    def creaet_claims
       create_interaction_claims
     end
 
     private
-    def remove_existing_source
-      Utils::Database.delete_source('FDA')
-    end
-
     def create_new_source
       @source ||= DataModel::Source.create(
           {
@@ -30,13 +23,14 @@ module Genome; module Importers; module Fda;
               site_url: 'https://www.fda.gov/drugs/science-and-research-drugs/table-pharmacogenomic-biomarkers-drug-labeling',
               citation: 'https://www.fda.gov/drugs/science-and-research-drugs/table-pharmacogenomic-biomarkers-drug-labeling',
               source_db_version:  get_version,
-              source_type_id: DataModel::SourceType.INTERACTION,
-              source_db_name: 'FDA',
+              source_db_name: source_db_name,
               full_name: 'FDA Pharmacogenomic Biomarkers',
               license: 'Public Domain',
               license_link: 'https://www.fda.gov/about-fda/about-website/website-policies#linking',
           }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.save
     end
 
     def create_drug_claims(row, gene_claim, fusion_protein)
