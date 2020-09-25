@@ -1,4 +1,4 @@
-module Genome; module OnlineUpdaters; module Docm
+module Genome; module Importers; module ApiImporters; module Docm
   class ApiClient
     def variants
       variants = JSON.parse(get_page(variant_url))
@@ -26,4 +26,4 @@ module Genome; module OnlineUpdaters; module Docm
       {'detailed_view' => true}
     end
   end
-end; end; end
+end; end; end; end

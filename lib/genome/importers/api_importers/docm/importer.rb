@@ -1,15 +1,12 @@
-require 'genome/online_updater'
-
-module Genome; module OnlineUpdaters; module Docm
-  class Updater < Genome::OnlineUpdater
-    attr_reader :new_version, :source
+module Genome; module Importers; module ApiImporters; module Docm
+  class Importer < Genome::Importers::ApiImporter
+    attr_reader :new_version
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
+      @source_db_name = 'DoCM'
     end
 
-    def update
-      remove_existing_source
-      create_new_source
+    def create_claims
       create_interaction_claims
     end
 
@@ -75,10 +72,6 @@ module Genome; module OnlineUpdaters; module Docm
       end
     end
 
-    def remove_existing_source
-      Utils::Database.delete_source('DoCM')
-    end
-
     def create_new_source
       @source ||= DataModel::Source.create(
         {
@@ -87,7 +80,7 @@ module Genome; module OnlineUpdaters; module Docm
             citation: 'DoCM: a database of curated mutations in cancer. Ainscough BJ, Griffith M, Coffman AC, Wagner AH, Kunisaki J, Choudhary MN, McMichael JF, Fulton RS, Wilson RK, Griffith OL, Mardis ER. Nat Methods. 2016;13(10):806-7. PMID: 27684579',
             source_db_version: new_version,
             source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
-            source_db_name: 'DoCM',
+            source_db_name: source_db_name,
             full_name: 'Database of Curated Mutations',
             license: 'Creative Commons Attribution 4.0 International License',
             license_link: 'http://www.docm.info/about',
@@ -97,4 +90,4 @@ module Genome; module OnlineUpdaters; module Docm
       @source.save
     end
   end
-end; end; end
+end; end; end; end
