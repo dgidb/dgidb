@@ -46,8 +46,8 @@ module Genome; module Importers; module GuideToPharmacology;
           create_gene_claim_alias(gene_claim, line['Human SwissProt'], 'SwissProt Accession')
         end
 
-        create_gene_claim_attribute(gene_claim, line['Family name'], 'GuideToPharmacology Gene Category Name')
-        create_gene_claim_attribute(gene_claim, line['Family id'], 'GuideToPharmacology Gene Category ID')
+        create_gene_claim_attribute(gene_claim, 'GuideToPharmacology Gene Category Name', line['Family name'])
+        create_gene_claim_attribute(gene_claim, 'GuideToPharmacology Gene Category ID', line['Family id'])
 
         category_lookup = {
           #"catalytic_receptor" => '',
