@@ -49,6 +49,7 @@ module Genome; module Importers; module DrugBank;
         row['drug_brands'].split(DELIMITER).each do |synonym|
           create_drug_claim_alias(drug_claim, synonym, 'Drug Brand') unless synonym == 'N/A'
         end
+        create_drug_claim_alias(drug_claim, row['chembl_id'], 'ChEMBL ID') unless row['chembl_id'] == 'N/A'
 
         create_drug_claim_attribute(drug_claim, 'Drug Type', row['drug_type']) unless row['drug_type'] == 'N/A'
         row['drug_groups'].split(DELIMITER).each do |group|
