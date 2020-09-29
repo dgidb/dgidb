@@ -159,10 +159,10 @@ of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D
           license: 'Creative Commons Attribution-ShareAlike 4.0 International License',
           license_link: 'https://www.guidetopharmacology.org/about.jsp',
       ).first_or_initialize
-      #source.source_db_version = Date.today.strftime("%d-%B-%Y")
-      #source.source_types << DataModel::SourceType.find_by(type: 'interaction')
-      #source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
-      #source.save
+      source.source_db_version = Date.today.strftime("%d-%B-%Y")
+      source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
+      source.save
     end
   end
 end; end; end;
