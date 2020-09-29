@@ -46,8 +46,8 @@ module Genome; module Importers; module GuideToPharmacology;
           create_gene_claim_alias(gene_claim, line['Human SwissProt'], 'SwissProt Accession')
         end
 
-        create_gene_claim_attribute(gene_claim, line['Family name'], 'GuideToPharmacology Gene Category Name')
-        create_gene_claim_attribute(gene_claim, line['Family id'], 'GuideToPharmacology Gene Category ID')
+        create_gene_claim_attribute(gene_claim, 'GuideToPharmacology Gene Category Name', line['Family name'])
+        create_gene_claim_attribute(gene_claim, 'GuideToPharmacology Gene Category ID', line['Family id'])
 
         category_lookup = {
           #"catalytic_receptor" => '',
@@ -159,10 +159,10 @@ of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D
           license: 'Creative Commons Attribution-ShareAlike 4.0 International License',
           license_link: 'https://www.guidetopharmacology.org/about.jsp',
       ).first_or_initialize
-      #source.source_db_version = Date.today.strftime("%d-%B-%Y")
-      #source.source_types << DataModel::SourceType.find_by(type: 'interaction')
-      #source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
-      #source.save
+      source.source_db_version = Date.today.strftime("%d-%B-%Y")
+      source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
+      source.save
     end
   end
 end; end; end;
