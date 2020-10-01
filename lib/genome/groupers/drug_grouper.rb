@@ -3,7 +3,7 @@ require 'net/https'
 module Genome
   module Groupers
     class DrugGrouper
-      attr_reader :term_to_matches_dict, :term_to_record_dict, :valid_chembl_ids, :invalid_chembl_ids, :chembl_source, :wikidata_source
+      attr_reader :term_to_matches_dict, :term_to_record_dict, :valid_chembl_ids, :invalid_chembl_ids, :chembl_source, :wikidata_source, :http_connection, :uri
       def initialize
         @term_to_matches_dict = {}
         @term_to_record_dict = {}
@@ -39,6 +39,10 @@ module Genome
           @wikidata_source.source_types << drug_source_type
           @wikidata_source.save
         end
+        @uri = URI.parse(normalizer_url)
+        @uri.port = 8000
+        @http_connection = Net::HTTP.new(uri.host, uri.port)
+        @http_connection.start
       end
 
       def run(source_id: nil)
@@ -104,6 +108,7 @@ module Genome
             drug_claim.save
           end
         end
+        http_connection.finish
       end
 
       def query_drug_claim_aliases(drug_claim_aliases)
@@ -178,10 +183,7 @@ module Genome
         if term_to_matches_dict.has_key? term
           return term_to_matches_dict[term]
         end
-        uri = URI.parse(normalizer_url).tap do |u|
-          u.query = URI.encode_www_form( { q: ERB::Util.url_encode(term) } )
-          u.port = 8000
-        end
+        uri.query = URI.encode_www_form( { q: ERB::Util.url_encode(term) } )
         res = Net::HTTP.get_response(uri)
         if res.code != '200'
           raise StandardError.new("Request Failed!")
