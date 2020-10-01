@@ -24,7 +24,10 @@ module Genome; module Importers; module Entrez;
         license_link: 'https://www.nlm.nih.gov/accessibility.html',
       ).first_or_initialize
       source.source_db_version = Date.today.strftime("%d-%B-%Y")
-      source.source_types << DataModel::SourceType.find_by(type: 'gene')
+      source_type = DataModel::SourceType.find_by(type: 'gene')
+      unless source.source_types.include? source_type
+        source.source_types << source_type
+      end
       source.save
     end
 
