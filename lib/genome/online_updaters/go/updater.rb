@@ -25,13 +25,14 @@ module Genome; module OnlineUpdaters; module Go;
           site_url:           'http://www.geneontology.org/',
           citation:           'Gene ontology: tool for the unification of biology. The unification of biology. The Gene Ontology Consortium. Ashburner M, Ball CA, ..., Rubin GM, Sherlock G. Nat Genet. 2000 May;25(1):25-9. PMID: 10802651.',
           source_db_version:  @new_version,
-          source_type_id:     DataModel::SourceType.POTENTIALLY_DRUGGABLE,
           source_db_name:     'GO',
           full_name:          'The Gene Ontology',
           license:            'Creative Commons Attribution 4.0 Unported License',
           license_link:        'http://geneontology.org/docs/go-citation-policy/',
         }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'potentially_druggable')
+      @source.save
     end
 
     def create_gene_claims

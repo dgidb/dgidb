@@ -24,18 +24,19 @@ module Genome; module Importers; module TTD
           site_url:          'http://bidd.nus.edu.sg/group/cjttd/',
           citation:          "Update of TTD: Therapeutic Target Database. Zhu F, Han BC, ..., Zheng CJ, Chen YZ. Nucleic Acids Res. 38(suppl 1):D787-91, 2010. PMID: 19933260.",
           source_db_version:  '2020.06.01',
-          source_type_id:    DataModel::SourceType.INTERACTION,
           source_db_name:    'TTD',
           full_name:         'Therapeutic Target Database',
           license: 'Unclear. Website states "All Rights Reserved" but resource structure and description in 2002 publication indicate "open-access".',
           license_link: 'https://academic.oup.com/nar/article/30/1/412/1331814',
         }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.save
     end
 
     def import_claims
       CSV.foreach(file_path, :headers => true, :col_sep => ",") do |row|
-        next if row['Highest_status'] == 'Terminated' || row['Highest_status'] == 'Withdrawn from market' || row['Highest_status'].match(/Discontinued/)
+        next if row['Highest_status'] == 'Terminated' || row['Highest_status'] == 'Withdrawn from market' || row['Highest_status'].match(/Discontinued/) || row['Highest_status'] == 'Investigative'
 
         gene_name, gene_abbreviation = row['Target_Name'].split(' (', 2)
         gene_abbreviation.sub!(')', '')

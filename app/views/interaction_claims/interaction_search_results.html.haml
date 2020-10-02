@@ -39,7 +39,7 @@
             - ambiguous_no_interactions = @search_results.ambiguous_no_interactions
             - failed_results = @search_results.no_results_results
             - if failed_results.any?
-              - failed_terms = failed_results.map{|result| result.search_term}.first.split(", ")
+              - failed_terms = failed_results.flat_map{|result| result.search_terms}
             - else
               - failed_terms = []
             = render partial: 'interaction_claims/interaction_search_failed', locals: {ambiguous_results: ambiguous_results, ambiguous_no_interactions: ambiguous_no_interactions, failed_terms: failed_terms}

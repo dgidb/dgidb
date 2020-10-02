@@ -88,11 +88,15 @@ module Utils
           delete from gene_attributes_sources where source_id = '#{source_id}';
           delete from interaction_attributes_sources where source_id = '#{source_id}';
           delete from interactions_sources where source_id = '#{source_id}';
+          delete from source_types_sources where source_id = '#{source_id}';
           delete from sources where id = '#{source_id}';
         SQL
 
         ActiveRecord::Base.connection.execute(sql)
       end
+      destroy_empty_groups
+      destroy_unsourced_attributes
+      destroy_unsourced_aliases
     end
 
     def self.destroy_common_aliases
@@ -115,6 +119,20 @@ module Utils
       # empty_genes = DataModel::Gene.includes(:gene_claims).where(gene_claims: {id: nil}).destroy_all
       # Empty drugs are okay to delete
       DataModel::Drug.includes(:drug_claims).where(drug_claims: {id: nil}).destroy_all
+    end
+
+    def self.destroy_unsourced_attributes
+      DataModel::InteractionAttribute.includes(:sources).where(sources: {id: nil}).destroy_all
+      DataModel::GeneAttribute.includes(:sources).where(sources: {id: nil}).destroy_all
+      DataModel::DrugAttribute.includes(:sources).where(sources: {id: nil}).destroy_all
+    end
+
+    def self.destroy_unsourced_aliases
+      DataModel::GeneAlias.includes(:sources).where(sources: {id: nil}).destroy_all
+      #Drug aliases are currently imported directly from the therapy
+      #normalizer but not attributed to ChEMBL or Wikidata (outstanding issue #485)
+      #Therefore, none of the drug aliases currently have a source
+      #DataModel::DrugAlias.includes(:sources).where(sources: {id: nil}).destroy_all
     end
 
     def self.destroy_na

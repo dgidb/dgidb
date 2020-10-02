@@ -71,21 +71,21 @@ module Genome
         val = val.downcase.strip
         if val == 'na' || val == 'n/a'
           'n/a'
-        elsif val =~ /other/ || val =~ /unknown/
+        elsif val =~ /other/ || val =~ /unknown/ || val == 'protector' || val == 'oxidizer' || val == 'coating agent' || val == 'dilator' || val == 'deoxidizer' || val == 'diffusing substance'|| val == 'vesicant' || val == 'gene replacement'
           'other/unknown'
         elsif val == 'neutralizer' || val == 'reducer' || val == 'metabolizer' || val == 'acetylation' || val == 'chelator' || val == 'cross-linking/alkylation' || val == 'regulator'
           'modulator'
         elsif val == 'positive allosteric modulator' || val == 'regulator (upregulator)' || val == 'enhancer' || val == 'modulator (allosteric modulator)'
           'positive modulator'
-        elsif val == 'inhibitor, competitive' || val == 'gating inhibitor' || val == 'inhibitor; antagonist; blocker' || val == 'inhibitor (gating inhibitor)' || val == 'growth_inhibition' || val == 'inhibition'
+        elsif val == 'inhibitor, competitive' || val == 'gating inhibitor' || val == 'inhibitor; antagonist; blocker' || val == 'inhibitor (gating inhibitor)' || val == 'growth_inhibition' || val == 'inhibition' || val == 'weak inhibitor' || val == 'aggregation inhibitor' || val == 'inhibition of synthesis' || val == "translocation inhibitor" || val == 'inhibits downstream inflammation cascades' || val == 'inactivator'
           'inhibitor'
-        elsif val == 'channel blocker' || val == 'blocker (channel blocker)'
+        elsif val == 'channel blocker' || val == 'blocker (channel blocker)' || val == 'nucleotide exchange blocker'
           'blocker'
         elsif val == 'antisense' || val == 'sirna drug'
           'antisense oligonucleotide'
         elsif val == 'binding' || val == 'binder (minor groove binder)' || val == 'breaker'
           'binder'
-        elsif val == 'incorporation into and destabilization' || val == 'intercalation' || val == 'desensitize the target' || val == 'disrupter' || val == 'intercalator'
+        elsif val == 'incorporation into and destabilization' || val == 'intercalation' || val == 'desensitize the target' || val == 'disrupter' || val == 'intercalator' || val == 'downregulator'
           'negative modulator'
         elsif val == 'inhibitory immune response' || val == 'car-t-cell-therapy(dual specific)' || val == 'immunomodulator' || val == 'immunomodulator (immunostimulant)' || val == 'immune response agent' || val == 'car-t-cell-therapy' || val == 'immune response agent' || val == 'immunostimulant'
           'immunotherapy'
@@ -93,7 +93,7 @@ module Genome
           'product of'
         elsif val == 'opener'
           'potentiator'
-        elsif val == 'stablizer'
+        elsif val == 'stablizer' || val == 'stabilization'
           'chaperone'
         elsif val == 'reactivator'
           'activator'
@@ -103,6 +103,8 @@ module Genome
           'inverse agonist'
         elsif val == 'cytotoxicity'
           'cytotoxic'
+        elsif val == 'degradation'
+          'cleavage'
         else
           val
         end

@@ -35,8 +35,8 @@ SET default_table_access_method = heap;
 CREATE TABLE public.ar_internal_metadata (
     key character varying NOT NULL,
     value character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -520,7 +520,7 @@ CREATE TABLE public.publications (
 --
 
 CREATE TABLE public.schema_migrations (
-    version character varying(255) NOT NULL
+    version character varying NOT NULL
 );
 
 
@@ -546,6 +546,16 @@ CREATE TABLE public.source_types (
 
 
 --
+-- Name: source_types_sources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.source_types_sources (
+    source_id character varying NOT NULL,
+    source_type_id character varying NOT NULL
+);
+
+
+--
 -- Name: sources; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -557,7 +567,6 @@ CREATE TABLE public.sources (
     base_url text,
     site_url text,
     full_name text,
-    source_type_id character varying(255),
     gene_claims_count integer DEFAULT 0,
     drug_claims_count integer DEFAULT 0,
     interaction_claims_count integer DEFAULT 0,
@@ -895,6 +904,14 @@ ALTER TABLE ONLY public.interactions_sources
 
 ALTER TABLE ONLY public.publications
     ADD CONSTRAINT publications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
 
 
 --
@@ -1251,6 +1268,27 @@ CREATE UNIQUE INDEX index_publications_on_pmid ON public.publications USING btre
 
 
 --
+-- Name: index_source_types_sources_on_source_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_source_types_sources_on_source_id ON public.source_types_sources USING btree (source_id);
+
+
+--
+-- Name: index_source_types_sources_on_source_type_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_source_types_sources_on_source_type_id ON public.source_types_sources USING btree (source_type_id);
+
+
+--
+-- Name: index_source_types_sources_on_source_type_id_and_source_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_source_types_sources_on_source_type_id_and_source_id ON public.source_types_sources USING btree (source_type_id, source_id);
+
+
+--
 -- Name: interaction_claim_attributes_interaction_claim_id_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1311,13 +1349,6 @@ CREATE INDEX sources_lower_source_db_name_idx ON public.sources USING btree (low
 --
 
 CREATE INDEX sources_source_trust_level_id_idx ON public.sources USING btree (source_trust_level_id);
-
-
---
--- Name: sources_source_type_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX sources_source_type_id_idx ON public.sources USING btree (source_type_id);
 
 
 --
@@ -1793,11 +1824,19 @@ ALTER TABLE ONLY public.sources
 
 
 --
--- Name: sources fk_source_type; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: source_types_sources fk_source_types_source_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.sources
-    ADD CONSTRAINT fk_source_type FOREIGN KEY (source_type_id) REFERENCES public.source_types(id) MATCH FULL;
+ALTER TABLE ONLY public.source_types_sources
+    ADD CONSTRAINT fk_source_types_source_id FOREIGN KEY (source_id) REFERENCES public.sources(id) MATCH FULL;
+
+
+--
+-- Name: source_types_sources fk_source_types_source_types_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.source_types_sources
+    ADD CONSTRAINT fk_source_types_source_types_id FOREIGN KEY (source_type_id) REFERENCES public.source_types(id) MATCH FULL;
 
 
 --
@@ -1867,6 +1906,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191107152512'),
 ('20200608185423'),
 ('20200615173440'),
+('20200620144029'),
 ('20200811160413'),
 ('20200901140610'),
 ('20200904144705');

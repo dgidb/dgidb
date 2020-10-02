@@ -15,23 +15,30 @@ module Genome
           base_url: 'https://www.ebi.ac.uk/chembldb/index.php/target/inspect/',
           site_url: 'https://www.ebi.ac.uk/chembl',
           citation: "The ChEMBL bioactivity database: an update. Bento AP, Gaulton A, Hersey A, Bellis LJ, Chambers J, Davies M, Kruger FA, Light Y, Mak L, McGlinchey S, Nowotka M, Papadatos G, Santos R, Overington JP. Nucleic Acids Res. 42(Database issue):D1083-90. PubMed ID: 24214965",
-          source_type_id: DataModel::SourceType.DRUG,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           full_name: 'The ChEMBL Bioactivity Database',
           license: 'Creative Commons Attribution-Share Alike 3.0 Unported License',
           license_link: 'https://chembl.gitbook.io/chembl-interface-documentation/about',
         ).first_or_create
+        drug_source_type = DataModel::SourceType.find_by(type: 'drug')
+        unless @chembl_source.source_types.include? drug_source_type
+          @chembl_source.source_types << drug_source_type
+          @chembl_source.save
+        end
         @wikidata_source = DataModel::Source.where(
           source_db_name: 'Wikidata',
           source_db_version: '12-August-2020',
           base_url: 'https://www.wikidata.org/wiki/',
           site_url: 'https://www.wikidata.org/',
           citation: "Denny Vrandečić and Markus Krötzsch. 2014. Wikidata: a free collaborative knowledgebase. Commun. ACM 57, 10 (October 2014), 78–85. DOI:https://doi.org/10.1145/2629489",
-          source_type_id: DataModel::SourceType.DRUG,
           full_name: 'Wikidata',
           license: 'Creative Commons Attribution-ShareAlike License',
           license_link: 'https://foundation.wikimedia.org/wiki/Terms_of_Use/en#7._Licensing_of_Content',
         ).first_or_create
+        unless @wikidata_source.source_types.include? drug_source_type
+          @wikidata_source.source_types << drug_source_type
+          @wikidata_source.save
+        end
       end
 
       def run(source_id: nil)
@@ -54,7 +61,7 @@ module Genome
             else
               if record['label'].nil?
                 claim_label = record['concept_identifier']
-                drug_label = record['concept_identifier']
+                drug_label = record['concept_identifier'].gsub('chembl:', '')
               else
                 claim_label = record['label']
                 drug_label = record['label'].upcase
@@ -97,6 +104,9 @@ module Genome
             drug_claim.save
           end
         end
+        Utils::Database.destroy_empty_groups
+        Utils::Database.destroy_unsourced_attributes
+        Utils::Database.destroy_unsourced_aliases
       end
 
       def query_drug_claim_aliases(drug_claim_aliases)

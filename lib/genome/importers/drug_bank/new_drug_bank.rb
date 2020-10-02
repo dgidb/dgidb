@@ -27,13 +27,14 @@ module Genome; module Importers; module DrugBank;
         site_url: 'http://www.drugbank.ca/',
         citation: "DrugBank 4.0: shedding new light on drug metabolism. Law V, Knox C, Djoumbou Y, Jewison T, Guo AC, Liu Y, Maciejewski A, Arndt D, Wilson M, Neveu V, Tang A, Gabriel G, Ly C, Adamjee S, Dame ZT, Han B, Zhou Y, Wishart DS.Nucleic Acids Res. 2014 Jan 1;42(1):D1091-7. PMID: 24203711",
         source_db_version: "5.1.7",
-        source_type_id: DataModel::SourceType.INTERACTION,
         source_db_name: 'DrugBank',
         full_name: 'DrugBank - Open Data Drug & Drug Target Database',
         license: 'Custom non-commercial',
         license_link: 'https://dev.drugbankplus.com/guides/drugbank/citing?_ga=2.29505343.1251048939.1591976592-781844916.1591645816',
         #source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED
       ).first_or_create
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.save
     end
 
     def import_claims
@@ -48,6 +49,7 @@ module Genome; module Importers; module DrugBank;
         row['drug_brands'].split(DELIMITER).each do |synonym|
           create_drug_claim_alias(drug_claim, synonym, 'Drug Brand') unless synonym == 'N/A'
         end
+        create_drug_claim_alias(drug_claim, row['chembl_id'], 'ChEMBL ID') unless row['chembl_id'] == 'N/A'
 
         create_drug_claim_attribute(drug_claim, 'Drug Type', row['drug_type']) unless row['drug_type'] == 'N/A'
         row['drug_groups'].split(DELIMITER).each do |group|

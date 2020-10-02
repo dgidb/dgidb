@@ -1,4 +1,4 @@
 %ul(class="result-list" id="list-results")
   -gene.sorted_gene_claims.each do |gene_claim|
-    %li(class="#{gene_claim.source.source_type.type}" data-category="#{gene_claim.source.source_type.type}" data-name="#{gene_claim.source.source_type.display_name}")
+    %li(class="#{gene_claim.source.source_types.first.type}" data-category="#{format_source_types(gene_claim.source)}" data-name="#{format_source_type_names(gene_claim.source)}")
       =render partial: 'gene_claims/gene_claim', locals: {gene_claim: gene_claim}
