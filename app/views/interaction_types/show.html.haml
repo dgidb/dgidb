@@ -22,7 +22,7 @@
         - @types.each do |t|
           %tr
             %td=t.type
-            %td=t.interactions.flat_map{|i| i.sources}.uniq.pluck(:source_db_name).sort.join(', ')
+            %td=t.interaction_claims.flat_map{|i| i.source.source_db_name}.uniq.sort.join(', ')
             %td=t.definition
             %td=t.directionality.nil? ? "N/A" : t.directionality
             %td=t.reference.nil? ? "" : t.reference.html_safe

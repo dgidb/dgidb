@@ -38,13 +38,13 @@
           %div{style: "background-color: white; margin-top: 5px; padding: 5px; border-radius: 5px; height: 100px;"}
             #source-control{style: "margin-top: 3px;"}
               =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
-                flag_text_key: 'sources_flag', select_tag_name: 'category_sources', collection: @sources, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
+                flag_text_key: 'sources_flag', select_tag_name: 'category_sources', collection: @sources.map{|s| s.rjust(s.length + 1)}, name_meth: 'strip', value_meth: 'to_s', tour_id: 'sources_tour' }
             -##source-trust-level
             -#  =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Trust Level',
             -#    flag_text_key: 'source_trust_level_flag', select_tag_name: 'source_trust_levels', collection: @source_trust_levels, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'source_trust_level_tour' }
             #gene-category-control
             =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
-              flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories, name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_categories_tour' }
+              flag_text_key: 'categories_flag', select_tag_name: 'gene_categories', collection: @gene_categories.map{|s| s.rjust(s.length + 1)}, name_meth: 'strip', value_meth: 'to_s', tour_id: 'gene_categories_tour' }
           %div.filters{style: "margin-top: 70px; margin-bottom: -50px; color: #337ab7; font-style: oblique;"}
             Find CATEGORIES that your GENES belong to
     .form-actions{style: "clear: both; display: flex; justify-content: center; margin-bottom:20px;"} 
