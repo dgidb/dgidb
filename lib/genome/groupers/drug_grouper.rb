@@ -61,7 +61,7 @@ module Genome
             else
               if record['label'].nil?
                 claim_label = record['concept_identifier']
-                drug_label = record['concept_identifier']
+                drug_label = record['concept_identifier'].gsub('chembl:', '')
               else
                 claim_label = record['label']
                 drug_label = record['label'].upcase
