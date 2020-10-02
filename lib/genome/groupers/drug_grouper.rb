@@ -104,6 +104,9 @@ module Genome
             drug_claim.save
           end
         end
+        Utils::Database.destroy_empty_groups
+        Utils::Database.destroy_unsourced_attributes
+        Utils::Database.destroy_unsourced_aliases
       end
 
       def query_drug_claim_aliases(drug_claim_aliases)
