@@ -29,7 +29,7 @@
       - definite_matches.each do |result|
         - result[:identifiers].each do |entity|
           %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", id: entity.name + "-unique", style: "width: 100%;"}
-            = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions][entity].to_a, scores: result[:scores] }
+            = render partial: 'interaction_claims/interactions_search_panel', locals: { term: result[:term], entity: entity, filtered_interactions: result[:interactions][entity].to_a, scores: result[:scores], known_drug_partners_per_gene: known_drug_partners_per_gene, known_gene_partners_per_drug: known_gene_partners_per_drug }
     - else 
       %li{class: "interaction interaction-panel", "data-category" => "interaction", "data-name" => "Interaction", style: "width: 100%; height: 300px;"}
         %h3{style: "margin-left: 20px;"}
