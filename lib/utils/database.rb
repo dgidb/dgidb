@@ -97,6 +97,7 @@ module Utils
       destroy_empty_groups
       destroy_unsourced_attributes
       destroy_unsourced_aliases
+      destroy_unsourced_gene_categories
     end
 
     def self.destroy_common_aliases
@@ -133,6 +134,17 @@ module Utils
       #normalizer but not attributed to ChEMBL or Wikidata (outstanding issue #485)
       #Therefore, none of the drug aliases currently have a source
       #DataModel::DrugAlias.includes(:sources).where(sources: {id: nil}).destroy_all
+    end
+
+    def self.destroy_unsourced_gene_categories
+      DataModel::Gene.joins(:gene_categories).includes(:gene_categories, gene_claims: [:gene_claim_categories]).each do |g|
+        gene_claim_categories = g.gene_claims.flat_map{|c| c.gene_claim_categories}
+        g.gene_categories.each do |c|
+          unless gene_claim_categories.include? c
+            g.gene_categories.delete(c)
+          end
+        end
+      end
     end
 
     def self.destroy_na
