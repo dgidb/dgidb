@@ -70,9 +70,18 @@
         %label
           Advanced Filters
         %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
-          =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
-            flag_text_key: 'source_database_flag', select_tag_name: 'interaction_sources', collection: @sources.map{|s| s.rjust(s.length + 1)},
-            name_meth: 'strip', value_meth: 'to_s', tour_id: 'sources_tour' }
+          .control-group
+            .controls
+              Source Databases
+              %br
+              %select{name: "interaction_sources[]", id: "interaction_sources", multiple: "multiple", class: :multiselect, form: "search_form", style: "display: none;"}
+                %optgroup{label: 'Cancer-Specific Sources'}
+                  -DataModel::Source.cancer_only_interaction_source_names.each do |name|
+                    %option(value="#{name}")= " #{name}"
+                %optgroup{label: 'Disease-Agnostic Sources'}
+                  -DataModel::Source.disease_agnostic_interaction_source_names.each do |name|
+                    %option(value="#{name}")= " #{name}"
+              %div{style:'width:60px;', id: 'sources_tour'}
           =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
             flag_text_key: 'gene_category_flag', select_tag_name: 'gene_categories', collection: @gene_categories.map{|s| s.rjust(s.length + 1)},
             name_meth: 'strip', value_meth: 'to_s', tour_id: 'gene_cateogories_tour' }
