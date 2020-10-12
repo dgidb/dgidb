@@ -41,6 +41,14 @@ module DataModel
       ["ChemblInteractions", "DrugBank", "DTC", "FDA", "GuideToPharmacology", "PharmGKB", "TdgClinicalTrial", "TEND", "TTD"]
     end
 
+    def self.cancer_only_category_source_names
+      potentially_druggable_source_names.sort - disease_agnostic_category_source_names
+    end
+
+    def self.disease_agnostic_category_source_names
+      ["BaderLabGenes", "dGene", "GO", "GuideToPharmacology", "HingoraniCasas", "HopkinsGroom", "HumanProteinAtlas", "IDG", "Pharos", "RussLampel"]
+    end
+
     def self.source_names_with_interactions
       DataModel::SourceType.find(DataModel::SourceType.INTERACTION)
         .sources
