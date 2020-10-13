@@ -95,9 +95,19 @@ module Utils
     end
 
     def self.print_interaction_claim_header(file_handle)
-      header = ['gene_name','gene_claim_name','entrez_id','interaction_claim_source',
-        'interaction_types','drug_claim_name','drug_claim_primary_name','drug_name','drug_concept_id',
-        'PMIDs'].join("\t")
+      header = [
+        'gene_name',
+        'gene_claim_name',
+        'entrez_id',
+        'interaction_claim_source',
+        'interaction_types',
+        'drug_claim_name',
+        'drug_claim_primary_name',
+        'drug_name',
+        'drug_concept_id',
+        'interaction_group_score',
+        'PMIDs',
+      ].join("\t")
       file_handle.puts(header)
     end
 
@@ -112,6 +122,7 @@ module Utils
         interaction_claim.drug_claim.primary_name,
         interaction_claim.drug ? interaction_claim.drug.name : "",
         interaction_claim.drug ? interaction_claim.drug.concept_id : "",
+        interaction_claim.interaction.present? ? interaction_claim.interaction.interaction_score.round(2) : "",
         interaction_claim.publications ? interaction_claim.publications.map(&:pmid).join(',') : "",
       ].join("\t")
 
