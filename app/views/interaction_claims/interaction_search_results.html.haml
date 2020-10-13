@@ -59,18 +59,21 @@
   $('table').each(function(index){
     $(this).find('> tbody > tr').hide().slice(0, 11).show();
   });
-  $(".show-all").on("click", function() {
-    var tbl = $('table');
+  $(".show-all").on("click", function(context) {
+    var table_id = context.target.value
+    var tbl = $('#'.concat(table_id));
     $("tbody > tr", tbl).show();
     $("#nrows", $(this).next().next().next()).html(tbl.find('tr:visible').length - 1);
   });
-  $(".show-more").on("click", function() {
-    var tbl = $('table');
+  $(".show-more").on("click", function(context) {
+    var table_id = context.target.value
+    var tbl = $('#'.concat(table_id));
     $("tbody > tr", tbl).slice(0, tbl.find('tr:visible').length + 10).show();
     $("#nrows", $(this).next().next()).html(tbl.find('tr:visible').length - 1);
   });
-  $(".show-less").on("click", function() {
-    var tbl = $('table');
+  $(".show-less").on("click", function(context) {
+    var table_id = context.target.value
+    var tbl = $('#'.concat(table_id));
     tbl.find('> tbody > tr').hide().slice(0, 11).show();
     $("#nrows", $(this).next()).html(tbl.find('tr:visible').length - 1);
   });

@@ -26,7 +26,7 @@
       %h4{style: "display: inline-block;"}
       - interactions = filtered_interactions.sort_by { |i| -scores[i.id] }.map{|i| InteractionPresenter.new(i)}
       - if interactions.count > 0
-        %table{class: "search_panel table table-condensed table-striped", style: "width: 100%; margin-top: -20px;"}
+        %table{class: "search_panel table table-condensed table-striped", style: "width: 100%; margin-top: -20px;", id: "#{term}-#{entity.name}"}
           %tr
             %th
               - if @search_mode == "genes"
@@ -67,11 +67,11 @@
                 = scores[interaction.id]
               %td
                 = interaction.interaction_score(known_drug_partners_per_gene, known_gene_partners_per_drug).round(2)
-        %button{class: "show-all", style: "margin-top: 5px"}
+        %button{class: "show-all", style: "margin-top: 5px", value: "#{term}-#{entity.name}"}
           Show All
-        %button{class: "show-more", style: "margin-top: 5px"}
+        %button{class: "show-more", style: "margin-top: 5px", value: "#{term}-#{entity.name}"}
           Show More
-        %button{class: "show-less", style: "margin-top: 5px"}
+        %button{class: "show-less", style: "margin-top: 5px", value: "#{term}-#{entity.name}"}
           Show Less
         %span{style: "display: inline-block; margin-top: 5px; margin-left: 5px"}
           Showing
