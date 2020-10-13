@@ -18,10 +18,10 @@ describe 'search_categories' do
     visit '/search_categories'
 
     druggable_sources.each do |source|
-      expect(page).to have_content(source.source_db_name)
+      expect(page.body.include? source.source_db_name).to be true
     end
 
-    expect(page).not_to have_content(non_druggable_source.source_db_name)
+    expect(page.body.include? non_druggable_source.source_db_name).to be false
   end
 
   it 'should not display a list of source trust levels' do
