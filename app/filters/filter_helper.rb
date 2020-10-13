@@ -38,7 +38,7 @@ module FilterHelper
       interaction_types: DataModel::InteractionClaimType.all_type_names.count,
       source_trust_levels: DataModel::SourceTrustLevel.all_trust_levels.count,
       category_sources: DataModel::Source.potentially_druggable_source_names.count,
-      fda_approved_drug: -1,
+      approved_drug: -1,
       anti_neoplastic: -1,
       immunotherapy: -1,
       druggable_genome: -1,

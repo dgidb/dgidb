@@ -36,8 +36,8 @@
           Preset Filters
         %div{style: "background-color: white; margin-top: 5px; padding: 5px; border-radius: 5px;"}
           %div
-            %input{type: "checkbox", value: "checked", name: "fda_approved_drug", form: "search_form"} 
-              = "  FDA Approved"
+            %input{type: "checkbox", value: "checked", name: "approved_drug", form: "search_form"} 
+              = "  Approved"
           %div
             %input{type: "checkbox", value: "checked", name: "anti_neoplastic", form: "search_form"} 
               = "  Antineoplastic"
@@ -70,15 +70,24 @@
         %label
           Advanced Filters
         %div{style: "background-color: white; margin-top: 10px; padding: 5px; border-radius: 5px"} 
-          =render partial: 'shared/multiselect', locals: { control_group_name: 'Source Databases',
-            flag_text_key: 'source_database_flag', select_tag_name: 'interaction_sources', collection: @sources,
-            name_meth: 'to_s', value_meth: 'to_s', tour_id: 'sources_tour' }
+          .control-group
+            .controls
+              Source Databases
+              %br
+              %select{name: "interaction_sources[]", id: "interaction_sources", multiple: "multiple", class: :multiselect, form: "search_form", style: "display: none;"}
+                %optgroup{label: 'Cancer-Specific Sources'}
+                  -DataModel::Source.cancer_only_interaction_source_names.each do |name|
+                    %option(value="#{name}")= " #{name}"
+                %optgroup{label: 'Disease-Agnostic Sources'}
+                  -DataModel::Source.disease_agnostic_interaction_source_names.each do |name|
+                    %option(value="#{name}")= " #{name}"
+              %div{style:'width:60px;', id: 'sources_tour'}
           =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
-            flag_text_key: 'gene_category_flag', select_tag_name: 'gene_categories', collection: @gene_categories,
-            name_meth: 'to_s', value_meth: 'to_s', tour_id: 'gene_cateogories_tour' }
+            flag_text_key: 'gene_category_flag', select_tag_name: 'gene_categories', collection: @gene_categories.map{|s| s.rjust(s.length + 1)},
+            name_meth: 'strip', value_meth: 'to_s', tour_id: 'gene_cateogories_tour' }
           =render partial: 'shared/multiselect', locals: { control_group_name: 'Interaction Types',
-            flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types,
-            name_meth: 'to_s', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
+            flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types.map{|s| s.rjust(s.length + 1)},
+            name_meth: 'strip', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
   .form-actions{style: "clear: both; display: flex; justify-content: center; margin-bottom: 20px;"}
     %button.btn.btn-success(href="#" type="submit" id='search-btn' style='font-size: 20px;' form='search_form')
       %i(class="fa fa-search" aria-hidden="true")

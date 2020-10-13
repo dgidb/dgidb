@@ -1,5 +1,5 @@
 class UpdateCivic < ApiUpdater
-  def updater
+  def create_updater
     Genome::OnlineUpdaters::Civic::Updater.new()
   end
 

@@ -2,7 +2,7 @@ require 'genome/online_updater'
 
 module Genome; module OnlineUpdaters; module Docm
   class Updater < Genome::OnlineUpdater
-    attr_reader :new_version
+    attr_reader :new_version, :source
     def initialize(source_db_version = Date.today.strftime("%d-%B-%Y"))
       @new_version = source_db_version
     end
@@ -82,10 +82,10 @@ module Genome; module OnlineUpdaters; module Docm
     def create_new_source
       @source ||= DataModel::Source.create(
         {
-            base_url: 'http://docm.genome.wustl.edu/',
+            base_url: 'http://docm.info/',
+            site_url: 'http://docm.info/',
             citation: 'DoCM: a database of curated mutations in cancer. Ainscough BJ, Griffith M, Coffman AC, Wagner AH, Kunisaki J, Choudhary MN, McMichael JF, Fulton RS, Wilson RK, Griffith OL, Mardis ER. Nat Methods. 2016;13(10):806-7. PMID: 27684579',
             source_db_version: new_version,
-            source_type_id: DataModel::SourceType.INTERACTION,
             source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
             source_db_name: 'DoCM',
             full_name: 'Database of Curated Mutations',
@@ -93,6 +93,8 @@ module Genome; module OnlineUpdaters; module Docm
             license_link: 'http://www.docm.info/about',
         }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.save
     end
   end
 end; end; end

@@ -1,3 +1,6 @@
+- known_drug_partners_per_gene = DataModel::Interaction.group(:gene_id).count
+- known_gene_partners_per_drug = DataModel::Interaction.group(:drug_id).count
+
 #notice= notice
 =content_for :title do
   =tx "title"
@@ -30,7 +33,7 @@
           .span12
             - definite_results = @search_results.definite_results
             - definite_no_interactions = @search_results.definite_no_interactions
-            = render partial: 'interaction_claims/interaction_search_successful', locals: {definite_results: definite_results, definite_no_interactions: definite_no_interactions} #use @search_mode to determine type of view, just use one set of templates
+            = render partial: 'interaction_claims/interaction_search_successful', locals: {definite_results: definite_results, definite_no_interactions: definite_no_interactions, known_drug_partners_per_gene: known_drug_partners_per_gene, known_gene_partners_per_drug: known_gene_partners_per_drug} #use @search_mode to determine type of view, just use one set of templates
 
       .tab-pane.fade#failed
         .row-fluid#container
@@ -39,10 +42,10 @@
             - ambiguous_no_interactions = @search_results.ambiguous_no_interactions
             - failed_results = @search_results.no_results_results
             - if failed_results.any?
-              - failed_terms = failed_results.map{|result| result.search_term}.first.split(", ")
+              - failed_terms = failed_results.flat_map{|result| result.search_terms}
             - else
               - failed_terms = []
-            = render partial: 'interaction_claims/interaction_search_failed', locals: {ambiguous_results: ambiguous_results, ambiguous_no_interactions: ambiguous_no_interactions, failed_terms: failed_terms}
+            = render partial: 'interaction_claims/interaction_search_failed', locals: {ambiguous_results: ambiguous_results, ambiguous_no_interactions: ambiguous_no_interactions, failed_terms: failed_terms, known_drug_partners_per_gene: known_drug_partners_per_gene, known_gene_partners_per_drug: known_gene_partners_per_drug}
 
 
 :javascript
@@ -59,18 +62,21 @@
   $('table').each(function(index){
     $(this).find('> tbody > tr').hide().slice(0, 11).show();
   });
-  $(".show-all").on("click", function() {
-    var tbl = $('table');
+  $(".show-all").on("click", function(context) {
+    var table_id = context.target.value
+    var tbl = $('#'.concat(table_id));
     $("tbody > tr", tbl).show();
     $("#nrows", $(this).next().next().next()).html(tbl.find('tr:visible').length - 1);
   });
-  $(".show-more").on("click", function() {
-    var tbl = $('table');
+  $(".show-more").on("click", function(context) {
+    var table_id = context.target.value
+    var tbl = $('#'.concat(table_id));
     $("tbody > tr", tbl).slice(0, tbl.find('tr:visible').length + 10).show();
     $("#nrows", $(this).next().next()).html(tbl.find('tr:visible').length - 1);
   });
-  $(".show-less").on("click", function() {
-    var tbl = $('table');
+  $(".show-less").on("click", function(context) {
+    var table_id = context.target.value
+    var tbl = $('#'.concat(table_id));
     tbl.find('> tbody > tr').hide().slice(0, 11).show();
     $("#nrows", $(this).next()).html(tbl.find('tr:visible').length - 1);
   });

@@ -5,7 +5,7 @@ class UpdateEnsembl < TsvUpdater
     ['gene_txt.gz', '.gz']
   end
 
-  def importer
+  def create_importer
     Genome::Importers::Ensembl::NewEnsembl.new(tempfile, latest_version)
   end
 

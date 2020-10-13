@@ -36,11 +36,11 @@ class DrugPresenter < SimpleDelegator
   end
 
   def sorted_interactions
-    interactions.sort_by{ |i| [(i.interaction_types.empty? ? 1 : 0), (i.interaction_attributes.length > i.publications.length + i.interaction_types.length ? 0 : 1), (i.publications.empty? ? 1 : 0)] }
+    interactions.sort_by{ |i| i.interaction_score }.reverse
   end
 
   def sorted_interactions_by_score
-    interactions.sort_by{ |i| -(i.publications.size + i.interaction_claims.size)}
+    interactions.sort_by{ |i| i.interaction_score }.reverse
   end
 
   def publications
@@ -50,8 +50,8 @@ class DrugPresenter < SimpleDelegator
   def as_json(opts = {})
     {
       name: drug.name,
-      chembl_id: drug.chembl_id,
-      fda_approved: drug.fda_approved,
+      concept_id: drug.concept_id,
+      approved: drug.approved,
       immunotherapy: drug.immunotherapy,
       anti_neoplastic: drug.anti_neoplastic,
       alias: drug.drug_aliases.map(&:alias),
@@ -61,8 +61,8 @@ class DrugPresenter < SimpleDelegator
   def flag_icons
     flags = []
 
-    if drug.fda_approved
-      flags = flags.push(["FDA Approved", "success"])
+    if drug.approved
+      flags = flags.push(["Approved", "success"])
     end
     if drug.anti_neoplastic
       flags = flags.push(["Antineoplastic","danger"])

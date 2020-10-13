@@ -10,7 +10,7 @@ import ssl
 import requests
 from requests.auth import HTTPBasicAuth
 from version_logger import Version
-from urllib.request import urlopen
+from urllib import request
 from bs4 import BeautifulSoup
 from get_entrez import Entrez
 
@@ -35,8 +35,8 @@ class DrugBank(object):
     def get_online_version(self):
         print('Checking DrugBank Version...')
         context = ssl._create_unverified_context()
-        html = urlopen('http://www.drugbank.ca/downloads', context=context)
-        bsObj = BeautifulSoup(html.read(), "html.parser")
+        html = requests.get('http://www.drugbank.ca/downloads')
+        bsObj = BeautifulSoup(html.text, "html.parser")
         r = re.compile(r'Version ([\d\.]+)')
         match = r.search(bsObj.h1.text)
         if match:
@@ -55,7 +55,7 @@ class DrugBank(object):
     def download_files(self):
         print('Downloading DrugBank XML...')
         filename = os.path.join(self.download_path, 'drugbank.zip')
-        self.download_file('https://www.drugbank.ca/releases/5-0-6/downloads/all-full-database', filename)
+        self.download_file('https://www.drugbank.ca/releases/5-1-7/downloads/all-full-database', filename)
 
         print('\nExtracting DrugBank XML...')
         zfile = zipfile.ZipFile(filename)
@@ -131,6 +131,12 @@ class DrugBank(object):
                 language = synonym.get('language')
                 if language == '' or language == 'English':
                     drug_synonyms.add(synonym.text)
+            external_identifiers = drug.find('entry:external-identifiers', ns)
+            chembl_id = ''
+            for external_identfier in external_identifiers:
+                resource = external_identfier.find('entry:resource', ns).text
+                if resource == 'ChEMBL':
+                    chembl_id = external_identfier.find('entry:identifier', ns).text
             drug_cas_number = drug.find('entry:cas-number',ns).text
             drug_brands = set()
             for product in drug.find('entry:products', ns):
@@ -149,10 +155,10 @@ class DrugBank(object):
                 continue
             drug_info[drug_id] = (drug_name, tuple(sorted(drug_synonyms)), drug_cas_number,
                                   tuple(sorted(drug_brands)), drug_type,
-                                  tuple(sorted(drug_groups)), tuple(sorted(drug_categories)))
+                                  tuple(sorted(drug_groups)), tuple(sorted(drug_categories)), chembl_id)
             for target in targets:
                 organism = target.find('entry:organism', ns).text
-                if organism != 'Human':
+                if organism != 'Humans':
                     continue
                 gene_id = target.find('entry:id', ns).text
                 known_action = target.find('entry:known-action', ns).text
@@ -224,7 +230,7 @@ class DrugBank(object):
         i = 0
         no_ensembl = no_entrez = total = 0
         header = ('count', 'drug_id', 'drug_name', 'drug_synonyms', 'drug_cas_number', 'drug_brands',
-                  'drug_type', 'drug_groups', 'drug_categories', 'gene_id', 'known_action', 'target_actions',
+                  'drug_type', 'drug_groups', 'drug_categories', 'chembl_id', 'gene_id', 'known_action', 'target_actions',
                   'gene_symbol', 'uniprot_id', 'entrez_id', 'ensembl_id', 'pmid')
         with open(self.tsv_file, 'w') as f:
             writer = csv.writer(f, delimiter='\t')
@@ -236,7 +242,7 @@ class DrugBank(object):
                     out = list()
                     for datum in data:
                         if isinstance(datum, tuple):
-                            datum = ';'.join(datum)
+                            datum = ';'.join(str(x) for x in datum)
                         datum = str(datum).replace("\t", '')
                         if not datum or datum == 'None':
                             datum = 'N/A'
@@ -247,7 +253,8 @@ class DrugBank(object):
                     if out[15] == 'N/A':
                         no_ensembl += 1
                     writer.writerow(out)
-        self.version.write_log()
+        with open('tmp/version', 'w') as version_file:
+            version_file.write(self.version)
 
     def update(self):
         if not self.is_current():

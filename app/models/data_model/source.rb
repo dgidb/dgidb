@@ -12,7 +12,7 @@ module DataModel
     has_and_belongs_to_many :gene_aliases
     has_and_belongs_to_many :gene_attributes
     has_and_belongs_to_many :interaction_attributes
-    belongs_to :source_type, inverse_of: :sources
+    has_and_belongs_to_many :source_types
     belongs_to :source_trust_level, inverse_of: :sources
 
     cache_query :source_names_with_interactions, :all_source_names_with_interactions
@@ -27,13 +27,31 @@ module DataModel
     end
 
     def self.potentially_druggable_source_names
-      where(source_type_id: DataModel::SourceType.POTENTIALLY_DRUGGABLE)
-      .pluck(:source_db_name)
-      .sort
+      DataModel::SourceType.find(DataModel::SourceType.POTENTIALLY_DRUGGABLE)
+        .sources
+        .pluck(:source_db_name)
+        .sort
+    end
+
+    def self.cancer_only_interaction_source_names
+      source_names_with_interactions.sort - disease_agnostic_interaction_source_names
+    end
+
+    def self.disease_agnostic_interaction_source_names
+      ["ChemblInteractions", "DrugBank", "DTC", "FDA", "GuideToPharmacology", "PharmGKB", "TdgClinicalTrial", "TEND", "TTD"]
+    end
+
+    def self.cancer_only_category_source_names
+      potentially_druggable_source_names.sort - disease_agnostic_category_source_names
+    end
+
+    def self.disease_agnostic_category_source_names
+      ["BaderLabGenes", "dGene", "GO", "GuideToPharmacology", "HingoraniCasas", "HopkinsGroom", "HumanProteinAtlas", "IDG", "Pharos", "RussLampel"]
     end
 
     def self.source_names_with_interactions
-      where(source_type_id: DataModel::SourceType.INTERACTION)
+      DataModel::SourceType.find(DataModel::SourceType.INTERACTION)
+        .sources
         .pluck(:source_db_name)
         .sort
     end
@@ -60,7 +78,7 @@ module DataModel
     end
 
     def self.for_show
-      eager_load(:source_type, :source_trust_level)
+      eager_load(:source_types, :source_trust_level)
     end
 
   end

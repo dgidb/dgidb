@@ -44,9 +44,9 @@ describe 'api endpoints that request valid enumerations' do
   describe 'interaction_sources' do
     it 'should return a list of all sources that provide interaction claims' do
       interaction_source_type = Fabricate(:source_type, type: 'interaction')
-      source = Fabricate(:source, source_type: interaction_source_type)
+      source = Fabricate(:source, source_types: [interaction_source_type])
       non_interaction_source_type = Fabricate(:source_type, type: 'turkey')
-      non_interaction_source = Fabricate(:source, source_type: non_interaction_source_type)
+      non_interaction_source = Fabricate(:source, source_types: [non_interaction_source_type])
 
       ['v1', 'v2'].each do |version|
         visit "/api/#{version}/interaction_sources.json"

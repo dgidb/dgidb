@@ -47,7 +47,7 @@ DruggableGene::Application.routes.draw do
       get 'gene_categories_for_sources' => 'services_v2#gene_categories_for_sources'
       get 'genes_in_category' => 'services_v2#genes_in_category'
       get   'genes/:entrez_id' => 'services_v2#gene_details'
-      get   'drugs/:chembl_id' => 'services_v2#drug_details'
+      get   'drugs/:concept_id' => 'services_v2#drug_details'
       get   'interactions/:id' => 'services_v2#interaction_details'
     end
     require 'sidekiq/web'
@@ -71,5 +71,7 @@ DruggableGene::Application.routes.draw do
   get 'search' => 'static#search'
   get 'statistics' => 'static#statistics'
   get 'about' => 'static#about'
+  get 'publications' => 'static#publications'
+  get 'data_clients' => 'static#data_clients'
   root :to => 'static#home'
 end

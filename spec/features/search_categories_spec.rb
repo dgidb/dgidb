@@ -12,16 +12,16 @@ describe 'search_categories' do
     druggable_type = Fabricate(:source_type, type: 'potentially_druggable')
     non_druggable_type = Fabricate(:source_type, type: 'gene')
 
-    druggable_sources = (1..3).map { Fabricate(:source, source_type: druggable_type) }
-    non_druggable_source = Fabricate(:source, source_type: non_druggable_type)
+    druggable_sources = (1..3).map { Fabricate(:source, source_types: [druggable_type]) }
+    non_druggable_source = Fabricate(:source, source_types: [non_druggable_type])
 
     visit '/search_categories'
 
     druggable_sources.each do |source|
-      expect(page).to have_content(source.source_db_name)
+      expect(page.body.include? source.source_db_name).to be true
     end
 
-    expect(page).not_to have_content(non_druggable_source.source_db_name)
+    expect(page.body.include? non_druggable_source.source_db_name).to be false
   end
 
   it 'should not display a list of source trust levels' do

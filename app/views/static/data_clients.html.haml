@@ -1,0 +1,11 @@
+#notice= notice
+=content_for :title do
+  =tx "title"
+=content_for :header do
+  %h2
+    =tx "title_main"
+- cache do
+  .container-fluid
+    .row-fluid
+      .span12
+        .well=tx "description"

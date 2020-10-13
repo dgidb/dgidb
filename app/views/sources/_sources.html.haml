@@ -1,16 +1,15 @@
 %ul(class="result-list" id="source-list-results")
-  
   -sources.sort_by{ |s| [s.type_display_name, s.source_db_name.downcase] }.each do |source|
-    -type = source.type
-    %li(class="#{type} source-panel" data-category="#{type}" data-name="#{source.type_display_name}" onclick="location.href='/sources/#{source.source_db_name}';")
-      - if type == "gene"
-        =render partial: 'sources/gene_source', locals:{source: source}
-      - elsif type == "drug"
-        =render partial: 'sources/drug_source', locals:{source: source}
-      - elsif type == "interaction"
-        =render partial: 'sources/interaction_source', locals:{source: source}
-      - elsif type == "potentially_druggable"
-        =render partial: 'sources/category_source', locals:{source: source}
+    -source.types.each do |type|
+      %li(class="#{type} source-panel" data-category="#{type}" data-name="#{source.type_display_name}" onclick="location.href='/sources/#{source.source_db_name}';")
+        - if type == "gene"
+          =render partial: 'sources/gene_source', locals:{source: source}
+        - elsif type == "drug"
+          =render partial: 'sources/drug_source', locals:{source: source}
+        - elsif type == "interaction"
+          =render partial: 'sources/interaction_source', locals:{source: source}
+        - elsif type == "potentially_druggable"
+          =render partial: 'sources/category_source', locals:{source: source}
 :css
   li.source-panel { cursor: pointer; }
   li.source-panel:hover { background-color: #DDD; }

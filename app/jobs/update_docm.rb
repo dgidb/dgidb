@@ -1,5 +1,5 @@
 class UpdateDocm < ApiUpdater
-  def updater
+  def create_updater
     Genome::OnlineUpdaters::Docm::Updater.new()
   end
 

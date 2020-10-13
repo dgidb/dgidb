@@ -11,49 +11,40 @@
 
 .container-fluid
   .row-fluid#container
-    %div(class="span2" style="float: left; width: 14.893617021276595%; display: block;")
-      %div(id="list-filter-tabs")
+    %div(id="list-filter-tabs" class="span10")
+      %ul(class="nav nav-tabs")
+        %li(class="active")
+          %a(href="#" data-category="all")
+            %i(class="icon-chevron-right")
+            All
 
-        %ul(class="nav nav-tabs nav-stacked" style="border-bottom: 0;")
-          %li(class="active")
-            %a(href="#" data-category="all")
-              %i(class="icon-chevron-right")
-              All
-
-    %div(class="span10" style="float: left; width: 82.97872340425532%; display: block; margin-left: 2.127659574468085%")
+    %div(class="span10" style="float: left; width: 83%; display: block; margin-left: 2.5%")
       =render partial: 'sources/sources', locals:{sources: @sources}
 
 :css
-  .nav-tabs.nav-stacked>li>a {
+  .nav-tabs>li>a {
     border: 1px solid #ddd;
     border-radius: 0;
   }
+  #list-filter-tabs {
+    margin-left: 2.5%;
+    width: 83%;
+  }
+
   #list-filter-tabs li {
     border-left-width: 4px; 
     border-left-style: solid; 
     border-radius: 4px 0 0 4px;
+    margin-bottom: 20px;
   }
-  .nav-stacked>li {
-    float: none; 
-  }
-  .nav-tabs>li {
-    margin-bottom: -3px; 
-  }
+
   li {
     line-height: 20px; 
     display: list-item;
   }
-  #list-filter-tabs .nav-tabs.nav-stacked>li:first-child>a {
-    border-radius: 0 4px 0 0;
-  }
   #list-filter-tabs li a {
     border-left-width: 0;
   }
-  #list-filter-tabs .nav-tabs.nav-stacked>li:last-child>a {
-    border-radius: 0 0 4px 0;
-    margin-bottom: 20px;
-  }
-
 
 =javascript_include_tag "source-list-tabs"
 =javascript_include_tag "jquery.masonry.min"

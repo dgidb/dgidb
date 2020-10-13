@@ -33,12 +33,12 @@ module Genome
       end
     end
 
-    def create_drug_claim(name, primary_name, nomenclature)
+    def create_drug_claim(name, primary_name, nomenclature, source=@source)
       DataModel::DrugClaim.where(
         name: name.strip(),
         primary_name: primary_name.strip(),
         nomenclature: nomenclature.strip(),
-        source_id: @source.id,
+        source_id: source.id,
       ).first_or_create
     end
 
@@ -69,10 +69,14 @@ module Genome
     end
 
     def create_interaction_claim_type(interaction_claim, type)
-      claim_type = DataModel::InteractionClaimType.where(
-        type: type.strip()
-      ).first_or_create
-      interaction_claim.interaction_claim_types << claim_type unless interaction_claim.interaction_claim_types.include? claim_type
+      claim_type = DataModel::InteractionClaimType.find_by(
+        type: Genome::Normalizers::InteractionClaimType.name_normalizer(type.strip())
+      )
+      if claim_type.nil?
+        raise StandardError.new("InteractionClaimType with type #{type} does not exist. If this is a valid type, please create its database entry manually before running the importer.")
+      else
+        interaction_claim.interaction_claim_types << claim_type unless interaction_claim.interaction_claim_types.include? claim_type
+      end
     end
 
     def create_interaction_claim_publication(interaction_claim, pmid)
@@ -82,12 +86,25 @@ module Genome
       interaction_claim.publications << publication unless interaction_claim.publications.include? publication
     end
 
+    def create_interaction_claim_publication_by_pmcid(interaction_claim, pmcid)
+      uri = URI.parse("https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/?ids=#{pmcid}&format=json&tool=DGIdb&email=help@dgidb.org")
+      response_body = PMID.make_get_request(uri)
+      pmid = JSON.parse(response_body)['records'][0]['pmid']
+      if !pmid.nil?
+        create_interaction_claim_publication(interaction_claim, pmid)
+      end
+    end
+
     def backfill_publication_information
-      DataModel::Publication.where(citation: nil).find_in_batches(batch_size: 10) do |publications|
+      DataModel::Publication.where(citation: nil).find_in_batches(batch_size: 100) do |publications|
         PMID.get_citations_from_publications(publications).each do |publication, citation|
           publication.citation = citation
           publication.save
         end
+        sleep(0.3)
+      end
+      DataModel::Publication.where(citation: "").each do |publication|
+        publication.destroy
       end
     end
 

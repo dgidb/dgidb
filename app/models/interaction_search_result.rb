@@ -1,6 +1,6 @@
 class InteractionSearchResult
 
-  attr_accessor :search_term, :identifiers, :interactions, :type
+  attr_accessor :search_term, :identifiers, :interactions, :type, :search_terms
 
   def initialize(search_terms, identifiers, type = 'genes')
     @search_term = search_terms.join(', ')

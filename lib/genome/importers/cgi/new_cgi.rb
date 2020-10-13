@@ -31,13 +31,14 @@ module Genome; module Importers; module Cgi;
               site_url: 'https://www.cancergenomeinterpreter.org/',
               citation: 'https://www.cancergenomeinterpreter.org/',
               source_db_version:  get_version,
-              source_type_id: DataModel::SourceType.INTERACTION,
               source_db_name: 'CGI',
               full_name: 'Cancer Genome Interpreter',
               license: 'Creative Commons Attribution-NonCommercial 4.0 (BY-NC)',
               license_link: 'https://www.cancergenomeinterpreter.org/faq#q11c',
           }
       )
+      @source.source_types << DataModel::SourceType.find_by(type: 'interaction')
+      @source.save
     end
 
     def create_interaction_claims

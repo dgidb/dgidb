@@ -1,5 +1,5 @@
 class UpdateOncokb < ApiUpdater
-  def updater
+  def create_updater
     Genome::OnlineUpdaters::Oncokb::Updater.new()
   end
 

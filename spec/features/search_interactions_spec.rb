@@ -12,16 +12,16 @@ describe 'search_interactions' do
     interaction_source_type = Fabricate(:source_type, type: 'interaction')
     other_source_type = Fabricate(:source_type, type: 'gene')
 
-    interaction_sources = (1..3).map { Fabricate(:source, source_type: interaction_source_type) }
-    other_source = Fabricate(:source, source_type: other_source_type)
+    interaction_sources = (1..3).map { Fabricate(:source, source_types: [interaction_source_type]) }
+    other_source = Fabricate(:source, source_types: [other_source_type])
 
     visit '/search_interactions'
 
     interaction_sources.each do |source|
-      expect(page).to have_content(source.source_db_name)
+      expect(page.body.include? source.source_db_name).to be true
     end
 
-    expect(page).not_to have_content(other_source.source_db_name)
+    expect(page.body.include? other_source.source_db_name).to be false
   end
 
   it 'should display a list of gene categories' do

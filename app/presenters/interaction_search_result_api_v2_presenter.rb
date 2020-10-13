@@ -59,8 +59,8 @@ class InteractionSearchResultApiV2Presenter
       interaction.drug.name
     end
 
-    def drug_chembl_id
-      interaction.drug.chembl_id
+    def drug_concept_id
+      interaction.drug.concept_id
     end
 
     def gene_name
@@ -77,6 +77,10 @@ class InteractionSearchResultApiV2Presenter
 
     def publications
       interaction.publications.map(&:pmid)
+    end
+
+    def score
+      interaction.interaction_score.round(2)
     end
   end
 end

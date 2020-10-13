@@ -26,6 +26,8 @@ CREATE FUNCTION public.clean(text) RETURNS text
 
 SET default_tablespace = '';
 
+SET default_table_access_method = heap;
+
 --
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
@@ -33,100 +35,9 @@ SET default_tablespace = '';
 CREATE TABLE public.ar_internal_metadata (
     key character varying NOT NULL,
     value character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
-
-
---
--- Name: chembl_molecule_synonyms; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.chembl_molecule_synonyms (
-    id integer NOT NULL,
-    molregno integer,
-    synonym character varying(200),
-    molsyn_id integer,
-    chembl_molecule_id integer,
-    syn_type character varying(50)
-);
-
-
---
--- Name: chembl_molecule_synonyms_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.chembl_molecule_synonyms_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: chembl_molecule_synonyms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.chembl_molecule_synonyms_id_seq OWNED BY public.chembl_molecule_synonyms.id;
-
-
---
--- Name: chembl_molecules; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.chembl_molecules (
-    id integer NOT NULL,
-    molregno integer,
-    pref_name character varying(255),
-    chembl_id character varying(20),
-    max_phase integer,
-    therapeutic_flag boolean,
-    dosed_ingredient boolean,
-    structure_type character varying(10),
-    chebi_par_id integer,
-    molecule_type character varying(30),
-    first_approval integer,
-    oral boolean,
-    parenteral boolean,
-    topical boolean,
-    black_box_warning boolean,
-    natural_product boolean,
-    first_in_class boolean,
-    chirality integer,
-    prodrug boolean,
-    inorganic_flag boolean,
-    usan_year integer,
-    availability_type integer,
-    usan_stem character varying(50),
-    polymer_flag boolean,
-    usan_substem character varying(50),
-    usan_stem_definition text,
-    indication_class text,
-    withdrawn_flag boolean,
-    withdrawn_year integer,
-    withdrawn_country text,
-    withdrawn_reason text
-);
-
-
---
--- Name: chembl_molecules_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.chembl_molecules_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: chembl_molecules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.chembl_molecules_id_seq OWNED BY public.chembl_molecules.id;
 
 
 --
@@ -305,11 +216,10 @@ CREATE TABLE public.drug_claims (
 CREATE TABLE public.drugs (
     id text NOT NULL,
     name text NOT NULL,
-    fda_approved boolean,
+    approved boolean,
     immunotherapy boolean,
     anti_neoplastic boolean,
-    chembl_id character varying NOT NULL,
-    chembl_molecule_id integer
+    concept_id character varying NOT NULL
 );
 
 
@@ -610,7 +520,7 @@ CREATE TABLE public.publications (
 --
 
 CREATE TABLE public.schema_migrations (
-    version character varying(255) NOT NULL
+    version character varying NOT NULL
 );
 
 
@@ -636,6 +546,16 @@ CREATE TABLE public.source_types (
 
 
 --
+-- Name: source_types_sources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.source_types_sources (
+    source_id character varying NOT NULL,
+    source_type_id character varying NOT NULL
+);
+
+
+--
 -- Name: sources; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -647,7 +567,6 @@ CREATE TABLE public.sources (
     base_url text,
     site_url text,
     full_name text,
-    source_type_id character varying(255),
     gene_claims_count integer DEFAULT 0,
     drug_claims_count integer DEFAULT 0,
     interaction_claims_count integer DEFAULT 0,
@@ -659,20 +578,6 @@ CREATE TABLE public.sources (
     license character varying,
     license_link character varying
 );
-
-
---
--- Name: chembl_molecule_synonyms id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.chembl_molecule_synonyms ALTER COLUMN id SET DEFAULT nextval('public.chembl_molecule_synonyms_id_seq'::regclass);
-
-
---
--- Name: chembl_molecules id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.chembl_molecules ALTER COLUMN id SET DEFAULT nextval('public.chembl_molecules_id_seq'::regclass);
 
 
 --
@@ -695,22 +600,6 @@ ALTER TABLE ONLY public.drug_alias_blacklists ALTER COLUMN id SET DEFAULT nextva
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
-
-
---
--- Name: chembl_molecule_synonyms chembl_molecule_synonyms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.chembl_molecule_synonyms
-    ADD CONSTRAINT chembl_molecule_synonyms_pkey PRIMARY KEY (id);
-
-
---
--- Name: chembl_molecules chembl_molecules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.chembl_molecules
-    ADD CONSTRAINT chembl_molecules_pkey PRIMARY KEY (id);
 
 
 --
@@ -1018,6 +907,14 @@ ALTER TABLE ONLY public.publications
 
 
 --
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
 -- Name: source_trust_levels source_trust_levels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1039,48 +936,6 @@ ALTER TABLE ONLY public.source_types
 
 ALTER TABLE ONLY public.sources
     ADD CONSTRAINT sources_pkey PRIMARY KEY (id);
-
-
---
--- Name: chembl_molecule_synonyms_index_on_clean_synonym; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecule_synonyms_index_on_clean_synonym ON public.chembl_molecule_synonyms USING btree (public.clean((synonym)::text));
-
-
---
--- Name: chembl_molecule_synonyms_index_on_upper_alphanumeric_synonym; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecule_synonyms_index_on_upper_alphanumeric_synonym ON public.chembl_molecule_synonyms USING btree (upper(regexp_replace((synonym)::text, '[^\w]+|_'::text, ''::text)));
-
-
---
--- Name: chembl_molecule_synonyms_index_on_upper_synonym; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecule_synonyms_index_on_upper_synonym ON public.chembl_molecule_synonyms USING btree (upper((synonym)::text));
-
-
---
--- Name: chembl_molecules_index_on_clean_pref_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecules_index_on_clean_pref_name ON public.chembl_molecules USING btree (public.clean((pref_name)::text));
-
-
---
--- Name: chembl_molecules_index_on_upper_alphanumeric_pref_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecules_index_on_upper_alphanumeric_pref_name ON public.chembl_molecules USING btree (upper(regexp_replace((pref_name)::text, '[^\w]+|_'::text, ''::text)));
-
-
---
--- Name: chembl_molecules_index_on_upper_pref_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX chembl_molecules_index_on_upper_pref_name ON public.chembl_molecules USING btree (upper((pref_name)::text));
 
 
 --
@@ -1273,27 +1128,6 @@ CREATE INDEX genes_index_on_upper_name ON public.genes USING btree (upper(name))
 
 
 --
--- Name: index_chembl_molecule_synonyms_on_chembl_molecule_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_chembl_molecule_synonyms_on_chembl_molecule_id ON public.chembl_molecule_synonyms USING btree (chembl_molecule_id);
-
-
---
--- Name: index_chembl_molecules_on_chembl_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_chembl_molecules_on_chembl_id ON public.chembl_molecules USING btree (chembl_id);
-
-
---
--- Name: index_chembl_molecules_on_molregno; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_chembl_molecules_on_molregno ON public.chembl_molecules USING btree (molregno);
-
-
---
 -- Name: index_drug_alias_blacklists_on_alias; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1343,10 +1177,10 @@ CREATE UNIQUE INDEX index_drug_claims_on_name_and_nomenclature_and_source_id ON 
 
 
 --
--- Name: index_drugs_on_name; Type: INDEX; Schema: public; Owner: -
+-- Name: index_drugs_on_name_and_concept_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_drugs_on_name ON public.drugs USING btree (name);
+CREATE UNIQUE INDEX index_drugs_on_name_and_concept_id ON public.drugs USING btree (name, concept_id);
 
 
 --
@@ -1434,6 +1268,27 @@ CREATE UNIQUE INDEX index_publications_on_pmid ON public.publications USING btre
 
 
 --
+-- Name: index_source_types_sources_on_source_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_source_types_sources_on_source_id ON public.source_types_sources USING btree (source_id);
+
+
+--
+-- Name: index_source_types_sources_on_source_type_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_source_types_sources_on_source_type_id ON public.source_types_sources USING btree (source_type_id);
+
+
+--
+-- Name: index_source_types_sources_on_source_type_id_and_source_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_source_types_sources_on_source_type_id_and_source_id ON public.source_types_sources USING btree (source_type_id, source_id);
+
+
+--
 -- Name: interaction_claim_attributes_interaction_claim_id_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1494,13 +1349,6 @@ CREATE INDEX sources_lower_source_db_name_idx ON public.sources USING btree (low
 --
 
 CREATE INDEX sources_source_trust_level_id_idx ON public.sources USING btree (source_trust_level_id);
-
-
---
--- Name: sources_source_type_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX sources_source_type_id_idx ON public.sources USING btree (source_type_id);
 
 
 --
@@ -1896,14 +1744,6 @@ ALTER TABLE ONLY public.interaction_claim_links
 
 
 --
--- Name: drugs fk_rails_de0c74dec1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.drugs
-    ADD CONSTRAINT fk_rails_de0c74dec1 FOREIGN KEY (chembl_molecule_id) REFERENCES public.chembl_molecules(id);
-
-
---
 -- Name: drug_aliases_sources fk_source; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1984,11 +1824,19 @@ ALTER TABLE ONLY public.sources
 
 
 --
--- Name: sources fk_source_type; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: source_types_sources fk_source_types_source_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.sources
-    ADD CONSTRAINT fk_source_type FOREIGN KEY (source_type_id) REFERENCES public.source_types(id) MATCH FULL;
+ALTER TABLE ONLY public.source_types_sources
+    ADD CONSTRAINT fk_source_types_source_id FOREIGN KEY (source_id) REFERENCES public.sources(id) MATCH FULL;
+
+
+--
+-- Name: source_types_sources fk_source_types_source_types_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.source_types_sources
+    ADD CONSTRAINT fk_source_types_source_types_id FOREIGN KEY (source_type_id) REFERENCES public.source_types(id) MATCH FULL;
 
 
 --
@@ -2058,6 +1906,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191107152512'),
 ('20200608185423'),
 ('20200615173440'),
-('20200811160413');
+('20200620144029'),
+('20200811160413'),
+('20200901140610'),
+('20200904144705');
 
 

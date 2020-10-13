@@ -52,6 +52,12 @@ module ApplicationHelper
     link_to(label(pmid, type), link)
   end
 
+  def source_link_green(source)
+    type = 'success'
+    link = source_path(source.source_db_name)
+    link_to(label(source.source_db_name, type), link)
+  end
+
   def gene_claim_path(gene_claim)
     "/gene_claims/#{gene_claim.source.source_db_name}/#{gene_claim.name}"
   end
@@ -74,6 +80,14 @@ module ApplicationHelper
         content_tag(:span, text, class: ['label', 'label-' + type, "flag_icon"])
       end.join.html_safe
     end
+  end
+
+  def format_source_types(source)
+    source.source_types.map(&:type).join(', ')
+  end
+
+  def format_source_type_names(source)
+    source.source_types.map(&:display_name).join(', ')
   end
 
 end
