@@ -108,6 +108,16 @@ faq:
         may or may not have existing drugs that target them. On the other hand, all of the genes from the drug-gene interaction sources 
         are targeted by specific known compounds.
 
+    - question: What is the different between a cancer-specific source and a disease-agnostic source?
+      anchor: sourcetype
+      answer: >
+        Cancer-specific sources are sources that only contain information pertaining to cancers while disease-agnostic do not limit their
+        data in regards to the disease. While cancer related searches are a major use-case for DGIdb and cancer-specific sources are
+        well-represented among all sources, DGIdb is not a cancer-specific resource and is intended to be utilized for non-cancer related
+        research as well. In the interaction and category searches the source list in the Source Databases dropdown is grouped by cancer-specific
+        and disease-agnostic sources and users may select or deselect all entries in each group by clicking on the respective header in the dropdown.
+
+
     - question: How is this application different from DrugBank, TTD or other databases?
       anchor: different
       answer: >
