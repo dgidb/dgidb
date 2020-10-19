@@ -9,4 +9,7 @@
   .container-fluid
     .row-fluid
       .span12
-        .well=tx "description"
+        .well
+          =tx "description"
+          %img{:src => image_path("interaction_score.png"), :width => "800px", :alt => "Overview of DGIdb's Query Scores and Interaction Scores"}
+          =tx "img_caption"
