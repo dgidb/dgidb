@@ -2,7 +2,7 @@
 =content_for :header do
   %h2
     %span
-      Interaction Types
+      Interaction Types & Directionalities
 
 #container.container-fluid
   %div{class: "well"}
@@ -16,7 +16,7 @@
           %th Interaction Type
           %th Sources Using This Type
           %th Description
-          %th Directionality
+          %th Directionality*
           %th Reference
       %tbody
         - @types.each do |t|
@@ -26,3 +26,7 @@
             %td=t.definition
             %td=t.directionality.nil? ? "N/A" : t.directionality
             %td=t.reference.nil? ? "" : t.reference.html_safe
+  %div{class: "well"}
+    * Activating – the drug increases the biological activity or expression of a gene target.
+    %br
+    &nbsp Inhibiting – the drug decreases the biological activity or expression of a gene target

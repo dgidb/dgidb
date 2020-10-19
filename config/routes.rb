@@ -73,5 +73,6 @@ DruggableGene::Application.routes.draw do
   get 'about' => 'static#about'
   get 'publications' => 'static#publications'
   get 'data_clients' => 'static#data_clients'
+  get 'score' => 'static#score'
   root :to => 'static#home'
 end

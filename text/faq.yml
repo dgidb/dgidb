@@ -56,10 +56,17 @@ faq:
     - question: How are the gene and drug filters defined in DGIdb?
       anchor: filters
       answer: >
-        The filters currently include Approved drugs, Antineoplastic drugs, and Immunotherapies. Regulatory approval status is extracted from ChEMBL. 
-        Anti-neoplastic drugs are defined by inclusion in an anti-neoplastic drug–gene interaction source (e.g. My Cancer Genome), or as a 
-        drug with an anti-neoplastic attribute from its constituent source. Immunotherapy drugs are defined as any drug with an attribute of 
-        ‘immunosuppressive agent’, ‘immunomodulatory agent’ or ‘immunostimulant’. 
+        When searching by genes, filters for drug interactions currently include Approved drugs, Antineoplastic drugs, and Immunotherapies.
+        Regulatory approval status is extracted from ChEMBL. Anti-neoplastic drugs are defined by inclusion in an anti-neoplastic drug–gene
+        interaction source (e.g. My Cancer Genome), or as a drug with an anti-neoplastic attribute from its constituent source. Immunotherapy
+        drugs are defined as any drug with an attribute of ‘immunosuppressive agent’, ‘immunomodulatory agent’ or ‘immunostimulant’.
+        <br>
+        When searching by drugs, filters for gene interactions currently include Clinically Actionable genes, genes included in the Druggable
+        Genome definition and Drug Resistant genes. Clinically Actionable genes are genes that constitute the DGIdb ‘clinically actionable’
+        gene category, and by definition is used to inform clinical action (e.g. the Foundation One diagnostic gene panels). Similarly,
+        druggable genome genes are genes listed in the DGIdb ‘druggable genome’ gene category. Drug resistance genes are defined by the
+        Gene Ontology as genes that confer drug resistance or susceptibility (GO identifier 0042493), and are maintained in the DGIdb through the
+        ‘drug resistance’ gene category.
 
     - question: Where can I find the source code for DGIdb?
       anchor: source
@@ -81,7 +88,7 @@ faq:
         For more details on the sources of druggable gene category definitions, refer to the <a href="/sources">sources</a> 
         and <a href="/about">background reading</a>.
 
-    - question: What is an 'Interaction Type'?
+    - question: What is an 'Interaction Type' and "Interaction Type Directionality"?
       anchor: interaction
       answer: >
         An interaction type describes the nature of the association between a particular gene and drug. 
@@ -89,7 +96,17 @@ faq:
         Interaction type, as used in DGIdb, is very broad. Dozens of interaction types are currently defined.
         Many interaction types describe the mechanism of action between a small molecule and a protein.
         However, other broader types of 'interaction' might also be used. e.g. Gene X mediates 'resistance' or 'sensitivity' to drug Y.
-        A full list of interaction types and their definition can be found on the <a href="/interaction_types">Interaction Types</a> page.
+        A full list of interaction types and their definition can be found on the <a href="/interaction_types">Interaction Types & Directionalities</a> page.
+        <br>
+        Interaction types can be loosely grouped into Activating interaction types and Inhibiting interaction types. Activating interactions
+        are those where the drug increases the biological activity or expression of a gene target while Inhibiting interactions are those
+        where the drug decreases the biological activity or expression of a gene target. To see which interaction types fall under which
+        directionality check out the list of interaction types on the <a href="/interaction_types">Interaction Types & Directionalities</a> page.
+
+    - question: What is the "Interaction Score" and the "Query Score"?
+      anchor: score
+      answer: >
+        Please see the <a href="/score">Interaction Score & Query Score</a> page for a detailed explanation of these terms.
 
     - question: What is the difference between a drug-gene interaction and druggable gene category?
       anchor: difference
@@ -100,6 +117,16 @@ faq:
         likely to be successfully targeted by small molecule inhibitors. Genes in these categories are *potentially druggable* and 
         may or may not have existing drugs that target them. On the other hand, all of the genes from the drug-gene interaction sources 
         are targeted by specific known compounds.
+
+    - question: What is the difference between a cancer-specific source and a disease-agnostic source?
+      anchor: sourcetype
+      answer: >
+        Cancer-specific sources are sources that only contain information pertaining to cancers while disease-agnostic do not limit their
+        data in regards to the disease. While cancer related searches are a major use-case for DGIdb and cancer-specific sources are
+        well-represented among all sources, DGIdb is not a cancer-specific resource and is intended to be utilized for non-cancer related
+        research as well. In the interaction and category searches the source list in the Source Databases dropdown is grouped by cancer-specific
+        and disease-agnostic sources and users may select or deselect all entries in each group by clicking on the respective header in the dropdown.
+
 
     - question: How is this application different from DrugBank, TTD or other databases?
       anchor: different

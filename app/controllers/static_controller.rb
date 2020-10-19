@@ -24,7 +24,7 @@ class StaticController < ApplicationController
   end
 
   private
-  @@help_pages = Set.new ['about', 'news', 'faq', 'downloads', 'contact', 'api', 'publications', 'data_clients']
+  @@help_pages = Set.new ['about', 'news', 'faq', 'downloads', 'contact', 'api', 'publications', 'data_clients', 'score']
   def set_active
     @@help_pages.include?(params[:action]) ? instance_variable_set("@help_active", "active") : instance_variable_set("@#{params[:action]}_active", "active")
   end
