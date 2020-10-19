@@ -88,7 +88,7 @@ faq:
         For more details on the sources of druggable gene category definitions, refer to the <a href="/sources">sources</a> 
         and <a href="/about">background reading</a>.
 
-    - question: What is an 'Interaction Type' and a "Interaction Type Directionality"?
+    - question: What is an 'Interaction Type' and "Interaction Type Directionality"?
       anchor: interaction
       answer: >
         An interaction type describes the nature of the association between a particular gene and drug. 
@@ -118,7 +118,7 @@ faq:
         may or may not have existing drugs that target them. On the other hand, all of the genes from the drug-gene interaction sources 
         are targeted by specific known compounds.
 
-    - question: What is the different between a cancer-specific source and a disease-agnostic source?
+    - question: What is the difference between a cancer-specific source and a disease-agnostic source?
       anchor: sourcetype
       answer: >
         Cancer-specific sources are sources that only contain information pertaining to cancers while disease-agnostic do not limit their
