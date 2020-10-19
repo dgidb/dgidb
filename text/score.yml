@@ -26,17 +26,14 @@ score:
     as well as the API.
     <br>
     <br>
-    <figure>
-      <img src="/assets/interaction_score.png" alt="Overview of DGIdb's Query Scores and Interaction Scores" width="800px">
-      <figcaption>
-        Overview of DGIdb’s new Query Scores and interaction scores. A) Schematic of how each of the scores is calculated within DGIdb.
-        Gene and drug queries both return a Query Score that is dependent on the search terms. Each interaction has an Interaction Score
-        that is calculated independently of other search terms. B) Example of a Query Score changing based on the terms searched. In the
-        first panel, only MEK1 and MEK2 were searched and the Interaction Score for the interaction between MEK1 and Cobimetinib was 9.76.
-        In the second panel, BRAF and KRAS were added to the search query. These both interact with Cobimetinib and thus raise the Query
-        Score. C) Example of Interaction Score. The panel on the left shows the interaction between ZEB1 and Salinomycin. This is the only
-        interaction for Salinomycin and thus it has a high Interaction Score. The panel on the right shows the interaction between ZEB1
-        and Doxorubicin. Doxorubicin is involved in 87 interactions within DGIdb and thus has a much lower Interaction Score. Note that
-        over time, as sources are updated and new claims are added, both Query Scores and Interaction Scores may change.
-      </figcaption>
-    </figure>
+  img_caption: >
+    <br>
+    Overview of DGIdb’s new Query Scores and interaction scores. A) Schematic of how each of the scores is calculated within DGIdb.
+    Gene and drug queries both return a Query Score that is dependent on the search terms. Each interaction has an Interaction Score
+    that is calculated independently of other search terms. B) Example of a Query Score changing based on the terms searched. In the
+    first panel, only MEK1 and MEK2 were searched and the Interaction Score for the interaction between MEK1 and Cobimetinib was 9.76.
+    In the second panel, BRAF and KRAS were added to the search query. These both interact with Cobimetinib and thus raise the Query
+    Score. C) Example of Interaction Score. The panel on the left shows the interaction between ZEB1 and Salinomycin. This is the only
+    interaction for Salinomycin and thus it has a high Interaction Score. The panel on the right shows the interaction between ZEB1
+    and Doxorubicin. Doxorubicin is involved in 87 interactions within DGIdb and thus has a much lower Interaction Score. Note that
+    over time, as sources are updated and new claims are added, both Query Scores and Interaction Scores may change.
