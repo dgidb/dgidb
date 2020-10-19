@@ -31,15 +31,18 @@
               - else
                 Gene
             %th
-              Interaction Type & Directionality
+              %a{href: "/interaction_types"}
+                Interaction Type & Directionality
             %th
               Sources
             %th
               PMIDs
             %th
-              Query Score
+              %a{href: "/score"}
+                Query Score
             %th
-              Interaction Score
+              %a{href: "/score"}
+                Interaction Score
           %tbody
           - interactions.each do |interaction|
             %tr{onclick: "location.href='/interactions/#{interaction.id}';"}
