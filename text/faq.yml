@@ -103,6 +103,11 @@ faq:
         where the drug decreases the biological activity or expression of a gene target. To see which interaction types fall under which
         directionality check out the list of interaction types on the <a href="/interaction_types">Interaction Types & Directionalities</a> page.
 
+    - question: What is the "Interaction Score" and the "Query Score"?
+      anchor: score
+      answer: >
+        Please see the <a href="/score">Interaction Score & Query Score</a> page for a detailed explanation of these terms.
+
     - question: What is the difference between a drug-gene interaction and druggable gene category?
       anchor: difference
       answer: >
