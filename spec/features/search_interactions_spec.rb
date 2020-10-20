@@ -42,7 +42,7 @@ describe 'search_interactions' do
     visit '/search_interactions'
 
     interaction_types.each do |interaction_type|
-      expect(page).to have_content(interaction_type.type)
+      expect(page.body.include? interaction_type.type).to be true
     end
   end
 
