@@ -6,7 +6,7 @@ module Genome
         {
           base_url:           'https://druggablegenome.net/IDGProteinList/',
           site_url:           'https://druggablegenome.net/',
-          citation:           'https://druggablegenome.net/',
+          citation:           'Rodgers,G., Austin,C., Anderson,J., Pawlyk,A., Colvis,C., Margolis,R. and Baker,J. (2018) Glimmers in illuminating the druggable genome. Nat. Rev. Drug Discov., 17, 301–302. PMID: 29348682',
           source_db_version:  '15-July-2019',
           source_type_id:     DataModel::SourceType.POTENTIALLY_DRUGGABLE,
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,

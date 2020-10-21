@@ -4,7 +4,7 @@
         def self.source_info
           {
               base_url: 'http://www.mycancergenome.org/',
-              citation: 'http://www.mycancergenome.org/',
+              citation: 'Jain,N., Mittendorf,K.F., Holt,M., Lenoue-Newton,M., Maurer,I., Miller,C., Stachowiak,M., Botyrius,M., Cole,J., Micheel,C., et al. (2020) The My Cancer Genome clinical trial data model and trial curation workflow. J. Am. Med. Inform. Assoc., 27, 1057–1066. PMID: 32483629',
               site_url: 'http://www.mycancergenome.org/',
               source_db_version: '30-Feburary-2014',
               source_type_id: DataModel::SourceType.INTERACTION,
