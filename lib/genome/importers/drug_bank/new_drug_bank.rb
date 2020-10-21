@@ -25,7 +25,7 @@ module Genome; module Importers; module DrugBank;
       @source = DataModel::Source.where(
         base_url: 'http://www.drugbank.ca',
         site_url: 'http://www.drugbank.ca/',
-        citation: "DrugBank 4.0: shedding new light on drug metabolism. Law V, Knox C, Djoumbou Y, Jewison T, Guo AC, Liu Y, Maciejewski A, Arndt D, Wilson M, Neveu V, Tang A, Gabriel G, Ly C, Adamjee S, Dame ZT, Han B, Zhou Y, Wishart DS.Nucleic Acids Res. 2014 Jan 1;42(1):D1091-7. PMID: 24203711",
+        citation: "Wishart,D.S., Feunang,Y.D., Guo,A.C., Lo,E.J., Marcu,A., Grant,J.R., Sajed,T., Johnson,D., Li,C., Sayeeda,Z., et al. (2018) DrugBank 5.0: a major update to the DrugBank database for 2018. Nucleic Acids Res., 46, D1074–D1082. PMID: 29126136",
         source_db_version: "5.1.7",
         source_db_name: 'DrugBank',
         full_name: 'DrugBank - Open Data Drug & Drug Target Database',

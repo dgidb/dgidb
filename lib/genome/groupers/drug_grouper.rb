@@ -14,7 +14,7 @@ module Genome
           source_db_version: 'ChEMBL_27',
           base_url: 'https://www.ebi.ac.uk/chembldb/index.php/target/inspect/',
           site_url: 'https://www.ebi.ac.uk/chembl',
-          citation: "The ChEMBL bioactivity database: an update. Bento AP, Gaulton A, Hersey A, Bellis LJ, Chambers J, Davies M, Kruger FA, Light Y, Mak L, McGlinchey S, Nowotka M, Papadatos G, Santos R, Overington JP. Nucleic Acids Res. 42(Database issue):D1083-90. PubMed ID: 24214965",
+          citation: "Mendez,D., Gaulton,A., Bento,A.P., Chambers,J., De Veij,M., Félix,E., Magariños,M.P., Mosquera,J.F., Mutowo,P., Nowotka,M., et al. (2019) ChEMBL: towards direct deposition of bioassay data. Nucleic Acids Res., 47, D930–D940. PMID: 30398643",
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           full_name: 'The ChEMBL Bioactivity Database',
           license: 'Creative Commons Attribution-Share Alike 3.0 Unported License',
