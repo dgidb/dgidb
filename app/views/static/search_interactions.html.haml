@@ -85,9 +85,21 @@
           =render partial: 'shared/multiselect', locals: { control_group_name: 'Gene Categories',
             flag_text_key: 'gene_category_flag', select_tag_name: 'gene_categories', collection: @gene_categories.map{|s| s.rjust(s.length + 1)},
             name_meth: 'strip', value_meth: 'to_s', tour_id: 'gene_cateogories_tour' }
-          =render partial: 'shared/multiselect', locals: { control_group_name: 'Interaction Types',
-            flag_text_key: 'interaction_type_flag', select_tag_name: 'interaction_types', collection: @interaction_types.map{|s| s.rjust(s.length + 1)},
-            name_meth: 'strip', value_meth: 'to_s', tour_id: 'interaction_types_tour' }
+          .control-group
+            .controls
+              Interaction Types
+              %br
+              %select{name: "interaction_types[]", id: "interaction_types", multiple: "multiple", class: :multiselect, form: "search_form", style: "display: none;"}
+                %optgroup{label: 'Activating Directionality'}
+                  -DataModel::InteractionClaimType.where(directionality: 'activating').each do |t|
+                    %option(value="#{t.type}")= " #{t.type}"
+                %optgroup{label: 'Inhibitory Directionality'}
+                  -DataModel::InteractionClaimType.where(directionality: 'inhibitory').each do |t|
+                    %option(value="#{t.type}")= " #{t.type}"
+                %optgroup{label: 'N/A Directionality'}
+                  -DataModel::InteractionClaimType.where(directionality: nil).each do |t|
+                    %option(value="#{t.type}")= " #{t.type}"
+              %div{style:'width:60px;', id: 'interaction_types_tour'}
   .form-actions{style: "clear: both; display: flex; justify-content: center; margin-bottom: 20px;"}
     %button.btn.btn-success(href="#" type="submit" id='search-btn' style='font-size: 20px;' form='search_form')
       %i(class="fa fa-search" aria-hidden="true")
