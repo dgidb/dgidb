@@ -31,8 +31,9 @@
 
 # Ignore IDE project directories
 .idea
-
+.generators
 .agignore
+.rakeTasks
 
 # Ignore ds_store and schema
 /db/migrate/.DS_Store
