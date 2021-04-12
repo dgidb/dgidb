@@ -43,13 +43,7 @@ namespace :dgidb do
 
   desc 'load the source controlled db dump and schema into the local db, blowing away what is currently there'
   task load_local: ['setup_path', 'db:drop', 'db:create', 'db:structure:load'] do
-    begin
-      update_data_submodule
-    rescue
-      puts 'Unable to access the git repo, you are probably outside our firewall.'
-      puts 'Downloading the data dump manually.'
-      download_data_dump(data_file)
-    end
+    download_data_dump(data_file)
     system "psql -h #{host} -d #{database_name} -f #{data_file}"
     Rails.cache.clear
   end
