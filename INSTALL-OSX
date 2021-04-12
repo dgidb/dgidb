@@ -72,7 +72,7 @@ http://localhost:3000/
 #If the database has been updated to include new sources you may need to clear the dgidb cache by loading the following URL:
 http://localhost:3000/cache/invalidate/
 
-#If you encounter errors about a pg_dump version mismatch it is likely that you have multiple completing installs of Postgresql.
+#If you encounter errors about a pg_dump version mismatch it is likely that you have multiple competing installs of Postgresql.
 #One likely fix is to find the location of the pg_dump binary in the more recent installation and make sure this dir at the beginning of your $PATH
 
 #To run the test suite move to within the project dir and execute the following
