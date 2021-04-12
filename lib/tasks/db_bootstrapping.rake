@@ -4,8 +4,11 @@ require_relative '../utils/snapshot_helpers.rb'
 include Utils::SnapshotHelpers
 
 namespace :dgidb do
-
-  data_submodule_path = File.join(Rails.root, 'data')
+  if Rails.env.production?
+    data_submodule_path = File.join(Rails.root, 'public', 'data')
+  else
+    data_submodule_path = File.join(Rails.root, 'data')
+  end
   data_file = File.join(data_submodule_path, 'data.sql')
   version_file = File.join(Rails.root, 'VERSION')
   database_name = Rails.configuration.database_configuration[Rails.env]['database']
