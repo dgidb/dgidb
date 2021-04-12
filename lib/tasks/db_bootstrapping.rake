@@ -10,6 +10,7 @@ namespace :dgidb do
   version_file = File.join(Rails.root, 'VERSION')
   database_name = Rails.configuration.database_configuration[Rails.env]['database']
   host = Rails.configuration.database_configuration[Rails.env]['host']
+  username = Rails.configuration.database_configuration[Rails.env]['username']
 
   desc 'Remove a source from the database given the source_db_name'
   task :remove_source, [:source_db_name] => :environment do |_, args|
@@ -37,8 +38,12 @@ namespace :dgidb do
   end
 
   desc 'create a dump of the current local database'
-  task dump_local: [:setup_path] do
-    system "pg_dump -T schema_migrations -E UTF8 -a -f #{data_file} -h #{host} #{database_name}"
+  task dump_local: ['setup_path'] do
+    if username.blank?
+      system "pg_dump -T schema_migrations -E UTF8 -a -f #{data_file} -h #{host} #{database_name}"
+    else
+      system "pg_dump -T schema_migrations -E UTF8 -a -f #{data_file} -U #{username} -h #{host} #{database_name}"
+    end
   end
 
   desc 'load the source controlled db dump and schema into the local db, blowing away what is currently there'
