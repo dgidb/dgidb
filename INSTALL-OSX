@@ -49,6 +49,14 @@ bundle install
 #If you get an error related to 'time zone utc' try rebooting...
 #On OSX Mountain Lion you may have to do this: 'sudo ln -s /usr/bin/gcc /usr/bin/gcc-4.2' to get bundle install to succeed
 
+#If you get an error installing therubyracer, the [following workaround](https://gist.github.com/fernandoaleman/868b64cd60ab2d51ab24e7bf384da1ca#gistcomment-3081153) resolves this issue:
+```
+brew install v8@3.15
+gem install libv8 -v 'YOUR_VERSION' -- --with-system-v8
+gem install therubyracer -v 'YOUR_VERSION' -- --with-v8-dir=/usr/local/opt/v8@3.15
+bundle install
+```
+
 #update the local database
 rake dgidb:load_local
 
