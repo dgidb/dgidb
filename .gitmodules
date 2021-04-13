@@ -1,3 +1,0 @@
-[submodule "data"]
-	path = data
-	url = git://git.genomedata.org/dgidb_data.git

@@ -1,3 +1,5 @@
+require 'rake'
+Rails.application.load_tasks
 class PostGrouper < ApplicationJob
   def perform(cleanup_gene_claims = false)
     if cleanup_gene_claims
@@ -8,6 +10,7 @@ class PostGrouper < ApplicationJob
     update_drug_types
     backfill_publications
     Rails.cache.clear
+    Rake::Task['dgidb:dump_local'].execute
   end
 
   def delete_orphaned_gene_claims
