@@ -117,7 +117,7 @@ GEM
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
     concurrent-ruby (1.1.8)
-    connection_pool (2.2.4)
+    connection_pool (2.2.5)
     crass (1.0.6)
     dalli (2.7.11)
     database_cleaner (2.0.1)
@@ -218,8 +218,6 @@ GEM
     rack (2.2.3)
     rack-mini-profiler (2.3.1)
       rack (>= 1.2.0)
-    rack-protection (2.1.0)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.3.6)
@@ -255,7 +253,7 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rake (13.0.3)
     rbtree3 (0.6.0)
-    redis (4.2.5)
+    redis (4.4.0)
     ref (2.0.0)
     regexp_parser (2.1.1)
     request_store (1.5.0)
@@ -291,11 +289,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sidekiq (6.0.7)
+    sidekiq (6.2.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
-      rack-protection (>= 2.0.0)
-      redis (>= 4.1.0)
+      redis (>= 4.2.0)
     sidekiq-cron (1.1.0)
       fugit (~> 1.1)
       sidekiq (>= 4.2.1)
@@ -382,7 +379,7 @@ DEPENDENCIES
   rspec-rails
   rubyzip
   sass-rails
-  sidekiq (~> 6.0.3)
+  sidekiq (~> 6.2.1)
   sidekiq-cron (~> 1.1.0)
   simplecov
   simplecov-lcov
