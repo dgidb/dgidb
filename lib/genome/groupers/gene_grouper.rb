@@ -15,6 +15,10 @@ module Genome
             end
           end
         end until newly_added_claims_count == 0
+        Utils::Database.destroy_empty_groups
+        Utils::Database.destroy_unsourced_attributes
+        Utils::Database.destroy_unsourced_aliases
+        Utils::Database.destroy_unsourced_gene_categories
       end
 
       def add_members(claims)

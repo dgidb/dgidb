@@ -146,8 +146,7 @@ module Genome; module Importers; module TsvImporters;
       @source = DataModel::Source.where(
           base_url: 'http://www.guidetopharmacology.org/DATA/',
           site_url: 'http://www.guidetopharmacology.org/',
-          citation: 'Pawson, Adam J., et al. "The IUPHAR/BPS Guide to PHARMACOLOGY: an expert-driven knowledgebase 
-of drug targets and their ligands." Nucleic acids research 42.D1 (2014): D1098-D1106. PMID: 24234439.',
+          citation: 'Armstrong,J.F., Faccenda,E., Harding,S.D., Pawson,A.J., Southan,C., Sharman,J.L., Campo,B., Cavanagh,D.R., Alexander,S.P.H., Davenport,A.P., et al. (2020) The IUPHAR/BPS Guide to PHARMACOLOGY in 2020: extending immunopharmacology content and introducing the IUPHAR/MMV Guide to MALARIA PHARMACOLOGY. Nucleic Acids Res., 48, D1006–D1021. PMID: 31691834',
           source_db_name: source_db_name,
           full_name: 'Guide to Pharmacology',
           license: 'Creative Commons Attribution-ShareAlike 4.0 International License',

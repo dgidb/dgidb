@@ -27,8 +27,8 @@ module Genome; module Importers; module TsvImporters;
       source_type = DataModel::SourceType.find_by(type: 'gene')
       unless source.source_types.include? source_type
         source.source_types << source_type
-        source.save
       end
+      source.save
     end
 
     def import_symbols

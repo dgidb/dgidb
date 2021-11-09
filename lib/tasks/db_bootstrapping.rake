@@ -4,12 +4,16 @@ require_relative '../utils/snapshot_helpers.rb'
 include Utils::SnapshotHelpers
 
 namespace :dgidb do
-
-  data_submodule_path = File.join(Rails.root, 'data')
+  if Rails.env.production?
+    data_submodule_path = File.join(Rails.root, 'public', 'data')
+  else
+    data_submodule_path = File.join(Rails.root, 'data')
+  end
   data_file = File.join(data_submodule_path, 'data.sql')
   version_file = File.join(Rails.root, 'VERSION')
   database_name = Rails.configuration.database_configuration[Rails.env]['database']
   host = Rails.configuration.database_configuration[Rails.env]['host']
+  username = Rails.configuration.database_configuration[Rails.env]['username']
 
   desc 'Remove a source from the database given the source_db_name'
   task :remove_source, [:source_db_name] => :environment do |_, args|
@@ -21,7 +25,7 @@ namespace :dgidb do
     #special case for macs running Postgres.app
     if RbConfig::CONFIG['host_os'] =~ /darwin/ && File.exist?( '/Applications/Postgres.app' )
       puts 'Found Postgres.app'
-      ENV['PATH'] = "/Applications/Postgres.app/Contents/Versions/9.4/bin:#{ENV['PATH']}"
+      ENV['PATH'] = "/Applications/Postgres.app/Contents/Versions/latest/bin:#{ENV['PATH']}"
     end
 
     # MacPorts Handling
@@ -37,19 +41,17 @@ namespace :dgidb do
   end
 
   desc 'create a dump of the current local database'
-  task dump_local: [:setup_path] do
-    system "pg_dump -T schema_migrations -E UTF8 -a -f #{data_file} -h #{host} #{database_name}"
+  task dump_local: ['setup_path'] do
+    if username.blank?
+      system "pg_dump -T schema_migrations -E UTF8 -a -f #{data_file} -h #{host} #{database_name}"
+    else
+      system "pg_dump -T schema_migrations -E UTF8 -a -f #{data_file} -U #{username} -h #{host} #{database_name}"
+    end
   end
 
   desc 'load the source controlled db dump and schema into the local db, blowing away what is currently there'
   task load_local: ['setup_path', 'db:drop', 'db:create', 'db:structure:load'] do
-    begin
-      update_data_submodule
-    rescue
-      puts 'Unable to access the git repo, you are probably outside our firewall.'
-      puts 'Downloading the data dump manually.'
-      download_data_dump(data_file)
-    end
+    download_data_dump(data_file)
     system "psql -h #{host} -d #{database_name} -f #{data_file}"
     Rails.cache.clear
   end

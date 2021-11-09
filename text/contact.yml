@@ -5,10 +5,10 @@ contact:
   description: >
     DGIdb was developed at The McDonnell Genome Institute, Washington University School of Medicine. If you have a source of information related to the druggable genome you would like us to incorporate, please contact us at <a href="mailto:help@dgidb.org">help@dgidb.org</a>.<br><br>
 
-    Citation: <strong><a href="https://doi.org/10.1093/nar/gkx1143">DGIdb 3.0: a redesign and expansion of the drug–gene interaction database.</a></strong>
-                            Cotto KC, Wagner AH, Feng Y, Kiwala S, Coffman AC, Spies G, Wollam A, Spies NC, Griffith OL, Griffith M.
+    Citation: <strong><a href="https://doi.org/10.1093/nar/gkaa1084">Integration of the Drug–Gene Interaction Database (DGIdb 4.0) with open crowdsource efforts.</a></strong>
+                            Freshour SL, Kiwala S, Cotto KC, Coffman AC, McMichael JF, Song JJ, Griffith M, Griffith OL, Wagner AH.
                             Nucleic Acids Research.
-                            2017 Nov 17. doi:https://doi.org/10.1093/nar/gkx1143.<br><br>
+                            2021 Jan 8. doi:https://doi.org/10.1093/nar/gkaa1084.<br><br>
 
   people:
     - title: Malachi Griffith

@@ -13,6 +13,10 @@ module Genome
           puts 'add members'
           add_members(group_from_scratch)
         end
+        Utils::Database.destroy_empty_groups
+        Utils::Database.destroy_unsourced_attributes
+        Utils::Database.destroy_unsourced_aliases
+        Utils::Database.destroy_unsourced_gene_categories
       end
 
       def self.reset_members

@@ -8,7 +8,9 @@
 
 #container.container-fluid
   %div{class: "well"}
-    This page provides access to raw data for DGIdb. While the application is open source, some of the data sources we import may have restrictions that prevent us from redistributing them. Please refer to the contact section under the Information menu if you would like to ask us detailed questions about data sources, etc.
+    This page provides access to raw data for DGIdb. While the application is open source, some of the data sources we import may have restrictions that prevent us from redistributing them. Please refer to the
+    %a{:href => "sources"} Browse Sources
+    page for license information for each source.
 
 #container.container-fluid
   %div{class: "well"}
@@ -47,11 +49,6 @@
             %td=date
             - @tsvs.each do |tsv|
               %td= raw "#{link_to tsv, file_h[tsv]}"
-    %h4
-      %a{:href => "https://www.drugbank.ca/releases/latest"} DrugBank Data
-    %p
-      Note that DrugBank is not included in the interactions TSV file above. These data must be requested directly from
-      %a{:href => "https://www.drugbank.ca/releases/latest"} DrugBank.
     %h4
       %a{:href => "data/dGene_04-16-2013_2257.tsv"} dGene data (04-16-2013)
     %p TSV download of the latest version of the dGene database made available here at the request of the dGene creators. This data corresponds to the dGene publication and has not changed significantly since that publication.

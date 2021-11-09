@@ -22,7 +22,7 @@ module Genome; module Importers; module TsvImporters;
           {
               base_url:          'http://www.pharmgkb.org',
               site_url:          'http://www.pharmgkb.org/',
-              citation:          "From pharmacogenomic knowledge acquisition to clinical applications: the PharmGKB as a clinical pharmacogenomic biomarker resource. McDonagh EM, Whirl-Carrillo M, Garten Y, Altman RB, Klein TE. Biomark Med. 2011 Dec;5(6):795-806. PMID: 22103613",
+              citation:          "Whirl-Carrillo,M., McDonagh,E.M., Hebert,J.M., Gong,L., Sangkuhl,K., Thorn,C.F., Altman,R.B. and Klein,T.E. (2012) Pharmacogenomics knowledge for personalized medicine. Clin. Pharmacol. Ther., 92, 414–417. PMID: 22992668",
               source_db_version:  get_version,
               source_db_name:    source_db_name,
               full_name:         'PharmGKB - The Pharmacogenomics Knowledgebase',

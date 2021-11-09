@@ -1,7 +1,7 @@
 [![Build Status](https://github.com/griffthlab/dgi-db/workflows/Unit%20Tests/badge.svg)](https://github.com/griffithlab/dgi-db/actions)
 [![Code Climate](https://codeclimate.com/github/genome/dgi-db.png)](https://codeclimate.com/github/genome/dgi-db)
 
-### Rails frontend to The McDonnell Genome Institute's drug gene interaction database.
+### Rails frontend to the Drug-Gene Interaction database.
 
 #### Publicly accessible instance
 To use DGIdb please first visit the public instance here: [DGIdb](http://www.dgidb.org/ "DGIdb at WashU")

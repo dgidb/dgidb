@@ -17,7 +17,7 @@ module Genome; module Importers; module TsvImporters;
         {
             base_url: 'https://cancer.sanger.ac.uk/cosmic/drug_resistance',
             site_url: 'https://cancer.sanger.ac.uk/cosmic',
-            citation: 'Forbes SA, Bhamra G, Bamford S, et al. The Catalogue of Somatic Mutations in Cancer (COSMIC). Curr Protoc Hum Genet. 2008;Chapter 10:Unit-10.11. doi:10.1002/0471142905.hg1011s57. PMID: 18428421',
+            citation: 'Tate,J.G., Bamford,S., Jubb,H.C., Sondka,Z., Beare,D.M., Bindal,N., Boutselakis,H., Cole,C.G., Creatore,C., Dawson,E., et al. (2019) COSMIC: the Catalogue Of Somatic Mutations In Cancer. Nucleic Acids Res., 47, D941–D947. PMID: 30371878',
             source_db_version:  '4-Sep-2020',
             source_db_name: source_db_name,
             full_name: 'Catalogue Of Somatic Mutations In Cancer',

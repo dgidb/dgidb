@@ -30,7 +30,7 @@ module Genome; module Importers; module ApiImporters; module Civic
     def make_get_request(uri, wrapper)
       res = Net::HTTP.get_response(uri)
       raise StandardError.new("Request Failed!") unless res.code == '200'
-      sleep(0.2)
+      sleep(0.5)
       wrapper.new(res.body)
     end
 

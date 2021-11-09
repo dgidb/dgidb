@@ -18,10 +18,10 @@ describe 'search_interactions' do
     visit '/search_interactions'
 
     interaction_sources.each do |source|
-      expect(page).to have_content(source.source_db_name)
+      expect(page.body.include? source.source_db_name).to be true
     end
 
-    expect(page).not_to have_content(other_source.source_db_name)
+    expect(page.body.include? other_source.source_db_name).to be false
   end
 
   it 'should display a list of gene categories' do
@@ -42,7 +42,7 @@ describe 'search_interactions' do
     visit '/search_interactions'
 
     interaction_types.each do |interaction_type|
-      expect(page).to have_content(interaction_type.type)
+      expect(page.body.include? interaction_type.type).to be true
     end
   end
 

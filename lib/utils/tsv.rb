@@ -85,8 +85,7 @@ module Utils
             gene.long_name,
             gene.gene_claims
               .select do |gc|
-                gc.gene_claim_categories.map(&:name).include?(category_name) &&
-                !(license_restricted? gc.source.source_db_name)
+                gc.gene_claim_categories.map(&:name).include?(category_name)
               end
               .map { |gc| gc.source.source_db_name }.join(','),
             category_name,
@@ -96,14 +95,23 @@ module Utils
     end
 
     def self.print_interaction_claim_header(file_handle)
-      header = ['gene_name','gene_claim_name','entrez_id','interaction_claim_source',
-        'interaction_types','drug_claim_name','drug_claim_primary_name','drug_name','drug_concept_id',
-        'PMIDs'].join("\t")
+      header = [
+        'gene_name',
+        'gene_claim_name',
+        'entrez_id',
+        'interaction_claim_source',
+        'interaction_types',
+        'drug_claim_name',
+        'drug_claim_primary_name',
+        'drug_name',
+        'drug_concept_id',
+        'interaction_group_score',
+        'PMIDs',
+      ].join("\t")
       file_handle.puts(header)
     end
 
     def self.print_interaction_claim_row(file_handle, interaction_claim)
-      return if license_restricted? interaction_claim.source.source_db_name
       row = [
         interaction_claim.gene ? interaction_claim.gene.name : "",
         interaction_claim.gene_claim.name,
@@ -114,6 +122,7 @@ module Utils
         interaction_claim.drug_claim.primary_name,
         interaction_claim.drug ? interaction_claim.drug.name : "",
         interaction_claim.drug ? interaction_claim.drug.concept_id : "",
+        interaction_claim.interaction.present? ? interaction_claim.interaction.interaction_score.round(2) : "",
         interaction_claim.publications ? interaction_claim.publications.map(&:pmid).join(',') : "",
       ].join("\t")
 
@@ -147,7 +156,6 @@ module Utils
     def self.print_gene_row(file_handle, gene_claim)
       gene_name = gene_claim.gene ? gene_claim.gene.name : ""
       entrez_id = gene_claim.gene ? gene_claim.gene.entrez_id : ""
-      return if license_restricted? gene_claim.source.source_db_name
       row = [
         gene_claim.name,
         gene_name,
@@ -166,7 +174,6 @@ module Utils
     def self.print_drug_row(file_handle, drug_claim)
       drug_name = drug_claim.drug ? drug_claim.drug.name : ""
       concept_id = drug_claim.drug ? drug_claim.drug.concept_id : ""
-      return if license_restricted? drug_claim.source.source_db_name
       row = [
         drug_claim.name,
         drug_name,
@@ -175,15 +182,6 @@ module Utils
       ].join("\t")
 
       file_handle.puts(row)
-    end
-
-    private
-    def self.license_restricted
-      @@license_restricted ||= %w[DrugBank]
-    end
-
-    def self.license_restricted? (source_name)
-      return license_restricted.member? source_name
     end
   end
 end

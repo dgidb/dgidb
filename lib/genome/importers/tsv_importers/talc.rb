@@ -17,7 +17,7 @@ module Genome; module Importers; module TsvImporters;
         {
           base_url: 'https://www.ncbi.nlm.nih.gov/pubmed/24377743',
           site_url: 'https://www.ncbi.nlm.nih.gov/pubmed/24377743',
-          citation: "A tabulated summary of targeted and biologic therapies for non-small-cell lung cancer. Simon GR, Somaiah N. Clin Lung Cancer. 2014 Jan;15(1):21-51. doi: 10.1016/j.cllc.2013.11.009. Epub 2013 Nov 21. PMID: 24377743",
+          citation: "Morgensztern,D., Campo,M.J., Dahlberg,S.E., Doebele,R.C., Garon,E., Gerber,D.E., Goldberg,S.B., Hammerman,P.S., Heist,R.S., Hensing,T., et al. (2015) Molecularly targeted therapies in non-small-cell lung cancer annual update 2014. J. Thorac. Oncol., 10, S1–63. PMID: 25535693",
           source_db_version:  '12-May-2016',
           source_trust_level_id:  DataModel::SourceTrustLevel.EXPERT_CURATED,
           source_db_name: source_db_name,

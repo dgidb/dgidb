@@ -17,7 +17,7 @@ module Genome; module Importers; module TsvImporters;
         {
           base_url: 'https://www.mycancergenome.org/content/molecular-medicine/overview-of-targeted-therapies-for-cancer/',
           site_url: 'http://www.mycancergenome.org/',
-          citation: 'Abramson, R., Aston, J., C. Lovly. 2017. My Cancer Genome.',
+          citation: 'Jain,N., Mittendorf,K.F., Holt,M., Lenoue-Newton,M., Maurer,I., Miller,C., Stachowiak,M., Botyrius,M., Cole,J., Micheel,C., et al. (2020) The My Cancer Genome clinical trial data model and trial curation workflow. J. Am. Med. Inform. Assoc., 27, 1057–1066. PMID: 32483629',
           source_db_version: '20-Jun-2017',
           source_db_name: source_db_name,
           full_name: 'My Cancer Genome',

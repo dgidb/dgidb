@@ -52,6 +52,12 @@ module ApplicationHelper
     link_to(label(pmid, type), link)
   end
 
+  def source_link_green(source)
+    type = 'success'
+    link = source_path(source.source_db_name)
+    link_to(label(source.source_db_name, type), link)
+  end
+
   def gene_claim_path(gene_claim)
     "/gene_claims/#{gene_claim.source.source_db_name}/#{gene_claim.name}"
   end

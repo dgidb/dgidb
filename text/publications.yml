@@ -2,9 +2,10 @@ publications:
   title: DGIdb - Publications
   title_main: Publications
   description: >
-    <a href="https://doi.org/10.1101/2020.09.18.301721">Integration of the Drug-Gene Interaction Database (DGIdb) with open crowdsource efforts.</a>
+    <a href="https://doi.org/10.1093/nar/gkaa1084">Integration of the Drug–Gene Interaction Database (DGIdb 4.0) with open crowdsource efforts.</a>
     Freshour S, Kiwala S, Cotto KC, Coffman AC, McMichael JF, Song J, Griffith M, Griffith OL, Wagner AH.
-    bioRxiv 2020.09.18.301721; doi: https://doi.org/10.1101/2020.09.18.301721
+    Nucleic Acids Research.
+    2020 Nov 25; doi: https://doi.org/10.1093/nar/gkaa1084. PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/33237278/">33237278</a>
     <br>
     <br>
     <a href="https://doi.org/10.1093/nar/gkx1143">DGIdb 3.0: a redesign and expansion of the drug–gene interaction database.</a>

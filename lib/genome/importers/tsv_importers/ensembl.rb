@@ -16,7 +16,7 @@ module Genome; module Importers; module TsvImporters;
       @source = DataModel::Source.where(
         base_url:           'http://useast.ensembl.org/Homo_sapiens/Gene/Summary?g=',
         site_url:           'http://ensembl.org/index.html',
-        citation:           'Ensembl 2011. Flicek P, Amode MR, ..., Vogel J, Searle SM. Nucleic Acids Res. 2011 Jan;39(Database issue)800-6. Epub 2010 Nov 2. PMID: 21045057.',
+        citation:           'Ensembl 2020. Yates, Andrew D et al. Nucleic acids research vol. 48,D1 (2020): D682-D688. PMID: 31691826',
         source_db_version:  version,
         source_db_name:     source_db_name,
         full_name:          'Ensembl',
