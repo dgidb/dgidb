@@ -21,7 +21,6 @@ module Genome; module Importers; module TsvImporters;
           source_db_version:  '11-November-2018',
           source_trust_level_id: DataModel::SourceTrustLevel.EXPERT_CURATED,
           source_db_name:     source_db_name,
-          source_db_name:     'Tempus',
           full_name:          'Tempus xT',
           license:            'Supplementary data from CC-BY 3.0 Beaubier et al. copyright publication',
           license_link:       'https://www.oncotarget.com/article/26797/text/',
