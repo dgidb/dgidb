@@ -13,7 +13,7 @@
     %div{style: "width: 200px; padding: 0", class: "container demo"}
     - if ambiguous_results.count > 0
       %div(class="panel-group" id="accordion" role="tablist" aria-multiselectable="true")
-        - ambiguous_result_presenters.uniq{|r| r[:search_terms].first }.each do |result|
+        - ambiguous_result_presenters.uniq{|r| r.search_terms.first }.each do |result|
           - term = result.search_terms.first
           %ul{class: "tree", style: "margin-left: -15px;"}
             %li
