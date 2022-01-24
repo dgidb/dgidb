@@ -8,7 +8,7 @@ describe 'interactions' do
   end
 
   it 'should load example URL with a valid 200 status code' do
-    visit '/api/v2/interactions.json?genes=FLT1,MM1,FAKE&nteraction_sources=TALC'
+    visit '/api/v2/interactions.json?genes=FLT1,MM1,FAKE&interaction_sources=TALC'
     expect(page.status_code).to eq(200)
   end
 end
