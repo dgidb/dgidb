@@ -2,12 +2,17 @@ require 'spec_helper'
 
 describe 'interactions' do
   def setup_interactions
+    Fabricate(:source_type, type: 'potentially_druggable')
+    Fabricate(:source_type, type: 'interaction')
     source = Fabricate(:source, source_db_name: 'TALC')
-    Fabricate(:interaction, gene_name: 'FLT1', source: source)
-    Fabricate(:interaction, gene_name: 'MM1', source: source)
+    g1 = Fabricate(:gene, name: 'FLT1')
+    Fabricate(:interaction, gene: g1, sources: [source])
+    g2 = Fabricate(:gene, name: 'MM1')
+    Fabricate(:interaction, gene: g2, sources: [source])
   end
 
   it 'should load example URL with a valid 200 status code' do
+    setup_interactions
     visit '/api/v2/interactions.json?genes=FLT1,MM1,FAKE&interaction_sources=TALC'
     expect(page.status_code).to eq(200)
   end
