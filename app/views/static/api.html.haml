@@ -517,8 +517,8 @@
               "_meta": {
                 "current_page": 1,
                 "per_page": 25,
-                "total_pages": 1192,
-                "total_count": 29783,
+                "total_pages": 1878,
+                "total_count": 46929,
                 "links": {
                   "next": "https://dgidb.org/api/v2/interactions?count=25&page=2",
                   "previous": null
@@ -526,20 +526,28 @@
               },
               "records": [
                 {
-                  "id":"53b9d202-9241-4064-87b3-0ae0be49390a",
-                  "gene_name":"AKT1",
-                  "entrez_id":207,
-                  "drug_name":"GSK-690693",
-                  "chembl_id":"CHEMBL494089",
-                  "publications":[18800763],
-                  "interaction_types":[
-                    "n/a",
+                  "id": "001098f2-1b60-4c87-b3dd-245eb04ede43",
+                  "gene_name": "SLC12A1",
+                  "entrez_id": 6557,
+                  "drug_name": "METHYCLOTHIAZIDE",
+                  "concept_id": "chembl:CHEMBL1577",
+                  "publications": [
+                    11752352,
+                    17139284,
+                    17016423
+                  ],
+                  "interaction_types": [
                     "inhibitor"
                   ],
-                  "sources":[
-                    "ChEMBL",
-                    "GuideToPharmacologyInteractions"
-                  ]
+                  "interaction_direction": [
+                    "inhibitory"
+                  ],
+                  "sources": [
+                    "TdgClinicalTrial",
+                    "TEND",
+                    "TTD"
+                  ],
+                  "score": 9.09
                 },
                 ...
               ]
@@ -559,114 +567,109 @@
           %small
             The following example would query DGIdb for the interaction with
             ID
-            %code 53b9d202-9241-4064-87b3-0ae0be49390a
+            %code 001098f2-1b60-4c87-b3dd-245eb04ede43
         %pre
-          \https://dgidb.org/api/v2/interactions/53b9d202-9241-4064-87b3-0ae0be49390a
+          \https://dgidb.org/api/v2/interactions/001098f2-1b60-4c87-b3dd-245eb04ede43
         %h5
           Example Response:
         %button.btn.btn-mini.btn-link{data: { toggle: 'collapse', target: '#example-one-interaction-response'}}
           Show/Hide Response
         %pre#example-one-interaction-response.collapse
           :preserve
-            "id": "53b9d202-9241-4064-87b3-0ae0be49390a",
-            "gene_name": "AKT1",
-            "entrez_id": 207,
-            "drug_name": "GSK-690693",
-            "chembl_id": "CHEMBL494089",
-            "publications": [
-              18800763
-            ],
-            "interaction_types": [
-              "n/a",
-              "inhibitor"
-            ],
-            "sources": [
-              "ChEMBL",
-              "GuideToPharmacologyInteractions"
-            ],
-            "attributes": [
-              {
-                "name": "Mechanism of Interaction",
-                "value": "Serine/threonine-protein kinase AKT inhibitor",
-                "sources": [
-                  "ChEMBL"
-                ]
-              },
-              {
-                "name": "Direct Interaction",
-                "value": "yes",
-                "sources": [
-                  "ChEMBL"
-                ]
-              },
-              {
-                "name": "Specific Action of the Ligand",
-                "value": "Inhibition",
-                "sources": [
-                  "GuideToPharmacologyInteractions"
-                ]
-              },
-              {
-                "name": "Endogenous Drug?",
-                "value": "False",
-                "sources": [
-                  "GuideToPharmacologyInteractions"
-                ]
-              },
-              {
-                "name": "Direct Interaction?",
-                "value": "True",
-                "sources": [
-                  "GuideToPharmacologyInteractions"
-                ]
-              }
-            ],
-            "interaction_claims": [
-              {
-                "source": "ChEMBL",
-                "drug": "GSK-690693",
-                "gene": "PKB ",
-                "interaction_types": [
-                  "inhibitor"
-                ],
-                "attributes": [
-                  {
-                    "name": "Mechanism of Interaction",
-                    "value": "Serine/threonine-protein kinase AKT inhibitor"
-                  },
-                  {
-                    "name": "Direct Interaction",
-                    "value": "yes"
-                  }
-                ],
-                "publications": []
-              },
-              {
-                "source": "GuideToPharmacologyInteractions",
-                "drug": "GSK690693",
-                "gene": "1479",
-                "interaction_types": [
-                  "n/a"
-                ],
-                "attributes": [
-                  {
-                    "name": "Specific Action of the Ligand",
-                    "value": "Inhibition"
-                  },
-                  {
-                    "name": "Endogenous Drug?",
-                    "value": "False"
-                  },
-                  {
-                    "name": "Direct Interaction?",
-                    "value": "True"
-                  }
-                ],
-                "publications": [
-                  18800763
-                ]
-              }
-            ]
+            {
+              "id": "001098f2-1b60-4c87-b3dd-245eb04ede43",
+              "gene_name": "SLC12A1",
+              "entrez_id": 6557,
+              "drug_name": "METHYCLOTHIAZIDE",
+              "concept_id": "chembl:CHEMBL1577",
+              "publications": [
+                17016423,
+                17139284,
+                11752352
+              ],
+              "interaction_types": [
+                "inhibitor"
+              ],
+              "interaction_direction": [
+                "inhibitory"
+              ],
+              "sources": [
+                "TdgClinicalTrial",
+                "TEND",
+                "TTD"
+              ],
+              "score": 9.09,
+              "attributes": [
+                {
+                  "name": "Trial Name",
+                  "value": "-",
+                  "sources": [
+                    "TdgClinicalTrial"
+                  ]
+                },
+                {
+                  "name": "Novel drug target",
+                  "value": "Established target",
+                  "sources": [
+                    "TdgClinicalTrial"
+                  ]
+                }
+              ],
+              "interaction_claims": [
+                {
+                  "source": "TEND",
+                  "drug": "METHYCLOTHIAZIDE",
+                  "gene": "Q13621",
+                  "interaction_types": [],
+                  "attributes": [],
+                  "publications": [],
+                  "source_links": [
+                    {
+                      "url": "https://www.nature.com/articles/nrd3478/tables/1",
+                      "text": "Trends in the exploitation of novel drug targets, Table 1"
+                    }
+                  ]
+                },
+                {
+                  "source": "TdgClinicalTrial",
+                  "drug": "METHYCLOTHIAZIDE",
+                  "gene": "Q13621",
+                  "interaction_types": [],
+                  "attributes": [
+                    {
+                      "name": "Trial Name",
+                      "value": "-"
+                    },
+                    {
+                      "name": "Novel drug target",
+                      "value": "Established target"
+                    }
+                  ],
+                  "publications": [],
+                  "source_links": [
+                    {
+                      "url": "https://www.annualreviews.org/doi/10.1146/annurev-pharmtox-011613-135943",
+                      "text": "The druggable genome: Evaluation of drug targets in clinical trials suggests major shifts in molecular class and indication. Rask-Andersen M, Masuram S, Schioth HB. Annu Rev Pharmacol Toxicol. 2014;54:9-26. doi: 10.1146/annurev-pharmtox-011613-135943. PMID: 24016212"
+                    }
+                  ]
+                },
+                {
+                  "source": "TTD",
+                  "drug": "Methyclothiazide",
+                  "gene": "Solute carrier family 12 member 1",
+                  "interaction_types": [],
+                  "attributes": [],
+                  "publications": [],
+                  "source_links": [
+                    {
+                      "url": "http://idrblab.net/ttd/data/target/details/T93878",
+                      "text": "TTD Target Information"
+                    }
+                  ]
+                }
+              ]
+            }
+
       %hr
       %section#drugs.anchor
         %h3 Drugs
@@ -712,29 +715,25 @@
               "_meta": {
                 "current_page": 1,
                 "per_page": 25,
-                "total_pages": 380,
-                "total_count": 9495,
+                "total_pages": 578,
+                "total_count": 14449,
                 "links": {
-                  "next": "http://dgidb.org/api/v2/drugs?count=25&page=2",
+                  "next": "https://dgidb.org/api/v2/drugs?count=25&page=2",
                   "previous": null
                 }
               },
               "records": [
                 {
-                  "name":"TESAMORELIN",
-                  "chembl_id":"CHEMBL1237026",
-                  "fda_approved":true,
-                  "immunotherapy":false,
-                  "anti_neoplastic":false,
-                  "alias":[
-                    "178103540",
-                    "6959",
-                    "DAP001556",
-                    "GHRH(1-44)",
-                    "N-[(3E)-1-oxo-3-hexenyl]Somatoliberin (human pancreatic islet)",
-                    "218949-48-5",
-                    "Egrifta",
-                    "DB08869"
+                  "name": "ELLAGIC ACID",
+                  "concept_id": "chembl:CHEMBL6246",
+                  "approved": false,
+                  "immunotherapy": false,
+                  "anti_neoplastic": false,
+                  "alias": [
+                    "NSC-407286",
+                    "BENZOARIC ACID",
+                    "NSC-656272",
+                    "ELLAGIC ACID"
                   ]
                 },
                 ...
@@ -744,18 +743,19 @@
       %section#one-drug.anchor
         %h4 Drug Details
         %p.lead
-          The drug details endpoint can be used to retrieve detailed information about one particular drug.
+          The drug details endpoint can be used to retrieve detailed information about one particular drug using the drug's
+          %code concept_id
         %span.label GET
         %pre
-          \https://dgidb.org/api/v2/drugs/&#60;chembl_id&#62;
+          \https://dgidb.org/api/v2/drugs/&#60;concept_id&#62;
         %h5
           Example Call:
         %p
           %span.label.label-info Note:
           %small
             The following example would query DGIdb for the drug with
-            ChEMBL ID
-            %code CHEMBL1237026
+            concept_id
+            %code chembl:CHEMBL1237026
         %pre
           \https://dgidb.org/api/v2/drugs/chembl:CHEMBL1237026
         %h5
@@ -765,401 +765,136 @@
         %pre#example-one-drug-response.collapse
           :preserve
             {
-              "name":"TESAMORELIN",
-              "chembl_id":"CHEMBL1237026",
-              "fda_approved":true,
-              "immunotherapy":false,
-              "anti_neoplastic":false,
-              "alias":[
-                "178103540",
-                "6959",
-                "DAP001556",
-                "GHRH(1-44)",
-                "N-[(3E)-1-oxo-3-hexenyl]Somatoliberin (human pancreatic islet)",
-                "218949-48-5",
-                "Egrifta",
-                "DB08869"
+              "name": "TESAMORELIN",
+              "concept_id": "chembl:CHEMBL1237026",
+              "approved": true,
+              "immunotherapy": false,
+              "anti_neoplastic": false,
+              "alias": [
+                "TH9507",
+                "TH-9507",
+                "TESAMORELIN",
+                "TESAMORELIN ACETATE",
+                "N-(TRANS-3-HEXENOYL)-HUMAN GROWTH HORMONE RELEASING FACTOR (1-44) ACETATE",
+                "EGRIFTA",
+                "drugbank:08869",
+                "pubchem.compound:16137828",
+                "chemidplus:218949-48-5",
+                "chembl:CHEMBL1237026",
+                "rxcui:1044584"
               ],
-              "pmids":[],
-              "attributes":[
+              "pmids": [
+                22298602
+              ],
+              "attributes": [
                 {
-                  "name":"Year of Approval",
-                  "value":"2010",
-                  "sources":[
+                  "name": "Drug Class",
+                  "value": "antilipodystrophy agents",
+                  "sources": [
                     "TEND"
                   ]
                 },
                 {
-                  "name":"Drug Class",
-                  "value":"antilipodystrophy agents",
-                  "sources":[
+                  "name": "Year of Approval",
+                  "value": "2010",
+                  "sources": [
                     "TEND"
                   ]
                 },
                 {
-                  "name":"Drug Indications",
-                  "value":"for treatment of HIV-associated lipodystrophy",
-                  "sources":[
+                  "name": "FDA Approval",
+                  "value": "approved",
+                  "sources": [
                     "TdgClinicalTrial"
                   ]
                 },
                 {
-                  "name":"Drug Class",
-                  "value":"peptide",
-                  "sources":[
+                  "name": "Drug Class",
+                  "value": "peptide",
+                  "sources": [
                     "TdgClinicalTrial"
                   ]
                 },
                 {
-                  "name":"FDA Approval",
-                  "value":"approved",
-                  "sources":[
+                  "name": "Drug Indications",
+                  "value": "for treatment of HIV-associated lipodystrophy",
+                  "sources": [
                     "TdgClinicalTrial"
-                  ]
-                },
-                {
-                  "name":"Drug Type",
-                  "value":"small molecule",
-                  "sources":["DrugBank"]
-                },
-                {
-                  "name":"Drug Groups",
-                  "value":"approved",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Groups",
-                  "value":"investigational",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"amino acids",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"peptides",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"and proteins",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"anterior pituitary lobe hormones and analogues",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"chemical actions and uses",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"hormones",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"hormone substitutes",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"and hormone antagonists",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"hypothalamic hormones",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"lipodystrophy",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"nerve tissue proteins",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"neuropeptides",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"peptide hormones",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"pharmacologic actions",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"physiological effects of drugs",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"pituitary and hypothalamic hormones and analogues",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"pituitary hormone-releasing hormones",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"proteins",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"somatropin and somatropin agonists",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"systemic hormonal preparations",
-                  "sources":[
-                    "DrugBank"
-                  ]
-                },
-                {
-                  "name":"Drug Categories",
-                  "value":"excl. sex hormones and insulins",
-                  "sources":[
-                    "DrugBank"
                   ]
                 }
               ],
-              "drug_claims":[
+              "drug_claims": [
                 {
-                  "source":"GuideToPharmacologyInteractions",
-                  "name":"6959",
-                  "primary_name":"TESAMORELIN",
-                  "aliases":[
-                    "TESAMORELIN",
-                    "178103540"
-                  ],
-                  "attributes":[],
-                  "publications":[]
+                  "source": "ChemblDrugs",
+                  "name": "chembl:CHEMBL1237026",
+                  "primary_name": "TESAMORELIN",
+                  "aliases": [],
+                  "attributes": [],
+                  "publications": []
                 },
                 {
-                  "source":"TTD",
-                  "name":"DAP001556",
-                  "primary_name":"TESAMORELIN",
-                  "aliases":[
-                    "TESAMORELIN",
-                    "DAP001556"
-                  ],
-                  "attributes":[],
-                  "publications":[]
-                },
-                {
-                  "source":"DrugBank",
-                  "name":"DB08869",
-                  "primary_name":"TESAMORELIN",
-                  "aliases":[
-                    "TESAMORELIN",
-                    "GHRH(1-44)",
-                    "N-[(3E)-1-oxo-3-hexenyl]Somatoliberin (human pancreatic islet)",
-                    "218949-48-5",
-                    "Egrifta"
-                  ],
-                  "attributes":[
-                    {
-                      "name":"Drug Type",
-                      "value":"small molecule"
-                    },
-                    {
-                      "name":"Drug Groups",
-                      "value":"approved"
-                    },
-                    {
-                      "name":"Drug Groups",
-                      "value":"investigational"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"amino acids"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"peptides"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"and proteins"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"anterior pituitary lobe hormones and analogues"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"chemical actions and uses"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"hormones"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"hormone substitutes"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"and hormone antagonists"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"hypothalamic hormones"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"lipodystrophy"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"nerve tissue proteins"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"neuropeptides"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"peptide hormones"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"pharmacologic actions"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"physiological effects of drugs"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"pituitary and hypothalamic hormones and analogues"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"pituitary hormone-releasing hormones"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"proteins"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"somatropin and somatropin agonists"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"systemic hormonal preparations"
-                    },
-                    {
-                      "name":"Drug Categories",
-                      "value":"excl. sex hormones and insulins"
-                    }
-                  ],
-                  "publications":[]
-                },
-                {
-                  "source":"TEND",
-                  "name":"TESAMORELIN",
-                  "primary_name":"TESAMORELIN",
-                  "aliases":[
+                  "source": "TEND",
+                  "name": "TESAMORELIN",
+                  "primary_name": "TESAMORELIN",
+                  "aliases": [
                     "TESAMORELIN"
                   ],
-                  "attributes":[
+                  "attributes": [
                     {
-                      "name":"Year of Approval",
-                      "value":"2010"
+                      "name": "Drug Class",
+                      "value": "antilipodystrophy agents"
                     },
                     {
-                      "name":"Drug Class",
-                      "value":"antilipodystrophy agents"
+                      "name": "Year of Approval",
+                      "value": "2010"
                     }
                   ],
-                  "publications":[]
+                  "publications": []
                 },
                 {
-                  "source":"TdgClinicalTrial",
-                  "name":"TESAMORELIN",
-                  "primary_name":"TESAMORELIN",
-                  "aliases":[],
-                  "attributes":[
+                  "source": "TdgClinicalTrial",
+                  "name": "TESAMORELIN",
+                  "primary_name": "TESAMORELIN",
+                  "aliases": [],
+                  "attributes": [
                     {
-                      "name":"Drug Indications",
-                      "value":"for treatment of HIV-associated lipodystrophy"
+                      "name": "Drug Class",
+                      "value": "peptide"
                     },
                     {
-                      "name":"Drug Class",
-                      "value":"peptide"
+                      "name": "Drug Indications",
+                      "value": "for treatment of HIV-associated lipodystrophy"
                     },
                     {
-                      "name":"FDA Approval",
-                      "value":"approved"
+                      "name": "FDA Approval",
+                      "value": "approved"
                     }
                   ],
-                  "publications":[]
+                  "publications": []
+                },
+                {
+                  "source": "GuideToPharmacology",
+                  "name": "178103540",
+                  "primary_name": "TESAMORELIN",
+                  "aliases": [
+                    "TESAMORELIN"
+                  ],
+                  "attributes": [],
+                  "publications": []
+                },
+                {
+                  "source": "TTD",
+                  "name": "Tesamorelin",
+                  "primary_name": "Tesamorelin",
+                  "aliases": [
+                    "D0UL9R"
+                  ],
+                  "attributes": [],
+                  "publications": []
                 }
               ]
             }
+
       %hr
       %section#genes.anchor
         %h3 Genes
