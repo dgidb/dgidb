@@ -1,0 +1,606 @@
+entrez_id	gene_target	drug_name	interaction_type	drug_class	drug_type	drug_generic_name	drug_trade_name	drug_synonym	interaction_id	drug_cas_number	drug_drugbank_id
+25	ABL1	Dasatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI of SRCfamily	Dasatinib	Sprycel	BMS-354825	SML1	302962-49-8	DB01254
+207	AKT1	MK2206	Inhibitor	PI3K/AKT inhibitors AKT inhibitors	Non-ATPcompetitive allosteric Akt	NA	NA	MK2206	SML10	NA	NA
+1956	EGFR	Matuzumab	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Humanized MoAb	Matuzumab	NA	EMD 72000	SML100	339186-68-4	NA
+1956	EGFR	RO5083945	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Glyco-engineered anti-EGFR IgG1 MoAb	NA	NA	RO5083945,GA201	SML101	NA	NA
+1956	EGFR	Momelotinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Reversible  small molecule inhibitor	Momelotinib	NA	AZD8931	SML102	848942-61-0	NA
+1956	EGFR	Zalutumumab	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Human MoAb	Zalutumumab	NA	HuMax-EGFr	SML103	828933-61-3	NA
+1956	EGFR	BMS-599626	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Reversible  small molecule inhibitor	NA	NA	BMS-599626	SML104	NA	NA
+1956	EGFR	AV-412	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	NA	NA	AV-412	SML105	NA	NA
+1956	EGFR	Vandetanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Vandetanib	Zactima	ZD6474	SML106	NA	NA
+1956	EGFR	XL647	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Irreversible small molecule TKI	NA	NA	XL647	SML107	NA	NA
+1956	EGFR	AEE 788	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Irreversible small molecule TKI	NA	NA	AEE 788	SML108	NA	NA
+1956	EGFR	CUDC-101	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid	NA	NA	CUDC-101	SML109	NA	NA
+207	AKT1	Nelfinavir	Inhibitor	PI3K/AKT inhibitors AKT inhibitors	Protease inhibitor	Nelfinavir	Viracept	AG 1343	SML11	159989-64-7	DB00220
+1956	EGFR	Recombinant humanEGF-rP64K/Montanide	Vaccine	Vaccines	rEGF linked to the Neisseria meningitidisderived recombinant immunogenic carrier protein P64k (rP64K) and mixed with immunoadjuvant Montanide ISA 51	Recombinant humanEGF-rP64K/Montanide	ISA 51	NA	SML110	NA	NA
+4072	EPCAM	Catumaxomab	Antibody	Others	Rat-murine hybrid monoclonal antibody binding to EpCAM and CD3 antibody	Catumaxomab	Removab	NA	SML111	NA	NA
+4072	EPCAM	MT110	NA	Others	EpCAM/CD3 bispecific antibody construct (BiTE)	NA	NA	MT110	SML112	NA	NA
+2050	EPHB4	XL647	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Irreversible small molecule TKI	NA	NA	XL647	SML113	NA	NA
+2064	ERBB2	Lapatinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Reversible  small molecule TKI	Lapatinib	Tykerb	GW 572016	SML114	388082-78-8	DB01259
+2064	ERBB2	Trastuzumab	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Humanized MoAb	Trastuzumab	Herceptin	NA	SML115	180288-69-1	DB00072
+2064	ERBB2	Afatinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	Afatinib	Tomtovok	BIBW-2992	SML116	439081-18-2	NA
+2064	ERBB2	Dacomitinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	NA	NA	PF299804	SML117	1110813-31-4	NA
+2064	ERBB2	Pertuzumab	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Humanized murine  MoAb	Pertuzumab	NA	rhuMAb 2C4	SML118	380610-27-5	NA
+2064	ERBB2	Neratinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	Neratinib	NA	HKI-272	SML119	9/6/698387	NA
+207	AKT1	Perifosine	Inhibitor	PI3K/AKT inhibitors AKT inhibitors	Alkylphospholipid	Perifosine	NA	KRX-0401	SML12	NA	NA
+2064	ERBB2	BMS-690514	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Small molecule TKI	NA	NA	BMS-690514,EVR1	SML120	859853-30-8	NA
+2064	ERBB2	Pelitinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	Pelitinib	NA	EKB-569	SML121	257933-82-7	NA
+2064	ERBB2	Momelotinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Reversible  small molecule inhibitor	Momelotinib	NA	AZD8931	SML122	848942-61-0	NA
+2064	ERBB2	Canertinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	Canertinib	NA	CI-1033	SML123	859853-30-8	NA
+2064	ERBB2	BMS-599626	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Reversible  small molecule inhibitor	NA	NA	BMS-599626	SML124	NA	NA
+2064	ERBB2	AV-412	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	NA	NA	AV-412	SML125	NA	NA
+2064	ERBB2	XL647	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Irreversible small molecule TKI	NA	NA	XL647	SML126	NA	NA
+2064	ERBB2	AEE 788	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Irreversible small molecule TKI	NA	NA	AEE 788	SML127	NA	NA
+2064	ERBB2	CUDC-101	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid	NA	NA	CUDC-101	SML128	NA	NA
+2064	ERBB2	EP-2101	Vaccine	Vaccines	Multiepitope DNA vaccine, emulsified in montanide ISA-51	NA	NA	EP-2101	SML129	NA	NA
+238	ALK	Crizotinib	Inhibitor	Anaplastic lymphoma kinase (ALK) inhibitor	Dual small molecule ATPcompetitive inhibitor	Crizotinib	NA	PF-02341066	SML13	NA	NA
+2065	ERBB3	U3-1287	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Human MoAb	NA	NA	U3-1287,AMG888	SML130	NA	NA
+2065	ERBB3	MM121	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Human MoAb	NA	NA	MM121	SML131	NA	NA
+2065	ERBB3	Momelotinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Reversible  small molecule inhibitor	Momelotinib	NA	AZD8931	SML132	848942-61-0	NA
+2066	ERBB4	Pelitinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	Pelitinib	NA	EKB-569	SML133	257933-82-7	NA
+2066	ERBB4	BMS-599626	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Reversible  small molecule inhibitor	NA	NA	BMS-599626	SML134	NA	NA
+2099	ESR1	Fulvestrant	Antagonist	Hormone therapy	Blocks estrogen activity through receptor	Fulvestrant	Faslodex	ICI 182780	SML135	129453-61-8	DB00947
+2224	FDPS	Zoledronate	NA	Osteoclast function modifiers (important in bone metastasis)	Farnesyl pyrophosphate	Zoledronate	Zometa	NA	SML136	118072-93-8	DB00399
+2224	FDPS	Etidronate	NA	Osteoclast function modifiers (important in bone metastasis)	Bisphosphonate- ATP requiring small molecule	Etidronate	Didronel	NA	SML137	7414-83-7	DB01077
+2224	FDPS	Alendronate	NA	Osteoclast function modifiers (important in bone metastasis)	Nitrogen containing bisphosphonate targets farnesyl pyrophosphate synthase	Alendronate	Fosamax	NA	SML138	66376-36-1	DB00630
+2260	FGFR1	Vargatef	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	Vargatef	BIBF 1120	SML139	NA	NA
+238	ALK	LDK378	Inhibitor	Anaplastic lymphoma kinase (ALK) inhibitor	Small molecule inhibitor	NA	NA	LDK378	SML14	NA	NA
+2260	FGFR1	XL228	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Multitargeted TKI	NA	NA	XL228	SML140	NA	NA
+2260	FGFR1	Dovitinib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	Dovitinib	NA	TKI-258	SML141	NA	NA
+2260	FGFR1	AZD4547	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	NA	NA	AZD4547	SML142	NA	NA
+2260	FGFR1	BGJ398	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	NA	NA	BGJ398	SML143	NA	NA
+2260	FGFR1	Ponatinib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	Ponatinib	AP24534	NA	SML144	NA	NA
+2263	FGFR2	Vargatef	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	Vargatef	BIBF 1120	SML145	NA	NA
+2263	FGFR2	Regorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Diphenylurea multikinase inhibitor	Regorafenib	NA	BAY 73-4506	SML146	NA	NA
+2263	FGFR2	Lenvatinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Lenvatinib	NA	E7080	SML147	NA	NA
+2263	FGFR2	XL999	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	NA	XL999	SML148	NA	NA
+2263	FGFR2	XL228	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Multitargeted TKI	NA	NA	XL228	SML149	NA	NA
+238	ALK	ASP3026	Inhibitor	Anaplastic lymphoma kinase (ALK) inhibitor	Small molecule inhibitor	NA	NA	ASP3026	SML15	NA	NA
+2263	FGFR2	Brivanib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule TKI	Brivanib	NA	BMS-582664	SML150	NA	NA
+2263	FGFR2	Dovitinib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	Dovitinib	NA	TKI-258	SML151	NA	NA
+2263	FGFR2	AZD4547	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	NA	NA	AZD4547	SML152	NA	NA
+2263	FGFR2	TSU-68	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	NA	NA	TSU-68	SML153	NA	NA
+2263	FGFR2	BGJ398	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	NA	NA	BGJ398	SML154	NA	NA
+2263	FGFR2	Ponatinib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	Ponatinib	AP24534	NA	SML155	NA	NA
+2261	FGFR3	Vargatef	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	Vargatef	BIBF 1120	SML156	NA	NA
+2261	FGFR3	XL228	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Multitargeted TKI	NA	NA	XL228	SML157	NA	NA
+2261	FGFR3	Dovitinib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	Dovitinib	NA	TKI-258	SML158	NA	NA
+2261	FGFR3	AZD4547	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	NA	NA	AZD4547	SML159	NA	NA
+285	ANGPT2	CVX-060	NA	Others	Anti-angiogenic COVXBody	NA	NA	CVX-060	SML16	NA	NA
+2261	FGFR3	BGJ398	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	NA	NA	BGJ398	SML160	NA	NA
+2261	FGFR3	Ponatinib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	Ponatinib	AP24534	NA	SML161	NA	NA
+2261	FGFR3	ENMD-0276	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	ENMD-0276	SML162	NA	NA
+2321	FLT1	Sunitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sunitinib	Sutent	SU 011248	SML163	557795-19-4	DB01268
+2321	FLT1	Pazopanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Pazopanib	Votrient	GW786034	SML164	NA	NA
+2321	FLT1	Cediranib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Cediranib	Recentin	AZD2171	SML165	NA	NA
+2321	FLT1	Motesanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Motesanib	NA	AMG706	SML166	NA	NA
+2321	FLT1	Vargatef	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	Vargatef	BIBF 1120	SML167	NA	NA
+2321	FLT1	Axitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Axitinib	NA	AG013736	SML168	NA	NA
+2321	FLT1	Vatalanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Vatalanib	NA	PTK787/ZK 222584	SML169	NA	NA
+290	ANPEP	NGR-hTNF	NA	Vascular disrupting agents (VDA)	CNGRC peptide-TNF   conjugate (NGR-hTNF is a first-in-class compound based on the combination of a tumor-homing peptide (NGR) with the human tumor necrosis factor (hTNF)	NA	NA	NGR-hTNF	SML17	NA	NA
+2321	FLT1	Tivozanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule inhibitor	Tivozanib	NA	AV-951	SML170	NA	NA
+2321	FLT1	Regorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Diphenylurea multikinase inhibitor	Regorafenib	NA	BAY 73-4506	SML171	NA	NA
+2321	FLT1	Lenvatinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Lenvatinib	NA	E7080	SML172	NA	NA
+2321	FLT1	MGCD265	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	MGCD265	SML173	NA	NA
+2322	FLT3	Sorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sorafenib	Nexavar	BAY 43-9006	SML174	284461-73-0	DB00398
+2322	FLT3	Sunitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sunitinib	Sutent	SU 011248	SML175	557795-19-4	DB01268
+2322	FLT3	XL999	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	NA	XL999	SML176	NA	NA
+2322	FLT3	Amuvatinib	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	Amuvatinib	NA	MP-470	SML177	NA	NA
+2322	FLT3	ENMD-0276	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	ENMD-0276	SML178	NA	NA
+2322	FLT3	AS703569	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AS703569	SML179	NA	NA
+290	ANPEP	Tosedostat	Inhibitor	Others	Small molecule aminopeptidase inhibitor	Tosedostat	NA	CHR-2797	SML18	NA	NA
+2324	FLT4	Sorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sorafenib	Nexavar	BAY 43-9006	SML180	284461-73-0	DB00398
+2324	FLT4	Sunitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sunitinib	Sutent	SU 011248	SML181	557795-19-4	DB01268
+2324	FLT4	Pazopanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Pazopanib	Votrient	GW786034	SML182	NA	NA
+2324	FLT4	Vandetanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Vandetanib	Zactima	ZD6474	SML183	NA	NA
+2324	FLT4	Cediranib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Cediranib	Recentin	AZD2171	SML184	NA	NA
+2324	FLT4	Motesanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Motesanib	NA	AMG706	SML185	NA	NA
+2324	FLT4	Vargatef	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	Vargatef	BIBF 1120	SML186	NA	NA
+2324	FLT4	Axitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Axitinib	NA	AG013736	SML187	NA	NA
+2324	FLT4	Tivozanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule inhibitor	Tivozanib	NA	AV-951	SML188	NA	NA
+2324	FLT4	Regorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Diphenylurea multikinase inhibitor	Regorafenib	NA	BAY 73-4506	SML189	NA	NA
+6790	AURKA	XL228	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Multitargeted TKI	NA	NA	XL228	SML19	NA	NA
+2324	FLT4	Lenvatinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Lenvatinib	NA	E7080	SML190	NA	NA
+2324	FLT4	Telatinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Telatinib	NA	BAY 57-9352	SML191	NA	NA
+2324	FLT4	MGCD265	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	MGCD265	SML192	NA	NA
+2335	FN1	1311-L19SIP	Antibody	Others	Human recombinant antibody (radioimmunotherapy)	1311-L19SIP	NA	NA	SML193	NA	NA
+2348	FOLR1	Epofolate	NA	Others	Folate conjugate of epothilone analog BMS-748265	Epofolate	NA	BMS-753493	SML194	NA	NA
+2936	GSR	NOV-002	NA	Others	Redox modulating agent	NA	NA	NOV-002	SML195	NA	NA
+2950	GSTP1	Canfosfamide HCl	NA	Others	Cancer cell-activated chemotherapeutic	Canfosfamide HCl	Telcyta	Canfosfamide hydrochloride,Canfosfamide HCl,Telcyta,TLK286	SML196	NA	NA
+3065	HDAC1	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML197	149647-78-9	DB02546
+3065	HDAC1	Romidepsin	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide (depsipeptide)	Romidepsin	Istodax	FK228	SML198	NA	NA
+3065	HDAC1	Entinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Benzamide derivative	Entinostat	NA	MS-275,SNDX-275	SML199	NA	NA
+25	ABL1	Imatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI	Imatinib	Gleevec	STI-571	SML2	152459-95-5	DB00619
+6790	AURKA	MLN 8237	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule serine/threonine protein kinase inhibitor	NA	NA	MLN 8237	SML20	NA	NA
+3065	HDAC1	Belinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Belinostat	NA	PXD 101	SML200	NA	NA
+3065	HDAC1	Pivanex	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	pivaloyloxymethyl butyrate	NA	pivaloyloxymethyl butyrate,AN-9,Pivanex	SML201	NA	NA
+3065	HDAC1	Valproic acid	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Valproic acid	Depakote	NA	SML202	99-66-1	DB00313
+3065	HDAC1	Sodium phenylbutyrate	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Sodium phenylbutyrate	NA	NA	SML203	NA	NA
+3065	HDAC1	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML204	NA	NA
+3065	HDAC1	PCI-24781	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide	NA	NA	PCI-24781	SML205	NA	NA
+3065	HDAC1	FK-228	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide (depsipeptide)	NA	NA	FK-228	SML206	NA	NA
+3065	HDAC1	CHR-3996	Inhibitor	Histone deacetylase (HDAC)inhibitors	Small molecule inhibitor	NA	NA	CHR-3996	SML207	NA	NA
+3065	HDAC1	Dacinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Dacinostat	NA	NVP-LAQ824	SML208	NA	NA
+3065	HDAC1	Givinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Givinostat	NA	ITF2357	SML209	NA	NA
+6790	AURKA	AT9283	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AT9283	SML21	NA	NA
+83933	HDAC10	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML210	149647-78-9	DB02546
+83933	HDAC10	Belinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Belinostat	NA	PXD 101	SML211	NA	NA
+83933	HDAC10	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML212	NA	NA
+83933	HDAC10	PCI-24781	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide	NA	NA	PCI-24781	SML213	NA	NA
+83933	HDAC10	Dacinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Dacinostat	NA	NVP-LAQ824	SML214	NA	NA
+83933	HDAC10	Givinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Givinostat	NA	ITF2357	SML215	NA	NA
+79885	HDAC11	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML216	149647-78-9	DB02546
+79885	HDAC11	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML217	NA	NA
+3066	HDAC2	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML218	149647-78-9	DB02546
+3066	HDAC2	Romidepsin	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide (depsipeptide)	Romidepsin	Istodax	FK228	SML219	NA	NA
+6790	AURKA	ENMD-0276	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	ENMD-0276	SML22	NA	NA
+3066	HDAC2	Entinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Benzamide derivative	Entinostat	NA	MS-275,SNDX-275	SML220	NA	NA
+3066	HDAC2	Belinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Belinostat	NA	PXD 101	SML221	NA	NA
+3066	HDAC2	Pivanex	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	pivaloyloxymethyl butyrate	NA	pivaloyloxymethyl butyrate,AN-9,Pivanex	SML222	NA	NA
+3066	HDAC2	Valproic acid	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Valproic acid	Depakote	NA	SML223	99-66-1	DB00313
+3066	HDAC2	Sodium phenylbutyrate	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Sodium phenylbutyrate	NA	NA	SML224	NA	NA
+3066	HDAC2	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML225	NA	NA
+3066	HDAC2	PCI-24781	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide	NA	NA	PCI-24781	SML226	NA	NA
+3066	HDAC2	FK-228	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide (depsipeptide)	NA	NA	FK-228	SML227	NA	NA
+3066	HDAC2	CHR-3996	Inhibitor	Histone deacetylase (HDAC)inhibitors	Small molecule inhibitor	NA	NA	CHR-3996	SML228	NA	NA
+3066	HDAC2	Dacinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Dacinostat	NA	NVP-LAQ824	SML229	NA	NA
+6790	AURKA	MK5108	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule inhibitor	NA	NA	MK5108	SML23	NA	NA
+3066	HDAC2	Givinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Givinostat	NA	ITF2357	SML230	NA	NA
+8841	HDAC3	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML231	149647-78-9	DB02546
+8841	HDAC3	Romidepsin	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide (depsipeptide)	Romidepsin	Istodax	FK228	SML232	NA	NA
+8841	HDAC3	Entinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Benzamide derivative	Entinostat	NA	MS-275,SNDX-275	SML233	NA	NA
+8841	HDAC3	Belinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Belinostat	NA	PXD 101	SML234	NA	NA
+8841	HDAC3	Pivanex	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	pivaloyloxymethyl butyrate	NA	pivaloyloxymethyl butyrate,AN-9,Pivanex	SML235	NA	NA
+8841	HDAC3	Valproic acid	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Valproic acid	Depakote	NA	SML236	99-66-1	DB00313
+8841	HDAC3	Sodium phenylbutyrate	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Sodium phenylbutyrate	NA	NA	SML237	NA	NA
+8841	HDAC3	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML238	NA	NA
+8841	HDAC3	PCI-24781	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide	NA	NA	PCI-24781	SML239	NA	NA
+6790	AURKA	AS703569	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AS703569	SML24	NA	NA
+8841	HDAC3	FK-228	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide (depsipeptide)	NA	NA	FK-228	SML240	NA	NA
+8841	HDAC3	CHR-3996	Inhibitor	Histone deacetylase (HDAC)inhibitors	Small molecule inhibitor	NA	NA	CHR-3996	SML241	NA	NA
+8841	HDAC3	Dacinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Dacinostat	NA	NVP-LAQ824	SML242	NA	NA
+8841	HDAC3	Givinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Givinostat	NA	ITF2357	SML243	NA	NA
+9759	HDAC4	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML244	149647-78-9	DB02546
+9759	HDAC4	Belinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Belinostat	NA	PXD 101	SML245	NA	NA
+9759	HDAC4	Pivanex	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	pivaloyloxymethyl butyrate	NA	pivaloyloxymethyl butyrate,AN-9,Pivanex	SML246	NA	NA
+9759	HDAC4	Valproic acid	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Valproic acid	Depakote	NA	SML247	99-66-1	DB00313
+9759	HDAC4	Sodium phenylbutyrate	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Sodium phenylbutyrate	NA	NA	SML248	NA	NA
+9759	HDAC4	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML249	NA	NA
+6790	AURKA	PF-03814735	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	ATP-competitive, reversible inhibitor	NA	NA	PF-03814735	SML25	NA	NA
+9759	HDAC4	PCI-24781	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide	NA	NA	PCI-24781	SML250	NA	NA
+9759	HDAC4	Dacinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Dacinostat	NA	NVP-LAQ824	SML251	NA	NA
+9759	HDAC4	Givinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Givinostat	NA	ITF2357	SML252	NA	NA
+10014	HDAC5	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML253	149647-78-9	DB02546
+10014	HDAC5	Belinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Belinostat	NA	PXD 101	SML254	NA	NA
+10014	HDAC5	Pivanex	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	pivaloyloxymethyl butyrate	NA	pivaloyloxymethyl butyrate,AN-9,Pivanex	SML255	NA	NA
+10014	HDAC5	Valproic acid	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Valproic acid	Depakote	NA	SML256	99-66-1	DB00313
+10014	HDAC5	Sodium phenylbutyrate	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Sodium phenylbutyrate	NA	NA	SML257	NA	NA
+10014	HDAC5	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML258	NA	NA
+10014	HDAC5	PCI-24781	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide	NA	NA	PCI-24781	SML259	NA	NA
+6790	AURKA	SN-314	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	ATP-competitive selective inhibitor	NA	NA	SN-314	SML26	NA	NA
+10014	HDAC5	Dacinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Dacinostat	NA	NVP-LAQ824	SML260	NA	NA
+10014	HDAC5	Givinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Givinostat	NA	ITF2357	SML261	NA	NA
+10013	HDAC6	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML262	149647-78-9	DB02546
+10013	HDAC6	Belinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Belinostat	NA	PXD 101	SML263	NA	NA
+10013	HDAC6	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML264	NA	NA
+10013	HDAC6	PCI-24781	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide	NA	NA	PCI-24781	SML265	NA	NA
+10013	HDAC6	Dacinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Dacinostat	NA	NVP-LAQ824	SML266	NA	NA
+10013	HDAC6	Givinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Givinostat	NA	ITF2357	SML267	NA	NA
+51564	HDAC7	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML268	149647-78-9	DB02546
+51564	HDAC7	Belinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Belinostat	NA	PXD 101	SML269	NA	NA
+6790	AURKA	AMG900	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule inhibitor	NA	NA	AMG900	SML27	NA	NA
+51564	HDAC7	Pivanex	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	pivaloyloxymethyl butyrate	NA	pivaloyloxymethyl butyrate,AN-9,Pivanex	SML270	NA	NA
+51564	HDAC7	Valproic acid	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Valproic acid	Depakote	NA	SML271	99-66-1	DB00313
+51564	HDAC7	Sodium phenylbutyrate	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Sodium phenylbutyrate	NA	NA	SML272	NA	NA
+51564	HDAC7	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML273	NA	NA
+51564	HDAC7	PCI-24781	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide	NA	NA	PCI-24781	SML274	NA	NA
+51564	HDAC7	Dacinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Dacinostat	NA	NVP-LAQ824	SML275	NA	NA
+51564	HDAC7	Givinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Givinostat	NA	ITF2357	SML276	NA	NA
+55869	HDAC8	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML277	149647-78-9	DB02546
+55869	HDAC8	Romidepsin	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide (depsipeptide)	Romidepsin	Istodax	FK228	SML278	NA	NA
+55869	HDAC8	Entinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Benzamide derivative	Entinostat	NA	MS-275,SNDX-275	SML279	NA	NA
+6790	AURKA	TAK901	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule inhibitor	NA	TAK901	NA	SML28	NA	NA
+55869	HDAC8	Belinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Belinostat	NA	PXD 101	SML280	NA	NA
+55869	HDAC8	Pivanex	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	pivaloyloxymethyl butyrate	NA	pivaloyloxymethyl butyrate,AN-9,Pivanex	SML281	NA	NA
+55869	HDAC8	Valproic acid	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Valproic acid	Depakote	NA	SML282	99-66-1	DB00313
+55869	HDAC8	Sodium phenylbutyrate	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Sodium phenylbutyrate	NA	NA	SML283	NA	NA
+55869	HDAC8	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML284	NA	NA
+55869	HDAC8	PCI-24781	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide	NA	NA	PCI-24781	SML285	NA	NA
+55869	HDAC8	FK-228	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide (depsipeptide)	NA	NA	FK-228	SML286	NA	NA
+55869	HDAC8	CHR-3996	Inhibitor	Histone deacetylase (HDAC)inhibitors	Small molecule inhibitor	NA	NA	CHR-3996	SML287	NA	NA
+55869	HDAC8	Dacinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Dacinostat	NA	NVP-LAQ824	SML288	NA	NA
+55869	HDAC8	Givinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Givinostat	NA	ITF2357	SML289	NA	NA
+6790	AURKA	Tozasertib	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule serine/threonine protein kinase inhibitor	Tozasertib	NA	MK0457	SML29	NA	NA
+9734	HDAC9	Vorinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid-type	Vorinostat	Zolinza	MK-0683,SAHA	SML290	149647-78-9	DB02546
+9734	HDAC9	Belinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Belinostat	NA	PXD 101	SML291	NA	NA
+9734	HDAC9	Pivanex	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	pivaloyloxymethyl butyrate	NA	pivaloyloxymethyl butyrate,AN-9,Pivanex	SML292	NA	NA
+9734	HDAC9	Valproic acid	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Valproic acid	Depakote	NA	SML293	99-66-1	DB00313
+9734	HDAC9	Sodium phenylbutyrate	Inhibitor	Histone deacetylase (HDAC)inhibitors	Aliphatic acid	Sodium phenylbutyrate	NA	NA	SML294	NA	NA
+9734	HDAC9	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML295	NA	NA
+9734	HDAC9	SB939	Inhibitor	Histone deacetylase (HDAC)inhibitors	Small molecule HDAC inhibitor	NA	NA	SB939	SML296	NA	NA
+9734	HDAC9	CUDC-101	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid	NA	NA	CUDC-101	SML297	NA	NA
+9734	HDAC9	PCI-24781	Inhibitor	Histone deacetylase (HDAC)inhibitors	Cyclic tetrapeptide	NA	NA	PCI-24781	SML298	NA	NA
+9734	HDAC9	Dacinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Dacinostat	NA	NVP-LAQ824	SML299	NA	NA
+25	ABL1	Saracatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI of SRC-family binds the active conformation of the ATP-binding pocket	Saracatinib	NA	AZD 0530	SML3	NA	NA
+6790	AURKA	CYC116	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule inhibitor	NA	NA	CYC116	SML30	NA	NA
+9734	HDAC9	Givinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid derivative	Givinostat	NA	ITF2357	SML300	NA	NA
+3082	HGF	Rilotumumab	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Human IgG2 MoAb	Rilotumumab	NA	AMG 102	SML301	NA	NA
+3082	HGF	Ficlatuzumab	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Humanized IgG1 MoAb	Ficlatuzumab	NA	AV-299,SCH900105	SML302	NA	NA
+3091	HIF1A	PX-478	Inhibitor	Hypoxia-inducible factor-1 (HIF-1) inhibitor	Small molecule inhibitor	NA	NA	PX-478	SML303	NA	NA
+3091	HIF1A	EZN-2968	Inhibitor	Hypoxia-inducible factor-1 (HIF-1) inhibitor	Hypoxia-inducible factor-1 ë± (HIF- 1ë± ) messenger ribonucleic acid(mRNA) antagonist	NA	NA	EZN-2968	SML304	NA	NA
+3265	HRAS	ISIS 2503	Antisense oligonucleotide	Others	Antisense oligonucleotide	NA	NA	ISIS 2503	SML305	NA	NA
+3320	HSP90AA1	Retaspimycin	Inhibitor	Epigenetic modulators of gene expression or protein degradation Heat shock protein (HSP)-90 inhibitors	Water-soluble geldanamycin derivative	Retaspimycin	NA	IPI-504	SML306	NA	NA
+3320	HSP90AA1	Ganetespib	Inhibitor	Epigenetic modulators of gene expression or protein degradation Heat shock protein (HSP)-90 inhibitors	Small molecule inhibitor (nongeldanamycin)	Ganetespib	NA	STA-9090	SML307	NA	NA
+3320	HSP90AA1	AUY922	Inhibitor	Epigenetic modulators of gene expression or protein degradation Heat shock protein (HSP)-90 inhibitors	Isoxazole-based compound (nongeldanamycin)	NA	NA	AUY922	SML308	NA	NA
+3320	HSP90AA1	Alvespimycin	Inhibitor	Epigenetic modulators of gene expression or protein degradation Heat shock protein (HSP)-90 inhibitors	Benzoquinone antineoplastic antibiotic	Alvespimycin	NA	KOS-1022,17-DMAG	SML309	NA	NA
+9212	AURKB	AZD 1152	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule inhibitor	NA	NA	AZD 1152	SML31	NA	NA
+3320	HSP90AA1	Tanespimycin	Inhibitor	Epigenetic modulators of gene expression or protein degradation Heat shock protein (HSP)-90 inhibitors	Benzoquinone antineoplastic antibiotic	Tanespimycin	NA	KOS-953,17-AAG	SML310	NA	NA
+3480	IGF1R	XL228	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Multitargeted TKI	NA	NA	XL228	SML311	NA	NA
+3480	IGF1R	Figitumumab	Inhibitor	Insulin growth factor-1 receptor (IGF-1R) inhibitor	IgG2 type human MoAb	Figitumumab	NA	CP-751871	SML312	NA	NA
+3480	IGF1R	OSI906	Inhibitor	Insulin growth factor-1 receptor (IGF-1R) inhibitor	Small molecule inhibitor	NA	NA	OSI906	SML313	NA	NA
+3480	IGF1R	AMG 479	Inhibitor	Insulin growth factor-1 receptor (IGF-1R) inhibitor	IgG1 type human MoAb	NA	NA	AMG 479	SML314	NA	NA
+3480	IGF1R	Cixutumumab	Inhibitor	Insulin growth factor-1 receptor (IGF-1R) inhibitor	IgG1 type human MoAb	Cixutumumab	NA	IMC-A12	SML315	NA	NA
+3480	IGF1R	Dalotuzumab	Inhibitor	Insulin growth factor-1 receptor (IGF-1R) inhibitor	IgG1 type humanized  MoAb	Dalotuzumab	NA	MK-0646	SML316	NA	NA
+3480	IGF1R	BIIB022	Inhibitor	Insulin growth factor-1 receptor (IGF-1R) inhibitor	Human nonglycosylated IgG4 MoAb	NA	NA	BIIB022	SML317	NA	NA
+3480	IGF1R	BMS-754807	Inhibitor	Insulin growth factor-1 receptor (IGF-1R) inhibitor	Small molecule reversible inhibitor	NA	NA	BMS-754807	SML318	NA	NA
+3480	IGF1R	AVE1642	Inhibitor	Insulin growth factor-1 receptor (IGF-1R) inhibitor	Humanized MoAb	NA	NA	AVE1642	SML319	NA	NA
+9212	AURKB	AT9283	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AT9283	SML32	NA	NA
+3480	IGF1R	R1507	Inhibitor	Insulin growth factor-1 receptor (IGF-1R) inhibitor	IgG1 type human MoAb	NA	NA	R1507	SML320	NA	NA
+3480	IGF1R	Robatumumab	Inhibitor	Insulin growth factor-1 receptor (IGF-1R) inhibitor	IgG1 type human MoAb	Robatumumab	NA	SCH717454	SML321	NA	NA
+3558	IL2	MVA-MUC1-IL2	Vaccine	Vaccines	Modified vaccinia Ankara virus vector with Muc1 and IL-2 sequences	MVA-MUC1-IL2	NA	TG 4010	SML322	NA	NA
+3569	IL6	ALD518	Antibody	Others	Anti-IL-6 antibody	NA	NA	ALD518	SML323	NA	NA
+3678	ITGA5	Volociximab	Antibody	Integrins	Chimeric MoAb	Volociximab	NA	M200	SML324	NA	NA
+3678	ITGA5	PF-04605412	Antibody	Integrins	Human IgG1 MOAb	NA	NA	PF-04605412	SML325	NA	NA
+3678	ITGA5	Vitaxin	Antibody	Integrins	Humanized IgG1 MoAb	Vitaxin	NA	MEDI-522	SML326	NA	NA
+3685	ITGAV	Cilengitide	NA	Integrins	Cyclic peptide	Cilengitide	NA	EMD121974	SML327	NA	NA
+3685	ITGAV	L-000845704	Antagonist	Osteoclast function modifiers (important in bone metastasis)	Integrin antagonist decreases bone resorption	NA	NA	L-000845704	SML328	NA	NA
+3688	ITGB1	Volociximab	Antibody	Integrins	Chimeric MoAb	Volociximab	NA	M200	SML329	NA	NA
+9212	AURKB	Danusertib	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small-molecule 3-aminopyrazole inhibitor	Danusertib	NA	PHA739358	SML33	NA	NA
+3688	ITGB1	PF-04605412	Antibody	Integrins	Human IgG1 MOAb	NA	NA	PF-04605412	SML330	NA	NA
+3688	ITGB1	Vitaxin	Antibody	Integrins	Humanized IgG1 MoAb	Vitaxin	NA	MEDI-522	SML331	NA	NA
+3690	ITGB3	Cilengitide	NA	Integrins	Cyclic peptide	Cilengitide	NA	EMD121974	SML332	NA	NA
+3690	ITGB3	L-000845704	Antagonist	Osteoclast function modifiers (important in bone metastasis)	Integrin antagonist decreases bone resorption	NA	NA	L-000845704	SML333	NA	NA
+3693	ITGB5	Cilengitide	NA	Integrins	Cyclic peptide	Cilengitide	NA	EMD121974	SML334	NA	NA
+3717	JAK2	AT9283	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AT9283	SML335	NA	NA
+3717	JAK2	AZD1480	Inhibitor	Others	Small molecule inhibitor	NA	NA	AZD1480	SML336	NA	NA
+3718	JAK3	AT9283	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AT9283	SML337	NA	NA
+3791	KDR	BMS-690514	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Small molecule TKI	NA	NA	BMS-690514,EVR1	SML338	859853-30-8	NA
+3791	KDR	Sorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sorafenib	Nexavar	BAY 43-9006	SML339	284461-73-0	DB00398
+9212	AURKB	GSK1070916	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	ATP-competitive inhibitor	NA	NA	GSK1070916	SML34	NA	NA
+3791	KDR	Sunitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sunitinib	Sutent	SU 011248	SML340	557795-19-4	DB01268
+3791	KDR	Pazopanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Pazopanib	Votrient	GW786034	SML341	NA	NA
+3791	KDR	Vandetanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Vandetanib	Zactima	ZD6474	SML342	NA	NA
+3791	KDR	Cediranib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Cediranib	Recentin	AZD2171	SML343	NA	NA
+3791	KDR	Motesanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Motesanib	NA	AMG706	SML344	NA	NA
+3791	KDR	Neovastat	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Natural product from shark cartilage	Neovastat	NA	AE941	SML345	NA	NA
+3791	KDR	Vargatef	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	Vargatef	BIBF 1120	SML346	NA	NA
+3791	KDR	Ramucirumab	Inhibitor	Platelet-derived growth factoralfa   (PDGFR ë±) inhibitors	Human IgG1 MoAb	Ramucirumab	NA	IMC-3G3	SML347	NA	NA
+3791	KDR	Axitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Axitinib	NA	AG013736	SML348	NA	NA
+3791	KDR	Vatalanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Vatalanib	NA	PTK787/ZK 222584	SML349	NA	NA
+9212	AURKB	AS703569	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AS703569	SML35	NA	NA
+3791	KDR	Tivozanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule inhibitor	Tivozanib	NA	AV-951	SML350	NA	NA
+3791	KDR	Linifanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Linifanib	NA	ABT-869	SML351	NA	NA
+3791	KDR	Cabozantinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Cabozantinib	NA	XL184	SML352	NA	NA
+3791	KDR	Regorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Diphenylurea multikinase inhibitor	Regorafenib	NA	BAY 73-4506	SML353	NA	NA
+3791	KDR	Lenvatinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Lenvatinib	NA	E7080	SML354	NA	NA
+3791	KDR	XL647	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Irreversible small molecule TKI	NA	NA	XL647	SML355	NA	NA
+3791	KDR	CT-322	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Adnectin(Fibronectin based small protein)	NA	NA	CT-322	SML356	NA	NA
+3791	KDR	Foretinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Foretinib	NA	GSK1363089,XL880	SML357	NA	NA
+3791	KDR	AEE 788	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Irreversible small molecule TKI	NA	NA	AEE 788	SML358	NA	NA
+3791	KDR	XL820	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	NA	XL820	SML359	NA	NA
+9212	AURKB	PF-03814735	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	ATP-competitive, reversible inhibitor	NA	NA	PF-03814735	SML36	NA	NA
+3791	KDR	XL999	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	NA	XL999	SML360	NA	NA
+3791	KDR	Telatinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Telatinib	NA	BAY 57-9352	SML361	NA	NA
+3791	KDR	Brivanib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule TKI	Brivanib	NA	BMS-582664	SML362	NA	NA
+3791	KDR	Dovitinib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	Dovitinib	NA	TKI-258	SML363	NA	NA
+3791	KDR	TSU-68	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	NA	NA	TSU-68	SML364	NA	NA
+3791	KDR	MGCD265	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	MGCD265	SML365	NA	NA
+3791	KDR	ENMD-0276	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	ENMD-0276	SML366	NA	NA
+3791	KDR	Vadimezan	NA	Vascular disrupting agents (VDA)	Small molecule VDA	Vadimezan	NA	ASA404	SML367	NA	NA
+3832	KIF11	Ispinesib	Inhibitor	Kinesin protein inhibitors	KSP inhibitor	Ispinesib	NA	SB-715992	SML368	NA	NA
+3832	KIF11	LY-2523355	Inhibitor	Kinesin protein inhibitors	Allosteric inhibitor of Eg5	NA	NA	LY-2523355	SML369	NA	NA
+9212	AURKB	SN-314	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	ATP-competitive selective inhibitor	NA	NA	SN-314	SML37	NA	NA
+3832	KIF11	SB-743921	Inhibitor	Kinesin protein inhibitors	KSP inhibitor	NA	NA	SB-743921	SML370	NA	NA
+3832	KIF11	ARRY-520	Inhibitor	Kinesin protein inhibitors	KSP inhibitor	NA	NA	ARRY-520	SML371	NA	NA
+3832	KIF11	MK0731	Inhibitor	Kinesin protein inhibitors	KSP inhibitor	NA	NA	MK0731	SML372	NA	NA
+3832	KIF11	ARQ-621	Inhibitor	Kinesin protein inhibitors	Allosteric inhibitor of Eg5	NA	NA	ARQ-621	SML373	NA	NA
+3832	KIF11	AZD4877	Inhibitor	Kinesin protein inhibitors	KSP inhibitor	NA	NA	AZD4877	SML374	NA	NA
+3815	KIT	Sorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sorafenib	Nexavar	BAY 43-9006	SML375	284461-73-0	DB00398
+3815	KIT	Sunitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sunitinib	Sutent	SU 011248	SML376	557795-19-4	DB01268
+3815	KIT	Pazopanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Pazopanib	Votrient	GW786034	SML377	NA	NA
+3815	KIT	Cediranib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Cediranib	Recentin	AZD2171	SML378	NA	NA
+3815	KIT	Motesanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Motesanib	NA	AMG706	SML379	NA	NA
+9212	AURKB	AMG900	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule inhibitor	NA	NA	AMG900	SML38	NA	NA
+3815	KIT	Axitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Axitinib	NA	AG013736	SML380	NA	NA
+3815	KIT	Vatalanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Vatalanib	NA	PTK787/ZK 222584	SML381	NA	NA
+3815	KIT	Regorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Diphenylurea multikinase inhibitor	Regorafenib	NA	BAY 73-4506	SML382	NA	NA
+3815	KIT	XL820	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	NA	XL820	SML383	NA	NA
+3815	KIT	Telatinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Telatinib	NA	BAY 57-9352	SML384	NA	NA
+3815	KIT	Dasatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI of SRCfamily	Dasatinib	Sprycel	BMS-354825	SML385	302962-49-8	DB01254
+3815	KIT	Imatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI	Imatinib	Gleevec	STI-571	SML386	152459-95-5	DB00619
+3815	KIT	Amuvatinib	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	Amuvatinib	NA	MP-470	SML387	NA	NA
+3815	KIT	AS703569	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AS703569	SML388	NA	NA
+3845	KRAS	Ras peptide cancer vaccine	Vaccine	Vaccines	unknown	Ras peptide cancer vaccine	NA	NA	SML389	NA	NA
+9212	AURKB	Tozasertib	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule serine/threonine protein kinase inhibitor	Tozasertib	NA	MK0457	SML39	NA	NA
+4067	LYN	AS703569	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AS703569	SML390	NA	NA
+4111	MAGEA12	MAGE-12 peptide vaccine (emulsified inMontanide ISA-51)	Vaccine	Vaccines	Peptide vaccine	MAGE-12 peptide vaccine (emulsified inMontanide ISA-51)	NA	NA	SML391	NA	NA
+4101	MAGEA2	EP-2101	Vaccine	Vaccines	Multiepitope DNA vaccine, emulsified in montanide ISA-51	NA	NA	EP-2101	SML392	NA	NA
+4102	MAGEA3	GSK1572932A	Vaccine	Vaccines	Antigen-specific cancer immunotherapeutic	NA	NA	GSK1572932A	SML393	NA	NA
+4102	MAGEA3	Astuprotimut-R	Vaccine	Vaccines	Antigen-specific cancer immunotherapeutic	Astuprotimut-R	NA	GSK 249553	SML394	NA	NA
+4102	MAGEA3	EP-2101	Vaccine	Vaccines	Multiepitope DNA vaccine, emulsified in montanide ISA-51	NA	NA	EP-2101	SML395	NA	NA
+5604	MAP2K1	Sorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sorafenib	Nexavar	BAY 43-9006	SML396	284461-73-0	DB00398
+5604	MAP2K1	Selumetinib	Inhibitor	Mitogen-activated protein/extracellular signal-regulated kinase (MEK) inhibitors	ATP uncompetitive inhibitor	Selumetinib	NA	AZD6244,ARRY142880	SML397	NA	NA
+5604	MAP2K1	AS-703026	Inhibitor	Mitogen-activated protein/extracellular signal-regulated kinase (MEK) inhibitors	Noncompetitive small molecule inhibitor	NA	NA	AS 703026,MSC1936369B	SML398	NA	NA
+5604	MAP2K1	RDEA119	Inhibitor	Mitogen-activated protein/extracellular signal-regulated kinase (MEK) inhibitors	Allosteric inhibitor	NA	NA	RDEA119,BAY 869766	SML399	NA	NA
+25	ABL1	Bosutinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	4-anilino-3- quinolinecarbonitrile dual Src/Abl kinase inhibitor	Bosutinib	NA	SKI-606	SML4	NA	NA
+9212	AURKB	CYC116	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule inhibitor	NA	NA	CYC116	SML40	NA	NA
+5604	MAP2K1	GSK1120212	Inhibitor	Mitogen-activated protein/extracellular signal-regulated kinase (MEK) inhibitors	Allosteric small molecule inhibitor	NA	NA	GSK1120212	SML400	NA	NA
+5604	MAP2K1	PD325901	Inhibitor	Mitogen-activated protein/extracellular signal-regulated kinase (MEK) inhibitors	Small molecule inhibitor	NA	NA	PD325901	SML401	NA	NA
+5604	MAP2K1	AZD8330	Inhibitor	Mitogen-activated protein/extracellular signal-regulated kinase (MEK) inhibitors	Small molecule inhibitor	NA	NA	AZD8330	SML402	NA	NA
+5604	MAP2K1	GDC-0973	Inhibitor	Mitogen-activated protein/extracellular signal-regulated kinase (MEK) inhibitors	Small molecule inhibitor	NA	NA	GDC-0973,XL518,XL-518	SML403	NA	NA
+10461	MERTK	AT9283	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AT9283	SML404	NA	NA
+4233	MET	Cabozantinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Cabozantinib	NA	XL184	SML405	NA	NA
+4233	MET	Foretinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Foretinib	NA	GSK1363089,XL880	SML406	NA	NA
+4233	MET	Crizotinib	Inhibitor	Anaplastic lymphoma kinase (ALK) inhibitor	Dual small molecule ATPcompetitive inhibitor	Crizotinib	NA	PF-02341066	SML407	NA	NA
+4233	MET	ARQ197	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	ARQ197	SML408	NA	NA
+4233	MET	MetMab	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Monovalent MoAb	MetMab	NA	RG3638	SML409	NA	NA
+6795	AURKC	GSK1070916	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	ATP-competitive inhibitor	NA	NA	GSK1070916	SML41	NA	NA
+4233	MET	Amuvatinib	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	Amuvatinib	NA	MP-470	SML410	NA	NA
+4233	MET	MGCD265	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	MGCD265	SML411	NA	NA
+4233	MET	AMG 208	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	AMG 208	SML412	NA	NA
+4233	MET	MK2461	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	MK2461	SML413	NA	NA
+4233	MET	LY2875358	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	IgG4 MoAb	NA	NA	LY2875358	SML414	NA	NA
+4233	MET	PF-4217903	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	PF-4217903	SML415	NA	NA
+4233	MET	BMS777607	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	BMS777607	SML416	NA	NA
+4233	MET	INCB28060	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	INCB28060	SML417	NA	NA
+4233	MET	JNJ38877605	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	JNJ38877605	SML418	NA	NA
+4233	MET	SGX523	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Selective small molecule inhibitor	NA	NA	SGX523	SML419	NA	NA
+6795	AURKC	SN-314	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	ATP-competitive selective inhibitor	NA	NA	SN-314	SML42	NA	NA
+4240	MFGE8	Monoclonal antibody11D10 anti-idiotype vaccine	Vaccine	Vaccines	MoAb against an idiotype that mimics a human milk fat globule (HMFG) membrane epitope	Monoclonal antibody11D10 anti-idiotype vaccine	NA	NA	SML420	NA	NA
+4321	MMP12	Neovastat	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Natural product from shark cartilage	Neovastat	NA	AE941	SML421	NA	NA
+4322	MMP13	Prinomastat	Vaccine	Vaccines	Small molecule,nonpeptidic,hydroxymate matrix metalloproteinase (MMP) inhibitor	Prinomastat	NA	AG3340	SML422	NA	NA
+4323	MMP14	Prinomastat	Vaccine	Vaccines	Small molecule,nonpeptidic,hydroxymate matrix metalloproteinase (MMP) inhibitor	Prinomastat	NA	AG3340	SML423	NA	NA
+4313	MMP2	Neovastat	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Natural product from shark cartilage	Neovastat	NA	AE941	SML424	NA	NA
+4313	MMP2	Prinomastat	Vaccine	Vaccines	Small molecule,nonpeptidic,hydroxymate matrix metalloproteinase (MMP) inhibitor	Prinomastat	NA	AG3340	SML425	NA	NA
+4313	MMP2	S-3304	Vaccine	Vaccines	Noncytotoxic inhibitor of matrix metalloproteinase (MMP)	NA	NA	S-3304	SML426	NA	NA
+4314	MMP3	Prinomastat	Vaccine	Vaccines	Small molecule,nonpeptidic,hydroxymate matrix metalloproteinase (MMP) inhibitor	Prinomastat	NA	AG3340	SML427	NA	NA
+4318	MMP9	Neovastat	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Natural product from shark cartilage	Neovastat	NA	AE941	SML428	NA	NA
+4318	MMP9	Prinomastat	Vaccine	Vaccines	Small molecule,nonpeptidic,hydroxymate matrix metalloproteinase (MMP) inhibitor	Prinomastat	NA	AG3340	SML429	NA	NA
+6795	AURKC	AMG900	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule inhibitor	NA	NA	AMG900	SML43	NA	NA
+4318	MMP9	S-3304	Vaccine	Vaccines	Noncytotoxic inhibitor of matrix metalloproteinase (MMP)	NA	NA	S-3304	SML430	NA	NA
+4486	MST1R	Foretinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Foretinib	NA	GSK1363089,XL880	SML431	NA	NA
+4486	MST1R	MGCD265	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	MGCD265	SML432	NA	NA
+2475	MTOR	Ridaforolimus	Inhibitor	Mammalian target of rapamycin (mTOR) inhibitors	Small molecule serine/threonine kinase inhibitor	Ridaforolimus	NA	AP-23573	SML433	NA	NA
+2475	MTOR	NVP-BGT226	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Dual small molecule inhibitor	NA	NA	NVP-BGT226	SML434	NA	NA
+2475	MTOR	PX-866	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Irreversible small molecule inhibitor (Wortmanin analog)	NA	NA	PX-866	SML435	NA	NA
+2475	MTOR	XL765	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Dual selective oral inhibitor	NA	NA	XL765	SML436	NA	NA
+4582	MUC1	BLP25 Liposome vaccine Stimuvax	Vaccine	Vaccines	Synthetic peptide derived from the mucin 1 (Muc-1) antigen	BLP25 Liposome vaccine Stimuvax	NA	NA	SML437	NA	NA
+4582	MUC1	MVA-MUC1-IL2	Vaccine	Vaccines	Modified vaccinia Ankara virus vector with Muc1 and IL-2 sequences	MVA-MUC1-IL2	NA	TG 4010	SML438	NA	NA
+4671	NAIP	AEG40826	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	HGS1029,AEG40826	SML439	NA	NA
+6795	AURKC	Tozasertib	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule serine/threonine protein kinase inhibitor	Tozasertib	NA	MK0457	SML44	NA	NA
+4671	NAIP	TL 32711	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	TL 32711	SML440	NA	NA
+4671	NAIP	GDC0917	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule peptide Smac mimetic	NA	NA	GDC0917	SML441	NA	NA
+4671	NAIP	LCL161	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	LCL161	SML442	NA	NA
+4914	NTRK1	AZD 6918	Inhibitor	Others	Small molecule inhibitor	NA	NA	AZD 6918	SML443	NA	NA
+142	PARP1	Iniparib	Inhibitor	Poly(ADPRIBOSE) polymerase (PARP) inhibitors	Small lipophilic molecule inhibitor	Iniparib	NA	BSI-201	SML444	NA	NA
+142	PARP1	AG014699	Inhibitor	Poly(ADPRIBOSE) polymerase (PARP) inhibitors	Small molecule inhibitor	NA	NA	AG014699	SML445	NA	NA
+142	PARP1	Veliparib	Inhibitor	Poly(ADPRIBOSE) polymerase (PARP) inhibitors	Small molecule inhibitor	Veliparib	NA	ABT 888	SML446	NA	NA
+142	PARP1	Olaparib	Inhibitor	Poly(ADPRIBOSE) polymerase (PARP) inhibitors	Small molecule inhibitor	Olaparib	NA	AZD2281	SML447	NA	NA
+142	PARP1	MK4827	Inhibitor	Poly(ADPRIBOSE) polymerase (PARP) inhibitors	Small molecule inhibitor	NA	NA	MK4827	SML448	NA	NA
+10038	PARP2	Veliparib	Inhibitor	Poly(ADPRIBOSE) polymerase (PARP) inhibitors	Small molecule inhibitor	Veliparib	NA	ABT 888	SML449	NA	NA
+6795	AURKC	CYC116	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Small molecule inhibitor	NA	NA	CYC116	SML45	NA	NA
+5133	PDCD1	MDX-1106	Antibody	Immunomodulatory agents	Human IgG4 MoAb	NA	NA	MDX-1106,BMS936558,ONO4538	SML450	NA	NA
+5156	PDGFRA	Pazopanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Pazopanib	Votrient	GW786034	SML451	NA	NA
+5156	PDGFRA	Vargatef	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	Vargatef	BIBF 1120	SML452	NA	NA
+5156	PDGFRA	Ramucirumab	Inhibitor	Platelet-derived growth factoralfa   (PDGFR ë±) inhibitors	Human IgG1 MoAb	Ramucirumab	NA	IMC-3G3	SML453	NA	NA
+5156	PDGFRA	MEDI-575	Inhibitor	Platelet-derived growth factoralfa   (PDGFR ë±) inhibitors	MoAb	NA	NA	MEDI-575	SML454	NA	NA
+5159	PDGFRB	Sorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sorafenib	Nexavar	BAY 43-9006	SML455	284461-73-0	DB00398
+5159	PDGFRB	Sunitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sunitinib	Sutent	SU 011248	SML456	557795-19-4	DB01268
+5159	PDGFRB	Pazopanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Pazopanib	Votrient	GW786034	SML457	NA	NA
+5159	PDGFRB	Cediranib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Cediranib	Recentin	AZD2171	SML458	NA	NA
+5159	PDGFRB	Motesanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Motesanib	NA	AMG706	SML459	NA	NA
+596	BCL2	Navitoclax	Inhibitor	BCL-2 inhibitors	Small molecule inhibitor (ABT- 263 is orally bioavailable)	Navitoclax	NA	ABT-263,ABT-737	SML46	NA	NA
+5159	PDGFRB	Vargatef	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	Vargatef	BIBF 1120	SML460	NA	NA
+5159	PDGFRB	Axitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Axitinib	NA	AG013736	SML461	NA	NA
+5159	PDGFRB	Vatalanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Vatalanib	NA	PTK787/ZK 222584	SML462	NA	NA
+5159	PDGFRB	Linifanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Linifanib	NA	ABT-869	SML463	NA	NA
+5159	PDGFRB	Regorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Diphenylurea multikinase inhibitor	Regorafenib	NA	BAY 73-4506	SML464	NA	NA
+5159	PDGFRB	XL820	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	NA	XL820	SML465	NA	NA
+5159	PDGFRB	XL999	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	NA	XL999	SML466	NA	NA
+5159	PDGFRB	Telatinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Telatinib	NA	BAY 57-9352	SML467	NA	NA
+5159	PDGFRB	Dasatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI of SRCfamily	Dasatinib	Sprycel	BMS-354825	SML468	302962-49-8	DB01254
+5159	PDGFRB	Imatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI	Imatinib	Gleevec	STI-571	SML469	152459-95-5	DB00619
+596	BCL2	Oblimersen	Inhibitor	BCL-2 inhibitors	Antisense oligodeoxyribonucleotide	Oblimersen	Genasense	G3139	SML47	NA	NA
+5159	PDGFRB	Dovitinib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	Dovitinib	NA	TKI-258	SML470	NA	NA
+5159	PDGFRB	TSU-68	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	NA	NA	TSU-68	SML471	NA	NA
+5159	PDGFRB	Amuvatinib	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	Amuvatinib	NA	MP-470	SML472	NA	NA
+5281	PIGF	Aflibercept	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Fusion protein of extracellular domain portions from VEGFR-1 and VEGFR-2 combined with Fc of human IgG	Aflibercept	Zaltrap	VEGF-TRAP,AVE0005	SML473	NA	NA
+5290	PIK3CA	BEZ235	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Small molecule inhibitor	NA	NA	BEZ235	SML474	NA	NA
+5290	PIK3CA	BKM120	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Small molecule ATP-competitive inhibitor	NA	NA	BKM120	SML475	NA	NA
+5290	PIK3CA	XL147	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Small molecule inhibitor	NA	NA	XL147	SML476	NA	NA
+5290	PIK3CA	NVP-BGT226	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Dual small molecule inhibitor	NA	NA	NVP-BGT226	SML477	NA	NA
+5290	PIK3CA	PX-866	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Irreversible small molecule inhibitor (Wortmanin analog)	NA	NA	PX-866	SML478	NA	NA
+5290	PIK3CA	GDC-0941	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Small molecule inhibitor	NA	NA	GDC-0941	SML479	NA	NA
+596	BCL2	Obatoclax	Inhibitor	BCL-2 inhibitors	Small molecule inhibitor	Obatoclax	NA	GX15-070	SML48	NA	NA
+5290	PIK3CA	PF-04691502	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Dual small molecule inhibitor	NA	NA	PF-04691502	SML480	NA	NA
+5290	PIK3CA	XL765	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Dual selective oral inhibitor	NA	NA	XL765	SML481	NA	NA
+23761	PISD	Bavituximab	Antibody	Others	Chimeric IgG1 MoAb	Bavituximab	Tarvacin	UNII-Q16CT95N25 3G4	SML482	NA	NA
+5347	PLK1	BI-2536	Inhibitor	Polo-like kinase inhibitor	ATP-competitive small molecule inhibitor	NA	NA	BI-2536	SML483	NA	NA
+5347	PLK1	Volasertib	Inhibitor	Polo-like kinase inhibitor	Dihydropteridinone derivative (binds to ATP-binding pocket)	Volasertib	NA	BI-6727	SML484	NA	NA
+5347	PLK1	GSK461364	Inhibitor	Polo-like kinase inhibitor	ATP-competitive inhibitor	NA	NA	GSK461364	SML485	NA	NA
+5347	PLK1	NMS1286937	Inhibitor	Polo-like kinase inhibitor	Small molecule inhibitor	NA	NA	NMS1286937	SML486	NA	NA
+5465	PPARA	Iloprost	NA	Others	Oral PGI2 (prostacyclin) analogue	Iloprost	Ventavis	Iloprost,Ventavis,ACT-213105	SML487	78919-13-8	DB01088
+5468	PPARG	Efatutazone	Agonist	Others	PPAR ë_, agonist	Efatutazone	NA	CS-7017,RS5444	SML488	NA	NA
+5578	PRKCA	Affinitac	Antisense oligonucleotide	Others	Antisense oligonucleotide	Affinitac	NA	NA	SML489	NA	NA
+596	BCL2	AT-101	Inhibitor	BCL-2 inhibitors	Negative enantiomer of gossypol	NA	NA	AT101	SML49	NA	NA
+5579	PRKCB	Enzastaurin	Inhibitor	Others	Small molecule serine threonine kinase inhibitor	Enzastaurin	NA	LY-317615	SML490	NA	NA
+5701	PSMC2	Bortezomib	Inhibitor	Proteasome inhibitors	Reversible inhibitor	Bortezomib	Velcade	PS-341	SML491	179324-69-7	DB00188
+5747	PTK2	PF-00562271	Inhibitor	Others	Reversible focal adhesion kinase (FAK) inhibitor	NA	NA	PF-00562271	SML492	NA	NA
+5888	RAD51	Amuvatinib	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	Amuvatinib	NA	MP-470	SML493	NA	NA
+5894	RAF1	ISIS 5132	Antisense oligonucleotide	Others	Antisense oligonucleotide against c-Raf kinase mRNA expression	NA	NA	ISIS 5132,CGP 69846A	SML494	NA	NA
+5979	RET	Sunitinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sunitinib	Sutent	SU 011248	SML495	557795-19-4	DB01268
+5979	RET	Vandetanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Vandetanib	Zactima	ZD6474	SML496	NA	NA
+5979	RET	Motesanib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Motesanib	NA	AMG706	SML497	NA	NA
+5979	RET	Cabozantinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Cabozantinib	NA	XL184	SML498	NA	NA
+5979	RET	Regorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Diphenylurea multikinase inhibitor	Regorafenib	NA	BAY 73-4506	SML499	NA	NA
+25	ABL1	XL228	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Multitargeted TKI	NA	NA	XL228	SML5	NA	NA
+613	BCR	Dasatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI of SRCfamily	Dasatinib	Sprycel	BMS-354825	SML50	302962-49-8	DB01254
+5979	RET	Lenvatinib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Lenvatinib	NA	E7080	SML500	NA	NA
+5979	RET	Amuvatinib	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	Amuvatinib	NA	MP-470	SML501	NA	NA
+5979	RET	AT9283	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AT9283	SML502	NA	NA
+253260	RICTOR	AZD 8055	Inhibitor	Mammalian target of rapamycin (mTOR) inhibitors	ATP-competitive small molecule inhibitor	NA	NA	AZD 8055	SML503	NA	NA
+253260	RICTOR	OSI 027	Inhibitor	Mammalian target of rapamycin (mTOR) inhibitors	Small molecule inhibitor	NA	NA	OSI 027	SML504	NA	NA
+253260	RICTOR	BEZ235	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Small molecule inhibitor	NA	NA	BEZ235	SML505	NA	NA
+6098	ROS1	Crizotinib	Inhibitor	Anaplastic lymphoma kinase (ALK) inhibitor	Dual small molecule ATPcompetitive inhibitor	Crizotinib	NA	PF-02341066	SML506	NA	NA
+6194	RPS6	PX-866	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Irreversible small molecule inhibitor (Wortmanin analog)	NA	NA	PX-866	SML507	NA	NA
+6197	RPS6KA3	AT9283	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AT9283	SML508	NA	NA
+57521	RPTOR	Temsirolimus	Inhibitor	Mammalian target of rapamycin (mTOR) inhibitors	Ester analog of rapamycin	Temsirolimus	Torisel	CCI-779	SML509	4/3/162635	DB06287
+613	BCR	Imatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI	Imatinib	Gleevec	STI-571	SML51	152459-95-5	DB00619
+2475	MTOR	Everolimus	Inhibitor	Mammalian target of rapamycin (mTOR) inhibitors	Derivative of the natural macrocyclic lactone sirolimus	Everolimus	Afinitor	RAD001	SML510	159351-69-6	DB01590
+57521	RPTOR	Sirolimus	Inhibitor	Mammalian target of rapamycin (mTOR) inhibitors	A macrolide derived from Streptomyces hygroscopicus	Sirolimus	Rapamune	Rapamycin	SML511	53123-88-9	DB00877
+57521	RPTOR	AZD 8055	Inhibitor	Mammalian target of rapamycin (mTOR) inhibitors	ATP-competitive small molecule inhibitor	NA	NA	AZD 8055	SML512	NA	NA
+57521	RPTOR	OSI 027	Inhibitor	Mammalian target of rapamycin (mTOR) inhibitors	Small molecule inhibitor	NA	NA	OSI 027	SML513	NA	NA
+57521	RPTOR	BEZ235	Inhibitor	Phosphatidylinositol-3- kinase (PI-3K) inhibitors	Small molecule inhibitor	NA	NA	BEZ235	SML514	NA	NA
+6241	RRM2	Triapine	Inhibitor	Others	Ribonucleotide reductase inhibitor, affecting the M2 subunit	Triapine	NA	3-AP,3-aminopyridine-2-carboxaldehydethiosemicarbone	SML515	NA	NA
+6256	RXRA	Bexarotene	NA	Others	Retinoid that selectively activates retinoid X receptors (RXRs)	Bexarotene	Targretin	LGD 1069	SML516	153559-49-0	DB00307
+6257	RXRB	Bexarotene	NA	Others	Retinoid that selectively activates retinoid X receptors (RXRs)	Bexarotene	Targretin	LGD 1069	SML517	153559-49-0	DB00307
+6258	RXRG	Bexarotene	NA	Others	Retinoid that selectively activates retinoid X receptors (RXRs)	Bexarotene	Targretin	LGD 1069	SML518	153559-49-0	DB00307
+81537	SGPP1	Sonepcizumab	Antibody	Others	Humanized MoAb	Sonepcizumab	Asonep	Lt 1009	SML519	NA	NA
+613	BCR	Saracatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI of SRC-family binds the active conformation of the ATP-binding pocket	Saracatinib	NA	AZD 0530	SML52	NA	NA
+23411	SIRT1	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML520	NA	NA
+22933	SIRT2	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML521	NA	NA
+23410	SIRT3	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML522	NA	NA
+23409	SIRT4	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML523	NA	NA
+23408	SIRT5	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML524	NA	NA
+51548	SIRT6	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML525	NA	NA
+51547	SIRT7	Panobinostat	Inhibitor	Histone deacetylase (HDAC)inhibitors	Hydroxamic acid type	Panobinostat	Faridak	LBH589	SML526	NA	NA
+6608	SMO	Vismodegib	Antagonist	Hedgehog antagonists	Small molecule inhibitor	Vismodegib	NA	GDC-0449	SML527	NA	NA
+6608	SMO	LDE 225	Antagonist	Hedgehog antagonists	Small molecule inhibitor	NA	NA	LDE 225	SML528	NA	NA
+6608	SMO	IPI-926	Antagonist	Hedgehog antagonists	Small molecule inhibitor	NA	NA	IPI-926	SML529	NA	NA
+613	BCR	Ponatinib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	Ponatinib	AP24534	NA	SML53	NA	NA
+6608	SMO	BMS-33923	Antagonist	Hedgehog antagonists	Small molecule inhibitor	NA	NA	BMS-33923,XL139	SML530	NA	NA
+6608	SMO	PF04449913	Antagonist	Hedgehog antagonists	Small molecule inhibitor	NA	NA	PF04449913	SML531	NA	NA
+6714	SRC	XL999	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	NA	NA	XL999	SML532	NA	NA
+6714	SRC	Dasatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI of SRCfamily	Dasatinib	Sprycel	BMS-354825	SML533	302962-49-8	DB01254
+6714	SRC	Saracatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI of SRC-family binds the active conformation of the ATP-binding pocket	Saracatinib	NA	AZD 0530	SML534	NA	NA
+6714	SRC	Bosutinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	4-anilino-3- quinolinecarbonitrile dual Src/Abl kinase inhibitor	Bosutinib	NA	SKI-606	SML535	NA	NA
+6714	SRC	KX2-391	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI targeting the substrate binding site	NA	NA	KX2-391	SML536	NA	NA
+6714	SRC	XL228	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Multitargeted TKI	NA	NA	XL228	SML537	NA	NA
+7010	TEK	Regorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Diphenylurea multikinase inhibitor	Regorafenib	NA	BAY 73-4506	SML538	NA	NA
+7010	TEK	MGCD265	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	NA	NA	MGCD265	SML539	NA	NA
+329	BIRC2	AEG40826	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	HGS1029,AEG40826	SML54	NA	NA
+7015	TERT	Imetelstat	Inhibitor	Telomerase inhibitors	Competitive telomerase RNA template antagonist	Imetelstat	NA	GRN163L	SML540	NA	NA
+7015	TERT	Sodium metaarsenite	Inhibitor	Telomerase inhibitors	Oral arsenic agent	Sodium metaarsenite	NA	KML001	SML541	NA	NA
+7040	TGFB1	GC-1008	Antibody	Others	Human IgG4 MoAb	NA	NA	GC-1008	SML542	NA	NA
+7042	TGFB2	Belagenpumatucel-L	Vaccine	Vaccines	Transforming growth factor beta2 (TGFbeta2) antisense gene-modified allogeneic whole tumor cell vaccine	Belagenpumatucel-L	Lucanix	NA	SML543	NA	NA
+7057	THBS1	CVX-045	Antibody	Others	Human MoAb	NA	NA	CVX-045	SML544	NA	NA
+54106	TLR9	PF-3512676	Agonist	Others	Synthetic agonist of Toll-like receptor 9 (TLR9)	NA	NA	PF-3512676	SML545	NA	NA
+8797	TNFRSF10A	Mapatumumab	Agonist	TNF related apoptosis inducing ligand (TRAIL) receptor agonists	Human MoAb	Mapatumumab	NA	HGS-ETR1	SML546	NA	NA
+8797	TNFRSF10A	Dulanermin	Agonist	TNF related apoptosis inducing ligand (TRAIL) receptor agonists	Recombinant human MoAb	Dulanermin	NA	AMG951,rhApo2L/TRAIL	SML547	NA	NA
+8795	TNFRSF10B	Drozitumab	Agonist	TNF related apoptosis inducing ligand (TRAIL) receptor agonists	Human IgG1 MoAb	Drozitumab	Apomab	PRO95780	SML548	NA	NA
+8795	TNFRSF10B	Lexatumumab	Agonist	TNF related apoptosis inducing ligand (TRAIL) receptor agonists	Human MoAb	Lexatumumab	NA	HGS-ETR2	SML549	NA	NA
+329	BIRC2	TL 32711	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	TL 32711	SML55	NA	NA
+8795	TNFRSF10B	Conatumumab	Agonist	TNF related apoptosis inducing ligand (TRAIL) receptor agonists	Human MoAb	Conatumumab	NA	AMG-655	SML550	NA	NA
+8795	TNFRSF10B	Dulanermin	Agonist	TNF related apoptosis inducing ligand (TRAIL) receptor agonists	Recombinant human MoAb	Dulanermin	NA	AMG951,rhApo2L/TRAIL	SML551	NA	NA
+8795	TNFRSF10B	LBY135	Agonist	TNF related apoptosis inducing ligand (TRAIL) receptor agonists	Humanized MoAb	NA	NA	LBY135	SML552	NA	NA
+8792	TNFRSF11A	Denosumab	Antibody	Osteoclast function modifiers (important in bone metastasis)	Fully human monoclonal antibody	Denosumab	Xgeva,Prolia	AMG-162	SML553	NA	NA
+3604	TNFRSF9	BMS-663513	Antibody	Immunomodulatory agents	Humanized MoAb	NA	NA	BMS-663513	SML554	NA	NA
+7157	TP53	EP-2101	Vaccine	Vaccines	Multiepitope DNA vaccine, emulsified in montanide ISA-51	NA	NA	EP-2101	SML555	NA	NA
+7157	TP53	Mutant p53 peptide pulsed dendritic cell	Vaccine	Vaccines	Autologous dendritic cells pulsed with a mutant p53 peptide	Mutant p53 peptide pulsed dendritic cell	NA	NA	SML556	NA	NA
+7157	TP53	Ad.p53-DC	Vaccine	Vaccines	Autologous dendritic cells transduced with a recombinant adenovirus encoding p53 peptide	Ad.p53-DC	NA	INGN-225	SML557	NA	NA
+11076	TPPP	BNC105P	NA	Vascular disrupting agents (VDA)	VDA	NA	NA	BNC105P	SML558	NA	NA
+11334	TUSC2	DOTAP:chol-FUS1	NA	Others	Lipid-based nanoparticles	DOTAP:chol-FUS1	NA	NA	SML559	NA	NA
+329	BIRC2	AT-406	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac (second mitochondriaderived activator of caspases) mimetic	NA	NA	AT-406	SML56	NA	NA
+7297	TYK2	AT9283	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AT9283	SML560	NA	NA
+7422	VEGFA	Bevacizumab	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Humanized MoAb	Bevacizumab	Avastin	NA	SML561	216974-75-3	DB00112
+7422	VEGFA	Aflibercept	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Fusion protein of extracellular domain portions from VEGFR-1 and VEGFR-2 combined with Fc of human IgG	Aflibercept	Zaltrap	VEGF-TRAP,AVE0005	SML562	NA	NA
+7422	VEGFA	Thalidomide	NA	Immunomodulatory agents	unknown	Thalidomide	Thalomid	NA	SML563	50-35-1	DB01041
+7465	WEE1	MK-1775	Inhibitor	Others	Inhibitor of the Wee1 kinase, regulating the G2 checkpoint leading to chemosensitization in p53 deficient tumor cells	NA	NA	MK-1775	SML564	NA	NA
+7490	WT1	WT-1 (Wilms tumor) analog peptide vaccine	Vaccine	Vaccines	Peptide vaccine	WT-1 (Wilms tumor) analog peptide vaccine	NA	NA	SML565	NA	NA
+331	XIAP	AEG40826	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	HGS1029,AEG40826	SML566	NA	NA
+331	XIAP	TL 32711	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	TL 32711	SML567	NA	NA
+331	XIAP	AT-406	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac (second mitochondriaderived activator of caspases) mimetic	NA	NA	AT-406	SML568	NA	NA
+331	XIAP	GDC0917	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule peptide Smac mimetic	NA	NA	GDC0917	SML569	NA	NA
+329	BIRC2	GDC0917	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule peptide Smac mimetic	NA	NA	GDC0917	SML57	NA	NA
+331	XIAP	LCL161	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	LCL161	SML570	NA	NA
+7525	YES1	AT9283	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AT9283	SML571	NA	NA
+22882	ZHX2	Sorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Small molecule TKI	Sorafenib	Nexavar	BAY 43-9006	SML572	284461-73-0	DB00398
+22882	ZHX2	Regorafenib	Inhibitor	Vascular endothelial growth factor (VEGF) and VEGF receptor (VEGFR) inhibitors	Diphenylurea multikinase inhibitor	Regorafenib	NA	BAY 73-4506	SML573	NA	NA
+329	BIRC2	LCL161	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	LCL161	SML58	NA	NA
+330	BIRC3	AEG40826	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	HGS1029,AEG40826	SML59	NA	NA
+25	ABL1	Ponatinib	Inhibitor	Fibroblast growth factor receptor (FGFR)inhibitors	Small molecule inhibitor	Ponatinib	AP24534	NA	SML6	NA	NA
+330	BIRC3	TL 32711	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	TL 32711	SML60	NA	NA
+330	BIRC3	AT-406	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac (second mitochondriaderived activator of caspases) mimetic	NA	NA	AT-406	SML61	NA	NA
+330	BIRC3	GDC0917	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule peptide Smac mimetic	NA	NA	GDC0917	SML62	NA	NA
+330	BIRC3	LCL161	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	LCL161	SML63	NA	NA
+332	BIRC5	LY2181308	Inhibitor	Survivin inhibitors	Antisense oligonucleotide	NA	NA	LY2181308	SML64	NA	NA
+332	BIRC5	YM155	Inhibitor	Survivin inhibitors	Small molecule inhibitor	NA	NA	YM155	SML65	NA	NA
+57448	BIRC6	AEG40826	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	HGS1029,AEG40826	SML66	NA	NA
+57448	BIRC6	TL 32711	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	TL 32711	SML67	NA	NA
+57448	BIRC6	GDC0917	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule peptide Smac mimetic	NA	NA	GDC0917	SML68	NA	NA
+57448	BIRC6	LCL161	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac mimetic	NA	NA	LCL161	SML69	NA	NA
+25	ABL1	AS703569	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AS703569	SML7	NA	NA
+79444	BIRC7	AT-406	Antagonist	Inhibitor of apoptosis proteins (IAPS) antagonist	Small molecule Smac (second mitochondriaderived activator of caspases) mimetic	NA	NA	AT-406	SML70	NA	NA
+673	BRAF	Vemurafenib	Inhibitor	BRAF inhibitors	Small molecule inhibitor	Vemurafenib	NA	PLX4032,RG7204	SML71	NA	NA
+673	BRAF	GSK2118436	Inhibitor	BRAF inhibitors	Small molecule inhibitor	NA	NA	GSK2118436	SML72	NA	NA
+695	BTK	AS703569	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AS703569	SML73	NA	NA
+51527	C14orf129	AT9283	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AT9283	SML74	NA	NA
+999	CDH1	Combretastatin-A4 phosphate	NA	Vascular disrupting agents (VDA)	Small molecule VDA	Combretastatin-A4 phosphate	Zybrestat	Combretastatin-A4 phosphate,CA4P,Zybrestat	SML75	NA	NA
+1062	CENPE	GSK-923295	Inhibitor	Kinesin protein inhibitors	KSP inhibitor	NA	NA	GSK-923295	SML76	NA	NA
+1111	CHEK1	LY2603618	Inhibitor	Checkpoint kinase (Chk) inhibitor	Inhibitor of Chk,potentiating DNA-targeting therapies	NA	NA	LY2603618	SML77	NA	NA
+1111	CHEK1	AZD7762	Inhibitor	Checkpoint kinase (Chk) inhibitor	ATP-competitive inhibitor of Chk, potentiating DNA-targeting therapies	NA	NA	AZD7762	SML78	NA	NA
+1111	CHEK1	SCH900776	Inhibitor	Checkpoint kinase (Chk) inhibitor	Inhibitor of Chk,potentiating DNA-targeting therapies	NA	NA	SCH900776	SML79	NA	NA
+92	ACVR2A	Sotatercept	NA	Others	Fully human soluble activin receptor type 2A IgG-Fc fusion protein	Sotatercept	NA	ACE-011	SML8	NA	NA
+11200	CHEK2	AZD7762	Inhibitor	Checkpoint kinase (Chk) inhibitor	ATP-competitive inhibitor of Chk, potentiating DNA-targeting therapies	NA	NA	AZD7762	SML80	NA	NA
+1191	CLU	Custirsen	Antisense oligonucleotide	Others	Antisense oligonucleotide	Custirsen	NA	OGX 011	SML81	NA	NA
+1436	CSF1R	Dasatinib	Inhibitor	SRC/BCR-ABL tyrosine kinase inhibitors	Small molecule TKI of SRCfamily	Dasatinib	Sprycel	BMS-354825	SML82	302962-49-8	DB01254
+1493	CTLA4	Ipilimumab	Antibody	Immunomodulatory agents	IgG1 Human MoAb	Ipilimumab	Yervoy	MDX 010	SML83	NA	NA
+1513	CTSK	Odanacatib	Inhibitor	Osteoclast function modifiers (important in bone metastasis)	Anti-cathepsin K, (decreases bone resorption)	Odanacatib	NA	MK-0822	SML84	NA	NA
+1513	CTSK	Balicatib	Inhibitor	Osteoclast function modifiers (important in bone metastasis)	Anti-cathepsin K	Balicatib	NA	AAE-581	SML85	NA	NA
+1588	CYP19A1	Anastrozole	Inhibitor	Hormone therapy	Decreases estrogen in postmenopausal women	Anastrazole	Arimidex	NA	SML86	120511-73-1	DB01217
+54567	DLL4	REGN421	Inhibitor	Notch pathway inhibitors	Human MoAb	NA	NA	REGN421	SML87	NA	NA
+1909	EDNRA	Zibotentan	Antagonist	Others	Endothelin A receptor (ETAR) antagonist	Zibotentan	NA	ZD4054	SML88	NA	NA
+1956	EGFR	Cetuximab	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Chimeric MoAB	Cetuximab	Erbitux	IMC-C225	SML89	205923-56-4	DB00002
+207	AKT1	AS703569	Inhibitor	Inhibitors of mitosis Aurora kinase inhibitors	Multitargeted kinase inhibitor	NA	NA	AS703569	SML9	NA	NA
+1956	EGFR	Erlotinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Reversible  small molecule TKI	Erlotinib	Tarceva	OSI-774	SML90	183321-74-6	DB00530
+1956	EGFR	Gefitinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Reversible  small molecule TKI	Gefitinib	Iressa	ZD 1839	SML91	184475-35-2	DB00317
+1956	EGFR	Lapatinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Reversible  small molecule TKI	Lapatinib	Tykerb	GW 572016	SML92	388082-78-8	DB01259
+1956	EGFR	Panitumumab	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Human IgG2 MoAb	Panitumumab	Vectibix	ABX-EGF MAb	SML93	339177-26-3	DB01269
+1956	EGFR	Necitumumab	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Human IgG1 MoAb	Necitumumab	NA	IMC-11F8	SML94	6/9/906805	NA
+1956	EGFR	Afatinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	Afatinib	Tomtovok	BIBW-2992	SML95	439081-18-2	NA
+1956	EGFR	Icotinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Small molecule TKI	Icotinib	NA	BPI-2009H	SML96	NA	NA
+1956	EGFR	Neratinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	Neratinib	NA	HKI-272	SML97	9/6/698387	NA
+1956	EGFR	Nimotuzumab	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Humanized MoAb	Nimotuzumab	NA	h-R3	SML98	828933-61-3	NA
+1956	EGFR	Pelitinib	Inhibitor	Epidermal growth factor receptor (EGFR) inhibitors	Irreversible  small molecule TKI	Pelitinib	NA	EKB-569	SML99	257933-82-7	NA
+238	ALK	X-396	Inhibitor	ALK Inhibitor	Small-molecule Inhibitor	X-396	NA	NA	NA	NA	NA
+238	ALK	AP26113	Inhibitor	ALK/EGFR Inhibitor	Small-molecule Inhibitor	AP26113	NA	NA	NA	NA	NA
+673	BRAF	Dabrafenib	Inhibitor	Mutant BRAF Kinase	Small-molecule Inhibitor	Dabrafenib	NA	GSK2118436	NA	NA	NA
+673	BRAF	LGX818	Inhibitor	Pan-RAF Inhibitor	Small-molecule Inhibitor	LGX818	NA	NA	NA	NA	NA
+673	BRAF	ArQ736	Inhibitor	Pan-RAF Inhibitor	Small-molecule Inhibitor	ArQ736	NA	NA	NA	NA	NA
+1493	CTLA4	Tremelimumab	Antibody	CTLA4 Inhibitor	IgG1 Human MoAB	Tremelimumab	Ticilimumab	CP675206	NA	NA	NA
+1956	EGFR	Dacomitinib	Inhibitor	Pan-HER Inhibitors	Irreversible small molecule TKI	Dacomitinib	NA	PF299804	NA	NA	NA
+1956	EGFR	Pertuzumab	Inhibitor	HER2 Dimerization Inhibitor	Humanized murine MoAB	Pertuzumab	Perjeta	rhuMAb 2C4	NA	NA	NA
+1956	EGFR	BMS-690514	Inhibitor	Pan-HER, VEGFR Inhibitors	Small-molecule TKI	BMS-690514	NA	EVR1	NA	NA	NA
+1956	EGFR	AMG888	Inhibitor	HER3 Inhibitors	Human MoAB	AMG888	NA	U3-1287	NA	NA	NA
+1956	EGFR	MM121	Inhibitor	HER3 Inhibitors	Human MoAB	MM121	NA	SAR256212	NA	NA	NA
+1956	EGFR	CO 1686	Inhibitor	Mutant EGFR Inhibitors	Irreversible oral small-molecule inhibitor	CO 1686	NA	NA	NA	NA	NA
+1956	EGFR	MEHD7945	Inhibitor	EGFR Inhibitors	Humanized dual action IgG1 MoAB	MEHD7945	NA	NA	NA	NA	NA
+1956	EGFR	AV 203	Inhibitor	HER3 Inhibitors	Humanized MoAB	AV 203	NA	NA	NA	NA	NA
+1956	EGFR	ARRY 380	Inhibitor	HER2 Inhibitors	Reversible small-molecule inhibitor	ARRY 380	NA	NA	NA	NA	NA
+1956	EGFR	MM151	Inhibitor	EGFR Inhibitors	Combination of three human MoABs	MM151	NA	NA	NA	NA	NA
+1956	EGFR	MM111	Inhibitor	HER2-HER3 heterodimer inhibitor	Bispecific Antibody	MM111	NA	NA	NA	NA	NA
+1956	EGFR	Canertinib	Inhibitor	Pan-HER Inhibitors	Irreversible small molecule TKI	Canertinib	NA	CI-1033	NA	NA	NA
+2260	FGFR1	FP-1039	Antibody	FGF Ligand Trap	FGFR1-IgG1 fusion protein	FP-1039	NA	NA	NA	NA	NA
+2260	FGFR1	AZD4547	Inhibitor	FGFRs Inhibitor	Small-molecule Inhibitor	AZD4547	NA	NA	NA	NA	NA
+2263	FGFR2	FP-1039	Antibody	FGF Ligand Trap	FGFR1-IgG1 fusion protein	FP-1039	NA	NA	NA	NA	NA
+2263	FGFR2	AZD4547	Inhibitor	FGFRs Inhibitor	Small-molecule Inhibitor	AZD4547	NA	NA	NA	NA	NA
+2261	FGFR3	FP-1039	Antibody	FGF Ligand Trap	FGFR1-IgG1 fusion protein	FP-1039	NA	NA	NA	NA	NA
+2261	FGFR3	AZD4547	Inhibitor	FGFRs Inhibitor	Small-molecule Inhibitor	AZD4547	NA	NA	NA	NA	NA
+2475	MTOR	BEZ 235	Inhibitor	PI3K/mTOR inhibitor	Small-molecule Inhibitor	BEZ 235	NA	NA	NA	NA	NA
+5701	PSMC2	Carfilzomib	Inhibitor 	20S Proteasome Inhibitor	Irreversible Inhibitor	Carfilzomib	NA	PR-171	NA	NA	NA
+5701	PSMC2	MLN9708	Inhibitor 	20S Proteasome Inhibitor	Reversible Inhibitor	MLN9708	NA	NA	NA	NA	NA
+5701	PSMC2	Salinosporamide A	Inhibitor 	20S Catalytic Core subunit of the Proteasome Inhibitor	Irreversible Inhibitor	Salinosporamide A	NA	NPI-0052	NA	NA	NA
+4233	MET	Tivantinib	Inhibitor	c-MET/hepatocyte growth factor receptor (HGFR) pathway inhibitors	Small molecule inhibitor	Tivantinib	NA	ARQ197	NA	NA	NA
+5604	MAP2K1	Trametinib	Inhibitor	Mitogen-activated protein/extracellular signal-regulated kinase (MEK) inhibitors	Small molecule inhibitor	Trametinib	NA	GSK1120212	NA	NA	NA
+5604	MAP2K1	MEK162	Inhibitor	Mitogen-activated protein/extracellular signal-regulated kinase (MEK) inhibitors	Small molecule inhibitor	NA	NA	MEK162	NA	NA	NA
+5290	PIK3CA	ON01910	Inhibitor	PI3K-CyclinD1 Inhibitor	Non-ATP competitive small molecule Inhibitor	Rigosertib	Estybon	ON01910	NA	NA	NA

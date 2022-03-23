@@ -1,0 +1,836 @@
+Gene Symbol	Entrez Gene Id	Reported Gene Name	Primary Drug Name	Drug Development Name	Drug Generic Name	Drug Trade Name	Notes	Drug Class	Interaction Type
+ABL1	25	ABL	nilotinib	AMN107	nilotinib	Tasigna		Kinase Inhibitors	inhibitor
+ABL1	25	ABL	ponatinib	AP24534	ponatinib	Iclusig		Kinase Inhibitors	inhibitor
+ABL1	25	ABL	AS703569	AS703569,R763				Kinase Inhibitors	inhibitor
+ABL1	25	ABL	AT9283	AT9283				Kinase Inhibitors	inhibitor
+ABL1	25	ABL	dasatinib	BMS-354825	dasatinib	Sprycel		Kinase Inhibitors	inhibitor
+ABL1	25	ABL	bafetinib	INNO-406,NS-187	bafetinib			Kinase Inhibitors	inhibitor
+ABL1	25	ABL	bosutinib	SKI-606	bosutinib	Bosulif		Kinase Inhibitors	inhibitor
+ABL1	25	ABL	imatinib	STI-571,CGP57148,CGP57148B	imatinib	Gleevec		Kinase Inhibitors	inhibitor
+ABL1	25	ABL	XL228	XL228				Kinase Inhibitors	inhibitor
+AKT1	207	AKT	AS703569	AS703569,R763			catalytic inhibitor	Kinase Inhibitors	inhibitor
+AKT1	207	AKT	AZD5363	AZD5363			catalytic inhibitor	Kinase Inhibitors	inhibitor
+AKT1	207	AKT	GDC-0068	GDC-0068			catalytic inhibitor	Kinase Inhibitors	inhibitor
+AKT1	207	AKT	MK-2206	MK-2206			allosteric inhibitor	Kinase Inhibitors	inhibitor
+ALK	238	ALK	AP26113	AP26113				Kinase Inhibitors	inhibitor
+ALK	238	ALK	ASP3026	ASP3026				Kinase Inhibitors	inhibitor
+ALK	238	ALK	CH5424802	CH5424802,AF802				Kinase Inhibitors	inhibitor
+ALK	238	ALK	LDK378	LDK378				Kinase Inhibitors	inhibitor
+ALK	238	ALK	crizotinib	PF-02341066	crizotinib	Xalkori		Kinase Inhibitors	inhibitor
+ALK	238	ALK	TSR-011	TSR-011				Kinase Inhibitors	inhibitor
+ALK	238	ALK	X-396	X-396				Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A	AS703569	AS703569,R763				Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A	AT9283	AT9283				Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A	ENMD-2076	ENMD-2076				Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A	MK5108	MK5108				Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A	alisertib	MLN8237	alisertib			Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A	PF-03814735	PF-03814735				Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A	TAK901	TAK901				Kinase Inhibitors	inhibitor
+AURKB	9212	Aurora B	AS703569	AS703569,R763				Kinase Inhibitors	inhibitor
+AURKB	9212	Aurora B	AT9283	AT9283				Kinase Inhibitors	inhibitor
+AURKB	9212	Aurora B	barasertib	AZD1152-HQPA,AZD1152	barasertib			Kinase Inhibitors	inhibitor
+AURKB	9212	Aurora B	GSK1070916	GSK1070916				Kinase Inhibitors	inhibitor
+AURKB	9212	Aurora B	PF-03814735	PF-03814735				Kinase Inhibitors	inhibitor
+AURKC	6795	Aurora C	GSK1070916	GSK1070916				Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A/B/C	AMG900	AMG900				Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A/B/C	BI847325	BI847325				Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A/B/C	danusertib	PHA-739358	danusertib			Kinase Inhibitors	inhibitor
+AURKA	6790	Aurora A/B/C	SNS-314	SNS-314				Kinase Inhibitors	inhibitor
+AURKB	9212	Aurora A/B/C	AMG900	AMG900				Kinase Inhibitors	inhibitor
+AURKB	9212	Aurora A/B/C	BI847325	BI847325				Kinase Inhibitors	inhibitor
+AURKB	9212	Aurora A/B/C	danusertib	PHA-739358	danusertib			Kinase Inhibitors	inhibitor
+AURKB	9212	Aurora A/B/C	SNS-314	SNS-314				Kinase Inhibitors	inhibitor
+AURKC	6795	Aurora A/B/C	AMG900	AMG900				Kinase Inhibitors	inhibitor
+AURKC	6795	Aurora A/B/C	BI847325	BI847325				Kinase Inhibitors	inhibitor
+AURKC	6795	Aurora A/B/C	danusertib	PHA-739358	danusertib			Kinase Inhibitors	inhibitor
+AURKC	6795	Aurora A/B/C	SNS-314	SNS-314				Kinase Inhibitors	inhibitor
+BRAF	673	BRAF	ARQ736	ARQ736				Kinase Inhibitors	inhibitor
+BRAF	673	BRAF	dabrafenib	GSK2118436	dabrafenib			Kinase Inhibitors	inhibitor
+BRAF	673	BRAF	vemurafenib	PLX-4032,RG7204,R05185426	vemurafenib	Zelboraf		Kinase Inhibitors	inhibitor
+BRAF	673	BRAF	RAF265	RAF265				Kinase Inhibitors	inhibitor
+BRAF	673	BRAF	RO5212054	RO5212054,PLX3603				Kinase Inhibitors	inhibitor
+BTK	695	BTK	AS703569	AS703569,R763				Kinase Inhibitors	inhibitor
+BTK	695	BTK	ibrutinib	PCI-32765	ibrutinib			Kinase Inhibitors	inhibitor
+CDK1	983	CDK 1,2,4,5,6,7,9 (pan-CDK)	alvocidib	HMR-1275,L868275,flavopiridol	alvocidib			Kinase Inhibitors	inhibitor
+CDK2	1017	CDK 1,2,4,5,6,7,9 (pan-CDK)	alvocidib	HMR-1275,L868275,flavopiridol	alvocidib			Kinase Inhibitors	inhibitor
+CDK4	1019	CDK 1,2,4,5,6,7,9 (pan-CDK)	alvocidib	HMR-1275,L868275,flavopiridol	alvocidib			Kinase Inhibitors	inhibitor
+CDK5	1020	CDK 1,2,4,5,6,7,9 (pan-CDK)	alvocidib	HMR-1275,L868275,flavopiridol	alvocidib			Kinase Inhibitors	inhibitor
+CDK6	1021	CDK 1,2,4,5,6,7,9 (pan-CDK)	alvocidib	HMR-1275,L868275,flavopiridol	alvocidib			Kinase Inhibitors	inhibitor
+CDK7	1022	CDK 1,2,4,5,6,7,9 (pan-CDK)	alvocidib	HMR-1275,L868275,flavopiridol	alvocidib			Kinase Inhibitors	inhibitor
+CDK9	1025	CDK 1,2,4,5,6,7,9 (pan-CDK)	alvocidib	HMR-1275,L868275,flavopiridol	alvocidib			Kinase Inhibitors	inhibitor
+CDK1	983	CDK 1,2,5,9	dinaciclib	SCH727965	dinaciclib			Kinase Inhibitors	inhibitor
+CDK2	1017	CDK 1,2,5,9	dinaciclib	SCH727965	dinaciclib			Kinase Inhibitors	inhibitor
+CDK5	1020	CDK 1,2,5,9	dinaciclib	SCH727965	dinaciclib			Kinase Inhibitors	inhibitor
+CDK9	1025	CDK 1,2,5,9	dinaciclib	SCH727965	dinaciclib			Kinase Inhibitors	inhibitor
+CDK2	1017	CDK 2,7,9	seliciclib	CYC202	seliciclib			Kinase Inhibitors	inhibitor
+CDK7	1022	CDK 2,7,9	seliciclib	CYC202	seliciclib			Kinase Inhibitors	inhibitor
+CDK9	1025	CDK 2,7,9	seliciclib	CYC202	seliciclib			Kinase Inhibitors	inhibitor
+CDK4	1019	CDK 4,6	LEE011	LEE011				Kinase Inhibitors	inhibitor
+CDK6	1021	CDK 4,6	LEE011	LEE011				Kinase Inhibitors	inhibitor
+CDK4	1019	CDK 4,6	PD0332991	PD0332991				Kinase Inhibitors	inhibitor
+CDK6	1021	CDK 4,6	PD0332991	PD0332991				Kinase Inhibitors	inhibitor
+CSF1R	1436	CSF-1R	PLX3397	PLX3397,PLX108-01				Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)	AEE788	AEE788,NVP-AEE788				Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)	vandetanib	AZD6474,ZD6474	vandetanib	Zactima,Caprelsa		Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)	afatinib	BIBW-2992	afatinib	Tomtovok		Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)	icotinib	BPI-2009H	icotinib			Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)	canertinib	CI-1033,PD183805	canertinib			Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)	CO-1686	CO-1686				Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)	erlotinib	OSI-774,CP-258,774	erlotinib	Tarceva		Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)	XL647	XL647,KD019				Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)	gefitinib	ZD1839	gefitinib	Iressa		Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER3 (ERBB3)	AZD8931	AZD8931				Kinase Inhibitors	inhibitor
+ERBB2	2064	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER3 (ERBB3)	AZD8931	AZD8931				Kinase Inhibitors	inhibitor
+ERBB3	2065	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER3 (ERBB3)	AZD8931	AZD8931				Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	BMS-599626	BMS-599626,AC480				Kinase Inhibitors	inhibitor
+ERBB2	2064	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	BMS-599626	BMS-599626,AC480				Kinase Inhibitors	inhibitor
+ERBB4	2066	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	BMS-599626	BMS-599626,AC480				Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	BMS-690514	BMS-690514,EVRI				Kinase Inhibitors	inhibitor
+ERBB2	2064	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	BMS-690514	BMS-690514,EVRI				Kinase Inhibitors	inhibitor
+ERBB4	2066	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	BMS-690514	BMS-690514,EVRI				Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	pelitinib	EKB-569	pelitinib			Kinase Inhibitors	inhibitor
+ERBB2	2064	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	pelitinib	EKB-569	pelitinib			Kinase Inhibitors	inhibitor
+ERBB4	2066	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	pelitinib	EKB-569	pelitinib			Kinase Inhibitors	inhibitor
+EGFR	1956	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	dacomitinib	PF-00299804	dacomitinib			Kinase Inhibitors	inhibitor
+ERBB2	2064	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	dacomitinib	PF-00299804	dacomitinib			Kinase Inhibitors	inhibitor
+ERBB4	2066	EGFR (HER1/ERBB1)HER2 (ERBB2/neu)HER4 (ERBB4)	dacomitinib	PF-00299804	dacomitinib			Kinase Inhibitors	inhibitor
+EPHB4	2050	EphB4	XL647	XL647,KD019				Kinase Inhibitors	inhibitor
+PTK2	5747	FAK	masitinib	AB1010	masitinib	Masivet		Kinase Inhibitors	inhibitor
+FGFR1	2260	FGFR1-3	masitinib	AB1010	masitinib	Masivet		Kinase Inhibitors	inhibitor
+FGFR2	2263	FGFR1-3	masitinib	AB1010	masitinib	Masivet		Kinase Inhibitors	inhibitor
+FGFR3	2261	FGFR1-3	masitinib	AB1010	masitinib	Masivet		Kinase Inhibitors	inhibitor
+FGFR1	2260	FGFR1-3	ponatinib	AP24534	ponatinib	Iclusig		Kinase Inhibitors	inhibitor
+FGFR2	2263	FGFR1-3	ponatinib	AP24534	ponatinib	Iclusig		Kinase Inhibitors	inhibitor
+FGFR3	2261	FGFR1-3	ponatinib	AP24534	ponatinib	Iclusig		Kinase Inhibitors	inhibitor
+FGFR1	2260	FGFR1-3	AZD4547	AZD4547				Kinase Inhibitors	inhibitor
+FGFR2	2263	FGFR1-3	AZD4547	AZD4547				Kinase Inhibitors	inhibitor
+FGFR3	2261	FGFR1-3	AZD4547	AZD4547				Kinase Inhibitors	inhibitor
+FGFR1	2260	FGFR1-3	BGJ398	BGJ398,NVP-BGJ398				Kinase Inhibitors	inhibitor
+FGFR2	2263	FGFR1-3	BGJ398	BGJ398,NVP-BGJ398				Kinase Inhibitors	inhibitor
+FGFR3	2261	FGFR1-3	BGJ398	BGJ398,NVP-BGJ398				Kinase Inhibitors	inhibitor
+FGFR1	2260	FGFR1-3	nintedanib	BIBF1120	nintedanib	Vargatef		Kinase Inhibitors	inhibitor
+FGFR2	2263	FGFR1-3	nintedanib	BIBF1120	nintedanib	Vargatef		Kinase Inhibitors	inhibitor
+FGFR3	2261	FGFR1-3	nintedanib	BIBF1120	nintedanib	Vargatef		Kinase Inhibitors	inhibitor
+FGFR1	2260	FGFR1-3	E-3810	E-3810				Kinase Inhibitors	inhibitor
+FGFR2	2263	FGFR1-3	E-3810	E-3810				Kinase Inhibitors	inhibitor
+FGFR3	2261	FGFR1-3	E-3810	E-3810				Kinase Inhibitors	inhibitor
+FGFR1	2260	FGFR1-3	dovitinib	TKI258,CHIR-258	dovitinib			Kinase Inhibitors	inhibitor
+FGFR2	2263	FGFR1-3	dovitinib	TKI258,CHIR-258	dovitinib			Kinase Inhibitors	inhibitor
+FGFR3	2261	FGFR1-3	dovitinib	TKI258,CHIR-258	dovitinib			Kinase Inhibitors	inhibitor
+FGFR1	2260	FGFR1-3	XL228	XL228				Kinase Inhibitors	inhibitor
+FGFR2	2263	FGFR1-3	XL228	XL228				Kinase Inhibitors	inhibitor
+FGFR3	2261	FGFR1-3	XL228	XL228				Kinase Inhibitors	inhibitor
+FGFR1	2260	FGFR1	orantinib	TSU68,SU6668	orantinib			Kinase Inhibitors	inhibitor
+FGFR3	2261	FGFR3	ENMD-2076	ENMD-2076				Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	quizartinib	AC220	quizartinib			Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	ponatinib	AP24534	ponatinib	Iclusig		Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	AS703569	AS703569,R763				Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	lestaurtinib	CEP-701	lestaurtinib			Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	ENMD-0276	ENMD-0276				Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	tandutinib	MLN518,CT53518	tandutinib			Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	amuvatinib	MP-470	amuvatinib			Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	midostaurin	PKC412	midostaurin			Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	PLX3397	PLX3397,PLX108-01				Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	sunitinib	SU-11248	sunitinib	Sutent		Kinase Inhibitors	inhibitor
+FLT3	2322	FLT3	cabozantinib	XL184	cabozantinib	Cometriq		Kinase Inhibitors	inhibitor
+ERBB2	2064	HER2 (ERBB2/neu)	AEE788	AEE788,NVP-AEE788				Kinase Inhibitors	inhibitor
+ERBB2	2064	HER2 (ERBB2/neu)	ARRY380	ARRY380				Kinase Inhibitors	inhibitor
+ERBB2	2064	HER2 (ERBB2/neu)	afatinib	BIBW-2992	afatinib	Tomtovok		Kinase Inhibitors	inhibitor
+ERBB2	2064	HER2 (ERBB2/neu)	canertinib	CI-1033,PD183805	canertinib			Kinase Inhibitors	inhibitor
+ERBB2	2064	HER2 (ERBB2/neu)	lapatinib	GSK572016,GW2016,GW-572016	lapatinib	Tykerb		Kinase Inhibitors	inhibitor
+ERBB2	2064	HER2 (ERBB2/neu)	neratinib	HKI-272	neratinib			Kinase Inhibitors	inhibitor
+ERBB2	2064	HER2 (ERBB2/neu)	mubritinib	TAK165	mubritinib			Kinase Inhibitors	inhibitor
+ERBB2	2064	HER2 (ERBB2/neu)	XL647	XL647,KD019				Kinase Inhibitors	inhibitor
+IGF1R	3480	IGF-1R	BMS-536924	BMS-536924				Kinase Inhibitors	inhibitor
+IGF1R	3480	IGF-1R	BMS-754807	BMS-754807				Kinase Inhibitors	inhibitor
+IGF1R	3480	IGF-1R	linsitinib	OSI-906	linsitinib			Kinase Inhibitors	inhibitor
+IGF1R	3480	IGF-1R	XL228	XL228				Kinase Inhibitors	inhibitor
+JAK1	3716	JAK1/2	AZD1480	AZD1480				Kinase Inhibitors	inhibitor
+JAK2	3717	JAK1/2	AZD1480	AZD1480				Kinase Inhibitors	inhibitor
+JAK1	3716	JAK1/2	ruxolitinib	INCB18424	ruxolitinib	Jakafi		Kinase Inhibitors	inhibitor
+JAK2	3717	JAK1/2	ruxolitinib	INCB18424	ruxolitinib	Jakafi		Kinase Inhibitors	inhibitor
+JAK2	3717	JAK2	AT9283	AT9283				Kinase Inhibitors	inhibitor
+JAK2	3717	JAK2	SAR302503	SAR302503,TG101348				Kinase Inhibitors	inhibitor
+JAK2	3717	JAK2 V617F	LY2784544	LY2784544				Kinase Inhibitors	inhibitor
+JAK3	3718	JAK3	tofacitinib citrate	CP-690550	tofacitinib citrate	Xeljanz		Kinase Inhibitors	inhibitor
+KIT	3815	KIT	masitinib	AB1010	masitinib	Masivet		Kinase Inhibitors	inhibitor
+KIT	3815	KIT	axitinib	AG-013736	axitinib	Inlyta		Kinase Inhibitors	inhibitor
+KIT	3815	KIT	motesanib	AMG706	motesanib			Kinase Inhibitors	inhibitor
+KIT	3815	KIT	AS703569	AS703569,R763				Kinase Inhibitors	inhibitor
+KIT	3815	KIT	telatinib	BAY57-9352	telatinib			Kinase Inhibitors	inhibitor
+KIT	3815	KIT	regorafenib	BAY73-4506	regorafenib	Stivarga		Kinase Inhibitors	inhibitor
+KIT	3815	KIT	pazopanib	GW786034	pazopanib	Votrient		Kinase Inhibitors	inhibitor
+KIT	3815	KIT	tandutinib	MLN518,CT53518	tandutinib			Kinase Inhibitors	inhibitor
+KIT	3815	KIT	amuvatinib	MP-470	amuvatinib			Kinase Inhibitors	inhibitor
+KIT	3815	KIT	midostaurin	PKC412	midostaurin			Kinase Inhibitors	inhibitor
+KIT	3815	KIT	PLX3397	PLX3397,PLX108-01				Kinase Inhibitors	inhibitor
+KIT	3815	KIT	imatinib	STI-571,CGP57148,CGP57148B	imatinib	Gleevec		Kinase Inhibitors	inhibitor
+KIT	3815	KIT	sunitinib	SU-11248	sunitinib	Sutent		Kinase Inhibitors	inhibitor
+KIT	3815	KIT	cabozantinib	XL184	cabozantinib	Cometriq		Kinase Inhibitors	inhibitor
+KIT	3815	KIT	XL820	XL820				Kinase Inhibitors	inhibitor
+LYN	4067	LYN	bafetinib	INNO-406,NS-187	bafetinib			Kinase Inhibitors	inhibitor
+LYN	4067	LYN	AS703569	AS703569,R763				Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	pimasertib	AS703026,MSC1936369B	pimasertib			Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	pimasertib	AS703026,MSC1936369B	pimasertib			Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	selumetinib	AZD6244,ARRY-142886	selumetinib		allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	selumetinib	AZD6244,ARRY-142886	selumetinib		allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	AZD8330	AZD8330				Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	AZD8330	AZD8330				Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	refametinib	BAY86-9766,RDEA119	refametinib		allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	refametinib	BAY86-9766,RDEA119	refametinib		allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	BI847325	BI847325			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	BI847325	BI847325			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	CI-1040	CI-1040			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	CI-1040	CI-1040			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	GDC-0623	GDC-0623			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	GDC-0623	GDC-0623			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	GDC-0973	GDC-0973			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	GDC-0973	GDC-0973			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	trametinib	GSK1120212	trametinib		allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	trametinib	GSK1120212	trametinib		allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	MEK162	MEK162			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	MEK162	MEK162			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	PD0325901	PD0325901,PD-0325901				Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	PD0325901	PD0325901,PD-0325901				Kinase Inhibitors	inhibitor
+MAP2K1	5604	MEK	TAK-733	TAK-733			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MAP2K2	5605	MEK	TAK-733	TAK-733			allosteric inhibitor	Kinase Inhibitors	inhibitor
+MET	4233	MET	AMG208	AMG208				Kinase Inhibitors	inhibitor
+MET	4233	MET	tivantinib	ARQ197	tivantinib			Kinase Inhibitors	inhibitor
+MET	4233	MET	BMS-777607	BMS-777607				Kinase Inhibitors	inhibitor
+MET	4233	MET	EMD1214063	EMD1214063				Kinase Inhibitors	inhibitor
+MET	4233	MET	foretinib	EXEL-2880,GSK1363089,XL880	foretinib			Kinase Inhibitors	inhibitor
+MET	4233	MET	INCB028060	INCB028060,INC280				Kinase Inhibitors	inhibitor
+MET	4233	MET	MGCD265	MGCD265				Kinase Inhibitors	inhibitor
+MET	4233	MET	MK-2461	MK-2461				Kinase Inhibitors	inhibitor
+MET	4233	MET	amuvatinib	MP-470	amuvatinib			Kinase Inhibitors	inhibitor
+MET	4233	MET	crizotinib	PF-02341066	crizotinib	Xalkori		Kinase Inhibitors	inhibitor
+MET	4233	MET	PF-04217903	PF-04217903				Kinase Inhibitors	inhibitor
+MET	4233	MET	cabozantinib	XL184	cabozantinib	Cometriq		Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	ridaforolimus	AP23573,MK8669	ridaforolimus,deforolimus		rapalogue	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	sirolimus	AY22989,SILA9268A,WY-090217	sirolimus	Rapamune	rapalogue	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	AZD8055	AZD8055			TORC1/2, catalytic inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	temsirolimus	CCI-779	temsirolimus	Torisel	rapalogue	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	MLN0128	MLN0128,INK128			TORC1/2, catalytic inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	OSI-027	OSI-027			TORC1/2, catalytic inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	everolimus	RAD001	everolimus	Afinitor	rapalogue	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	mTOR	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PDGFRA	5156	PDGFR	motesanib	AMG706	motesanib			Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR	motesanib	AMG706	motesanib			Kinase Inhibitors	inhibitor
+PDGFRA	5156	PDGFR	nintedanib	BIBF1120	nintedanib	Vargatef		Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR	nintedanib	BIBF1120	nintedanib	Vargatef		Kinase Inhibitors	inhibitor
+PDGFRA	5156	PDGFR	pazopanib	GW786034	pazopanib	Votrient		Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR	pazopanib	GW786034	pazopanib	Votrient		Kinase Inhibitors	inhibitor
+PDGFRA	5156	PDGFR	tandutinib	MLN518,CT53518	tandutinib			Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR	tandutinib	MLN518,CT53518	tandutinib			Kinase Inhibitors	inhibitor
+PDGFRA	5156	PDGFR	X-82	X-82			inhibits all isoforms	Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR	X-82	X-82			inhibits all isoforms	Kinase Inhibitors	inhibitor
+PDGFRA	5156	PDGFR-alpha	crenolanib	CP-868569	crenolanib			Kinase Inhibitors	inhibitor
+PDGFRA	5156	PDGFR-alpha	amuvatinib	MP-470	amuvatinib			Kinase Inhibitors	inhibitor
+PDGFRA	5156	PDGFR-alpha	midostaurin	PKC412	midostaurin			Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR-beta	linifanib	ABT-869	linifanib			Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR-beta	axitinib	AG-013736	axitinib	Inlyta		Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR-beta	sorafenib	BAY43-9006	sorafenib	Nexavar		Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR-beta	telatinib	BAY57-9352	telatinib			Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR-beta	regorafenib	BAY73-4506	regorafenib	Stivarga		Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR-beta	sunitinib	SU-11248	sunitinib	Sutent		Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR-beta	orantinib	TSU68,SU6668	orantinib			Kinase Inhibitors	inhibitor
+PDGFRB	5159	PDGFR-beta	XL820	XL820				Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	BAY80-6946	BAY80-6946			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	BEZ235	BEZ235,NVP-BEZ235			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	BGJ398	BGT226,NVP-BGT226			dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	BKM120	BKM120			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	GDC-0941	GDC-0941			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	GDC-0980	GDC-0980			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	GSK2636771	GSK2636771				Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	PF-4691502	PF-4691502			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	PI-103	PI-103			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	PKI-587	PKI-587			pan-PI3K inhibitor, catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	PWT33597	PWT33597			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	PX-866	PX-866				Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	SF1126	SF1126			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	XL147	XL147,SAR245408			pan-PI3K inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	XL-765	XL-765			catalytic, dual PI3K/mTOR inhibitor	Kinase Inhibitors	inhibitor
+PIK3C2A	5286	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3C2B	5287	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3C2G	5288	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3C3	5289	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3CB	5291	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3CG	5294	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3R1	5295	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3R2	5296	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3R3	8503	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3R4	30849	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3R5	23533	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3R6	146850	PI3K	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K-alpha	BYL719	BYL719				Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K-alpha	GDC-0032	GDC-0032				Kinase Inhibitors	inhibitor
+PIK3CA	5290	PI3K-alpha	INK-1117	INK-1117				Kinase Inhibitors	inhibitor
+PIK3CD	5293	PI3K-delta	CAL-101	CAL-101,GS-1101				Kinase Inhibitors	inhibitor
+PKN1	5585	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PKN2	5586	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PKN3	29941	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKCA	5578	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKCB	5579	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKCD	5580	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKCE	5581	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKCG	5582	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKCH	5583	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKCI	5584	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKCQ	5588	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKCZ	5590	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKD1	5587	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKD2	25865	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKD3	23683	PKC	sophoretin		sophoretin,quercetin			Kinase Inhibitors	inhibitor
+PRKCA	5578	PKC-alpha	enzastaurin	LY317615	enzastaurin			Kinase Inhibitors	inhibitor
+PRKCA	5578	PKC-alpha	midostaurin	PKC412	midostaurin			Kinase Inhibitors	inhibitor
+PRKCB	5579	PKC-beta	enzastaurin	LY317615	enzastaurin			Kinase Inhibitors	inhibitor
+PRKCG	5582	PKC-gamma	enzastaurin	LY317615	enzastaurin			Kinase Inhibitors	inhibitor
+PRKCE	5581	PKC-epsilon	enzastaurin	LY317615	enzastaurin			Kinase Inhibitors	inhibitor
+PLK1	5347	PLK1	volasertib	BI6727	volasertib			Kinase Inhibitors	inhibitor
+PLK1	5347	PLK1	BI2536	BI2536				Kinase Inhibitors	inhibitor
+PLK1	5347	PLK1	GSK461364	GSK461364,GSK-461364				Kinase Inhibitors	inhibitor
+PLK1	5347	PLK1	NMS-1286937	NMS-1286937				Kinase Inhibitors	inhibitor
+ARAF	369	RAF	sorafenib	BAY43-9006	sorafenib	Nexavar		Kinase Inhibitors	inhibitor
+BRAF	673	RAF	sorafenib	BAY43-9006	sorafenib	Nexavar		Kinase Inhibitors	inhibitor
+RAF1	5894	RAF	sorafenib	BAY43-9006	sorafenib	Nexavar		Kinase Inhibitors	inhibitor
+ARAF	369	RAF	regorafenib	BAY73-4506	regorafenib	Stivarga		Kinase Inhibitors	inhibitor
+BRAF	673	RAF	regorafenib	BAY73-4506	regorafenib	Stivarga		Kinase Inhibitors	inhibitor
+RAF1	5894	RAF	regorafenib	BAY73-4506	regorafenib	Stivarga		Kinase Inhibitors	inhibitor
+ARAF	369	RAF	LGX818	LGX818				Kinase Inhibitors	inhibitor
+BRAF	673	RAF	LGX818	LGX818				Kinase Inhibitors	inhibitor
+RAF1	5894	RAF	LGX818	LGX818				Kinase Inhibitors	inhibitor
+ARAF	369	RAF	XL281	XL281,BMS-908662				Kinase Inhibitors	inhibitor
+BRAF	673	RAF	XL281	XL281,BMS-908662				Kinase Inhibitors	inhibitor
+RAF1	5894	RAF	XL281	XL281,BMS-908662				Kinase Inhibitors	inhibitor
+RET	5979	RET	motesanib	AMG706	motesanib			Kinase Inhibitors	inhibitor
+RET	5979	RET	vandetanib	AZD6474,ZD6474	vandetanib	Zactima,Caprelsa		Kinase Inhibitors	inhibitor
+RET	5979	RET	sorafenib	BAY43-9006	sorafenib	Nexavar		Kinase Inhibitors	inhibitor
+RET	5979	RET	regorafenib	BAY73-4506	regorafenib	Stivarga		Kinase Inhibitors	inhibitor
+RET	5979	RET	amuvatinib	MP-470	amuvatinib			Kinase Inhibitors	inhibitor
+RET	5979	RET	sunitinib	SU-11248	sunitinib	Sutent		Kinase Inhibitors	inhibitor
+RET	5979	RET	cabozantinib	XL184	cabozantinib	Cometriq		Kinase Inhibitors	inhibitor
+ROS1	6098	ROS1	crizotinib	PF-02341066	crizotinib	Xalkori		Kinase Inhibitors	inhibitor
+KIT	3815	SCFR	masitinib	AB1010	masitinib	Masivet		Kinase Inhibitors	inhibitor
+SRC	6714	SRC	saracatinib	AZD0530	saracatinib			Kinase Inhibitors	inhibitor
+SRC	6714	SRC	KX2-391	KX2-391				Kinase Inhibitors	inhibitor
+SRC	6714	SRC	XL228	XL228				Kinase Inhibitors	inhibitor
+SYK	6850	SYK	fostamatinib	R788	fostamatinib			Kinase Inhibitors	inhibitor
+AKT1S1	84335	TORC1/2	AZD8055	AZD8055			catalytic inhibitor	Kinase Inhibitors	inhibitor
+DEPTOR	64798	TORC1/2	AZD8055	AZD8055			catalytic inhibitor	Kinase Inhibitors	inhibitor
+MAPKAP1	79109	TORC1/2	AZD8055	AZD8055			catalytic inhibitor	Kinase Inhibitors	inhibitor
+MLST8	64223	TORC1/2	AZD8055	AZD8055			catalytic inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	TORC1/2	AZD8055	AZD8055			catalytic inhibitor	Kinase Inhibitors	inhibitor
+RICTOR	253260	TORC1/2	AZD8055	AZD8055			catalytic inhibitor	Kinase Inhibitors	inhibitor
+RPTOR	57521	TORC1/2	AZD8055	AZD8055			catalytic inhibitor	Kinase Inhibitors	inhibitor
+AKT1S1	84335	TORC1/2	MLN0128	MLN0128,INK128			catalytic inhibitor	Kinase Inhibitors	inhibitor
+DEPTOR	64798	TORC1/2	MLN0128	MLN0128,INK128			catalytic inhibitor	Kinase Inhibitors	inhibitor
+MAPKAP1	79109	TORC1/2	MLN0128	MLN0128,INK128			catalytic inhibitor	Kinase Inhibitors	inhibitor
+MLST8	64223	TORC1/2	MLN0128	MLN0128,INK128			catalytic inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	TORC1/2	MLN0128	MLN0128,INK128			catalytic inhibitor	Kinase Inhibitors	inhibitor
+RICTOR	253260	TORC1/2	MLN0128	MLN0128,INK128			catalytic inhibitor	Kinase Inhibitors	inhibitor
+RPTOR	57521	TORC1/2	MLN0128	MLN0128,INK128			catalytic inhibitor	Kinase Inhibitors	inhibitor
+AKT1S1	84335	TORC1/2	OSI-027	OSI-027			catalytic inhibitor	Kinase Inhibitors	inhibitor
+DEPTOR	64798	TORC1/2	OSI-027	OSI-027			catalytic inhibitor	Kinase Inhibitors	inhibitor
+MAPKAP1	79109	TORC1/2	OSI-027	OSI-027			catalytic inhibitor	Kinase Inhibitors	inhibitor
+MLST8	64223	TORC1/2	OSI-027	OSI-027			catalytic inhibitor	Kinase Inhibitors	inhibitor
+MTOR	2475	TORC1/2	OSI-027	OSI-027			catalytic inhibitor	Kinase Inhibitors	inhibitor
+RICTOR	253260	TORC1/2	OSI-027	OSI-027			catalytic inhibitor	Kinase Inhibitors	inhibitor
+RPTOR	57521	TORC1/2	OSI-027	OSI-027			catalytic inhibitor	Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR	linifanib	ABT-869	linifanib			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR	linifanib	ABT-869	linifanib			Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR	linifanib	ABT-869	linifanib			Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR	ENMD-2076	ENMD-2076				Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR	ENMD-2076	ENMD-2076				Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR	ENMD-2076	ENMD-2076				Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR	foretinib	EXEL-2880,GSK1363089,XL880	foretinib			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR	foretinib	EXEL-2880,GSK1363089,XL880	foretinib			Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR	foretinib	EXEL-2880,GSK1363089,XL880	foretinib			Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR	vatalanib	PTK787,CGP79787,ZK222584	vatalanib			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR	vatalanib	PTK787,CGP79787,ZK222584	vatalanib			Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR	vatalanib	PTK787,CGP79787,ZK222584	vatalanib			Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR	orantinib	TSU68,SU6668	orantinib			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR	orantinib	TSU68,SU6668	orantinib			Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR	orantinib	TSU68,SU6668	orantinib			Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR	X-82	X-82			inhibits all isoforms	Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR	X-82	X-82			inhibits all isoforms	Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR	X-82	X-82			inhibits all isoforms	Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR	XL647	XL647,KD019				Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR	XL647	XL647,KD019				Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR	XL647	XL647,KD019				Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR1/2/3	axitinib	AG-013736	axitinib	Inlyta		Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR1/2/3	axitinib	AG-013736	axitinib	Inlyta		Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR1/2/3	axitinib	AG-013736	axitinib	Inlyta		Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR1/2/3	motesanib	AMG706	motesanib			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR1/2/3	motesanib	AMG706	motesanib			Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR1/2/3	motesanib	AMG706	motesanib			Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR1/2/3	regorafenib	BAY73-4506	regorafenib	Stivarga		Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR1/2/3	regorafenib	BAY73-4506	regorafenib	Stivarga		Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR1/2/3	regorafenib	BAY73-4506	regorafenib	Stivarga		Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR1/2/3	nintedanib	BIBF1120	nintedanib	Vargatef		Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR1/2/3	nintedanib	BIBF1120	nintedanib	Vargatef		Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR1/2/3	nintedanib	BIBF1120	nintedanib	Vargatef		Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR1/2/3	E-3810	E-3810				Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR1/2/3	E-3810	E-3810				Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR1/2/3	E-3810	E-3810				Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR1/2/3	pazopanib	GW786034	pazopanib	Votrient		Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR1/2/3	pazopanib	GW786034	pazopanib	Votrient		Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR1/2/3	pazopanib	GW786034	pazopanib	Votrient		Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR1/2/3	tivozanib	KRN951,AV-951	tivozanib			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR1/2/3	tivozanib	KRN951,AV-951	tivozanib			Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR1/2/3	tivozanib	KRN951,AV-951	tivozanib			Kinase Inhibitors	inhibitor
+FLT1	2321	VEGFR1/2/3	MGCD265	MGCD265				Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR1/2/3	MGCD265	MGCD265				Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR1/2/3	MGCD265	MGCD265				Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	AEE788	AEE788,NVP-AEE788				Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	ponatinib	AP24534	ponatinib	Iclusig		Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	cediranib	AZD2171	cediranib	Recentin		Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	vandetanib	AZD6474,ZD6474	vandetanib	Zactima,Caprelsa		Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	sorafenib	BAY43-9006	sorafenib	Nexavar		Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	brivanib	BMS-582664	brivanib			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	BMS-690514	BMS-690514,EVRI				Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	lenvatinib	E7080	lenvatinib			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	midostaurin	PKC412	midostaurin			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	RAF265	RAF265				Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	sunitinib	SU-11248	sunitinib	Sutent		Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	cabozantinib	XL184	cabozantinib	Cometriq		Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	XL820	XL820				Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2	apatinib	YN968D1	apatinib			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2/3	telatinib	BAY57-9352	telatinib			Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR2/3	telatinib	BAY57-9352	telatinib			Kinase Inhibitors	inhibitor
+KDR	3791	VEGFR2/3	lenvatinib	E7080	lenvatinib			Kinase Inhibitors	inhibitor
+FLT4	2324	VEGFR2/3	lenvatinib	E7080	lenvatinib			Kinase Inhibitors	inhibitor
+CCR4	1233	CCR4	mogamulizumab	KW-0761	mogamulizumab			Therapeutic Antibodies	antibody
+MS4A1	931	CD20	rituximab	IDEC-102,IDEC-C2B8	rituximab	Rituxan,Mabthera		Therapeutic Antibodies	antibody
+MS4A1	931	CD20	ibritumomab tiuxetan	IDECY2B8	ibritumomab tiuxetan	Zevalin	drug can be bound via tiuxetan to 111In or 90Y	Therapeutic Antibodies	antibody
+MS4A1	931	CD20	ofatumumab		ofatumumab	Arzerra,HuMax-CD20		Therapeutic Antibodies	antibody
+TNFRSF8	943	CD30	brentuximab	SGN-35	brentuximab	Adcetris		Therapeutic Antibodies	antibody
+CD52	1043	CD52	alemtuzumab		alemtuzumab	Campath		Therapeutic Antibodies	antibody
+CD74	972	CD74	milatuzumab	hLL1	milatuzumab			Therapeutic Antibodies	antibody
+CTLA4	1493	CTLA4	tremelimumab	CP675,206	tremelimumab			Therapeutic Antibodies	antibody
+CTLA4	1493	CTLA4	ipilimumab	MDX-010,MDX-101,BMS-734016	ipilimumab	Yervoy		Therapeutic Antibodies	antibody
+EGFR	1956	EGFR (HER1/ERBB1)	ABT-806	ABT-806,mAb-806				Therapeutic Antibodies	antibody
+EGFR	1956	EGFR (HER1/ERBB1)	panitumumab	ABX-EGF	panitumumab	Vectibix		Therapeutic Antibodies	antibody
+EGFR	1956	EGFR (HER1/ERBB1)	nimotuzumab	h-R3,TheraCIM	nimotuzumab			Therapeutic Antibodies	antibody
+EGFR	1956	EGFR (HER1/ERBB1)	necitumumab	IMC-11F8	necitumumab			Therapeutic Antibodies	antibody
+EGFR	1956	EGFR (HER1/ERBB1)	cetuximab	IMC-C225	cetuximab	Erbitux		Therapeutic Antibodies	antibody
+EGFR	1956	EGFR (HER1/ERBB1)	MEHD7945A	MEHD7945A				Therapeutic Antibodies	antibody
+EGFR	1956	EGFR (HER1/ERBB1)	MM-151	MM-151				Therapeutic Antibodies	antibody
+EGFR	1956	EGFR (HER1/ERBB1)	RO5083945	RO5083945,GA201				Therapeutic Antibodies	antibody
+EGFR	1956	EGFR (HER1/ERBB1)	Sym004	Sym004				Therapeutic Antibodies	antibody
+ERBB2	2064	HER2 (ERBB2/neu)	MM-111	MM-111				Therapeutic Antibodies	antibody
+ERBB2	2064	HER2 (ERBB2/neu)	pertuzumab	MOAB2C4	pertuzumab	Perjeta,Omnitarg		Therapeutic Antibodies	antibody
+ERBB2	2064	HER2 (ERBB2/neu)	ado-trastuzumabemtansine	PRO132365	ado-trastuzumabemtansine,T-DM1	Kadcyla		Therapeutic Antibodies	antibody
+ERBB2	2064	HER2 (ERBB2/neu)	trastuzumab		trastuzumab	Herceptin		Therapeutic Antibodies	antibody
+ERBB3	2065	HER3 (ERBB3)	AV203	AV203				Therapeutic Antibodies	antibody
+ERBB3	2065	HER3 (ERBB3)	MEHD7945A	MEHD7945A				Therapeutic Antibodies	antibody
+ERBB3	2065	HER3 (ERBB3)	MM-111	MM-111				Therapeutic Antibodies	antibody
+ERBB3	2065	HER3 (ERBB3)	MM-121	MM-121,SAR256212				Therapeutic Antibodies	antibody
+ERBB3	2065	HER3 (ERBB3)	U3-1287	U3-1287,AMG888				Therapeutic Antibodies	antibody
+HGF	3082	HGF	rilotumumab	AMG102	rilotumumab			Therapeutic Antibodies	antibody
+HGF	3082	HGF	ficlatuzumab	AV-299,SCH900105	ficlatuzumab			Therapeutic Antibodies	antibody
+IGF1R	3480	IGF-1R	ganitumab	AMG-479	ganitumab			Therapeutic Antibodies	antibody
+IGF1R	3480	IGF-1R	BIIB022	BIIB022				Therapeutic Antibodies	antibody
+IGF1R	3480	IGF-1R	figitumumab	CP-751871	figitumumab			Therapeutic Antibodies	antibody
+IGF1R	3480	IGF-1R	cixutumumab	IMC-A12	cixutumumab			Therapeutic Antibodies	antibody
+IGF1R	3480	IGF-1R	dalotuzumab	MK-0646	dalotuzumab			Therapeutic Antibodies	antibody
+MET	4233	MET	LY2875358	LY2875358				Therapeutic Antibodies	antibody
+MET	4233	MET	onartuzumab	MetMAb,R05490258,OA-5D	onartuzumab			Therapeutic Antibodies	antibody
+PDCD1	5133	PD-1	AMP-224	AMP-224				Therapeutic Antibodies	antibody
+PDCD1	5133	PD-1	nivolumab	BMS-936558,MDX-1106,ONO-4538	nivolumab			Therapeutic Antibodies	antibody
+PDCD1	5133	PD-1	pidilizumab	CT-011	pidilizumab			Therapeutic Antibodies	antibody
+PDCD1	5133	PD-1	MK-3475	MK-3475				Therapeutic Antibodies	antibody
+CD274	29126	PD-L1	MDX-1105	MDX-1105,BMS-936559				Therapeutic Antibodies	antibody
+CD274	29126	PD-L1	MPDL3280A	MPDL3280A,RG7446				Therapeutic Antibodies	antibody
+PDGFRA	5156	PDGFR-alpha	ramucirumab	IMC-3G3	ramucirumab			Therapeutic Antibodies	antibody
+PDGFRA	5156	PDGFR-alpha	MEDI-575	MEDI-575				Therapeutic Antibodies	antibody
+PIGF	5281	PIGF	ziv-aflibercept		ziv-aflibercept	Zaltrap		Therapeutic Antibodies	antibody
+TNFSF13B	10673	TNFSF13B	belimumab		belimumab	Benlysta		Therapeutic Antibodies	antibody
+TNFRSF10A	8797	TRAIL-R1/DR4,R2/D5	dulanermin	AMG951,rhApo2L/TRAIL	dulanermin			Therapeutic Antibodies	antibody
+TNFRSF10B	8795	TRAIL-R1/DR4,R2/D5	dulanermin	AMG951,rhApo2L/TRAIL	dulanermin			Therapeutic Antibodies	antibody
+TNFRSF10A	8797	TRAIL-R1/D4	mapatumumab	HGS-ETR1	mapatumumab			Therapeutic Antibodies	antibody
+TNFRSF10B	8795	TRAIL-R2/D5	conatumumab	AMG-655	conatumumab			Therapeutic Antibodies	antibody
+TNFRSF10B	8795	TRAIL-R2/D5	lexatumumab	HGS-ETR2	lexatumumab			Therapeutic Antibodies	antibody
+TNFRSF10B	8795	TRAIL-R2/D5	LBY135	LBY135				Therapeutic Antibodies	antibody
+TNFRSF10B	8795	TRAIL-R2/D5	apomab	PRO95780	apomab			Therapeutic Antibodies	antibody
+VEGFA	7422	VEGFA	bevacizumab		bevacizumab	Avastin		Therapeutic Antibodies	antibody
+VEGFA	7422	VEGFA	ziv-aflibercept		ziv-aflibercept	Zaltrap		Therapeutic Antibodies	antibody
+VEGFB	7423	VEGFB	ziv-aflibercept		ziv-aflibercept	Zaltrap		Therapeutic Antibodies	antibody
+KDR	3791	VEGFR2	ramucirumab	IMC-1121B	ramucirumab			Therapeutic Antibodies	antibody
+CTLA4	1493	CTLA4	tremelimumab	CP675,206	tremelimumab			Immunotherapies	immunotherapy
+CTLA4	1493	CTLA4	ipilimumab	MDX-010,MDX-101,BMS-734016	ipilimumab	Yervoy		Immunotherapies	immunotherapy
+IL6R	3570	IL-6R	tocilizumab	R-1569	tocilizumab	Actemra		Immunotherapies	immunotherapy
+IL1B	3553	IL-1-beta	canakinumab	ACZ885	canakinumab	Ilaris		Immunotherapies	immunotherapy
+PDCD1	5133	PD-1	AMP-224	AMP-224				Immunotherapies	immunotherapy
+PDCD1	5133	PD-1	nivolumab	BMS-936558,MDX-1106,ONO-4538	nivolumab			Immunotherapies	immunotherapy
+PDCD1	5133	PD-1	pidilizumab	CT-011	pidilizumab			Immunotherapies	immunotherapy
+PDCD1	5133	PD-1	MK-3475	MK-3475				Immunotherapies	immunotherapy
+CD274	29126	PD-L1	MDX-1105	MDX-1105,BMS-936559				Immunotherapies	immunotherapy
+CD274	29126	PD-L1	MPDL3280A	MPDL3280A,RG7446				Immunotherapies	immunotherapy
+FNTA	2339	Farnesyl protein transferase (FTase)	tipifarnib	IND58359	tipifarnib	Zarnestra		Other	other
+PSEN1	5663	Gamma-secretase	MK0752	MK0752				Other	other
+PSEN2	5664	Gamma-secretase	MK0752	MK0752				Other	other
+NCSTN	23385	Gamma-secretase	MK0752	MK0752				Other	other
+APH1A	51107	Gamma-secretase	MK0752	MK0752				Other	other
+APH1B	83464	Gamma-secretase	MK0752	MK0752				Other	other
+PSENEN	55851	Gamma-secretase	MK0752	MK0752				Other	other
+HSP90AA1	3320	HSP90	tanespimycin	17-AAG,KOS-953	tanespimycin			Other	other
+HSP90AA2	3324	HSP90	tanespimycin	17-AAG,KOS-953	tanespimycin			Other	other
+HSP90AB1	3326	HSP90	tanespimycin	17-AAG,KOS-953	tanespimycin			Other	other
+HSP90AA1	3320	HSP90	AUY922	AUY922				Other	other
+HSP90AA2	3324	HSP90	AUY922	AUY922				Other	other
+HSP90AB1	3326	HSP90	AUY922	AUY922				Other	other
+HSP90AA1	3320	HSP90	retaspimycin	IPI-504	retaspimycin			Other	other
+HSP90AA2	3324	HSP90	retaspimycin	IPI-504	retaspimycin			Other	other
+HSP90AB1	3326	HSP90	retaspimycin	IPI-504	retaspimycin			Other	other
+HSP90AA1	3320	HSP90	ganetespib	STA-9090	ganetespib			Other	other
+HSP90AA2	3324	HSP90	ganetespib	STA-9090	ganetespib			Other	other
+HSP90AB1	3326	HSP90	ganetespib	STA-9090	ganetespib			Other	other
+NOTCH1	4851	Notch Pathway	MK0752	MK0752				Other	other
+NOTCH2	4853	Notch Pathway	MK0752	MK0752				Other	other
+NOTCH3	4854	Notch Pathway	MK0752	MK0752				Other	other
+NOTCH4	4855	Notch Pathway	MK0752	MK0752				Other	other
+NOTCH1	4851	Notch Pathway	PF-03084014	PF-03084014				Other	other
+NOTCH2	4853	Notch Pathway	PF-03084014	PF-03084014				Other	other
+NOTCH3	4854	Notch Pathway	PF-03084014	PF-03084014				Other	other
+NOTCH4	4855	Notch Pathway	PF-03084014	PF-03084014				Other	other
+NOTCH1	4851	Notch Pathway	REGN421	REGN421				Other	other
+NOTCH2	4853	Notch Pathway	REGN421	REGN421				Other	other
+NOTCH3	4854	Notch Pathway	REGN421	REGN421				Other	other
+NOTCH4	4855	Notch Pathway	REGN421	REGN421				Other	other
+NOTCH1	4851	Notch Pathway	RO4929097	RO4929097,R4733				Other	other
+NOTCH2	4853	Notch Pathway	RO4929097	RO4929097,R4733				Other	other
+NOTCH3	4854	Notch Pathway	RO4929097	RO4929097,R4733				Other	other
+NOTCH4	4855	Notch Pathway	RO4929097	RO4929097,R4733				Other	other
+PARP1	142	PARP	veliparib	ABT-888	veliparib			Other	other
+PARP2	10038	PARP	veliparib	ABT-888	veliparib			Other	other
+PARP1	142	PARP	rucaparib	AG-014699,PF-01367338	rucaparib			Other	other
+PARP2	10038	PARP	rucaparib	AG-014699,PF-01367338	rucaparib			Other	other
+PARP1	142	PARP	olaparib	AZD2281	olaparib			Other	other
+PARP2	10038	PARP	olaparib	AZD2281	olaparib			Other	other
+PARP1	142	PARP	iniparib	BSI-201	iniparib			Other	other
+PARP1	142	PARP	MK4827	MK4827				Other	other
+PARP2	10038	PARP	MK4827	MK4827				Other	other
+PIPSL	266971	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMA1	5682	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMA2	5683	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMA3	5684	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMA4	5685	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMA5	5686	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMA6	5687	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMA7	5688	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMA8	143471	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMB1	5689	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMB10	5699	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMB2	5690	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMB3	5691	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMB4	5692	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMB5	5693	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMB6	5694	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMB7	5695	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMB8	5696	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMB9	5698	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMC1	5700	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMC1P1	151645	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMC2	5701	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMC3	5702	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMC3IP	29893	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMC4	5704	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMC5	5705	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMC6	5706	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD1	5707	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD10	5716	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD10P1	170541	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD10P2	280644	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD10P3	338091	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD11	5717	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD12	5718	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD13	5719	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD14	10213	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD2	5708	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD3	5709	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD4	5710	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD4P1	54035	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD5	5711	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD6	9861	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD7	5713	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD8	5714	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMD9	5715	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSME1	5720	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSME2	5721	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSME2P2	338099	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSME3	10197	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSME4	23198	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PSMF1	9491	Proteasome	bortezomib	LDP341,MLN341,PS-341	bortezomib	Velcade		Other	other
+PIPSL	266971	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMA1	5682	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMA2	5683	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMA3	5684	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMA4	5685	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMA5	5686	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMA6	5687	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMA7	5688	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMA8	143471	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMB1	5689	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMB10	5699	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMB2	5690	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMB3	5691	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMB4	5692	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMB5	5693	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMB6	5694	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMB7	5695	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMB8	5696	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMB9	5698	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMC1	5700	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMC1P1	151645	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMC2	5701	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMC3	5702	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMC3IP	29893	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMC4	5704	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMC5	5705	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMC6	5706	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD1	5707	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD10	5716	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD10P1	170541	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD10P2	280644	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD10P3	338091	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD11	5717	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD12	5718	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD13	5719	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD14	10213	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD2	5708	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD3	5709	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD4	5710	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD4P1	54035	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD5	5711	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD6	9861	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD7	5713	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD8	5714	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMD9	5715	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSME1	5720	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSME2	5721	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSME2P2	338099	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSME3	10197	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSME4	23198	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PSMF1	9491	Proteasome	carfilzomib	PR-171	carfilzomib	Kyprolis		Other	other
+PTCH1	5727	PTCH	vismodegib	GDC-0449	vismodegib	Erivedge		Other	other
+SMO	6608	Smoothened	vismodegib	GDC-0449	vismodegib	Erivedge		Other	other
+SMO	6608	Smoothened	erismodegib	LDE225	erismodegib			Other	other
